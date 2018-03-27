@@ -1,0 +1,4 @@
+$rem: 16px !default;
+@function rem($num){
+	@return $num/$rem*1rem;
+}
