@@ -1,1 +1,3 @@
-hotel.vue
+<template>
+	<div>hotel</div>
+</template>

@@ -1,8 +1,10 @@
 <template>
 	<div class="box">
-		<router-link class="route" tag='div' :to='i.url' v-for='(i ,index) in navItem' @click='onNav(index)' :key='index'>
-			<p :class="{color:indexData==index}"><i :class="i.class"></i></p>
-			<p :class="{color:indexData==index}">{{i.name}}</p>
+		<router-link class="route" tag='div' :to='i.url' v-for='(i ,index) in navItem':key='index'>
+			<div @click='Nav(index)'>
+				<p :class="{color:indexData==index}"><i :class="i.class"></i></p>
+				<p :class="{color:indexData==index}">{{i.name}}</p>
+			</div>
 		</router-link>
 	</div>
 </template>
@@ -41,8 +43,8 @@
 			}
 		},
 		methods:{
-			onNav:function(i){
-				this.indexData = i;
+			Nav:function(index){
+				this.indexData = index;
 			}
 		}
 	}
@@ -50,6 +52,7 @@
 <style scoped lang='scss'>
 	@import '../../common/css/common.scss';
 	.color{
+		transition: color 0.3s;
 		color: green;
 	}
 	.box{

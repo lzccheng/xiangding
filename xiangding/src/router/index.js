@@ -50,5 +50,6 @@ export default new Router({
         title: '我的'
       }
     }
-  ]
+  ],
+  mode:'history'
 })
