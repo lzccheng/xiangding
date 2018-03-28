@@ -1,11 +1,13 @@
 <template>
   <div id="app">
-    <transition name='bounce'>
-      <keep-alive>
-        <router-view class='App_route'></router-view>
-      </keep-alive>
-    </transition>
-    <myFooter/>
+    <div class="wrap">
+      <transition name='bounce'>
+        <keep-alive>
+          <router-view class='App_route'></router-view>
+        </keep-alive>
+      </transition>
+      <myFooter/>
+    </div>
   </div>
 </template>
 
@@ -21,17 +23,29 @@ export default {
 
 <style lang='scss'>
 @import 'common/css/common.scss';
+@import 'common/css/swiper.min';
 
+*{
+  padding: 0;
+  margin: 0;
+}
+
+ul,li{
+  list-style: none;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   font-size: rem(12px);
+  color: #555;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100%;
 }
 .App_route{
   position: absolute;
   left: 0;
   top: 0;
+  padding-bottom: rem(60px);
 }
 .bounce-enter-active {
   animation: bounce-in .5s;

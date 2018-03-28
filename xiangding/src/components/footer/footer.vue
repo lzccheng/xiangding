@@ -25,7 +25,7 @@
 					},
 					{
 						name: '团队会议',
-						class:'fa fa-group',
+						class:'far fa-comment-alt',
 						url: '/teamMeeting'
 					},
 					{
@@ -53,13 +53,17 @@
 	@import '../../common/css/common.scss';
 	.color{
 		transition: color 0.3s;
-		color: green;
+		color: #43c122;
+	}
+	p{
+		color: #aaa;
 	}
 	.box{
 		position: fixed;
 		left: 0;
 		bottom: 0;
 		width: 100%;
+		background-color: #fff;
 
 		.route{
 			width: 20%;
@@ -67,12 +71,12 @@
 			height: rem(40px);
 			padding: rem(8px) 0 rem(2px);
 			margin: 0;
-			background: red;
 
 			p{
 				padding: 0;
 				margin: 0;
 				text-align: center;
+				font-weight: bold;
 			}
 		}
 
