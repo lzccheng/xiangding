@@ -165,6 +165,7 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper';
 	@import '../../common/css/common';
 	.box{
 		width: 100%;
+    background-color: #fff;
 		.banner{
 			.iSlide{
 				width: 100%;
