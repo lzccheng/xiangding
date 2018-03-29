@@ -2,16 +2,14 @@
   <div class="box">
   		<div class="banner">
         <div class="swiper-container">
-        <div class="swiper-wrapper">
-          <div v-for='(i,index) in arrItem' :key='index' class="swiper-slide">
-            <div class="iSlide">
-                <img class="img" :src="i.imgUrl">
-              </div>
+          <div class="swiper-wrapper">
+            <div v-for='(i,index) in arrItem' :key='index' class="swiper-slide">
+              <div class="iSlide">
+                  <img class="img" :src="i.imgUrl">
+                </div>
+            </div>
           </div>
         </div>
-        <div class="swiper-pagination" slot="pagination"></div>
-      </div>
-        
   		</div>
   		<div class="msg">
   			<ul>
@@ -97,7 +95,8 @@
   export default{  
       mounted:function(){
         var mySwiper = new Swiper('.swiper-container', {
-           
+           loop: true,
+           autoplay: true
         })
       },
       data(){
