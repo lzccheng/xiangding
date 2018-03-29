@@ -38,8 +38,10 @@
 					<img :src="i.star">
 					<img :src="i.star"><br>
 					<span>距市中心{{i.distance}}公里&nbsp;/&nbsp;&nbsp;{{i.city[0]}}、{{i.city[1]}}</span><br>
-					<span>最大房间：{{i.max_room}}m<sup>2</sup></span>
-					<span>&nbsp;&nbsp;&nbsp;&nbsp;最多容纳：{{i.max_people}}人</span><br>
+					<p>
+						<span>最大房间：{{i.max_room}}m<sup>2</sup></span>
+						<span class="max">&nbsp;&nbsp;&nbsp;&nbsp;最多容纳：{{i.max_people}}人</span>
+					</p>
 					<span>总房间：{{i.room_num}}间</span>
 					<span class="_right"><span class="team">团队房</span>￥{{i.min_price}}起</span>
 				</div>
@@ -149,7 +151,9 @@
 					}
 				}
 				.msg{
+					position: relative;
 					padding-left: rem(5px);
+					width: 65%;
 					.min_title{
 						font-size: rem(16px);
 						font-weight: bold;
@@ -169,8 +173,16 @@
 						color: #ff9800;
 						.team{
 							color: #fff;
+							font-size: rem(14px);
 							background-color: #ff9800;
-							padding: 0 rem(5px);
+							padding: 0 rem(3px);
+						}
+					}
+					p{
+						.max{
+							position: absolute;
+							bottom: rem(22px);
+							right: 0;
 						}
 					}
 				}
