@@ -25,12 +25,12 @@
 					},
 					{
 						name: '团队会议',
-						class:'far fa-comment-alt',
+						class:'fas fa-comment-dots',
 						url: '/teamMeeting'
 					},
 					{
 						name: '入驻',
-						class:'fa fa-plus',
+						class:'fas fa-user-plus',
 						url: '/enter'
 					},
 					{
