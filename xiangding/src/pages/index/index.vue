@@ -1,15 +1,18 @@
 <template>  
   <div class="box">
   		<div class="banner">
-  			<swiper :options='options'>
-	  			<swiper-slide v-for='(i,index) in arrItem' :key='index'>
-	  				<div class="iSlide">
-	  					<img class="img" :src="i.imgUrl">
-	  				</div>
-	  			</swiper-slide>
-	  		</swiper>
+        <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div v-for='(i,index) in arrItem' :key='index' class="swiper-slide">
+            <div class="iSlide">
+                <img class="img" :src="i.imgUrl">
+              </div>
+          </div>
+        </div>
+        <div class="swiper-pagination" slot="pagination"></div>
+      </div>
+        
   		</div>
-  		
   		<div class="msg">
   			<ul>
   				<li>
@@ -90,19 +93,15 @@
   </div>
 </template>  
 <script>  
-import { swiper, swiperSlide } from 'vue-awesome-swiper';  
+  import Swiper from 'swiper' 
   export default{  
-  		components:{
-  			swiper,
-  			swiperSlide
-  		},
+      mounted:function(){
+        var mySwiper = new Swiper('.swiper-container', {
+           
+        })
+      },
       data(){
       	return {
-      		options:{
-      			debugger:true,
-      			slidesPerView:'auto',
-      			centerSlides:true
-      		},
       		arrItem:[
       			{
       				name:'swiperSlide5',
