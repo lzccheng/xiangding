@@ -64,22 +64,49 @@
 				<span>酒店服务费</span>
 				<span>提现</span>
 			</p>
-			<p class="text"><span>当前收益</span></p>
-			<p class="money"><span>￥</span><span>{{msg.earning}}</span></p>
-			<div class="earn">
-				<div class="order">
-					<p class="icon"><i class="far fa-file"></i></p>
-					<p class="text">
-						<span>本月收益订单数</span><br>
-						<span>{{msg.order_num}}</span>
-					</p>
+			<div class="earning">
+				<p class="text"><span>当前收益</span></p>
+				<p class="money"><span>￥</span><span>{{msg.earning}}</span></p>
+				<div class="earn">
+					<div class="order">
+						<p class="icon"><i class="far fa-file"></i></p>
+						<p class="text">
+							<span>本月收益订单数</span><br>
+							<span>{{msg.order_num}}</span>
+						</p>
+					</div>
+					<div class="people">
+						<p class="icon"><i class="far fa-user"></i></p>
+						<p class="text">
+							<span>本月消费人数数</span><br>
+							<span>{{msg.poeple_num}}</span>
+						</p>
+					</div>
 				</div>
-				<div class="people">
-					<p class="icon"><i class="far fa-user"></i></p>
-					<p class="text">
-						<span>本月消费人数数</span><br>
-						<span>{{msg.poeple_num}}</span>
-					</p>
+				<div class="agent">
+					<ul>
+						<li>
+							<p><span>一级代理</span></p>
+							<p class="right">
+								<span>收入</span><br>
+								<span>{{msg.income.firstAgent}}</span>
+							</p>
+						</li>
+						<li>
+							<p><span>二级代理</span></p>
+							<p class="right">
+								<span>收入</span><br>
+								<span>{{msg.income.secondAgent}}</span>
+							</p>
+						</li>
+						<li>
+							<p><span>三级代理</span></p>
+							<p class="right">
+								<span>收入</span><br>
+								<span>{{msg.income.thirdAgent}}</span>
+							</p>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -110,6 +137,23 @@
 				<div>
 					<p><i class="far fa-question-circle"></i></p>
 					<p><span>代理服务商入口</span></p>
+				</div>
+			</div>
+		</div>
+		<div class="myOrder">
+			<p class="text"><span>系统服务</span></p>
+			<div class="message">
+				<div>
+					<p><i class="far fa-bookmark"></i></p>
+					<p><span>我的收藏</span></p>
+				</div>
+				<div>
+					<p><i class="fa fa-question-circle"></i></p>
+					<p><span>我要反馈</span></p>
+				</div>
+				<div>
+					<p><i class="far fa-comments"></i></p>
+					<p><span>联系客服</span></p>
 				</div>
 			</div>
 		</div>
@@ -196,9 +240,13 @@
 				display: inline-block;
 			}
 			.text{
+				text-align: left;
+				position: relative;
+				left: rem(2px);
+				top: rem(3px);
 				span{
 					&:first-child{
-						color: #aaaaaa;
+						color: #aaa;
 					}
 				}
 			}
@@ -280,10 +328,6 @@
 						margin-top: rem(8px);
 					}
 				}
-			}
-			.text{
-				text-align: center;
-				font-size: rem(14px);
 			}
 			.money{
 				color: #ff9800;

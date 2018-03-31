@@ -4,9 +4,12 @@
         <div class="swiper-container">
           <div class="swiper-wrapper">
             <div v-for='(i,index) in arrItem' :key='index' class="swiper-slide">
-              <div class="iSlide">
-                  <img class="img" :src="i.imgUrl">
-                </div>
+              <router-link :to="{path: '/hotelDetail',query:{id:i.id}}" tag='div'>
+                 <div class="iSlide">
+                    <img class="img" :src="i.imgUrl">
+                  </div>
+              </router-link>
+               
             </div>
           </div>
         </div>
@@ -72,88 +75,54 @@
       <div class="near">
         <p class="title">附近推荐酒店</p>
         <div class="hotelRoom" v-for='(i,index) in hotel' :key='index'>
+          <router-link :to="{path: '/hotelDetail',query:{id:i.id}}" tag='div'>
             <img :src="i.imgUrl">
             <div>
               <p class="min_title">
-                <span class="one">{{i.name}}</span>
-                <img :src="i.star">
-                <img :src="i.star">
-                <img :src="i.star">
-                <img :src="i.star">
+                <span class="one">{{i.name}}<star :len='i.star'/></span>
               </p>
               <p>
-                <span>{{i.area}}&nbsp;&nbsp;/&nbsp;&nbsp;{{i.room}}间房</span>
+                <span>{{i.area}}&nbsp;&nbsp;/&nbsp;&nbsp;{{i.room_total}}间房</span>
                 <span class="min_price">￥{{i.min_price}}起</span>
               </p>
             </div>
+          </router-link>
+            
         </div>
       </div>
   </div>
 </template>  
 <script>  
   import Swiper from 'swiper' 
+  import star from '../../components/star/star'
   export default{  
+      components: {
+        star
+      },
       mounted:function(){
-        var mySwiper = new Swiper('.swiper-container', {
-           loop: true,
-           autoplay: true
+        let that = this
+        this.$axios({url:'/api/bannerData',method: 'get',data:{id:123}}).then((res)=>{
+          that.arrItem = res.data
+          setTimeout(function(){
+            var mySwiper = new Swiper('.swiper-container', {
+               loop: true,
+               autoplay: true
+            })
+          },100)
+        }).catch((err)=>{
+          console.log(err)
         })
+        this.$axios({url:'/api/hotelData',method: 'get'}).then((res)=>{
+            that.hotel = res.data
+          }).catch((err)=>{
+            console.log(err)
+          })
+
       },
       data(){
       	return {
-      		arrItem:[
-      			{
-      				name:'swiperSlide5',
-      				imgUrl:'http://pic.58pic.com/58pic/13/60/16/64b58PICXEK_1024.jpg'
-      			},
-      			{
-      				name:'swiperSlide1',
-      				imgUrl:'http://image.qmango.com/hotelimg/dl1210/109490/109.jpeg'
-      			},
-      			{
-      				name:'swiperSlide51',
-      				imgUrl:'http://image.qmango.com/hotelimg/dl1210/125708/181.jpeg'
-      			},
-      			{
-      				name:'swiperSlide1111115',
-      				imgUrl:'http://image.qmango.com/hotelimg/dl1210/119297/793.jpeg'
-      			}
-      		],
-          hotel: [
-            {
-              imgUrl: 'http://d6.yihaodianimg.com/N04/M09/35/35/CgQDrlOxMtiAAX-JAACqi31CJ7I44800.jpg',
-              name: '广州银河大酒店',
-              star:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522234915879&di=7df834c51f02fc1a257dc138835fb7f6&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F57%2F64%2F72d58PICyn8_1024.png',
-              area:'天河区',
-              room:'360',
-              min_price: '290'
-            },
-            {
-              imgUrl: 'http://d6.yihaodianimg.com/N02/M01/20/C4/CgQCslN8UVqAQg-BAACw4isVwDs94800.jpg',
-              name: '广州银河大酒店',
-              star:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522234915879&di=7df834c51f02fc1a257dc138835fb7f6&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F57%2F64%2F72d58PICyn8_1024.png',
-              area:'天河区',
-              room:'360',
-              min_price: '290'
-            },
-            {
-              imgUrl: 'http://file28.mafengwo.net/M00/E4/6B/wKgB6lPJkDGAKiGUAAWr55AgSgg98.rbook_comment.w1024.jpeg',
-              name: '广州银河大酒店',
-              star:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522234915879&di=7df834c51f02fc1a257dc138835fb7f6&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F57%2F64%2F72d58PICyn8_1024.png',
-              area:'天河区',
-              room:'360',
-              min_price: '290'
-            },
-            {
-              imgUrl: 'http://pic35.photophoto.cn/20150512/0040039395981972_b.jpg',
-              name: '广州银河大酒店',
-              star:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522234915879&di=7df834c51f02fc1a257dc138835fb7f6&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F57%2F64%2F72d58PICyn8_1024.png',
-              area:'天河区',
-              room:'360',
-              min_price: '290'
-            }
-
-          ]
+      		arrItem:[],
+          hotel: []
       	}
       }
   }  

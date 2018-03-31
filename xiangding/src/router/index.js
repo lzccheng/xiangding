@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import index from '@/pages/index/index'
 import hotel from '@/pages/hotel/hotel'
+import hotelDetail from '@/pages/hotel/hotelDetail/hotelDetail'
 import teamMeeting from '@/pages/teamMeeting/teamMeeting'
 import enter from '@/pages/enter/enter'
 import my from '@/pages/my/my'
@@ -24,6 +25,14 @@ export default new Router({
       component: hotel,
       meta: {
         title: '酒店'
+      }
+    },
+    {
+      path: '/hotelDetail',
+      name: 'hotelDetail',
+      component: hotelDetail,
+      meta: {
+        title: '酒店详情'
       }
     },
     {

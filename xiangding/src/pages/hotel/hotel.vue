@@ -28,66 +28,40 @@
 		</div>
 		<div class="hotel">
 			<div class="hotelItem" v-for='(i,index) in hotel' :key='index'>
-				<div class="img">
-					<img :src="i.imgUrl">
-				</div>
-				<div class="msg">
-					<span class="min_title">{{i.name}}</span>
-					<img :src="i.star">
-					<img :src="i.star">
-					<img :src="i.star">
-					<img :src="i.star"><br>
-					<span>距市中心{{i.distance}}公里&nbsp;/&nbsp;&nbsp;{{i.city[0]}}、{{i.city[1]}}</span>
-					<p>
-						<span>最大房间：{{i.max_room}}m<sup>2</sup></span>
-						<span class="max">&nbsp;&nbsp;&nbsp;&nbsp;最多容纳：{{i.max_people}}人</span>
-					</p>
-					<span>总房间：{{i.room_num}}间</span>
-					<span class="_right">￥{{i.min_price}}起</span>
-				</div>
+				<router-link :to="{path: '/hotelDetail',query:{id:i.id}}" tag='div'>
+					<div class="img">
+						<img :src="i.imgUrl">
+					</div>
+					<div class="msg">
+						<span class="min_title">{{i.name}}<star :len='i.star'/></span>
+						
+						<span>距市中心{{i.distance}}公里&nbsp;/&nbsp;&nbsp;{{i.city[0]}}、{{i.city[1]}}</span>
+						<p>
+							<span>最大房间：{{i.max_room_erea}}m<sup>2</sup></span>
+							<span class="max">&nbsp;&nbsp;&nbsp;&nbsp;最多容纳：{{i.max_people}}人</span>
+						</p>
+						<span>总房间：{{i.room_total}}间</span>
+						<span class="_right">￥{{i.min_price}}起</span>
+					</div>
+				</router-link>
 			</div>
 		</div>
 	</div>
 </template>
 <script>
+	import star from '../../components/star/star'
 	export default {
+		mounted: function(){
+			this.$axios({url:'/api/hotel'}).then((res)=>{
+				this.hotel = res.data
+			})
+		},
+		components: {
+	        star
+	      },
 		data(){
 			return {
-				hotel: [
-					{
-						name: '广州银河大酒店',
-						imgUrl: 'http://file27.mafengwo.net/M00/F4/C0/wKgB6lPNl2KAUJaLAAMQOZWxpCA51.rbook_comment.w1024.jpeg',
-						star:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522234915879&di=7df834c51f02fc1a257dc138835fb7f6&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F57%2F64%2F72d58PICyn8_1024.png',
-						distance: '5.27',
-						city:['珠江新城','五羊商城'],
-						max_room:'430',
-						max_people: '10',
-						room_num:'800',
-						min_price: '300'
-					},
-					{
-						name: '广州银河大酒店',
-						imgUrl: 'http://file26.mafengwo.net/M00/8A/3B/wKgB4lMg9kmAa_2PAAE1Wq00s_s28.rbook_comment.w1024.jpeg',
-						star:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522234915879&di=7df834c51f02fc1a257dc138835fb7f6&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F57%2F64%2F72d58PICyn8_1024.png',
-						distance: '5.27',
-						city:['珠江新城','五羊商城'],
-						max_room:'430',
-						max_people: '10',
-						room_num:'800',
-						min_price: '300'
-					},
-					{
-						name: '广州银河大酒店',
-						imgUrl: 'http://pic.58pic.com/58pic/15/05/36/98b58PICetU_1024.jpg',
-						star:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522234915879&di=7df834c51f02fc1a257dc138835fb7f6&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F57%2F64%2F72d58PICyn8_1024.png',
-						distance: '5.27',
-						city:['珠江新城','五羊商城'],
-						max_room:'430',
-						max_people: '10',
-						room_num:'800',
-						min_price: '300'
-					}
-				]
+				hotel: []
 			}
 		}
 	}
@@ -166,6 +140,9 @@
 					span{
 						display: inline-block;
 						padding: rem(3px) 0;
+						&:first-child{
+							display: inline;
+						}
 					}
 					._right{
 						float: right;

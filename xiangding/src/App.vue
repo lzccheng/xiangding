@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="wrap">
-      <transition name='bounce'>
+      <transition name='translate'>
         <keep-alive>
           <router-view class='App_route'></router-view>
         </keep-alive>
@@ -62,6 +62,38 @@ ul,li{
   }
   100% {
     transform: scale(1);
+  }  
+}
+
+.translate-enter-active {
+  animation: translate-in .5s;
+}
+.translate-leave-active {
+  animation: translate-in .5s reverse;
+}
+@keyframes translate-in {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
+
+  .opacity-enter-active {
+    animation: opacity-in .5s;
+  }
+  .opacity-leave-active {
+    animation: opacity-in .5s reverse;
+  }
+  @keyframes opacity-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  
 </style>
