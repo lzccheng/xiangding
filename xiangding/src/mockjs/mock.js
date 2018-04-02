@@ -19,7 +19,7 @@
     ]
     for(let i=0;i<img.length;i++){
     	let item = {
-    		id: Random.id(),
+    		id: Random.range(img.length)[i],
     		imgUrl: img[i],
     		star: Random.natural( 1, 5 ),
     		area: Random.csentence( 2, 2 ).slice(0,-1)+'区',
@@ -31,6 +31,95 @@
     		city:['珠江新城','五羊商城'],
     		distance: Random.float( 0, 200, 2, 2 ),
     		hotelDetail: {
+    			imgList: [
+    				img[i],
+    				'http://pic.35pic.com/normal/04/16/23/5713677_151916236164_2.jpg'
+    			],
+    			tip: [
+    				'免费提供车位以及免费接送附近地铁'
+    			],
+    			provide: [
+    				{
+    					name: '网络',
+    					isHave: true,
+    					icon: 'fas fa-wifi'
+    				},
+    				{
+    					name: '餐饮',
+    					isHave: true,
+    					icon: 'fas fa-utensils'
+    				},
+    				{
+    					name: '健身',
+    					isHave: true,
+    					icon: 'fas fa-heartbeat'
+    				},
+    				{
+    					name: '游泳',
+    					isHave: true,
+    					icon: 'fab fa-docker'
+    				},
+    				{
+    					name: '停车位',
+    					isHave: true,
+    					icon: 'fab fa-product-hunt'
+    				}
+    			],
+    			address:'广州市天河区广州大道坡天平架',
+    			distance: '1.4',
+    			near: [
+    				'大型的万科广场'
+    			],
+                room: [
+                    {
+                        id: Random.range(img.length)[i],
+                        name: '特惠商务房',
+                        imgUrl: 'http://pic.35pic.com/normal/04/16/23/5713677_151916236164_2.jpg',
+                        area: Random.natural( 10, 200 ),
+                        price: Random.natural( 200, 1200 ),
+                        bed: 1.8
+                    },
+                    {
+                        id: Random.range(img.length)[i],
+                        name: '特惠商务房',
+                        imgUrl: 'http://pic.35pic.com/normal/04/16/23/5713677_151916236164_2.jpg',
+                        area: Random.natural( 10, 200 ),
+                        price: Random.natural( 200, 1200 ),
+                        bed: 1.8
+                    },
+                    {
+                        id: Random.range(img.length)[i],
+                        name: '特惠商务房',
+                        imgUrl: 'http://pic.35pic.com/normal/04/16/23/5713677_151916236164_2.jpg',
+                        area: Random.natural( 10, 200 ),
+                        price: Random.natural( 200, 1200 ),
+                        bed: 1.8
+                    },
+                    {
+                        id: Random.range(img.length)[i],
+                        name: '特惠商务房',
+                        imgUrl: 'http://pic.35pic.com/normal/04/16/23/5713677_151916236164_2.jpg',
+                        area: Random.natural( 10, 200 ),
+                        price: Random.natural( 200, 1200 ),
+                        bed: 1.8
+                    },
+                    {
+                        id: Random.range(img.length)[i],
+                        name: '特惠商务房',
+                        imgUrl: 'http://pic.35pic.com/normal/04/16/23/5713677_151916236164_2.jpg',
+                        area: Random.natural( 10, 200 ),
+                        price: Random.natural( 200, 1200 ),
+                        bed: 1.8
+                    },
+                    {
+                        id: Random.range(img.length)[i],
+                        name: '特惠商务房',
+                        imgUrl: 'http://pic.35pic.com/normal/04/16/23/5713677_151916236164_2.jpg',
+                        area: Random.natural( 10, 200 ),
+                        price: Random.natural( 200, 1200 ),
+                        bed: 1.8
+                    }
+                ]
     		}
     	}
     	arr.push(item)
@@ -53,41 +142,6 @@
     	return arr.slice(0,5)
     }
     const hotel = (res)=>{
-    // 	let arr = [
-				// 	{
-				// 		name: '广州银河大酒店',
-				// 		imgUrl: 'http://file27.mafengwo.net/M00/F4/C0/wKgB6lPNl2KAUJaLAAMQOZWxpCA51.rbook_comment.w1024.jpeg',
-				// 		star:'4',
-				// 		distance: '5.27',
-				// 		city:['珠江新城','五羊商城'],
-				// 		max_room:'430',
-				// 		max_people: '10',
-				// 		room_num:'800',
-				// 		min_price: '300'
-				// 	},
-				// 	{
-				// 		name: '广州银河大酒店',
-				// 		imgUrl: 'http://file26.mafengwo.net/M00/8A/3B/wKgB4lMg9kmAa_2PAAE1Wq00s_s28.rbook_comment.w1024.jpeg',
-				// 		star:'4',
-				// 		distance: '5.27',
-				// 		city:['珠江新城','五羊商城'],
-				// 		max_room:'430',
-				// 		max_people: '10',
-				// 		room_num:'800',
-				// 		min_price: '300'
-				// 	},
-				// 	{
-				// 		name: '广州银河大酒店',
-				// 		imgUrl: 'http://pic.58pic.com/58pic/15/05/36/98b58PICetU_1024.jpg',
-				// 		star:'4',
-				// 		distance: '5.27',
-				// 		city:['珠江新城','五羊商城'],
-				// 		max_room:'430',
-				// 		max_people: '10',
-				// 		room_num:'800',
-				// 		min_price: '300'
-				// 	}
-				// ]
 		return arr
     }
     const api = ()=>{

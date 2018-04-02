@@ -6,6 +6,7 @@ import hotelDetail from '@/pages/hotel/hotelDetail/hotelDetail'
 import teamMeeting from '@/pages/teamMeeting/teamMeeting'
 import enter from '@/pages/enter/enter'
 import my from '@/pages/my/my'
+import hotelOrder from '@/pages/hotel/hotelOrder/hotelOrder'
 
 Vue.use(Router)
 
@@ -33,6 +34,14 @@ export default new Router({
       component: hotelDetail,
       meta: {
         title: '酒店详情'
+      }
+    },
+    {
+      path: '/hotelDetail/hotelOrder',
+      name: 'hotelOrder',
+      component: hotelOrder,
+      meta: {
+        title: '酒店订单'
       }
     },
     {
