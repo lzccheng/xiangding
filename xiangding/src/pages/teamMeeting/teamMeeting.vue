@@ -28,23 +28,25 @@
 		</div>
 		<div class="hotel">
 			<div class="hotelItem" v-for='(i,index) in hotel' :key='index'>
-				<div class="img">
-					<img :src="i.imgUrl">
-				</div>
-				<div class="msg">
-					<span class="min_title">{{i.name}}</span>
-					<img :src="i.star">
-					<img :src="i.star">
-					<img :src="i.star">
-					<img :src="i.star"><br>
-					<span>距市中心{{i.distance}}公里&nbsp;/&nbsp;&nbsp;{{i.city[0]}}、{{i.city[1]}}</span><br>
-					<p>
-						<span>最大房间：{{i.max_room_erea}}m<sup>2</sup></span>
-						<span class="max">&nbsp;&nbsp;&nbsp;&nbsp;最多容纳：{{i.max_people}}人</span>
-					</p>
-					<span>总房间：{{i.room_total}}间</span>
-					<span class="_right"><span class="team">团队房</span>￥{{i.min_price}}起</span>
-				</div>
+				<router-link :to="{path: '/hotelDetail',query:{id:i.id}}" tag='div'>
+					<div class="img">
+						<img :src="i.imgUrl">
+					</div>
+					<div class="msg">
+						<span class="min_title">{{i.name}}</span>
+						<img :src="i.star">
+						<img :src="i.star">
+						<img :src="i.star">
+						<img :src="i.star"><br>
+						<span>距市中心{{i.distance}}公里&nbsp;/&nbsp;&nbsp;{{i.city[0]}}、{{i.city[1]}}</span><br>
+						<p>
+							<span>最大房间：{{i.max_room_erea}}m<sup>2</sup></span>
+							<span class="max">&nbsp;&nbsp;&nbsp;&nbsp;最多容纳：{{i.max_people}}人</span>
+						</p>
+						<span>总房间：{{i.room_total}}间</span>
+						<span class="_right"><span class="team">团队房</span>￥{{i.min_price}}起</span>
+					</div>
+				</router-link>
 			</div>
 		</div>
 	</div>

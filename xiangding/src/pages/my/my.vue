@@ -10,9 +10,9 @@
 					</div>
 				</p>
 			</div>
-			<div class="cash">
+			<router-link to='/my/cash' class="cash" tag='div'>
 				提现
-			</div>
+			</router-link>
 		</div>
 		<div class="earning">
 			<p class="text"><span>当前收益</span></p>
@@ -62,7 +62,7 @@
 		<div class="hotelServe">
 			<p class="title">
 				<span>酒店服务费</span>
-				<span>提现</span>
+				<router-link to='/my/cash' class="cash" tag='span'>提现</router-link>
 			</p>
 			<div class="earning">
 				<p class="text"><span>当前收益</span></p>

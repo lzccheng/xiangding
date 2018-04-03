@@ -24,7 +24,7 @@
 	.box{
 		width: 100%;
 		height: 90%;
-		background: #00FF00 url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522244039309&di=bcbc5d82fcefd9a3c05b0e8922e9cf53&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dshijue1%252C0%252C0%252C294%252C40%2Fsign%3D9576f49c6f380cd7f213aaaec92dc741%2F902397dda144ad347c8a8cabdaa20cf431ad85e0.jpg') no-repeat fixed top;
+		background: #fff url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522244039309&di=bcbc5d82fcefd9a3c05b0e8922e9cf53&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dshijue1%252C0%252C0%252C294%252C40%2Fsign%3D9576f49c6f380cd7f213aaaec92dc741%2F902397dda144ad347c8a8cabdaa20cf431ad85e0.jpg') no-repeat fixed top;
 		div{
 			width: 80%;
 			height: rem(200px);

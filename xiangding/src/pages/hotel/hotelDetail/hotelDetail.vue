@@ -53,7 +53,7 @@
 					</div>
 					<div class="price">
 						<p>￥{{i.price}}元</p>
-						<p><router-link tag='button' :to="{path:'/hotelDetail/hotelOrder'}">订房</router-link></p>
+						<p><router-link tag='button' :to="{path:'/hotelDetail/hotelSelect'}">订房</router-link></p>
 					</div>
 				</div>
 			</div>
@@ -121,6 +121,7 @@
 	@import '../../../common/css/common';
 	.box{
 		width: 100%;
+		background-color: #fff;
 		.banner{
 			.swiper-container {
 			    img{

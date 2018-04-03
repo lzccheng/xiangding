@@ -7,6 +7,8 @@ import teamMeeting from '@/pages/teamMeeting/teamMeeting'
 import enter from '@/pages/enter/enter'
 import my from '@/pages/my/my'
 import hotelOrder from '@/pages/hotel/hotelOrder/hotelOrder'
+import hotelSelect from '@/pages/hotel/hotelSelect/hotelSelect'
+import cash from '@/pages/my/cash/cash'
 
 Vue.use(Router)
 
@@ -37,11 +39,19 @@ export default new Router({
       }
     },
     {
-      path: '/hotelDetail/hotelOrder',
+      path: '/hotelDetail/hotelSelect',
+      name: 'hotelSelect',
+      component: hotelSelect,
+      meta: {
+        title: '酒店信息'
+      }
+    },
+    {
+      path: '/hotelDetail/hotelSelect/hotelOrder',
       name: 'hotelOrder',
       component: hotelOrder,
       meta: {
-        title: '酒店订单'
+        title: '酒店支付信息'
       }
     },
     {
@@ -66,6 +76,14 @@ export default new Router({
       component: my,
       meta: {
         title: '我的'
+      }
+    },
+    {
+      path: '/my/cash',
+      name: 'cash',
+      component: cash,
+      meta: {
+        title: '提现'
       }
     }
   ],

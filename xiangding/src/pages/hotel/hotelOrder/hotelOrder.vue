@@ -81,6 +81,7 @@
 	@import '../../../common/css/common';
 	.box{
 		width: 100%;
+		background-color: #fff;
 		img{
 			width: 100%;
 		}
