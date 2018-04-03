@@ -87,6 +87,7 @@
 		}
 		.img{
 			img{
+				width: 100%;
 				height: rem(250px);	
 			}
 		}
