@@ -57,7 +57,7 @@
 		</div>
 		<div class="btn">
 			<div class="total">￥289</div>
-			<router-link class="pay" to='/hotelDetail/hotelSelect/hotelOrder'>预定</router-link>
+			<router-link class="pay" to='/hotelDetail/hotelSelect/hotelOrder' tag='div'>预定</router-link>
 		</div>
 	</div>
 </template>
