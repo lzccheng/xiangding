@@ -154,6 +154,15 @@
 						border: none;
 						height: rem(30px);
 						border-bottom: 0.5px solid #aaa;
+						&::-webkit-input-placeholder{
+							color: #aaa;
+						}
+						&:-moz-placeholder{
+							color: #aaa;
+						}
+						&:-ms-input-placeholder{
+							color: #aaa;
+						}
 					}
 					&.indent{
 						text-indent: rem(20px);
