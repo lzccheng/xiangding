@@ -7,6 +7,7 @@ import axios from 'axios'
 
 // axios.defaults.baseURL = 'locahost:8080'
 Vue.prototype.$axios = axios
+Vue.prototype.$baseURL = '/addons/xiangding/dist'
 Vue.config.productionTip = false
 
 import './mockjs/mock'

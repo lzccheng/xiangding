@@ -11,6 +11,7 @@ import hotelSelect from '@/pages/hotel/hotelSelect/hotelSelect'
 import cash from '@/pages/my/cash/cash'
 
 Vue.use(Router)
+let baseURL = '/addons/xiangding/dist'
 
 export default new Router({
   routes: [

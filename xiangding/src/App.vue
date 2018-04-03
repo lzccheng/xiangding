@@ -6,7 +6,7 @@
           <router-view class='App_route'></router-view>
         </keep-alive>
       </transition>
-      <myFooter/>
+      <myFooter :baseURL='$baseURL'/>
     </div>
   </div>
 </template>
