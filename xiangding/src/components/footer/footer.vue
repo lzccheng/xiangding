@@ -16,7 +16,7 @@
 					{
 						name: '首页',
 						class:'fa fa-home',
-						url: '/'
+						url: '/addons/xiangding/dist/index.html'
 					},
 					{
 						name: '酒店',
