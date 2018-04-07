@@ -2,7 +2,7 @@
 	<div class="box">
 		<div class="hotelEnter">
 			<p><span class="icon"><i class="fas fa-user-plus"></i></span></p>
-			<span class="text">酒店入驻</span>
+			<router-link class="text" tag="span" to="/enter/hotelEnter">酒店入驻</router-link>
 		</div>
 		<div class="agentEnter">
 			<p><span class="icon"><i class="far fa-handshake"></i></span></p>

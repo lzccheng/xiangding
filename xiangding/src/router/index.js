@@ -9,9 +9,9 @@ import my from '@/pages/my/my'
 import hotelOrder from '@/pages/hotel/hotelOrder/hotelOrder'
 import hotelSelect from '@/pages/hotel/hotelSelect/hotelSelect'
 import cash from '@/pages/my/cash/cash'
+import hotelEnter from '@/pages/enter/hotelEnter/hotelEnter'
 
 Vue.use(Router)
-let baseURL = '/addons/xiangding/dist'
 
 export default new Router({
   routes: [
@@ -72,6 +72,14 @@ export default new Router({
       }
     },
     {
+      path: '/enter/hotelEnter',
+      name: 'hotelEnter',
+      component: hotelEnter,
+      meta: {
+        title: '酒店入驻'
+      }
+    },
+    {
       path: '/my',
       name: 'my',
       component: my,
@@ -87,6 +95,5 @@ export default new Router({
         title: '提现'
       }
     }
-  ],
-  mode:'history'
+  ]
 })

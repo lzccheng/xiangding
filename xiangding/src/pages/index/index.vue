@@ -29,7 +29,7 @@
   					</p>
   				</li>
   				<li>
-            <div class="date">
+            <!-- <div class="date">
               <div class="time">
                 <p><span class="text">入住</span><br/></p>
                 <p>
@@ -56,7 +56,24 @@
             <div class="total" style="float:right;color:#aaa;padding-top:20px;font-size:16px;">
               <span>4晚</span>
               <i class="fas fa-angle-right"></i>
-            </div> 
+            </div>  -->
+            <div class="block">
+              <el-date-picker
+                v-model="value1"
+                type="date"
+                placeholder="入住日期" 
+                :picker-options="pickerOptions1">
+              </el-date-picker>
+              <span>&nbsp;</span>
+              <div class="num">
+                <div>
+                  <span class="day">入住天数：</span>
+                </div>
+                <div class="">
+                  <el-input v-model="input1" value="number" placeholder="输入数字" type="number"></el-input>
+                </div>
+              </div>
+            </div>
           </li>
   				<li>
             <div class="select">
@@ -87,7 +104,6 @@
               </p>
             </div>
           </router-link>
-            
         </div>
       </div>
   </div>
@@ -122,8 +138,18 @@
       data(){
       	return {
       		arrItem:[],
-          hotel: []
-      	}
+          hotel: [],
+          pickerOptions1: {
+            disabledDate(time) {
+              return time.getTime() <= (Date.now()-1000*60*60*24);
+            }
+          },
+          value1: '',
+          input1: ''
+        }
+      },
+      computed: {
+
       }
   }  
 </script>  
@@ -133,6 +159,22 @@
 	.box{
 		width: 100%;
     background-color: #fff;
+    .block{
+      display: flex;
+      .to{
+        display: inline-block;
+        line-height: rem(40px);
+        padding: 0 rem(5px);
+      }
+      .num{
+        display: flex;
+        .day{
+          display: inline-block;
+          width: rem(65px);
+          line-height: rem(40px);
+        }
+      }
+    }
 		.banner{
 			.iSlide{
 				width: 100%;
