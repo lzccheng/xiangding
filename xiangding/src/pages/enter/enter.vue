@@ -1,13 +1,13 @@
 <template>
 	<div class="box">
-		<div class="hotelEnter">
+		<router-link class="hotelEnter" tag="div" to="/enter/hotelEnter">
 			<p><span class="icon"><i class="fas fa-user-plus"></i></span></p>
-			<router-link class="text" tag="span" to="/enter/hotelEnter">酒店入驻</router-link>
-		</div>
-		<div class="agentEnter">
+			<span class="text">酒店入驻</span>
+		</router-link>
+		<router-link class="agentEnter" tag="div" to="/enter/agantEnter">
 			<p><span class="icon"><i class="far fa-handshake"></i></span></p>
 			<span class="text">代理服务商入驻</span>
-		</div>
+		</router-link>
 	</div>
 </template>
 <script>

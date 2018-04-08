@@ -10,6 +10,7 @@ import hotelOrder from '@/pages/hotel/hotelOrder/hotelOrder'
 import hotelSelect from '@/pages/hotel/hotelSelect/hotelSelect'
 import cash from '@/pages/my/cash/cash'
 import hotelEnter from '@/pages/enter/hotelEnter/hotelEnter'
+import agantEnter from '@/pages/enter/agantEnter/agantEnter'
 
 Vue.use(Router)
 
@@ -77,6 +78,14 @@ export default new Router({
       component: hotelEnter,
       meta: {
         title: '酒店入驻'
+      }
+    },
+    {
+      path: '/enter/agantEnter',
+      name: 'agantEnter',
+      component: agantEnter,
+      meta: {
+        title: '代理服务商入驻'
       }
     },
     {
