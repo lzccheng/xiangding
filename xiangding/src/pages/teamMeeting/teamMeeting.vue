@@ -27,18 +27,118 @@
 								<span>附近</span>
 							</span>
 						</li>
-						<li>
-						
+						<li class="border_bottom">
+							<span class="date">3.29</span>
+							<span class="day">今天</span>
+							<span class="line">--</span>
+							<span class="date">3.30</span>
+							<span class="day">明天</span>
+							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
 						</li>
-						<li></li>
-						<li></li>
+						<li class="border_bottom">
+							<span class="text">会议厅间数</span>
+							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
+						</li>
+						<li class="border_bottom">
+							<span class="text">价格&nbsp;/&nbsp;星级</span>
+							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
+						</li>
 					</ul>
+					<p class="btn"><button>开始搜索</button></p>
+					<div class="bottom">
+						<div>
+							<span><i class="fas fa-history"></i></span>
+							<span>浏览记录</span>
+						</div>
+						<div>
+							<span><i class="far fa-star"></i></span>
+							<span>收藏酒店</span>
+						</div>
+					</div>
 				</div>
-				<div v-if="1 == index">
-					
+				<div v-if="1 == index" class="body">
+					<ul>
+						<li>
+							<span class="border_bottom">
+								<span class="erea">广州市</span>
+								<span class="icon"><i class="fas fa-angle-right"></i></span>
+							</span>
+							
+							<span class="right">
+								<span class="map"><i class="fas fa-map-marker-alt"></i></span>
+								<span>附近</span>
+							</span>
+						</li>
+						<li class="border_bottom">
+							<span class="date">3.29</span>
+							<span class="day">今天</span>
+							<span class="line">--</span>
+							<span class="date">3.30</span>
+							<span class="day">明天</span>
+							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
+						</li>
+						<li class="border_bottom">
+							<span class="text">团房间数</span>
+							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
+						</li>
+						<li class="border_bottom">
+							<span class="text">价格&nbsp;/&nbsp;星级</span>
+							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
+						</li>
+					</ul>
+					<p class="btn"><button>开始搜索</button></p>
+					<div class="bottom">
+						<div>
+							<span><i class="fas fa-history"></i></span>
+							<span>浏览记录</span>
+						</div>
+						<div>
+							<span><i class="far fa-star"></i></span>
+							<span>收藏酒店</span>
+						</div>
+					</div>
 				</div>
-				<div v-if="2 == index">
-					
+				<div v-if="2 == index" class="body">
+					<ul>
+						<li>
+							<span class="border_bottom">
+								<span class="erea">广州市</span>
+								<span class="icon"><i class="fas fa-angle-right"></i></span>
+							</span>
+							
+							<span class="right">
+								<span class="map"><i class="fas fa-map-marker-alt"></i></span>
+								<span>附近</span>
+							</span>
+						</li>
+						<li class="border_bottom">
+							<span class="date">3.29</span>
+							<span class="day">今天</span>
+							<span class="line">--</span>
+							<span class="date">3.30</span>
+							<span class="day">明天</span>
+							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
+						</li>
+						<li class="border_bottom">
+							<span class="text">钟点房间数</span>
+							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
+						</li>
+						<li class="border_bottom">
+							<span class="text">价格&nbsp;/&nbsp;星级</span>
+							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
+						</li>
+					</ul>
+					<p class="btn"><button>开始搜索</button></p>
+					<div class="bottom">
+						<div>
+							<span><i class="fas fa-history"></i></span>
+							<span>浏览记录</span>
+						</div>
+						<div>
+							<span><i class="far fa-star"></i></span>
+							<span>收藏酒店</span>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -124,6 +224,7 @@
 					padding: rem(10px) rem(10px);
 					ul{
 						li{
+							padding: rem(10px) 0;
 							.erea{
 								font-size: rem(18px);
 							}
@@ -138,11 +239,48 @@
 									color: #FF9800;
 								}
 							}
+							.date{
+								font-size: rem(20px);
+								font-weight: bold;
+							}
+							.line{
+								display: inline-block;
+								padding: 0 rem(10px);
+							}
+							.icon_{
+								float: right;
+								display: inline-block;
+								padding: 0 rem(10px);
+								color:　#aaa;
+							}
+							.text{
+								color: #aaa;
+							}
 						}
 					}
 					.border_bottom{
 						border-bottom: 1px solid #aaa;
 						padding-bottom: rem(10px);
+					}
+					.btn{
+						margin-top: rem(15px);
+						button{
+							width: 100%;
+							border: none;
+							background-color: #8BC34A;
+							padding: rem(13px) 0;
+							color: #fff;
+							border-radius: rem(5px);
+						}
+					}
+					.bottom{
+						display: flex;
+						justify-content: space-around;
+						align-items: center;
+						margin-top: rem(15px);
+						div{
+							padding: rem(15px) 0;
+						}
 					}
 				}
 			}
