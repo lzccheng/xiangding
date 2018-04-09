@@ -11,6 +11,7 @@ import hotelSelect from '@/pages/hotel/hotelSelect/hotelSelect'
 import cash from '@/pages/my/cash/cash'
 import hotelEnter from '@/pages/enter/hotelEnter/hotelEnter'
 import agantEnter from '@/pages/enter/agantEnter/agantEnter'
+import cashDetail from '@/pages/my/cashDetail/cashDetail'
 
 Vue.use(Router)
 
@@ -94,6 +95,14 @@ export default new Router({
       component: my,
       meta: {
         title: '我的'
+      }
+    },
+    {
+      path: '/my/cashDetail',
+      name: 'cashDetail',
+      component: cashDetail,
+      meta: {
+        title: '我的收益详情'
       }
     },
     {
