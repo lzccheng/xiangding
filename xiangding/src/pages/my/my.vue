@@ -66,7 +66,7 @@
 			</p>
 			<div class="earning">
 				<p class="text"><span>当前收益</span></p>
-				<p class="money"><span>￥</span><span>{{msg.earning}}</span></p>
+				<router-link tag="p" to="/my/cashDetail" class="money"><span>￥</span><span>{{msg.earning}}</span></router-link>
 				<div class="earn">
 					<div class="order">
 						<p class="icon"><i class="far fa-file"></i></p>
