@@ -1,5 +1,5 @@
 <template>
-	<div class="box">
+	<div class="box" @click="onHandleCancel" ref="hotel">
 		<div class="header">
 			<div class="local">
 				<span>广州</span>
@@ -13,16 +13,100 @@
 		<div class="select">
 			<ul>
 				<li>
-					<span>不限位置</span>
-					<span><i class="fas fa-angle-down"></i></span>
+					<div @click="onHandleTabs" :class="{scal:tabs}">
+						<span>价格</span>
+						<span><i class="fas fa-angle-down"></i></span>
+					</div>
+					
+					<div class="tabs" v-if="tabs" ref="tabs">
+						<div class="tabs_" @click="onHandlecancelBubble">
+							<p>综合</p>
+							<p>价格降序</p>
+							<p>价格升序</p>
+						</div>
+					</div>
+						
 				</li>
 				<li>
-					<span>推荐排序</span>
-					<span><i class="fas fa-angle-down"></i></span>
+					<div @click="onHandleLocal" :class="{scal:local}">
+						<span>位置</span>
+						<span><i class="fas fa-angle-down"></i></span>
+					</div>
+					<div class="tabs" ref="local">
+						<div class="tabs_" v-if="local" @click="onHandlecancelBubble">
+							<p>1米-500米</p>
+							<p>500米-1500米</p>
+							<p>1500米-3000米</p>
+						</div>
+					</div>
 				</li>
 				<li>
-					<span>筛选</span>
-					<span><i class="fas fa-angle-down"></i></span>
+					<div @click="onHandleFilter" :class="{scal:filter}">
+						<span>筛选</span>
+						<span><i class="fas fa-angle-down"></i></span>
+					</div>
+					<div class="tabs" ref="filter">
+						<div class="tabs_" v-if="filter">
+							<div class="filter" @click="onHandlecancelBubble">
+								<div class="filter_">
+									<div class="title">酒店品牌:</div>
+									<div class="body">
+										   <el-checkbox-group v-model="checkList">
+										    <el-checkbox label="维也纳"></el-checkbox>
+										    <el-checkbox label="汉庭"></el-checkbox>
+										    <el-checkbox label="如家"></el-checkbox>
+										    <el-checkbox label="几天"></el-checkbox>
+										    <el-checkbox label="锦江"></el-checkbox>
+										  </el-checkbox-group>
+									</div>
+								</div>
+								<div class="filter_">
+									<div class="title">酒店类型:</div>
+									<div class="body">
+										   <el-checkbox-group v-model="checkList2">
+										    <el-checkbox label="豪华酒店"></el-checkbox>
+										    <el-checkbox label="度假酒店"></el-checkbox>
+										    <el-checkbox label="商务酒店"></el-checkbox>
+										    <el-checkbox label="经济酒店"></el-checkbox>
+										    <el-checkbox label="主题酒店"></el-checkbox>
+										  </el-checkbox-group>
+									</div>
+								</div>
+								<div class="filter_">
+									<div class="title">房间类型:</div>
+									<div class="body">
+										   <el-checkbox-group v-model="checkList3">
+										    <el-checkbox label="双人房"></el-checkbox>
+										    <el-checkbox label="大床房"></el-checkbox>
+										    <el-checkbox label="单人房"></el-checkbox>
+										    <el-checkbox label="套件"></el-checkbox>
+										  </el-checkbox-group>
+									</div>
+								</div>
+								<div class="filter_">
+									<div class="title">房间数量:</div>
+									<div class="body">
+										   <el-checkbox-group v-model="checkList4">
+										    <el-checkbox label="单间"></el-checkbox>
+										    <el-checkbox label="团房"></el-checkbox>
+										  </el-checkbox-group>
+									</div>
+								</div>
+								<div class="filter_ none">
+									<div class="title">设施:</div>
+									<div class="body">
+										   <el-checkbox-group v-model="checkList5">
+										    <el-checkbox label="WiFi"></el-checkbox>
+										    <el-checkbox label="餐饮美食"></el-checkbox>
+										    <el-checkbox label="健身房"></el-checkbox>
+										    <el-checkbox label="游泳池"></el-checkbox>
+										  </el-checkbox-group>
+									</div>
+								</div>
+								<div class="btn"><button class="reset">重置</button><button class="sure">筛选</button></div>
+							</div>
+						</div>
+					</div>
 				</li>
 			</ul>
 		</div>
@@ -50,18 +134,75 @@
 </template>
 <script>
 	import star from '../../components/star/star'
+	import common from '../../common/js/common'
 	export default {
 		mounted: function(){
 			this.$axios({url:'/api/hotel'}).then((res)=>{
 				this.hotel = res.data
 			})
+
 		},
 		components: {
 	        star
 	      },
 		data(){
 			return {
-				hotel: []
+				hotel: [],
+				tabs: false,
+				local: false,
+				filter: false,
+				checkList: [],
+				checkList2: [],
+				checkList3: [],
+				checkList4: [],
+				checkList5: [],
+			}
+		},
+		methods: {
+			onHandleTabs(event){
+				event.cancelBubble = true
+				this.tabs = !this.tabs
+				this.local = false
+				this.filter = false
+				setTimeout(()=>{
+					if(this.$refs.tabs){
+						this.$refs.tabs.style.width = common.getStyle(this.$refs.hotel,'width')
+						this.$refs.tabs.style.left = '0'
+					}
+				},50)
+			},
+			onHandleLocal(){
+				event.cancelBubble = true
+				this.local = !this.local
+				this.tabs = false
+				this.filter = false
+				setTimeout(()=>{
+					if(this.$refs.local){
+						this.$refs.local.style.width = common.getStyle(this.$refs.hotel,'width')
+						this.$refs.local.style.left = '0'
+					}
+				},50)
+			},
+			onHandleFilter(){
+				event.cancelBubble = true
+				this.filter = !this.filter
+				this.tabs = false
+				this.local = false
+				setTimeout(()=>{
+					if(this.$refs.filter){
+						this.$refs.filter.style.width = common.getStyle(this.$refs.hotel,'width')
+						this.$refs.filter.style.left = '0'
+					}
+				},50)
+
+			},
+			onHandlecancelBubble(event){
+				event.cancelBubble = true
+			},
+			onHandleCancel(){
+				this.filter = false
+				this.local = false
+				this.tabs = false
 			}
 		}
 	}
@@ -99,6 +240,10 @@
 				}
 			}
 		}
+		.scal{
+			font-weight: bold;
+			color: #FF9800;
+		}
 		.select{
 			border-bottom: 1px solid #aaa;
 			padding-bottom: rem(8px);
@@ -106,6 +251,60 @@
 				display: flex;
 				flex-dection: row;
 				justify-content: space-around;
+				position: relative;
+				li{
+					.tabs{
+						position: absolute;
+						left: -100%;
+						top: rem(28px);
+						width: 0;
+						background-color: rgba(0,0,0,0.5);
+						z-index: 999;
+						transition: all 0.5s;
+						.tabs_{
+							background-color: #fff;
+							p{
+								padding: rem(8px) rem(25px);
+								border-bottom: 1px solid #aaa;
+								text-align: center;
+							}
+						}
+					}
+					.filter{
+						.filter_{
+							border-bottom: 1px solid #aaa;
+							.title{
+								font-weight: bold;
+								padding: rem(5px) rem(10px);
+							}
+							.body{
+								padding: rem(5px) rem(12px);
+							}
+						}
+						.btn{
+							margin-top: rem(15px);
+							display: flex;
+							border-top: 1px solid #aaa;
+							button{
+								border: none;
+								width: 50%;
+								padding: rem(15px) 0; 
+								
+							}
+							.reset{
+								background-color: #fff;
+								color: #555;
+							}
+							.sure{
+								background-color: #8BC34A;
+								color: #fff;
+							}
+							.none{
+								border: none;
+							}
+						}
+					}
+				}
 			}
 		}
 		.hotel{
