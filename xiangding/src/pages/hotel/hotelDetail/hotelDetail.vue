@@ -109,7 +109,6 @@
 		watch: {
 			'$route':function(to,from){
 				if(to.name == 'hotelDetail'){
-					console.log('route')
 					this.getData()
 				}
 			}

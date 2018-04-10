@@ -16,6 +16,7 @@ import feedBack from '@/pages/my/feedBack/feedBack'
 import custom from '@/pages/my/custom/custom'
 import collection from '@/pages/my/collection/collection'
 import roomEnter from '@/pages/my/roomEnter/roomEnter'
+import agantDetailt from '@/pages/my/agantDetailt/agantDetailt'
 
 Vue.use(Router)
 
@@ -139,6 +140,14 @@ export default new Router({
       component: roomEnter,
       meta: {
         title: '我的管理房'
+      }
+    },
+    {
+      path: '/my/agantDetailt',
+      name: 'agantDetailt',
+      component: agantDetailt,
+      meta: {
+        title: '我的代理详情'
       }
     },
     {
