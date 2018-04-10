@@ -16,6 +16,10 @@ import feedBack from '@/pages/my/feedBack/feedBack'
 import custom from '@/pages/my/custom/custom'
 import collection from '@/pages/my/collection/collection'
 import roomEnter from '@/pages/my/roomEnter/roomEnter'
+import meettingSend from '@/pages/my/meettingSend/meettingSend'
+import clockSend from '@/pages/my/clockSend/clockSend'
+import teamSend from '@/pages/my/teamSend/teamSend'
+
 
 Vue.use(Router)
 
@@ -139,6 +143,30 @@ export default new Router({
       component: roomEnter,
       meta: {
         title: '我的管理房'
+      }
+    },
+    {
+      path: '/my/roomEnter/meettingSend',
+      name: 'meettingSend',
+      component: meettingSend,
+      meta: {
+        title: '我的会议室发布'
+      }
+    },
+    {
+      path: '/my/roomEnter/teamSend',
+      name: 'teamSend',
+      component: teamSend,
+      meta: {
+        title: '我的团房发布'
+      }
+    },
+    {
+      path: '/my/roomEnter/clockSend',
+      name: 'clockSend',
+      component: clockSend,
+      meta: {
+        title: '我的钟点房发布'
       }
     },
     {

@@ -2,3 +2,12 @@ $rem: 16px !default;
 @function rem($num){
 	@return $num/$rem*1rem;
 }
+.green_btn{
+	width: 100%;
+	padding: rem(10px);
+	border-radius: rem(5px);
+	color: #fff;
+	border: none;
+	background-color: #43c122;
+	font-size: rem(16px);
+}
