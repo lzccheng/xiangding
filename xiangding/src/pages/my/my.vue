@@ -40,6 +40,7 @@
 						<p class="right">
 							<span>收入</span><br>
 							<span>{{msg.income.firstAgent}}</span>
+							<router-link tag="span" :to="{path: '/my/agantDetailt',query:{agant:1}}" class="detailt">详情</router-link>
 						</p>
 					</li>
 					<li>
@@ -47,6 +48,7 @@
 						<p class="right">
 							<span>收入</span><br>
 							<span>{{msg.income.secondAgent}}</span>
+							<router-link tag="span" :to="{path: '/my/agantDetailt',query:{agant:2}}" class="detailt">详情</router-link>
 						</p>
 					</li>
 					<li>
@@ -54,6 +56,7 @@
 						<p class="right">
 							<span>收入</span><br>
 							<span>{{msg.income.thirdAgent}}</span>
+							<router-link tag="span" :to="{path: '/my/agantDetailt',query:{agant:3}}" class="detailt">详情</router-link>
 						</p>
 					</li>
 				</ul>
@@ -83,7 +86,7 @@
 						</p>
 					</div>
 				</div>
-				<div class="agent">
+				<!-- <div class="agent">
 					<ul>
 						<li>
 							<p><span>一级代理</span></p>
@@ -107,7 +110,7 @@
 							</p>
 						</li>
 					</ul>
-				</div>
+				</div> -->
 			</div>
 		</div>
 		<div class="myOrder">
@@ -295,6 +298,13 @@
 								span{
 									&:first-child{
 										color: #aaa;
+									}
+									&.detailt{
+										width: rem(14px);
+										padding-left: rem(8px);
+										margin-top: rem(-16px);
+										float: right;
+										color: #0075FF;
 									}
 								}
 							}

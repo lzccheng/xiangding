@@ -18,9 +18,14 @@
   			<ul>
   				<li>
   					<div class="map">
-  						<span class="_right"><i class="fas fa-map-marker-alt"></i></span>
+  						<!-- <span class="_right"><i class="fas fa-map-marker-alt"></i></span>
 	  					<span>广州</span>
-	  					<span class="_right"><i class="fas fa-angle-right"></i></span>
+	  					<span class="_right"><i class="fas fa-angle-right"></i></span> -->
+              <el-cascader
+                  :options="options"
+                  v-model="selectedOptions"
+                  @change="handleChange">
+              </el-cascader>
   					</div>
   					
   					<p class="local">
@@ -144,6 +149,31 @@
               return time.getTime() <= (Date.now()-1000*60*60*24);
             }
           },
+          options: [
+            {
+              value: 'guangdong',
+              label: '广东省',
+              children: [
+                {
+                  value: 'guangzhou',
+                  label: '广州市'
+                },
+                {
+                  value: 'shenzhengshi',
+                  label: '深圳市'
+                },
+                {
+                  value: 'foshan',
+                  label: '佛山市'
+                },
+                {
+                  value: 'zhaoqing',
+                  label: '肇庆市'
+                },
+              ]
+             }
+          ],
+          selectedOptions: ['guangdong','guangzhou'],
           value1: '',
           input1: ''
         }
@@ -188,7 +218,7 @@
       ul{
         padding: 0 5%;
         li{
-          padding: rem(5px) 5% rem(8px);
+          padding: rem(15px) 5% rem(8px);
           border-bottom: rem(1px) solid #aaa;
           ._right{
             margin-right: rem(10px);
@@ -204,6 +234,7 @@
             float: right;
             text-align: center;
             color: #aaa;
+            margin-top: rem(12px);
           }
           .date{
             display: inline-block;

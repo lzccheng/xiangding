@@ -235,9 +235,6 @@
 					background-color: #9c9c9c;
 					width:80%;				
 				}
-				i{
-
-				}
 			}
 		}
 		.scal{
