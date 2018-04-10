@@ -87,6 +87,7 @@
 	@import "../../../common/css/common.scss";
 	.box{
 		width: 100%;
+		background-color: #fff;
 		.aaa{
 			width: 100%;
 			height: rem(43px);
