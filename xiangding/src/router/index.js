@@ -12,6 +12,10 @@ import cash from '@/pages/my/cash/cash'
 import hotelEnter from '@/pages/enter/hotelEnter/hotelEnter'
 import agantEnter from '@/pages/enter/agantEnter/agantEnter'
 import cashDetail from '@/pages/my/cashDetail/cashDetail'
+import feedBack from '@/pages/my/feedBack/feedBack'
+import custom from '@/pages/my/custom/custom'
+import collection from '@/pages/my/collection/collection'
+import roomEnter from '@/pages/my/roomEnter/roomEnter'
 
 Vue.use(Router)
 
@@ -103,6 +107,38 @@ export default new Router({
       component: cashDetail,
       meta: {
         title: '我的收益详情'
+      }
+    },
+    {
+      path: '/my/feedBack',
+      name: 'feedBack',
+      component: feedBack,
+      meta: {
+        title: '我的反馈'
+      }
+    },
+    {
+      path: '/my/custom',
+      name: 'custom',
+      component: custom,
+      meta: {
+        title: '我的客服'
+      }
+    },
+    {
+      path: '/my/collection',
+      name: 'collection',
+      component: collection,
+      meta: {
+        title: '我的收藏'
+      }
+    },
+     {
+      path: '/my/roomEnter',
+      name: 'roomEnter',
+      component: roomEnter,
+      meta: {
+        title: '我的管理房'
       }
     },
     {

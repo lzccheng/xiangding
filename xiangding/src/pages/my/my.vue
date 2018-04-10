@@ -130,10 +130,10 @@
 		<div class="myOrder">
 			<p class="text"><span>我的入口</span></p>
 			<div class="message">
-				<div>
+				<router-link tag="div" to="/my/roomEnter">
 					<p><i class="far fa-star"></i></p>
 					<p><span>管理房态入口</span></p>
-				</div>
+				</router-link>
 				<div>
 					<p><i class="far fa-question-circle"></i></p>
 					<p><span>代理服务商入口</span></p>
@@ -143,18 +143,18 @@
 		<div class="myOrder">
 			<p class="text"><span>系统服务</span></p>
 			<div class="message">
-				<div>
+				<router-link tag="div" to="/my/collection">
 					<p><i class="far fa-bookmark"></i></p>
 					<p><span>我的收藏</span></p>
-				</div>
-				<div>
+				</router-link>
+				<router-link tag="div" to="/my/feedBack">
 					<p><i class="fa fa-question-circle"></i></p>
 					<p><span>我要反馈</span></p>
-				</div>
-				<div>
+				</router-link>
+				<router-link tag="div" to="/my/custom">
 					<p><i class="far fa-comments"></i></p>
 					<p><span>联系客服</span></p>
-				</div>
+				</router-link>
 			</div>
 		</div>
 	</div>
