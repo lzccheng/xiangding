@@ -16,14 +16,10 @@ import feedBack from '@/pages/my/feedBack/feedBack'
 import custom from '@/pages/my/custom/custom'
 import collection from '@/pages/my/collection/collection'
 import roomEnter from '@/pages/my/roomEnter/roomEnter'
-<<<<<<< HEAD
 import meettingSend from '@/pages/my/meettingSend/meettingSend'
 import clockSend from '@/pages/my/clockSend/clockSend'
 import teamSend from '@/pages/my/teamSend/teamSend'
-
-=======
 import agantDetailt from '@/pages/my/agantDetailt/agantDetailt'
->>>>>>> 1e1f9109f17aee54290f661ddbd89fb2fa6d29ea
 
 Vue.use(Router)
 
@@ -150,7 +146,6 @@ export default new Router({
       }
     },
     {
-<<<<<<< HEAD
       path: '/my/roomEnter/meettingSend',
       name: 'meettingSend',
       component: meettingSend,
@@ -172,13 +167,14 @@ export default new Router({
       component: clockSend,
       meta: {
         title: '我的钟点房发布'
-=======
+      }
+    },
+    {
       path: '/my/agantDetailt',
       name: 'agantDetailt',
       component: agantDetailt,
       meta: {
         title: '我的代理详情'
->>>>>>> 1e1f9109f17aee54290f661ddbd89fb2fa6d29ea
       }
     },
     {
