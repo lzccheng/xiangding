@@ -168,7 +168,7 @@
 					.icon_1{
 						display: inline-block;
 						color: #43c122;
-						margin-left: rem(300px);
+						margin-left: 67%;
 						margin-top: rem(10px);
 					}
 				}

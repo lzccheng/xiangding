@@ -34,32 +34,32 @@
 				</li>
 				<li class="item">
 					<span class="name">床型:</span>
-					<span class="select_1">
+					<div class="select_1">
 						<el-select v-model="select4" slot="prepend" placeholder="请选择">
 					      <el-option label="1张" value="1"></el-option>
 					      <el-option label="2张" value="2"></el-option>
 					    </el-select>
-					</span>
+					</div>
 				</li>
 				<li class="item">
 					<span class="name">双人床:</span>
-					<span class="select_2">
+					<div class="select_1">
 						<el-select v-model="select5" slot="prepend" placeholder="请选择">
-						<el-option label="1.2米" value="1"></el-option>
+						<el-option label="1.2米" value="1"></el-option>div
 					      <el-option label="1.3米" value="2"></el-option>
 					      <el-option label="1.5米" value="3"></el-option>
 					    </el-select>
-					</span>
+					</div>
 				</li>
 				<li class="item">
 					<span class="name">窗户:</span>
-					<span class="select_1">
+					<div class="select_1">
 						<el-select v-model="select6" slot="prepend" placeholder="请选择">
 					      <el-option label="是" value="1"></el-option>
 					      <el-option label="否" value="2"></el-option>
 					      <el-option label="部分有窗" value="3"></el-option>
 					    </el-select>
-					</span>
+					</div>
 				</li>
 				<li class="item_1">
 				    <span class="name">房间照片:</span>
@@ -73,7 +73,6 @@
 				<li class="item">
 					<span class="name">房间配套设施:</span>
 					<div class="check">
-						<template>
 						  <el-checkbox-group v-model="checkList">
 						    <el-checkbox label="24小时热水"></el-checkbox>
 						    <el-checkbox label="拖鞋"></el-checkbox>
@@ -81,7 +80,6 @@
 						    <el-checkbox label="电视机"></el-checkbox>
 						    <el-checkbox label="有线无线宽带"></el-checkbox>
 						  </el-checkbox-group>
-						</template>
 						<div class="add">
 							<div class="add_more">
 								<i class="far fa-plus-square"></i>
@@ -131,39 +129,32 @@
 			.item{
 				border-bottom: #e5e5e5 solid rem(1px);
 				padding: rem(15px) 0;
-				.name{
-					font-size: rem(15px);
-				}
 				.select{
-					margin-left: rem(40px);
+					margin-left: 5%;
 				}
 				.hide{
-					margin-left: rem(40px);
+					margin-left: 2%;
 					color: #e5e5e5;
 				}
 				.hide_1{
-					margin-left: rem(25px);
+					margin-left: 5%;
 					color: #e5e5e5;
 				}
 				.select_1{
-					margin-left: rem(69px);
-				}
-				.select_2{
-					margin-left: rem(53px);
+					display: inline-block;
+					margin-left: 2%;
 				}
 				.check{
 					padding-top: rem(12px);
 					padding-left: rem(40px);
 					display: inline-block;
-					
 				}
 			}
 			.add{
-				margin-left: rem(219px);
+				margin-left: 60%;
 				margin-top: rem(27px);
 				.add_more{
 					display: inline-block;
-					font-size: rem(16px);
 					color: #43c122;
 				}
 				.add_text{
@@ -172,33 +163,25 @@
 			}
 			.room{
 				margin-top: rem(19px);
-				margin-left: 67%;
+				margin-left: 64%;
 				margin-bottom: rem(35px);
 			}
 			.item_1{
 				border-bottom: #e5e5e5 solid rem(1px);
 				padding: rem(15px) 0;
-				.name{
-					font-size: rem(15px);
-				}
 				.photo{
 				padding-bottom: rem(4px);
-				.title_1{
-					font-size: rem(17px);
-				 }
 				.icon{
 					display: inline-block;
 					border: #c9c9c9 solid rem(1px);
 					padding: rem(32px) rem(35px);
-					margin-left: rem(120px);
+					margin-left: 35%;
 					border-radius: rem(9px);
-					font-size: rem(27px);
 					color: #43c122;
 				 }
 				.hide_1{
-						font-size: rem(15px);
 						color: #e5e5e5;
-						margin-left: rem(30px);
+						margin-left: 5%;
 					}
 			 }
 			}

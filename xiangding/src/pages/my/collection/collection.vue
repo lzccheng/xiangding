@@ -80,19 +80,20 @@
 		background-color: #fff;
 		.header{
 			border-bottom: #bbbbbb solid rem(1px);
-			padding: rem(18px) rem(30px);
+			padding: rem(18px) 6%;
 			.icon{
 				display: inline-block;
 				font-size: rem(23px);
 			}
 			.collection{
-				font-size: rem(20px);
-				padding-left: rem(20px);
+				font-size: rem(16px);
+				padding-left: 3%;
 			}
 		}
 		.item{
+			width: 100%;
 			padding-top: rem(25px);
-			padding-left: rem(25px);
+			padding-left: 5%;
 			.img{
 				display:inline-block;
 				width: 22%;
@@ -102,7 +103,8 @@
 		        }
 			.content{
 				display: inline-block;
-				padding-left: rem(22px);
+				padding-left: 3%;
+				width: 70%;
 				.name{
 					font-size: rem(18px);
 					font-weight: bold;
@@ -111,7 +113,7 @@
 				.star{
 						font-size: rem(15px);
 						color: #f5cf1e;
-						padding: rem(7px) rem(3px);
+						padding: rem(7px) 1%;
 				}
 				.money_1{
 					font-size: rem(15px);
@@ -120,21 +122,14 @@
 				.money_2{
 					font-size: rem(25px);
 					color: #ff9800;
-					padding-left: rem(3px);
-				}
-				.qi{
-					font-size: rem(16px);
-					padding-left: rem(3px);
+					padding-left: 1%;
 				}
 				.time{
-					font-size: rem(16px);
-					padding-left: rem(80px);
-
+					margin-left: rem(10px);
 				}
 			}
 		}
 		.none{
-			font-size: rem(17px);
 			color: #bbbbca;
 			text-align: center;
 			padding-top: rem(40px);

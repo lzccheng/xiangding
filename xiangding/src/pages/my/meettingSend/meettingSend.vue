@@ -77,22 +77,19 @@
 			.item{
 				margin-bottom: rem(15px);
 				.title{
-					font-size: rem(17px);
 					text-align: center;
 				}
 				.hide{
 					margin-left: rem(12px);
 					color: #e5e5e5;
-					font-size: rem(15px);
 				}
 				.select{
-					margin-left: rem(19px);
+					margin-left: 5%;
 				}
 			}
 			.photo{
 				padding-bottom: rem(30px);
 				.title_1{
-					font-size: rem(17px);
 				 }
 				.icon{
 					display: inline-block;
@@ -100,11 +97,9 @@
 					padding: rem(32px) rem(35px);
 					margin-left: rem(120px);
 					border-radius: rem(9px);
-					font-size: rem(27px);
 					color: #43c122;
 				 }
 				.hide_1{
-						font-size: rem(15px);
 						color: #e5e5e5;
 						margin-left: rem(30px);
 					}
@@ -112,7 +107,7 @@
 					.icon_1{
 						display: inline-block;
 						color: #43c122;
-						margin-left: rem(300px);
+						margin-left: 70%;
 						margin-top: rem(10px);
 					}
 				}
@@ -127,7 +122,6 @@
 				color: #fff;
 				border: none;
 				background-color: #43c122;
-				font-size: rem(16px);
 			}
 		}
 		

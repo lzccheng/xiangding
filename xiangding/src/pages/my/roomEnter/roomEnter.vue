@@ -1,10 +1,11 @@
 <template>
 	<div class="box">
 		<div class="header">
-		    <i class="fas fa-arrow-left"></i>
+			<span><i class="fas fa-arrow-left"></i></span>
 			<span class="title">我的发布</span>
 		</div>
-		<div class="item">
+
+		<div v-for="(i,index) in 20" class="item" :key=index>
 			<div class="img"></div>
 			<div class="con_box">
 				<p class="room_name">特惠商务房</p>
@@ -23,117 +24,7 @@
 				  </el-switch>
 				</p>
 				<p class="text_2">已住房数: 20间 <span class="right">开启状态</span></p>
-				<p class="text">可售房间: 20间 &nbsp; &nbsp;添加时间2018-1-12</p>
-			</div>
-		</div>
-		<div class="item">
-			<div class="img"></div>
-			<div class="con_box">
-				<p class="room_name">特惠商务房</p>
-				<span class="money_1">¥</span>
-				<span class="money_2">299</span>
-				<span class="spec">/间晚</span>
-				<span class="money_1">¥</span>
-				<span class="money_2">265</span>
-				<span class="spec">×20间/晚</span>
-				<p class="text">
-				  <span class="text_1">房间面积: 20平方</span>
-				  <el-switch
-					  v-model="value2"
-					  active-color="#aabbfd"
-					  inactive-color="#a7a5a6">
-				  </el-switch>
-				</p>
-				<p class="text_2">已住房数: 20间 <span class="right">开启状态</span></p>
-				<p class="text">可售房间: 20间 &nbsp; &nbsp;添加时间2018-1-12</p>
-			</div>
-		</div>
-		<div class="item">
-			<div class="img"></div>
-			<div class="con_box">
-				<p class="room_name">特惠商务房</p>
-				<span class="money_1">¥</span>
-				<span class="money_2">299</span>
-				<span class="spec">/间晚</span>
-				<span class="money_1">¥</span>
-				<span class="money_2">265</span>
-				<span class="spec">×20间/晚</span>
-				<p class="text">
-				  <span class="text_1">房间面积: 20平方</span>
-				  <el-switch
-					  v-model="value2"
-					  active-color="#aabbfd"
-					  inactive-color="#a7a5a6">
-				  </el-switch>
-				</p>
-				<p class="text_2">已住房数: 20间 <span class="right">开启状态</span></p>
-				<p class="text">可售房间: 20间 &nbsp; &nbsp;添加时间2018-1-12</p>
-			</div>
-		</div>
-		<div class="item">
-			<div class="img"></div>
-			<div class="con_box">
-				<p class="room_name">特惠商务房</p>
-				<span class="money_1">¥</span>
-				<span class="money_2">299</span>
-				<span class="spec">/间晚</span>
-				<span class="money_1">¥</span>
-				<span class="money_2">265</span>
-				<span class="spec">×20间/晚</span>
-				<p class="text">
-				  <span class="text_1">房间面积: 20平方</span>
-				  <el-switch
-					  v-model="value2"
-					  active-color="#aabbfd"
-					  inactive-color="#a7a5a6">
-				  </el-switch>
-				</p>
-				<p class="text_2">已住房数: 20间 <span class="right">开启状态</span></p>
-				<p class="text">可售房间: 20间 &nbsp; &nbsp;添加时间2018-1-12</p>
-			</div>
-		</div>
-		<div class="item">
-			<div class="img"></div>
-			<div class="con_box">
-				<p class="room_name">特惠商务房</p>
-				<span class="money_1">¥</span>
-				<span class="money_2">299</span>
-				<span class="spec">/间晚</span>
-				<span class="money_1">¥</span>
-				<span class="money_2">265</span>
-				<span class="spec">×20间/晚</span>
-				<p class="text">
-				  <span class="text_1">房间面积: 20平方</span>
-				  <el-switch
-					  v-model="value2"
-					  active-color="#aabbfd"
-					  inactive-color="#a7a5a6">
-				  </el-switch>
-				</p>
-				<p class="text_2">已住房数: 20间 <span class="right">开启状态</span></p>
-				<p class="text">可售房间: 20间 &nbsp; &nbsp;添加时间2018-1-12</p>
-			</div>
-		</div>
-		<div class="item">
-			<div class="img"></div>
-			<div class="con_box">
-				<p class="room_name">特惠商务房</p>
-				<span class="money_1">¥</span>
-				<span class="money_2">299</span>
-				<span class="spec">/间晚</span>
-				<span class="money_1">¥</span>
-				<span class="money_2">265</span>
-				<span class="spec">×20间/晚</span>
-				<p class="text">
-				  <span class="text_1">房间面积: 20平方</span>
-				  <el-switch
-					  v-model="value2"
-					  active-color="#aabbfd"
-					  inactive-color="#a7a5a6">
-				  </el-switch>
-				</p>
-				<p class="text_2">已住房数: 20间 <span class="right">开启状态</span></p>
-				<p class="text">可售房间: 20间 &nbsp; &nbsp;添加时间2018-1-12</p>
+				<p class="text">可售房间: 20,添加时间2018-1-12</p>
 			</div>
 		</div>
 		<div class="control">
@@ -181,18 +72,20 @@
 		width: 100%;
 		padding-bottom: rem(185px);
 		.header{
-			padding: rem(15px) rem(30px);
+			padding: rem(15px) 10%;
 			font-size: rem(22px);
 			background-color: #ffffff;
 			border-bottom: #aaaaaa solid rem(1px);
-			.title{
-				vertical-align: middle;
-				margin-left: rem(120px);
+			text-align: center;
+			span{
+				&:first-child{
+					float: left;
+				}
 			}
 		}
 		.item{
 			background-color: #ffffff;
-			padding: rem(10px) rem(9px) rem(25px);
+			padding: rem(10px) 5% rem(25px);
 			.img{
 				display: inline-block;
 				width: 27%;
@@ -203,13 +96,13 @@
 			.con_box{
 				display: inline-block;
 				margin-top: rem(1px);
+				width: 70%;
 				.room_name{
 					font-size: rem(17px);
 					margin-bottom: rem(3px);
 					font-weight: bold;
 					}
 				.money_1{
-					font-size: rem(16px);
 					color: #e51c23;
 				  }
 				.money_2{
@@ -217,22 +110,18 @@
 					color: #e51c23;
 				}
 				.spec{
-					font-size: rem(16px);
 					color: #a7a5a6;
-					margin-right: rem(20px);
+					margin-right: 1%;
 				}
 				.text{
-					font-size: rem(14px);
 					.text_1{
-						margin-right: rem(90px);
+						margin-right: 12%;
 					}
 				}
 				.text_2{
-					font-size: rem(14px);
 					.right{
-						font-size: rem(15px);
 						color: #a7a5a6;
-						margin-left: rem(90px);
+						margin-left: 13%;
 					}
 				}
 				
@@ -240,11 +129,13 @@
 		}
 		.control{
 			position: fixed;
-			bottom: rem(115px);
-			font-size: rem(17px);
+			bottom: rem(90px);
 			background-color: #e5e5e5;
+			display: flex;
+			justify-content: space-around;
+			width: 100%;
 				.add{
-					padding: rem(16px) rem(74px);
+					padding: rem(16px) 10%;
 					display: inline-block;
 					background-color: #43c122;
 					color: #ffffff;
@@ -266,12 +157,14 @@
 			position: fixed;
 			bottom: rem(50px);
 			background-color: #ffffff;
+			width: 100%;
+			display: flex;
+			justify-content: space-around;
+			background-color: #e5e5e5;
 			.room{
 				display: inline-block;
-				padding: rem(21px) rem(26px);
-				font-size: rem(16px);
+				padding: rem(10px) 0;
 				border-right: #ffffff solid rem(1px);
-				background-color: #e5e5e5;
 				.icon_3{
 					display: inline-block;
 					color: #43c122;
