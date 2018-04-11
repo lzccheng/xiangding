@@ -7,6 +7,8 @@ import axios from 'axios'
 import Element from 'element-ui'
 import Vuex from 'vuex'
 import Vuexjs from './vuex'
+import Header from './components/header/header'
+
 
 // axios.defaults.baseURL = 'locahost:8080'
 Vue.prototype.$axios = axios
@@ -15,6 +17,8 @@ Vue.config.productionTip = false
 
 Vue.use(Element)
 Vue.use(Vuex)
+
+Vue.component('Header',Header)
 
 const store = new Vuex.Store(Vuexjs)
 

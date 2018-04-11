@@ -1,5 +1,6 @@
 <template>
 	<div class="box">
+		<Header title='提现'/>
 		<div class="img">
 			<div class="image">
 				<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522736413424&di=852254dd751b973f30bc1945dadb1565&imgtype=0&src=http%3A%2F%2Fwww.ytlhqz.com%2Fmanage%2Fupload%2F%25E4%25B8%25AD%25E5%259B%25BD%25E5%25BB%25BA%25E8%25AE%25BE%25E9%2593%25B6%25E8%25A1%258C.jpg">
