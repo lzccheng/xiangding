@@ -1,19 +1,21 @@
 <template>
 	<div class="box" @click="onHandleCancel" ref="hotel">
 		<div class="header">
-			<div class="local">
-				<span>广州</span>
-				<span><i class="fas fa-map-marker-alt"></i></span>
+			<div class="header_">
+				<div class="local">
+					<span>广州</span>
+				</div>
+				<div class="input">
+					<span><i class="fas fa-search"></i></span>
+					<input type="text" placeholder="酒店搜索/关键字">
+				</div>
 			</div>
-			<div class="input">
-				<input type="text" placeholder="酒店搜索/关键字">
-				<span><i class="fas fa-search"></i></span>
-			</div>
+			
 		</div>
 		<div class="select">
 			<ul>
 				<li>
-					<div @click="onHandleTabs" :class="{scal:tabs}">
+					<div class="tabss" @click="onHandleTabs" :class="{scal:tabs}">
 						<span>价格</span>
 						<span><i class="fas fa-angle-down"></i></span>
 					</div>
@@ -28,7 +30,7 @@
 						
 				</li>
 				<li>
-					<div @click="onHandleLocal" :class="{scal:local}">
+					<div class="tabss" @click="onHandleLocal" :class="{scal:local}">
 						<span>位置</span>
 						<span><i class="fas fa-angle-down"></i></span>
 					</div>
@@ -41,7 +43,7 @@
 					</div>
 				</li>
 				<li>
-					<div @click="onHandleFilter" :class="{scal:filter}">
+					<div class="tabss" @click="onHandleFilter" :class="{scal:filter}">
 						<span>筛选</span>
 						<span><i class="fas fa-angle-down"></i></span>
 					</div>
@@ -213,27 +215,33 @@
 		background-color: #fff;
 		width: 100%;
 		.header{
-			padding: rem(10px) rem(15px);
-			text-align: center;
-			div{
-				display: inline-block;
-			}
-			.local{
-				span{
-					font-size: rem(14px);
-					margin-right: rem(8px);
+			background-color: #8BC34A;
+			padding: rem(5px) rem(10px);
+			.header_{
+				background-color: #fff;
+				border-radius: rem(5px);
+				padding: rem(8px) rem(12px);
+				display: flex;
+				.local{
+					font-size: rem(18px);
+					color: #8BC34A;
+					padding-right: rem(15px);
+					border-right: 1px solid #aaa;
 				}
-			}
-			.input{
-				background-color: #9c9c9c;
-				border-radius: rem(10px);
-				input{
-					display: inline-block;
-					width: 100%;
-					height: rem(30px);
-					border: none;
-					background-color: #9c9c9c;
-					width:80%;				
+				.input{
+					margin-left: rem(20px);
+					input{
+						width: 80%;
+						height: rem(25px);
+						border: none;
+					}
+					span{
+						font-size: rem(18px);
+						display: inline-block;
+						padding: rem(3px) rem(8px);
+						vertical-align: middle;
+						color: #aaa;
+					}
 				}
 			}
 		}
@@ -253,7 +261,7 @@
 					.tabs{
 						position: absolute;
 						left: -100%;
-						top: rem(28px);
+						top: rem(42px);
 						width: 0;
 						background-color: rgba(0,0,0,0.5);
 						z-index: 999;
@@ -266,6 +274,9 @@
 								text-align: center;
 							}
 						}
+					}
+					.tabss{
+						padding: rem(8px) 0;
 					}
 					.filter{
 						.filter_{

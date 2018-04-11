@@ -122,7 +122,7 @@
 			}
 			.spanPublic{
 				display: inline-block;
-				heigh: rem(25px);
+				height: rem(25px);
 				line-height: rem(25px);
 				padding: 0 rem(5px);
 				margin-right: rem(15px);

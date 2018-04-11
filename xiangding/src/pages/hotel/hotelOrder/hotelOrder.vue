@@ -12,13 +12,13 @@
 		<div class="message">
 			<p class="title"><span>{{data.name}}</span></p>
 			<p class="star"><span>豪华酒店 | 四星级</span></p>
-			<p class="tip">
+			<!-- <p class="tip">
 				<span><i class="fas fa-wifi"></i> 网络</span>
 				<span><i class="fas fa-utensils"></i> 餐饮</span>
 				<span><i class="fas fa-heartbeat"></i> 健身</span>
 				<span><i class="fab fa-docker"></i> 游泳</span>
 				<span><i class="fab fa-product-hunt"></i> 停车位</span>
-			</p>
+			</p> -->
 			<div class="msg">
 				<div class="img"><img :src="data.imgUrl"></div>
 				<div class="text">

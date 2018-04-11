@@ -14,7 +14,7 @@
 				<div class="tip" v-if="close">
 					<p><span class="border">下单优惠</span><span class="text">现在下单即享红包返现</span><span class="close" @click="onHandleClose"><i class="fas fa-times"></i></span></p>
 				</div>
-				<div v-if="0 == index_" class="body">
+				<div v-for="(i,index) in arrItem" v-if="index == index_" class="body">
 					<ul>
 						<li class="border_bottom">
 							<span class="border_bottom">
@@ -58,243 +58,13 @@
 								</p>
 							</div>
 							
-						</li>
+						</li>   
 						<li class="border_bottom">
 							<!-- <span class="text">会议厅间数:</span>
 							<span class="icon_"><i class="fas fa-chevron-right"></i></span> -->
 							<p>
 								<el-input placeholder="请输入数字" v-model="meetting_total" type="number">
-							    <template slot="prepend">会议室间数:</template>
-							  </el-input>
-							</p>
-						</li>
-						<li class="border_bottom">
-							<!-- <span class="text">价格&nbsp;/&nbsp;星级</span>
-							<span class="icon_"><i class="fas fa-chevron-right"></i></span> -->
-							<div class="pay">
-								<span>价格：{{pay[0]}} - {{pay[1]}}</span>
-							</div>
-							<div>
-								<el-slider
-							      v-model="pay"
-							      range
-							      show-stops
-							      :max="3000">
-							    </el-slider>
-							</div>
-						</li>
-						<li>
-							<div class="star">
-								<p class="title">星级：</p>
-								<p class="startCheck">
-									<span><el-radio v-model="starType" label="no">不限</el-radio></span>
-									<span><el-radio v-model="starType" label="1">一星级</el-radio></span>
-									<span><el-radio v-model="starType" label="2">二星级</el-radio></span>
-									<span><el-radio v-model="starType" label="3">三星级</el-radio></span>
-									<span><el-radio v-model="starType" label="4">四星级</el-radio></span>
-									<span><el-radio v-model="starType" label="5">五星级</el-radio></span>
-								</p>
-							</div>
-						</li>
-					</ul>
-					<p class="btn"><button>开始搜索</button></p>
-					<div class="bottom">
-						<div>
-							<span><i class="fas fa-history"></i></span>
-							<span>浏览记录</span>
-						</div>
-						<div>
-							<span><i class="far fa-star"></i></span>
-							<span>收藏酒店</span>
-						</div>
-					</div>
-				</div>
-				<div v-if="1 == index_" class="body">
-					<ul>
-						<li class="border_bottom">
-							<span class="border_bottom">
-								<span class="erea">
-									<!-- 广州市 -->
-									<div class="select">
-										<el-cascader
-										    :options="options"
-										    v-model="selectedOptions"
-										    @change="handleChange">
-									 	</el-cascader>
-									</div>
-									
-								</span>
-								<!-- <span class="icon"><i class="fas fa-angle-right"></i></span> -->
-							</span>
-							
-							<span class="right">
-								<span class="map"><i class="fas fa-map-marker-alt"></i></span>
-								<span>附近</span>
-							</span>
-						</li>
-						<li class="border_bottom">
-							<!-- <span class="date">3.29</span>
-							<span class="day">今天</span>
-							<span class="line">到</span>
-							<span class="date">3.30</span>
-							<span class="day">明天</span>
-							<span class="icon_"><i class="fas fa-chevron-right"></i></span> -->
-							<div class="date_value">
-								<el-date-picker
-							      v-model="date_value"
-							      type="date"
-							      placeholder="入住日期" 
-							      :picker-options="pickerOptions1">
-							    </el-date-picker>
-							</div>
-							<div class="date_value input">
-								<p class="num">
-									<el-input type="number" v-model="input" placeholder="入住天数（数字）"></el-input>
-								</p>
-							</div>
-							
-						</li>
-						<li class="border_bottom">
-							<!-- <span class="text">会议厅间数:</span>
-							<span class="icon_"><i class="fas fa-chevron-right"></i></span> -->
-							<p>
-								<el-input placeholder="请输入数字" v-model="meetting_total" type="number">
-							    <template slot="prepend">团房间数:</template>
-							  </el-input>
-							</p>
-						</li>
-						<li class="border_bottom">
-							<!-- <span class="text">价格&nbsp;/&nbsp;星级</span>
-							<span class="icon_"><i class="fas fa-chevron-right"></i></span> -->
-							<div class="pay">
-								<span>价格：{{pay[0]}} - {{pay[1]}}</span>
-							</div>
-							<div>
-								<el-slider
-							      v-model="pay"
-							      range
-							      show-stops
-							      :max="3000">
-							    </el-slider>
-							</div>
-						</li>
-						<li>
-							<div class="star">
-								<p class="title">星级：</p>
-								<p class="startCheck">
-									<span><el-radio v-model="starType" label="no">不限</el-radio></span>
-									<span><el-radio v-model="starType" label="1">一星级</el-radio></span>
-									<span><el-radio v-model="starType" label="2">二星级</el-radio></span>
-									<span><el-radio v-model="starType" label="3">三星级</el-radio></span>
-									<span><el-radio v-model="starType" label="4">四星级</el-radio></span>
-									<span><el-radio v-model="starType" label="5">五星级</el-radio></span>
-								</p>
-							</div>
-						</li>
-					</ul>
-					<p class="btn"><button>开始搜索</button></p>
-					<div class="bottom">
-						<div>
-							<span><i class="fas fa-history"></i></span>
-							<span>浏览记录</span>
-						</div>
-						<div>
-							<span><i class="far fa-star"></i></span>
-							<span>收藏酒店</span>
-						</div>
-					</div>
-				</div>
-				<div v-if="2 == index_" class="body">
-					<!-- <ul>
-						<li>
-							<span class="border_bottom">
-								<span class="erea">广州市</span>
-								<span class="icon"><i class="fas fa-angle-right"></i></span>
-							</span>
-							
-							<span class="right">
-								<span class="map"><i class="fas fa-map-marker-alt"></i></span>
-								<span>附近</span>
-							</span>
-						</li>
-						<li class="border_bottom">
-							<span class="date">3.29</span>
-							<span class="day">今天</span>
-							<span class="line">--</span>
-							<span class="date">3.30</span>
-							<span class="day">明天</span>
-							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
-						</li>
-						<li class="border_bottom">
-							<span class="text">钟点房间数</span>
-							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
-						</li>
-						<li class="border_bottom">
-							<span class="text">价格&nbsp;/&nbsp;星级</span>
-							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
-						</li>
-					</ul>
-					<p class="btn"><button>开始搜索</button></p>
-					<div class="bottom">
-						<div>
-							<span><i class="fas fa-history"></i></span>
-							<span>浏览记录</span>
-						</div>
-						<div>
-							<span><i class="far fa-star"></i></span>
-							<span>收藏酒店</span>
-						</div>
-					</div> -->
-					<ul>
-						<li class="border_bottom">
-							<span class="border_bottom">
-								<span class="erea">
-									<!-- 广州市 -->
-									<div class="select">
-										<el-cascader
-										    :options="options"
-										    v-model="selectedOptions"
-										    @change="handleChange">
-									 	</el-cascader>
-									</div>
-									
-								</span>
-								<!-- <span class="icon"><i class="fas fa-angle-right"></i></span> -->
-							</span>
-							
-							<span class="right">
-								<span class="map"><i class="fas fa-map-marker-alt"></i></span>
-								<span>附近</span>
-							</span>
-						</li>
-						<li class="border_bottom">
-							<!-- <span class="date">3.29</span>
-							<span class="day">今天</span>
-							<span class="line">到</span>
-							<span class="date">3.30</span>
-							<span class="day">明天</span>
-							<span class="icon_"><i class="fas fa-chevron-right"></i></span> -->
-							<div class="date_value">
-								<el-date-picker
-							      v-model="date_value"
-							      type="date"
-							      placeholder="入住日期" 
-							      :picker-options="pickerOptions1">
-							    </el-date-picker>
-							</div>
-							<div class="date_value input">
-								<p class="num">
-									<el-input type="number" v-model="input" placeholder="入住天数（数字）"></el-input>
-								</p>
-							</div>
-							
-						</li>
-						<li class="border_bottom">
-							<!-- <span class="text">会议厅间数:</span>
-							<span class="icon_"><i class="fas fa-chevron-right"></i></span> -->
-							<p>
-								<el-input placeholder="请输入数字" v-model="meetting_total" type="number">
-							    <template slot="prepend">钟点房间数:</template>
+							    <template slot="prepend">{{i}}间数:</template>
 							  </el-input>
 							</p>
 						</li>
@@ -449,7 +219,7 @@
 					height: rem(5px);
 					background-color: #8BC34A;
 					border-radius: rem(5px);
-					transition: all 0.5s;
+					transition: all 0.8s;
 				}
 			}
 			.show{
