@@ -20,6 +20,7 @@ import meettingSend from '@/pages/my/meettingSend/meettingSend'
 import clockSend from '@/pages/my/clockSend/clockSend'
 import teamSend from '@/pages/my/teamSend/teamSend'
 import agantDetailt from '@/pages/my/agantDetailt/agantDetailt'
+import order from '@/pages/my/order/order'
 
 Vue.use(Router)
 
@@ -175,6 +176,14 @@ export default new Router({
       component: agantDetailt,
       meta: {
         title: '我的代理详情'
+      }
+    },
+    {
+      path: '/my/order',
+      name: 'order',
+      component: order,
+      meta: {
+        title: '我的订单'
       }
     },
     {

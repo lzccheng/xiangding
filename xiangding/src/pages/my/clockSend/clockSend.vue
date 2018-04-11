@@ -1,5 +1,6 @@
 <template>
 	<div class="box">
+		<Header title="钟点房发布"/>
 		<div class="body">
 			<ul>
 				<li class="item">

@@ -33,8 +33,9 @@
 	.box{
 		width: 100%;
 		.header{
+			width: 100%;
 			background-color: #8ac24a;
-			padding: rem(10px) rem(5px);
+			padding: rem(10px) 5%;
 			.header_ask{
 				font-size: rem(18px);
 				color: #fff;
@@ -48,19 +49,20 @@
 		}
 		.body{
 			.body_div{
-				height: rem(300px);
+				display: flex;
+				align-items: center;
 				border: #8ac24a solid rem(2px);
 				border-radius: rem(15px);
 				margin-top: rem(22px);
 			}
 			textarea{
 				border: none;
-				padding: rem(5px) rem(8px);
+				padding: rem(5px) 0;
 			}
 			.text1{
 				font-size: rem(14px);
 				text-align: center;
-				padding: rem(32px) rem(20px);
+				padding: rem(32px) 8%;
 			}
 			.text2{
 				font-size: rem(17px);

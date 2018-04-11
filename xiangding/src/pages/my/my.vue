@@ -124,10 +124,10 @@
 					<p><i class="far fa-calendar-plus"></i></p>
 					<p><span>待使用</span></p>
 				</div>
-				<div>
+				<router-link tag="div" to="/my/order">
 					<p><i class="far fa-calendar-alt"></i></p>
 					<p><span>全部订单</span></p>
-				</div>
+				</router-link>
 			</div>
 		</div>
 		<div class="myOrder">

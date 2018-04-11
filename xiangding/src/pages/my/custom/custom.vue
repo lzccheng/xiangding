@@ -114,7 +114,7 @@
 			.send_s{
 				float: right;
 				font-size: rem(16px);
-				margin: rem(2px) rem(13px);
+				margin: rem(2px) 5%;
 			}
 		}
 	}

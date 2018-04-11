@@ -1,5 +1,6 @@
 <template>
 	<div class="box">
+		<Header title="会议室发布"/>
 		<div class="body">
 			<ul>
 				<li class="item">
