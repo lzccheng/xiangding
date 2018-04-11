@@ -34,7 +34,7 @@
 							
 							<span class="right">
 								<span class="map"><i class="fas fa-map-marker-alt"></i></span>
-								<span>附近</span>
+								<span>我的位置</span>
 							</span>
 						</li>
 						<li class="border_bottom">
