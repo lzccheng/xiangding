@@ -38,12 +38,12 @@ module.exports = {
 
   build: {
     // Template for index.html
-    index: path.resolve(__dirname, '../addons/xiangding/dist/index.html'),
+    index: path.resolve(__dirname, '../addons/share/index.html'),
 
     // Paths
-    assetsRoot: path.resolve(__dirname, '../addons/xiangding/dist'),
+    assetsRoot: path.resolve(__dirname, '../addons/share'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/addons/xiangding/dist',
+    assetsPublicPath: '/addons/share',
 
     /**
      * Source Maps

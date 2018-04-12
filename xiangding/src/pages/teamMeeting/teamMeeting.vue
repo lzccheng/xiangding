@@ -299,6 +299,9 @@
 			.date{
 				padding-top: rem(13px);
 			}
+			.style{
+				padding-top: rem(10px);
+			}
 		}
 
 		.img{
