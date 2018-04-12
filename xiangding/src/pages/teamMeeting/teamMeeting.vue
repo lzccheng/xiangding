@@ -21,7 +21,7 @@
 				</div>
 			</div>
 			<div class="style none"  @click="onHandleCancel" ref="_style">
-				<div>
+				<div class="padding">
 					<p><span>价格：{{pay[0]}} - {{pay[1]}} 元</span></p>
 					<el-slider
 				      v-model="pay"
@@ -269,17 +269,19 @@
 		width: 100%;
 
 		._box{
+			width: 100%;
 			background-color: rgba(0,0,0,0.5);
 			position: absolute;
 			left: 0;
 			top: 0;
 			z-index: 999;
 			>div{
+				width: 100%;
 				background-color: #fff;
-				padding: rem(5px) rem(8px);
-				margin: rem(100px) auto;
-				width: 85%;
 				text-align: center;
+				position: absolute;
+				left: 0;
+				bottom: 0;
 			}
 			.none{
 				display: none;
@@ -294,13 +296,15 @@
 					font-size: rem(14px);
 					color: #aaa;
 				}
-				
 			}
 			.date{
 				padding-top: rem(13px);
 			}
 			.style{
 				padding-top: rem(10px);
+				.padding{
+					padding: rem(10px) rem(25px) 0
+				}
 			}
 		}
 
