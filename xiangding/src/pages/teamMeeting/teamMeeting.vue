@@ -1,5 +1,72 @@
 <template>
 	<div class="box">
+
+		<div class="_box" ref="_box" @click="onHandleBox">
+			<div class="eara none" @click="onHandleCancel" ref="eara">
+				<div class="select">
+					<span>位置：</span><el-cascader
+					    :options="options"
+					    v-model="selectedOptions"
+					    @change="handleChange">
+				 	</el-cascader>
+				</div>
+				<div class="btn">
+					<button class="green_btn" @click="onMeettingSure">确定</button>
+				</div>
+			</div>
+			<div class="day none" @click="onHandleCancel" ref="_day">
+				<div class="_day">
+					<p>
+						<span class="enter">入住日期：</span>
+						<el-date-picker
+					      v-model="date_value"
+					      type="date"
+					      placeholder="入住日期" 
+					      :picker-options="pickerOptions1" 
+					      @change="datePicker1">
+					    </el-date-picker>
+					</p>
+					<p>
+						<span class="enter">退房日期：</span>
+						<el-date-picker
+					      v-model="date_value2"
+					      type="date"
+					      placeholder="退房日期" 
+					      :picker-options="pickerOptions2" 
+					      @change="datePicker2">
+					    </el-date-picker>
+					</p>
+					
+				</div>
+				<div class="btn">
+					<button class="green_btn" @click="onMeettingSure">确定</button>
+				</div>
+			</div>
+			<div class="date none" @click="onHandleCancel" ref="_date">
+				<el-input-number v-model="meettingNum" :min="1" :max="500"></el-input-number>
+				<div class="btn">
+					<button class="green_btn" @click="onMeettingSure">确定</button>
+				</div>
+			</div>
+			<div class="style none"  @click="onHandleCancel" ref="_style">
+				<div class="padding">
+					<p><span>价格：{{pay[0]}} - {{pay[1]}} 元</span></p>
+					<el-slider
+				      v-model="pay"
+				      range
+				      :max="8000">
+				    </el-slider>
+				</div>
+				<div>
+					<p><span>星级：</span></p>
+					<el-rate v-model="star"></el-rate>
+				</div>
+				<div class="btn">
+					<button class="green_btn" @click="onMeettingSure">确定</button>
+				</div>
+			</div>
+		</div>
+
 		<div class="img">
 			<img src="http://image.qmango.com/hotelimg/dl1210/150330/0.jpeg">
 		</div>
@@ -16,20 +83,20 @@
 				</div>
 				<div v-for="(i,index) in arrItem" v-if="index == index_" class="body">
 					<ul>
-						<li class="border_bottom">
-							<span class="border_bottom">
+						<li>
+							<span class="border_bottom" @click="onHandleErea">
 								<span class="erea">
-									<!-- 广州市 -->
-									<div class="select">
+									{{selectedOptions[1]}}
+									<!-- <div class="select">
 										<el-cascader
 										    :options="options"
 										    v-model="selectedOptions"
 										    @change="handleChange">
 									 	</el-cascader>
-									</div>
+									</div> -->
 									
 								</span>
-								<!-- <span class="icon"><i class="fas fa-angle-right"></i></span> -->
+								<span class="icon"><i class="fas fa-angle-right"></i></span>
 							</span>
 							
 							<span class="right">
@@ -37,14 +104,14 @@
 								<span>我的位置</span>
 							</span>
 						</li>
-						<li class="border_bottom">
-							<!-- <span class="date">3.29</span>
-							<span class="day">今天</span>
-							<span class="line">到</span>
-							<span class="date">3.30</span>
-							<span class="day">明天</span>
-							<span class="icon_"><i class="fas fa-chevron-right"></i></span> -->
-							<div class="date_value">
+						<li class="border_bottom" @click="onHandleDay">
+							<span class="date">{{day1}}</span>
+							<!-- <span class="day">今天</span> -->
+							<span class="line">--</span>
+							<span class="date">{{day2}}</span>
+							<!-- <span class="day">明天</span> -->
+							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
+							<!-- <div class="date_value">
 								<el-date-picker
 							      v-model="date_value"
 							      type="date"
@@ -56,22 +123,22 @@
 								<p class="num">
 									<el-input type="number" v-model="input" placeholder="入住天数（数字）"></el-input>
 								</p>
-							</div>
+							</div> -->
 							
 						</li>   
-						<li class="border_bottom">
-							<!-- <span class="text">会议厅间数:</span>
-							<span class="icon_"><i class="fas fa-chevron-right"></i></span> -->
-							<p>
+						<li class="border_bottom" @click="onHandleMeetting">
+							<span class="text">{{i}}间数 : {{meettingNum}}</span>
+							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
+							<!-- <p>
 								<el-input placeholder="请输入数字" v-model="meetting_total" type="number">
 							    <template slot="prepend">{{i}}间数:</template>
 							  </el-input>
-							</p>
+							</p> -->
 						</li>
-						<li class="border_bottom">
-							<!-- <span class="text">价格&nbsp;/&nbsp;星级</span>
-							<span class="icon_"><i class="fas fa-chevron-right"></i></span> -->
-							<div class="pay">
+						<li class="border_bottom" @click="onHandleStyle">
+							<span class="text">价格：{{pay[0]}} - {{pay[1]}} 元 / 星级： {{star}} 星</span>
+							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
+							<!-- <div class="pay">
 								<span>价格：{{pay[0]}} - {{pay[1]}}</span>
 							</div>
 							<div>
@@ -81,9 +148,9 @@
 							      show-stops
 							      :max="3000">
 							    </el-slider>
-							</div>
+							</div> -->
 						</li>
-						<li>
+						<!-- <li>
 							<div class="star">
 								<p class="title">星级：</p>
 								<p class="startCheck">
@@ -95,7 +162,7 @@
 									<span><el-radio v-model="starType" label="5">五星级</el-radio></span>
 								</p>
 							</div>
-						</li>
+						</li> -->
 					</ul>
 					<p class="btn"><button>开始搜索</button></p>
 					<div class="bottom">
@@ -115,9 +182,11 @@
 </template>
 <script>
 	import common from '../../common/js/common'
+	let _date = Date.now();
 	export default {
 		mounted: function(){
 			this.$refs.line.style.marginLeft = this.$refs.tab.firstChild.offsetLeft + 'px'
+			this.$refs._box.style.width = window.innerWidth + 'px'
 		},
 		data(){
 			return {
@@ -128,25 +197,26 @@
 				],
 				index_: 0,
 				close: true,
+				control: true,
 				options: [
 					{
-			          value: 'guangdong',
+			          value: '广东省',
 			          label: '广东省',
 			          children: [
 				          {
-				            value: 'guangzhou',
+				            value: '广州市',
 				            label: '广州市'
 				          },
 				          {
-				            value: 'shenzhengshi',
+				            value: '深圳市',
 				            label: '深圳市'
 				          },
 				          {
-				            value: 'foshan',
+				            value: '佛山市',
 				            label: '佛山市'
 				          },
 				          {
-				            value: 'zhaoqing',
+				            value: '肇庆市',
 				            label: '肇庆市'
 				          },
 			          ]
@@ -157,8 +227,16 @@
 		              return time.getTime() <= (Date.now()-1000*60*60*24);
 		            }
 		          },
-				selectedOptions: ['guangdong','guangzhou'],
-				date_value: '',
+		        pickerOptions2: {
+		            disabledDate(time) {
+		              return time.getTime() <= _date;
+		            }
+		          },
+				selectedOptions: ['广东省','广州市'],
+				meettingNum: 1,
+				star: 3,
+				date_value: new Date(),
+				date_value2: new Date(new Date().getFullYear()+'/'+(new Date().getMonth()+1)+'/'+(new Date().getDate()+1)),
 				input: '',
 				meetting_total: '',
 				pay: [80,800],
@@ -166,6 +244,13 @@
 			}
 		},
 		methods: {
+			datePicker1(time){
+				_date = time.getTime()
+				this.date_value2 = new Date(time.getFullYear()+'/'+(time.getMonth()+1)+'/'+(time.getDate()+1))
+			},
+			datePicker2(time){
+				console.log(this.date_value.getDate(),this.date_value2.getDate())
+			},
 			onHandleClick(i,event){
 				event.path[2].lastElementChild.style.marginLeft = event.path[0].offsetLeft + 'px'
 				event.path[2].lastElementChild.style.width = common.getStyle(event.path[0],'width')
@@ -175,8 +260,60 @@
 				this.close = false
 			},
 			handleChange(value) {
-		        console.log(value);
-		      }
+		        // console.log(value);
+		    },
+		    onHandleErea(){
+		    	this._boxShow()
+		    	this.show(this.$refs.eara)
+		    },
+		    onHandleBox(){
+		    	this._boxHide()
+		    	this.hide(this.$refs.eara)
+		    	this.hide(this.$refs._date)
+		    	this.hide(this.$refs._style)
+		    },
+		    onHandleMeetting(){
+		    	this._boxShow()
+		    	this.show(this.$refs._date)
+		    },
+		    onHandleDay(){
+		    	this._boxShow()
+		    	this.show(this.$refs._day)
+		    },
+		    onHandleStyle(){
+		    	this._boxShow()
+		    	this.show(this.$refs._style)
+		    },
+		    onMeettingSure(){
+		    	this.onHandleBox()
+		    },
+		    _boxShow(){
+		    	this.$refs._box.style.height = window.innerHeight + 'px'
+		    },
+		    _boxHide(){
+		    	this.$refs._box.style.height = '0px'
+		    },
+		    show(obj){
+		    	obj.style.display = 'block'
+		    },
+		    hide(obj){
+		    	obj.style.display = 'none'
+		    },
+		    onHandleCancel(event){
+		    	event.cancelBubble = true
+		    },
+		    onSure(){
+		    	this.onHandleBox()
+		    }
+		},
+		computed: {
+			day1(){
+				return (this.date_value.getMonth()+1) + '.' + this.date_value.getDate()
+			},
+			day2(){
+
+				return (this.date_value2.getMonth()+1) + '.' + this.date_value2.getDate()
+			},
 		}
 	}
 </script>
@@ -185,6 +322,60 @@
 	.box{
 		background-color: #ededed;
 		width: 100%;
+
+		._box{
+			width: 100%;
+			background-color: rgba(0,0,0,0.5);
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 999;
+			>div{
+				width: 100%;
+				background-color: #fff;
+				text-align: center;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+			}
+			.none{
+				display: none;
+			}
+			.btn{
+				padding: rem(12px) rem(25px);
+			}
+			.eara{
+				.select{
+					display: inline-block;
+					padding: rem(5px) rem(8px);
+					font-size: rem(14px);
+					color: #aaa;
+				}
+			}
+			.day{
+				._day{
+					padding-top: rem(15px);
+					p{
+						padding-bottom: rem(10px);
+					}
+					.enter{
+						display: inline-block;
+						padding: rem(5px) rem(10px);
+						color: #aaa;
+					}
+				}
+			}
+			.date{
+				padding-top: rem(13px);
+			}
+			.style{
+				padding-top: rem(10px);
+				.padding{
+					padding: rem(10px) rem(25px) 0
+				}
+			}
+		}
+
 		.img{
 			img{
 				width: 100%;
@@ -195,9 +386,6 @@
 			float: right;
 			color: #aaa;
 			padding: rem(2px) rem(5px);
-		}
-		.select{
-			display: inline-block;
 		}
 		.tab{
 			background-color: #fff;
@@ -248,12 +436,12 @@
 								font-size: rem(18px);
 							}
 							.icon{
-								margin-left: 55%;
+								margin-left: 50%;
 								color: #aaa;
 								padding: 0 rem(10px);
 							}
 							.right{
-								margin-left: 5%;
+								margin-left: 3%;
 								.map{
 									color: #FF9800;
 								}
