@@ -34,7 +34,7 @@ ul,li{
   list-style: none;
 }
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Microsoft YaHei';
   font-size: rem(12px);
   color: #555;
   -webkit-font-smoothing: antialiased;
