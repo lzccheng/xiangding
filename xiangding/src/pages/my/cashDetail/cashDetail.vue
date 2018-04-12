@@ -10,128 +10,36 @@
 		    </div>
 	    </div>
 	    <div class="nav">
-	    	<div class="my_hotel"></div>
+	    	<!-- <div class="my_hotel">tt</div>
 	    	<span>我服务的酒店</span>
 	    	<div class="total_b">
 	    	<div class="total">30</div>
 	    	<div class="gt"><i class="fas fa-angle-right"></i></div>
-	    	</div>
+	    	</div> -->
+	    	<div class="green"></div>
+	    	<span class="hotel">我服务的酒店</span>
+	    	<span class="num">30</span>
 	    </div>
-	    <div class="background"></div>
-	    <ul>
-	    	<li class="item">
-	    		<span class="hotel_name">广州银河大酒店</span>
-	    		<div class="num_money">
-	    			<p class="detail">详情</p>
-	    		</div>
-	    		<div class="num_money">
-	    			<p class="num">1200</p>
-	    			<p class="money">开房数</p>
-	    		</div>
-	    		<div class="num_money">
-	    			<p class="num">1200</p>
-	    			<p class="money">开房数</p>
-	    		</div>
-	    	</li>
-	    	<li class="item">
-	    		<span class="hotel_name">广州维也纳酒店</span>
-	    		<div class="num_money">
-	    			<p class="detail">详情</p>
-	    		</div>
-	    		<div class="num_money">
-	    			<p class="num">1200</p>
-	    			<p class="money">开房数</p>
-	    		</div>
-	    		<div class="num_money">
-	    			<p class="num">1200</p>
-	    			<p class="money">开房数</p>
-	    		</div>
-	    	</li>
-	    	<li class="item">
-	    		<span class="hotel_name">广州恒大酒店</span>
-	    		<div class="num_money">
-	    			<p class="detail">详情</p>
-	    		</div>
-	    		<div class="num_money">
-	    			<p class="num">1200</p>
-	    			<p class="money">开房数</p>
-	    		</div>
-	    		<div class="num_money">
-	    			<p class="num">1200</p>
-	    			<p class="money">开房数</p>
-	    		</div>
-	    	</li>
-	    	<li class="item">
-	    		<span class="hotel_name">广州南洋大酒店</span>
-	    		<div class="num_money">
-	    			<p class="detail">详情</p>
-	    		</div>
-	    		<div class="num_money">
-	    			<p class="num">1200</p>
-	    			<p class="money">开房数</p>
-	    		</div>
-	    		<div class="num_money">
-	    			<p class="num">1200</p>
-	    			<p class="money">开房数</p>
-	    		</div>
-	    	</li>
-	    	<li class="item">
-	    		<span class="hotel_name">广州银河大酒店</span>
-	    		<div class="num_money">
-	    			<p class="detail">详情</p>
-	    		</div>
-	    		<div class="num_money">
-	    			<p class="num">1200</p>
-	    			<p class="money">开房数</p>
-	    		</div>
-	    		<div class="num_money">
-	    			<p class="num">1200</p>
-	    			<p class="money">开房数</p>
-	    		</div>
-	    	</li>
-	    	<li class="item">
-	    		<span class="hotel_name">广州银河大酒店</span>
-	    		<div class="num_money">
-	    			<p class="detail">详情</p>
-	    		</div>
-	    		<div class="num_money">
-	    			<p class="num">1200</p>
-	    			<p class="money">开房数</p>
-	    		</div>
-	    		<div class="num_money">
-	    			<p class="num">1200</p>
-	    			<p class="money">开房数</p>
-	    		</div>
-	    	</li>
-	    	<li class="item">
-	    		<span class="hotel_name">广州银河大酒店</span>
-	    		<div class="num_money">
-	    			<p class="detail">详情</p>
-	    		</div>
-	    		<div class="num_money">
-	    			<p class="num">1200</p>
-	    			<p class="money">开房数</p>
-	    		</div>
-	    		<div class="num_money">
-	    			<p class="num">1200</p>
-	    			<p class="money">开房数</p>
-	    		</div>
-	    	</li>
-	    	<li class="item">
-	    		<span class="hotel_name">广州银河大酒店</span>
-	    		<div class="num_money">
-	    			<p class="detail">详情</p>
-	    		</div>
-	    		<div class="num_money">
-	    			<p class="num">1200</p>
-	    			<p class="money">开房数</p>
-	    		</div>
-	    		<div class="num_money">
-	    			<p class="num">1200</p>
-	    			<p class="money">开房数</p>
-	    		</div>
-	    	</li>
-	    </ul>
+	    <div class="body">
+	    	<ul>
+	    		<li>
+	    			<span class="hotel_name">广州银河大酒店</span>
+	    			<span>
+	    				<span>1200</span>
+	    				<span>开房数</span>
+	    			</span>
+	    			<span>
+	    				<span>1200</span>
+	    				<span>总金额</span>
+	    			</span>
+	    			<span>详情</span>
+	    		</li>
+	    		<li></li>
+	    		<li></li>
+	    		<li></li>
+	    		<li></li>
+	    	</ul>
+	    </div>
 	    <div class="page">
 	        <div class="page_p">
 		    	<div class="up">上一页</div>
@@ -156,28 +64,23 @@
 	@import "../../../common/css/common.scss";
 	.box{
 		width: 100%;
-		background-color: #fff;
+		background-color: #e5e5e5;
         .header{
-        	width: 100%;
         	height: rem(125px);
-        	border: #43c122 solid 1px;
             background-color: #43c122;
             .big{
-            	width: 90%;
-            	height: rem(80px);
-            	margin-top: rem(20px);
+            	padding: rem(25px) rem(15px);
+				display: flex;            	
                 .ball{
                 	width: rem(75px);
                 	height: rem(75px);
                 	background-color: #e5e5e5;
-                	margin-left: rem(17px);
                 	border-radius: 50%;
-                	float: left;
+                	display: inline-block;
                 }
                 .text{
                 	width: rem(230px);
                 	height: rem(62px);
-                	float: left;
                 	margin-left: rem(12px);
                 	margin-top: rem(6px);
                 	.agant{
@@ -195,99 +98,36 @@
             }
         }
         .nav{
-        	width: 100%;
-        	height: rem(45px);
-        	.my_hotel{
-        		width: rem(3px);
-        		height: rem(24px);
-        		background-color: #43c122;
-        		margin-left: rem(15px);
-        		margin-top: rem(12px);
-        		float: left;
+        	display: flex;
+        	padding: rem(12px) rem(13px);
+        	background-color: #ffffff;
+        	.green{
+        		width: 0;
+        		height: rem(17px);
+        		border: #43c14c solid 2px;
+        		margin-right: rem(8px);
+        		}
+        	.hotel{
+        		font-size: rem(14px);
+        		margin-right: 55%;
         	}
-        	span{
-        		font-size: rem(16px);
-        		margin-top: rem(12px);
-        		margin-left: rem(5px);
-        		float: left;
-        	}
-        .total_b{
-        	    float: right;
-        	.total{
-        		display: inline-block;
-        		width: rem(42px);
-        		height: rem(22px);
+        	.num{
         		background-color: #43c122;
-        		border-radius: rem(20px);
-        		margin-right: rem(15px);
-        		margin-top: rem(12px);
-        		text-align: center;
+        		font-size: rem(14px);
         		color: #ffffff;
-        		font-size: rem(13px);
-        		line-height: rem(22px);
-        	}
-        	.gt{
-				display: inline-block;
-				margin-right: rem(30px);
-				color: #aaaaaa;
-				font-size: rem(19px);
-				vertical-align: middle;
-        	}
+        		padding: rem(2px) rem(13px);
+        		border-radius: rem(8px);
         	}
         }
-        .background{
-        	width: 100%;
-        	height: rem(7px);
-        	background-color: #ececec;
-        }
-        .item{
-        	width: 97%;
-        	height: rem(40px);
-        	border-bottom: rem(3px) solid #ececec;
-        	margin-left: rem(4px);
-        	padding-top: rem(9px);
-        	.hotel_name{
-        		font-size: rem(15px);
-        		margin-top: rem(13px);
-        		margin-left: rem(16px);
-        		float: left;
-        	}
-        	.num_money{
-        		width: rem(55px);
-        		height: rem(35px);
-        		float: right;
-        		text-align: center;
-        		vertical-align: middle;
-        		.num{
-        			font-size: rem(15px);
-        			color: #43c122;
-        		}
-        		.detail{
-                    font-size: rem(13px);
-                    margin-top: rem(16px);
-        		}
-        	}
-        }
-        .page{
-        	width: 100%;
-        	height: rem(50px);
-        	.page_p{
-        		width: rem(180px);
-        		height: rem(30px);
-        		margin-top: rem(15px);
-        		margin-left: 30%;
-        		float: left;
-        		.up{
-        			display: inline-block;
-        			width: rem(80px);
-        			height: rem(30px);
-        			line-height: rem(30px);
-        			background-color: #43c122;
-        			border-radius: rem(5px);
-        			color: #ffffff;
-        			font-size: rem(13px);
-        			text-align: center;
-        			margin-left: rem(6px);
+        .body{
+        	margin-top: rem(9px);
+        	padding: rem(15px) rem(14px);
+        	background-color: #ffffff;
+        	ul{
+        		li{
+        			.hotel_name{
+        				font-size: rem(14px);
+        			}
         		}
         	}
         }

@@ -21,6 +21,7 @@ import clockSend from '@/pages/my/clockSend/clockSend'
 import teamSend from '@/pages/my/teamSend/teamSend'
 import agantDetailt from '@/pages/my/agantDetailt/agantDetailt'
 import order from '@/pages/my/order/order'
+import orderPay from '@/pages/my/orderPay/orderPay'
 
 Vue.use(Router)
 
@@ -184,6 +185,14 @@ export default new Router({
       component: order,
       meta: {
         title: '我的订单'
+      }
+    },
+    {
+      path: '/my/order/orderPay',
+      name: 'orderPay',
+      component: orderPay,
+      meta: {
+        title: '我的订单付款'
       }
     },
     {

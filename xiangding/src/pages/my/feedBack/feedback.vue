@@ -33,7 +33,6 @@
 	.box{
 		width: 100%;
 		.header{
-			width: 100%;
 			background-color: #8ac24a;
 			padding: rem(10px) 5%;
 			.header_ask{

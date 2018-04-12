@@ -31,6 +31,7 @@
 			padding: rem(12px);
 			font-size: rem(18px);
 			background-color: #fff;
+			border-bottom: 1px solid #aaa;
 			._left{
 				float: left;
 				padding: 0 rem(5px);

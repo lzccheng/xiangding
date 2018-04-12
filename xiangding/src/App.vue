@@ -45,7 +45,7 @@ ul,li{
   position: absolute;
   left: 0;
   top: 0;
-  padding-bottom: rem(60px);
+  padding-bottom: rem(50px);
 }
 .bounce-enter-active {
   animation: bounce-in .5s;

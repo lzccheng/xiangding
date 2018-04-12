@@ -51,8 +51,7 @@
 								    </div>
 									
 									<div class="button">
-										<span class="ask">aa咨询</span>
-										<span class="pay">付款</span>
+										<router-link tag="span" :to="{path: '/my/order/orderPay',query: {isPay: false}}" class="pay">付款</router-link>
 									</div>
 								</div>
 							</div>
@@ -60,9 +59,80 @@
 					</div>
 				</div>
 				<div v-if="1==index_">
-					
+					<div class="body">
+						<div class="item">
+							<span class="time">预定日期: 03-20</span>
+							<div class="content_box" v-for="(i,index) in 2" :key="index">
+								<router-link tag="div" :to="{path: '/my/order/orderPay',query:{isPay: true}}" class="content">
+									<p>
+										<span class="title">银河大酒店</span>
+										<span class="title_t">(豪华酒店 |四星级)</span>
+										<span class="cross"><i class="far fa-times-circle"></i></span>
+									</p>
+									<p>
+										<span class="title_hide">1间. 特惠商务房</span>
+									</p>
+									<p>
+										<span class="title_hide">客户名称: 胡勇蝶 </span>
+										<span class="no">
+											<span class="money_color">¥</span>
+											<span class="money_size">264</span>
+										</span>
+									</p>
+								</router-link>
+								<div class="content_2">
+								    <div class="plane">
+									    <i class="fas fa-location-arrow"></i>
+									    <span class="here">到这里</span>
+								    </div>
+									
+									<div class="button">
+										<span class="pay">再次预定</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div v-if="2==index_">sss</div>
+				<div v-if="2==index_">
+					<div class="body">
+						<div class="item">
+							<span class="time">预定日期: 03-20</span>
+							<div class="content_box" v-for="(i,index) in 2" key="index">
+								<div class="content">
+									<p>
+										<span class="title">银河大酒店</span>
+										<span class="title_t">(豪华酒店 |四星级)</span>
+										<span class="cross"><i class="far fa-times-circle"></i></span>
+									</p>
+									<p>
+										<span class="title_hide">1间. 特惠商务房</span>
+									</p>
+									<p>
+										<span class="title_hide">客户名称: 胡勇蝶 </span>
+										<span class="no">
+											<span class="money_color">¥</span>
+											<span class="money_size">264</span>
+										</span>
+									</p>
+									<p>
+										<span class="title_hide"> </span>
+										<span class="enter">入住中</span>
+									</p>
+								</div>
+								<div class="content_2">
+								    <div class="plane">
+									    <i class="fas fa-location-arrow"></i>
+									    <span class="here">到这里</span>
+								    </div>
+									<div class="button">
+										<span class="pay">再次预定</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -147,6 +217,7 @@
 							margin-bottom: 3%;
 							p{
 								position: relative;
+								padding: rem(3px) 0;
 							}
 							.title{
 								font-size: rem(14px);
@@ -179,6 +250,11 @@
 								top: 0;
 
 							}
+							.enter{
+								display: inline-block;
+								margin-top: rem(5px);
+								margin-left: 88%;
+							}
 						}
 						.content_2{
 							div{
@@ -192,15 +268,12 @@
 								}
 								&.button{
 									float: right;
+									padding-top: rem(8px);
 									span{
-										padding: rem(8px) rem(15px);
+										padding: rem(8px) rem(25px);
 										border-radius: rem(15px);
-
-										&.ask{
-											background-color: #e2e2e4;
-										}
 										&.pay{
-											background-color: #3cac1e;
+											background-color: #43c122;
 											color: #fff;
 										}
 									}
