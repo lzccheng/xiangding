@@ -14,6 +14,34 @@
 					<button class="green_btn" @click="onMeettingSure">确定</button>
 				</div>
 			</div>
+			<div class="day none" @click="onHandleCancel" ref="_day">
+				<div class="_day">
+					<p>
+						<span class="enter">入住日期：</span>
+						<el-date-picker
+					      v-model="date_value"
+					      type="date"
+					      placeholder="入住日期" 
+					      :picker-options="pickerOptions1" 
+					      @change="datePicker1">
+					    </el-date-picker>
+					</p>
+					<p>
+						<span class="enter">退房日期：</span>
+						<el-date-picker
+					      v-model="date_value2"
+					      type="date"
+					      placeholder="退房日期" 
+					      :picker-options="pickerOptions2" 
+					      @change="datePicker2">
+					    </el-date-picker>
+					</p>
+					
+				</div>
+				<div class="btn">
+					<button class="green_btn" @click="onMeettingSure">确定</button>
+				</div>
+			</div>
 			<div class="date none" @click="onHandleCancel" ref="_date">
 				<el-input-number v-model="meettingNum" :min="1" :max="500"></el-input-number>
 				<div class="btn">
@@ -76,12 +104,12 @@
 								<span>我的位置</span>
 							</span>
 						</li>
-						<li class="border_bottom">
-							<span class="date">3.29</span>
-							<span class="day">今天</span>
+						<li class="border_bottom" @click="onHandleDay">
+							<span class="date">{{day1}}</span>
+							<!-- <span class="day">今天</span> -->
 							<span class="line">--</span>
-							<span class="date">3.30</span>
-							<span class="day">明天</span>
+							<span class="date">{{day2}}</span>
+							<!-- <span class="day">明天</span> -->
 							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
 							<!-- <div class="date_value">
 								<el-date-picker
@@ -154,6 +182,7 @@
 </template>
 <script>
 	import common from '../../common/js/common'
+	let _date = Date.now();
 	export default {
 		mounted: function(){
 			this.$refs.line.style.marginLeft = this.$refs.tab.firstChild.offsetLeft + 'px'
@@ -198,10 +227,16 @@
 		              return time.getTime() <= (Date.now()-1000*60*60*24);
 		            }
 		          },
+		        pickerOptions2: {
+		            disabledDate(time) {
+		              return time.getTime() <= _date;
+		            }
+		          },
 				selectedOptions: ['广东省','广州市'],
 				meettingNum: 1,
 				star: 3,
-				date_value: '',
+				date_value: new Date(),
+				date_value2: new Date(new Date().getFullYear()+'/'+(new Date().getMonth()+1)+'/'+(new Date().getDate()+1)),
 				input: '',
 				meetting_total: '',
 				pay: [80,800],
@@ -209,6 +244,13 @@
 			}
 		},
 		methods: {
+			datePicker1(time){
+				_date = time.getTime()
+				this.date_value2 = new Date(time.getFullYear()+'/'+(time.getMonth()+1)+'/'+(time.getDate()+1))
+			},
+			datePicker2(time){
+				console.log(this.date_value.getDate(),this.date_value2.getDate())
+			},
 			onHandleClick(i,event){
 				event.path[2].lastElementChild.style.marginLeft = event.path[0].offsetLeft + 'px'
 				event.path[2].lastElementChild.style.width = common.getStyle(event.path[0],'width')
@@ -233,6 +275,10 @@
 		    onHandleMeetting(){
 		    	this._boxShow()
 		    	this.show(this.$refs._date)
+		    },
+		    onHandleDay(){
+		    	this._boxShow()
+		    	this.show(this.$refs._day)
 		    },
 		    onHandleStyle(){
 		    	this._boxShow()
@@ -259,6 +305,15 @@
 		    onSure(){
 		    	this.onHandleBox()
 		    }
+		},
+		computed: {
+			day1(){
+				return (this.date_value.getMonth()+1) + '.' + this.date_value.getDate()
+			},
+			day2(){
+
+				return (this.date_value2.getMonth()+1) + '.' + this.date_value2.getDate()
+			},
 		}
 	}
 </script>
@@ -295,6 +350,19 @@
 					padding: rem(5px) rem(8px);
 					font-size: rem(14px);
 					color: #aaa;
+				}
+			}
+			.day{
+				._day{
+					padding-top: rem(15px);
+					p{
+						padding-bottom: rem(10px);
+					}
+					.enter{
+						display: inline-block;
+						padding: rem(5px) rem(10px);
+						color: #aaa;
+					}
 				}
 			}
 			.date{
