@@ -36,7 +36,7 @@
 			<div class="agent">
 				<ul>
 					<li>
-						<p><span>一级代理</span></p>
+						<p><span>VIP1</span></p>
 						<p class="right">
 							<span>收入</span><br>
 							<span>{{msg.income.firstAgent}}</span>
@@ -44,7 +44,7 @@
 						</p>
 					</li>
 					<li>
-						<p><span>二级代理</span></p>
+						<p><span>VIP2</span></p>
 						<p class="right">
 							<span>收入</span><br>
 							<span>{{msg.income.secondAgent}}</span>
@@ -52,7 +52,7 @@
 						</p>
 					</li>
 					<li>
-						<p><span>三级代理</span></p>
+						<p><span>VIP3</span></p>
 						<p class="right">
 							<span>收入</span><br>
 							<span>{{msg.income.thirdAgent}}</span>
@@ -137,10 +137,10 @@
 					<p><i class="far fa-star"></i></p>
 					<p><span>管理房态入口</span></p>
 				</router-link>
-				<div>
+				<router-link tag="div" to="/my/myagantEnter">
 					<p><i class="far fa-question-circle"></i></p>
 					<p><span>代理服务商入口</span></p>
-				</div>
+				</router-link>
 			</div>
 		</div>
 		<div class="myOrder">

@@ -87,6 +87,7 @@
 								    </div>
 									
 									<div class="button">
+										<span class="change">申请退房</span>
 										<span class="pay">再次预定</span>
 									</div>
 								</div>
@@ -126,6 +127,7 @@
 									    <span class="here">到这里</span>
 								    </div>
 									<div class="button">
+									    <span class="change">申请退房</span>
 										<span class="pay">再次预定</span>
 									</div>
 								</div>
@@ -270,11 +272,17 @@
 									float: right;
 									padding-top: rem(8px);
 									span{
-										padding: rem(8px) rem(25px);
+										padding: rem(5px) rem(16px);
 										border-radius: rem(15px);
 										&.pay{
 											background-color: #43c122;
 											color: #fff;
+											font-size: rem(14px);
+										}
+										&.change{
+											border: #aaa solid rem(1px);
+											font-size: rem(14px);
+											margin-right: rem(5px);
 										}
 									}
 								}

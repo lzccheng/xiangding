@@ -10,41 +10,152 @@
 		    </div>
 	    </div>
 	    <div class="nav">
-	    	<!-- <div class="my_hotel">tt</div>
-	    	<span>我服务的酒店</span>
-	    	<div class="total_b">
-	    	<div class="total">30</div>
-	    	<div class="gt"><i class="fas fa-angle-right"></i></div>
-	    	</div> -->
 	    	<div class="green"></div>
 	    	<span class="hotel">我服务的酒店</span>
 	    	<span class="num">30</span>
 	    </div>
+        <div class="line"></div>
 	    <div class="body">
-	    	<ul>
-	    		<li>
-	    			<span class="hotel_name">广州银河大酒店</span>
-	    			<span>
-	    				<span>1200</span>
-	    				<span>开房数</span>
-	    			</span>
-	    			<span>
-	    				<span>1200</span>
-	    				<span>总金额</span>
-	    			</span>
-	    			<span>详情</span>
-	    		</li>
-	    		<li></li>
-	    		<li></li>
-	    		<li></li>
-	    		<li></li>
-	    	</ul>
-	    </div>
-	    <div class="page">
-	        <div class="page_p">
-		    	<div class="up">上一页</div>
-		    	<div class="up">下一页</div>
-	    	</div>
+	    	<div  class="item">
+                <div class="hotel_name">广州银河大酒店</div>      
+                <div class="right_box">
+                    <div class="i">
+                        <p class="green">1200</p>
+                        <p class="room_nmb">开房数</p>
+                    </div>
+                    <div class="i">
+                        <p class="green">1200</p>
+                        <p class="room_nmb">总金额</p>
+                    </div>
+                    <div class="i">
+                        <br/>
+                        <p class="room_nmb">详情</p>
+                    </div>
+                </div>      
+            </div>
+            <div  class="item">
+                <div class="hotel_name">广州维也纳酒店</div>      
+                <div class="right_box">
+                    <div class="i">
+                        <p class="green">1200</p>
+                        <p class="room_nmb">开房数</p>
+                    </div>
+                    <div class="i">
+                        <p class="green">1200</p>
+                        <p class="room_nmb">总金额</p>
+                    </div>
+                    <div class="i">
+                        <br/>
+                        <p class="room_nmb">详情</p>
+                    </div>
+                </div>      
+            </div>
+            <div  class="item">
+                <div class="hotel_name">广州恒大酒店</div>      
+                <div class="right_box">
+                    <div class="i">
+                        <p class="green">1200</p>
+                        <p class="room_nmb">开房数</p>
+                    </div>
+                    <div class="i">
+                        <p class="green">1200</p>
+                        <p class="room_nmb">总金额</p>
+                    </div>
+                    <div class="i">
+                        <br/>
+                        <p class="room_nmb">详情</p>
+                    </div>
+                </div>      
+            </div>
+            <div  class="item">
+                <div class="hotel_name">广州南洋酒店</div>      
+                <div class="right_box">
+                    <div class="i">
+                        <p class="green">1200</p>
+                        <p class="room_nmb">开房数</p>
+                    </div>
+                    <div class="i">
+                        <p class="green">1200</p>
+                        <p class="room_nmb">总金额</p>
+                    </div>
+                    <div class="i">
+                        <br/>
+                        <p class="room_nmb">详情</p>
+                    </div>
+                </div>      
+            </div>
+            <div  class="item">
+                <div class="hotel_name">广州银河大酒店</div>      
+                <div class="right_box">
+                    <div class="i">
+                        <p class="green">1200</p>
+                        <p class="room_nmb">开房数</p>
+                    </div>
+                    <div class="i">
+                        <p class="green">1200</p>
+                        <p class="room_nmb">总金额</p>
+                    </div>
+                    <div class="i">
+                        <br/>
+                        <p class="room_nmb">详情</p>
+                    </div>
+                </div>      
+            </div>
+            <div  class="item">
+                <div class="hotel_name">广州银河大酒店</div>      
+                <div class="right_box">
+                    <div class="i">
+                        <p class="green">1200</p>
+                        <p class="room_nmb">开房数</p>
+                    </div>
+                    <div class="i">
+                        <p class="green">1200</p>
+                        <p class="room_nmb">总金额</p>
+                    </div>
+                    <div class="i">
+                        <br/>
+                        <p class="room_nmb">详情</p>
+                    </div>
+                </div>      
+            </div>
+            <div  class="item">
+                <div class="hotel_name">广州银河大酒店</div>      
+                <div class="right_box">
+                    <div class="i">
+                        <p class="green">1200</p>
+                        <p class="room_nmb">开房数</p>
+                    </div>
+                    <div class="i">
+                        <p class="green">1200</p>
+                        <p class="room_nmb">总金额</p>
+                    </div>
+                    <div class="i">
+                        <br/>
+                        <p class="room_nmb">详情</p>
+                    </div>
+                </div>      
+            </div>
+            <div  class="item">
+                <div class="hotel_name">广州银河大酒店</div>      
+                <div class="right_box">
+                    <div class="i">
+                        <p class="green">1200</p>
+                        <p class="room_nmb">开房数</p>
+                    </div>
+                    <div class="i">
+                        <p class="green">1200</p>
+                        <p class="room_nmb">总金额</p>
+                    </div>
+                    <div class="i">
+                        <br/>
+                        <p class="room_nmb">详情</p>
+                    </div>
+                </div>      
+            </div>
+            <div class="send_box">
+           <span class="page">上一页</span>
+           <span class="page">下一页</span>
+        </div>
 	    </div>
 	</div>
 </template>
@@ -64,7 +175,7 @@
 	@import "../../../common/css/common.scss";
 	.box{
 		width: 100%;
-		background-color: #e5e5e5;
+		background-color: #fff;
         .header{
         	height: rem(125px);
             background-color: #43c122;
@@ -119,17 +230,51 @@
         		border-radius: rem(8px);
         	}
         }
+        .line{
+            border: #e5e5e5 solid rem(5px);
+        }
         .body{
         	margin-top: rem(9px);
-        	padding: rem(15px) rem(14px);
+        	padding: rem(1px) rem(14px);
         	background-color: #ffffff;
-        	ul{
-        		li{
-        			.hotel_name{
-        				font-size: rem(14px);
-        			}
-        		}
-        	}
+        	.item{
+                width: 100%;
+                display: flex;
+                align-items:center;
+                border-bottom: #e5e5e5 solid rem(1px);
+                margin-top: rem(10px);
+                .hotel_name{
+                    font-size: rem(14px);
+                    width: 55%;
+                }
+                .right_box{
+                    width: 50%;
+                    display: inline-block;
+                    float: right;
+                    .i{
+                        display: inline-block;
+                        margin-right: rem(13px);
+                        .green{
+                            color: #43c122;
+                            font-size: rem(13px);
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+            .send_box{
+                background-color: #ffffff;
+                padding: 0 30%;
+                margin: rem(20px) 0;
+                .page{
+                    background-color: #43c122;
+                    color: #ffffff;
+                    padding: rem(6px) rem(12px);
+                    font-size: rem(14px);
+                    border-radius: rem(5px);
+                    margin-right: rem(8px);
+               }
+            }
         }
 	}
 </style>

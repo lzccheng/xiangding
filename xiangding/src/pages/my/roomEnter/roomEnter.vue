@@ -105,10 +105,10 @@
 		}
 		.item{
 			background-color: #ffffff;
-			padding: rem(10px) 3% rem(25px);
+			padding: rem(10px) 0 rem(25px) 2%;
 			.img{
 				display: inline-block;
-				width: 27%;
+				width: 25%;
 				height: rem(98px);
 				background-color: #e5e5e5;
 				border-radius: rem(12px);
@@ -116,9 +116,9 @@
 			.con_box{
 				display: inline-block;
 				margin-top: rem(1px);
-				margin-left: 2%;
-				width: 70%;
+				width: 72%;
 				height: rem(105px);
+				float: right;
 				.room_name{
 					font-size: rem(17px);
 					margin-bottom: rem(3px);

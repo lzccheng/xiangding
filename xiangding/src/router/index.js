@@ -22,6 +22,9 @@ import teamSend from '@/pages/my/teamSend/teamSend'
 import agantDetailt from '@/pages/my/agantDetailt/agantDetailt'
 import order from '@/pages/my/order/order'
 import orderPay from '@/pages/my/orderPay/orderPay'
+import myagantEnter from '@/pages/my/myagantEnter/myagantEnter'
+import agantIncome from '@/pages/my/agantIncome/agantIncome'
+import agantHistory from '@/pages/my/agantHistory/agantHistory'
 
 Vue.use(Router)
 
@@ -177,6 +180,31 @@ export default new Router({
       component: agantDetailt,
       meta: {
         title: '我的代理详情'
+      }
+    },
+
+    {
+      path: '/my/myagantEnter',
+      name: 'myagantEnter',
+      component: myagantEnter,
+      meta: {
+        title: '我的代理入口'
+      }
+    },
+     {
+      path: '/my/myagantEnter/agantIncome',
+      name: 'agantIncome',
+      component: agantIncome,
+      meta: {
+        title: '我的代理收入'
+      }
+    },
+    {
+      path: '/my/myagantEnter/agantHistory',
+      name: 'agantHistory',
+      component: agantHistory,
+      meta: {
+        title: '我的代理历史'
       }
     },
     {
