@@ -26,9 +26,15 @@
 	@import '../../common/css/common';
 	._box{
 		width: 100%;
+		height: rem(50px);
 		._header{
+			width: 100%;
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 999;
 			text-align: center;
-			padding: rem(12px);
+			padding: rem(12px) 0;
 			font-size: rem(18px);
 			background-color: #fff;
 			border-bottom: 1px solid #aaa;

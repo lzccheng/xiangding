@@ -1,5 +1,6 @@
 <template>
 	<div class="box">
+	<Header title="代理服务商"/>
 		<div class="header">
 		    <div class="big">
 		    	<div class="ball"></div>

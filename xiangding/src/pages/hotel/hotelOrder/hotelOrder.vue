@@ -1,5 +1,6 @@
 <template>
 	<div class="box">
+		<Header title="酒店支付信息"/>
 		<div class="banner">
 			<div class="swiper-container">
 			    <div class="swiper-wrapper">

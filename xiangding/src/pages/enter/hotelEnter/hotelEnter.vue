@@ -1,38 +1,53 @@
 <template>
 	<div class="box">
+	<Header title="申请入驻"/>
 		<div class="form">
-			<p class="title">入驻酒店妹妹平台</p>
 			<p class="input">
-				<label>酒店名称：</label>
-				<input type="text" placeholder="请与营业执照上的酒店名称保持一致" name="">
+				<label>申请人:</label>
+				<input type="text" placeholder="请输入姓名" name="">
 			</p>
 			<p class="input">
-				<label>联系人：</label>
-				<input type="text" placeholder="你的真实姓名" name="">
+				<label>联系电话</label>
+				<input type="text" placeholder="请输入电话号码" name="">
 			</p>
 			<p class="input">
-				<label>前台电话：</label>
+				<label>验证码:</label>
+				<input type="text" placeholder="请输入验证码" name="">
+			</p>
+			<p class="input">
+				<label>账号:</label>
+				<input type="text" placeholder="请输入账号" name="">
+			</p>
+			<p class="input">
+				<label>密码:</label>
+				<input type="text" placeholder="******" name="">
+			</p>
+		</div>
+		<div class="form">
+			<p class="input">
+				<label>酒店名称:</label>
+				<input type="text" placeholder="请输入酒店名称" name="">
+			</p>
+			<p class="input">
+				<label>前台电话:</label>
 				<input type="text" placeholder="请输入带有区号的座机号码" name="">
 			</p>
 			<p class="input">
-				<label>联系手机：</label>
-				<input type="text" placeholder="请输入11位的手机号码" name="">
+				<label>电子邮箱:</label>
+				<input type="text" placeholder="请输入电子邮箱" name="">
 			</p>
 			<p class="input">
-				<label>电子邮箱：</label>
-				<input type="text" placeholder="请输入您的邮箱" name="">
+				<label>酒店地址:</label>
+				<input type="text" placeholder="点击选择地址" name="">
 			</p>
 			<p class="input">
-				<label>公司收款账号：</label>
-				<input type="text" placeholder="请输入您的银行卡号" name="">
+				<label>代理商姓名:</label>
+				<input type="text" placeholder="请输入代理人的姓名" name="">
 			</p>
 			<p class="input">
-				<label>代理服务商名称：</label>
-				<input type="text" placeholder="请输入您代理人的姓名" name="">
+				<label>代理商电话:</label>
+				<input type="text" placeholder="请输入代理人的电话号码" name="">
 			</p>
-			<p class="text"><span>上传营业执照</span></p>
-			<p class="text_img">图片</p>
-			<p class="btn"><button>入驻申请</button></p>
 		</div>
 	</div>
 </template>
@@ -52,18 +67,21 @@
 	@import '../../../common/css/common.scss';
 	.box{
 		width: 100%;
-		background-color: #fff;
+		background-color: #e5e5e5;
 		.form{
-			padding: rem(20px) rem(10px) 0;
-			.title{
-				text-align: center;
-				font-size: rem(20px);
-			}
+			background-color: #ffffff;
+			margin-top: rem(8px);
+			padding: rem(2px) 0 0 rem(15px);
+			border-top: 0.5px solid #aaa;
+			border-bottom: 0.5px solid #aaa;
 			.input{
-				border: 0.5px solid #aaa;
-				padding: rem(5px) rem(8px);
-				margin-top: rem(15px); 
+				border-bottom: 0.5px solid #aaa;
+				padding: rem(13px) rem(8px);
 				display: flex;
+				label{
+					font-size: rem(14px);
+					width: 35%;
+				}
 				input{
 					border: none;
 					height: rem(20px);

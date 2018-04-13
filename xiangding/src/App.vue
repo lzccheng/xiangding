@@ -36,7 +36,7 @@ export default {
   },
   watch: {
     '$route'(to,from){
-      if(to.name == 'my' || to.name == 'index' || to.name == 'hotel' || to.name == 'teamMeeting' || to.name == 'enter'){
+      if(to.name === 'my' || to.name === 'index' || to.name === 'hotel' || to.name === 'teamMeeting' || to.name === 'enter'){
         this._footerShow()
       }else{
         this._footerHide()
@@ -65,6 +65,8 @@ ul,li{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
+  .wrap{
+  }
 }
 .App_route{
   position: absolute;

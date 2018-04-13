@@ -185,7 +185,7 @@
 		}
 		.control{
 			position: fixed;
-			bottom: rem(90px);
+			bottom: rem(40px);
 			background-color: #e5e5e5;
 			display: flex;
 			justify-content: space-around;
@@ -210,7 +210,7 @@
 		}
 		.footer{
 			position: fixed;
-			bottom: rem(50px);
+			bottom: 0;
 			background-color: #ffffff;
 			width: 100%;
 			display: flex;

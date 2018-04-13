@@ -1,5 +1,6 @@
 <template>
 	<div class="box">
+	<Header title="本月管理进收益明细"/>
 		<div v-for="(i,index_) in 2" key=index_ class="body">
 			<div class="header">
 				<span class="green"></span>
@@ -94,7 +95,6 @@
 						}
 						&.text_box{
 							width: 74%;
-							display: flex;
 							.left{
 								margin-right: 14%;
 								.name_1{

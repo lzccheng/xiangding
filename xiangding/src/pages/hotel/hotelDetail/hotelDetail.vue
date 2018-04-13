@@ -1,5 +1,6 @@
 <template>
 	<div class="box">
+		<Header title="酒店详情"/>
 		<div class="banner">
 			<div class="swiper-container">
 				<div class="swiper-wrapper">
@@ -132,7 +133,7 @@
 				color: red;
 				font-size: rem(25px);
 				position: absolute;
-				top: rem(20px);
+				top: rem(70px);
 				right: rem(20px);
 				z-index: 999;
 			}

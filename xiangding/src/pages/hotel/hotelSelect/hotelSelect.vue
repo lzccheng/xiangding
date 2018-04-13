@@ -1,8 +1,6 @@
 <template>
 	<div class="box">
-		<div class="title">
-			<p><span>商务大床房</span></p>
-		</div>
+		<Header title="商务大床房"/>
 		<div class="img">
 			<img src="http://d6.yihaodianimg.com/N03/M04/F3/2C/CgQCs1NuM_WAOOJiAACkJWcB2XA42700.jpg">
 		</div>

@@ -1,5 +1,6 @@
 <template>
 	<div class="box">
+		<Header title="历史管理金收益明细"/>
 		<div class="body">
 			<div class="header">
 				<span class="choice">筛选</span>
@@ -53,7 +54,7 @@
 			div{
 				&.header{
 					font-size: rem(14px);
-					padding-bottom: rem(2px);
+					padding-bottom: rem(4px);
 					.i{
 						font-size: rem(16px);
 					}
@@ -106,7 +107,6 @@
 						}
 						&.text_box{
 							width: 80%;
-							display: flex;
 							.left{
 								margin-right: 14%;
 								.name_1{
