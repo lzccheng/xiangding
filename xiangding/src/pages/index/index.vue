@@ -20,7 +20,8 @@
                 v-model="value1"
                 type="date"
                 placeholder="入住日期" 
-                :picker-options="pickerOptions1">
+                :picker-options="pickerOptions1" 
+                @change="handleChange">
             </el-date-picker>
           </p>
           <p>
@@ -76,21 +77,21 @@
               <div class="time">
                 <p><span class="text">入住</span><br/></p>
                 <p>
-                  <span class="day">06</span>
+                  <span class="day">{{day1}}</span>
                   <p>
                     <i class="far fa-calendar-alt"></i>
-                    <span>02月</span>
-                    <span>周二</span>
+                    <span>{{month1}}月</span>
+                    <span>{{date1}}</span>
                   </p>
                 </p>
               </div>
               <div class="time">
                 <p><span class="text">退房</span><br/></p>
                 <p>
-                  <span class="day">10</span>
+                  <span class="day">{{day2}}</span>
                   <p>
                     <i class="far fa-calendar-alt"></i>
-                    <span>02月</span>
+                    <span>{{month2}}月</span>
                     <span>周五</span>
                   </p>
                 </p>
@@ -154,6 +155,19 @@
 <script>  
   import Swiper from 'swiper' 
   import star from '../../components/star/star'
+
+  let g_date = new Date()
+  let _date = new Date()
+  let tomo = new Date(g_date.getTime()+1000*60*60*24)
+  let _day = [
+    '周日',
+    '周一',
+    '周二',
+    '周三',
+    '周四',
+    '周五',
+    '周六'
+  ]
   export default{  
       components: {
         star
@@ -189,7 +203,7 @@
           },
           pickerOptions2: {
             disabledDate(time) {
-              return time.getTime() <= (Date.now()-1000*60*60*24);
+              return time.getTime() <= _date.getTime();
             }
           },
           options: [
@@ -218,7 +232,7 @@
           ],
           selectedOptions: ['广东省','广州市'],
           value1: new Date(),
-          value2: new Date(),
+          value2: tomo,
           input1: '',
         }
       },
@@ -234,15 +248,49 @@
         handleCancel(event){
           event.cancelBubble = true
         },
+        handleChange(time){
+          this.value2 = new Date(time.getTime()+1000*60*60*24)
+          _date = time
+        },
         _showBox(event){
           this.$refs._box.style.height = window.outerHeight + 'px'
         },
         _boxClick(){
           this.$refs._box.style.height = '0px'
           this.$refs._erea.style.display = 'none'
+        },
+        zero(num){
+          return Number(num) >10?num:'0'+num
+        },
+        _getDay(value){
+          let dd = new Date()
+          let day = dd.getDate()
+          let mon = dd.getMonth()+1
+          let year = dd.getFullYear()
+          let str = year+'/'+mon+'/'+day
+          let tody = new Date(str)
+          console.log(tody.getHours())
+          // console.log(Math.floor(new Date().getTime()/1000)*1000)
+          let tomorrow = new Date(tody.getTime()+1000*60*60*24)
+          return '今天'
         }
       },
       computed: {
+        day1(){
+          return this.zero(this.value1.getDate())
+        },
+        day2(){
+          return this.zero(this.value2.getDate())
+        },
+        month1(){
+          return this.zero(this.value1.getMonth()+1)
+        },
+        month2(){
+          return this.zero(this.value2.getMonth()+1)
+        },
+        date1(){
+          return this._getDay(this.value1)
+        }
       }
   }  
 </script>  
@@ -279,6 +327,7 @@
         }
         &.date{
           p{
+            padding: rem(10px) 0;
             span{
               color: #aaa;
             }
