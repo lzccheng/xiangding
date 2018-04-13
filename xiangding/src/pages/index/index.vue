@@ -21,7 +21,8 @@
                 type="date"
                 placeholder="入住日期" 
                 :picker-options="pickerOptions1" 
-                @change="handleChange">
+                @change="handleChange" 
+                @focus="_blur">
             </el-date-picker>
           </p>
           <p>
@@ -30,7 +31,8 @@
                 v-model="value2"
                 type="date"
                 placeholder="入住日期" 
-                :picker-options="pickerOptions2">
+                :picker-options="pickerOptions2" 
+                @focus="_blur">
             </el-date-picker>
           </p>
           <div class="btn">
@@ -92,13 +94,13 @@
                   <p>
                     <i class="far fa-calendar-alt"></i>
                     <span>{{month2}}月</span>
-                    <span>周五</span>
+                    <span>{{date2}}</span>
                   </p>
                 </p>
               </div>
             </div>   
             <div class="total" style="float:right;color:#aaa;padding-top:20px;font-size:16px;">
-              <span>4晚</span>
+              <span>{{night}}晚</span>
               <i class="fas fa-angle-right"></i>
             </div> 
             <!-- <div class="block">
@@ -269,10 +271,21 @@
           let year = dd.getFullYear()
           let str = year+'/'+mon+'/'+day
           let tody = new Date(str)
-          console.log(tody.getHours())
-          // console.log(Math.floor(new Date().getTime()/1000)*1000)
-          let tomorrow = new Date(tody.getTime()+1000*60*60*24)
-          return '今天'
+          let tomorrow = new Date(tody.getTime()+1000*60*60*24).getTime()
+          let getTime = value.getTime()
+          if(getTime<tomorrow){
+            return '今天'
+          }
+          if(getTime>=tomorrow&&getTime<new Date(tody.getTime()+2*1000*60*60*24).getTime()){
+            return '明天'
+          }
+          if(getTime>=new Date(tody.getTime()+2*1000*60*60*24).getTime()&&getTime<new Date(tody.getTime()+3*1000*60*60*24).getTime()){
+            return '后天'
+          }
+          return _day[value.getDay()]
+        },
+        _blur(event){
+          event.blur()
         }
       },
       computed: {
@@ -290,6 +303,12 @@
         },
         date1(){
           return this._getDay(this.value1)
+        },
+        date2(){
+          return this._getDay(this.value2)
+        },
+        night(){
+          return Math.round((this.value2.getTime()-this.value1.getTime())/(1000*60*60*24))
         }
       }
   }  

@@ -23,7 +23,8 @@
 					      type="date"
 					      placeholder="入住日期" 
 					      :picker-options="pickerOptions1" 
-					      @change="datePicker1">
+					      @change="datePicker1" 
+					      @focus="_blur">
 					    </el-date-picker>
 					</p>
 					<p>
@@ -33,7 +34,8 @@
 					      type="date"
 					      placeholder="退房日期" 
 					      :picker-options="pickerOptions2" 
-					      @change="datePicker2">
+					      @change="datePicker2" 
+					      @focus="_blur">
 					    </el-date-picker>
 					</p>
 					
@@ -317,21 +319,28 @@
 		    	this.onHandleBox()
 		    },
 		    _getTime(time){
-		    	let date = new Date()
-				date.setTime(date.getTime()+time)
-				return date
+		    	let dd = new Date()
+		        let day = dd.getDate()
+		        let mon = dd.getMonth()+1
+		        let year = dd.getFullYear()
+		        let str = year+'/'+mon+'/'+day
+		        let tody = new Date(str)
+				return new Date(tody.getTime()+time)
 		    },
 		    _time(value){
-		    	if(this._getTime(0).getTime() > value.getTime()){
+		    	if(this._getTime(1000*60*60*24).getTime() > value.getTime()){
 					return '今天'
 				}
-				if(this._getTime(1000*60*60*24).getTime() > value.getTime() && value.getTime() >this._getTime(0).getTime()){
+				if(this._getTime(2*1000*60*60*24).getTime() > value.getTime() && value.getTime() >=this._getTime(1000*60*60*24).getTime()){
 					return '明天'
 				}	
-				if(this._getTime(2*1000*60*60*24).getTime() > value.getTime() && value.getTime() >this._getTime(1000*60*60*24).getTime()){
+				if(this._getTime(3*1000*60*60*24).getTime() > value.getTime() && value.getTime() >=this._getTime(2*1000*60*60*24).getTime()){
 					return '后天'
 				}
 				return _day[value.getDay()]
+		    },
+		    _blur(event){
+		    	event.blur()
 		    }
 		},
 		computed: {
