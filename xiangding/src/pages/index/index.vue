@@ -1,5 +1,46 @@
 <template>  
   <div class="box">
+
+      <div class="_box" ref="_box" @click="_boxClick">
+        <div class="erea" ref="_erea" @click="handleCancel">
+          <div class="_erea">
+            <el-cascader
+                  :options="options"
+                  v-model="selectedOptions">
+              </el-cascader>
+          </div>
+          <div class="btn">
+            <button @click="_boxClick" class="green_btn">确定</button>
+          </div>
+        </div>
+        <div class="date" ref="_date" @click="handleCancel">
+          <p>
+            <span>入住日期：</span>
+            <el-date-picker
+                v-model="value1"
+                type="date"
+                placeholder="入住日期" 
+                :picker-options="pickerOptions1" 
+                @change="handleChange" 
+                @focus="_blur">
+            </el-date-picker>
+          </p>
+          <p>
+            <span>退房日期：</span>
+            <el-date-picker
+                v-model="value2"
+                type="date"
+                placeholder="入住日期" 
+                :picker-options="pickerOptions2" 
+                @focus="_blur">
+            </el-date-picker>
+          </p>
+          <div class="btn">
+            <button @click="_boxClick" class="green_btn">确定</button>
+          </div>
+        </div>
+      </div>
+
   		<div class="banner">
         <div class="swiper-container">
           <div class="swiper-wrapper">
@@ -17,52 +58,52 @@
   		<div class="msg">
   			<ul>
   				<li>
-  					<div class="map">
-  						<!-- <span class="_right"><i class="fas fa-map-marker-alt"></i></span>
-	  					<span>广州</span>
-	  					<span class="_right"><i class="fas fa-angle-right"></i></span> -->
-              <el-cascader
-                  :options="options"
-                  v-model="selectedOptions"
-                  @change="handleChange">
-              </el-cascader>
+  					<div class="map" @click="handleErea">
+  						<span class="_right"><i class="fas fa-map-marker-alt"></i></span>
+	  					<span>{{selectedOptions[1]}}</span>
+	  					
+              
   					</div>
-  					
+  					<span class="right"><i class="fas fa-angle-right"></i></span>
   					<p class="local">
-  						<span><i class="fa fa-crosshairs"></i></span><br>
-  						<span>我的位置</span>
+              
+              <span>
+                <span><i class="fa fa-crosshairs"></i></span><br>
+                <span>我的位置</span>
+              </span>
+  						
   					</p>
   				</li>
-  				<li>
-            <!-- <div class="date">
+  				<li @click="handleDate">
+            <div class="date">
               <div class="time">
                 <p><span class="text">入住</span><br/></p>
                 <p>
-                  <span class="day">06</span>
+                  <span class="day">{{day1}}</span>
                   <p>
                     <i class="far fa-calendar-alt"></i>
-                    <span>02月</span>
-                    <span>周二</span>
+                    <span>{{month1}}月</span>
+                    <span>{{date1}}</span>
                   </p>
                 </p>
               </div>
               <div class="time">
                 <p><span class="text">退房</span><br/></p>
                 <p>
-                  <span class="day">10</span>
+                  <span class="day">{{day2}}</span>
                   <p>
                     <i class="far fa-calendar-alt"></i>
-                    <span>02月</span>
-                    <span>周五</span>
+                    <span>{{month2}}月</span>
+                    <span>{{date2}}</span>
                   </p>
                 </p>
               </div>
             </div>   
             <div class="total" style="float:right;color:#aaa;padding-top:20px;font-size:16px;">
-              <span>4晚</span>
+              <span>{{night}}晚</span>
               <i class="fas fa-angle-right"></i>
-            </div>  -->
-            <div class="block">
+            </div> 
+            <!-- <div class="block">
               <el-date-picker
                 v-model="value1"
                 type="date"
@@ -78,7 +119,7 @@
                   <el-input v-model="input1" value="number" placeholder="输入数字" type="number"></el-input>
                 </div>
               </div>
-            </div>
+            </div> -->
           </li>
   				<li>
             <div class="select">
@@ -116,6 +157,19 @@
 <script>  
   import Swiper from 'swiper' 
   import star from '../../components/star/star'
+
+  let g_date = new Date()
+  let _date = new Date()
+  let tomo = new Date(g_date.getTime()+1000*60*60*24)
+  let _day = [
+    '周日',
+    '周一',
+    '周二',
+    '周三',
+    '周四',
+    '周五',
+    '周六'
+  ]
   export default{  
       components: {
         star
@@ -149,38 +203,112 @@
               return time.getTime() <= (Date.now()-1000*60*60*24);
             }
           },
+          pickerOptions2: {
+            disabledDate(time) {
+              return time.getTime() <= _date.getTime();
+            }
+          },
           options: [
             {
-              value: 'guangdong',
+              value: '广东省',
               label: '广东省',
               children: [
                 {
-                  value: 'guangzhou',
+                  value: '广州市',
                   label: '广州市'
                 },
                 {
-                  value: 'shenzhengshi',
+                  value: '深圳市',
                   label: '深圳市'
                 },
                 {
-                  value: 'foshan',
+                  value: '佛山市',
                   label: '佛山市'
                 },
                 {
-                  value: 'zhaoqing',
+                  value: '肇庆市',
                   label: '肇庆市'
                 },
               ]
              }
           ],
-          selectedOptions: ['guangdong','guangzhou'],
-          value1: '',
-          input1: ''
+          selectedOptions: ['广东省','广州市'],
+          value1: new Date(),
+          value2: tomo,
+          input1: '',
+        }
+      },
+      methods: {
+        handleErea(){
+          this._showBox()
+          this.$refs._erea.style.display = 'block'
+        },
+        handleDate(){
+          this._showBox()
+          this.$refs._date.style.display = 'block'
+        },
+        handleCancel(event){
+          event.cancelBubble = true
+        },
+        handleChange(time){
+          this.value2 = new Date(time.getTime()+1000*60*60*24)
+          _date = time
+        },
+        _showBox(event){
+          this.$refs._box.style.height = window.outerHeight + 'px'
+        },
+        _boxClick(){
+          this.$refs._box.style.height = '0px'
+          this.$refs._erea.style.display = 'none'
+        },
+        zero(num){
+          return Number(num) >10?num:'0'+num
+        },
+        _getDay(value){
+          let dd = new Date()
+          let day = dd.getDate()
+          let mon = dd.getMonth()+1
+          let year = dd.getFullYear()
+          let str = year+'/'+mon+'/'+day
+          let tody = new Date(str)
+          let tomorrow = new Date(tody.getTime()+1000*60*60*24).getTime()
+          let getTime = value.getTime()
+          if(getTime<tomorrow){
+            return '今天'
+          }
+          if(getTime>=tomorrow&&getTime<new Date(tody.getTime()+2*1000*60*60*24).getTime()){
+            return '明天'
+          }
+          if(getTime>=new Date(tody.getTime()+2*1000*60*60*24).getTime()&&getTime<new Date(tody.getTime()+3*1000*60*60*24).getTime()){
+            return '后天'
+          }
+          return _day[value.getDay()]
+        },
+        _blur(event){
+          event.blur()
         }
       },
       computed: {
-        handleChange(){
-          
+        day1(){
+          return this.zero(this.value1.getDate())
+        },
+        day2(){
+          return this.zero(this.value2.getDate())
+        },
+        month1(){
+          return this.zero(this.value1.getMonth()+1)
+        },
+        month2(){
+          return this.zero(this.value2.getMonth()+1)
+        },
+        date1(){
+          return this._getDay(this.value1)
+        },
+        date2(){
+          return this._getDay(this.value2)
+        },
+        night(){
+          return Math.round((this.value2.getTime()-this.value1.getTime())/(1000*60*60*24))
         }
       }
   }  
@@ -191,6 +319,42 @@
 	.box{
 		width: 100%;
     background-color: #fff;
+
+    ._box{
+      width: 100%;
+      position: fixed;
+      left: 0;
+      top: 0;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 99;
+      >div{
+        width: 100%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        background-color: #fff;
+        z-index: 999;
+        text-align: center;
+        display: none;
+        .btn{
+          padding: rem(10px) 8%;  
+        }
+        &.erea{
+          ._erea{
+            padding-top: rem(15px);
+          }
+        }
+        &.date{
+          p{
+            padding: rem(10px) 0;
+            span{
+              color: #aaa;
+            }
+          }
+        }
+      }
+    }
+
     .block{
       display: flex;
       .to{
@@ -228,7 +392,11 @@
               color: #aaa;
             }
           }
+          .right{
+            display: inline-block;
+          }
           .map{
+            width: 70%;
             padding-top: rem(10px) ;
             display: inline-block;
           }
@@ -236,7 +404,6 @@
             float: right;
             text-align: center;
             color: #aaa;
-            margin-top: rem(12px);
           }
           .date{
             display: inline-block;

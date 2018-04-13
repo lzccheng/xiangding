@@ -22,7 +22,7 @@ Vue.component('Header',Header)
 
 const store = new Vuex.Store(Vuexjs)
 
-import './mockjs/mock'
+import './mockjs/api'
 
 /* eslint-disable no-new */
 new Vue({

@@ -6,7 +6,10 @@
           <router-view class='App_route'></router-view>
         </keep-alive>
       </transition>
-      <myFooter :baseURL='$baseURL'/>
+      <div ref="_footer">
+        <myFooter :baseURL='$baseURL'/>
+      </div>
+      
     </div>
   </div>
 </template>
@@ -17,7 +20,29 @@ export default {
   components: {
     myFooter
   },
-  name: 'App'
+  name: 'App',
+  data(){
+    return {
+      _footer: true
+    }
+  },
+  methods: {
+    _footerShow(){
+      this.$refs._footer.style.display = 'block'
+    },
+    _footerHide(){
+      this.$refs._footer.style.display = 'none'
+    }
+  },
+  watch: {
+    '$route'(to,from){
+      if(to.name == 'my' || to.name == 'index' || to.name == 'hotel' || to.name == 'teamMeeting' || to.name == 'enter'){
+        this._footerShow()
+      }else{
+        this._footerHide()
+      }
+    }
+  }
 }
 </script>
 
@@ -45,7 +70,6 @@ ul,li{
   position: absolute;
   left: 0;
   top: 0;
-  padding-bottom: rem(50px);
 }
 .bounce-enter-active {
   animation: bounce-in .5s;
