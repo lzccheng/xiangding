@@ -106,10 +106,10 @@
 						</li>
 						<li class="border_bottom" @click="onHandleDay">
 							<span class="date">{{day1}}</span>
-							<!-- <span class="day">今天</span> -->
+							<span class="day">{{computedDate1}}</span>
 							<span class="line">--</span>
 							<span class="date">{{day2}}</span>
-							<!-- <span class="day">明天</span> -->
+							<span class="day">{{computedDate2}}</span>
 							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
 							<!-- <div class="date_value">
 								<el-date-picker
@@ -183,6 +183,17 @@
 <script>
 	import common from '../../common/js/common'
 	let _date = Date.now();
+	let _day = {
+		'1': '星期一',
+		'2': '星期二',
+		'3': '星期三',
+		'4': '星期四',
+		'5': '星期五',
+		'6': '星期六',
+		'0': '星期日',
+	}
+	let g_date = new Date()
+	let tomo = new Date(g_date.getTime()+1000*60*60*24)
 	export default {
 		mounted: function(){
 			this.$refs.line.style.marginLeft = this.$refs.tab.firstChild.offsetLeft + 'px'
@@ -236,7 +247,7 @@
 				meettingNum: 1,
 				star: 3,
 				date_value: new Date(),
-				date_value2: new Date(new Date().getFullYear()+'/'+(new Date().getMonth()+1)+'/'+(new Date().getDate()+1)),
+				date_value2: tomo,
 				input: '',
 				meetting_total: '',
 				pay: [80,800],
@@ -249,7 +260,7 @@
 				this.date_value2 = new Date(time.getFullYear()+'/'+(time.getMonth()+1)+'/'+(time.getDate()+1))
 			},
 			datePicker2(time){
-				console.log(this.date_value.getDate(),this.date_value2.getDate())
+				// console.log(this.date_value.getDate(),this.date_value2.getDate())
 			},
 			onHandleClick(i,event){
 				event.path[2].lastElementChild.style.marginLeft = event.path[0].offsetLeft + 'px'
@@ -304,6 +315,23 @@
 		    },
 		    onSure(){
 		    	this.onHandleBox()
+		    },
+		    _getTime(time){
+		    	let date = new Date()
+				date.setTime(date.getTime()+time)
+				return date
+		    },
+		    _time(value){
+		    	if(this._getTime(0).getTime() > value.getTime()){
+					return '今天'
+				}
+				if(this._getTime(1000*60*60*24).getTime() > value.getTime() && value.getTime() >this._getTime(0).getTime()){
+					return '明天'
+				}	
+				if(this._getTime(2*1000*60*60*24).getTime() > value.getTime() && value.getTime() >this._getTime(1000*60*60*24).getTime()){
+					return '后天'
+				}
+				return _day[value.getDay()]
 		    }
 		},
 		computed: {
@@ -314,6 +342,14 @@
 
 				return (this.date_value2.getMonth()+1) + '.' + this.date_value2.getDate()
 			},
+			computedDate1(){
+				let value = this.date_value
+				return this._time(value)
+			},
+			computedDate2(){
+				let value = this.date_value2
+				return this._time(value)
+			}
 		}
 	}
 </script>

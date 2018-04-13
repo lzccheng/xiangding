@@ -1,5 +1,43 @@
 <template>  
   <div class="box">
+
+      <div class="_box" ref="_box" @click="_boxClick">
+        <div class="erea" ref="_erea" @click="handleCancel">
+          <div class="_erea">
+            <el-cascader
+                  :options="options"
+                  v-model="selectedOptions">
+              </el-cascader>
+          </div>
+          <div class="btn">
+            <button @click="_boxClick" class="green_btn">确定</button>
+          </div>
+        </div>
+        <div class="date" ref="_date" @click="handleCancel">
+          <p>
+            <span>入住日期：</span>
+            <el-date-picker
+                v-model="value1"
+                type="date"
+                placeholder="入住日期" 
+                :picker-options="pickerOptions1">
+            </el-date-picker>
+          </p>
+          <p>
+            <span>退房日期：</span>
+            <el-date-picker
+                v-model="value2"
+                type="date"
+                placeholder="入住日期" 
+                :picker-options="pickerOptions2">
+            </el-date-picker>
+          </p>
+          <div class="btn">
+            <button @click="_boxClick" class="green_btn">确定</button>
+          </div>
+        </div>
+      </div>
+
   		<div class="banner">
         <div class="swiper-container">
           <div class="swiper-wrapper">
@@ -17,24 +55,24 @@
   		<div class="msg">
   			<ul>
   				<li>
-  					<div class="map">
-  						<!-- <span class="_right"><i class="fas fa-map-marker-alt"></i></span>
-	  					<span>广州</span>
-	  					<span class="_right"><i class="fas fa-angle-right"></i></span> -->
-              <el-cascader
-                  :options="options"
-                  v-model="selectedOptions"
-                  @change="handleChange">
-              </el-cascader>
+  					<div class="map" @click="handleErea">
+  						<span class="_right"><i class="fas fa-map-marker-alt"></i></span>
+	  					<span>{{selectedOptions[1]}}</span>
+	  					
+              
   					</div>
-  					
+  					<span class="right"><i class="fas fa-angle-right"></i></span>
   					<p class="local">
-  						<span><i class="fa fa-crosshairs"></i></span><br>
-  						<span>我的位置</span>
+              
+              <span>
+                <span><i class="fa fa-crosshairs"></i></span><br>
+                <span>我的位置</span>
+              </span>
+  						
   					</p>
   				</li>
-  				<li>
-            <!-- <div class="date">
+  				<li @click="handleDate">
+            <div class="date">
               <div class="time">
                 <p><span class="text">入住</span><br/></p>
                 <p>
@@ -61,8 +99,8 @@
             <div class="total" style="float:right;color:#aaa;padding-top:20px;font-size:16px;">
               <span>4晚</span>
               <i class="fas fa-angle-right"></i>
-            </div>  -->
-            <div class="block">
+            </div> 
+            <!-- <div class="block">
               <el-date-picker
                 v-model="value1"
                 type="date"
@@ -78,7 +116,7 @@
                   <el-input v-model="input1" value="number" placeholder="输入数字" type="number"></el-input>
                 </div>
               </div>
-            </div>
+            </div> -->
           </li>
   				<li>
             <div class="select">
@@ -149,39 +187,62 @@
               return time.getTime() <= (Date.now()-1000*60*60*24);
             }
           },
+          pickerOptions2: {
+            disabledDate(time) {
+              return time.getTime() <= (Date.now()-1000*60*60*24);
+            }
+          },
           options: [
             {
-              value: 'guangdong',
+              value: '广东省',
               label: '广东省',
               children: [
                 {
-                  value: 'guangzhou',
+                  value: '广州市',
                   label: '广州市'
                 },
                 {
-                  value: 'shenzhengshi',
+                  value: '深圳市',
                   label: '深圳市'
                 },
                 {
-                  value: 'foshan',
+                  value: '佛山市',
                   label: '佛山市'
                 },
                 {
-                  value: 'zhaoqing',
+                  value: '肇庆市',
                   label: '肇庆市'
                 },
               ]
              }
           ],
-          selectedOptions: ['guangdong','guangzhou'],
-          value1: '',
-          input1: ''
+          selectedOptions: ['广东省','广州市'],
+          value1: new Date(),
+          value2: new Date(),
+          input1: '',
+        }
+      },
+      methods: {
+        handleErea(){
+          this._showBox()
+          this.$refs._erea.style.display = 'block'
+        },
+        handleDate(){
+          this._showBox()
+          this.$refs._date.style.display = 'block'
+        },
+        handleCancel(event){
+          event.cancelBubble = true
+        },
+        _showBox(event){
+          this.$refs._box.style.height = window.outerHeight + 'px'
+        },
+        _boxClick(){
+          this.$refs._box.style.height = '0px'
+          this.$refs._erea.style.display = 'none'
         }
       },
       computed: {
-        handleChange(){
-          
-        }
       }
   }  
 </script>  
@@ -191,6 +252,41 @@
 	.box{
 		width: 100%;
     background-color: #fff;
+
+    ._box{
+      width: 100%;
+      position: fixed;
+      left: 0;
+      top: 0;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 99;
+      >div{
+        width: 100%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        background-color: #fff;
+        z-index: 999;
+        text-align: center;
+        display: none;
+        .btn{
+          padding: rem(10px) 8%;  
+        }
+        &.erea{
+          ._erea{
+            padding-top: rem(15px);
+          }
+        }
+        &.date{
+          p{
+            span{
+              color: #aaa;
+            }
+          }
+        }
+      }
+    }
+
     .block{
       display: flex;
       .to{
@@ -228,7 +324,11 @@
               color: #aaa;
             }
           }
+          .right{
+            display: inline-block;
+          }
           .map{
+            width: 70%;
             padding-top: rem(10px) ;
             display: inline-block;
           }
@@ -236,7 +336,6 @@
             float: right;
             text-align: center;
             color: #aaa;
-            margin-top: rem(12px);
           }
           .date{
             display: inline-block;
