@@ -178,25 +178,23 @@
 				this.local = !this.local
 				this.tabs = false
 				this.filter = false
-				setTimeout(()=>{
-					if(this.$refs.local){
-						this.$refs.local.style.width = common.getStyle(this.$refs.hotel,'width')
-						this.$refs.local.style.left = '0'
-					}
-				},50)
+				this._setTimeout(this.$refs.local)
 			},
 			onHandleFilter(){
 				event.cancelBubble = true
 				this.filter = !this.filter
 				this.tabs = false
 				this.local = false
+				this._setTimeout(this.$refs.filter)
+			},
+			_setTimeout(obj){
+
 				setTimeout(()=>{
-					if(this.$refs.filter){
-						this.$refs.filter.style.width = common.getStyle(this.$refs.hotel,'width')
-						this.$refs.filter.style.left = '0'
+					if(obj){
+						obj.style.width = common.getStyle(this.$refs.hotel,'width')
+						obj.style.left = '0'
 					}
 				},50)
-
 			},
 			onHandlecancelBubble(event){
 				event.cancelBubble = true
@@ -212,8 +210,8 @@
 <style scoped lang='scss'>
 	@import '../../common/css/common';
 	.box{
-		background-color: #fff;
 		width: 100%;
+		background-color: #fff;
 		.header{
 			background-color: #8BC34A;
 			padding: rem(5px) rem(10px);
@@ -231,7 +229,7 @@
 				.input{
 					margin-left: rem(20px);
 					input{
-						width: 80%;
+						width: 70%;
 						height: rem(25px);
 						border: none;
 					}

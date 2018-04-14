@@ -116,15 +116,15 @@
 		<div class="myOrder">
 			<p class="text"><span>我的订单</span></p>
 			<div class="message">
-				<div>
+				<router-link tag="div" :to="{path: '/my/order',query: {status: 0}}">
 					<p><i class="far fa-calendar-check"></i></p>
 					<p><span>待付款</span></p>
-				</div>
-				<div>
+				</router-link>
+				<router-link tag="div" :to="{path: '/my/order',query: {status: 1}}">
 					<p><i class="far fa-calendar-plus"></i></p>
 					<p><span>待使用</span></p>
-				</div>
-				<router-link tag="div" to="/my/order">
+				</router-link>
+				<router-link tag="div" :to="{path: '/my/order',query: {status: 2}}">
 					<p><i class="far fa-calendar-alt"></i></p>
 					<p><span>全部订单</span></p>
 				</router-link>
@@ -187,6 +187,7 @@
 	@import '../../common/css/common';
 	.box{
 		width: 100%;
+		padding-bottom: rem(50px);
 		background-color: #ebebeb;
 		.msg{
 			height: rem(90px);

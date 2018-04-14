@@ -17,6 +17,14 @@
 <script>
 import myFooter from './components/footer/footer'
 export default {
+  mounted(){
+    let route = this.$route
+    if(route.name === 'my' || route.name === 'index' || route.name === 'hotel' || route.name === 'teamMeeting' || route.name === 'enter'){
+        this._footerShow()
+      }else{
+        this._footerHide()
+      }
+  },
   components: {
     myFooter
   },
