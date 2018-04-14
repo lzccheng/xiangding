@@ -51,6 +51,7 @@
 								    </div>
 									
 									<div class="button">
+										<span class="change">取消订单</span>
 										<router-link tag="span" :to="{path: '/my/order/orderPay',query: {isPay: false}}" class="pay">付款</router-link>
 									</div>
 								</div>
@@ -172,7 +173,7 @@
 	@import "../../../common/css/common.scss";
 	.box{
 		width: 100%;
-		min-height: 90%;
+		min-height: 100%;
 		background-color: #e5e5e5;
 		.nav{
 			position: relative;

@@ -13,14 +13,16 @@
 			<p class="input">
 				<label>验证码:</label>
 				<input type="text" placeholder="请输入验证码" name="">
+				<span class="get">获取验证码</span>
 			</p>
 			<p class="input">
 				<label>账号:</label>
 				<input type="text" placeholder="请输入账号" name="">
 			</p>
-			<p class="input">
+			<p class="mm">
 				<label>密码:</label>
 				<input type="text" placeholder="******" name="">
+				<span class="eye"><i class="fas fa-eye"></i></span>
 			</p>
 		</div>
 		<div class="form">
@@ -49,6 +51,18 @@
 				<input type="text" placeholder="请输入代理人的电话号码" name="">
 			</p>
 		</div>
+		<div class="form">
+			<p class="upload">上传营业执照</p>
+			<p class="add_icon"><span>+</span></p>
+		</div>
+		<div class="form">
+			<p class="hotel upload">酒店简介</p>
+			<p class="content">请填写酒店简介...</p>
+		</div>
+		<div class="button">
+			<span>立即申请</span>
+		</div>
+		<p class="agreement">《入驻协议》</p>
 	</div>
 </template>
 <script>
@@ -74,13 +88,39 @@
 			padding: rem(2px) 0 0 rem(15px);
 			border-top: 0.5px solid #aaa;
 			border-bottom: 0.5px solid #aaa;
-			.input{
-				border-bottom: 0.5px solid #aaa;
+			.mm{
+				position: relative;
 				padding: rem(13px) rem(8px);
 				display: flex;
 				label{
 					font-size: rem(14px);
-					width: 35%;
+					width: 30%;
+				}
+				input{
+					border: none;
+					height: rem(20px);
+					&::-webkit-input-placeholder { 
+					    color:    #aaa;
+					}
+					&:-moz-placeholder { 
+					    color:    #aaa;
+					}
+					&::-moz-placeholder { 
+					    color:    #aaa;
+					}
+					&:-ms-input-placeholder { 
+					    color:    #aaa;
+					}
+				}
+			}
+			.input{
+				position: relative;
+				border-bottom: 0.5px solid #aaa;
+				padding: rem(10px) rem(8px);
+				display: flex;
+				label{
+					font-size: rem(14px);
+					width: 30%;
 				}
 				input{
 					border: none;
@@ -103,6 +143,19 @@
 				margin-top: rem(15px);
 				text-align: center;
 			}
+			.get{
+				background-color: #8bc34a;
+				color: #ffffff;
+				position: absolute;
+				top: 0;
+				right: 0;
+				padding: rem(13px) rem(12px);
+				font-size: rem(14px);
+			}
+			.eye{
+				color: #8bc34a;
+				font-size: rem(17px);
+			}
 			.text_img{
 				width: 100%;
 				height: rem(200px);
@@ -121,6 +174,35 @@
 					padding: rem(12px);
 				}
 			}
+			.upload{
+				font-size: rem(14px);
+				margin: rem(10px) 0;
+			}
+			.add_icon{
+				width: 20%;
+				border: #aaa solid rem(1px);
+				margin-bottom: rem(15px);
+				span{
+					font-size: rem(55px);
+					text-align: center;
+				}
+			}
+			.content{
+				color: #aaa;
+				margin-bottom: rem(10px);
+				font-size: rem(14px);
+			}
+		}
+		.button{
+			background-color: #8bc34a;
+			color: #ffffff;
+			font-size: rem(16px);
+			text-align: center;
+			padding: rem(12px) 0;
+		}
+		.agreement{
+			background-color: #ffffff;
+			
 		}
 	}
 </style>
