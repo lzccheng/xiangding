@@ -7,6 +7,7 @@ import teamMeeting from '@/pages/teamMeeting/teamMeeting'
 import enter from '@/pages/enter/enter'
 import my from '@/pages/my/my'
 import hotelOrder from '@/pages/hotel/hotelOrder/hotelOrder'
+import hotelSearch from '@/pages/hotel/hotelSearch/hotelSearch'
 import hotelSelect from '@/pages/hotel/hotelSelect/hotelSelect'
 import cash from '@/pages/my/cash/cash'
 import hotelEnter from '@/pages/enter/hotelEnter/hotelEnter'
@@ -52,6 +53,14 @@ export default new Router({
       component: hotelDetail,
       meta: {
         title: '酒店详情'
+      }
+    },
+    {
+      path: '/hotel/hotelSearch',
+      name: 'hotelSearch',
+      component: hotelSearch,
+      meta: {
+        title: '酒店搜索'
       }
     },
     {

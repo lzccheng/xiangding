@@ -135,12 +135,9 @@
     	}
     	return {}
     }
-    const hotelData =  () => {
-      return arr.slice(5)
-    }
-    const bannerData = (res)=>{
-    	return arr.slice(0,5)
-    }
+    // const hotelData =  () => {
+    //   return arr.slice(5)
+    // }
     const hotel = (res)=>{
 		return arr
     }
@@ -148,8 +145,68 @@
     	return arr
     }
     // 第三个参数可以是对象也可以是返回对象的函数
-    Mock.mock('/api/hotelData', 'get', hotelData)
-    Mock.mock('/api/bannerData', 'get', bannerData)
+    // Mock.mock('/api/hotelData', 'get', hotelData)
+    
     Mock.mock('/api/hotel', 'get', hotel)
     Mock.mock('/api', 'get', api)
     Mock.mock('/api/hotelDetail', 'get', hotelDetail)
+
+    //首页轮播图数据
+    const bannerData = (res)=>{
+        //所需数据(数组内放对象，一个对象一条信息)
+        let data = [
+            {
+                id: Random.range(img.length)[0],//酒店id
+                imgUrl: img[1],                 //图片url
+                name: '银河大酒店',             //酒店名字
+                 
+            },
+            {
+                id: Random.range(img.length)[1],//酒店id
+                imgUrl: img[2],                 //图片url
+                name: '银河大酒店',             //酒店名字
+                // star: Random.natural( 1, 5 ),   //酒店星级情况  
+            }
+        ]
+        return data
+    }
+    Mock.mock('/api/bannerData', 'get', bannerData)//url：'/api/bannerData'，请求方法：get(url、请求方法可根据后台改)
+
+    //首页附近酒店的数据
+    const hotelData =  () => {
+      //所需数据(数组内放对象，一个对象一条信息)
+        let data = [
+            {
+                id: Random.range(img.length)[4],//酒店id
+                imgUrl: img[3],                 //图片url
+                name: '银河大酒店',             //酒店名字
+                star: Random.natural( 1, 5 ),   //酒店星级情况 
+                area: Random.csentence( 2, 2 ).slice(0,-1)+'区', //酒店在那个区
+                room_total: Random.natural( 20, 500 ),//酒店总房间数
+                min_price: Random.natural( 120, 1500 ),//最低价格
+            },
+            {
+                id: Random.range(img.length)[3],//酒店id
+                imgUrl: img[4],                 //图片url
+                name: '银河大酒店',             //酒店名字
+                star: Random.natural( 1, 5 ),   //酒店星级情况 
+                area: Random.csentence( 2, 2 ).slice(0,-1)+'区', //酒店在那个区
+                room_total: Random.natural( 20, 500 ),//酒店总房间数
+                min_price: Random.natural( 120, 1500 ),//最低价格
+            },
+            {
+                id: Random.range(img.length)[8],//酒店id
+                imgUrl: img[5],                 //图片url
+                name: '银河大酒店',             //酒店名字
+                star: Random.natural( 1, 5 ),   //酒店星级情况 
+                area: Random.csentence( 2, 2 ).slice(0,-1)+'区', //酒店在那个区
+                room_total: Random.natural( 20, 500 ),//酒店总房间数
+                min_price: Random.natural( 120, 1500 ),//最低价格
+                // max_room_erea:  Random.natural( 30, 200 ),//最大房间面积
+                // max_people: Random.natural( 1, 50 ),//最多可住多少人
+            },
+        ]
+        return data
+    }
+    Mock.mock('/api/hotelData', 'get', hotelData)//url：'/api/hotelData'，请求方法：get(url、请求方法可根据后台改)
+    

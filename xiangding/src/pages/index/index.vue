@@ -131,7 +131,7 @@
           </li>
   			</ul>
         <div class="button">
-          <button>查找酒店</button>
+          <router-link tag="button" :to="{path: '/hotel/hotelSearch',query: {data}}">查找酒店</router-link>
         </div>
   		</div>
 
@@ -235,7 +235,7 @@
           selectedOptions: ['广东省','广州市'],
           value1: new Date(),
           value2: tomo,
-          input1: '',
+          input1: ''
         }
       },
       methods: {
@@ -309,6 +309,13 @@
         },
         night(){
           return Math.round((this.value2.getTime()-this.value1.getTime())/(1000*60*60*24))
+        },
+        data(){
+          let data = {
+            date1: this.value1,
+            date2: this.value2
+          }
+          return data
         }
       }
   }  
@@ -319,7 +326,7 @@
 	.box{
 		width: 100%;
     background-color: #fff;
-
+    margin-bottom: rem(50px);
     ._box{
       width: 100%;
       position: fixed;
