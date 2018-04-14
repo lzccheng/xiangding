@@ -39,6 +39,31 @@
             <button @click="_boxClick" class="green_btn">确定</button>
           </div>
         </div>
+        <div class="style" ref="_style" @click="handleCancel">
+          <div>
+            <p class="title">
+              <span>酒店星级：</span>
+            </p>
+            <p><el-rate v-model="star"></el-rate></p>
+          </div>
+          <div>
+            <p class="title">酒店类型：</p>
+            <p class="hotelStyle">
+              <div>a</div>
+              <div>a</div>
+              <div>a</div>
+              <div>a</div>
+              <div>a</div>
+            </p>
+          </div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div class="btn">
+            <button @click="_boxClick" class="green_btn">确定</button>
+          </div>
+        </div>
       </div>
 
   		<div class="banner">
@@ -121,17 +146,16 @@
               </div>
             </div> -->
           </li>
-  				<li>
+  				<li @click="handleStyle">
             <div class="select">
               <span><i class="fas fa-search-plus"></i></span>  
               <span>星级/类型/价格/设备</span>  
               <span class="angle"><i class="fas fa-angle-right"></i></span>
             </div>
-            
           </li>
   			</ul>
         <div class="button">
-          <button>查找酒店</button>
+          <router-link tag="button" :to="{path: '/hotel/hotelSearch',query: {data}}">查找酒店</router-link>
         </div>
   		</div>
 
@@ -236,6 +260,7 @@
           value1: new Date(),
           value2: tomo,
           input1: '',
+          star: 4
         }
       },
       methods: {
@@ -246,6 +271,10 @@
         handleDate(){
           this._showBox()
           this.$refs._date.style.display = 'block'
+        },
+        handleStyle(){
+          this._showBox()
+          this.$refs._style.style.display = 'block'
         },
         handleCancel(event){
           event.cancelBubble = true
@@ -260,6 +289,7 @@
         _boxClick(){
           this.$refs._box.style.height = '0px'
           this.$refs._erea.style.display = 'none'
+          this.$refs._date.style.display = 'none'
         },
         zero(num){
           return Number(num) >10?num:'0'+num
@@ -309,6 +339,13 @@
         },
         night(){
           return Math.round((this.value2.getTime()-this.value1.getTime())/(1000*60*60*24))
+        },
+        data(){
+          let data = {
+            date1: this.value1,
+            date2: this.value2
+          }
+          return data
         }
       }
   }  
@@ -319,7 +356,7 @@
 	.box{
 		width: 100%;
     background-color: #fff;
-
+    margin-bottom: rem(50px);
     ._box{
       width: 100%;
       position: fixed;
@@ -349,6 +386,23 @@
             padding: rem(10px) 0;
             span{
               color: #aaa;
+            }
+          }
+        }
+        &.style{
+          >div{
+            >p{
+              margin: rem(10px) 0;
+              &.title{
+                font-size: rem(16px);
+                font-weight: bold;
+                text-align: left;
+                padding-left: rem(15px);
+              }
+              
+            }
+            .hotelStyle{
+                display: flex;
             }
           }
         }

@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <div class="wrap">
-      <transition name='opacity'>
+      <!-- <transition name='opacity'> -->
         <keep-alive>
           <router-view class='App_route'></router-view>
         </keep-alive>
-      </transition>
+      <!-- </transition> -->
       <div ref="_footer">
         <myFooter :baseURL='$baseURL'/>
       </div>

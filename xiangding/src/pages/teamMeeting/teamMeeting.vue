@@ -166,7 +166,7 @@
 							</div>
 						</li> -->
 					</ul>
-					<p class="btn"><button>开始搜索</button></p>
+					<p class="btn"><router-link to="/hotel/hotelSearch" tag="button">开始搜索</router-link></p>
 					<div class="bottom">
 						<div>
 							<span><i class="fas fa-history"></i></span>
@@ -282,6 +282,7 @@
 		    onHandleBox(){
 		    	this._boxHide()
 		    	this.hide(this.$refs.eara)
+		    	this.hide(this.$refs._day)
 		    	this.hide(this.$refs._date)
 		    	this.hide(this.$refs._style)
 		    },
