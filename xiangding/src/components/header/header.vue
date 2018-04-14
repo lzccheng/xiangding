@@ -17,7 +17,6 @@
 		methods: {
 			_handleClick(){
 				this.$router.go(-1)
-
 			}
 		}
 	}

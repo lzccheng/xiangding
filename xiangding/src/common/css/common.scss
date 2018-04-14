@@ -11,3 +11,18 @@ $rem: 16px !default;
 	background-color: #43c122;
 	font-size: rem(16px);
 }
+._input{
+	border: none;
+	&::-webkit-input-placeholder { 
+	    color:    #aaa;
+	}
+	&:-moz-placeholder { 
+	    color:    #aaa;
+	}
+	&::-moz-placeholder { 
+	    color:    #aaa;
+	}
+	&:-ms-input-placeholder { 
+	    color:    #aaa;
+	}
+}

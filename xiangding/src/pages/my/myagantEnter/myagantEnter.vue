@@ -101,7 +101,7 @@
                 	display: inline-block;
                 }
                 .text{
-                	width: rem(230px);
+                	width: 67%;
                 	height: rem(62px);
                 	margin-left: rem(12px);
                 	margin-top: rem(6px);

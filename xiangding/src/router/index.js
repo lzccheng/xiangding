@@ -25,6 +25,10 @@ import orderPay from '@/pages/my/orderPay/orderPay'
 import myagantEnter from '@/pages/my/myagantEnter/myagantEnter'
 import agantIncome from '@/pages/my/agantIncome/agantIncome'
 import agantHistory from '@/pages/my/agantHistory/agantHistory'
+import login from '@/pages/enter/login/login'
+import hotelManage from '@/pages/enter/hotelManage/hotelManage'
+import orderManage from '@/pages/enter/orderManage/orderManage'
+import resetPassword from '@/pages/enter/resetPassword/resetPassword'
 
 Vue.use(Router)
 
@@ -84,6 +88,38 @@ export default new Router({
       component: enter,
       meta: {
         title: '入驻'
+      }
+    },
+    {
+      path: '/enter/login',
+      name: 'login',
+      component: login,
+      meta: {
+        title: '入驻登录'
+      }
+    },
+    {
+      path: '/enter/hotelManage',
+      name: 'hotelManage',
+      component: hotelManage,
+      meta: {
+        title: '酒店管理'
+      }
+    },
+    {
+      path: '/enter/hotelManage/orderManage',
+      name: 'orderManage',
+      component: orderManage,
+      meta: {
+        title: '酒店订单管理'
+      }
+    },
+    {
+      path: '/enter/hotelManage/resetPassword',
+      name: 'resetPassword',
+      component: resetPassword,
+      meta: {
+        title: '酒店管理修改密码'
       }
     },
     {

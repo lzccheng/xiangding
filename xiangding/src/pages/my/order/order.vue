@@ -10,10 +10,6 @@
 					</div>
 				</div>
 				<div class="line" ref="_line"></div>
-
-				<!-- <div><span>待付款</span></div>
-				<div><span>待使用</span></div>
-				<div><span>全部订单</span></div> -->
 			</div>
 			
 			<div class="show">
