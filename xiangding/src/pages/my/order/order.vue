@@ -21,7 +21,7 @@
 					<div class="body">
 						<div class="item">
 							<span class="time">预定日期: 03-20</span>
-							<div class="content_box" v-for="(i,index) in 2" key="index">
+							<div class="content_box" v-for="(i,index) in 2" :key="index">
 								<div class="content">
 									<p>
 										<span class="title">银河大酒店</span>
@@ -100,7 +100,7 @@
 					<div class="body">
 						<div class="item">
 							<span class="time">预定日期: 03-20</span>
-							<div class="content_box" v-for="(i,index) in 2" key="index">
+							<div class="content_box" v-for="(i,index) in 2" :key="index">
 								<div class="content">
 									<p>
 										<span class="title">银河大酒店</span>
@@ -143,9 +143,7 @@
 <script>
 	export default {
 		mounted(){
-			console.log(this.$refs)
-			this.$refs._line.style.left = this.$refs.tab.firstChild.offsetLeft + 'px'
-			this.$refs._line.style.width =  this.$refs.tab.firstChild.offsetWidth + 'px'
+			this._lineLeft()
 		},
 		data(){
 			return {
@@ -165,6 +163,18 @@
 			},
 			onHandleChange(i){
 				this.index_ = i
+			},
+			_lineLeft(){
+				this.index_ = this.$route.query.status || 0
+				this.$refs._line.style.left = this.$refs.tab.children[this.index_].offsetLeft + 'px'
+				this.$refs._line.style.width =  this.$refs.tab.children[this.index_].offsetWidth + 'px'
+			}
+		},
+		watch: {
+			'$route'(to,from){
+				if(to.name === 'order'){
+					this._lineLeft()
+				}
 			}
 		}
 	}
