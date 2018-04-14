@@ -173,7 +173,7 @@
     Mock.mock('/api/bannerData', 'get', bannerData)//url：'/api/bannerData'，请求方法：get(url、请求方法可根据后台改)
 
     //首页附近酒店的数据
-    const hotelData =  () => {
+    const hotelData =  ()  => {
       //所需数据(数组内放对象，一个对象一条信息)
         let data = [
             {
