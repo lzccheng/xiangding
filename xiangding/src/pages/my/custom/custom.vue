@@ -1,5 +1,6 @@
 <template>
 	<div class="box">
+	<Header title="在线客服"/>
 		<div class="header">
 			<div class="img"></div>
 			<div class="text_box">
@@ -11,10 +12,6 @@
 				</p>
 				<div class="send"><span>发送链接</span></div>
 			</div>
-		</div>
-		
-		<div class="custom">
-
 		</div>
 		<div class="chat_1">
 			<div class="back">
@@ -100,21 +97,21 @@
 			}
 			.chat_2{
 				display: inline-block;
-				width: 75%;
+				width: 82%;
 				height: rem(26px);
 				border: #a0a1a4 solid rem(1px);
                 margin-left: 4%;
                 border-radius: rem(15px);
                 .smile{
-                	font-size: rem(20px);
+                	font-size: rem(19px);
                 	float: right;
-                	margin: rem(2px) 6%;
+                	margin: auto 4%;
                 }
 			}
 			.send_s{
 				float: right;
 				font-size: rem(16px);
-				margin: rem(2px) 5%;
+				margin: rem(2px) 2%;
 			}
 		}
 	}

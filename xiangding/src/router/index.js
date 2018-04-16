@@ -33,6 +33,7 @@ import resetPassword from '@/pages/enter/resetPassword/resetPassword'
 import incomeDetail from '@/pages/enter/incomeDetail/incomeDetail'
 import onlineMessage from '@/pages/enter/onlineMessage/onlineMessage'
 import orderDeal from '@/pages/enter/orderDeal/orderDeal'
+import orderStatus from '@/pages/enter/orderStatus/orderStatus'
 
 Vue.use(Router)
 
@@ -140,6 +141,14 @@ export default new Router({
       component: orderDeal,
       meta: {
         title: '酒店管理订单处理'
+      }
+    },
+     {
+      path: '/enter/hotelManage/orderStatus',
+      name: 'orderStatus',
+      component: orderStatus,
+      meta: {
+        title: '酒店管理订单处理状态'
       }
     },
     {

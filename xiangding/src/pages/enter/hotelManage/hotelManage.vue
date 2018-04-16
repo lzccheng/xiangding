@@ -117,7 +117,9 @@
 				background-color: #fff;
 				border-bottom: 1px solid #aaa;
 				._left{
-					float: left;
+					position: absolute;
+					top: rem(12px);
+					left: 0;
 					padding: 0 rem(5px);
 					z-index: 999;
 				}

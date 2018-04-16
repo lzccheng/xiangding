@@ -16,16 +16,25 @@
 				<span class="get">获取验证码</span>
 			</p>
 		</div>
-		<div class="form">
+		<div class="form_1">
 			<p class="mm">
 				<label>身份证号码:</label>
 				<input type="text" placeholder="请输入身份证号码" name="">
 			</p>
 			<div class="photo">
+				<p>
 					<span class="icon_photo"><i class="fas fa-camera"></i></span>
 					<span class="icon_photo"><i class="fas fa-camera"></i></span>
+				</p>
+				<p>
+					<span class="on">身份证正面照</span>
+					<span class="down">身份证反面照</span>
+				</p>
 			</div>
+			<p class="button">立即申请</p>
+			
 		</div>
+		<p class="know">《入住协议》</p>
 	</div>
 </template>
 <script>
@@ -46,6 +55,70 @@
 		width: 100%;
 		background-color: #e5e5e5;
 		position: relative;
+		.form_1{
+			background-color: #ffffff;
+			margin-top: rem(10px);
+			border-top: 0.5px solid #aaa;
+			padding-bottom: rem(100px);
+			.photo{
+				position: relative;
+				border-top: #aaa solid rem(1px);
+				border-bottom: #aaa solid rem(1px);
+				padding: rem(43px) 3% rem(80px);
+				.icon_photo{
+					padding: rem(30px) 19%;
+					border: #aaa solid rem(1px);
+					border-radius: rem(5px);
+					color: #aaa;
+					font-size: rem(23px);
+					margin-right: 4%;
+				}
+				.on{
+					position: absolute;
+					top: rem(120px);
+					left: 14%;
+				}
+				.down{
+					position: absolute;
+					top: rem(120px);
+					left: 62%;
+				}
+			}
+			.button{
+				background-color: #8bc34a;
+				font-size: rem(15px);
+				text-align: center;
+				padding: rem(10px) 0;
+				color: #ffffff;
+				margin-top: rem(20px);
+			}
+
+			.mm{
+				position: relative;
+				padding: rem(13px) rem(8px);
+				display: flex;
+				label{
+					font-size: rem(14px);
+					width: 30%;
+				}
+				input{
+					border: none;
+					height: rem(20px);
+					&::-webkit-input-placeholder { 
+					    color:    #aaa;
+					}
+					&:-moz-placeholder { 
+					    color:    #aaa;
+					}
+					&::-moz-placeholder { 
+					    color:    #aaa;
+					}
+					&:-ms-input-placeholder { 
+					    color:    #aaa;
+					}
+				}
+			}
+		}
 		.form{
 			background-color: #ffffff;
 			margin-top: rem(10px);
@@ -75,19 +148,6 @@
 					&:-ms-input-placeholder { 
 					    color:    #aaa;
 					}
-				}
-			}
-			.photo{
-				border-top: #aaa solid rem(1px);
-				border-bottom: #aaa solid rem(1px);
-				padding: rem(60px) 3%;
-				.icon_photo{
-					padding: rem(25px) 15%;
-					border: #aaa solid rem(1px);
-					border-radius: rem(5px);
-					color: #aaa;
-					font-size: rem(19px);
-					margin-right: 3%;
 				}
 			}
 			.input{
@@ -167,7 +227,15 @@
 				font-size: rem(14px);
 			}
 		}
-		
+		.know{
+			color: #4ea9ec;
+			font-size: rem(14px);
+			background-color: #ffffff;
+			position: absolute;
+			bottom: rem(10px);
+			left: 50%;
+			margin-left: rem(-42px);
+		}
 
 
 	}
