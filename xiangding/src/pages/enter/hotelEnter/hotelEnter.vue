@@ -8,7 +8,7 @@
 					<input type="text" placeholder="请输入姓名" name="">
 				</p>
 				<p class="input">
-					<label>联系电话</label>
+					<label>联系电话:</label>
 					<input type="text" placeholder="请输入电话号码" name="">
 				</p>
 				<p class="input">

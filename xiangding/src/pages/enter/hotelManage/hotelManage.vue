@@ -55,20 +55,20 @@
 	    		<p class="icon"><i class="fas fa-th-list"></i></p>
 	    		<p>账号密码</p>
 	    	</router-link>
-	    	<div class="room_4 rooms">
+	    	<router-link tag="div" to="/enter/hotelManage/incomeDetail" class="room_4 rooms">
 	    		<p class="icon"><i class="fas fa-th-list"></i></p>
 	    		<p>收入明细</p>
-	    	</div>
+	    	</router-link>
 	    </div>
 	    <div class="item">
-	    	<div class="room_5 rooms">
+	    	<router-link tag="div" to="/enter/hotelManage/onlineMessage" class="room_5 rooms">
 	    		<p class="icon"><i class="fas fa-th-list"></i></p>
 	    		<p>在线信息</p>
-	    	</div>
-	    	<div class="room_6 rooms">
+	    	</router-link>
+	    	<router-link tag="div" to="/enter/hotelManage/orderDeal" class="room_6 rooms">
 	    		<p class="icon"><i class="fas fa-th-list"></i></p>
 	    		<p>订单处理</p>
-	    	</div>
+	    	</router-link>
 	    </div>
 	</div>
 </template>

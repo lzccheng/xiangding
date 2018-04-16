@@ -1,57 +1,30 @@
 <template>
 	<div class="box">
-		<div class="aaa">酒店妹妹代理商</div>
-		<div class="bbb"></div>
+		<Header title="申请入驻"/>
 		<div class="form">
-                <ul>
-                   <li class="ccc"> 
-                   <span>代理服务人姓名:</span>
-                   <input type="text" class="in"  size="30" maxlength="20" placeholder="  请输入您的真实姓名">
-                   </li> 
-                   <li class="ccc"> 
-                   <span>手机号码:</span>
-                   <input type="text" class="in" size="30" maxlength="20" placeholder="  您的真实号码">
-                   </li>
-                   <li class="ccc"> 
-                   <span>身份证号码:</span>
-                   <input type="text" class="in" size="30" maxlength="20" placeholder="  您的真实身份证号码">
-                   </li>
-                </ul>
-                <div class="ddd">
-                	<span>上传身份证正反面</span>
-                </div>
-                <div class="eee">
-                	<div class="e"></div>
-                	<div class="e"></div>
-                	<div class="ee">
-                		<span class="zheng">身份证正面</span>
-                		<span class="fan">身份证反面</span>
-                	</div>
-                </div>
-                <ul>
-                	<li class="place">
-                	  <div class="select">
-                	  	<el-select v-model="value" placeholder="请选择">
-						    <el-option
-						      v-for="item in options"
-						      :key="item.value"
-						      :label="item.label"
-						      :value="item.value">
-						    </el-option>
-                		</el-select>
-                	  </div>
-                	  <input type="text" class="input" size="25" maxlength="20" placeholder="      请选择您的酒店代理区域">
-                	</li>
-                    <li class="place">
-                    	<input type="text" class="input_in" size="15" maxlength="20"  placeholder="  代理服务酒店名称">
-                    </li>
-                    <li class="place">
-                    	<input type="text" class="input_in" size="15" maxlength="20" placeholder="  代理服务酒店名称">
-                    </li>
-                    <li class="place">
-                    	<input type="text" class="input_in" size="15" maxlength="20" placeholder="  代理服务酒店名称">
-                    </li>
-                </ul>
+			<p class="input">
+				<label>代理商姓名:</label>
+				<input type="text" placeholder="请输入姓名" name="">
+			</p>
+			<p class="input">
+				<label>联系电话:</label>
+				<input type="text" placeholder="请输入电话号码" name="">
+			</p>
+			<p class="mm">
+				<label>验证码:</label>
+				<input type="text" placeholder="请输入验证码" name="">
+				<span class="get">获取验证码</span>
+			</p>
+		</div>
+		<div class="form">
+			<p class="mm">
+				<label>身份证号码:</label>
+				<input type="text" placeholder="请输入身份证号码" name="">
+			</p>
+			<div class="photo">
+					<span class="icon_photo"><i class="fas fa-camera"></i></span>
+					<span class="icon_photo"><i class="fas fa-camera"></i></span>
+			</div>
 		</div>
 	</div>
 </template>
@@ -59,23 +32,7 @@
 	export default {
 		data(){
 			return {
-				options: [{
-		          value: '选项1',
-		          label: '广东'
-		        }, {
-		          value: '选项2',
-		          label: '上海'
-		        }, {
-		          value: '选项3',
-		          label: '北京'
-		        }, {
-		          value: '选项4',
-		          label: '天津'
-		        }, {
-		          value: '选项5',
-		          label: '西安'
-		        }],
-		        value: ''
+				
 			}
 		},
 		methods: {
@@ -87,138 +44,128 @@
 	@import "../../../common/css/common.scss";
 	.box{
 		width: 100%;
-		background-color: #fff;
-		.aaa{
-			width: 100%;
-			height: rem(43px);
-			background-color: #43c122;
-			font-size: rem(16px);
-			line-height: rem(43px);
-			padding-top: rem(5px);
-			text-align: center;
-			color: #ffffff;
-		}
-		.bbb{
-            width: 100%;
-            height: rem(20px);
-            background-color: #ebebeb;
-		}
+		background-color: #e5e5e5;
+		position: relative;
 		.form{
-            width: 100%;
-            height: rem(550px);
-            .place{
-            	width: 93%;
-			    height: rem(52px);
-			    font-size: rem(15px);
-			    padding-left: rem(7px);
-			    border-bottom: rem(2px) solid #ececec;
-			    padding-bottom: rem(2px);
-			    margin-left: rem(8px);
-			    margin-top: rem(1px);
-			    .select{
-				    	width: 20%;
-				    	float: left;
-				    }
-				.input{
-					    border: 1px solid #ffffff;
-					    height: rem(52px);
-					    padding: 0 rem(5px);
-					    margin-left: rem(3px);
-					    &::-webkit-input-placeholder { 
-						    color:    #aaa;
-						}
-						&:-moz-placeholder { 
-						    color:    #aaa;
-						}
-						&::-moz-placeholder { 
-						    color:    #aaa;
-						}
-						&:-ms-input-placeholder { 
-						    color:    #aaa;
-						}
+			background-color: #ffffff;
+			margin-top: rem(10px);
+			padding: rem(2px) 0 0 rem(15px);
+			border-top: 0.5px solid #aaa;
+			border-bottom: 0.5px solid #aaa;
+			.mm{
+				position: relative;
+				padding: rem(13px) rem(8px);
+				display: flex;
+				label{
+					font-size: rem(14px);
+					width: 30%;
+				}
+				input{
+					border: none;
+					height: rem(20px);
+					&::-webkit-input-placeholder { 
+					    color:    #aaa;
 					}
-				.input_in{
-						    border: 1px solid #ffffff;
-						    height: rem(52px);
-						    padding: 0 rem(5px);
-						    float: left;
-						    margin-left: rem(110px);
-						    &::-webkit-input-placeholder { 
-							    color:    #aaa;
-							}
-							&:-moz-placeholder { 
-							    color:    #aaa;
-							}
-							&::-moz-placeholder { 
-							    color:    #aaa;
-							}
-							&:-ms-input-placeholder { 
-							    color:    #aaa;
-							}
-				}
-	            }
-		}
-		.ccc{
-		    width: 93%;
-		    height: rem(52px);
-		    font-size: rem(15px);
-		    line-height: rem(52px);
-		    padding-left: rem(7px);
-		    border-bottom: rem(2px) solid #ececec;
-		    padding-bottom: rem(2px);
-		    margin-left: rem(8px);
-		    .in{
-			    border: 1px solid #ffffff;
-			    height: rem(52px);
-			    padding: 0 rem(5px);
-			    &::-webkit-input-placeholder { 
-				    color:    #aaa;
-				}
-				&:-moz-placeholder { 
-				    color:    #aaa;
-				}
-				&::-moz-placeholder { 
-				    color:    #aaa;
-				}
-				&:-ms-input-placeholder { 
-				    color:    #aaa;
+					&:-moz-placeholder { 
+					    color:    #aaa;
+					}
+					&::-moz-placeholder { 
+					    color:    #aaa;
+					}
+					&:-ms-input-placeholder { 
+					    color:    #aaa;
+					}
 				}
 			}
-		}
-		.ddd{
-			width: 100%;
-			height: rem(52px);
-			line-height: rem(52px);
-			font-size: rem(13px);
-			text-align: center;
-		}
-		.eee{
-			width: 100%;
-			height: rem(180px);
-			margin-bottom: rem(20px);
-		}
-		.e{
-			width: 46%;
-			height: rem(130px);
-			background-color: #ececec;
-			float: left;
-			margin-left: rem(10px);
-            border-radius: rem(12px);
-		}
-		.ee{
-			width: 100%;
-			height: rem(45px);
-		    line-height: rem(45px);
-			float: left;
-			.zheng{
+			.photo{
+				border-top: #aaa solid rem(1px);
+				border-bottom: #aaa solid rem(1px);
+				padding: rem(60px) 3%;
+				.icon_photo{
+					padding: rem(25px) 15%;
+					border: #aaa solid rem(1px);
+					border-radius: rem(5px);
+					color: #aaa;
+					font-size: rem(19px);
+					margin-right: 3%;
+				}
+			}
+			.input{
+				position: relative;
+				border-bottom: 0.5px solid #aaa;
+				padding: rem(10px) rem(8px);
+				display: flex;
+				label{
+					font-size: rem(14px);
+					width: 30%;
+				}
+				input{
+					border: none;
+					height: rem(20px);
+					&::-webkit-input-placeholder { 
+					    color:    #aaa;
+					}
+					&:-moz-placeholder { 
+					    color:    #aaa;
+					}
+					&::-moz-placeholder { 
+					    color:    #aaa;
+					}
+					&:-ms-input-placeholder { 
+					    color:    #aaa;
+					}
+				}
+			}
+			.text{
+				margin-top: rem(15px);
+				text-align: center;
+			}
+			.get{
+				background-color: #8bc34a;
+				color: #ffffff;
+				position: absolute;
+				top: 0;
+				right: 0;
+				padding: rem(13px) rem(12px);
 				font-size: rem(14px);
-				margin-left: rem(65px);
 			}
-			.fan{
+			.eye{
+				color: #8bc34a;
+				font-size: rem(17px);
+			}
+			.text_img{
+				width: 100%;
+				height: rem(200px);
+				margin-top: rem(15px);
+				background-color: #eee;
+				border-radius: rem(10px)
+			}
+			.btn{
+				margin-top: rem(25px);
+				button{
+					width: 100%;
+					border: none; 
+					color: #fff;
+					border-radius: rem(5px);
+					background-color: #43c122;
+					padding: rem(12px);
+				}
+			}
+			.upload{
 				font-size: rem(14px);
-				margin-left: rem(123px);
+				margin: rem(10px) 0;
 			}
-
+			.add_icon{
+				width: 20%;
+				margin-bottom: rem(15px);
+				color: #aaa;
+				font-size: rem(45px);
+			}
+			.content{
+				color: #aaa;
+				margin-bottom: rem(80px);
+				font-size: rem(14px);
+			}
 		}
 		
 

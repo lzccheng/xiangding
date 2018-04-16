@@ -30,6 +30,9 @@ import login from '@/pages/enter/login/login'
 import hotelManage from '@/pages/enter/hotelManage/hotelManage'
 import orderManage from '@/pages/enter/orderManage/orderManage'
 import resetPassword from '@/pages/enter/resetPassword/resetPassword'
+import incomeDetail from '@/pages/enter/incomeDetail/incomeDetail'
+import onlineMessage from '@/pages/enter/onlineMessage/onlineMessage'
+import orderDeal from '@/pages/enter/orderDeal/orderDeal'
 
 Vue.use(Router)
 
@@ -113,6 +116,30 @@ export default new Router({
       component: hotelManage,
       meta: {
         title: '酒店管理'
+      }
+    },
+    {
+      path: '/enter/hotelManage/incomeDetail',
+      name: 'incomeDetail',
+      component: incomeDetail,
+      meta: {
+        title: '酒店管理收入详情'
+      }
+    },
+    {
+      path: '/enter/hotelManage/onlineMessage',
+      name: 'onlineMessage',
+      component: onlineMessage,
+      meta: {
+        title: '酒店管理在线信息'
+      }
+    },
+     {
+      path: '/enter/hotelManage/orderDeal',
+      name: 'orderDeal',
+      component: orderDeal,
+      meta: {
+        title: '酒店管理订单处理'
       }
     },
     {
