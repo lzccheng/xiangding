@@ -241,7 +241,6 @@
 <script>
 	export default {
 		mounted(){
-			console.log(this.$refs)
 			this.$refs._line.style.left = this.$refs.tab.firstChild.offsetLeft + 'px'
 			this.$refs._line.style.width =  this.$refs.tab.firstChild.offsetWidth + 'px'
 		},
@@ -265,6 +264,18 @@
 		computed: {
 			title(){
 				return this.$route.query.isPay?'待使用':'待付款'
+			}
+		},
+		watch: {
+			'$route'(to,form){
+				if(to.name === "orderPay"){
+					setTimeout(()=>{
+						if(this.$refs._line){
+							this.$refs._line.style.left = this.$refs.tab.firstChild.offsetLeft + 'px'
+							this.$refs._line.style.width =  this.$refs.tab.firstChild.offsetWidth + 'px'
+						}
+					},50)
+				}
 			}
 		}
 	}

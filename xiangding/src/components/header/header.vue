@@ -38,7 +38,9 @@
 			background-color: #fff;
 			border-bottom: 1px solid #aaa;
 			._left{
-				float: left;
+				position: absolute;
+				left: 0;
+				top: rem(12px);
 				padding: 0 rem(5px);
 				z-index: 999;
 			}
