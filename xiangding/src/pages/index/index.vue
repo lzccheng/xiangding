@@ -46,20 +46,47 @@
             </p>
             <p><el-rate v-model="star"></el-rate></p>
           </div>
-          <div>
+          <!-- <div>
             <p class="title">酒店类型：</p>
             <p class="hotelStyle">
-              <div>a</div>
-              <div>a</div>
-              <div>a</div>
-              <div>a</div>
-              <div>a</div>
+              <span>经济酒店</span>
+              <span>主题酒店</span>
+              <span class="active">商务酒店</span>
+              <span>度假酒店</span>
+              <span>豪华酒店</span>
+            </p>
+          </div> -->
+          <div>
+            <p class="title">价格：</p>
+            <p class="slider">
+              <el-slider
+                v-model="price"
+                range
+                :step="50" 
+                :max="3000">
+              </el-slider>
+            </p>
+            <p class="price">
+              <span class="min_price">￥{{price[0]}}</span>
+              <span class="max_price">￥{{price[1]}}</span>
             </p>
           </div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
+          <!-- <div>
+            <p class="title">房间类型：</p>
+            <p class="hotelStyle">
+              <span>单人房</span>
+              <span>大床房</span>
+              <span class="active">双人房</span>
+              <span>套间</span>
+            </p>
+          </div> -->
+          <!-- <div>
+            <p class="title">房间数量：</p>
+            <p class="hotelStyle">
+              <span>单间</span>
+              <span class="active">团房</span>
+            </p>
+          </div> -->
           <div class="btn">
             <button @click="_boxClick" class="green_btn">确定</button>
           </div>
@@ -149,7 +176,7 @@
   				<li @click="handleStyle">
             <div class="select">
               <span><i class="fas fa-search-plus"></i></span>  
-              <span>星级/类型/价格/设备</span>  
+              <span>星级:{{star}}星/价格:{{price[0]}}-{{price[1]}}</span>  
               <span class="angle"><i class="fas fa-angle-right"></i></span>
             </div>
           </li>
@@ -260,7 +287,8 @@
           value1: new Date(),
           value2: tomo,
           input1: '',
-          star: 4
+          star: 4,
+          price: [80, 800]
         }
       },
       methods: {
@@ -290,6 +318,7 @@
           this.$refs._box.style.height = '0px'
           this.$refs._erea.style.display = 'none'
           this.$refs._date.style.display = 'none'
+          this.$refs._style.style.display = 'none'
         },
         zero(num){
           return Number(num) >10?num:'0'+num
@@ -364,6 +393,7 @@
       top: 0;
       background-color: rgba(0,0,0,0.5);
       z-index: 99;
+      overflow-y: scroll;
       >div{
         width: 100%;
         position: absolute;
@@ -397,13 +427,38 @@
                 font-size: rem(16px);
                 font-weight: bold;
                 text-align: left;
-                padding-left: rem(15px);
+                padding-left: rem(20px);
               }
-              
+              &.hotelStyle{
+                text-align: left;
+                span{
+                  display: inline-block;
+                  padding: rem(8px) 3%;
+                  margin: rem(15px) 5%;
+                  border: 1px solid #aaa;
+                  border-radius: rem(3px);
+                  color: #aaa;
+                  &.active{
+                    color: #43C122;
+                    border: 1px solid #43C122;
+                  }
+                }
+              }
+              &.slider{
+                padding: 0 rem(15px);
+              }
+              &.price{
+                color: #409EFF;
+                padding: 0 rem(20px) rem(15px);
+                .min_price{
+                  float: left;
+                }
+                .max_price{
+                  float: right;
+                }
+              }
             }
-            .hotelStyle{
-                display: flex;
-            }
+            
           }
         }
       }

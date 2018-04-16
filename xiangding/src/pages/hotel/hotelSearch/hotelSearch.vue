@@ -119,7 +119,7 @@
 					>div{
 						display: inline-block;
 						&.erea{
-							padding-right: rem(10px);
+							padding-right: rem(8px);
 							border-right: 1px solid #8BC34A;
 							span{
 								color: #8BC34A;
@@ -147,6 +147,7 @@
 						&.search_{
 							width: 50%;
 							font-size: rem(16px);
+							border-left: 1px solid #8BC34A;
 							span{
 								display: inline-block;
 								padding: 0 rem(8px);
