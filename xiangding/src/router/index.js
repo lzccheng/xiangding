@@ -33,6 +33,8 @@ import resetPassword from '@/pages/enter/resetPassword/resetPassword'
 import incomeDetail from '@/pages/enter/incomeDetail/incomeDetail'
 import onlineMessage from '@/pages/enter/onlineMessage/onlineMessage'
 import orderDeal from '@/pages/enter/orderDeal/orderDeal'
+import cashStatus from '@/pages/enter/cashStatus/cashStatus'
+import incomeList from '@/pages/enter/incomeList/incomeList'
 
 Vue.use(Router)
 
@@ -116,6 +118,22 @@ export default new Router({
       component: hotelManage,
       meta: {
         title: '酒店管理'
+      }
+    },
+    {
+      path: '/enter/hotelManage/cashStatus',
+      name: 'cashStatus',
+      component: cashStatus,
+      meta: {
+        title: '酒店管理提现详情'
+      }
+    },
+    {
+      path: '/enter/hotelManage/incomeList',
+      name: 'incomeList',
+      component: incomeList,
+      meta: {
+        title: '酒店管理收支明细'
       }
     },
     {
