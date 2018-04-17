@@ -10,7 +10,7 @@
 					</div>
 				</p>
 			</div>
-			<router-link to='/my/cash' class="cash" tag='div'>
+			<router-link to='/my/weChatCash' class="cash" tag='div'>
 				提现
 			</router-link>
 		</div>
@@ -64,7 +64,7 @@
 		</div>
 		<div class="hotelServe">
 			<p class="title">
-				<span>酒店服务费</span>
+				<span>代理服务商</span>
 				<router-link to='/my/cash' class="cash" tag='span'>提现</router-link>
 			</p>
 			<div class="earning">
@@ -301,11 +301,11 @@
 										color: #aaa;
 									}
 									&.detailt{
-										width: rem(14px);
 										padding-left: rem(8px);
 										margin-top: rem(-16px);
 										float: right;
 										color: #0075FF;
+										line-height: rem(41px);
 									}
 								}
 							}

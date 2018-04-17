@@ -26,6 +26,7 @@ import orderPay from '@/pages/my/orderPay/orderPay'
 import myagantEnter from '@/pages/my/myagantEnter/myagantEnter'
 import agantIncome from '@/pages/my/agantIncome/agantIncome'
 import agantHistory from '@/pages/my/agantHistory/agantHistory'
+import payMethods from '@/pages/my/payMethods/payMethods'
 import login from '@/pages/enter/login/login'
 import hotelManage from '@/pages/enter/hotelManage/hotelManage'
 import orderManage from '@/pages/enter/orderManage/orderManage'
@@ -34,6 +35,10 @@ import incomeDetail from '@/pages/enter/incomeDetail/incomeDetail'
 import onlineMessage from '@/pages/enter/onlineMessage/onlineMessage'
 import orderDeal from '@/pages/enter/orderDeal/orderDeal'
 import orderStatus from '@/pages/enter/orderStatus/orderStatus'
+import forgotPassword from '@/pages/enter/forgotPassword/forgotPassword'
+import cancelRoom from '@/pages/my/cancelRoom/cancelRoom'
+import weChatCash from '@/pages/my/weChatCash/weChatCash'
+
 
 Vue.use(Router)
 
@@ -149,6 +154,14 @@ export default new Router({
       component: orderStatus,
       meta: {
         title: '酒店管理订单处理状态'
+      }
+    },
+    {
+      path: '/enter/forgotPassword',
+      name: 'forgotPassword',
+      component: forgotPassword,
+      meta: {
+        title: '忘记密码'
       }
     },
     {
@@ -297,6 +310,14 @@ export default new Router({
       }
     },
     {
+      path: '/my/order/payMethods',
+      name: 'payMethods',
+      component: payMethods,
+      meta: {
+        title: '我的付款方式'
+      }
+    },
+    {
       path: '/my/order/orderPay',
       name: 'orderPay',
       component: orderPay,
@@ -304,6 +325,23 @@ export default new Router({
         title: '我的订单付款'
       }
     },
+     {
+      path: '/my/cancelRoom',
+      name: 'cancelRoom',
+      component: cancelRoom,
+      meta: {
+        title: '我的申请退房'
+      }
+    },
+    {
+      path: '/my/weChatCash',
+      name: 'weChatCash',
+      component: weChatCash,
+      meta: {
+        title: '我的提现'
+      }
+    },
+
     {
       path: '/my/cash',
       name: 'cash',

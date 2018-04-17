@@ -33,7 +33,6 @@
 											<span class="money_color">¥</span>
 											<span class="money_size">264</span>
 										</span>
-										
 									</p>
 									<p>
 										<span class="title_hide">支付剩余时间: 22分44秒 </span>
@@ -47,7 +46,7 @@
 								    </div>
 									
 									<div class="button">
-										<span class="change">取消订单</span>
+										<span class="change"><el-button type="text" @click="open4">取消订单</el-button></span>
 										<router-link tag="span" :to="{path: '/my/order/orderPay',query: {isPay: false}}" class="pay">付款</router-link>
 									</div>
 								</div>
@@ -76,6 +75,10 @@
 											<span class="money_size">264</span>
 										</span>
 									</p>
+									<p>
+										<span class="title_hide"> </span>
+										<span class="enter">待入住</span>
+									</p>
 								</router-link>
 								<div class="content_2">
 								    <div class="plane">
@@ -84,8 +87,8 @@
 								    </div>
 									
 									<div class="button">
-										<span class="change">申请退房</span>
-										<span class="pay">再次预定</span>
+										<router-link tag="span" to="/my/cancelRoom" class="change">申请退房</router-link>
+										<router-link tag="span" to="/hotelDetail/hotelSelect/hotelOrder" class="pay">再次预定</router-link>
 									</div>
 								</div>
 							</div>
@@ -115,7 +118,7 @@
 									</p>
 									<p>
 										<span class="title_hide"> </span>
-										<span class="enter">入住中</span>
+										<span class="enter">已入住</span>
 									</p>
 								</div>
 								<div class="content_2">
@@ -124,8 +127,7 @@
 									    <span class="here">到这里</span>
 								    </div>
 									<div class="button">
-									    <span class="change">申请退房</span>
-										<span class="pay">再次预定</span>
+										<router-link tag="span" to="/hotelDetail/hotelSelect/hotelOrder" class="pay">再次预定</router-link>
 									</div>
 								</div>
 							</div>
@@ -164,7 +166,25 @@
 				this.index_ = this.$route.query.status || 0
 				this.$refs._line.style.left = this.$refs.tab.children[this.index_].offsetLeft + 'px'
 				this.$refs._line.style.width =  this.$refs.tab.children[this.index_].offsetWidth + 'px'
-			}
+			},
+			 open4() {
+		        this.$confirm('确认取消订单吗', '提示', {
+		          confirmButtonText: '确定',
+		          cancelButtonText: '取消',
+		          type: 'warning',
+		          center: true
+		        }).then(() => {
+		          this.$message({
+		            type: 'success',
+		            message: '删除成功!'
+		          });
+		        }).catch(() => {
+		          this.$message({
+		            type: 'info',
+		            message: '已取消删除'
+		          });
+		        });
+		      }
 		},
 		watch: {
 			'$route'(to,from){
@@ -256,7 +276,7 @@
 							.no_pay{
 								position: absolute;
 								right: 0;
-								top: 0;
+								top: rem(9px);
 
 							}
 							.enter{
@@ -277,7 +297,6 @@
 								}
 								&.button{
 									float: right;
-									padding-top: rem(8px);
 									span{
 										padding: rem(5px) rem(16px);
 										border-radius: rem(15px);
@@ -287,7 +306,8 @@
 											font-size: rem(14px);
 										}
 										&.change{
-											border: #aaa solid rem(1px);
+											color: #409eff;
+											border: #409eff solid rem(1px);
 											font-size: rem(14px);
 											margin-right: rem(5px);
 										}

@@ -20,7 +20,7 @@
 			<p class="title">
 				<span class="icon_money"><i class="fas fa-dollar-sign"></i></span>
 				<span class="content">9月收益</span>
-				<span class="deposit">提现</span>
+				<router-link tag="span" to="/my/cash" class="deposit">提现</router-link>
 			</p>
 			<div class="earning">
 				<p class="text"><span>本月服务费收益</span></p>

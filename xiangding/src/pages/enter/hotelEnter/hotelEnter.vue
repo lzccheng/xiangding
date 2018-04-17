@@ -32,6 +32,10 @@
 					<input type="text" placeholder="请输入酒店名称" name="">
 				</p>
 				<p class="input">
+					<label>酒店星级:</label>
+                    <el-rate v-model="value1"></el-rate>
+				</p>
+				<p class="input">
 					<label>前台电话:</label>
 					<input type="text" placeholder="请输入带有区号的座机号码" name="">
 				</p>
@@ -44,12 +48,16 @@
 					<input type="text" placeholder="点击选择地址" name="">
 				</p>
 				<p class="input">
+					<label>酒店收款账号:</label>
+					<input type="text" placeholder="请输入银行卡号" name="">
+				</p>
+				<p class="input">
 					<label>代理商姓名:</label>
-					<input type="text" placeholder="请输入代理人的姓名" name="">
+					<input type="text" placeholder="请输入代理服务商的姓名" name="">
 				</p>
 				<p class="input">
 					<label>代理商电话:</label>
-					<input type="text" placeholder="请输入代理人的电话号码" name="">
+					<input type="text" placeholder="请输入代理服务商的电话号码" name="">
 				</p>
 			</div>
 			<div class="form">
@@ -73,7 +81,7 @@
 	export default {
 		data(){
 			return {
-
+				value1: null,
 			}
 		},
 		methods: {
@@ -121,13 +129,14 @@
 			.input{
 				position: relative;
 				border-bottom: 0.5px solid #aaa;
-				padding: rem(10px) rem(8px);
+				padding: rem(10px) 2%;
 				display: flex;
 				label{
 					font-size: rem(14px);
 					width: 30%;
 				}
 				input{
+					width: 60%;
 					border: none;
 					height: rem(20px);
 					&::-webkit-input-placeholder { 

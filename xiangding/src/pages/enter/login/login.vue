@@ -21,7 +21,7 @@
 					<span class="text"><input type="text" placeholder="密码"></span>
 					<span class="icon"><i class="fas fa-eye"></i></span>
 				</div>
-				<p class="forget">忘记密码</p>
+				<router-link tag="p" to="/enter/forgotPassword" class="forget">忘记密码</router-link>
 				<router-link tag="div" to="/enter/hotelManage" class="login agentEnter"><span>登录</span> </router-link>
 			</div>
 

@@ -7,9 +7,9 @@
 				<div class="top">
 					<p class="status">订单状态: 待付款</p>
 					<p class="time">47小时56分钟后自动关闭订单</p>
-					<div class="send">
+					<!-- <router-link tag="div" to="/my/order/payMethods" class="send">
 						<button class="green_btn">付款</button>
-					</div>
+					</router-link> -->
 				</div>
 				<div class="middle_1">
 					<p>
@@ -72,8 +72,8 @@
 							</span>
 						</li>
 						<div class="send_box">
-							<span class="custom">联系客服</span>
-							<span class="custom">付款</span>
+							<router-link tag="span" to="/my/custom" class="custom">联系客服</router-link>
+							<router-link tag="span" to="/my/order/payMethods" class="custom">付款</router-link>
 						</div>
 					</ul>
 				</div>
@@ -86,16 +86,16 @@
 			
 		</div>
 		<div v-else>
-			<div class="nav">
+			<!-- <div class="nav">
 				<div class="tab" ref="tab">
 					<div v-for="(i,index) in arrItem" :key='index' @click="handleClick(index,$event)">
 						<span>{{i}}</span>
 					</div>
 				</div>
 				<div class="line" ref="_line"></div>
-			</div>
+			</div> -->
 			<div class="show">
-				<div v-if="0==index_">
+				<!-- <div v-if="0==index_">
 					<div class="body">
 						<div class="left">
 							<div class="_line"></div>
@@ -146,7 +146,7 @@
 
 						
 					</div>
-				</div>
+				</div> -->
 				<div v-if="1==index_">
 					<div class="body">
 						<div>
@@ -217,7 +217,7 @@
 										</span>
 									</li>
 									<div class="send_box">
-										<center><span class="custom">联系客服</span></center>
+										<center><router-link tag="span" to="/my/custom" class="custom">联系客服</router-link></center>
 									</div>
 								</ul>
 							</div>
@@ -229,7 +229,6 @@
 								<p>下单时间: 2018-02-29 21:16:52</p>
 							</div>
 						</div>
-			
 					</div>
 				</div>
 			</div>
@@ -241,8 +240,9 @@
 <script>
 	export default {
 		mounted(){
-			this.$refs._line.style.left = this.$refs.tab.firstChild.offsetLeft + 'px'
-			this.$refs._line.style.width =  this.$refs.tab.firstChild.offsetWidth + 'px'
+			console.log(this.$refs.tab)
+			this.$refs._line.style.left = this.$refs.tab.lastChild.offsetLeft + 'px'
+			this.$refs._line.style.width =  this.$refs.tab.lastChild.offsetWidth + 'px'
 		},
 		data(){
 			return {
@@ -251,7 +251,7 @@
 					'订单详情',
 				],
 				 num7: 1,
-				 index_: 0
+				 index_: 1
 			}
 		},
 		methods: {
@@ -271,8 +271,8 @@
 				if(to.name === "orderPay"){
 					setTimeout(()=>{
 						if(this.$refs._line){
-							this.$refs._line.style.left = this.$refs.tab.firstChild.offsetLeft + 'px'
-							this.$refs._line.style.width =  this.$refs.tab.firstChild.offsetWidth + 'px'
+							this.$refs._line.style.left = this.$refs.tab.lastChild.offsetLeft + 'px'
+							this.$refs._line.style.width =  this.$refs.tab.lastChild.offsetWidth + 'px'
 						}
 					},50)
 				}
@@ -389,6 +389,7 @@
 			background-color: #ffffff;
 			border-top: #fff solid rem(1px);
 			text-align: center;
+			padding-bottom: rem(30px);
 			.status{
 				font-size: rem(17px);
 				font-weight: bold;

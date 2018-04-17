@@ -1,0 +1,178 @@
+<template>
+	<div class="box">
+		<Header title="提现"/>
+		<div class="form">
+			<p class="input">
+				<label>提现方式</label>
+				<span class="weChat_text">微信</span>
+			</p>
+			<p class="input">
+				<label>提现金额</label>
+				<input type="text" placeholder="请输入提现金额" name="">
+			</p>
+			<!-- <p class="input">
+				<label>可提现金额</label>
+				<input type="text" placeholder="请输入验证码" name="">
+				<span class="get">获取验证码</span>
+			</p> -->
+			<p class="mm">
+				<label>可提现金额:</label>
+				<input type="text" placeholder="0.99元" name="">
+			</p>
+		</div>
+		<div class="form">
+			<p class="input">
+				<label>
+				  <p>手续费</p>
+				  <p class="text_5">收取5%手续费</p>
+				</label>
+				<input class="input_top" type="text" placeholder="0.00元" name="">
+			</p>
+			<p class="mm">
+				<label>实际到账:</label>
+				<input type="text" placeholder="0.00元" name="">
+			</p>
+		</div>
+		<div class="form">
+			<p class="mm">
+				<label>验证码</label>
+				<input type="text" placeholder="请输入验证码" name="">
+				<span class="get">获取验证码</span>
+			</p> 
+		</div>
+		<div class="button_box">
+			<p>提现</p>
+		</div>
+		<div class="know_box">
+		<p class="know">《提现协议》</p>
+		</div>
+	</div>
+</template>
+<script>
+	export default {
+		data(){
+			return {
+
+			}
+		},
+		methods: {
+
+		}
+	}
+</script>
+<style scoped lang="scss">
+	 @import "../../../common/css/common.scss";
+	.box{
+		width: 100%;
+		background-color: #e5e5e5;
+		
+		.form{
+			background-color: #ffffff;
+			margin-top: rem(8px);
+			padding: rem(2px) 0 0 rem(15px);
+			border-top: 0.5px solid #aaa;
+			border-bottom: 0.5px solid #aaa;
+			.mm{
+				position: relative;
+				padding: rem(13px) rem(8px);
+				display: flex;
+				label{
+					font-size: rem(14px);
+					width: 30%;
+				}
+				input{
+					border: none;
+					height: rem(20px);
+					&::-webkit-input-placeholder { 
+					    color:    #aaa;
+					}
+					&:-moz-placeholder { 
+					    color:    #aaa;
+					}
+					&::-moz-placeholder { 
+					    color:    #aaa;
+					}
+					&:-ms-input-placeholder { 
+					    color:    #aaa;
+					}
+				}
+			}
+			.input{
+				position: relative;
+				border-bottom: 0.5px solid #aaa;
+				padding: rem(10px) 2%;
+				display: flex;
+				.text_5{
+					color: #aaa;
+					font-size: rem(11px);
+				}
+				.weChat_text{
+					font-size: rem(14px);
+				}
+				label{
+					font-size: rem(14px);
+					width: 30%;
+				}
+				.input_top{
+					position: relative;
+					left: 0;
+					top: rem(10px);
+				}
+				input{
+					width: 60%;
+					border: none;
+					height: rem(20px);
+					&::-webkit-input-placeholder { 
+					    color:    #aaa;
+					}
+					&:-moz-placeholder { 
+					    color:    #aaa;
+					}
+					&::-moz-placeholder { 
+					    color:    #aaa;
+					}
+					&:-ms-input-placeholder { 
+					    color:    #aaa;
+					}
+				}
+			}
+			.button{
+
+			}
+			.text{
+				margin-top: rem(15px);
+				text-align: center;
+			}
+			.get{
+				background-color: #8bc34a;
+				color: #ffffff;
+				position: absolute;
+				top: 0;
+				right: 0;
+				padding: rem(13px) rem(12px);
+				font-size: rem(14px);
+			}
+		}
+		.button_box{
+			background-color: #ffffff;
+			padding: rem(20px) 8%;
+			p{
+				color: #ffffff;
+				font-size: rem(14px);
+				background-color: #8bc34a;
+				padding: rem(14px) 20%;
+				text-align: center;
+				border-radius: rem(7px);
+			}
+		}
+		.know_box{
+			background-color: #ffffff;
+			padding: rem(50px) 0 rem(10px);
+			.know{
+				text-align: center;
+				color: #4e9dea;
+				font-size: rem(14px);
+			}
+		}
+	}
+</style>

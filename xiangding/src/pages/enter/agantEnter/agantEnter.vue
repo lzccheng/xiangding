@@ -31,7 +31,7 @@
 					<span class="down">身份证反面照</span>
 				</p>
 			</div>
-			<p class="button">立即申请</p>
+			<router-link tag="p" to="/my/myagantEnter" class="button">立即申请</router-link>
 			
 		</div>
 		<p class="know">《入住协议》</p>

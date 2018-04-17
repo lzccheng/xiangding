@@ -1,6 +1,6 @@
 <template>
 	<div class="_box">
-		<div class="_header">
+		<div class="_header" ref="_header">
 			<span class="_left" @click='_handleClick'><i class="fas fa-arrow-left"></i></span>
 			<span> {{title}} </span>
 		</div>
@@ -8,7 +8,11 @@
 </template>
 <script>
 	export default {
-		props: ['title'],
+		props: ['title','style'],
+		mounted(){
+			if(this.style){}
+			this.$refs._header.cssText = this.style
+		},
 		data(){
 			return {
 

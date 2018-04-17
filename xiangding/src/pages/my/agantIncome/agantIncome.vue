@@ -1,6 +1,6 @@
 <template>
 	<div class="box">
-	<Header title="本月管理进收益明细"/>
+	<Header title="收益明细"/>
 		<div v-for="(i,index_) in 2" key=index_ class="body">
 			<div class="header">
 				<span class="green"></span>
@@ -21,7 +21,6 @@
 						</div>
 						<div class="right">
 							<p class="numb">+ 50.00</p>
-							<p class="detailt">详情</p>
 						</div>
 					</div>
 			</div>
@@ -118,12 +117,8 @@
 								p{
 									&.numb{
 										font-size: rem(18px);
+										line-height: rem(100px);
 										color: #ff9800;
-									}
-									&.detailt{
-										margin-top: rem(10px);
-										float: right;
-										color: #43c122;
 									}
 								}
 							}

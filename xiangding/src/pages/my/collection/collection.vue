@@ -1,11 +1,6 @@
 <template>
 	<div class="box">
-		<div class="header">
-			<div class="icon">
-			   <i class="fas fa-arrow-left"></i>
-			 </div>
-			<span class="collection">收藏</span>
-		</div>
+		<Header title="收藏记录"/>
 		<div class="item">
 			<div class="img"></div>
 			<div class="content">
@@ -125,7 +120,8 @@
 					padding-left: 1%;
 				}
 				.time{
-					margin-left: rem(10px);
+					float: right;
+					font-size: rem(14px);
 				}
 			}
 		}

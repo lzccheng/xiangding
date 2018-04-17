@@ -1,5 +1,6 @@
 <template>
 	<div class="box">
+    <Header title="服务酒店"/>
 		<div class="header">
 		    <div class="big">
 		    	<div class="ball"></div>

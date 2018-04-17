@@ -20,6 +20,7 @@
 				</div>
 			</div>
 			<div class="chat_2">
+				<input type="text">
 			  <div class="smile">
 			     <i class="far fa-smile"></i>
 			  </div>
@@ -44,7 +45,7 @@
     @import "../../../common/css/common.scss";
 	.box{
 		width: 100%;
-		height: 90%;
+		height: 100%;
 		background-color: #ebebeb;
 		.header{
 			height: rem(115px);
@@ -84,7 +85,7 @@
 			padding-top: rem(6px);
 			border: #a0a1a4 solid rem(1px);
 			position: fixed;
-			bottom: rem(56px);
+			bottom: 0;
 			left: 0;
 			.back{
 				.icon{
@@ -99,6 +100,7 @@
 				display: inline-block;
 				width: 82%;
 				height: rem(26px);
+				line-height: rem(26px);
 				border: #a0a1a4 solid rem(1px);
                 margin-left: 4%;
                 border-radius: rem(15px);
@@ -106,6 +108,11 @@
                 	font-size: rem(19px);
                 	float: right;
                 	margin: auto 4%;
+                }
+                input{
+                	width: 80%;
+                	margin-left: rem(8px);
+                	border: none;
                 }
 			}
 			.send_s{

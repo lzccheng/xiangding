@@ -1,6 +1,6 @@
 <template>
 	<div class="box">
-		<Header title="历史管理金收益明细"/>
+		<Header title="历史收益"/>
 		<div class="body">
 			<div class="header">
 				<span class="choice">筛选</span>
@@ -26,7 +26,6 @@
 						</div>
 						<div class="right">
 							<p class="numb">+ 50.00</p>
-							<p class="detailt">详情</p>
 						</div>
 					</div>
 			</div>
@@ -131,11 +130,7 @@
 									&.numb{
 										font-size: rem(18px);
 										color: #ff9800;
-									}
-									&.detailt{
-										margin-top: rem(10px);
-										float: right;
-										color: #43c122;
+										line-height: rem(100px);
 									}
 								}
 							}
