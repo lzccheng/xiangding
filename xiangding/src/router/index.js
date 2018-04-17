@@ -34,11 +34,13 @@ import resetPassword from '@/pages/enter/resetPassword/resetPassword'
 import incomeDetail from '@/pages/enter/incomeDetail/incomeDetail'
 import onlineMessage from '@/pages/enter/onlineMessage/onlineMessage'
 import orderDeal from '@/pages/enter/orderDeal/orderDeal'
+import cashStatus from '@/pages/enter/cashStatus/cashStatus'
+import incomeList from '@/pages/enter/incomeList/incomeList'
 import orderStatus from '@/pages/enter/orderStatus/orderStatus'
 import forgotPassword from '@/pages/enter/forgotPassword/forgotPassword'
 import cancelRoom from '@/pages/my/cancelRoom/cancelRoom'
 import weChatCash from '@/pages/my/weChatCash/weChatCash'
-
+import myCard from '@/pages/enter/myCard/myCard'
 
 Vue.use(Router)
 
@@ -125,6 +127,22 @@ export default new Router({
       }
     },
     {
+      path: '/enter/hotelManage/cashStatus',
+      name: 'cashStatus',
+      component: cashStatus,
+      meta: {
+        title: '酒店管理提现详情'
+      }
+    },
+    {
+      path: '/enter/hotelManage/incomeList',
+      name: 'incomeList',
+      component: incomeList,
+      meta: {
+        title: '酒店管理收支明细'
+      }
+    },
+    {
       path: '/enter/hotelManage/incomeDetail',
       name: 'incomeDetail',
       component: incomeDetail,
@@ -162,6 +180,14 @@ export default new Router({
       component: forgotPassword,
       meta: {
         title: '忘记密码'
+      }
+    },
+    {
+      path: '/enter/hotelManage/myCard',
+      name: 'myCard',
+      component: myCard,
+      meta: {
+        title: '酒店管理银行卡'
       }
     },
     {
