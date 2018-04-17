@@ -1,6 +1,5 @@
 <template>  
   <div class="box">
-
       <div class="_box" ref="_box" @click="_boxClick">
         <div class="erea" ref="_erea" @click="handleCancel">
           <div class="_erea">
@@ -196,11 +195,14 @@
                 <span class="one">{{i.name}}<star :len='i.star'/></span>
               </p>
               <p>
-                <span>{{i.area}}&nbsp;&nbsp;/&nbsp;&nbsp;{{i.room_total}}间房</span>
-                <span class="min_price">￥{{i.min_price}}起</span>
+                <span>{{i.area}}&nbsp;&nbsp;|&nbsp;&nbsp;{{i.room_total}}间房</span>
+                <span class="min_price"><span class="num">￥{{i.min_price}}</span>起</span>
               </p>
             </div>
           </router-link>
+        </div>
+        <div class="btn">
+          <button class="green_btn">查看更多酒店</button>
         </div>
       </div>
   </div>
@@ -566,7 +568,8 @@
         font-weight: bold;
       }
       .hotelRoom{
-        padding-top: rem(15px);
+        padding: rem(15px) 0;
+        border-bottom: 1px #aaa solid;
         img{
           width: 100%;
           height: rem(200px);
@@ -585,7 +588,15 @@
         }
         .min_price{
           float: right;
+          color: #FF9800;
+          .num{
+            font-weight: bold;
+            font-size: rem(16px);
+          }
         }
+      }
+      .btn{
+        padding: rem(40px) rem(15px) rem(10px);
       }
     }
 	}

@@ -14,10 +14,10 @@
 		</div>
 		<div class="line"></div>
 		<div class="detail">
-			<p class="card">
+			<router-link tag="p" to="/enter/hotelManage/myCard" class="card">
 				<span>我的银行卡</span>
 				<span class="float_right"><i class="fas fa-chevron-right"></i></span>
-			</p>
+			</router-link>
 			<router-link tag="p" to="/enter/hotelManage/incomeList">
 				<span>收支明细</span>
 				<span class="float_right"><i class="fas fa-chevron-right"></i></span>

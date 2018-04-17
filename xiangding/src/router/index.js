@@ -36,6 +36,7 @@ import orderDeal from '@/pages/enter/orderDeal/orderDeal'
 import cashStatus from '@/pages/enter/cashStatus/cashStatus'
 import incomeList from '@/pages/enter/incomeList/incomeList'
 import orderStatus from '@/pages/enter/orderStatus/orderStatus'
+import myCard from '@/pages/enter/myCard/myCard'
 
 Vue.use(Router)
 
@@ -167,6 +168,14 @@ export default new Router({
       component: orderStatus,
       meta: {
         title: '酒店管理订单处理状态'
+      }
+    },
+    {
+      path: '/enter/hotelManage/myCard',
+      name: 'myCard',
+      component: myCard,
+      meta: {
+        title: '酒店管理银行卡'
       }
     },
     {
