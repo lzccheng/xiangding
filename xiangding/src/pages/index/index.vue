@@ -245,7 +245,16 @@
           }).catch((err)=>{
             console.log(err)
           })
-
+          this.$axios({url:'/api/addons/yun_shop/api.php?i=3&route=home-page.index',method: 'get'}).then((res)=>{
+            console.log(res.data)
+          }).catch((err)=>{
+            console.log(err)
+          })
+          this.$axios({url:'/addons/yun_shop/api.php?i=3&route=home-page.index',method: 'get'}).then((res)=>{
+            console.log(222,res.data)
+          }).catch((err)=>{
+            console.log(11111,err)
+          })
       },
       data(){
       	return {
