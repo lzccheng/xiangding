@@ -10,7 +10,7 @@ import Vuexjs from './vuex'
 import Header from './components/header/header'
 
 
-// axios.defaults.baseURL = 'locahost:8080'
+// axios.defaults.baseURL = '/api/'
 Vue.prototype.$axios = axios
 Vue.prototype.$baseURL = '/addons/xiangding/dist'
 Vue.config.productionTip = false

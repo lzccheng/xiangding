@@ -119,8 +119,14 @@
 						<img :src="i.imgUrl">
 					</div>
 					<div class="msg">
-						<span class="min_title">{{i.name}}<star :len='i.star'/></span>
-						
+						<span class="flex">
+							<span class="min_title">{{i.name}}</span>
+						<span><el-rate
+							  v-model="i.star"
+							  disabled>
+							</el-rate>
+						</span>
+						</span>
 						<span>距市中心{{i.distance}}公里&nbsp;/&nbsp;&nbsp;{{i.city[0]}}、{{i.city[1]}}</span>
 						<p>
 							<span>最大房间：{{i.max_room_erea}}m<sup>2</sup></span>
@@ -158,6 +164,7 @@
 				checkList3: [],
 				checkList4: [],
 				checkList5: [],
+				value5:2
 			}
 		},
 		methods: {
@@ -314,7 +321,7 @@
 			}
 		}
 		.hotel{
-			padding: rem(10px) rem(10px); 
+			padding: rem(10px) rem(5px); 
 			.hotelItem{
 				padding-bottom: rem(15px);
 				div{
@@ -322,7 +329,7 @@
 					vertical-align: top;
 				}
 				.img{
-					width: 30%;
+					width: 25%;
 					img{
 						width: 100%;
 						height: rem(100px);
@@ -336,6 +343,9 @@
 					.min_title{
 						font-size: rem(16px);
 						font-weight: bold;
+					}
+					.flex{
+						display: flex;
 					}
 					img{
 						width: rem(13px);
