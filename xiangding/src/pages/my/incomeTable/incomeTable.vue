@@ -1,11 +1,11 @@
 <template>
 	<div class="box">
-	<Header title="收益明细"/>
-	<div class="nav">
-		<span class="calender"><i class="far fa-calendar-plus"></i></span>
-		<span class="time">2018-02-12</span>
-	</div>
-		<div v-for="(i,index_) in 2" key=index_ class="body">
+		<Header title="收支明细"/>
+		<div class="nav">
+			<span class="calender"><i class="far fa-calendar-plus"></i></span>
+			<span class="time">2018-02-12</span>
+		</div>
+		<div class="body">
 			<div class="header">
 				<span class="green"></span>
 				<span class="time">1月31日</span>
@@ -14,7 +14,6 @@
 					<span class="m_2">13281</span>
 				</span>
 			</div>
-			
 			<div v-for="(i,index) in 5" class="item" key=index>
 					<div class="img">
 						<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425433535&di=f7d324b2c95bd6f203fb8741290c02e3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D41481487a2773912d02b8d219161e374%2Ff3d3572c11dfa9ec3d58042d69d0f703918fc192.jpg" alt="">
@@ -48,7 +47,6 @@
 	@import "../../../common/css/common.scss";
 	.box{
 		width: 100%;
-		background-color: #e5e5e5;
 		.nav{
 			background-color: #e5e5e5;
 			padding: rem(8px) rem(13px);
@@ -61,9 +59,7 @@
 			}
 		}
 		.body{
-			background-color: #ffffff;
-			padding: rem(15px) rem(15px);
-			margin-bottom: rem(10px);
+			padding: rem(13px) rem(14px);
 			div{
 				&.header{
 					border-bottom: #e5e5e5 solid rem(1px);
@@ -110,7 +106,7 @@
 							}
 						}
 						&.text_box{
-							width: 74%;
+							width: 80%;
 							.left{
 								margin-right: 14%;
 								.name_1{
@@ -134,8 +130,8 @@
 								p{
 									&.numb{
 										font-size: rem(18px);
-										line-height: rem(100px);
 										color: #ff9800;
+										line-height: rem(100px);
 									}
 								}
 							}

@@ -8,11 +8,7 @@
 </template>
 <script>
 	export default {
-		props: ['title','style'],
-		mounted(){
-			if(this.style){}
-			this.$refs._header.cssText = this.style
-		},
+		props: ['title'],
 		data(){
 			return {
 

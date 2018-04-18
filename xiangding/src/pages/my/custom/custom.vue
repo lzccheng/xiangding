@@ -107,7 +107,8 @@
                 .smile{
                 	font-size: rem(19px);
                 	float: right;
-                	margin: auto 4%;
+                	line-height: rem(28px);
+                	margin-right: rem(5px);
                 }
                 input{
                 	width: 80%;

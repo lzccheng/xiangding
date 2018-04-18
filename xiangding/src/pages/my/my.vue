@@ -7,6 +7,7 @@
 					<div class="text">
 						<span>最尊贵的会员</span><br>
 						<span>ID:{{msg.id}}</span>
+						<router-link tag="span" to="/my/myMessage" class="i"><i class="fas fa-cog"></i></router-link>
 					</div>
 				</p>
 			</div>
@@ -202,12 +203,20 @@
 					
 				}
 				.text{
+						width: 75%;
 						position: absolute;
 						left: rem(60px);
 						top: rem(23px);
 						margin: rem(5px) rem(8px);
 						font-size: rem(14px);
 						color: #fff;
+						.i{
+							position: absolute;
+							top: 0;
+							right: 0;
+							color: #ffffff;
+							font-size: rem(25px);
+						}
 					}
 				img{
 					width: rem(60px);
@@ -219,15 +228,14 @@
 			.cash{
 				position: absolute;
 				right: 0;
-				top: rem(20px);
+				top: rem(100px);
 				color: #fff;
-				font-size: rem(14px);
-				font-weight: bold;
+				background-color: #43c122;
 				letter-spacing:2px;
-				border-radius: 12px 0 0 12px;
+				border-radius: rem(28px) 0 0 rem(28px);
 				border: 2px solid #fff;
 				border-right: none;
-				padding: rem(5px) rem(20px);
+				padding: rem(8px) rem(22px);
 			}
 		}
 		.earn{

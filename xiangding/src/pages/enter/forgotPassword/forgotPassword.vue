@@ -4,14 +4,7 @@
 		<div class="body">
 			<div v-if="show">
 				<p>
-					<el-select v-model="value" placeholder="请选择">
-					    <el-option
-					      v-for="item in options"
-					      :key="item.value"
-					      :label="item.label"
-					      :value="item.value">
-					    </el-option>
-					</el-select>
+					<span class="chinese">中国大陆 +86</span>
 				</p>
 				<p class="input">
 					<input type="text" placeholder="请输入您绑定的手机号码">

@@ -13,7 +13,7 @@
 		    		<p class="agant">银河大酒店</p>
 		    		<p class="number"> 编码: 41567</p>
 		    	</div>
-		    	<span class="i"><i class="fas fa-cog"></i></span>
+		    	<router-link tag="span" to="/enter/hotelMessage" class="i"><i class="fas fa-cog"></i></router-link>
 		    </div>
 	    </div>
 	    <div class="line"></div>

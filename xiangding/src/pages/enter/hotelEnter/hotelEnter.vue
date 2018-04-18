@@ -44,8 +44,12 @@
 					<input type="text" placeholder="请输入电子邮箱" name="">
 				</p>
 				<p class="input">
+					<label>酒店地区:</label>
+					<span class="color_aaa">请选择酒店的详细地区 &nbsp;<i class="fas fa-chevron-down"></i></span>
+				</p>
+				<p class="input">
 					<label>酒店地址:</label>
-					<input type="text" placeholder="点击选择地址" name="">
+					<input type="text" placeholder="请输入酒店的详细地址" name="">
 				</p>
 				<p class="input">
 					<label>酒店收款账号:</label>
@@ -55,7 +59,7 @@
 					<label>代理商姓名:</label>
 					<input type="text" placeholder="请输入代理服务商的姓名" name="">
 				</p>
-				<p class="input">
+				<p class="mm">
 					<label>代理商电话:</label>
 					<input type="text" placeholder="请输入代理服务商的电话号码" name="">
 				</p>
@@ -110,6 +114,7 @@
 					width: 30%;
 				}
 				input{
+					width: 64%;
 					border: none;
 					height: rem(20px);
 					&::-webkit-input-placeholder { 
@@ -132,13 +137,11 @@
 				padding: rem(10px) 2%;
 				display: flex;
 				label{
-					font-size: rem(14px);
 					width: 30%;
 				}
 				input{
 					width: 60%;
 					border: none;
-					height: rem(20px);
 					&::-webkit-input-placeholder { 
 					    color:    #aaa;
 					}
@@ -157,14 +160,16 @@
 				margin-top: rem(15px);
 				text-align: center;
 			}
+			.color_aaa{
+				color: #aaa;
+			}
 			.get{
 				background-color: #8bc34a;
 				color: #ffffff;
 				position: absolute;
 				top: 0;
 				right: 0;
-				padding: rem(10px) rem(12px);
-				font-size: rem(14px);
+				padding: rem(10px) 4%;
 			}
 			.eye{
 				color: #8bc34a;
@@ -220,9 +225,7 @@
 				text-align: center;
 				color: #769de6;
 				font-size: rem(14px);
-				position: absolute;
-				bottom: rem(5px);
-				left: 38%;
+				margin-top: rem(20px);
 			}
 		}
 	}

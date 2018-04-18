@@ -4,34 +4,58 @@
 		<div class="body">
 			<ul>
 				<li class="item">
+					<span class="name">房间类型:</span>
+					<span class="select_1">
+						<el-select v-model="select2" slot="prepend" placeholder="请选择">
+					      <el-option label="免费取消" value="1"></el-option>
+					      <el-option label="总统房" value="2"></el-option>
+					      <el-option label="特惠商务房" value="3"></el-option>
+					    </el-select>
+					</span>
+				</li>
+				<li class="item">
+					<span class="name">房间价格:</span>
+					<span class="hide_1"><input type="text" placeholder="请填写房间的价格"></span>
+				</li>
+				<li class="item">
 					<span class="name">可售房数:</span>
-					<span class="hide_1">请填写房间数量</span>
+					<span class="hide_1"><input type="text" placeholder="请填写房间数量"></span>
 				</li>
 				<li class="item">
 					<span class="name">数量要求:</span>
-					<span class="hide_1">请填写团房最低订购间数</span>
+					<span class="hide_1"><input type="text" placeholder="请填写团房最低订购间数"></span>
 				</li>
 				<li class="item">
 					<span class="name">服务手机号:</span>
-					<span class="hide_1">请输入团房负责人的手机号码</span>
+					<span class="hide_1"><input type="text" placeholder="请输入团房负责人的手机号码"></span>
 				</li>
 				<li class="item">
 					<span class="name">早餐提供:</span>
-					<span class="hide_1">是否提供早餐</span>
+					<span class="hide_1"><input type="text" placeholder="是否提供早餐"></span>
 				</li>
 				<li class="item">
 					<span class="name">可住人数:</span>
-					<span class="hide_1">请输入房间可住人数</span>
+					<span class="hide_1"><input type="text" placeholder="请输入可住人数"></span>
+				</li>
+				<li class="item">
+					<span class="name">取消政策:</span>
+					<span class="select_1">
+						<el-select v-model="select3" slot="prepend" placeholder="请选择">
+					      <el-option label="免费取消" value="1"></el-option>
+					      <el-option label="付费取消-扣除10%费用" value="2"></el-option>
+					      <el-option label="付费取消-扣除20%费用" value="3"></el-option>
+					    </el-select>
+					</span>
 				</li>
 				<li class="item">
 					<span class="name">规格:</span>
-					<span class="select_1">
-						<el-select v-model="select3" slot="prepend" placeholder="请选择">
+					<div class="select_1">
+						<el-select v-model="select1" slot="prepend" placeholder="请选择">
 					      <el-option label="60平方" value="1"></el-option>
 					      <el-option label="70平方" value="2"></el-option>
 					      <el-option label="80平方" value="3"></el-option>
 					    </el-select>
-					</span>
+					</div>
 				</li>
 				<li class="item">
 					<span class="name">床型:</span>
@@ -46,9 +70,9 @@
 					<span class="name">双人床:</span>
 					<div class="select_1">
 						<el-select v-model="select5" slot="prepend" placeholder="请选择">
-						<el-option label="1.2米" value="1"></el-option>div
-					      <el-option label="1.3米" value="2"></el-option>
-					      <el-option label="1.5米" value="3"></el-option>
+						<el-option label="1.2" value="1"></el-option>
+					      <el-option label="1.3" value="2"></el-option>
+					      <el-option label="1.5" value="3"></el-option>
 					    </el-select>
 					</div>
 				</li>
@@ -109,9 +133,11 @@
 				  input3: '',
 			      input4: '',
 			      input5: '',
-			      select3: '60平方',
+			      select1: '60平方',
+			      select2: '商务大床房',
+			      select3: '免费取消',
 			      select4: '1张',
-			      select5: '1.2米',
+			      select5: '1.2',
 			      select6: '是',
 			      checkList: ['选中且禁用','24小时热水']
 			}
@@ -128,6 +154,7 @@
 		.body{
 			padding: 0 rem(16px);
 			.item{
+				position: relative;
 				border-bottom: #e5e5e5 solid rem(1px);
 				padding: rem(15px) 0;
 				.select{
@@ -138,8 +165,27 @@
 					color: #e5e5e5;
 				}
 				.hide_1{
-					margin-left: 5%;
 					color: #e5e5e5;
+					float: right;
+					input{
+						width: 73%;
+						position: absolute;
+						right: 0;
+						bottom: rem(15px);
+						border: none;
+						&::-webkit-input-placeholder { 
+						    color:    #aaa;
+						}
+						&:-moz-placeholder { 
+						    color:    #aaa;
+						}
+						&::-moz-placeholder { 
+						    color:    #aaa;
+						}
+						&:-ms-input-placeholder { 
+						    color:    #aaa;
+						}
+					}
 				}
 				.select_1{
 					display: inline-block;

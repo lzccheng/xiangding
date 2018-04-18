@@ -40,7 +40,11 @@ import orderStatus from '@/pages/enter/orderStatus/orderStatus'
 import forgotPassword from '@/pages/enter/forgotPassword/forgotPassword'
 import cancelRoom from '@/pages/my/cancelRoom/cancelRoom'
 import weChatCash from '@/pages/my/weChatCash/weChatCash'
+import myMessage from '@/pages/my/myMessage/myMessage'
 import myCard from '@/pages/enter/myCard/myCard'
+import hotelMessage from '@/pages/enter/hotelMessage/hotelMessage'
+import incomeTable from '@/pages/my/incomeTable/incomeTable'
+import cardMessage from '@/pages/enter/cardMessage/cardMessage'
 
 Vue.use(Router)
 
@@ -191,6 +195,14 @@ export default new Router({
       }
     },
     {
+      path: '/enter/cardMessage/cardMessage',
+      name: 'cardMessage',
+      component: cardMessage,
+      meta: {
+        title: '酒店管理添加银行卡'
+      }
+    },
+    {
       path: '/enter/hotelManage/orderManage',
       name: 'orderManage',
       component: orderManage,
@@ -212,6 +224,14 @@ export default new Router({
       component: hotelEnter,
       meta: {
         title: '酒店入驻'
+      }
+    },
+     {
+      path: '/enter/hotelMessage',
+      name: 'hotelMessage',
+      component: hotelMessage,
+      meta: {
+        title: '酒店信息'
       }
     },
     {
@@ -252,6 +272,22 @@ export default new Router({
       component: custom,
       meta: {
         title: '我的客服'
+      }
+    },
+     {
+      path: '/my/incomeTable',
+      name: 'incomeTable',
+      component: incomeTable,
+      meta: {
+        title: '我的收支明细'
+      }
+    },
+     {
+      path: '/my/myMessage',
+      name: 'myMessage',
+      component: myMessage,
+      meta: {
+        title: '我的信息'
       }
     },
     {

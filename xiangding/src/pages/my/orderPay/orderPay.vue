@@ -191,18 +191,6 @@
 							<div class="middle_4">
 								<ul>
 									<li class="item">
-										<span class="day">天数</span>
-										<span class="number_box">
-											 <el-input-number size="mini" v-model="num7"></el-input-number>
-										</span>
-									</li>
-									<li class="item">
-										<span class="day">房间</span>
-										<span class="number_box">
-											  <el-input-number size="mini" v-model="num7"></el-input-number>
-										</span>
-									</li>
-									<li class="item">
 									    <span class="day">商品金额</span>
 										<span class="number_box">
 											<span class="money_icon">¥</span>
@@ -240,9 +228,9 @@
 <script>
 	export default {
 		mounted(){
-			console.log(this.$refs.tab)
-			this.$refs._line.style.left = this.$refs.tab.lastChild.offsetLeft + 'px'
-			this.$refs._line.style.width =  this.$refs.tab.lastChild.offsetWidth + 'px'
+			// console.log(this.$refs.tab)
+			// this.$refs._line.style.left = this.$refs.tab.lastChild.offsetLeft + 'px'
+			// this.$refs._line.style.width =  this.$refs.tab.lastChild.offsetWidth + 'px'
 		},
 		data(){
 			return {
@@ -470,7 +458,7 @@
 						.numb{
 							color: #43c122;
 							position: absolute;
-							right: 0;
+							right: 3%;
 						    top: 0;
 						    margin-top: rem(3px);
 						    font-size: rem(14px);
@@ -503,7 +491,7 @@
 						}
 						.money_icon{
 							font-size: rem(17px);
-							margin-right: rem(5px);
+							margin-right: 2%;
 						}
 					}
 				}

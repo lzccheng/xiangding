@@ -1,18 +1,17 @@
 <template>
 	<div class="box">
 		<Header title="历史收益"/>
+		<div class="nav">
+			<span class="calender"><i class="far fa-calendar-plus"></i></span>
+			<span class="time">2018-02-12</span>
+		</div>
 		<div class="body">
 			<div class="header">
-				<span class="choice">筛选</span>
-				<span class="i"><i class="fas fa-sort-down"></i></span>
-				<span class="input">请输入您要查找的酒店</span>
-			</div>
-			<div class="nav">
-				<span class="calender"><i class="far fa-calendar-plus"></i></span>
-				<span class="time">2018-02-12</span>
-				<span class="right">
-					<span class="money_icon">¥</span>
-					<span class="money_numb">300.00</span>
+				<span class="green"></span>
+				<span class="time">1月31日</span>
+				<span class="money">
+					<span class="m_1">¥</span>
+					<span class="m_2">13281</span>
 				</span>
 			</div>
 			<div v-for="(i,index) in 5" class="item" key=index>
@@ -48,43 +47,45 @@
 	@import "../../../common/css/common.scss";
 	.box{
 		width: 100%;
+		.nav{
+			background-color: #e5e5e5;
+			padding: rem(8px) rem(13px);
+			.calender{
+				font-size: rem(19px);
+				margin-right: 7%;
+			}
+			.time{
+				font-size: rem(14px);
+			}
+		}
 		.body{
 			padding: rem(13px) rem(14px);
 			div{
 				&.header{
-					font-size: rem(14px);
-					padding-bottom: rem(4px);
-					.i{
-						font-size: rem(16px);
-					}
-					.input{
-						color: #aaa;
-						margin-left: 3%;
-					}
-				}
-				&.nav{
-					background-color: #e5e5e5;
-					padding: rem(8px) rem(13px);
-					.calender{
-						font-size: rem(19px);
-						margin-right: 7%;
+					border-bottom: #e5e5e5 solid rem(1px);
+					padding-bottom: rem(10px);
+					.green{
+						border: #43c122 solid rem(2px);
+						height: rem(5px);
+						margin-right: 4%;
 					}
 					.time{
+						font-weight: bold;
 						font-size: rem(14px);
 					}
-					.right{
-						color: #ff982d;
+					.money_icon{
+						font-size: rem(20px);
+					}
+					.money{
 						float: right;
-						.money_icon{
-							font-size: rem(17px);
-							}
-						.money_numb{
-							font-size: rem(17px);
+						color: #ff9800;
+						font-size: rem(20px);
+						.m_2{
 							font-weight: bold;
-							float: right;
 						}
 					}
 				}
+				
 				&.item{
 					position: relative;
 					width: 100%;

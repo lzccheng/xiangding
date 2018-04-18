@@ -135,7 +135,7 @@
 				position: absolute;
 				top: rem(70px);
 				right: rem(20px);
-				z-index: 999;
+				z-index: 100;
 			}
 		}
 		.msg{

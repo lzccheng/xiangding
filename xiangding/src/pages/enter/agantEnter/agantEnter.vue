@@ -61,10 +61,12 @@
 			border-top: 0.5px solid #aaa;
 			padding-bottom: rem(100px);
 			.photo{
+				width: 100%;
 				position: relative;
 				border-top: #aaa solid rem(1px);
 				border-bottom: #aaa solid rem(1px);
-				padding: rem(43px) 3% rem(80px);
+				padding: rem(43px) 2% rem(80px);
+				text-align: center;
 				.icon_photo{
 					padding: rem(30px) 19%;
 					border: #aaa solid rem(1px);
@@ -186,7 +188,7 @@
 				position: absolute;
 				top: 0;
 				right: 0;
-				padding: rem(13px) rem(12px);
+				padding: rem(13px) 4%;
 				font-size: rem(14px);
 			}
 			.eye{

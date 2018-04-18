@@ -30,7 +30,7 @@
                     </div>
                     <div class="i">
                         <br/>
-                        <p class="room_nmb">详情</p>
+                        <router-link tag="p" to="/my/incomeTable" class="room_nmb">详情</router-link>
                     </div>
                 </div>      
             </div>

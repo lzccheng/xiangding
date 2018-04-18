@@ -305,6 +305,7 @@
 				position: fixed;
 				bottom: 0;
 				left: 0;
+				z-index: 99;
 				.need_pay{
 					font-size: rem(15px);
 					margin-bottom: rem(15px);
