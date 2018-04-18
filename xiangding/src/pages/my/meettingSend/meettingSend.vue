@@ -5,11 +5,11 @@
 			<ul>
 				<li class="item">
 				   <span class="title">会议室价格:</span>
-				   <span class="hide">请填写会议室价格</span>
+				   <span class="hide"><input type="text" placeholder="请填写会议室价格"></span>
 				</li>
 				<li class="item">
 					<span class="title">会议室数量:</span>
-					<span class="hide">填写酒店会议室数量</span>
+					<span class="hide"><input type="text" placeholder="请填写酒店会议室数量"></span>
 				</li>
 				<li class="item">
 					<span class="title">会议室面积:</span>
@@ -22,12 +22,22 @@
 					</span>
 				</li>
 				<li class="item">
+					<span class="title">窗户:</span>
+					<span class="select">
+						<el-select v-model="select2" slot="prepend" placeholder="请选择">
+					      <el-option label="是" value="1"></el-option>
+					      <el-option label="否" value="2"></el-option>
+					      <el-option label="部分有窗" value="3"></el-option>
+					    </el-select>
+					</span>
+				</li>
+				<li class="item">
 					<span class="title">服务手机号:</span>
-					<span class="hide">请输入团房负责人的手机号码</span>
+					<span class="hide"><input type="text" placeholder="请输入团房负责人的手机号码"></span>
 				</li>
 				<li class="item">
 					<span class="title">可容纳人数:</span>
-					<span class="hide">请填写会议室大约可容纳人数</span>
+					<span class="hide"><input type="text" placeholder="请填写会议室大约可容纳人数"></span>
 				</li>
 				<li class="item">
 				    <span class="title">房间照片:</span>
@@ -42,6 +52,27 @@
 						<div class="icon_1"><i class="far fa-plus-square"></i></div>
 				        <span class="add_text">添加房间</span>
 				    </div>
+			</div>
+			<div class="item">
+				<span class="name">房间配套设施:</span>
+				<div class="check">
+					  <el-checkbox-group v-model="checkList">
+					    <el-checkbox label="24小时热水"></el-checkbox>
+					    <el-checkbox label="拖鞋"></el-checkbox>
+					  </el-checkbox-group>
+					<div class="add">
+						<div class="add_more">
+							<i class="far fa-plus-square"></i>
+						</div>
+						<span class="add_text">添加更多</span>
+				    </div>
+				    <div class="add center">
+						<div class="add_more">
+							<i class="far fa-plus-square"></i>
+						</div>
+						<span class="add_text">添加会议室</span>
+				    </div>
+				</div>
 			</div>
 		</div>
 		<div class="send">
@@ -58,6 +89,7 @@
 			      input4: '',
 			      input5: '',
 			      select1: '60平方',
+			      select2: '是'
 			}
 		},
 		methods: {
@@ -70,7 +102,6 @@
 	.box{
 		width: 100%;
 		height: 90%;
-		background-color: #e5e5e5;
 		.body{
 			background-color: #ffffff;
 			padding: rem(11px) rem(10px);
@@ -78,14 +109,46 @@
 			.item{
 				margin-bottom: rem(15px);
 				.title{
-					text-align: center;
+					display: inline-block;
+					width: 25%;
 				}
 				.hide{
 					margin-left: rem(12px);
 					color: #e5e5e5;
+					input{
+						width: 60%;
+						border: none;
+						&::-webkit-input-placeholder { 
+						    color:    #aaa;
+						}
+						&:-moz-placeholder { 
+						    color:    #aaa;
+						}
+						&::-moz-placeholder { 
+						    color:    #aaa;
+						}
+						&:-ms-input-placeholder { 
+						    color:    #aaa;
+						}
+					}
 				}
 				.select{
 					margin-left: 5%;
+				}
+				.add{
+					margin-left: 70%;
+					margin-top: rem(27px);
+					.add_more{
+						display: inline-block;
+						color: #43c122;
+					}
+					
+				}
+				.center{
+					margin: 0;
+					text-align: center;
+					margin-top: rem(30px);
+					font-size: rem(14px);
 				}
 			}
 			.photo{

@@ -95,7 +95,9 @@
 						<span class="hide_1">最多添加4张</span>
 					</div>
 				</li>
-				<li class="item">
+				
+			</ul>
+			<div class="add room"><li class="item">
 					<span class="name">房间配套设施:</span>
 					<div class="check">
 						  <el-checkbox-group v-model="checkList">
@@ -113,8 +115,6 @@
 					    </div>
 					</div>
 				</li>
-			</ul>
-			<div class="add room">
 				<div class="add_more">
 					<i class="far fa-plus-square"></i>
 				</div>
@@ -157,6 +157,10 @@
 				position: relative;
 				border-bottom: #e5e5e5 solid rem(1px);
 				padding: rem(15px) 0;
+				.name{
+					display: inline-block;
+					width: 25%;
+				}
 				.select{
 					margin-left: 5%;
 				}
@@ -166,12 +170,7 @@
 				}
 				.hide_1{
 					color: #e5e5e5;
-					float: right;
 					input{
-						width: 73%;
-						position: absolute;
-						right: 0;
-						bottom: rem(15px);
 						border: none;
 						&::-webkit-input-placeholder { 
 						    color:    #aaa;
@@ -189,7 +188,6 @@
 				}
 				.select_1{
 					display: inline-block;
-					margin-left: 2%;
 				}
 				.check{
 					padding-top: rem(12px);
@@ -204,9 +202,7 @@
 					display: inline-block;
 					color: #43c122;
 				}
-				.add_text{
-					font-size: rem(13px);
-				}
+				
 			}
 			.room{
 				margin-top: rem(19px);
