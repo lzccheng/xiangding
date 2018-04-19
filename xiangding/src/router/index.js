@@ -7,6 +7,7 @@ import teamMeeting from '@/pages/teamMeeting/teamMeeting'
 import enter from '@/pages/enter/enter'
 import my from '@/pages/my/my'
 import hotelOrder from '@/pages/hotel/hotelOrder/hotelOrder'
+import payOrder from '@/pages/hotel/payOrder/payOrder'
 import hotelSearch from '@/pages/hotel/hotelSearch/hotelSearch'
 import hotelSelect from '@/pages/hotel/hotelSelect/hotelSelect'
 import cash from '@/pages/my/cash/cash'
@@ -20,6 +21,7 @@ import roomEnter from '@/pages/my/roomEnter/roomEnter'
 import meettingSend from '@/pages/my/meettingSend/meettingSend'
 import clockSend from '@/pages/my/clockSend/clockSend'
 import teamSend from '@/pages/my/teamSend/teamSend'
+import roomSend from '@/pages/my/roomSend/roomSend'
 import agantDetailt from '@/pages/my/agantDetailt/agantDetailt'
 import order from '@/pages/my/order/order'
 import orderPay from '@/pages/my/orderPay/orderPay'
@@ -44,6 +46,9 @@ import myMessage from '@/pages/my/myMessage/myMessage'
 import myCard from '@/pages/enter/myCard/myCard'
 import hotelMessage from '@/pages/enter/hotelMessage/hotelMessage'
 import incomeTable from '@/pages/my/incomeTable/incomeTable'
+import bindPhone from '@/pages/my/bindPhone/bindPhone'
+import bindCard from '@/pages/my/bindCard/bindCard'
+import payPassword from '@/pages/my/payPassword/payPassword'
 import cardMessage from '@/pages/enter/cardMessage/cardMessage'
 
 Vue.use(Router)
@@ -80,6 +85,14 @@ export default new Router({
       component: hotelSearch,
       meta: {
         title: '酒店搜索'
+      }
+    },
+    {
+      path: '/hotel/payOrder',
+      name: 'payOrder',
+      component: payOrder,
+      meta: {
+        title: '酒店支付订单'
       }
     },
     {
@@ -282,6 +295,30 @@ export default new Router({
         title: '我的收支明细'
       }
     },
+    {
+      path: '/my/bindPhone',
+      name: 'bindPhone',
+      component: bindPhone,
+      meta: {
+        title: '我的绑定手机'
+      }
+    },
+    {
+      path: '/my/bindCard',
+      name: 'bindCard',
+      component: bindCard,
+      meta: {
+        title: '我的绑定银行卡'
+      }
+    },
+    {
+      path: '/my/payPassword',
+      name: 'payPassword',
+      component: payPassword,
+      meta: {
+        title: '我的余额支付密码'
+      }
+    },
      {
       path: '/my/myMessage',
       name: 'myMessage',
@@ -320,6 +357,14 @@ export default new Router({
       component: teamSend,
       meta: {
         title: '我的团房发布'
+      }
+    },
+    {
+      path: '/my/roomSend/roomSend',
+      name: 'roomSend',
+      component: roomSend,
+      meta: {
+        title: '我的房间发布'
       }
     },
     {

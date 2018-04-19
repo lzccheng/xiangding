@@ -1,6 +1,8 @@
 <template>
 	<div class="box">
-		<Header title="酒店列表"/>
+
+
+		<Header :title="title"/>
 		<div class="_content">
 			<div class="_search">
 				<div class="_text">
@@ -40,7 +42,7 @@
 				<div class="text">活动优惠</div>
 			</div>
 			<div class="show">
-				<router-link :to="{path: '/hotelDetail',query:{id:2}}" tag="div" class="item" v-for="(i,index) in 10" :key='index'>
+				<router-link :to="{path: '/hotelDetail',query:{id:2,name: title}}" tag="div" class="item" v-for="(i,index) in 10" :key='index'>
 					<div class="img">
 						<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523706249725&di=7bd2cda519bba9f885f6504617bc853b&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F9922720e0cf3d7cac93f8f64f81fbe096a63a9d3.jpg" alt="">
 					</div>
@@ -86,6 +88,11 @@
 </template>
 <script>
 	export default {
+		mounted(){
+			if(this.$route.query.name){
+				this.title = this.$route.query.name
+			}
+		},
 		data(){
 			return {
 				arrItem: [
@@ -93,11 +100,18 @@
 
 					}
 				],
-				star: 5
+				star: 5,
+				title: '酒店列表'
 			}
 		},
 		methods: {
-
+		},
+		watch: {
+			$route (to,from){
+				if(to.name === 'hotelSearch'){
+					this.title = this.$route.query.name
+				}
+			}
 		}
 	}
 </script>

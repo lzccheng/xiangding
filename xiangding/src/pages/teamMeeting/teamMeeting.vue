@@ -166,16 +166,16 @@
 							</div>
 						</li> -->
 					</ul>
-					<p class="btn"><router-link to="/hotel/hotelSearch" tag="button">开始搜索</router-link></p>
+					<p class="btn"><router-link :to="{path: '/hotel/hotelSearch',query: {name: arrItem[index_]}}" tag="button">开始搜索</router-link></p>
 					<div class="bottom">
-						<div>
+						<router-link tag="div" :to="{path: '/my/collection',query: {name: '浏览记录'}}">
 							<span><i class="fas fa-history"></i></span>
 							<span>浏览记录</span>
-						</div>
-						<div>
+						</router-link>
+						<router-link tag="div" :to="{path: '/my/collection',query: {name: '收藏酒店'}}">
 							<span><i class="far fa-star"></i></span>
 							<span>收藏酒店</span>
-						</div>
+						</router-link>
 					</div>
 				</div>
 			</div>

@@ -63,9 +63,9 @@
 			  </p>
 			 
 		</div>
-		 <p class="button">
+		 <router-link tag="p" to="/enter/hotelManage" class="button">
 		  	<span>确定修改</span>
-		  </p>
+		  </router-link>
 	</div>
 </template>
 <script>

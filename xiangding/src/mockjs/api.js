@@ -89,7 +89,7 @@
                     },
                     {
                         id: Random.range(img.length)[i],
-                        name: '特惠商务房',
+                        name: '商务大床房',
                         imgUrl: 'http://pic.35pic.com/normal/04/16/23/5713677_151916236164_2.jpg',
                         area: Random.natural( 10, 200 ),
                         price: Random.natural( 200, 1200 ),

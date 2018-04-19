@@ -1,6 +1,6 @@
 <template>
 	<div class="box">
-		<Header title="收藏记录"/>
+		<Header :title="head"/>
 		<div class="item">
 			<div class="img"></div>
 			<div class="content">
@@ -53,18 +53,38 @@
 				<span class="time">2018-03-11</span>
 			</div>
 		</div>
-		<p class="none">没有更多收藏</p>
+		<p class="none">没有更多{{name}}</p>
 	</div>
 </template>
 <script>
 	export default {
+		mounted(){
+			if(this.$route.query.name){
+				this.title = this.$route.query.name
+			}
+		},
 		data(){
 			return {
-
+				title:''
 			}
 		},
 		methods: {
 
+		},
+		computed: {
+			name(){
+				return this.title === '收藏酒店'?'收藏':'浏览记录'
+			},
+			head(){
+				return this.title === '收藏酒店'?'收藏记录':'浏览记录'
+			}
+		},
+		watch: {
+			$route (to,from){
+				if(to.name === 'collection'){
+					this.title = this.$route.query.name
+				}
+			}
 		}
 	}
 </script>

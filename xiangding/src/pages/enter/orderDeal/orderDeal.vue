@@ -26,8 +26,13 @@
 							<div class="right">
 								<p class="numb"><i class="fas fa-chevron-right"></i></p>
 							</div>
+							 <div class="view">
+								<span>拒绝</span>
+								<span class="agreement">同意</span>
+							</div>
 						</router-link>
 		            </div>
+
 				</div>
 			</div>
 			<div v-if="1==index_">
@@ -137,8 +142,9 @@
 						div{
 							padding-left: 1%;
 							&.img{
-								width: 25%;
-								height: rem(82px);
+								width: 26%;
+								height: rem(89px);
+								padding-bottom: rem(25px);
 								img{
 									width: 100%;
 									height: 100%;
@@ -155,6 +161,7 @@
 									}
 									.name_2{
 										color: #aaa;
+										margin: rem(6px) 0;
 										span{
 											color: #e73c46;
 										}	
@@ -163,11 +170,30 @@
 								.right{
 									position: absolute;
 									right: rem(20px);
-									bottom: rem(40px);
+									bottom: rem(69px);
 									p{
 										&.numb{
 											font-size: rem(16px);
 											color: #aaa;
+										}
+									}
+								}
+								.view{
+									padding-top: rem(10px);
+									span{
+										position: absolute;
+										right: 29%;
+										bottom: rem(5px);
+										padding: rem(6px) 9%;
+										border: #aaa solid rem(1px);
+										border-radius: rem(5px);
+										margin-right: 3%;
+										&.agreement{
+											position: absolute;
+											right: 0;
+											bottom: rem(5px);
+											border: #8bc34a solid rem(1px);
+											color: #8bc34a;
 										}
 									}
 								}

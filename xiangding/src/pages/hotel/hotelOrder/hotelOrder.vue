@@ -88,7 +88,7 @@
 				<p class="need_pay">需支付</p>
 				<p>
 					<span class="money_color">289.00元</span>
-					<span class="button">提交订单</span>
+					<router-link tag="span" to="/hotel/payOrder" class="button">提交订单</router-link>
 				</p>
 			</div>
 		</div>

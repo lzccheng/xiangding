@@ -1,6 +1,6 @@
 <template>
 	<div class="box">
-		<Header title="团房发布" />
+		<Header title="房间发布" />
 		<div class="body">
 			<ul>
 				<li class="item">
@@ -14,7 +14,7 @@
 					</span>
 				</li>
 				<li class="item">
-					<span class="name">房间价格:</span>
+					<span class="name">单间价格:</span>
 					<span class="hide_1"><input type="text" placeholder="请填写房间的价格"></span>
 				</li>
 				<li class="item">
@@ -22,7 +22,7 @@
 					<span class="hide_1"><input type="text" placeholder="请填写房间数量"></span>
 				</li>
 				<li class="item">
-					<span class="name">数量要求:</span>
+					<span class="name">可住人数:</span>
 					<span class="hide_1"><input type="text" placeholder="请填写团房最低订购间数"></span>
 				</li>
 				<li class="item">
@@ -31,11 +31,12 @@
 				</li>
 				<li class="item">
 					<span class="name">早餐提供:</span>
-					<span class="hide_1"><input type="text" placeholder="是否提供早餐"></span>
-				</li>
-				<li class="item">
-					<span class="name">可住人数:</span>
-					<span class="hide_1"><input type="text" placeholder="请输入可住人数"></span>
+					<span class="select_1">
+						<el-select v-model="select6" slot="prepend" placeholder="请选择">
+					      <el-option label="是" value="1"></el-option>
+					      <el-option label="否" value="2"></el-option>
+					    </el-select>
+					</span>
 				</li>
 				<li class="item">
 					<span class="name">取消政策:</span>
@@ -74,6 +75,7 @@
 					      <el-option label="1.3" value="2"></el-option>
 					      <el-option label="1.5" value="3"></el-option>
 					    </el-select>
+					    <span>米</span>
 					</div>
 				</li>
 				<li class="item">
@@ -96,22 +98,26 @@
 					</div>
 				</li>
 				<li class="item">
-				    <p class="name">房间配套设施:</p>
+				    <span class="name">房间配套设施:</span>
 					<div class="check">
 						  <el-checkbox-group v-model="checkList">
 						    <el-checkbox label="24小时热水"></el-checkbox>
 						    <el-checkbox label="拖鞋"></el-checkbox>
 						    <el-checkbox label="吹风机"></el-checkbox>
+						    <el-checkbox label="电视机"></el-checkbox>
+						    <el-checkbox label="有线无线宽带"></el-checkbox>
 						  </el-checkbox-group>
-						  <span class="add_more"><i class="far fa-plus-square"></i></span>
+						  <span class="room_add"><i class="far fa-plus-square"></i></span>
 						  <span>添加更多</span>
 					</div>
 				</li>
 			</ul>
-			<div class="add_room">
-				<span><i class="far fa-plus-square"></i></span>
-				<span class="color">添加房间</span>
-			</div>
+			<div class="add room">
+				<div class="add_more">
+					<i class="far fa-plus-square"></i>
+				</div>
+				<span class="add_text">添加房间</span>
+		    </div>
 			<div class="send">
 				<button class="green_btn">发布</button>
 			</div>
@@ -131,7 +137,7 @@
 			      select4: '1张',
 			      select5: '1.2',
 			      select6: '是',
-			      checkList: ['复选框 A']
+			      checkList: ['选中且禁用','24小时热水']
 			}
 		},
 		methods: {
@@ -155,7 +161,7 @@
 				}
 				.select{
 					margin-left: 5%;
-			     }
+				}
 				.hide{
 					margin-left: 2%;
 					color: #e5e5e5;
@@ -163,6 +169,7 @@
 				.hide_1{
 					color: #e5e5e5;
 					input{
+						width: 60%;
 						border: none;
 						&::-webkit-input-placeholder { 
 						    color:    #aaa;
@@ -181,12 +188,28 @@
 				.select_1{
 					display: inline-block;
 				}
+				.check{
+					padding-top: rem(12px);
+					padding-left: rem(40px);
+					display: inline-block;
+					.room_add{
+						color: #43c122;
+						padding-left: 60%;
+					}
+				}
+			}
+			.add{
+				margin-left: 60%;
+				margin-top: rem(27px);
 				.add_more{
+					display: inline-block;
 					color: #43c122;
 				}
+				
 			}
 			.room{
 				margin-top: rem(19px);
+				margin-left: 64%;
 				margin-bottom: rem(35px);
 			}
 			.item_1{
@@ -203,21 +226,12 @@
 					color: #43c122;
 				 }
 				.hide_1{
-					color: #e5e5e5;
-					margin-left: 5%;
-				}
+						color: #e5e5e5;
+						margin-left: 5%;
+					}
 			 }
 			}
-			.add_room{
-				text-align: center;
-				padding: rem(20px) 0;
-				color: #43c122;
-				.color{
-					color: #000;
-				}
-			}
 		}
-
 		.send{
 			padding: rem(10px) rem(20px);
 		}

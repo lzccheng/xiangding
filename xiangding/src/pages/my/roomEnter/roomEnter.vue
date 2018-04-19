@@ -8,21 +8,20 @@
 					<div class="con_box">
 						<p class="room_name">特惠商务房</p>
 						<span class="money_1">¥</span>
-						<span class="money_2">299</span>
+						<span class="money_2">299 </span>
 						<span class="spec">/间晚</span>
-						<span class="money_1">¥</span>
-						<span class="money_2">265</span>
-						<span class="spec">×20间/晚</span>
 						<p class="text">
-						  <span class="text_1">房间面积: 20平方</span>
-						  <el-switch
-							  v-model="value2"
-							  active-color="#aabbfd"
-							  inactive-color="#a7a5a6">
-						  </el-switch>
+						  <span class="text_1">房间面积:&nbsp; 20平方</span>
+						  <span class="icon">
+							  <el-switch
+								  v-model="value2"
+								  active-color="#aabbfd"
+								  inactive-color="#a7a5a6">
+							  </el-switch>
+						  </span>
 						</p>
-						<p class="text_2">已住房数: 20间 <span class="right">开启状态</span></p>
-						<p class="text">可售房间: 20,添加时间2018-1-12</p>
+						<p class="text_2">已住房数:&nbsp; 20间 <span class="right">开启状态</span></p>
+						<p class="text">可售房间:&nbsp; 20间</p>
 					</div>
 				</div>
 			</div>
@@ -46,8 +45,8 @@
 		</div>
 		<div class="control">
 			<div class="add" @click="onHandleChange(0)" :class="{active:(0==index_)}">
-			    <div class="icon_1"><i class="far fa-plus-square"></i></div>
-				<span>房间发布</span>
+			    <router-link tag="div" to="/my/roomSend/roomSend" class="icon_1"><i class="far fa-plus-square"></i></router-link>
+				<router-link tag="span" to="/my/roomSend/roomSend" >房间发布</router-link>
 			</div>
 			<div class="add" @click="onHandleChange(1)" :class="{active:(1==index_)}">
 			    <div class="icon_1"><i class="far fa-minus-square"></i></div>
@@ -121,7 +120,6 @@
 				float: right;
 				.room_name{
 					font-size: rem(17px);
-					margin-bottom: rem(3px);
 					font-weight: bold;
 				}
 				.money_1{
@@ -131,19 +129,19 @@
 					font-size: rem(23px);
 					color: #e51c23;
 				}
-				.spec{
-					color: #a7a5a6;
-					margin-right: 1%;
-				}
 				.text{
 					.text_1{
 						margin-right: 12%;
+					}
+					.icon{
+						padding-left: 29%;
 					}
 				}
 				.text_2{
 					.right{
 						color: #a7a5a6;
-						margin-left: 13%;
+						padding-left: 43%;
+						padding-bottom: rem(3px);
 					}
 				}
 			}

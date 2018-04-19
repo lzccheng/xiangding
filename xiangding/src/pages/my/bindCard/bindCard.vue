@@ -1,36 +1,35 @@
 <template>
 	<div class="box">
-		<Header title="我的信息"/>
-		
+		<Header title="银行卡信息"/>
 			<div class="form">
 				<p class="input">
+					<label>开户行</label>
+					<input type="text" placeholder="请输入开户行" name="">
+				</p>
+				<p class="input">
+					<label>开户行省份</label>
+					<input type="text" placeholder="请输入开户行" name="">
+				</p>
+				<p class="input">
+					<label>开户行城市</label>
+					<input type="text" placeholder="请输入开户行城市" name="">
+				</p>
+				<p class="input">
+					<label>开户行支行</label>
+					<input type="text" placeholder="请输入开户行支行" name="">
+				</p>
+				<p class="input">
+					<label>账号</label>
+					<input type="text" placeholder="请输入账号" name="">
+				</p>
+				<p class="mm">
 					<label>姓名</label>
 					<input type="text" placeholder="请输入姓名" name="">
 				</p>
-				<p class="input">
-					<label>手机号</label>
-					<input type="text" placeholder="请输入手机号" name="">
-					<router-link tag="span" to="/my/bindPhone" class="get">   &nbsp;<i class="fas fa-chevron-right"></i></router-link>
-				</p>
-				<p class="mm">
-					<label>微信号:</label>
-					<input type="text" placeholder="请输入微信号" name="">
-				</p>
 			</div>
-			<div class="form">
-				<p class="input">
-					<label>银行卡</label>
-					<router-link tag="span" to="/my/bindCard" class="get">   &nbsp;<i class="fas fa-chevron-right"></i></router-link>
-				</p>
-				<p class="mm">
-					<label>余额支付密码</label>
-					<router-link tag="span" to="/my/payPassword" class="get">   &nbsp;<i class="fas fa-chevron-right"></i></router-link>
-				</p>
-			</div>
-		
 			<div class="body">
 				<router-link class="button" tag="div" to="/enter/login">
-					<span>确认修改</span>
+					<span>绑定</span>
 				</router-link>
 			</div>
 	</div>
@@ -56,15 +55,16 @@
 		position: relative;
 		.form{
 			background-color: #ffffff;
-			margin: rem(8px) 0;
+			margin-top: rem(8px);
 			padding: rem(2px) 0 0 rem(15px);
 			border-top: 0.5px solid #aaa;
 			border-bottom: 0.5px solid #aaa;
 			.mm{
 				position: relative;
-				padding: rem(13px) rem(8px);
+				padding: rem(10px) 2%;
 				display: flex;
 				label{
+					font-size: rem(14px);
 					width: 30%;
 				}
 				input{
@@ -94,7 +94,7 @@
 					width: 30%;
 				}
 				input{
-					width: 40%;
+					width: 60%;
 					border: none;
 					&::-webkit-input-placeholder { 
 					    color:    #aaa;
@@ -114,12 +114,8 @@
 				margin-top: rem(15px);
 				text-align: center;
 			}
-			.get{
+			.color_aaa{
 				color: #aaa;
-				position: absolute;
-				top: 0;
-				right: 0;
-				padding: rem(10px) 4%;
 			}
 			.btn{
 				margin-top: rem(25px);
@@ -134,10 +130,11 @@
 			}
 		}
 		.body{
-			border-top: #aaa solid rem(1px);
 			background-color: #ffffff;
 			padding-bottom: rem(50px);
-			padding-top: rem(30px);
+			padding-top: rem(16px);
+			margin-top: rem(10px);
+			border-top: #aaa solid rem(1px);
 			.button{
 				background-color: #8bc34a;
 				color: #ffffff;
