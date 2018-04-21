@@ -109,11 +109,12 @@
   		<div class="msg">
   			<ul>
   				<li>
-  					<div class="map" @click="handleErea">
+            <!-- <div class="map" @click="handleErea"> -->
+  					<div class="map">
   						<span class="_right"><i class="fas fa-map-marker-alt"></i></span>
-	  					<span>{{selectedOptions[1]}}</span>
-	  					
-              
+              <!-- <span>{{selectedOptions[1]}}</span> -->
+	  					<span><input id="area" type="text" readonly="" placeholder="城市选择特效"  value="广东省,深圳市,南山区" v-model="area_value"/></span>
+              <input id="value1" type="hidden" value="20,234,504"/>
   					</div>
   					<span class="right"><i class="fas fa-angle-right"></i></span>
   					<p class="local">
@@ -250,14 +251,22 @@
           }).catch((err)=>{
             console.log(err)
           })
-          this.$axios({url:'/addons/yun_shop/api.php?i=3&route=home-page.index',method: 'get'}).then((res)=>{
-            console.log(222,res.data)
-          }).catch((err)=>{
-            console.log(11111,err)
-          })
+
+          let area = new LArea()
+          area.init({
+            'trigger': '#area',
+            'valueTo': '#value',
+            'keys': {
+                id: 'id',
+                name: 'name'
+            },
+            'type': 1,
+            'data': LAreaData
+          });
       },
       data(){
       	return {
+          area_value: '广东省,深圳市,南山区',
       		arrItem:[],
           hotel: [],
           pickerOptions1: {
@@ -519,6 +528,9 @@
             width: 70%;
             padding-top: rem(10px) ;
             display: inline-block;
+          }
+          #area{
+            border: none;
           }
           .local{
             float: right;

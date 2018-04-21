@@ -75,7 +75,7 @@
 		<div class="tab">
 			<div class="tab_header">
 				<div class="header" ref="tab">
-					<div v-for='(i,index) in arrItem' :key=index @click='onHandleClick(index,$event)'>{{i}}</div>
+					<div v-for='(i,index) in arrItem' :key=index @click='onHandleClick(index,$event)'>{{i.name}}</div>
 				</div>
 				<div class="line" ref="line"></div>
 			</div>
@@ -86,9 +86,11 @@
 				<div v-for="(i,index) in arrItem" v-if="index == index_" class="body">
 					<ul>
 						<li>
-							<span class="border_bottom" @click="onHandleErea">
+							<!-- <span class="border_bottom" @click="onHandleErea"> -->
+							<span class="border_bottom">
+								<!-- <span class="erea"> -->
 								<span class="erea">
-									{{selectedOptions[1]}}
+									<!-- {{selectedOptions[1]}} -->
 									<!-- <div class="select">
 										<el-cascader
 										    :options="options"
@@ -96,7 +98,8 @@
 										    @change="handleChange">
 									 	</el-cascader>
 									</div> -->
-									
+									<input type="text" @focus="handleBlur" :id="i.id" v-model="area_value">
+									<input type="hidden" :id="i.h_id">
 								</span>
 								<span class="icon"><i class="fas fa-angle-right"></i></span>
 							</span>
@@ -129,7 +132,7 @@
 							
 						</li>   
 						<li class="border_bottom" @click="onHandleMeetting">
-							<span class="text">{{i}}间数 : {{meettingNum}}</span>
+							<span class="text">{{i.name}}间数 : {{meettingNum}}</span>
 							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
 							<!-- <p>
 								<el-input placeholder="请输入数字" v-model="meetting_total" type="number">
@@ -166,7 +169,7 @@
 							</div>
 						</li> -->
 					</ul>
-					<p class="btn"><router-link :to="{path: '/hotel/hotelSearch',query: {name: arrItem[index_]}}" tag="button">开始搜索</router-link></p>
+					<p class="btn"><router-link :to="{path: '/hotel/hotelSearch',query: {name: arrItem[index_].name}}" tag="button">开始搜索</router-link></p>
 					<div class="bottom">
 						<router-link tag="div" :to="{path: '/my/collection',query: {name: '浏览记录'}}">
 							<span><i class="fas fa-history"></i></span>
@@ -200,13 +203,36 @@
 		mounted: function(){
 			this.$refs.line.style.marginLeft = this.$refs.tab.firstChild.offsetLeft + 'px'
 			this.$refs._box.style.width = window.innerWidth + 'px'
+	        new LArea().init({
+	            'trigger': '#choose_one',
+	            'valueTo': '#hidden_one',
+	            'keys': {
+	                id: 'id',
+	                name: 'name'
+	            },
+	            'type': 1,
+	            'data': LAreaData
+	        })
 		},
 		data(){
 			return {
+				area_value: "广东省,深圳市,南山区",
 				arrItem: [
-					'会议室',
-					'团房',
-					'钟点房'
+					{
+						name:'会议室',
+						id: 'choose_one',
+						h_id: 'hidden_one'
+					},
+					{
+						name:'团房',
+						id: 'choose_two',
+						h_id: 'hidden_two'
+					},
+					{
+						name:'钟点房',
+						id: 'choose_three',
+						h_id: 'hidden_three'
+					}
 				],
 				index_: 0,
 				close: true,
@@ -257,6 +283,9 @@
 			}
 		},
 		methods: {
+			handleBlur(event){
+				event.path[0].blur()
+			},
 			datePicker1(time){
 				_date = time.getTime()
 				this.date_value2 = new Date(time.getFullYear()+'/'+(time.getMonth()+1)+'/'+(time.getDate()+1))
@@ -268,6 +297,20 @@
 				event.path[2].lastElementChild.style.marginLeft = event.path[0].offsetLeft + 'px'
 				event.path[2].lastElementChild.style.width = common.getStyle(event.path[0],'width')
 				this.index_ = i
+				let that = this
+				setTimeout(()=>{
+					new LArea().init({
+			            'trigger': '#'+that.arrItem[i].id,
+			            'valueTo': '#'+that.arrItem[i].h_id,
+			            'keys': {
+			                id: 'id',
+			                name: 'name'
+			            },
+			            'type': 1,
+			            'data': LAreaData
+			        })
+				},50)
+				
 			},
 			onHandleClose(){
 				this.close = false
@@ -480,6 +523,13 @@
 							padding: rem(10px) 0;
 							.erea{
 								font-size: rem(18px);
+								position: relative;
+								input{
+									position: absolute;
+									left: rem(10px);
+									top: rem(5px);
+									border: none;
+								}
 							}
 							.icon{
 								margin-left: 50%;
