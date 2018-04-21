@@ -1,5 +1,6 @@
 <template>  
   <div class="box">
+  
       <div class="_box" ref="_box" @click="_boxClick">
         <div class="erea" ref="_erea" @click="handleCancel">
           <div class="_erea">
@@ -15,24 +16,32 @@
         <div class="date" ref="_date" @click="handleCancel">
           <p>
             <span>入住日期：</span>
-            <el-date-picker
+            <!-- <el-date-picker
                 v-model="value1"
                 type="date"
                 placeholder="入住日期" 
                 :picker-options="pickerOptions1" 
                 @change="handleChange" 
                 @focus="_blur">
-            </el-date-picker>
+            </el-date-picker> -->
+            <span>
+              <input id="date1" type="text" readonly="" @focus="handleBlur" placeholder="日期选择特效" data-lcalendar="2016-05-11,2016-05-11" v-model="date1_value"/>
+            </span>
+            <span><i class="fas fa-angle-right"></i></span>
           </p>
           <p>
             <span>退房日期：</span>
-            <el-date-picker
+            <!-- <el-date-picker
                 v-model="value2"
                 type="date"
                 placeholder="入住日期" 
                 :picker-options="pickerOptions2" 
                 @focus="_blur">
-            </el-date-picker>
+            </el-date-picker> -->
+            <span>
+              <input id="date2" type="text" readonly="" placeholder="日期选择特效" data-lcalendar="2016-05-11,2016-05-11" v-model="date2_value"/>
+            </span>
+            <span><i class="fas fa-angle-right"></i></span>
           </p>
           <div class="btn">
             <button @click="_boxClick" class="green_btn">确定</button>
@@ -247,7 +256,7 @@
             console.log(err)
           })
           this.$axios({url:'/api/addons/yun_shop/api.php?i=3&route=home-page.index',method: 'get'}).then((res)=>{
-            console.log(res.data)
+            // console.log(res.data)
           }).catch((err)=>{
             console.log(err)
           })
@@ -262,6 +271,26 @@
             },
             'type': 1,
             'data': LAreaData
+          });
+
+          // console.log(window)
+          let date = new Date()
+          let min_date = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()
+          let min_date2 = new Date(tomo.getTime()).getFullYear()+'-'+(new Date(tomo.getTime()).getMonth()+1)+'-'+new Date(tomo.getTime()).getDate()
+          // console.log(min_date)
+          var calendar1 = new LCalendar();
+          calendar1.init({
+              'trigger': '#date1', //标签id
+              'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+              'minDate': min_date, //最小日期
+              'maxDate': (new Date().getFullYear()+2) + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate() //最大日期
+          });
+          var calendar2 = new LCalendar();
+          calendar2.init({
+              'trigger': '#date2', //标签id
+              'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+              'minDate': min_date2, //最小日期
+              'maxDate': (new Date().getFullYear()+2) + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate() //最大日期
           });
       },
       data(){
@@ -306,12 +335,17 @@
           selectedOptions: ['广东省','广州市'],
           value1: new Date(),
           value2: tomo,
+          date1_value: new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate(),
+          date2_value: new Date(tomo.getTime()).getFullYear()+'-'+(new Date(tomo.getTime()).getMonth()+1)+'-'+new Date(tomo.getTime()).getDate(),
           input1: '',
           star: 4,
           price: [80, 800]
         }
       },
       methods: {
+        handleBlur(event){
+          event.path[0].blur()
+        },
         handleErea(){
           this._showBox()
           this.$refs._erea.style.display = 'block'
@@ -436,6 +470,10 @@
             padding: rem(10px) 0;
             span{
               color: #aaa;
+              input{
+                border: none;
+                color: #aaa;
+              }
             }
           }
         }
