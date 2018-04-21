@@ -1,6 +1,17 @@
 <template>
 	<div class="box">
 		<Header title="订单列表"/>
+		
+		<div class="back" v-if="back_show" @click="backHide">
+			<div class="alert" @click="cancelBubble">
+				<p class="tip">温馨提示</p>
+				<p>您确定取消订单吗 ?</p>
+				<p>
+					<span @click="backHide">取消</span>
+					<span>确定</span>
+				</p>
+			</div>
+		</div>
 
 		<div>
 			<div class="nav">
@@ -46,7 +57,7 @@
 								    </div>
 									
 									<div class="button">
-										<span class="change"><el-button type="text" @click="open4">取消订单</el-button></span>
+										<span class="change" @click="handleCancel">取消订单</span>
 										<router-link tag="span" :to="{path: '/my/order/orderPay',query: {isPay: false}}" class="pay">付款</router-link>
 									</div>
 								</div>
@@ -150,10 +161,20 @@
 					'待使用',
 					'全部订单'
 				],
-				index_: 0
+				index_: 0,
+				back_show: false
 			} 
 		},
 		methods: {
+			handleCancel(event){
+				this.back_show = true
+			},
+			backHide(){
+				this.back_show = false
+			},
+			cancelBubble(event){
+				event.cancelBubble = true
+			},
 			handleClick(i,event){
 				this.$refs._line.style.left = event.path[0].offsetLeft + 'px'
 				this.$refs._line.style.width =  event.path[0].offsetWidth +'px'
@@ -201,6 +222,49 @@
 		width: 100%;
 		min-height: 100%;
 		background-color: #e5e5e5;
+		.back{
+			width: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 999;
+			background-color: rgba(0,0,0,0.3);
+			height: 100%;
+			.alert{
+				width: 80%;
+				background-color: #ffffff;
+				position: absolute;
+				top: rem(200px);
+				left: 10%;
+				text-align: center;
+				border-radius: rem(8px);
+				.tip{
+					font-size: rem(14px);
+					font-weight: bold;
+				}
+				p{
+					padding-top: rem(20px);
+					&:first-child{
+						font-size: rem(14px);
+						font-weight: bold;
+					}
+					
+					display: flex;
+					justify-content: space-around;
+					span{
+						border-top: #aaa solid rem(1px);
+						width: 50%;
+						padding: rem(10px) 0;
+						&:first-child{
+							border-right: #aaa solid rem(1px);
+						}
+						&:last-child{
+							color: #43c122;
+						}
+					}
+				}
+			}
+		}
 		.nav{
 			position: relative;
 			div{
@@ -242,10 +306,10 @@
 						padding: rem(15px) 4%;
 						margin: rem(20px) 0;
 						border-radius: rem(8px);
+						position: relative;
 						.content{
 							margin-bottom: 3%;
 							p{
-								position: relative;
 								padding: rem(3px) 0;
 							}
 							.title{
@@ -256,9 +320,11 @@
 								font-size: rem(14px);
 							}
 							.cross{
-								font-size: rem(18px);
-								color: #e2e2e5;
-								float:right;
+								font-size: rem(19px);
+								color: #EBE6E4;
+								position: absolute;
+								top: rem(5px);
+								right: rem(10px);
 							}
 							.title_hide{
 								color: #bbbbbb;
@@ -275,8 +341,8 @@
 							}
 							.no_pay{
 								position: absolute;
-								right: 0;
-								top: rem(9px);
+								right: rem(15px);
+								top: rem(90px);
 
 							}
 							.enter{

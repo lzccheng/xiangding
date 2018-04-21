@@ -54,35 +54,39 @@
 					</p>
 				</div>
 				<div v-if="title === '会议室'">
-					<div v-for='(i,index) in room' :key='index' class="rooms">
-						<div>
-							<img :src="i.imgUrl">
+					<router-link tag="div" :to="{path:'/hotelDetail/hotelSelect',query:{name: title}}">
+						<div v-for='(i,index) in room' :key='index' class="rooms">
+							<div>
+								<img :src="i.imgUrl">
+							</div>
+							<div class="title">
+								<p>某某会议室</p>
+								<p>{{i.area}}m <sup>2</sup> / <span>{{people}}</span>人</p>
+							</div>
+							<div class="price">
+								<p>￥{{i.price}}元</p>
+								<p><router-link tag="button" :to="{path:'/hotelDetail/hotelSelect',query:{name: title}}">订房</router-link></p>
+							</div>
 						</div>
-						<div class="title">
-							<p>某某会议室</p>
-							<p>{{i.area}}m <sup>2</sup> / <span>{{people}}</span>人</p>
-						</div>
-						<div class="price">
-							<p>￥{{i.price}}元</p>
-							<p><router-link tag='button' :to="{path:'/hotelDetail/hotelSelect'}">订房</router-link></p>
-						</div>
-					</div>
+					</router-link>
 				</div>
 
 				<div v-else>
-					<div v-for='(i,index) in room' :key='index' class="rooms">
-						<div>
-							<img :src="i.imgUrl">
+					<router-link tag="div" :to="{path:'/hotelDetail/hotelSelect',query:{name: title}}">
+						<div v-for='(i,index) in room' :key='index' class="rooms">
+							<div>
+								<img :src="i.imgUrl">
+							</div>
+							<div class="title">
+								<p>{{i.name}}</p>
+								<p>{{i.area}}m <sup>2</sup> / <span>大床{{i.bed}}</span>m </p>
+							</div>
+							<div class="price">
+								<p>￥{{i.price}}元</p>
+								<p><router-link tag="button" :to="{path:'/hotelDetail/hotelSelect',query:{name: title}}">订房</router-link></p>
+							</div>
 						</div>
-						<div class="title">
-							<p>{{i.name}}</p>
-							<p>{{i.area}}m <sup>2</sup> / <span>大床{{i.bed}}</span>m </p>
-						</div>
-						<div class="price">
-							<p>￥{{i.price}}元</p>
-							<p><router-link tag='button' :to="{path:'/hotelDetail/hotelSelect'}">订房</router-link></p>
-						</div>
-					</div>
+					</router-link>
 				</div>
 				
 			</div>
@@ -119,7 +123,7 @@
 				distance: '',
 				near: [],
 				room: [],
-				title: '酒店详情',
+				title: '酒店列表',
 				people: 100
 			}
 		},
@@ -146,7 +150,9 @@
 				if(to.name == 'hotelDetail'){
 					this.getData()
 					if(this.$route.query.name){
-						this.title = this.$route.query.name;
+						this.title = this.$route.query.name
+					}else{
+						this.title = '酒店列表'
 					}
 				}
 			}

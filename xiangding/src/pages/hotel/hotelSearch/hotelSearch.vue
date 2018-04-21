@@ -1,40 +1,40 @@
 <template>
 	<div class="box">
-
-
 		<Header :title="title"/>
 		<div class="_content">
-			<div class="_search">
-				<div class="_text">
-					<div class="erea">
-						<span >广州</span>
-					</div>
-					<div class="date">
-						<span class="posi p1">
-							<span><span class="color">3.29 </span> 到</span>
-						</span>
-						<span class="posi p2">
-							<span><span class="color">3.30 </span> 离</span>
-						</span>
-					</div>
-					<div class="search_">
-						<span><i class="fas fa-search"></i></span>
-						<input type="text" placeholder="酒店 / 品牌" class="">
+		    <div class="top_box">
+				<div class="_search">
+					<div class="_text">
+						<div class="erea">
+							<span >广州</span>
+						</div>
+						<div class="date">
+							<span class="posi p1">
+								<span><span class="color">3.29 </span> 到</span>
+							</span>
+							<span class="posi p2">
+								<span><span class="color">3.30 </span> 离</span>
+							</span>
+						</div>
+						<div class="search_">
+							<span><i class="fas fa-search"></i></span>
+							<input type="text" placeholder="酒店 / 品牌" class="">
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="_tabs">
-				<div class="tab_">
-					<span>综合筛选</span>
-					<span><i class="fas fa-angle-down"></i></span>
-				</div>
-				<div class="tab_">
-					<span>星际价格</span>
-					<span><i class="fas fa-angle-down"></i></span>
-				</div>
-				<div class="tab_">
-					<span>位置信息</span>
-					<span><i class="fas fa-angle-down"></i></span>
+				<div class="_tabs">
+					<div class="tab_">
+						<span>综合筛选</span>
+						<span><i class="fas fa-angle-down"></i></span>
+					</div>
+					<div class="tab_">
+						<span>星际价格</span>
+						<span><i class="fas fa-angle-down"></i></span>
+					</div>
+					<div class="tab_">
+						<span>位置信息</span>
+						<span><i class="fas fa-angle-down"></i></span>
+					</div>
 				</div>
 			</div>
 			<div class="free">
@@ -58,7 +58,7 @@
 							<span>房间面积：30m <sup>2</sup></span>
 						</p>
 						<p>
-							<span>最多容纳：800人</span>
+							<span>剩余房间: 100间</span>
 						</p>
 						<p class="cancel">
 							<span>立减</span>
@@ -109,7 +109,11 @@
 		watch: {
 			$route (to,from){
 				if(to.name === 'hotelSearch'){
-					this.title = this.$route.query.name
+					if(this.$route.query.name){
+						this.title = this.$route.query.name
+					}else{
+						this.title = '酒店'
+					}
 				}
 			}
 		}
@@ -120,81 +124,93 @@
 	.box{
 		width: 100%;
 		._content{
+			// position: fixed;
+			// top: rem(50px);
+			// left: 0;
+			// z-index: 999;
 			background-color: #EDEDED;
-			._search{
-				background-color: #8BC34A;
-				padding:rem(5px) rem(10px);
-				._text{
-					height: rem(30px);
-					line-height: rem(30px);
-					background-color: #fff;
-					border-radius: rem(5px);
-					padding: 5px rem(13px);
-					>div{
-						display: inline-block;
-						&.erea{
-							padding-right: rem(8px);
-							border-right: 1px solid #8BC34A;
-							span{
-								color: #8BC34A;
-								font-size: rem(14px);
-							}
-						}
-						&.date{
-							width: 20%;
-							position: relative;
-							.posi{
-								position: absolute;
-								left: 0;
-								padding-left: rem(10px);
-								.color{
-									color: #8BC34A;
+			padding-top: rem(92px);
+			.top_box{
+				width: 100%;
+				position: fixed;
+				top: rem(50px);
+				left: 0;
+				z-index: 999;
+				._search{
+					background-color: #43c122;
+					padding:rem(5px) rem(10px);
+					._text{
+						height: rem(30px);
+						line-height: rem(30px);
+						background-color: #fff;
+						border-radius: rem(5px);
+						padding: 5px rem(13px);
+						>div{
+							display: inline-block;
+							&.erea{
+								padding-right: rem(8px);
+								border-right: 1px solid #43c122;
+								span{
+									color: #43c122;
+									font-size: rem(14px);
 								}
 							}
-							.p1{
-								top: rem(-30px); 
-							}
-							.p2{
-								top: rem(-12px);
-							}
-						}
-						&.search_{
-							width: 50%;
-							font-size: rem(16px);
-							border-left: 1px solid #8BC34A;
-							span{
-								display: inline-block;
-								padding: 0 rem(8px);
-							}
-							input{
-								width: 70%;
-								border: none;
-								padding: rem(3px) rm(8px);
-								font-size: rem(14px);
-								&::-webkit-input-placeholder { 
-								    color:    #aaa;
+							&.date{
+								width: 20%;
+								position: relative;
+								.posi{
+									position: absolute;
+									left: 0;
+									padding-left: rem(10px);
+									.color{
+										color: #43c122;
+									}
 								}
-								&:-moz-placeholder { 
-								    color:    #aaa;
+								.p1{
+									top: rem(-30px); 
 								}
-								&::-moz-placeholder { 
-								    color:    #aaa;
+								.p2{
+									top: rem(-12px);
 								}
-								&:-ms-input-placeholder { 
-								    color:    #aaa;
+							}
+							&.search_{
+								width: 50%;
+								font-size: rem(16px);
+								border-left: 1px solid #43c122;
+								span{
+									display: inline-block;
+									padding: 0 rem(8px);
+								}
+								input{
+									width: 70%;
+									border: none;
+									padding: rem(3px) rm(8px);
+									font-size: rem(14px);
+									&::-webkit-input-placeholder { 
+									    color:    #aaa;
+									}
+									&:-moz-placeholder { 
+									    color:    #aaa;
+									}
+									&::-moz-placeholder { 
+									    color:    #aaa;
+									}
+									&:-ms-input-placeholder { 
+									    color:    #aaa;
+									}
 								}
 							}
 						}
 					}
 				}
-			}
-			._tabs{
-				display: flex;
-				justify-content: space-around;
-				border-bottom: 1px solid #aaa;
-				background-color: #fff;
- 				.tab_{
-					padding: rem(12px);
+				._tabs{
+					display: flex;
+					justify-content: space-around;
+					border-bottom: 1px solid #aaa;
+					background-color: #fff;
+	 				.tab_{
+						padding: rem(12px);
+					}
 				}
 			}
 			.free{

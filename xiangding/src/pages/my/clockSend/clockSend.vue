@@ -1,92 +1,93 @@
 <template>
 	<div class="box">
-		<Header title="钟点房发布"/>
+		<Header title="钟点房发布" />
 		<div class="body">
 			<ul>
 				<li class="item">
 					<span class="name">房间类型:</span>
-					<span class="select">
-						<el-select v-model="select1" slot="prepend" placeholder="请选择">
-					      <el-option label="商务大床房" value="1"></el-option>
+					<span class="select_1">
+						<el-select v-model="select2" slot="prepend" placeholder="请选择">
+					      <el-option label="免费取消" value="1"></el-option>
 					      <el-option label="总统房" value="2"></el-option>
 					      <el-option label="特惠商务房" value="3"></el-option>
 					    </el-select>
-					  </span>
+					</span>
 				</li>
 				<li class="item">
 					<span class="name">房间价格:</span>
-					<span class="hide">请填写房间价格</span>
+					<span class="hide_1"><input type="text" placeholder="请填写房间的价格"></span>
 				</li>
 				<li class="item">
 					<span class="name">服务手机号:</span>
-					<span class="hide_1">请输入团房负责人手机号码</span>
+					<span class="hide_1"><input type="text" placeholder="请输入团房负责人的手机号码"></span>
 				</li>
 				<li class="item">
 					<span class="name">住房时间:</span>
-					<span class="select">
-						<el-select v-model="select2" slot="prepend" placeholder="请选择">
+					<span class="select_1">
+						<el-select v-model="select3" slot="prepend" placeholder="请选择">
 					      <el-option label="3小时" value="1"></el-option>
 					      <el-option label="4小时" value="2"></el-option>
 					      <el-option label="5小时" value="3"></el-option>
 					    </el-select>
-					  </span>
+					</span>
 				</li>
 				<li class="item">
 					<span class="name">规格:</span>
-					<span class="select_1">
-						<el-select v-model="select3" slot="prepend" placeholder="请选择">
+					<div class="select_1">
+						<el-select v-model="select1" slot="prepend" placeholder="请选择">
 					      <el-option label="60平方" value="1"></el-option>
 					      <el-option label="70平方" value="2"></el-option>
 					      <el-option label="80平方" value="3"></el-option>
 					    </el-select>
-					</span>
+					</div>
 				</li>
 				<li class="item">
 					<span class="name">床型:</span>
-					<span class="select_1">
+					<div class="select_1">
 						<el-select v-model="select4" slot="prepend" placeholder="请选择">
 					      <el-option label="1张" value="1"></el-option>
 					      <el-option label="2张" value="2"></el-option>
 					    </el-select>
-					</span>
+					</div>
 				</li>
 				<li class="item">
 					<span class="name">双人床:</span>
-					<span class="select_2">
+					<div class="select_1">
 						<el-select v-model="select5" slot="prepend" placeholder="请选择">
-						<el-option label="1.2米" value="1"></el-option>
-					      <el-option label="1.3米" value="2"></el-option>
-					      <el-option label="1.5米" value="3"></el-option>
-					    </el-select>
-					</span>
+						<el-option label="1.2" value="1"></el-option>
+					      <el-option label="1.3" value="2"></el-option>
+					      <el-option label="1.5" value="3"></el-option>
+					    </el-select>  
+					    <span> &nbsp;米</span>
+					</div>
 				</li>
 				<li class="item">
 					<span class="name">窗户:</span>
-					<span class="select_1">
+					<div class="select_1">
 						<el-select v-model="select6" slot="prepend" placeholder="请选择">
 					      <el-option label="是" value="1"></el-option>
 					      <el-option label="否" value="2"></el-option>
 					      <el-option label="部分有窗" value="3"></el-option>
 					    </el-select>
-					</span>
+					</div>
 				</li>
 				<li class="item_1">
 				    <span class="name">房间照片:</span>
+				    <div class="photo">
+						<div class="icon">
+							<i class="far fa-plus-square"></i>
+						</div>
+						<span class="hide_1">最多添加4张</span>
+					</div>
 				</li>
 			</ul>
-			<div class="photo">
-				<div class="icon">
-					<i class="far fa-plus-square"></i>
-				</div>
-				<span class="hide_1">最多添加4张</span>
-					<div class="add_room">
-						<div class="icon_1"><i class="far fa-plus-square"></i></div>
-				        <span class="add_text">添加房间</span>
-				    </div>
+			<div class="add_room">
+				<span><i class="far fa-plus-square"></i></span>
+				<span class="color">添加房间</span>
 			</div>
-		</div>
-		<div class="send">
-			<button>发布</button>
+			<div class="send">
+				<button class="green_btn">发布</button>
+			</div>
 		</div>
 	</div>
 </template>
@@ -97,12 +98,13 @@
 				  input3: '',
 			      input4: '',
 			      input5: '',
-			      select1: '商务大床房',
-			      select2: '3小时',
-			      select3: '60平方',
+			      select1: '60平方',
+			      select2: '商务大床房',
+			      select3: '3小时',
 			      select4: '1张',
-			      select5: '1.2米',
+			      select5: '1.2',
 			      select6: '是',
+			      checkList: ['24小时热水']
 			}
 		},
 		methods: {
@@ -115,71 +117,93 @@
 	.box{
 		width: 100%;
 		.body{
-			padding: 0 rem(12px);
+			padding: 0 rem(16px);
 			.item{
+				position: relative;
 				border-bottom: #e5e5e5 solid rem(1px);
 				padding: rem(15px) 0;
+				.check{
+					.check_box{
+						display: inline-block;
+						width: 33%;
+						padding: rem(3px) 0;
+					}
+				}
+				.padding-bottom{
+					padding-bottom: rem(10px);
+				}
 				.name{
-					font-size: rem(15px);
+					display: inline-block;
+					width: 25%;
 				}
 				.select{
-					margin-left: rem(40px);
-				}
+					margin-left: 5%;
+			     }
 				.hide{
-					margin-left: rem(40px);
+					margin-left: 2%;
 					color: #e5e5e5;
 				}
 				.hide_1{
-					margin-left: rem(25px);
 					color: #e5e5e5;
+					input{
+						width: 60%;
+						border: none;
+						&::-webkit-input-placeholder { 
+						    color:    #aaa;
+						}
+						&:-moz-placeholder { 
+						    color:    #aaa;
+						}
+						&::-moz-placeholder { 
+						    color:    #aaa;
+						}
+						&:-ms-input-placeholder { 
+						    color:    #aaa;
+						}
+					}
 				}
 				.select_1{
-					margin-left: rem(69px);
+					display: inline-block;
 				}
-				.select_2{
-					margin-left: rem(53px);
+				.add_more{
+					color: #43c122;
 				}
+			}
+			.room{
+				margin-top: rem(19px);
+				margin-bottom: rem(35px);
 			}
 			.item_1{
+				border-bottom: #e5e5e5 solid rem(1px);
 				padding: rem(15px) 0;
-				.name{
-					font-size: rem(15px);
-				}
-			}
-			.photo{
-				padding-bottom: rem(30px);
-				.title_1{
-					font-size: rem(17px);
-				 }
+				.photo{
+				padding-bottom: rem(4px);
 				.icon{
 					display: inline-block;
 					border: #c9c9c9 solid rem(1px);
 					padding: rem(32px) rem(35px);
-					margin-left: rem(120px);
+					margin-left: 35%;
 					border-radius: rem(9px);
-					font-size: rem(27px);
 					color: #43c122;
 				 }
 				.hide_1{
-						font-size: rem(15px);
-						color: #e5e5e5;
-						margin-left: rem(30px);
-					}
-				.add_room{
-					.icon_1{
-						display: inline-block;
-						color: #43c122;
-						margin-left: 67%;
-						margin-top: rem(10px);
-					}
+					color: #e5e5e5;
+					margin-left: 5%;
+				}
+			 }
+			}
+			.add_room{
+				text-align: center;
+				padding: rem(20px) 0;
+				color: #43c122;
+				.color{
+					color: #000;
 				}
 			}
 		}
+
 		.send{
-			padding: 10% 10%;
-			button{
-				@extend .green_btn;
-			}
+			padding: rem(10px) rem(20px);
 		}
 	}
 </style>

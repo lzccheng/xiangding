@@ -135,6 +135,14 @@
 </template>
 <script>
 	export default {
+		mounted(){
+			if(this.$route.query.text){
+				this.text = this.$route.query.text
+			}
+			if(this.$route.query.status){
+				this.status = this.$route.query.status
+			}
+		},
 		data(){
 			return {
 				status: 0,
@@ -143,7 +151,6 @@
 		},
 		methods: {
 			cilck(){
-				console.log(this.$route)
 			},
 			handleAgree(event){
 				this.status = 1
@@ -154,8 +161,14 @@
 		watch: {
 			$route(to,from){
 				if(to.name === "orderStatus"){
-					this.status = this.$route.query.status
+					if(this.$route.query.text){
+						this.text = this.$route.query.text
+					}
+					if(this.$route.query.status){
+						this.status = this.$route.query.status
+					}
 				}
+
 			}
 		}
 	}

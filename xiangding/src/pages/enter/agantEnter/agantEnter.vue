@@ -61,7 +61,6 @@
 			border-top: 0.5px solid #aaa;
 			padding-bottom: rem(100px);
 			.photo{
-				width: 100%;
 				position: relative;
 				border-top: #aaa solid rem(1px);
 				border-bottom: #aaa solid rem(1px);
@@ -73,21 +72,21 @@
 					border-radius: rem(5px);
 					color: #aaa;
 					font-size: rem(23px);
-					margin-right: 4%;
+					text-align: center;
 				}
 				.on{
 					position: absolute;
 					top: rem(120px);
-					left: 14%;
+					left: 18%;
 				}
 				.down{
 					position: absolute;
 					top: rem(120px);
-					left: 62%;
+					left: 63%;
 				}
 			}
 			.button{
-				background-color: #8bc34a;
+				background-color: #43c122;
 				font-size: rem(15px);
 				text-align: center;
 				padding: rem(10px) 0;
@@ -183,7 +182,7 @@
 				text-align: center;
 			}
 			.get{
-				background-color: #8bc34a;
+				background-color: #43c122;
 				color: #ffffff;
 				position: absolute;
 				top: 0;
@@ -194,13 +193,6 @@
 			.eye{
 				color: #8bc34a;
 				font-size: rem(17px);
-			}
-			.text_img{
-				width: 100%;
-				height: rem(200px);
-				margin-top: rem(15px);
-				background-color: #eee;
-				border-radius: rem(10px)
 			}
 			.btn{
 				margin-top: rem(25px);

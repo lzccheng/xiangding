@@ -550,7 +550,7 @@
 						button{
 							width: 100%;
 							border: none;
-							background-color: #8BC34A;
+							background-color: #43c122;
 							padding: rem(13px) 0;
 							color: #fff;
 							border-radius: rem(5px);

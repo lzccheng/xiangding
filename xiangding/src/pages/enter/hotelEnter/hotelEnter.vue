@@ -56,11 +56,11 @@
 					<input type="text" placeholder="请输入银行卡号" name="">
 				</p>
 				<p class="input">
-					<label>代理商姓名:</label>
-					<input type="text" placeholder="请输入代理服务商的姓名" name="">
+					<label>代理服务商姓名:</label>
+					<input type="text" placeholder="请输入代理服务商姓名" name="">
 				</p>
 				<p class="mm">
-					<label>代理商电话:</label>
+					<label>代理服务商电话:</label>
 					<input type="text" placeholder="请输入代理服务商的电话号码" name="">
 				</p>
 			</div>
@@ -164,7 +164,7 @@
 				color: #aaa;
 			}
 			.get{
-				background-color: #8bc34a;
+				background-color: #43c122;
 				color: #ffffff;
 				position: absolute;
 				top: 0;
@@ -172,7 +172,7 @@
 				padding: rem(10px) 4%;
 			}
 			.eye{
-				color: #8bc34a;
+				color: #43c122;
 				font-size: rem(17px);
 			}
 			.text_img{
@@ -214,7 +214,7 @@
 			padding-bottom: rem(50px);
 			padding-top: rem(16px);
 			.button{
-				background-color: #8bc34a;
+				background-color: #43c122;
 				color: #ffffff;
 				font-size: rem(16px);
 				text-align: center;

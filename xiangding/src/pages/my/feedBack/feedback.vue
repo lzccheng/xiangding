@@ -28,7 +28,7 @@
 	.box{
 		width: 100%;
 		.header{
-			background-color: #8ac24a;
+			background-color: #43c122;
 			padding: rem(10px) 5%;
 			.header_ask{
 				font-size: rem(18px);
@@ -45,7 +45,7 @@
 			.body_div{
 				display: flex;
 				align-items: center;
-				border: #8ac24a solid rem(2px);
+				border: #43c122 solid rem(2px);
 				border-radius: rem(15px);
 				margin-top: rem(22px);
 				padding: rem(10px) rem(10px);
@@ -66,7 +66,7 @@
 			.post{
 				width: rem(100px);
 				padding: rem(7px) rem(40px);
-				background-color: #8bc34a;
+				background-color: #43c122;
 				text-align: center;
 				color: #ffffff;
 				font-size: rem(14px);

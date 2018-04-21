@@ -21,18 +21,17 @@
 								<p class="name_1">商务大床房</p>
 								<p class="name_2">客户名称: 胡勇蝶</p>
 								<p class="name_2">入住: 3月28 &nbsp;&nbsp;退房: 3月29</p>
-								<p class="name_2">办理时间: 2018-1-12</p>
+								<p class="name_2">付款时间: 2018-1-12</p>
 							</div>
 							<div class="right">
 								<p class="numb"><i class="fas fa-chevron-right"></i></p>
 							</div>
 							 <div class="view">
-								<span>拒绝</span>
-								<span class="agreement">同意</span>
+								<router-link tag="span" :to="{path: '/enter/hotelManage/orderStatus', query: {status: 1,text: '拒绝住房'}}">拒绝</router-link>
+								<router-link tag="span" :to="{path: '/enter/hotelManage/orderStatus', query: {status: 1,text: '同意住房'}}" class="agreement" >同意</router-link>
 							</div>
 						</router-link>
 		            </div>
-
 				</div>
 			</div>
 			<div v-if="1==index_">
@@ -69,10 +68,17 @@
 					'待处理',
 					'已处理',
 				],
-				index_: 0
+				index_: 0,
+				status: 0,
+				text: '同意'
 			}
 		},
 		methods: {
+			handleAgree(event){
+				this.status = 1
+				console.log(event.path[0].innerText)
+				this.text = event.path[0].innerText
+			},
 			handleClick(i,event){
 				this.$refs._line.style.left = event.path[0].offsetLeft + 'px'
 				this.$refs._line.style.width =  event.path[0].offsetWidth +'px'
@@ -100,6 +106,7 @@
 	@import '../../../common/css/common.scss';
 	.box{
 		width: 100%;
+		background-color: #e5e5e5;
 		.nav{
 			position: relative;
 			border-bottom: #aaa solid rem(1px);
@@ -129,16 +136,16 @@
 		}
 		.show{
 			.body{
-				padding: rem(22px) 4%;
+				padding: rem(10px) 0;
 				div{
 					&.item{
+						background-color: #fff;
 						position: relative;
-						width: 100%;
 						display: flex;
 						justify-content: spase-around;
 						align-items: center;
-						padding: rem(15px) 0;
-						border-bottom: #e5e5e5 solid rem(1px);
+						padding: rem(15px) 2%;
+						border-bottom: #e5e5e5 solid rem(9px);
 						div{
 							padding-left: 1%;
 							&.img{
@@ -152,7 +159,11 @@
 								}
 							}
 							&.text_box{
-								width: 74%;
+								width: 67%;
+								position: absolute;
+								top: rem(20px);
+								left: 30%;
+								padding-bottom: rem(10px);
 								.left{
 									margin-right: 14%;
 									.name_1{
@@ -161,33 +172,36 @@
 									}
 									.name_2{
 										color: #aaa;
-										margin: rem(6px) 0;
+										padding-top: rem(3px);
 										span{
 											color: #e73c46;
 										}	
 									}
 								}
 								.right{
-									position: absolute;
-									right: rem(20px);
-									bottom: rem(69px);
+
 									p{
 										&.numb{
 											font-size: rem(16px);
 											color: #aaa;
+											position: absolute;
+											right: rem(20px);
+											top: rem(29px);
 										}
 									}
 								}
 								.view{
 									padding-top: rem(10px);
+									padding-bottom: rem(20px);
 									span{
+										display: inline-block;
 										position: absolute;
-										right: 29%;
+										right: 32%;
 										bottom: rem(5px);
 										padding: rem(6px) 9%;
 										border: #aaa solid rem(1px);
 										border-radius: rem(5px);
-										margin-right: 3%;
+										margin-right: 6%;
 										&.agreement{
 											position: absolute;
 											right: 0;

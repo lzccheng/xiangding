@@ -35,7 +35,7 @@
 				<p class="black">
 					<span>天数</span>
 					<span class="number_box">
-					    <el-input-number size="mini" v-model="num7"></el-input-number>
+					    <el-input-number size="mini" v-model="num6"></el-input-number>
 					</span>
 				</p>
 				<p class="black">
@@ -88,7 +88,7 @@
 				<p class="need_pay">需支付</p>
 				<p>
 					<span class="money_color">289.00元</span>
-					<router-link tag="span" to="/hotel/payOrder" class="button">提交订单</router-link>
+					<router-link class="button" :to="{path:'/hotel/payOrder',query:{name: title}}" tag='span'>提交订单</router-link>
 				</p>
 			</div>
 		</div>
@@ -104,6 +104,11 @@
 					autoplay: true
 				})
 			},100)
+			if(this.$route.query.name){
+				this.title = this.$route.query.name
+			}
+
+
 		},
 		data(){
 			return {
@@ -115,7 +120,20 @@
 					]
 				},
 				num7: 1,
-				checked: true
+				num6: 1,
+				checked: true,
+				title: '酒店列表'
+			}
+		},
+		watch: {
+			'$route':function(to,from){
+				if(to.name == 'hotelOrder'){
+					if(this.$route.query.name){
+						this.title = this.$route.query.name
+					}else{
+						this.title = '酒店列表'
+					}
+				}
 			}
 		}
 	}

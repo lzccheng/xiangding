@@ -147,7 +147,7 @@
 		<div class="myOrder">
 			<p class="text"><span>系统服务</span></p>
 			<div class="message">
-				<router-link tag="div" to="/my/collection">
+				<router-link tag="div" :to="{path: '/my/collection',query: {name: '收藏酒店'}}" >
 					<p><i class="far fa-bookmark"></i></p>
 					<p><span>我的收藏</span></p>
 				</router-link>

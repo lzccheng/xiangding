@@ -1,6 +1,6 @@
 <template>
 	<div class="box">
-		<Header title="商务大床房"/>
+		<Header :title="title"/>
 		<div class="img">
 			<img src="http://d6.yihaodianimg.com/N03/M04/F3/2C/CgQCs1NuM_WAOOJiAACkJWcB2XA42700.jpg">
 		</div>
@@ -55,15 +55,31 @@
 		</div>
 		<div class="btn">
 			<div class="total">￥289</div>
-			<router-link class="pay" to='/hotelDetail/hotelSelect/hotelOrder' tag='div'>预定</router-link>
+			<router-link class="pay" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title}}" tag='div'>预定</router-link>
 		</div>
 	</div>
 </template>
 <script>
 	export default {
+		mounted(){
+			if(this.$route.query.name){
+				this.title = this.$route.query.name
+			}
+		},
 		data(){
 			return {
-
+				title: '酒店列表'
+			}
+		},
+		watch: {
+			'$route':function(to,from){
+				if(to.name == 'hotelSelect'){
+					if(this.$route.query.name){
+						this.title = this.$route.query.name
+					}else{
+						this.title = '酒店列表'
+					}
+				}
 			}
 		}
 	}
@@ -126,8 +142,8 @@
 				margin-right: rem(15px);
 			}
 			.green{
-				border: 1px solid #8bc34a;
-				color: #8bc34a;
+				border: 1px solid #43c122;
+				color: #43c122;
 			}
 			.red{
 				border: 1px solid #e51c23;
@@ -154,7 +170,7 @@
 				width: 49%;
 				height: rem(50px);
 				display: inline-block;
-				background-color: #8bc34a;
+				background-color: #43c122;
 				line-height: rem(50px);
 				color: #fff;
 				font-size: rem(18px);

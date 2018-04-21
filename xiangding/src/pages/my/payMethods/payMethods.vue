@@ -1,31 +1,25 @@
 <template>
 	<div class="box">
 		<Header title="支付订单"/>
-		<div class="item">
-			<div class="img"><img src="../../../../static/img/payMethods/card.jpg" alt=""></div>
+		<div class="line"></div>
+		<div v-for="(i,index) in arrItem" :key="index"  class="item" @click="handleChange(index)">
+			<div class="img"><img :src="i.imgUrl" alt=""></div>
 			<div class="text">
-				<p>¥269</p>
-				<p>银河大酒店</p>
-			</div>
-		</div>
-		<div class="item">
-			<div class="img"><img src="../../../../static/img/payMethods/card.jpg" alt=""></div>
-			<div class="text">
-				<p>银行卡支付</p>
+				<p>{{i.text}}</p>
 				<span class="right">
 					<el-radio-group v-model="radio2">
-					    <el-radio :label="3">&nbsp;</el-radio>
+					    <el-radio :label="index">&nbsp;</el-radio>
 					  </el-radio-group>
 				</span>
 			</div>
 		</div>
-		<div class="item">
+		<!-- <div class="item">
 			<div class="img"><img src="../../../../static/img/payMethods/weChat.jpg" alt=""></div>
 			<div class="text">
 				<p>微信支付</p>
 				<span class="right">
 					<el-radio-group v-model="radio2">
-					    <el-radio :label="6">&nbsp;</el-radio>
+					    <el-radio :label="1">&nbsp;</el-radio>
 					  </el-radio-group>
 				</span>
 			</div>
@@ -36,7 +30,7 @@
 				<p>朋友代付</p>
 				<span class="right">
 					<el-radio-group v-model="radio2">
-					    <el-radio :label="9">&nbsp;</el-radio>
+					    <el-radio :label="2" checked>&nbsp;</el-radio>
 					  </el-radio-group>
 				</span>
 			</div>
@@ -47,11 +41,11 @@
 				<p>余额支付</p>
 				<span class="right">
 					<el-radio-group v-model="radio2">
-					    <el-radio :label="12">&nbsp;</el-radio>
+					    <el-radio :label="3">&nbsp;</el-radio>
 					  </el-radio-group>
 				</span>
 			</div>
-		</div>
+		</div> -->
 		<div class="bottom_box">
 		    <p class="button">确认支付</p>
 		</div>
@@ -62,11 +56,27 @@
 	export default {
 		data(){
 			return {
+				arrItem: [
+					{
+						imgUrl: '../../../../static/img/payMethods/weChat.jpg',
+						text: '微信支付'
+					},
+					{
+						imgUrl: '../../../../static/img/payMethods/friend.png',
+						text: '朋友代付'
+					},
+					{
+						imgUrl: '../../../../static/img/payMethods/pag.jpg',
+						text: '余额支付'
+					}
+				],
 				radio2: 3
 			}
 		},
 		methods: {
-
+			handleChange(index){
+				this.radio2 = index
+			}
 		}
 	}
 </script>
@@ -74,13 +84,16 @@
 	@import "../../../common/css/common.scss";
 	.box{
 		width: 100%;
-		padding-top: rem(15px);
 		position: relative;
 		padding-bottom: rem(60px);
+		.line{
+			border: #e5e5e5 solid rem(6px);
+		}
 		.item{
 			margin: rem(10px) 0;
 			display: flex;
 			border-bottom: #aaa solid rem(1px);
+			padding-top: rem(5px);
 			div{
 				margin-bottom: rem(10px);
 				&.img{
@@ -109,7 +122,7 @@
 		.bottom_box{
 			padding: rem(10px) 12%;
 			.button{
-				background-color: #8bc34a;
+				background-color: #43c122;
 				padding: rem(12px) 10%;
 				text-align: center;
 				color: #fff;

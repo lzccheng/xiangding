@@ -74,6 +74,7 @@
 					      <el-option label="1.3" value="2"></el-option>
 					      <el-option label="1.5" value="3"></el-option>
 					    </el-select>
+					    <span>&nbsp; 米</span>
 					</div>
 				</li>
 				<li class="item">
@@ -95,14 +96,21 @@
 						<span class="hide_1">最多添加4张</span>
 					</div>
 				</li>
-				<li class="item">
-				    <p class="name">房间配套设施:</p>
+				<li class="item ">
+				    <p class="name padding-bottom">房间配套设施:</p>
 					<div class="check">
+					<div class="padding-bottom">
 						  <el-checkbox-group v-model="checkList">
-						    <el-checkbox label="24小时热水"></el-checkbox>
-						    <el-checkbox label="拖鞋"></el-checkbox>
-						    <el-checkbox label="吹风机"></el-checkbox>
+						  	<span class="check_box"><el-checkbox label="24小时热水"></el-checkbox></span>
+						  	<span class="check_box"><el-checkbox label="拖鞋"></el-checkbox></span>
+						  	<span class="check_box"><el-checkbox label="吹风机"></el-checkbox></span>
+						  	<span class="check_box"><el-checkbox label="电视机"></el-checkbox></span>
+						  	<span class="check_box"><el-checkbox label="有线无线宽带"></el-checkbox></span>
+						  	
+						    
+						    <!-- <el-checkbox label="拖鞋"></el-checkbox> -->
 						  </el-checkbox-group>
+					</div>
 						  <span class="add_more"><i class="far fa-plus-square"></i></span>
 						  <span>添加更多</span>
 					</div>
@@ -131,7 +139,7 @@
 			      select4: '1张',
 			      select5: '1.2',
 			      select6: '是',
-			      checkList: ['复选框 A']
+			      checkList: ['24小时热水']
 			}
 		},
 		methods: {
@@ -149,6 +157,16 @@
 				position: relative;
 				border-bottom: #e5e5e5 solid rem(1px);
 				padding: rem(15px) 0;
+				.check{
+					.check_box{
+						display: inline-block;
+						width: 33%;
+						padding: rem(3px) 0;
+					}
+				}
+				.padding-bottom{
+					padding-bottom: rem(10px);
+				}
 				.name{
 					display: inline-block;
 					width: 25%;
@@ -163,6 +181,7 @@
 				.hide_1{
 					color: #e5e5e5;
 					input{
+						width: 60%;
 						border: none;
 						&::-webkit-input-placeholder { 
 						    color:    #aaa;

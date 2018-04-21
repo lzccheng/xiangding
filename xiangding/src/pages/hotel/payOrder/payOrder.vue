@@ -2,9 +2,9 @@
 	<div class="box">
 		<Header title="支付订单"/>
 		<div class="top">
-			<span><i class="fas fa-donate"></i></span>
 			<span>待付款</span>
 		</div>
+		<span class="i"><i class="fas fa-donate"></i></span>
 		<div class="custom">
 			<p class="numb">
 				<span class="icon"><i class="far fa-address-book"></i></span>
@@ -62,7 +62,7 @@
 					<span>
 						<el-switch
 						  v-model="value2"
-						  active-color="#8BC34A"
+						  active-color="#43c122"
 						  inactive-color="#A7A5A6">
 						</el-switch>
 					</span>
@@ -79,22 +79,40 @@
 			<p>交易方式: 微信支付</p>
 			<p>下单时间: 2018-02-29 21:16:52</p>
 		</div>
-		<div class="button">
-			<router-link tag="span" to="/my/custom" class="need_pay">讲价</router-link>
+		<div  class="button">
+			<router-link v-if="title === '团房'" tag="span" to="/my/custom" class="need_pay ">讲价</router-link>
+			<router-link v-else tag="span" to="/my/custom" class="need_pay talk">取消订单</router-link>
 			<router-link tag="span" to="/my/order/payMethods" class="money_color">立即支付</router-link>
 		</div>
 	</div>
 </template>
 <script>
 	export default {
+		mounted(){
+			if(this.$route.query.name){
+				this.title = this.$route.query.name
+			}
+		},
 		data(){
 			return {
 				value1: true,
-                value2: true
+                value2: true,
+                title: '酒店列表'
 			}
 		},
 		methods: {
 
+		},
+		watch: {
+			'$route':function(to,from){
+				if(to.name == 'payOrder'){
+					if(this.$route.query.name){
+						this.title = this.$route.query.name
+					}else{
+						this.title = '酒店列表'
+					}
+				}
+			}
 		}
 	}
 </script>
@@ -103,11 +121,12 @@
 	.box{
 		width: 100%;
 		padding-bottom: rem(100px);
+		position: relative;
 		.top{
-			background-color: #8bc34a;
+			background-color: #43c122;
 			color: #ffffff;
+			padding: rem(18px) 0;
 			text-align: center;
-			padding: rem(18px) 0; 
 			span{
 				&:first-child{
 					font-size: rem(24px);
@@ -115,9 +134,17 @@
 				}
 				&:last-child{
 					font-size: rem(16px);
+
 				}
 
 			}
+		}
+		.i{
+			position: absolute;
+			top: rem(59px);
+			left: 34%;
+			color: #ffffff;
+			font-size: rem(25px);
 		}
 		.custom{
 			padding: rem(10px) 0;
@@ -217,24 +244,29 @@
 		.button{
 				background-color: #ffffff;
 				width: 100%;
-				padding: rem(15px) 0;
 				border-top: #aaa solid rem(1px);
 				position: fixed;
+				display: flex;
+				justify-content: space-around;
 				bottom: 0;
 				left: 0;
 				z-index: 99;
+				text-align: center;
 				.need_pay{
+					width: 50%;
 					font-size: rem(15px);
-					margin-bottom: rem(15px);
-					padding: 0 19%;
 					color: #FF9800;
+					padding: rem(10px) 0;
+				}
+				.talk{
+					color: #000;
 				}
 				.money_color{
-					padding: rem(15px) 19%;
 					font-size: rem(15px);
-					margin-bottom: rem(15px);
-					background-color: #8BC34A;
+					background-color: #43c122;
 					color: #ffffff;
+					width: 50%;
+					padding: rem(10px) 0;
 				}
 			
 			}

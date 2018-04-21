@@ -106,7 +106,7 @@
 				color: #aaa;
 			}
 			.get{
-				background-color: #8bc34a;
+				background-color: #43c122;
 				color: #ffffff;
 				position: absolute;
 				top: 0;
@@ -132,7 +132,7 @@
 			margin-top: rem(10px);
 			border-top: #aaa solid rem(1px);
 			.button{
-				background-color: #8bc34a;
+				background-color: #43c122;
 				color: #ffffff;
 				font-size: rem(16px);
 				text-align: center;
