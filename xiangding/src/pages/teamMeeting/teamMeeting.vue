@@ -532,7 +532,7 @@
 								}
 							}
 							.icon{
-								margin-left: 50%;
+								margin-left: 65%;
 								color: #aaa;
 								padding: 0 rem(10px);
 							}
