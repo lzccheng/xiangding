@@ -17,7 +17,7 @@
 				<span>{{i}}</span>
 			</p>
 
-			<p class="tip"><i class="fas fa-map-marker-alt"></i>  距离你&lt;100米</p>
+			<p class="tip"><i class="fas fa-map-marker-alt"></i>  距离您&lt;100米</p>
 			<p class="line"></p>
 
 
@@ -207,9 +207,9 @@
 				border: #e5e5e5 solid rem(6px);
 			}
 			.provide{
-				padding: rem(5px) rem(15px);
+				padding: rem(10px) rem(15px);
 				span{
-					margin-right: rem(8px);
+					margin-right: rem(19px);
 				}
 			}
 			.talk{
@@ -242,6 +242,7 @@
 			}
 		}
 		.room{
+			padding-top: rem(15px);
 			.time{
 				display: flex;
 				justify-content: space-around;
@@ -278,8 +279,10 @@
 					padding: 0 rem(15px);
 					display: flex;
 					div{
+						border-top: #e5e5e5 solid rem(0.5px);
 						flex: 1;
 						text-align: center;
+						padding-top: rem(15px); 
 						img{
 							width: 100%;
 							height: rem(80px);
@@ -288,7 +291,7 @@
 						&.title{
 							p{
 								&:first-child{
-									font-size: rem(20px);
+									font-size: rem(18px);
 									font-weight: bold;
 								}
 								&:nth-child(2){
@@ -301,14 +304,14 @@
 							p{
 								&:first-child{
 									color: #ff9b09;
-									font-size: rem(20px);
-									font-weight: bold;
+									font-size: rem(18px);
+									padding-bottom: rem(24px);
 								}
 								button{
 									color: #fff;
 									border: none;
-									font-size: rem(16px);
-									padding: rem(10px) rem(30px);
+									font-size: rem(14px);
+									padding: rem(6px) rem(16px);
 									background-color: #43c122;
 									border-radius: rem(5px);
 								}

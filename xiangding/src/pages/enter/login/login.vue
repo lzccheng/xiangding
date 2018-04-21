@@ -62,7 +62,7 @@
 				top: 0;
 				._login{
 					width: 62%;
-					margin: rem(150px) auto rem(40px);
+					margin: 19% auto rem(40px);
 					color: #ffffff;
 					input{
 						width: 62%;

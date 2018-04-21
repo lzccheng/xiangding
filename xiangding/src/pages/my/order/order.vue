@@ -29,7 +29,7 @@
 						<div class="item">
 							<span class="time">预定日期: 03-20</span>
 							<div class="content_box" v-for="(i,index) in 2" :key="index">
-								<div class="content">
+								<router-link tag="div" :to="{path: '/my/order/orderPay',query: {isPay: false}}" class="content">
 									<p>
 										<span class="title">银河大酒店</span>
 										<span class="title_t">(豪华酒店 |四星级)</span>
@@ -49,7 +49,7 @@
 										<span class="title_hide">支付剩余时间: 22分44秒 </span>
 										<span class="no_pay">未付款</span>
 									</p>
-								</div>
+								</router-link>
 								<div class="content_2">
 								    <div class="plane">
 									    <i class="fas fa-location-arrow"></i>
@@ -58,7 +58,7 @@
 									
 									<div class="button">
 										<span class="change" @click="handleCancel">取消订单</span>
-										<router-link tag="span" :to="{path: '/my/order/orderPay',query: {isPay: false}}" class="pay">付款</router-link>
+										<router-link tag="span" :to="{path: '/my/order/orderPay',query: {isPay: 0}}" class="pay">付款</router-link>
 									</div>
 								</div>
 							</div>
@@ -70,7 +70,7 @@
 						<div class="item">
 							<span class="time">预定日期: 03-20</span>
 							<div class="content_box" v-for="(i,index) in 2" :key="index">
-								<router-link tag="div" :to="{path: '/my/order/orderPay',query:{isPay: true}}" class="content">
+								<router-link tag="div" :to="{path: '/my/order/orderPay',query:{isPay: 1}}" class="content">
 									<p>
 										<span class="title">银河大酒店</span>
 										<span class="title_t">(豪华酒店 |四星级)</span>
@@ -111,7 +111,7 @@
 						<div class="item">
 							<span class="time">预定日期: 03-20</span>
 							<div class="content_box" v-for="(i,index) in 2" :key="index">
-								<div class="content">
+								<router-link tag="div" :to="{path: '/my/order/orderPay',query:{isPay: 2}}" class="content">
 									<p>
 										<span class="title">银河大酒店</span>
 										<span class="title_t">(豪华酒店 |四星级)</span>
@@ -131,7 +131,7 @@
 										<span class="title_hide"> </span>
 										<span class="enter">已入住</span>
 									</p>
-								</div>
+								</router-link>
 								<div class="content_2">
 								    <div class="plane">
 									    <i class="fas fa-location-arrow"></i>

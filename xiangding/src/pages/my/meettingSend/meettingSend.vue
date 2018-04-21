@@ -50,7 +50,7 @@
 					</div>
 				</li>
 				<li class="item ">
-				    <p class="name padding-bottom">房间配套设施:</p>
+				    <p class="name_1 padding-bottom">房间配套设施:</p>
 					<div class="check">
 					<div class="padding-bottom">
 						  <el-checkbox-group v-model="checkList">
@@ -118,7 +118,7 @@
 				}
 				.name{
 					display: inline-block;
-					width: 25%;
+					width: 19%;
 				}
 				.select{
 					margin-left: 5%;

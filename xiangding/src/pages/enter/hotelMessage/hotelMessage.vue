@@ -7,35 +7,35 @@
 			  <span class="numb">0/11</span>
 			</p>
 			<p>
-			  <span>酒店名称:</span>
+			  <span class="name">酒店名称:</span>
 			  <span class="color_aaa"><input type="text" placeholder="请输入酒店名称"></span>
 			</p>
 			<p>
-			  <span>酒店介绍:</span>
+			  <span class="name">酒店介绍:</span>
 			  <span class="color_aaa"><input type="text" placeholder="请为您的酒店进行介绍"></span>
 			</p>
 			<p>
-			  <span>电话号码:</span>
+			  <span class="name">电话号码:</span>
 			  <span class="color_aaa"><input type="text" placeholder="请输入酒店的联系号码"></span>
 			</p>
 			<p>
-			  <span>酒店区域:</span>
+			  <span class="name">酒店区域:</span>
 			  <span class="color_aaa">广东</span>
 			</p>
 			<p>
-			  <span>酒店星级:</span>
+			  <span class="name">酒店星级:</span>
 			  <span class="color_aaa"> <el-rate v-model="value1"></el-rate></span>
 			</p>
 			<p>
-			  <span>房间数量:</span>
+			  <span class="name">房间数量:</span>
 			  <span class="color_aaa"><input type="text" placeholder="酒店房间总数"></span>
 			</p>
 			<p>
-			  <span>会议室数量:</span>
+			  <span class="name">会议室数量:</span>
 			  <span class="color_aaa"><input type="text" placeholder="请输入会议室数量"></span>
 			</p>
 			<p>
-			  <span>最多容纳人数:</span>
+			  <span class="name">最多容纳人数:</span>
 			  <span class="color_aaa"><input type="text" placeholder="请输入最多容纳人数"></span>
 			</p>
 			<p>
@@ -88,18 +88,17 @@
 		.body{
 			padding: rem(8px) 0 rem(8px) 4%;
 			p{
-				position: relative;
+				display: flex;
 				margin: rem(13px) 0;
+				.name{
+					width: 30%;
+				}
 				.message{
 					color: #aaa;
 				}
 				.color_aaa{
-					float: right;
 					input{
-						width: 37%;
-						position: absolute;
-						right: 0;
-						bottom: 0;
+						width: 87%;
 						border: none;
 						height: rem(20px);
 						&::-webkit-input-placeholder { 

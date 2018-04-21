@@ -14,7 +14,7 @@
 				<p class="input">
 					<label>验证码:</label>
 					<input type="text" placeholder="请输入验证码" name="">
-					<span class="get">获取验证码</span>
+					<span class="get"><span>获取验证码</span></span>
 				</p>
 				<p class="input">
 					<label>账号:</label>
@@ -164,12 +164,15 @@
 				color: #aaa;
 			}
 			.get{
-				background-color: #43c122;
-				color: #ffffff;
 				position: absolute;
 				top: 0;
 				right: 0;
-				padding: rem(10px) 4%;
+				background-color: #43c122;
+				height: 100%;
+				display: flex;
+				align-items: center;
+				color: #fff;
+				padding: 0 rem(10px);
 			}
 			.eye{
 				color: #43c122;
