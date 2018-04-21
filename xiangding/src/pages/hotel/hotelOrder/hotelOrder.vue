@@ -61,7 +61,7 @@
 				<p  class="day"><input type="text" placeholder="请输入您的手机号码" name=""></p>
 				<p  class="input_box">
 				   <span class="yz_text"><input type="text" placeholder="请输入验证码" name=""></span>
-				   <span class="yz_numb">获取验证码</span>
+				   <span class="yz_numb"><span>获取验证码</span></span>
 				</p>
 				<p class="indent">
 				   <span class="minus">立减</span>
@@ -228,11 +228,14 @@
 					}
 					.yz_numb{
 						background-color: #43c122;
-						padding: rem(12px) 4%;
 						color: #ffffff;
 						position: absolute;
 						right: 0;
 						bottom: 0;
+						height: 100%;
+						display: flex;
+						padding: 0 rem(8px);
+						align-items: center;
 					}
 					.yz_text{
 						line-height: rem(43.5px);
