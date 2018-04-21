@@ -20,7 +20,7 @@
 					<label>账号:</label>
 					<input type="text" placeholder="请输入账号" name="">
 				</p>
-				<p class="mm">
+				<p class="input" style="border-bottom: none">
 					<label>密码:</label>
 					<input type="text" placeholder="******" name="">
 					<span class="eye"><i class="fas fa-eye"></i></span>
@@ -59,7 +59,7 @@
 					<label>代理服务商姓名:</label>
 					<input type="text" placeholder="请输入代理服务商姓名" name="">
 				</p>
-				<p class="mm">
+				<p class="input" style="border-bottom: none">
 					<label>代理服务商电话:</label>
 					<input type="text" placeholder="请输入代理服务商的电话号码" name="">
 				</p>
@@ -105,32 +105,6 @@
 			padding: rem(2px) 0 0 rem(15px);
 			border-top: 0.5px solid #aaa;
 			border-bottom: 0.5px solid #aaa;
-			.mm{
-				position: relative;
-				padding: rem(13px) rem(8px);
-				display: flex;
-				label{
-					font-size: rem(14px);
-					width: 30%;
-				}
-				input{
-					width: 64%;
-					border: none;
-					height: rem(20px);
-					&::-webkit-input-placeholder { 
-					    color:    #aaa;
-					}
-					&:-moz-placeholder { 
-					    color:    #aaa;
-					}
-					&::-moz-placeholder { 
-					    color:    #aaa;
-					}
-					&:-ms-input-placeholder { 
-					    color:    #aaa;
-					}
-				}
-			}
 			.input{
 				position: relative;
 				border-bottom: 0.5px solid #aaa;
@@ -197,7 +171,6 @@
 				}
 			}
 			.upload{
-				font-size: rem(14px);
 				margin: rem(10px) 0;
 			}
 			.add_icon{
@@ -209,7 +182,6 @@
 			.content{
 				color: #aaa;
 				margin-bottom: rem(80px);
-				font-size: rem(14px);
 			}
 		}
 		.body{
@@ -219,7 +191,6 @@
 			.button{
 				background-color: #43c122;
 				color: #ffffff;
-				font-size: rem(16px);
 				text-align: center;
 				padding: rem(12px) 0;
 			}
@@ -227,7 +198,6 @@
 				background-color: #ffffff;
 				text-align: center;
 				color: #769de6;
-				font-size: rem(14px);
 				margin-top: rem(20px);
 			}
 		}

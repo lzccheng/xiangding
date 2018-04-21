@@ -211,7 +211,7 @@
 						display: flex;
 						div{
 							&.pay_y{
-								color: #69c122;
+								color: #43c122;
 								padding: 0 28% 0 12%;
 								border-right: #43c122 solid rem(1px);
 								.numb{
