@@ -1,6 +1,6 @@
 <template>
 	<div class="box">
-		<Header title="账号"/>
+		<Header title="修改密码"/>
 		<div class="body">
 			<div>
 			  <span ><input type="text" placeholder="请输入旧密码"></span>
@@ -12,10 +12,10 @@
 			<div class="post">
 			    <router-link tag="p" to="/enter/login" class="button">提交</router-link>
 			</div>
-			<div class="forget">
+			<router-link tag="div" to="/enter/forgotPassword" class="forget">
 			    <span class="text">忘记密码</span>
 			    <span class="icon"><i class="fas fa-chevron-right"></i></span>
-			</div>
+			</router-link>
 		</div>
 	</div>
 </template>
@@ -50,7 +50,6 @@
 							width: 70%;
 							border: none;
 							background-color: rgba(250, 250, 250,0);
-							color: #aaa;
 							margin-bottom: rem(13px);
 							text-align: center;
 							&::-webkit-input-placeholder { 

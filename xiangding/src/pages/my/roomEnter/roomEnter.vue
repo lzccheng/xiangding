@@ -15,7 +15,7 @@
 						  <span class="icon">
 							  <el-switch
 								  v-model="value2"
-								  active-color="#aabbfd"
+								  active-color="#43c122"
 								  inactive-color="#a7a5a6">
 							  </el-switch>
 						  </span>

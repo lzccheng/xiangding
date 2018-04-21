@@ -281,7 +281,7 @@
 				
 			}
 			.room_2{
-				background-color: #8bc34a;
+				background-color: #43c122;
 			}
 			.room_3{
 				background-color: #ff9800;
@@ -295,7 +295,7 @@
 				margin-right: rem(14px);
 			}
 			.room_6{
-				background-color: #8bc34a;
+				background-color: #43c122;
 			}
 		}
 	}

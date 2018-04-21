@@ -71,7 +71,6 @@
 				input{
 					width: 88%;
 					border: none;
-					color: #aaa;
 					&::-webkit-input-placeholder { 
 					    color:    #aaa;
 					}
@@ -127,7 +126,6 @@
 				input{
 					width: 48%;
 					border: none;
-					color: #aaa;
 					margin-left: 3%;
 					&::-webkit-input-placeholder { 
 					    color:    #aaa;
