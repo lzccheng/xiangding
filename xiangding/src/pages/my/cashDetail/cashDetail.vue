@@ -246,12 +246,12 @@
                 margin-top: rem(10px);
                 .hotel_name{
                     font-size: rem(14px);
-                    width: 55%;
+                    width: 62%;
                 }
                 .right_box{
-                    width: 50%;
-                    display: inline-block;
-                    float: right;
+                    width: 40%;
+                    display: flex;
+                    justify-content: center;
                     .i{
                         display: inline-block;
                         margin-right: rem(13px);

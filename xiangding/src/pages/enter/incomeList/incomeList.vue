@@ -3,7 +3,7 @@
 		<Header title="收支明细" />
 		<div class="content">			<div class="show">
 				<div class="items">
-					<div class="time"><span>本月</span></div>
+					<div class="time"><span class="this_m">本月</span><span class="i"><i class="far fa-calendar-alt"></i></span></div>
 					<div class="item" v-for="(i,index) in 10" :key="index">
 						<div class="img">
 							<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523878260974&di=ca92c6ce48dc5aa41060706559be1430&imgtype=0&src=http%3A%2F%2Fimgcdn.guoku.com%2Fimages%2Ff4a652a540ac399d50d81825b6e7d644.jpeg" alt="">
@@ -68,6 +68,13 @@
 						padding: rem(10px);
 						margin-bottom: rem(10px);
 						border-bottom: 1px solid #aaa;
+						.this_m{
+							font-size: rem(14px);
+						}
+						.i{
+							font-size: rem(17px);
+							float: right;
+						}
 					}
 					.item{
 						padding: rem(5px) rem(10px);
@@ -93,7 +100,7 @@
 							}
 						}
 						.price{
-							margin-left: 10%;
+							margin-left: 18%;
 							.btn{
 								margin-top: rem(18px);
 								span{

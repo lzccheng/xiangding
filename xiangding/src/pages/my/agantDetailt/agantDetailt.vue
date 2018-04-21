@@ -1,13 +1,15 @@
 <template>
 	<div class="box">
-		<div class="header">
-			<span @click="onHandleBack" class="icon"><i class="fas fa-arrow-left"></i></span>
-			<span >{{agant}}级代理</span>
-		</div>
-		<div class="search">
-			<div class="search_">
-				<span class="icon"><i class="fas fa-search"></i></span>
-				<span><input type="text" placeholder="请输入您要搜索的名称"></span>
+		<div class="top_box">
+			<div class="header">
+				<span @click="onHandleBack" class="icon"><i class="fas fa-arrow-left"></i></span>
+				<span class="title">{{agant}}级代理</span>
+			</div>
+			<div class="search">
+				<div class="search_">
+					<span class="icon"><i class="fas fa-search"></i></span>
+					<span><input type="text" placeholder="请输入您要搜索的名称"></span>
+				</div>
 			</div>
 		</div>
 		<div class="agant">
@@ -60,36 +62,50 @@
 	@import '../../../common/css/common';
 	.box{
 		width: 100%;
-		.header{
-			text-align: center;
-			span{
-				display: inline-block;
-				padding: rem(15px) rem(15px);
-				font-size: rem(18px);
-				&.icon{
-					float: left;
-					
+		padding-top: rem(90px);
+		padding-bottom: rem(500px);
+		.top_box{
+			width: 100%;
+			position: fixed;
+			background-color: #ffffff;
+			top: 0;
+			left: 0;
+			z-index: 999;
+			.header{
+				span{
+					display: inline-block;
+					padding: rem(15px) rem(15px);
+					font-size: rem(18px);
+					&.title{
+						display: inline-block;
+						text-align: center;
+						width: 70%;
+					}
+					&.icon{
+						float: left;
+						
+					}
 				}
 			}
-		}
-		.search{
-			background-color: #8BC34A;
-			padding: rem(5px) rem(10px);
-			.search_{
-				background-color: #fff;
-				padding: rem(3px) rem(15px);
-				border-radius: rem(5px);
-				span{
-					&.icon{
-						padding:rem(2px) rem(5px);
-					}
-					input{
-						border: none;
-						width: 80%;
-						height: rem(18px);
-						padding: rem(3px) rem(8px);
-						&:placeholder{
-							color: #aaa;
+			.search{
+				background-color: #8BC34A;
+				padding: rem(5px) rem(10px);
+				.search_{
+					background-color: #fff;
+					padding: rem(3px) rem(15px);
+					border-radius: rem(5px);
+					span{
+						&.icon{
+							padding:rem(2px) rem(5px);
+						}
+						input{
+							border: none;
+							width: 80%;
+							height: rem(18px);
+							padding: rem(3px) rem(8px);
+							&:placeholder{
+								color: #aaa;
+							}
 						}
 					}
 				}

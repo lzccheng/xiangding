@@ -106,7 +106,6 @@
 			}
 		}
 		.item{
-			width: 100%;
 			padding-top: rem(25px);
 			padding-left: 5%;
 			.img{

@@ -17,7 +17,7 @@
 				<p class="next_item">
 					<span>验证码</span>
 					<span><input type="text" placeholder="请输入您的验证码"></span>
-					<span class="green_yz">重发验证码</span>
+					<span class="green_yz"><span>重发验证码</span></span>
 				</p>
 				<p class="next_item">
 					<span>新密码</span>
@@ -117,6 +117,7 @@
 			}
 		}
 		.next_item{
+				position: relative;
 				width: 100%;
 				padding: rem(10px) 0 rem(10px) 4%;
 				border: #aaa solid rem(1px);
@@ -144,7 +145,13 @@
 				.green_yz{
 					background-color: #43c122;
 					color: #ffffff;
-					padding: rem(10px) 6%;
+					padding: 0 6%;
+					display: flex;
+					align-items: center;
+					height: 100%;
+					position: absolute;
+					top: 0;
+					right: 0;
 				}
 
 		}

@@ -37,10 +37,9 @@
 				top: 0;
 				margin-left: -40%;
 				div{
-					
 					height: rem(200px);
 					border-radius: rem(15px);
-					margin: rem(50px) auto;
+					margin: 24% auto;
 					text-align: center;
 				}
 			}

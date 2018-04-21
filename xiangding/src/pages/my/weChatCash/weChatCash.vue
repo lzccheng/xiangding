@@ -10,12 +10,7 @@
 				<label>提现金额</label>
 				<input type="text" placeholder="请输入提现金额" name="">
 			</p>
-			<!-- <p class="input">
-				<label>可提现金额</label>
-				<input type="text" placeholder="请输入验证码" name="">
-				<span class="get">获取验证码</span>
-			</p> -->
-			<p class="mm">
+			<p class="input" style="border-bottom: none">
 				<label>可提现金额:</label>
 				<input type="text" placeholder="0.99元" name="">
 			</p>
@@ -28,16 +23,16 @@
 				</label>
 				<input class="input_top" type="text" placeholder="0.00元" name="">
 			</p>
-			<p class="mm">
+			<p class="input" style="border-bottom: none">
 				<label>实际到账:</label>
 				<input type="text" placeholder="0.00元" name="">
 			</p>
 		</div>
 		<div class="form">
-			<p class="mm">
+			<p class="input" style="border-bottom: none">
 				<label>验证码</label>
 				<input type="text" placeholder="请输入验证码" name="">
-				<span class="get">获取验证码</span>
+				<span class="get"><span>获取验证码</span></span>
 			</p> 
 		</div>
 		<div class="button_box">
@@ -65,38 +60,12 @@
 	.box{
 		width: 100%;
 		background-color: #e5e5e5;
-		
 		.form{
 			background-color: #ffffff;
 			margin-top: rem(8px);
 			padding: rem(2px) 0 0 rem(15px);
 			border-top: 0.5px solid #aaa;
 			border-bottom: 0.5px solid #aaa;
-			.mm{
-				position: relative;
-				padding: rem(13px) rem(8px);
-				display: flex;
-				label{
-					font-size: rem(14px);
-					width: 30%;
-				}
-				input{
-					border: none;
-					height: rem(20px);
-					&::-webkit-input-placeholder { 
-					    color:    #aaa;
-					}
-					&:-moz-placeholder { 
-					    color:    #aaa;
-					}
-					&::-moz-placeholder { 
-					    color:    #aaa;
-					}
-					&:-ms-input-placeholder { 
-					    color:    #aaa;
-					}
-				}
-			}
 			.input{
 				position: relative;
 				border-bottom: 0.5px solid #aaa;
@@ -119,7 +88,7 @@
 					top: rem(10px);
 				}
 				input{
-					width: 60%;
+					width: 43%;
 					border: none;
 					height: rem(20px);
 					&::-webkit-input-placeholder { 
@@ -136,21 +105,20 @@
 					}
 				}
 			}
-			.button{
-
-			}
 			.text{
 				margin-top: rem(15px);
 				text-align: center;
 			}
 			.get{
-				background-color: #8bc34a;
+				background-color: #43c122;
 				color: #ffffff;
 				position: absolute;
 				top: 0;
 				right: 0;
-				padding: rem(13px) rem(12px);
-				font-size: rem(14px);
+				padding: 0 rem(10px);
+				height: 100%;
+				display: flex;
+				align-items: center;
 			}
 		}
 		.button_box{
@@ -159,7 +127,7 @@
 			p{
 				color: #ffffff;
 				font-size: rem(14px);
-				background-color: #8bc34a;
+				background-color: #43c122;
 				padding: rem(14px) 20%;
 				text-align: center;
 				border-radius: rem(7px);

@@ -10,10 +10,10 @@
 				<label>联系电话:</label>
 				<input type="text" placeholder="请输入电话号码" name="">
 			</p>
-			<p class="mm">
+			<p class="input" style="border-bottom: none">
 				<label>验证码:</label>
 				<input type="text" placeholder="请输入验证码" name="">
-				<span class="get">获取验证码</span>
+				<span class="get"><span>获取验证码</span></span>
 			</p>
 		</div>
 		<div class="form_1">
@@ -73,6 +73,7 @@
 					color: #aaa;
 					font-size: rem(23px);
 					text-align: center;
+					margin: 0 rem(4px);
 				}
 				.on{
 					position: absolute;
@@ -93,14 +94,14 @@
 				color: #ffffff;
 				margin-top: rem(20px);
 			}
-
 			.mm{
 				position: relative;
-				padding: rem(13px) rem(8px);
+				padding: rem(13px) rem(9px) rem(13px) 6%;
 				display: flex;
 				label{
 					font-size: rem(14px);
 					width: 30%;
+					padding-right: rem(3px);
 				}
 				input{
 					border: none;
@@ -126,41 +127,17 @@
 			padding: rem(2px) 0 0 rem(15px);
 			border-top: 0.5px solid #aaa;
 			border-bottom: 0.5px solid #aaa;
-			.mm{
-				position: relative;
-				padding: rem(13px) rem(8px);
-				display: flex;
-				label{
-					font-size: rem(14px);
-					width: 30%;
-				}
-				input{
-					border: none;
-					height: rem(20px);
-					&::-webkit-input-placeholder { 
-					    color:    #aaa;
-					}
-					&:-moz-placeholder { 
-					    color:    #aaa;
-					}
-					&::-moz-placeholder { 
-					    color:    #aaa;
-					}
-					&:-ms-input-placeholder { 
-					    color:    #aaa;
-					}
-				}
-			}
 			.input{
 				position: relative;
 				border-bottom: 0.5px solid #aaa;
 				padding: rem(10px) rem(8px);
-				display: flex;
 				label{
+					display: inline-block;
 					font-size: rem(14px);
 					width: 30%;
 				}
 				input{
+					width: 45%;
 					border: none;
 					height: rem(20px);
 					&::-webkit-input-placeholder { 
@@ -182,17 +159,15 @@
 				text-align: center;
 			}
 			.get{
-				background-color: #43c122;
-				color: #ffffff;
 				position: absolute;
 				top: 0;
 				right: 0;
-				padding: rem(13px) 4%;
-				font-size: rem(14px);
-			}
-			.eye{
-				color: #8bc34a;
-				font-size: rem(17px);
+				background-color: #43c122;
+				height: 100%;
+				display: flex;
+				align-items: center;
+				color: #fff;
+				padding: 0 rem(10px);
 			}
 			.btn{
 				margin-top: rem(25px);
@@ -205,21 +180,6 @@
 					padding: rem(12px);
 				}
 			}
-			.upload{
-				font-size: rem(14px);
-				margin: rem(10px) 0;
-			}
-			.add_icon{
-				width: 20%;
-				margin-bottom: rem(15px);
-				color: #aaa;
-				font-size: rem(45px);
-			}
-			.content{
-				color: #aaa;
-				margin-bottom: rem(80px);
-				font-size: rem(14px);
-			}
 		}
 		.know{
 			color: #4ea9ec;
@@ -230,7 +190,5 @@
 			left: 50%;
 			margin-left: rem(-42px);
 		}
-
-
 	}
 </style>

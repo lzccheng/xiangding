@@ -1,6 +1,7 @@
 <template>
 	<div class="box">
 		<Header title="订单管理"/>
+		<div class="top_box">
 		<div class="nav">
 			<div class="input">
 				<span class="addr">广州</span>
@@ -15,6 +16,7 @@
 					</div>
 				</div>
 				<div class="line" ref="_line"></div>
+		</div>
 		</div>
 		<div class="show">
 				<div v-if="0==index_">
@@ -122,9 +124,16 @@
     @import '../../../common/css/common.scss';
 	.box{
 		width: 100%;
-		div{
-			&.nav{
-				background-color: #8bc34a;
+		padding-bottom: rem(180px);
+		padding-top: rem(60px);
+		.top_box{
+			width: 100%;
+			position: fixed;
+			top: rem(48px);
+			left: 0;
+			z-index: 999;
+			.nav{
+				background-color: #43c122;
 				padding: rem(6px) rem(15px) rem(6px) rem(10px);
 				display: flex;
 				.input{
@@ -135,7 +144,7 @@
 					margin-right: 4%;
 					.addr{
 						font-size: rem(14px);
-						color: #8bc34a;
+						color: #43c122;
 						border-right: #aaa solid rem(1px);
 						padding-right: rem(10px);
 					}
@@ -166,8 +175,8 @@
 					margin-top: rem(2px);
 				}
 			}
-			&.choice{
-			position: relative;
+			.choice{
+			    position: relative;
 				div{
 					&.active{
 					}
@@ -192,7 +201,8 @@
 					}
 				}
 			}
-			&.show{
+		}
+			.show{
 				.body{
 					padding: rem(22px) 0;
 					.top{
@@ -203,7 +213,7 @@
 							&.pay_y{
 								color: #69c122;
 								padding: 0 28% 0 12%;
-								border-right: #8bc34a solid rem(1px);
+								border-right: #43c122 solid rem(1px);
 								.numb{
 									font-size: rem(18px);
 									text-align: center;
@@ -270,6 +280,6 @@
 				}
 			}
 
-		}
+		
 	}
 </style>

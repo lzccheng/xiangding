@@ -7,7 +7,7 @@
 					<span class="name">房间类型:</span>
 					<span class="select_1">
 						<el-select v-model="select2" slot="prepend" placeholder="请选择">
-					      <el-option label="免费取消" value="1"></el-option>
+					      <el-option label="商务大床房" value="1"></el-option>
 					      <el-option label="总统房" value="2"></el-option>
 					      <el-option label="特惠商务房" value="3"></el-option>
 					    </el-select>
@@ -97,7 +97,7 @@
 					</div>
 				</li>
 				<li class="item ">
-				    <p class="name padding-bottom">房间配套设施:</p>
+				    <p class="name_1 padding-bottom">房间配套设施:</p>
 					<div class="check">
 					<div class="padding-bottom">
 						  <el-checkbox-group v-model="checkList">
@@ -169,7 +169,7 @@
 				}
 				.name{
 					display: inline-block;
-					width: 25%;
+					width: 19%;
 				}
 				.select{
 					margin-left: 5%;
