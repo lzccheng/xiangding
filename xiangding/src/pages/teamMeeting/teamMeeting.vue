@@ -18,25 +18,33 @@
 				<div class="_day">
 					<p>
 						<span class="enter">入住日期：</span>
-						<el-date-picker
+						<!-- <el-date-picker
 					      v-model="date_value"
 					      type="date"
 					      placeholder="入住日期" 
 					      :picker-options="pickerOptions1" 
 					      @change="datePicker1" 
 					      @focus="_blur">
-					    </el-date-picker>
+					    </el-date-picker> -->
+					    <span class="date_">
+			              <input id="date1" type="text" readonly="" @focus="handleBlur" placeholder="日期选择特效" data-lcalendar="2016-05-11,2016-05-11" v-model="date1_value"/>
+			            </span>
+			            <span><i class="fas fa-angle-right"></i></span>
 					</p>
 					<p>
 						<span class="enter">退房日期：</span>
-						<el-date-picker
+						<!-- <el-date-picker
 					      v-model="date_value2"
 					      type="date"
 					      placeholder="退房日期" 
 					      :picker-options="pickerOptions2" 
 					      @change="datePicker2" 
 					      @focus="_blur">
-					    </el-date-picker>
+					    </el-date-picker> -->
+					    <span class="date_">
+			              <input id="date2" type="text" readonly="" placeholder="日期选择特效" data-lcalendar="2016-05-11,2016-05-11" v-model="date2_value"/>
+			            </span>
+			            <span><i class="fas fa-angle-right"></i></span>
 					</p>
 					
 				</div>
@@ -211,7 +219,25 @@
 	                name: 'name'
 	            },
 	            'type': 1,
-	            'data': LAreaData
+	            'data': LAreaData,
+	        })
+	        let date = new Date()
+	        let min_date = date.getFullYear()+'-'+this.zero(date.getMonth()+1)+'-'+this.zero(date.getDate())
+	        let min_date2 = new Date(tomo.getTime()).getFullYear()+'-'+this.zero(new Date(tomo.getTime()).getMonth()+1)+'-'+this.zero(new Date(tomo.getTime()).getDate())
+	        this.date1_value = min_date
+	        this.date2_value = min_date2
+	          // console.log(min_date)
+	        new LCalendar().init({
+	            'trigger': '#date1', //标签id
+	            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+	            'minDate': min_date, //最小日期
+	            'maxDate': (new Date().getFullYear()+2) + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate() //最大日期
+	        })
+	        new LCalendar().init({
+	            'trigger': '#date2', //标签id
+	            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+	            'minDate': min_date2, //最小日期
+	            'maxDate': (new Date().getFullYear()+2) + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate() //最大日期
 	        })
 		},
 		data(){
@@ -276,6 +302,8 @@
 				star: 3,
 				date_value: new Date(),
 				date_value2: tomo,
+				date1_value: '',
+				date2_value: '',
 				input: '',
 				meetting_total: '',
 				pay: [80,800],
@@ -383,25 +411,56 @@
 				}
 				return _day[value.getDay()]
 		    },
+		    time_(value){
+		    	let dd = new Date()
+		        let date = new Date(value).getTime()
+		        let tody = dd.getFullYear()+'-'+(dd.getMonth()+1)+'-'+dd.getDate()
+		        let tomorrow = new Date(tody).getTime()+1000*60*60*24
+		        if(date<tomorrow){
+		          return '今天'
+		        }
+		        if(date>=tomorrow && date<(tomorrow+1000*60*60*24)){
+		          return '明天'
+		        }
+		        if(date>=(tomorrow+1000*60*60*24) && date<(tomorrow+1000*60*60*24*2)){
+		          return '后天'
+		        }
+		        return _day[new Date(value).getDay()]
+		    },
 		    _blur(event){
 		    	event.blur()
+		    },
+		    zero(value){
+		    	return Number(value)<10?'0'+value:value
 		    }
 		},
 		computed: {
 			day1(){
-				return (this.date_value.getMonth()+1) + '.' + this.date_value.getDate()
+				// return (this.date_value.getMonth()+1) + '.' + this.date_value.getDate()
+				let date = new Date(this.date1_value).getTime()
+          		let date2 = date+1000*60*60*24
+          		this.date2_value = new Date(date2).getFullYear()+'-'+this.zero(new Date(date2).getMonth()+1)+'-'+this.zero(new Date(date2).getDate())
+				return this.zero((new Date(this.date1_value).getMonth()+1)) + '.' + this.zero(new Date(this.date1_value).getDate())
 			},
 			day2(){
 
-				return (this.date_value2.getMonth()+1) + '.' + this.date_value2.getDate()
+				// return (this.date_value2.getMonth()+1) + '.' + this.date_value2.getDate()
+				if(new Date(this.date1_value).getTime()>new Date(this.date2_value).getTime()){
+					let date = new Date(this.date1_value).getTime()
+          			let date2 = date+1000*60*60*24
+          			this.date2_value = new Date(date2).getFullYear()+'-'+this.zero(new Date(date2).getMonth()+1)+'-'+this.zero(new Date(date2).getDate())
+				}
+				return this.zero((new Date(this.date2_value).getMonth()+1)) + '.' + this.zero(new Date(this.date2_value).getDate())
 			},
 			computedDate1(){
-				let value = this.date_value
-				return this._time(value)
+				// let value = this.date_value
+				// return this._time(value)
+				return this.time_(this.date1_value)
 			},
 			computedDate2(){
-				let value = this.date_value2
-				return this._time(value)
+				// let value = this.date_value2
+				// return this._time(value)
+				return this.time_(this.date2_value)
 			}
 		}
 	}
@@ -450,7 +509,13 @@
 					.enter{
 						display: inline-block;
 						padding: rem(5px) rem(10px);
+					}
+					span{
 						color: #aaa;
+						input{
+							border: none;
+							color: #aaa;
+						}
 					}
 				}
 			}
