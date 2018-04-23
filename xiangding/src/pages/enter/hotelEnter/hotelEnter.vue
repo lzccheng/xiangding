@@ -186,13 +186,13 @@
 		}
 		.body{
 			background-color: #ffffff;
-			padding-bottom: rem(50px);
-			padding-top: rem(16px);
+			padding: rem(16px) 5% rem(50px);
 			.button{
 				background-color: #43c122;
 				color: #ffffff;
 				text-align: center;
 				padding: rem(12px) 0;
+				border-radius: rem(5px);
 			}
 			.agreement{
 				background-color: #ffffff;

@@ -123,14 +123,14 @@
 		}
 		.button_box{
 			background-color: #ffffff;
-			padding: rem(20px) 8%;
+			padding: rem(20px) 5%;
 			p{
 				color: #ffffff;
 				font-size: rem(14px);
 				background-color: #43c122;
 				padding: rem(14px) 20%;
 				text-align: center;
-				border-radius: rem(7px);
+				border-radius: rem(5px);
 			}
 		}
 		.know_box{

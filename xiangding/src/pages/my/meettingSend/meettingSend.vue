@@ -3,7 +3,10 @@
 		<Header title="会议室发布" />
 		<div class="body">
 			<ul>
-				
+				<li class="item">
+					<span class="name">会议室原价:</span>
+					<span class="hide_1"><input type="text" placeholder="请填写会议室原价"></span>
+				</li>
 				<li class="item">
 					<span class="name">会议室价格:</span>
 					<span class="hide_1"><input type="text" placeholder="请填写会议室价格"></span>

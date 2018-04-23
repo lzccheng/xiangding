@@ -1,6 +1,6 @@
 <template>
 	<div class="box">
-		<Header title="酒店支付信息"/>
+		<Header title="提交订单"/>
 		<div class="banner">
 			<div class="swiper-container">
 			    <div class="swiper-wrapper">
@@ -39,8 +39,11 @@
 					</span>
 				</p>
 				<p class="black">
-					<span>房间</span>
-					<span class="number_box">
+					<span>
+					   <p>房间</p>
+					   <p v-if="title === '团房'" class="room">注: 团房间最少订购两间及以上</p>
+					</span>
+					<span class="number_box1">
 					    <el-input-number size="mini" v-model="num7"></el-input-number>
 					</span>
 				</p>
@@ -59,10 +62,12 @@
 				</p>
 				<p  class="day"><input type="text" placeholder="请输入您的姓名" name=""></p>
 				<p  class="day"><input type="text" placeholder="请输入您的手机号码" name=""></p>
+
 				<p  class="input_box">
 				   <span class="yz_text"><input type="text" placeholder="请输入验证码" name=""></span>
 				   <span class="yz_numb"><span>获取验证码</span></span>
 				</p>
+				<div v-if="title === '酒店列表'">
 				<p class="indent">
 				   <span class="minus">立减</span>
 				   <span class="farvourable">优惠返现</span>
@@ -73,6 +78,7 @@
 				   <span class="farvourable">免费取消</span>
 				   <span class="aaa">已加入免费取消政策</span>
 				</p>
+				</div>
 				<p>备注</p>
 				<p class="add_text"><input type="text" placeholder="请输入文字" name=""></p>
 				<p class="color_aaa">
@@ -204,14 +210,26 @@
 				margin-top: rem(10px);
 				padding-bottom: rem(120px);
 				p{
-					padding: 0 rem(10px);
+					padding: 0 rem(5px);
 					font-size: rem(14px);
-					margin: rem(15px) 0;
+					margin: rem(12px) 0;
 					&.black{
 						margin-top: rem(13px);
 				        padding-bottom: rem(20px);
 				        border-bottom: #aaa solid rem(1px);
 				        position: relative;
+				        span{
+				        	&:first-child{
+				        		display: inline-block;
+				        		p{
+				        			margin: 0;
+				        			&.room{
+				        				color: #E51C23;
+				        				font-size: rem(5px);
+				        			}
+				        		}
+				        	}
+				        }
 					}
 					.space{
 						display: inline-block;
@@ -225,6 +243,11 @@
 					}
 					.number_box{
 						float: right;
+					}
+					.number_box1{
+						position: absolute;
+						top: rem(3px);
+						right: rem(5px);
 					}
 					.yz_numb{
 						background-color: #43c122;

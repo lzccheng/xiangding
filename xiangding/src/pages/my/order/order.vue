@@ -248,7 +248,6 @@
 						font-size: rem(14px);
 						font-weight: bold;
 					}
-					
 					display: flex;
 					justify-content: space-around;
 					span{

@@ -14,6 +14,10 @@
 					</span>
 				</li>
 				<li class="item">
+					<span class="name">房间原价:</span>
+					<span class="hide_1"><input type="text" placeholder="请填写房间的原价"></span>
+				</li>
+				<li class="item">
 					<span class="name">房间价格:</span>
 					<span class="hide_1"><input type="text" placeholder="请填写房间的价格"></span>
 				</li>
@@ -37,15 +41,32 @@
 					<span class="name">可住人数:</span>
 					<span class="hide_1"><input type="text" placeholder="请输入可住人数"></span>
 				</li>
-				<li class="item">
-					<span class="name">取消政策:</span>
-					<span class="select_1">
-						<el-select v-model="select3" slot="prepend" placeholder="请选择">
-					      <el-option label="免费取消" value="1"></el-option>
-					      <el-option label="付费取消-扣除10%费用" value="2"></el-option>
-					      <el-option label="付费取消-扣除20%费用" value="3"></el-option>
-					    </el-select>
-					</span>
+				<li >
+					<el-collapse v-model="activeNames" @change="handleChange">
+						<el-collapse-item title="取消政策" name="1">
+						    <p class="button">
+						    	<span>免费取消</span>
+						    	<span class="open">
+						    		<el-switch
+									  v-model="value2"
+									  active-color="#43c122"
+									  inactive-color="#999999">
+									</el-switch>
+						    	</span>
+						    </p>
+						    <p class="select">
+						    	<span>
+						    		 <el-checkbox-group v-model="checkList">
+									    <el-checkbox label="超过1小时扣费10%"></el-checkbox>
+									  </el-checkbox-group>
+						    	</span>
+						    </p>
+						    <p class="add">
+						    	<span class="add_icon"><i class="fas fa-plus-square"></i></span>
+						    	<span>添加</span>
+						    </p>
+						 </el-collapse-item>
+					</el-collapse>
 				</li>
 				<li class="item">
 					<span class="name">规格:</span>
@@ -135,11 +156,13 @@
 			      input5: '',
 			      select1: '60平方',
 			      select2: '商务大床房',
-			      select3: '免费取消',
 			      select4: '1张',
 			      select5: '1.2',
 			      select6: '是',
-			      checkList: ['24小时热水']
+			      checkList: ['24小时热水'],
+			      value1: true,
+                  value2: true,
+                  checkList: ['超过1小时扣费10']
 			}
 		},
 		methods: {
@@ -153,6 +176,15 @@
 		width: 100%;
 		.body{
 			padding: 0 rem(16px);
+			p{
+				.open{
+					float: right;
+				}
+				.add_icon{
+					color: #aaa;
+					font-size: rem(14px);
+				}
+			}
 			.item{
 				position: relative;
 				border-bottom: #e5e5e5 solid rem(1px);
