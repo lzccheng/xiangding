@@ -268,7 +268,7 @@
 					} 
 					.time{
 						position: absolute;
-						top: rem(2px);
+						top: rem(-6px);
 						right: 0;
 						span{
 							color: #aaa;
