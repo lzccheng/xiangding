@@ -276,26 +276,24 @@
           // console.log(window)
           let date = new Date()
           let min_date = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()
-          let min_date2 = new Date(tomo.getTime()).getFullYear()+'-'+(new Date(tomo.getTime()).getMonth()+1)+'-'+new Date(tomo.getTime()).getDate()
+          // let min_date2 = new Date(tomo.getTime()).getFullYear()+'-'+(new Date(tomo.getTime()).getMonth()+1)+'-'+new Date(tomo.getTime()).getDate()
           // console.log(min_date)
-          var calendar1 = new LCalendar();
-          calendar1.init({
+          new LCalendar().init({
               'trigger': '#date1', //标签id
               'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
               'minDate': min_date, //最小日期
               'maxDate': (new Date().getFullYear()+2) + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate() //最大日期
-          });
-          var calendar2 = new LCalendar();
-          calendar2.init({
+          })
+          new LCalendar().init({
               'trigger': '#date2', //标签id
               'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-              'minDate': min_date2, //最小日期
+              'minDate': this.min_date2, //最小日期
               'maxDate': (new Date().getFullYear()+2) + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate() //最大日期
-          });
+          })
       },
       data(){
       	return {
-          area_value: '广东省,深圳市,南山区',
+          area_value: '广东省,广州市,天河区',
       		arrItem:[],
           hotel: [],
           pickerOptions1: {
@@ -337,6 +335,7 @@
           value2: tomo,
           date1_value: new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate(),
           date2_value: new Date(tomo.getTime()).getFullYear()+'-'+(new Date(tomo.getTime()).getMonth()+1)+'-'+new Date(tomo.getTime()).getDate(),
+          min_date2: new Date(tomo.getTime()).getFullYear()+'-'+(new Date(tomo.getTime()).getMonth()+1)+'-'+new Date(tomo.getTime()).getDate(),
           input1: '',
           star: 4,
           price: [80, 800]
@@ -397,31 +396,62 @@
           }
           return _day[value.getDay()]
         },
+        getDay_(value){
+          let dd = new Date()
+          let date = new Date(value).getTime()
+          let tody = dd.getFullYear()+'-'+(dd.getMonth()+1)+'-'+dd.getDate()
+          let tomorrow = new Date(tody).getTime()+1000*60*60*24
+          if(date<tomorrow){
+            return '今天'
+          }
+          if(date>=tomorrow && date<(tomorrow+1000*60*60*24)){
+            return '明天'
+          }
+          if(date>=(tomorrow+1000*60*60*24) && date<(tomorrow+1000*60*60*24*2)){
+            return '后天'
+          }
+          return _day[new Date(value).getDay()]
+        },
         _blur(event){
           event.blur()
         }
       },
       computed: {
         day1(){
-          return this.zero(this.value1.getDate())
+          // return this.zero(this.value1.getDate())
+          let date = new Date(this.date1_value).getTime()
+          let date2 = date+1000*60*60*24
+          this.date2_value = new Date(date2).getFullYear()+'-'+(new Date(date2).getMonth()+1)+'-'+new Date(date2).getDate()
+          return this.zero(new Date(date).getDate())
         },
         day2(){
-          return this.zero(this.value2.getDate())
+          // return this.zero(this.value2.getDate())
+          if(new Date(this.date2_value).getTime()<new Date(this.date1_value).getTime()){
+            let date = new Date(this.date1_value).getTime()
+            let date2 = date+1000*60*60*24
+            this.date2_value = new Date(date2).getFullYear()+'-'+(new Date(date2).getMonth()+1)+'-'+new Date(date2).getDate() 
+          }
+          return this.zero(new Date(this.date2_value).getDate())
         },
         month1(){
-          return this.zero(this.value1.getMonth()+1)
+          // return this.zero(this.value1.getMonth()+1)
+          return this.zero(new Date(this.date1_value).getMonth()+1)
         },
         month2(){
-          return this.zero(this.value2.getMonth()+1)
+          // return this.zero(this.value2.getMonth()+1)
+          return this.zero(new Date(this.date2_value).getMonth()+1)
         },
         date1(){
-          return this._getDay(this.value1)
+          // return this._getDay(this.value1)
+          return this.getDay_(this.date1_value)
         },
         date2(){
-          return this._getDay(this.value2)
+          // return this._getDay(this.value2)
+          return this.getDay_(this.date2_value)
         },
         night(){
-          return Math.round((this.value2.getTime()-this.value1.getTime())/(1000*60*60*24))
+          // return Math.round((this.value2.getTime()-this.value1.getTime())/(1000*60*60*24))
+          return Math.round((new Date(this.date2_value).getTime()-new Date(this.date1_value).getTime())/(1000*60*60*24))
         },
         data(){
           let data = {
