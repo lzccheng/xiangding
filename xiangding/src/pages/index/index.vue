@@ -331,7 +331,7 @@
                     that.text_erea = res.surroundingPois[0].title+'附近'
                     that.show_erea = false
                     that.$refs.show_erea.style.display = 'none'
-                    alert('你的位置在'+res.surroundingPois[0].title+'附近，地址为：'+res.address+res.surroundingPois[0].address)
+                    // alert('你的位置在'+res.surroundingPois[0].title+'附近，地址为：'+res.address+res.surroundingPois[0].address)
                   })
 
                   // let geolocation = new BMap.Geolocation()
@@ -435,7 +435,7 @@
             that.show_erea = false
             that.text_erea = res.surroundingPois[0].title+'附近'
             this.$refs.show_erea.style.display = 'none'
-            alert('你的位置在'+res.surroundingPois[0].title+'附近，地址为：'+res.address+res.surroundingPois[0].address)
+            // alert('你的位置在'+res.surroundingPois[0].title+'附近，地址为：'+res.address+res.surroundingPois[0].address)
           })
         },
         handleBlur(event){
