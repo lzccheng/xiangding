@@ -1,6 +1,8 @@
 <template>  
   <div class="box">
-  
+      
+      <!-- <iframe src="http://www.share-hotel.cn/sample.php"></iframe> -->
+      <div id="map"></div>
       <div class="_box" ref="_box" @click="_boxClick">
         <div class="erea" ref="_erea" @click="handleCancel">
           <div class="_erea">
@@ -122,13 +124,14 @@
   					<div class="map">
   						<span class="_right"><i class="fas fa-map-marker-alt"></i></span>
               <!-- <span>{{selectedOptions[1]}}</span> -->
-	  					<span><input id="area" type="text" readonly="" placeholder="城市选择特效"  value="广东省,深圳市,南山区" v-model="area_value"/></span>
-              <input id="value1" type="hidden" value="20,234,504"/>
+              <span ref="show_erea"><input id="area" type="text" readonly="" placeholder="城市选择特效"  value="广东省,深圳市,南山区" v-model="area_value"/></span>
+	  					<span v-if="!show_erea" @click="handleChange_erea">{{text_erea}}</span>
+              <input id="value1" type="hidden" value="20,234,504"/> 
   					</div>
   					<span class="right"><i class="fas fa-angle-right"></i></span>
   					<p class="local">
               
-              <span>
+              <span @click="handlePosition">
                 <span><i class="fa fa-crosshairs"></i></span><br>
                 <span>我的位置</span>
               </span>
@@ -202,7 +205,16 @@
             <img :src="i.imgUrl">
             <div>
               <p class="min_title">
-                <span class="one">{{i.name}}<star :len='i.star'/></span>
+                <span class="one">
+                  {{i.name}}
+                  <p class="_star">
+                    <el-rate
+                      v-model="i.star"
+                      disabled
+                      text-color="#ff9900">
+                    </el-rate>
+                  </p>
+                </span>
               </p>
               <p>
                 <span>{{i.area}}&nbsp;&nbsp;|&nbsp;&nbsp;{{i.room_total}}间房</span>
@@ -261,8 +273,8 @@
             console.log(err)
           })
 
-          let area = new LArea()
-          area.init({
+          // let area = new LArea()
+          new LArea().init({
             'trigger': '#area',
             'valueTo': '#value',
             'keys': {
@@ -289,6 +301,70 @@
               'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
               'minDate': this.min_date2, //最小日期
               'maxDate': (new Date().getFullYear()+2) + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate() //最大日期
+          })
+          // console.log(wx)
+          this.$axios({url:'/api/jssdka.php',method: 'get'}).then((res)=>{
+            // console.log(res.data)
+            wx.config({
+              debug: false,
+              appId: res.data.appId,
+              timestamp: res.data.timestamp,
+              nonceStr: res.data.nonceStr,
+              signature: res.data.signature,
+              jsApiList: [
+                'getLocation'
+              ]
+            })
+            
+            wx.ready(function(){
+              wx.getLocation({
+                success: function(res){
+                  that._lng = res.longitude
+                  that._lat = res.latitude
+                  let point = new BMap.Point(res.longitude, res.latitude)
+                  // console.log('point',point)
+                  // let map = new BMap.Map("map")
+                  let myGeo = new BMap.Geocoder()
+                  // console.log(that)
+                  myGeo.getLocation(point,function(res){
+                    // console.log(res)
+                    that.text_erea = res.surroundingPois[0].title+'附近'
+                    that.show_erea = false
+                    that.$refs.show_erea.style.display = 'none'
+                    alert('你的位置在'+res.surroundingPois[0].title+'附近，地址为：'+res.address+res.surroundingPois[0].address)
+                  })
+
+                  // let geolocation = new BMap.Geolocation()
+                  // geolocation.getCurrentPosition(function(r){
+                  //   if(this.getStatus() == BMAP_STATUS_SUCCESS){
+                  //     console.log(r.point)
+                  //     var mk = new BMap.Marker(r.point);
+                  //     mk.setAnimation(BMAP_ANIMATION_BOUNCE);
+                  //     map.addOverlay(mk);
+                  //     // map.panTo(r.point);
+                  //     // map.centerAndZoom(r.point, 15);
+                  //     myGeo.getLocation(r.point,function(res){
+                  //       console.log(res)
+                  //       alert('你的位置在'+res.surroundingPois[0].title+'附近，地址为：'+res.address+res.surroundingPois[0].address)
+                  //     })
+                  //     console.log(r)
+                  //     // alert('您的位置(浏览器定位)：'+r.point.lng+','+r.point.lat);
+                  //   }
+                  //   else {
+                  //     alert('位置获取失败：'+this.getStatus());
+                  //   }        
+                  // })
+                  // console.log(888,map)
+                  // console.log(999999,res,map)
+                },
+                fail: function(){
+                  console.log(777777,'err')
+                  alert('定位失败！')
+                }
+              })
+            })
+          }).catch((err)=>{
+            console.log(err)
           })
       },
       data(){
@@ -338,10 +414,30 @@
           min_date2: new Date(tomo.getTime()).getFullYear()+'-'+(new Date(tomo.getTime()).getMonth()+1)+'-'+new Date(tomo.getTime()).getDate(),
           input1: '',
           star: 4,
-          price: [80, 800]
+          price: [80, 800],
+          _lng: '',
+          _lat: '',
+          show_erea: true,
+          text_erea: ''
         }
       },
       methods: {
+        handleChange_erea(){
+          this.show_erea = true
+          this.$refs.show_erea.style.display = 'inline-block'
+        },
+        handlePosition(){
+          let that = this
+          let myGeo = new BMap.Geocoder()
+          let point = new BMap.Point(this._lng, this._lat)
+          myGeo.getLocation(point,res=>{
+            // console.log(res)
+            that.show_erea = false
+            that.text_erea = res.surroundingPois[0].title+'附近'
+            this.$refs.show_erea.style.display = 'none'
+            alert('你的位置在'+res.surroundingPois[0].title+'附近，地址为：'+res.address+res.surroundingPois[0].address)
+          })
+        },
         handleBlur(event){
           event.path[0].blur()
         },
@@ -593,11 +689,12 @@
             display: inline-block;
           }
           .map{
-            width: 70%;
+            width: 60%;
             padding-top: rem(10px) ;
             display: inline-block;
           }
           #area{
+            width: 85%;
             border: none;
           }
           .local{
@@ -668,6 +765,9 @@
           .one{
             font-size: rem(16px);
             font-weight: bold;
+            ._star{
+              display: inline-block;
+            }
           }
           img{
             display: inline-block;
