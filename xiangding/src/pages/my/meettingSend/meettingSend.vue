@@ -121,7 +121,7 @@
 				}
 				.name{
 					display: inline-block;
-					width: 19%;
+					width: 22%;
 				}
 				.select{
 					margin-left: 5%;
