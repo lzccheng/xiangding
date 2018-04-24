@@ -31,8 +31,9 @@
 					<span class="down">身份证反面照</span>
 				</p>
 			</div>
+			<div class="footer">
 			<router-link tag="p" to="/my/myagantEnter" class="button">立即申请</router-link>
-			
+			</div>
 		</div>
 		<p class="know">《入住协议》</p>
 	</div>
@@ -86,13 +87,17 @@
 					left: 63%;
 				}
 			}
-			.button{
-				background-color: #43c122;
-				font-size: rem(15px);
-				text-align: center;
-				padding: rem(10px) 0;
-				color: #ffffff;
-				margin-top: rem(20px);
+			.footer{
+				padding: 0 5%;
+				.button{
+					background-color: #43c122;
+					font-size: rem(15px);
+					text-align: center;
+					padding: rem(10px) 0;
+					color: #ffffff;
+					margin-top: rem(20px);
+					border-radius: rem(5px);
+				}
 			}
 			.mm{
 				position: relative;

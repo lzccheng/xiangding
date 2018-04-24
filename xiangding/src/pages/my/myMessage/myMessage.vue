@@ -136,14 +136,14 @@
 		.body{
 			border-top: #aaa solid rem(1px);
 			background-color: #ffffff;
-			padding-bottom: rem(50px);
-			padding-top: rem(30px);
+			padding: rem(30px) 5% rem(50px);
 			.button{
 				background-color: #43c122;
 				color: #ffffff;
 				font-size: rem(16px);
 				text-align: center;
 				padding: rem(12px) 0;
+				border-radius: rem(5px);
 			}
 		}
 	}

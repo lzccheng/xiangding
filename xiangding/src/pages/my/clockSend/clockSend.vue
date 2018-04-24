@@ -14,12 +14,47 @@
 					</span>
 				</li>
 				<li class="item">
+					<span class="name">房间原价:</span>
+					<span class="hide_1"><input type="text" placeholder="请填写房间的原价"></span>
+				</li>
+				<li class="item">
 					<span class="name">房间价格:</span>
 					<span class="hide_1"><input type="text" placeholder="请填写房间的价格"></span>
 				</li>
 				<li class="item">
 					<span class="name">服务手机号:</span>
-					<span class="hide_1"><input type="text" placeholder="请输入团房负责人的手机号码"></span>
+					<span class="hide_1"><input type="text" placeholder="请输入钟点房负责人的手机号码"></span>
+				</li>
+				<li class="item">
+					<span class="name">可住人数:</span>
+					<span class="hide_1"><input type="text" placeholder="请输入钟点房可住人数"></span>
+				</li>
+				<li >
+					<el-collapse v-model="activeNames" @change="handleChange">
+						<el-collapse-item title="取消政策" name="1">
+						    <p class="button">
+						    	<span>免费取消</span>
+						    	<span class="open">
+						    		<el-switch
+									  v-model="value2"
+									  active-color="#43c122"
+									  inactive-color="#999999">
+									</el-switch>
+						    	</span>
+						    </p>
+						    <p class="select">
+						    	<span>
+						    		 <el-checkbox-group v-model="checkList">
+									    <el-checkbox label="超过1小时扣费10%"></el-checkbox>
+									  </el-checkbox-group>
+						    	</span>
+						    </p>
+						    <p class="add">
+						    	<span class="add_icon"><i class="fas fa-plus-square"></i></span>
+						    	<span>添加</span>
+						    </p>
+						 </el-collapse-item>
+					</el-collapse>
 				</li>
 				<li class="item">
 					<span class="name">住房时间:</span>
@@ -104,11 +139,16 @@
 			      select4: '1张',
 			      select5: '1.2',
 			      select6: '是',
-			      checkList: ['24小时热水']
+			      // activeNames: ['1'],
+			      value1: true,
+                  value2: true,
+                  checkList: ['超过1小时扣费10']
 			}
 		},
 		methods: {
-
+			handleChange(val) {
+		        console.log(val);
+		      }
 		}
 	}
 </script>
@@ -118,10 +158,20 @@
 		width: 100%;
 		.body{
 			padding: 0 rem(16px);
+			p{
+				.open{
+					float: right;
+				}
+				.add_icon{
+					color: #aaa;
+					font-size: rem(14px);
+				}
+			}
 			.item{
 				position: relative;
 				border-bottom: #e5e5e5 solid rem(1px);
 				padding: rem(15px) 0;
+				
 				.check{
 					.check_box{
 						display: inline-block;

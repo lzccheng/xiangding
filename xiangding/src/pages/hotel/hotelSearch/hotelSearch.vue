@@ -1,6 +1,7 @@
 <template>
 	<div class="box">
 		<Header :title="title"/>
+
 		<div class="_content">
 		    <div class="top_box">
 				<div class="_search">
@@ -23,17 +24,89 @@
 					</div>
 				</div>
 				<div class="_tabs">
-					<div class="tab_">
-						<span>综合筛选</span>
-						<span><i class="fas fa-angle-down"></i></span>
+					<div @click="handleGeneral" class="tab_">
+						<span :class="{'color': 0 == show}">综合筛选</span>
+						<span v-if="0 != show"><i class="fas fa-angle-down"></i></span>
+						<!-- <span v-if="!up" >
+						<i class="fas fa-angle-down"></i></span> -->
 					</div>
-					<div class="tab_">
-						<span>星际价格</span>
-						<span><i class="fas fa-angle-down"></i></span>
+					<div @click="handlePrice" class="tab_">
+						<span :class="{'color': 1 == show}">星际价格</span>
+						<span v-if="1 != show"><i class="fas fa-angle-down"></i></span>
 					</div>
-					<div class="tab_">
-						<span>位置信息</span>
-						<span><i class="fas fa-angle-down"></i></span>
+					<div @click="handleLocal" class="tab_">
+						<span :class="{'color': 2 == show}">位置距离</span>
+						<span v-if="2 != show"><i class="fas fa-angle-down"></i></span>
+					</div>
+				</div>
+			</div>
+			<div v-if="general" @click="handleBack" class="back">
+				<div v-if="0 == show" @click="handleCancel">
+					<div class="content">
+						<div class="item">
+							<p class="title">会议室数量</p>
+							<p class="top">
+								<span>最低值</span>
+								<span class="line">一</span>
+								<span>最高值</span>
+							</p>
+						</div>
+						<div class="item">
+							<p class="title">会议室面积</p>
+							<p class="top">
+								<span>最低值</span>
+								<span class="line">一</span>
+								<span>最高值</span>
+							</p>
+						</div>
+						<div class="item">
+							<p class="title">容纳人数</p>
+							<p class="top">
+								<span>最低值</span>
+								<span class="line">一</span>
+								<span>最高值</span>
+							</p>
+						</div>
+					</div>
+					<div class="button">
+						<span>重置</span>
+						<span>确定</span>
+					</div>
+				</div>
+				<div v-if="1 == show" @click="handleCancel">
+					<div class="content">
+						<div class="item">
+							<p class="title">价格区间</p>
+							<p class="top">
+								<span>最低值</span>
+								<span class="line">一</span>
+								<span>最高值</span>
+							</p>
+						</div>
+						<div class="item">
+							<p class="title">酒店星级</p>
+							<p class="rank">
+								<span class="star">不限</span>
+								<span class="color_box">一星</span>
+								<span class="star">二星</span>
+							</p>
+							<p class="rank">
+								<span class="star">三星</span>
+								<span class="color_box">四星</span>
+								<span class="star">五星</span>
+							</p>
+						</div>
+					</div>
+					<div class="button">
+						<span>重置</span>
+						<span>确定</span>
+					</div>
+				</div>
+				<div v-if="2 == show" @click="handleCancel">
+					<div class="content">
+						<p class="m">1米 - 500米</p>
+						<p class="m">500米 - 1500米</p>
+						<p class="m none">1500米 - 3000米</p>
 					</div>
 				</div>
 			</div>
@@ -95,16 +168,46 @@
 		},
 		data(){
 			return {
+				general: false,
+				show: 0,
 				arrItem: [
 					{
 
 					}
 				],
 				star: 5,
-				title: '酒店列表'
+				title: '酒店列表',
 			}
 		},
 		methods: {
+			handleGeneral(){
+				if(!this.general){
+					this.general = !this.general
+				}
+				this.show = 0
+			},
+			handlePrice(){
+				if(!this.general){
+					this.general = !this.general
+				}
+				this.show = 1
+			},
+			handleLocal(){
+				if(!this.general){
+					this.general = !this.general
+				}
+				this.show = 2
+			},
+			handleBack(){
+				this.general = false
+				this.show = 3
+			},
+			handleCancel(event){
+				event.cancelBubble = true
+			},
+			handleUp(){
+				this.up = true
+			}
 		},
 		watch: {
 			$route (to,from){
@@ -123,6 +226,9 @@
 	@import '../../../common/css/common';
 	.box{
 		width: 100%;
+		.color{
+			color: #43C122;
+		}
 		._content{
 			// position: fixed;
 			// top: rem(50px);
@@ -130,6 +236,7 @@
 			// z-index: 999;
 			background-color: #EDEDED;
 			padding-top: rem(92px);
+			position: relative;
 			.top_box{
 				width: 100%;
 				position: fixed;
@@ -210,6 +317,86 @@
 					background-color: #fff;
 	 				.tab_{
 						padding: rem(12px);
+					}
+				}
+			}
+			.back{
+				background-color: rgba(0,0,0,0.3);
+				height: 100%;
+				position: fixed;
+				top: rem(140px);
+				left: 0;
+				z-index: 9999;
+				width: 100%;
+				.content{
+					background-color: #ffffff;
+					padding: rem(15px) rem(17px);
+					.m{
+						border-bottom: #aaa solid rem(0.5px);
+						padding: rem(10px) rem(15px);
+						font-size: rem(14px);
+					}
+					.none{
+						border-bottom: none;
+						padding-bottom: rem(1px);
+					}
+					.item{
+						p{
+							&.rank{
+								display: flex;
+								justify-content: center;
+								padding: rem(10px) 0;
+								.star{
+									padding: rem(8px) 10%;
+									background-color: #EDEDED;
+									border-radius: rem(5px);
+								}
+								.color_box{
+									background-color: #ffffff;
+									border: #43c122 solid rem(1px);
+									color: #43c122;
+									padding: rem(8px) 10%;
+									margin: 0 rem(15px);
+									border-radius: rem(5px);
+								}
+							}
+							&.title{
+								font-size: rem(14px);
+							}
+							&.top{
+								padding: rem(15px) 0;
+								display: flex;
+								 justify-content:center;
+								span{
+									padding: rem(8px) 12%;
+									background-color: #EDEDED;
+									border-radius: rem(5px);
+									&.line{
+										background-color: #ffffff;
+									}
+								}
+							}
+
+						}
+						
+					}
+				}
+				.button{
+					background-color: #ffffff;
+					display: flex;
+					justify-content: space-around;
+					text-align: center;
+					span{
+						border-top: #aaa solid rem(0.5px);
+						width: 50%;
+						padding: rem(10px) 0;
+						&:first-child{
+							border-right: #aaa solid rem(1px);
+						}
+						&:last-child{
+							background-color: #43c122;
+							color: #ffffff;
+						}
 					}
 				}
 			}

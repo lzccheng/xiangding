@@ -44,11 +44,11 @@
 			</div>
 		</div>
 		<div class="control">
-			<div class="add" @click="onHandleChange(0)" :class="{active:(0==index_)}">
+			<div class="add" @click="onHandleChange(0)" >
 			    <router-link tag="div" to="/my/roomSend/roomSend" class="icon_1"><i class="far fa-plus-square"></i></router-link>
 				<router-link tag="span" to="/my/roomSend/roomSend" >房间发布</router-link>
 			</div>
-			<div class="add" @click="onHandleChange(1)" :class="{active:(1==index_)}">
+			<div class="add" @click="onHandleChange(1)" >
 			    <div class="icon_1"><i class="far fa-minus-square"></i></div>
 				<span>删减房间</span>
 			</div>
@@ -203,6 +203,7 @@
 				line-height: rem(50px);
 				.icon_1{
 					display: inline-block;
+					color: #43c122;
 				}
 			}
 		}

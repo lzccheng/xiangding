@@ -292,7 +292,6 @@
 							p{
 								&:first-child{
 									font-size: rem(18px);
-									font-weight: bold;
 								}
 								&:nth-child(2){
 									color: #aaa;
