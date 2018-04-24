@@ -113,7 +113,7 @@
 				background-color: #43c122;
 				color: #ffffff;
 				position: absolute;
-				top: 0;
+				top: rem(-1px);
 				right: 0;
 				padding: 0 rem(10px);
 				height: 100%;

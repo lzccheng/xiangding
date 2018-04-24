@@ -63,9 +63,11 @@
 			  </p>
 			 
 		</div>
+		<div class="footer">
 		 <router-link tag="p" to="/enter/hotelManage" class="button">
 		  	<span>确定修改</span>
 		  </router-link>
+		</div>
 	</div>
 </template>
 <script>
@@ -138,15 +140,16 @@
 				
 			}
 		}
-		.button{
-			background-color: #43c122;
-			text-align: center;
-			padding: rem(13px) 0;
-			border-radius: rem(5px);
-			margin-top: rem(30px);
-			span{
+		.footer{
+			padding: 0 5%;
+			.button{
+				background-color: #43c122;
+				font-size: rem(15px);
+				text-align: center;
+				padding: rem(10px) 0;
 				color: #ffffff;
-				font-size: rem(14px);
+				margin-top: rem(20px);
+				border-radius: rem(5px);
 			}
 		}
 	}

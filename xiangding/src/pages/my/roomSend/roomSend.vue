@@ -1,6 +1,6 @@
 <template>
 	<div class="box">
-		<Header title="房间发布" />
+		<Header :title="title" />
 		<div class="body">
 			<ul>
 				<li class="item">
@@ -27,14 +27,14 @@
 				</li>
 				<li class="item">
 					<span class="name">可住人数:</span>
-					<span class="hide_1"><input type="text" placeholder="请填写团房最低订购间数"></span>
+					<span class="hide_1"><input type="text" placeholder="请填写房间可住人数"></span>
 				</li>
 				<li class="item">
 					<span class="name">服务手机号:</span>
-					<span class="hide_1"><input type="text" placeholder="请输入团房负责人的手机号码"></span>
+					<span class="hide_1"><input type="text" placeholder="请输入房间负责人的手机号码"></span>
 				</li>
 				<li >
-					<el-collapse v-model="activeNames" @change="handleChange">
+					<el-collapse v-model="activeNames">
 						<el-collapse-item title="取消政策" name="1">
 						    <p class="button">
 						    	<span>免费取消</span>
@@ -143,13 +143,19 @@
 				<span class="color">添加房间</span>
 			</div>
 			<div class="send">
-				<button class="green_btn">发布</button>
+				<button v-if="title === '房间发布'" class="green_btn">发布</button>
+				<button v-else class="green_btn">确定</button>
 			</div>
 		</div>
 	</div>
 </template>
 <script>
 	export default {
+		mounted(){
+			if(this.$route.query.title){
+				this.title = this.$route.query.title
+			}
+		},
 		data(){
 			return {
 				  input3: '',
@@ -164,11 +170,22 @@
 			      checkList1: ['24小时热水'],
 			      value1: true,
                   value2: true,
-                  checkList2: ['超过1小时扣费10']
+                  checkList2: ['超过1小时扣费10'],
+                  activeNames:[],
+                  title: '房间发布'
 			}
 		},
 		methods: {
 
+		},
+		watch:{
+			$route(to,from){
+				if(to.name === 'roomSend'){
+					if(this.$route.query.title){
+						this.title = this.$route.query.title
+					}
+				}
+			}
 		}
 	}
 </script>
@@ -181,7 +198,7 @@
 			p{
 					&.button{
 						span{
-							padding-left: rem(10px);
+							// padding-left: rem(10px);
 						}
 					}
 					.open{
@@ -189,7 +206,7 @@
 					}
 					.add_icon{
 						color: #aaa;
-						padding: 0 rem(17px);
+						// padding: 0 rem(17px);
 						font-size: rem(14px);
 					}
 				}

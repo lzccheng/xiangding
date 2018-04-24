@@ -131,8 +131,10 @@
 			background-color: #ffffff;
 			padding-bottom: rem(50px);
 			padding-top: rem(30px);
+			padding: rem(30px) 5% rem(50px);
 			.button{
 				background-color: #43c122;
+				border-radius: rem(5px);
 				color: #ffffff;
 				font-size: rem(16px);
 				text-align: center;

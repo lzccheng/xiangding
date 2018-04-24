@@ -16,39 +16,39 @@
 			<div class="select">
 				<ul>
 					<li>
-						<div class="tabss" @click="onHandleTabs" :class="{scal:tabs}">
-							<span>价格</span>
-							<span><i class="fas fa-angle-down"></i></span>
+						<div class="tabss" @click="handleGeneral">
+							<span :class="{'color': 0 == show}">价格</span>
+							<span v-if="0 != show"><i class="fas fa-angle-down"></i></span>
 						</div>
 						
-						<div class="tabs" v-if="tabs" ref="tabs">
+						<!-- <div class="tabs" v-if="tabs" ref="tabs">
 							<div class="tabs_" @click="onHandlecancelBubble">
 								<p>综合</p>
 								<p>价格降序</p>
 								<p>价格升序</p>
 							</div>
-						</div>
+						</div> -->
 							
 					</li>
 					<li>
-						<div class="tabss" @click="onHandleLocal" :class="{scal:local}">
-							<span>位置</span>
-							<span><i class="fas fa-angle-down"></i></span>
+						<div class="tabss" @click="handlePrice">
+							<span :class="{'color': 1 == show}">位置</span>
+							<span v-if="1 != show"><i class="fas fa-angle-down"></i></span>
 						</div>
-						<div class="tabs" ref="local">
+						<!-- <div class="tabs" ref="local">
 							<div class="tabs_" v-if="local" @click="onHandlecancelBubble">
 								<p>1米-500米</p>
 								<p>500米-1500米</p>
 								<p>1500米-3000米</p>
 							</div>
-						</div>
+						</div> -->
 					</li>
 					<li>
-						<div class="tabss" @click="onHandleFilter" :class="{scal:filter}">
-							<span>筛选</span>
-							<span><i class="fas fa-angle-down"></i></span>
+						<div class="tabss" @click="handleLocal">
+							<span :class="{'color': 2 == show}">筛选</span>
+							<span v-if="2 != show"><i class="fas fa-angle-down"></i></span>
 						</div>
-						<div class="tabs" ref="filter">
+						<!-- <div class="tabs" ref="filter">
 							<div class="tabs_" v-if="filter">
 								<div class="filter" @click="onHandlecancelBubble">
 									<div class="filter_">
@@ -109,9 +109,44 @@
 									<div class="btn"><button class="reset">重置</button><button class="sure">筛选</button></div>
 								</div>
 							</div>
-						</div>
+						</div> -->
 					</li>
 				</ul>
+			</div>
+		</div>
+		<div class="back" v-if="general" @click="handleBack">
+			<div v-if="0 == show" @click="handleCancel">
+				<div class="content">
+					<p class="m"><span>综合</span></p>
+					<p class="m"><span>价格降序</span></p>
+					<p class="m none"><span>价格升序</span></p>
+				</div>
+			</div>
+			<div v-if="1 == show" @click="handleCancel">
+				<div class="content">
+					<p class="m"><span>1米 - 500米</span></p>
+					<p class="m"><span>500米 - 1500米</span></p>
+					<p class="m none"><span>1500米 - 3000米</span></p>
+				</div>
+			</div>
+			<div v-if="2 == show" @click="handleCancel">
+				<div class="content">
+				    <div class="back_box">
+						<div class="choice_title">
+							<p v-for="(i,index) in arrItem" :key="index"  @click="handleShow(index)" :class="{color: item_show==index}">{{i.name}}</p>
+						</div>
+						<div class="choice_text">
+							<div v-for="(i,index_) in arrItem" class="item" v-if="index_ == item_show">
+								<p v-for="(item,index) in i.child" :key="index" :class="{color: item.active}" @click="handleColor(index)">{{item.name}}</p>
+							</div>
+						</div>
+						
+					</div>
+					<div class="button_box">
+						<div @click="handleReset">重置</div>
+						<div>确定</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="hotel">
@@ -157,6 +192,114 @@
 	      },
 		data(){
 			return {
+				arrItem: [
+					{
+						name: '酒店品牌',
+						child: [
+							{
+								name: '维也纳',
+								active: false
+							},
+							{
+								name: '汉庭',
+								active: false
+							},
+							{
+								name: '如家',
+								active: false
+							},
+							{
+								name: '7天',
+								active: false
+							},
+							{
+								name: '锦江',
+								active: false
+							},
+						]
+					},
+					{
+						name: '酒店类型',
+						child: [
+							{
+								name: '豪华酒店',
+								active: false
+							},
+							{
+								name: '度假酒店',
+								active: false
+							},
+							{
+								name: '商务酒店',
+								active: false
+							},
+							{
+								name: '经济酒店',
+								active: false
+							},
+							{
+								name: '主题酒店',
+								active: false
+							},
+						]
+					},
+					{
+						name: '房间类型',
+						child: [
+							{
+								name: '双人房',
+								active: false
+							},
+							{
+								name: '大床房',
+								active: false
+							},
+							{
+								name: '单人房',
+								active: false
+							},
+							{
+								name: '套件',
+								active: false
+							},
+						]
+					},
+					{
+						name: '房间数量',
+						child: [
+							{
+								name: '单间',
+								active: false
+							},
+							{
+								name: '团房',
+								active: false
+							},
+							
+						]
+					},
+					{
+						name: '设施',
+						child: [
+							{
+								name: 'wifi',
+								active: false
+							},
+							{
+								name: '餐饮美食',
+								active: false
+							},
+							{
+								name: '健身房',
+								active: false
+							},
+							{
+								name: '游泳池',
+								active: false
+							},
+						]
+					}
+				],
 				hotel: [],
 				tabs: false,
 				local: false,
@@ -166,7 +309,10 @@
 				checkList3: [],
 				checkList4: [],
 				checkList5: [],
-				value5:2
+				show: 3,
+				value5:2,
+				general: false,
+				item_show: 0
 			}
 		},
 		methods: {
@@ -205,13 +351,48 @@
 					}
 				},50)
 			},
-			onHandlecancelBubble(event){
+			handleCancel(event){
 				event.cancelBubble = true
 			},
 			onHandleCancel(){
 				this.filter = false
 				this.local = false
 				this.tabs = false
+			},
+			handleBack(){
+				this.general = false
+				this.show = 3
+			},
+			handleGeneral(){
+				if(!this.general){
+					this.general = !this.general
+				}
+				this.show = 0
+			},
+			handlePrice(){
+				if(!this.general){
+					this.general = !this.general
+				}
+				this.show = 1
+			},
+			handleLocal(){
+				if(!this.general){
+					this.general = !this.general
+				}
+				this.show = 2
+			},
+			handleShow(i){
+				this.item_show = i
+			},
+			handleColor(i){
+				this.arrItem[this.item_show].child[i].active = !this.arrItem[this.item_show].child[i].active
+			},
+			handleReset(){
+				for(let i = 0;i<this.arrItem.length;i++){
+					for(let j = 0;j<this.arrItem[i].child.length;j++ ){
+						this.arrItem[i].child[j].active = false
+					}
+				}
 			}
 		}
 	}
@@ -222,6 +403,7 @@
 		width: 100%;
 		background-color: #fff;
 		padding-top: rem(100px);
+		position: relative;
 		.top_box{
 			width: 100%;
 			background-color: #ffffff;
@@ -262,7 +444,7 @@
 			}
 			.scal{
 				font-weight: bold;
-				color: #FF9800;
+				color: #43c122;
 			}
 			.select{
 				border-bottom: 1px solid #aaa;
@@ -276,22 +458,26 @@
 						.tabs{
 							position: absolute;
 							left: -100%;
-							top: rem(42px);
+							top: rem(41px);
 							width: 0;
 							background-color: rgba(0,0,0,0.5);
-							z-index: 999;
+							height: 5000%;
+							z-index: 99;
 							transition: all 0.5s;
 							.tabs_{
+								z-index: 999;
 								background-color: #fff;
 								p{
 									padding: rem(8px) rem(25px);
 									border-bottom: 1px solid #aaa;
-									text-align: center;
 								}
 							}
 						}
 						.tabss{
 							padding: rem(8px) 0;
+							.color{
+								color: #43c122;
+							}
 						}
 						.filter{
 							.filter_{
@@ -326,6 +512,72 @@
 									border: none;
 								}
 							}
+						}
+					}
+				}
+			}
+		}
+		.back{
+			background-color: rgba(0,0,0,0.3);
+			position: fixed;
+			top: rem(97px);
+			left: 0;
+			height: 100%;
+			z-index: 33;
+			width: 100%;
+			.content{
+				background-color: #ffffff;
+				.m{
+					border-bottom: #aaa solid rem(0.5px);
+					padding: rem(10px) rem(15px);
+					font-size: rem(14px);
+				}
+				.none{
+					border-bottom: none;
+					padding-bottom: rem(10px);
+				}
+				.back_box{
+					display: flex;
+					font-size: rem(14px);
+					.color{
+				    	color: #43c122;
+				    }
+					.choice_title{
+						width: 50%;
+						p{
+						    padding: rem(10px) 6%;
+						    background-color: #EDEDED;
+						    &.color{
+						    	background-color: #ffffff;
+						    }
+						}
+					}
+					.choice_text{
+						width: 50%;
+						.item{
+							p{
+							    padding: rem(10px) 20%;
+							}
+						}
+					}
+					
+				}
+				.button_box{
+					display: flex;
+					text-align: center;
+					font-size: rem(14px);
+					border-top: #aaa solid rem(0.5px);
+					div{
+						&:first-child{
+							width: 50%;
+							border-right: #aaa solid rem(0.5px);
+							padding: rem(12px) 0;
+						}
+						&:last-child{
+							width: 50%;
+							padding: rem(12px) 0;
+							background-color: #43c122;
+							color: #ffffff;
 						}
 					}
 				}

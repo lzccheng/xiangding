@@ -104,7 +104,7 @@
 				</div>
 				<div v-if="2 == show" @click="handleCancel">
 					<div class="content">
-						<p class="m">1米 - 500米</p>
+						<p class="m top">1米 - 500米</p>
 						<p class="m">500米 - 1500米</p>
 						<p class="m none">1500米 - 3000米</p>
 					</div>
@@ -169,7 +169,7 @@
 		data(){
 			return {
 				general: false,
-				show: 0,
+				show: 3,
 				arrItem: [
 					{
 
@@ -339,6 +339,9 @@
 					.none{
 						border-bottom: none;
 						padding-bottom: rem(1px);
+					}
+					.top{
+						padding-top: 0;
 					}
 					.item{
 						p{

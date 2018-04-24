@@ -33,14 +33,16 @@
 			</div>
 			<div class="inform">
 				<p class="black">
-					<span>天数</span>
+					<span v-if="title === '钟点房'">时间</span>
+					<span v-else>天数</span>
 					<span class="number_box">
 					    <el-input-number size="mini" v-model="num6"></el-input-number>
 					</span>
 				</p>
 				<p class="black">
-					<span>
-					   <p>房间</p>
+					<span class="first">
+					   <p v-if="title ==='会议室'">会议室间数</p>
+					   <p v-else>房间</p>
 					   <p v-if="title === '团房'" class="room">注: 团房间最少订购两间及以上</p>
 					</span>
 					<span class="number_box1">
@@ -197,6 +199,9 @@
 							&:first-child{
 								color: #aaa;
 							}
+							// &.first{
+							// 	padding: 0 2%;
+							// }
 							&:last-child{
 								float: right;
 								color: #ffa726;
@@ -216,16 +221,19 @@
 					&.black{
 						margin-top: rem(13px);
 				        padding-bottom: rem(20px);
-				        border-bottom: #aaa solid rem(1px);
+				        border-bottom: #EBEBEB solid rem(1px);
 				        position: relative;
 				        span{
 				        	&:first-child{
 				        		display: inline-block;
+				        	&.first{
+								margin-left: rem(-5.5px);
+							}
 				        		p{
 				        			margin: 0;
 				        			&.room{
 				        				color: #E51C23;
-				        				font-size: rem(5px);
+				        				font-size: rem(11px);
 				        			}
 				        		}
 				        	}
@@ -281,10 +289,10 @@
 						}
 					}
 					&.day{
-						border-bottom: 0.5px solid #aaa;
+						border-bottom: 0.5px solid #EBEBEB;
 					}
 					&.add_text{
-						border-bottom: 0.5px solid #aaa;
+						border-bottom: 0.5px solid #EBEBEB;
 						padding-bottom: rem(40px);
 					}
 					&.color_aaa{
@@ -295,7 +303,7 @@
 					}
 					&.input_box{
 						display: flex;
-						border-bottom: 0.5px solid #aaa;
+						border-bottom: 0.5px solid #EBEBEB;
 						margin-top: rem(-15px);
 						position: relative;
 					}
