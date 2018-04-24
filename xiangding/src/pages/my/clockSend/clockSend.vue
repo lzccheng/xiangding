@@ -184,7 +184,7 @@
 				}
 				.name{
 					display: inline-block;
-					width: 19%;
+					width: 21%;
 				}
 				.select{
 					margin-left: 5%;

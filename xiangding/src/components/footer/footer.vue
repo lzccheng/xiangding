@@ -65,6 +65,7 @@
 		width: 100%;
 		background-color: #fff;
 		border-top: 0.5px solid #aaa;
+		z-index: 99;
 		.route{
 			width: 20%;
 			display: inline-block;
