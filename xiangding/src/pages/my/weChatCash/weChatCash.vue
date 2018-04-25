@@ -60,6 +60,7 @@
 	.box{
 		width: 100%;
 		background-color: #e5e5e5;
+		font-size: rem(14px);
 		.form{
 			background-color: #ffffff;
 			margin-top: rem(8px);

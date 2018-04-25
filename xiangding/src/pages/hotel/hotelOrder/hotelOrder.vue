@@ -25,7 +25,10 @@
 				<div class="text">
 					<p>01-29入住，1-30离开，共1天</p>
 					<p>商务大床房</p>
-					<p><span>25m <sup>2</sup>	大床1.8m </span><span>￥289元</span></p>
+					<p><span>25m <sup>2</sup>	
+					<span v-if="title === '会议室'">100人</span> 
+					<span  v-else>大床1.8m</span> 
+					</span><span class="change">￥289元</span></p>
 				</div>
 				<div>
 					
@@ -52,6 +55,10 @@
 				<p class="black">
 					<span>是否需要发票</span>
 					<span class="check_box"><el-checkbox v-model="checked"></el-checkbox></span>
+				</p>
+				<p v-if="title === '团房'" class="black">
+					<span>是否需要会议室</span>
+					<router-link tag="span" to="/hotelDetail" class="check_box"><i class="fas fa-chevron-right"></i></router-link>
 				</p>
 				<p class="black">
 					<span>预计到店</span>
@@ -159,7 +166,7 @@
 			padding: 0 rem(15px);
 			.title{
 				padding: rem(5px) 0;
-				font-size: rem(20px);
+				font-size: rem(18px);
 				font-weight: bold;
 			}
 			.star{
@@ -202,11 +209,12 @@
 							// &.first{
 							// 	padding: 0 2%;
 							// }
-							&:last-child{
+							&.change{
 								float: right;
 								color: #ffa726;
 								font-size: rem(17px);
 							}
+						
 						}
 					}
 				}

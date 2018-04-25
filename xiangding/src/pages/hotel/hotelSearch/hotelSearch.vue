@@ -86,14 +86,14 @@
 						<div class="item">
 							<p class="title">酒店星级</p>
 							<p class="rank">
-								<span class="star">不限</span>
-								<span class="color_box">一星</span>
-								<span class="star">二星</span>
+								<span class="star" :class="{color_box: colorBoolen}" @click="handleNo">不限</span>
+								<span class="star" :class="{color_box: starItem[0].active}" @click="handleStar(0)">一星</span>
+								<span class="star" :class="{color_box: starItem[1].active}" @click="handleStar(1)">二星</span>
 							</p>
 							<p class="rank">
-								<span class="star">三星</span>
-								<span class="color_box">四星</span>
-								<span class="star">五星</span>
+								<span class="star" :class="{color_box: starItem[2].active}" @click="handleStar(2)">三星</span>
+								<span class="star" :class="{color_box: starItem[3].active}" @click="handleStar(3)">四星</span>
+								<span class="star" :class="{color_box: starItem[4].active}" @click="handleStar(4)">五星</span>
 							</p>
 						</div>
 					</div>
@@ -168,6 +168,43 @@
 		},
 		data(){
 			return {
+				starItem: [
+					{
+						name: '一星',
+						active: false
+					},
+					{
+						name: '二星',
+						active: false
+					},
+					{
+						name: '三星',
+						active: false
+					},
+					{
+						name: '四星',
+						active: false
+					},
+					{
+						name: '五星',
+						active: false
+					},
+				],
+				tabsItem: [
+					{
+						name: '综合筛选',
+						active: false
+					},
+					{
+						name: '星际价格',
+						active: false
+					},
+					{
+						name: '位置距离',
+						active: false
+					},
+				],
+				colorBoolen: false,
 				general: false,
 				show: 3,
 				arrItem: [
@@ -181,32 +218,54 @@
 		},
 		methods: {
 			handleGeneral(){
-				if(!this.general){
-					this.general = !this.general
-				}
-				this.show = 0
+				this.handleTabChange(0)
 			},
 			handlePrice(){
-				if(!this.general){
-					this.general = !this.general
-				}
-				this.show = 1
+				this.handleTabChange(1)
 			},
 			handleLocal(){
-				if(!this.general){
-					this.general = !this.general
-				}
-				this.show = 2
+				this.handleTabChange(2)
 			},
 			handleBack(){
 				this.general = false
 				this.show = 3
+				for(let j = 0;j<this.tabsItem.length;j++){
+					this.tabsItem[j].active = false
+				}
+			},
+			handleTabChange(i){
+				if(this.tabsItem[i].active){
+					this.handleBack()
+				}else{
+					this.tabsItem[i].active = true
+
+					if(!this.general){
+						this.general = !this.general
+					}
+					this.show = i
+					for(let j = 0;j<this.tabsItem.length;j++){
+						if(this.tabsItem[j].active){
+							continue
+						}
+						this.tabsItem[j].active = false
+					}
+				}
 			},
 			handleCancel(event){
 				event.cancelBubble = true
 			},
 			handleUp(){
 				this.up = true
+			},
+			handleStar(i){
+				this.starItem[i].active = !this.starItem[i].active
+				this.colorBoolen = false
+			},
+			handleNo(){
+				this.colorBoolen = !this.colorBoolen
+				for(let i=0;i< this.starItem.length;i++){
+					this.starItem[i].active = false
+				}
 			}
 		},
 		watch: {
@@ -215,7 +274,7 @@
 					if(this.$route.query.name){
 						this.title = this.$route.query.name
 					}else{
-						this.title = '酒店'
+						this.title = '酒店列表'
 					}
 				}
 			}
@@ -269,6 +328,7 @@
 									position: absolute;
 									left: 0;
 									padding-left: rem(10px);
+
 									.color{
 										color: #43c122;
 									}
@@ -353,14 +413,12 @@
 									padding: rem(8px) 10%;
 									background-color: #EDEDED;
 									border-radius: rem(5px);
+									margin: 0 rem(8px);
 								}
 								.color_box{
 									background-color: #ffffff;
 									border: #43c122 solid rem(1px);
 									color: #43c122;
-									padding: rem(8px) 10%;
-									margin: 0 rem(15px);
-									border-radius: rem(5px);
 								}
 							}
 							&.title{

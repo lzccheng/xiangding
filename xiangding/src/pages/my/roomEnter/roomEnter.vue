@@ -18,7 +18,7 @@
 							<div class="text_small">
 								<p class="text">
 								  <span class="text_1">房间面积:&nbsp; 20平方</span>
-								  <span class="icon">
+								  <span class="icon" @click="handleCancel">
 									  <el-switch
 										  v-model="value2"
 										  active-color="#43c122"
@@ -26,7 +26,7 @@
 									  </el-switch>
 								  </span>
 								</p>
-								<p class="text_2">已住房数:&nbsp; 20间 <span class="right">开启状态</span></p>
+								<p class="text_2">已住房数:&nbsp; 20间 <span class="right" @click="handleCancel">开启状态</span></p>
 								<p class="text">可售房间:&nbsp; 20间</p>
 							</div>
 						</div>
@@ -75,7 +75,7 @@
 				</router-link>
 			</div>
 			<div class="room_box">
-				<router-link tag="div" to="/my/roomEnter/clockSend" class="room">
+				<router-link tag="div" to="/my/roomEnter/clockSend" class="room left">
 					<div class="icon_3"><i class="far fa-plus-square"></i></div>
 					<span>钟点房</span>
 				</router-link>
@@ -93,6 +93,9 @@
 			}
 		},
 		methods: {
+			handleCancel(event){
+				event.cancelBubble = true
+			},
 			onHandleChange(i){
 				this.index_ = i
 			}
@@ -119,6 +122,7 @@
 			padding: rem(15px) 0;
 			background-color: #ffffff;
 			border-bottom: #aaa solid rem(1px);
+			margin-left: 2%;
 			div{
 				padding: 0 rem(5px) 0 rem(10px);
 				&.img{
@@ -230,9 +234,10 @@
 		}
 		.control{
 			position: fixed;
-			bottom: rem(43px);
+			bottom: rem(42px);
 			background-color: #e5e5e5;
 			display: flex;
+			border-bottom: #ffffff solid rem(1px);
 			// justify-content: space-around;
 			// align-items: center;
 			width: 100%;
@@ -274,6 +279,9 @@
 						display: inline-block;
 						color: #43c122;
 					}
+				}
+				.left{
+					border-right: none;
 				}
 			}
 			

@@ -19,64 +19,118 @@
 		</div>
 		</div>
 		<div class="show">
-				<div v-if="0==index_">
+				<div v-if="0 == index_">
 					<div class="body">
 						<div class="top">
-							<div class="pay_y">
+						    <div class="line_green"></div>
+							<div @click="handlePay(0)" :class="{pay_y: (0 == index)}">
 								<p class="numb">10</p>
 								<p class="text">已付款</p>
 							</div>
-							<div class="pay_n">
+							<div @click="handlePay(1)" :class="{pay_y: (1 == index)}">
 								<p class="numb">10</p>
 								<p class="text">未付款</p>
 							</div>
 						</div>
-						<div v-for="(i,index) in 5" class="item" key=index>
-							<div class="img">
-								<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425433535&di=f7d324b2c95bd6f203fb8741290c02e3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D41481487a2773912d02b8d219161e374%2Ff3d3572c11dfa9ec3d58042d69d0f703918fc192.jpg" alt="">
-							</div>
-							<div class="text_box">
-								<div class="left">
-									<p class="name_1">订单号: 12315412</p>
-									<p class="name_2">客户名称: 胡勇蝶</p>
-									<p class="name_2">入住: 3月28  退房: 3月29</p>
-									<p class="name_2">办理时间: 2018-1-12</p>
-								</div>
-								<div class="right">
-									<p class="numb"><i class="fas fa-chevron-right"></i></p>
-								</div>
-							</div>
+						<div v-if="0 == index">
+							<router-link tag="div" to="/enter/hotelManage/orderStatus">
+								<div v-for="(i,index) in 5" class="item" key=index>
+									<div class="img">
+										<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425433535&di=f7d324b2c95bd6f203fb8741290c02e3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D41481487a2773912d02b8d219161e374%2Ff3d3572c11dfa9ec3d58042d69d0f703918fc192.jpg" alt="">
+									</div>
+									<div class="text_box">
+										<div class="left">
+											<p class="name_1">订单号: 12315412</p>
+											<p class="name_1 color"><span>¥286</span></p>
+											<p class="name_2">客户名称: 胡勇蝶</p>
+											<p class="name_2"><span>入住: 3月28</span>  <span>退房: 3月29</span></p>
+											<p class="name_2">办理时间: 2018-1-12</p>
+										</div>
+										<div class="right">
+											<p class="numb"><i class="fas fa-chevron-right"></i></p>
+										</div>
+									</div>
+					            </div>
+					        </router-link>
+			            </div>
+			            <div v-if="1 == index">
+			            	<router-link tag="div" to="/enter/hotelManage/orderStatus">
+				            	<div v-for="(i,index) in 5" class="item" key=index>
+									<div class="img">
+										<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425433535&di=f7d324b2c95bd6f203fb8741290c02e3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D41481487a2773912d02b8d219161e374%2Ff3d3572c11dfa9ec3d58042d69d0f703918fc192.jpg" alt="">
+									</div>
+									<div class="text_box">
+										<div class="left">
+											<p class="name_1">订单号: 12315412</p>
+											<p class="name_1 color"><span>¥286</span></p>
+											<p class="name_2">客户名称: 胡勇蝶</p>
+											<p class="name_2"><span>入住: 3月28</span>  <span>退房: 3月29</span></p>
+											<p class="name_2">办理时间: 2018-1-12</p>
+										</div>
+										<div class="right">
+											<p class="numb"><i class="fas fa-chevron-right"></i></p>
+										</div>
+									</div>
+					            </div>
+					        </router-link>
 			            </div>
 					</div>
 				</div>
-				<div v-if="1==index_">
+				<div v-if="1 == index_">
 					<div class="body">
 						<div class="top">
-							<div class="pay_y">
+							<div class="line_green"></div>
+							<div @click="handleLive(0)" :class="{pay_y: (0 == index_1)}">
 								<p class="numb">10</p>
 								<p class="text">在住房</p>
 							</div>
-							<div class="pay_n">
+							<div @click="handleLive(1)" :class="{pay_y: (1 == index_1)}">
 								<p class="numb">10</p>
-								<p class="text">已住房</p>
+								<p class="text">已退房</p>
 							</div>
 						</div>
-						<div v-for="(i,index) in 5" class="item" key=index>
-							<div class="img">
-								<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425433535&di=f7d324b2c95bd6f203fb8741290c02e3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D41481487a2773912d02b8d219161e374%2Ff3d3572c11dfa9ec3d58042d69d0f703918fc192.jpg" alt="">
-							</div>
-							<div class="text_box">
-								<div class="left">
-									<p class="name_1">订单号: 12315412</p>
-									<p class="name_2">客户名称: 胡勇蝶</p>
-									<p class="name_2">入住: 3月28  退房: 3月29</p>
-									<p class="name_2">办理时间: 2018-1-12</p>
-								</div>
-								<div class="right">
-									<p class="numb"><i class="fas fa-chevron-right"></i></p>
-								</div>
-							</div>
-			            </div>
+						<div v-if="0 == index_1">
+							<router-link tag="div" to="/enter/hotelManage/orderStatus">
+								<div v-for="(i,index) in 5" class="item" key=index>
+									<div class="img">
+										<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425433535&di=f7d324b2c95bd6f203fb8741290c02e3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D41481487a2773912d02b8d219161e374%2Ff3d3572c11dfa9ec3d58042d69d0f703918fc192.jpg" alt="">
+									</div>
+									<div class="text_box">
+										<div class="left">
+											<p class="name_1">订单号: 12315412</p>
+											<p class="name_1 color"><span>¥286</span></p>
+											<p class="name_2">客户名称: 胡勇蝶</p>
+											<p class="name_2"><span>入住: 3月28</span> <span>退房: 3月29</span></p>
+											<p class="name_2">办理时间: 2018-1-12</p>
+										</div>
+										<div class="right">
+											<p class="numb"><i class="fas fa-chevron-right"></i></p>
+										</div>
+									</div>
+					            </div>
+					        </router-link>
+				        </div>
+				        <div v-if="1 == index_1">
+				        	<router-link tag="div" to="/enter/hotelManage/orderStatus">
+								<div v-for="(i,index) in 5" class="item" key=index>
+									<div class="img">
+										<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425433535&di=f7d324b2c95bd6f203fb8741290c02e3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D41481487a2773912d02b8d219161e374%2Ff3d3572c11dfa9ec3d58042d69d0f703918fc192.jpg" alt="">
+									</div>
+									<div class="text_box">
+										<div class="left">
+											<p class="name_1">订单号: 12315412</p>
+											<p class="name_1 color"><span>¥286</span></p>
+											<p class="name_2">客户名称: 胡勇蝶</p>
+											<p class="name_2"><span>入住: 3月28</span> <span>退房: 3月29</span></p>
+											<p class="name_2">办理时间: 2018-1-12</p>
+										</div>
+										<div class="right">
+											<p class="numb"><i class="fas fa-chevron-right"></i></p>
+										</div>
+									</div>
+					            </div>
+					        </router-link>
+				        </div>    
 					</div>
 				</div>
 		</div>
@@ -93,7 +147,9 @@
 					'已订房',
 					'已住房',
 				],
-				index_: 0
+				index_: 0,
+				index: 0,
+				index_1: 0
 			} 
 		},
 		methods: {
@@ -109,6 +165,12 @@
 				this.index_ = this.$route.query.status || 0
 				this.$refs._line.style.left = this.$refs.tab.children[this.index_].offsetLeft + 'px'
 				this.$refs._line.style.width =  this.$refs.tab.children[this.index_].offsetWidth + 'px'
+			},
+			handlePay(i){
+				this.index = i
+			},
+			handleLive(i){
+				this.index_1 = i
 			}
 		},
 		watch: {
@@ -149,6 +211,7 @@
 						padding-right: rem(10px);
 					}
 					.text{
+						font-size: rem(14px);
 						input{
 							margin-left: rem(10px);
 							border: none;
@@ -207,24 +270,32 @@
 					padding: rem(22px) 0;
 					.top{
 						background-color: #e5e5e5;
-						padding: rem(5px) 10%;
+						padding: rem(5px) 0;
+						position: relative;
 						display: flex;
+						// align-items: center;
+						// justify-content: spase-around;
 						div{
+							width: 50%;
+							text-align: center;
+							// border-right: #43c122 solid rem(0.5px);
+							// border-left: #43c122 solid rem(0.5px);
 							&.pay_y{
 								color: #43c122;
-								padding: 0 28% 0 12%;
-								border-right: #43c122 solid rem(1px);
-								.numb{
-									font-size: rem(18px);
-									text-align: center;
-								}
 							}
-							&.pay_n{
-								text-align: center;
-								padding-left: 24%;
-								.numb{
-									font-size: rem(18px);
-								}
+							&.line_green{
+								border: #43c122 solid rem(0.5px);
+								height: rem(25px);
+								width: 0;
+								position: absolute;
+								top: rem(12px);
+								left: 50%;
+							}
+							.text{
+								// font-size: rem(14px);
+							}
+							.numb{
+								font-size: rem(18px);
 							}
 						}
 					}
@@ -240,8 +311,8 @@
 							div{
 								padding-left: 1%;
 								&.img{
-									width: 20%;
-									height: rem(70px);
+									width: 25%;
+									height: rem(93px);
 									img{
 										width: 100%;
 										height: 100%;
@@ -258,8 +329,14 @@
 										}
 										.name_2{
 											span{
-												color: #e73c46;
+												margin-right: rem(10px);
 											}	
+										}
+										.color{
+											margin-bottom: none;
+											span{
+													color: red;
+											}
 										}
 									}
 									.right{

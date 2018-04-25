@@ -120,7 +120,7 @@
 				padding-left: 3%;
 				width: 70%;
 				.name{
-					font-size: rem(18px);
+					font-size: rem(15px);
 					font-weight: bold;
 					margin-bottom: rem(10px);
 					}
@@ -134,7 +134,7 @@
 					color: #ff9800;
 				}
 				.money_2{
-					font-size: rem(25px);
+					font-size: rem(20px);
 					color: #ff9800;
 					padding-left: 1%;
 				}

@@ -8,7 +8,9 @@
 		</div>
 		<div class="header">
 		    <div class="big">
-		    	<div class="ball"></div>
+		    	<div class="ball">
+		    		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523678917746&di=9d67e28303460dfdcd4a4e6734b629f1&imgtype=0&src=http%3A%2F%2Fimg.taopic.com%2Fuploads%2Fallimg%2F120530%2F188024-1205300PQ373.jpg" alt="">
+		    	</div>
 		    	<div class="text">
 		    		<p class="agant">银河大酒店</p>
 		    		<p class="number"> 编码: 41567</p>
@@ -134,9 +136,12 @@
                 .ball{
                 	width: rem(75px);
                 	height: rem(75px);
-                	background-color: #e5e5e5;
-                	border-radius: 50%;
                 	display: inline-block;
+                	img{
+                		width: 100%;
+						height: 100%;
+						border-radius: 50%;
+                	}
                 }
                 .text{
                 	width: 67%;

@@ -188,7 +188,7 @@
   				<li @click="handleStyle">
             <div class="select">
               <span><i class="fas fa-search-plus"></i></span>  
-              <span>星级:{{star}}星/价格:{{price[0]}}-{{price[1]}}</span>  
+              <span>星级:{{star}}星/价格:{{price[0]}}-{{price[1]}}/设备</span>  
               <span class="angle"><i class="fas fa-angle-right"></i></span>
             </div>
           </li>
@@ -677,7 +677,7 @@
       ul{
         padding: 0 5%;
         li{
-          padding: rem(15px) 5% rem(8px);
+          padding: rem(10px) 5% rem(8px);
           border-bottom: rem(1px) solid #aaa;
           ._right{
             margin-right: rem(10px);
@@ -690,7 +690,7 @@
           }
           .map{
             width: 60%;
-            padding-top: rem(10px) ;
+            padding-top: rem(15px) ;
             display: inline-block;
           }
           #area{
@@ -728,6 +728,7 @@
             }
             span{
               margin-right: 5%;
+              font-size: rem(14px);
             }
           }
         }
@@ -747,11 +748,10 @@
       }
 		}
     .near{
-      padding: 0 rem(10px);
+      padding: rem(17px) rem(10px);
       .title{
-        font-size: rem(18px);
+        font-size: rem(14px);
         color: #555;
-        font-weight: bold;
       }
       .hotelRoom{
         padding: rem(15px) 0;
