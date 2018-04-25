@@ -1,6 +1,6 @@
 <template>
 	<div class="box">
-
+		<iframe src="api/sample.php" ref="_iframe" style="display: none"></iframe>
 		<div class="_box" ref="_box" @click="onHandleBox">
 			<div class="eara none" @click="onHandleCancel" ref="eara">
 				<div class="select">
@@ -242,70 +242,85 @@
 	            'minDate': min_date2, //最小日期
 	            'maxDate': (new Date().getFullYear()+2) + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate() //最大日期
 	        })
-	        this.$axios({url:'/api/jssdka.php',method: 'get'}).then((res)=>{
-	            // console.log(res.data)
-	            wx.config({
-	              debug: false,
-	              appId: res.data.appId,
-	              timestamp: res.data.timestamp,
-	              nonceStr: res.data.nonceStr,
-	              signature: res.data.signature,
-	              jsApiList: [
-	                'getLocation'
-	              ]
+	        let imterval = setInterval(()=>{
+	          if(that.$refs._iframe.contentWindow.local){
+	            // console.log(new Date().getTime(),that.$refs._iframe.contentWindow)
+	            window.$local = JSON.parse(that.$refs._iframe.contentWindow.local)
+	            // console.log(window.$local)
+	            let point = new BMap.Point(window.$local.longitude, window.$local.latitude)
+	            let myGeo = new BMap.Geocoder()
+	            myGeo.getLocation(point,function(res){
+	              that.text_erea = res.surroundingPois[0].title+'附近'
+	              that.show_erea = false
+	              that.$refs.show_erea2[0].style.display = 'none'
 	            })
+	            clearInterval(imterval)
+	          }
+	        },50)
+	        // this.$axios({url:'/api/jssdka.php',method: 'get'}).then((res)=>{
+	        //     // console.log(res.data)
+	        //     wx.config({
+	        //       debug: false,
+	        //       appId: res.data.appId,
+	        //       timestamp: res.data.timestamp,
+	        //       nonceStr: res.data.nonceStr,
+	        //       signature: res.data.signature,
+	        //       jsApiList: [
+	        //         'getLocation'
+	        //       ]
+	        //     })
 	            
-	            wx.ready(function(){
-	              wx.getLocation({
-	                success: function(res){
-	                  that._lng = res.longitude
-	                  that._lat = res.latitude
-	                  let point = new BMap.Point(res.longitude, res.latitude)
-	                  // console.log('point',point)
-	                  // let map = new BMap.Map("map")
-	                  let myGeo = new BMap.Geocoder()
-	                  // console.log(that)
-	                  myGeo.getLocation(point,function(res){
-	                    console.log(res.surroundingPois[0].title)
-	                    that.text_erea = res.surroundingPois[0].title+'附近'
-	                    that.show_erea = false
-	                    // console.log(that.$refs)
-	                    that.$refs.show_erea2[0].style.display = 'none'
-	                    // alert('你的位置在'+res.surroundingPois[0].title+'附近，地址为：'+res.address+res.surroundingPois[0].address)
-	                  })
+	        //     wx.ready(function(){
+	        //       wx.getLocation({
+	        //         success: function(res){
+	        //           that._lng = res.longitude
+	        //           that._lat = res.latitude
+	        //           let point = new BMap.Point(res.longitude, res.latitude)
+	        //           // console.log('point',point)
+	        //           // let map = new BMap.Map("map")
+	        //           let myGeo = new BMap.Geocoder()
+	        //           // console.log(that)
+	        //           myGeo.getLocation(point,function(res){
+	        //             console.log(res.surroundingPois[0].title)
+	        //             that.text_erea = res.surroundingPois[0].title+'附近'
+	        //             that.show_erea = false
+	        //             // console.log(that.$refs)
+	        //             that.$refs.show_erea2[0].style.display = 'none'
+	        //             // alert('你的位置在'+res.surroundingPois[0].title+'附近，地址为：'+res.address+res.surroundingPois[0].address)
+	        //           })
 
-	                  // let geolocation = new BMap.Geolocation()
-	                  // geolocation.getCurrentPosition(function(r){
-	                  //   if(this.getStatus() == BMAP_STATUS_SUCCESS){
-	                  //     console.log(r.point)
-	                  //     var mk = new BMap.Marker(r.point);
-	                  //     mk.setAnimation(BMAP_ANIMATION_BOUNCE);
-	                  //     map.addOverlay(mk);
-	                  //     // map.panTo(r.point);
-	                  //     // map.centerAndZoom(r.point, 15);
-	                  //     myGeo.getLocation(r.point,function(res){
-	                  //       console.log(res)
-	                  //       alert('你的位置在'+res.surroundingPois[0].title+'附近，地址为：'+res.address+res.surroundingPois[0].address)
-	                  //     })
-	                  //     console.log(r)
-	                  //     // alert('您的位置(浏览器定位)：'+r.point.lng+','+r.point.lat);
-	                  //   }
-	                  //   else {
-	                  //     alert('位置获取失败：'+this.getStatus());
-	                  //   }        
-	                  // })
-	                  // console.log(888,map)
-	                  // console.log(999999,res,map)
-	                },
-	                fail: function(){
-	                  console.log(777777,'err')
-	                  alert('定位失败！')
-	                }
-	              })
-	            })
-	          }).catch((err)=>{
-	            console.log(err)
-	          })
+	        //           // let geolocation = new BMap.Geolocation()
+	        //           // geolocation.getCurrentPosition(function(r){
+	        //           //   if(this.getStatus() == BMAP_STATUS_SUCCESS){
+	        //           //     console.log(r.point)
+	        //           //     var mk = new BMap.Marker(r.point);
+	        //           //     mk.setAnimation(BMAP_ANIMATION_BOUNCE);
+	        //           //     map.addOverlay(mk);
+	        //           //     // map.panTo(r.point);
+	        //           //     // map.centerAndZoom(r.point, 15);
+	        //           //     myGeo.getLocation(r.point,function(res){
+	        //           //       console.log(res)
+	        //           //       alert('你的位置在'+res.surroundingPois[0].title+'附近，地址为：'+res.address+res.surroundingPois[0].address)
+	        //           //     })
+	        //           //     console.log(r)
+	        //           //     // alert('您的位置(浏览器定位)：'+r.point.lng+','+r.point.lat);
+	        //           //   }
+	        //           //   else {
+	        //           //     alert('位置获取失败：'+this.getStatus());
+	        //           //   }        
+	        //           // })
+	        //           // console.log(888,map)
+	        //           // console.log(999999,res,map)
+	        //         },
+	        //         fail: function(){
+	        //           console.log(777777,'err')
+	        //           alert('定位失败！')
+	        //         }
+	        //       })
+	        //     })
+	        //   }).catch((err)=>{
+	        //     console.log(err)
+	        //   })
 		},
 		data(){
 			return {
@@ -384,7 +399,7 @@
 		methods: {
 			handleMap(){
 				let that = this
-				let point = new BMap.Point(this._lng, this._lat)
+				let point = new BMap.Point(window.$local.longitude, window.$local.latitude)
                   // console.log('point',point)
                   // let map = new BMap.Map("map")
                   let myGeo = new BMap.Geocoder()
