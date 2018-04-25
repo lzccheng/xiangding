@@ -97,7 +97,7 @@
 							<!-- <span class="border_bottom" @click="onHandleErea"> -->
 							<span class="border_bottom">
 								<!-- <span class="erea"> -->
-								<span class="erea">
+								<span class="erea" ref="show_erea2">
 									<!-- {{selectedOptions[1]}} -->
 									<!-- <div class="select">
 										<el-cascader
@@ -107,12 +107,14 @@
 									 	</el-cascader>
 									</div> -->
 									<input type="text" @focus="handleBlur" :id="i.id" v-model="area_value">
+									<!-- <p>{{text_erea}}</p> -->
 									<input type="hidden" :id="i.h_id">
 								</span>
+								<span v-if="!show_erea" class="text_erea" @click="handleChange_erea">{{text_erea}}</span>
 								<span class="icon"><i class="fas fa-angle-right"></i></span>
 							</span>
 							
-							<span class="right">
+							<span class="right" @click="handleMap">
 								<span class="map"><i class="fas fa-map-marker-alt"></i></span>
 								<span>我的位置</span>
 							</span>
@@ -209,6 +211,7 @@
 	let tomo = new Date(g_date.getTime()+1000*60*60*24)
 	export default {
 		mounted: function(){
+			let that = this
 			this.$refs.line.style.marginLeft = this.$refs.tab.firstChild.offsetLeft + 'px'
 			this.$refs._box.style.width = window.innerWidth + 'px'
 	        new LArea().init({
@@ -239,9 +242,75 @@
 	            'minDate': min_date2, //最小日期
 	            'maxDate': (new Date().getFullYear()+2) + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate() //最大日期
 	        })
+	        this.$axios({url:'/api/jssdka.php',method: 'get'}).then((res)=>{
+	            // console.log(res.data)
+	            wx.config({
+	              debug: false,
+	              appId: res.data.appId,
+	              timestamp: res.data.timestamp,
+	              nonceStr: res.data.nonceStr,
+	              signature: res.data.signature,
+	              jsApiList: [
+	                'getLocation'
+	              ]
+	            })
+	            
+	            wx.ready(function(){
+	              wx.getLocation({
+	                success: function(res){
+	                  that._lng = res.longitude
+	                  that._lat = res.latitude
+	                  let point = new BMap.Point(res.longitude, res.latitude)
+	                  // console.log('point',point)
+	                  // let map = new BMap.Map("map")
+	                  let myGeo = new BMap.Geocoder()
+	                  // console.log(that)
+	                  myGeo.getLocation(point,function(res){
+	                    console.log(res.surroundingPois[0].title)
+	                    that.text_erea = res.surroundingPois[0].title+'附近'
+	                    that.show_erea = false
+	                    // console.log(that.$refs)
+	                    that.$refs.show_erea2[0].style.display = 'none'
+	                    // alert('你的位置在'+res.surroundingPois[0].title+'附近，地址为：'+res.address+res.surroundingPois[0].address)
+	                  })
+
+	                  // let geolocation = new BMap.Geolocation()
+	                  // geolocation.getCurrentPosition(function(r){
+	                  //   if(this.getStatus() == BMAP_STATUS_SUCCESS){
+	                  //     console.log(r.point)
+	                  //     var mk = new BMap.Marker(r.point);
+	                  //     mk.setAnimation(BMAP_ANIMATION_BOUNCE);
+	                  //     map.addOverlay(mk);
+	                  //     // map.panTo(r.point);
+	                  //     // map.centerAndZoom(r.point, 15);
+	                  //     myGeo.getLocation(r.point,function(res){
+	                  //       console.log(res)
+	                  //       alert('你的位置在'+res.surroundingPois[0].title+'附近，地址为：'+res.address+res.surroundingPois[0].address)
+	                  //     })
+	                  //     console.log(r)
+	                  //     // alert('您的位置(浏览器定位)：'+r.point.lng+','+r.point.lat);
+	                  //   }
+	                  //   else {
+	                  //     alert('位置获取失败：'+this.getStatus());
+	                  //   }        
+	                  // })
+	                  // console.log(888,map)
+	                  // console.log(999999,res,map)
+	                },
+	                fail: function(){
+	                  console.log(777777,'err')
+	                  alert('定位失败！')
+	                }
+	              })
+	            })
+	          }).catch((err)=>{
+	            console.log(err)
+	          })
 		},
 		data(){
 			return {
+				_lng: '',
+				_lat: '',
 				area_value: "广东省,深圳市,南山区",
 				arrItem: [
 					{
@@ -307,10 +376,31 @@
 				input: '',
 				meetting_total: '',
 				pay: [80,800],
-				starType: 'no'
+				starType: 'no',
+				show_erea: false,
+				text_erea: ''
 			}
 		},
 		methods: {
+			handleMap(){
+				let that = this
+				let point = new BMap.Point(this._lng, this._lat)
+                  // console.log('point',point)
+                  // let map = new BMap.Map("map")
+                  let myGeo = new BMap.Geocoder()
+                  // console.log(that)
+                  myGeo.getLocation(point,function(res){
+                    that.text_erea = res.surroundingPois[0].title+'附近'
+                    that.show_erea = false
+                    // console.log(that.$refs)
+                    that.$refs.show_erea2[0].style.display = 'none'
+                    // alert('你的位置在'+res.surroundingPois[0].title+'附近，地址为：'+res.address+res.surroundingPois[0].address)
+                  })
+			},
+			handleChange_erea(){
+				this.show_erea = true
+				this.$refs.show_erea2[0].style.display = 'block'
+			},
 			handleBlur(event){
 				event.path[0].blur()
 			},
@@ -589,9 +679,14 @@
 					ul{
 						li{
 							padding: rem(10px) 0;
+							position: relative;
 							.erea{
 								// font-size: rem(18px);
 								position: relative;
+								&.erea_{
+									font-size: rem(14px);
+									border: none;
+								}
 								input{
 									position: absolute;
 									left: rem(10px);
@@ -599,6 +694,13 @@
 									border: none;
 									font-size: rem(18px);
 								}
+							}
+							.text_erea{
+								position: absolute;
+								left: rem(8px);
+								top: rem(15px);
+								width: 70%;
+								border-bottom: none;
 							}
 							.icon{
 								margin-left: 65%;

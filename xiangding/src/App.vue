@@ -3,7 +3,7 @@
     <div class="wrap">
       <!-- <transition name='opacity'> -->
         <keep-alive>
-          <router-view class='App_route'></router-view>
+          <router-view class='App_route' ref="App_route"></router-view>
         </keep-alive>
       <!-- </transition> -->
       <div ref="_footer">
@@ -44,6 +44,7 @@ export default {
   },
   watch: {
     '$route'(to,from){
+      document.body.scrollTop? document.body.scrollTop = 0:document.documentElement.scrollTop = 0
       if(to.name === 'my' || to.name === 'index' || to.name === 'hotel' || to.name === 'teamMeeting' || to.name === 'enter'){
         this._footerShow()
       }else{
