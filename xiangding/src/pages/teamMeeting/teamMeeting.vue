@@ -692,7 +692,7 @@
 									left: rem(10px);
 									top: 0;
 									border: none;
-									font-size: rem(18px);
+									font-size: rem(15px);
 								}
 							}
 							.text_erea{

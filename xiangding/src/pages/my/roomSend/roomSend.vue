@@ -227,7 +227,7 @@
 				}
 				.name{
 					display: inline-block;
-					width: 22%;
+					width: 20%;
 				}
 				.select{
 					margin-left: 5%;

@@ -299,7 +299,7 @@
 			.top_box{
 				width: 100%;
 				position: fixed;
-				top: rem(50px);
+				top: rem(48px);
 				left: 0;
 				z-index: 999;
 				._search{

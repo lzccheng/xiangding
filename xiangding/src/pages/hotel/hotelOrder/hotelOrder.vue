@@ -24,7 +24,8 @@
 				<div class="img"><img :src="data.imgUrl"></div>
 				<div class="text">
 					<p>01-29入住，1-30离开，共1天</p>
-					<p>商务大床房</p>
+					<p v-if="title === '会议室'">董事长会议室</p>
+					<p v-else>商务大床房</p>
 					<p><span>25m <sup>2</sup>	
 					<span v-if="title === '会议室'">100人</span> 
 					<span  v-else>大床1.8m</span> 

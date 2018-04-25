@@ -71,7 +71,6 @@
 				position: relative;
 				border-bottom: 0.5px solid #aaa;
 				padding: rem(10px) 2%;
-				display: flex;
 				.text_5{
 					color: #aaa;
 					font-size: rem(11px);
@@ -82,6 +81,7 @@
 				label{
 					font-size: rem(14px);
 					width: 30%;
+					display: inline-block;
 				}
 				.input_top{
 					position: relative;

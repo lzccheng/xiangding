@@ -254,7 +254,7 @@
                     justify-content: center;
                     .i{
                         display: inline-block;
-                        margin-right: rem(13px);
+                        margin-right: 7%;
                         .green{
                             color: #43c122;
                             font-size: rem(13px);

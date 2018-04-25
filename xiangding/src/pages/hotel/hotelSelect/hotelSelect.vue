@@ -71,8 +71,10 @@
 			<div v-if="title !== '会议室'" class="base">
 				<p><span>退订政策</span></p>
 				<p>
-					<span class="spanPublic orange">免费取消</span>
-					<span>免费取消订单</span>
+					<span class="spanPublic orange" v-if="title === '酒店列表'">免费取消</span>
+					<span class="spanPublic orange" v-else>付费取消</span>
+					<span v-if="title === '酒店列表'">免费取消订单</span>
+					<span v-else class="t ">订单意境付款,不可取消、修改,否则将扣除您全部或部分房费。</span>
 				</p>
 			</div>
 		</div>
@@ -155,10 +157,11 @@
 			}
 			.base{
 				p{
+					position: relative;
 					&:first-child{
 						padding-bottom: rem(10px);
 						span{
-							font-size: rem(14px);
+							// font-size: rem(14px);
 							font-weight: bold;
 						}
 					}
@@ -170,6 +173,14 @@
 				line-height: rem(25px);
 				padding: 0 rem(5px);
 				margin-right: rem(15px);
+			}
+			.t{
+				width: 70%;
+				display: inline-block;
+				position: absolute;
+				top: 0;
+				right: 0;
+
 			}
 			.green{
 				border: 1px solid #43c122;

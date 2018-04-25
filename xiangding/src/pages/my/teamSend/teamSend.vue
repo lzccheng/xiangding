@@ -201,7 +201,7 @@
 				}
 				.name{
 					display: inline-block;
-					width: 25%;
+					width: 20%;
 				}
 				.select{
 					margin-left: 5%;
