@@ -15,7 +15,7 @@
 			</div>
 			<div class="add">
 				<span><i class="fas fa-plus"></i></span>
-				<router-link tag="span" to="/enter/cardMessage/cardMessage">添加银行卡</router-link>
+				<span>添加银行卡</span>
 			</div>
 		</div>
 	</div>

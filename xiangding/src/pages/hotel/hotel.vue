@@ -1,5 +1,10 @@
 <template>
 	<div class="box" @click="onHandleCancel" ref="hotel">
+
+		<!-- <div v-for="(i,index) in aa">
+			{{i.goods_id}}
+		</div> -->
+
 	    <div class="top_box">
 			<div class="header">
 				<div class="header_">
@@ -170,7 +175,7 @@
 							<span class="max">&nbsp;&nbsp;&nbsp;&nbsp;最多容纳：{{i.max_people}}人</span>
 						</p>
 						<span>总房间：{{i.room_total}}间</span>
-						<span class="_right">￥{{i.min_price}}起</span>
+						<span class="_right">￥<span class="num">{{i.min_price}}</span>起</span>
 					</div>
 				</router-link>
 			</div>
@@ -185,13 +190,17 @@
 			this.$axios({url:'/api/hotel'}).then((res)=>{
 				this.hotel = res.data
 			})
-
+			// this.$axios({url:'/api/addons/yun_shop/api.php?i=3&route=home-page.index'}).then((res)=>{
+			// 	console.log(res.data.data.default.goods)
+			// 	this.aa = res.data.data.default.goods
+			// })
 		},
 		components: {
 	        star
 	      },
 		data(){
 			return {
+				aa: [],
 				arrItem: [
 					{
 						name: '酒店品牌',
@@ -300,6 +309,20 @@
 						]
 					}
 				],
+				tabsItem: [
+					{
+						name: '综合筛选',
+						active: false
+					},
+					{
+						name: '星级价格',
+						active: false
+					},
+					{
+						name: '位置距离',
+						active: false
+					},
+				],
 				hotel: [],
 				tabs: false,
 				local: false,
@@ -362,24 +385,36 @@
 			handleBack(){
 				this.general = false
 				this.show = 3
-			},
-			handleGeneral(){
-				if(!this.general){
-					this.general = !this.general
+				for(let j = 0;j<this.tabsItem.length;j++){
+					this.tabsItem[j].active = false
 				}
-				this.show = 0
 			},
-			handlePrice(){
-				if(!this.general){
-					this.general = !this.general
+			handleTabChange(i){
+				if(this.tabsItem[i].active){
+					this.handleBack()
+				}else{
+					this.tabsItem[i].active = true
+
+					if(!this.general){
+						this.general = !this.general
+					}
+					this.show = i
+					for(let j = 0;j<this.tabsItem.length;j++){
+						if(this.tabsItem[j].active){
+							continue
+						}
+						this.tabsItem[j].active = false
+					}
 				}
-				this.show = 1
 			},
-			handleLocal(){
-				if(!this.general){
-					this.general = !this.general
-				}
-				this.show = 2
+			handleGeneral(i){
+				this.handleTabChange(0)
+			},
+			handlePrice(i){
+				this.handleTabChange(1)
+			},
+			handleLocal(i){
+				this.handleTabChange(2)
 			},
 			handleShow(i){
 				this.item_show = i
@@ -419,6 +454,7 @@
 					border-radius: rem(5px);
 					padding: rem(8px) rem(12px);
 					display: flex;
+					align-items:center;
 					.local{
 						font-size: rem(18px);
 						color: #43c122;
@@ -626,6 +662,9 @@
 						float: right;
 						font-weight:bold;
 						color: #ff9800;
+						.num{
+							font-size: rem(18px);
+						}
 					}
 					p{
 						.max{

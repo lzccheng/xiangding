@@ -97,7 +97,7 @@
 			div{
 				margin-bottom: rem(10px);
 				&.img{
-					width: 12%;
+					width: 8%;
 					height: rem(30px);
 					margin-left: 4%;
 					img{

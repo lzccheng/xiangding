@@ -56,6 +56,7 @@
 		width: 100%;
 		background-color: #e5e5e5;
 		position: relative;
+		font-size: rem(14px);
 		.form_1{
 			background-color: #ffffff;
 			margin-top: rem(10px);

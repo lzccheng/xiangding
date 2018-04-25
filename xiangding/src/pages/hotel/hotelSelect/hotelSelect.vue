@@ -1,6 +1,6 @@
 <template>
 	<div class="box">
-		<Header :title="title"/>
+		<Header :title="title_"/>
 		<div class="img">
 			<img src="http://d6.yihaodianimg.com/N03/M04/F3/2C/CgQCs1NuM_WAOOJiAACkJWcB2XA42700.jpg">
 		</div>
@@ -91,7 +91,12 @@
 		},
 		data(){
 			return {
-				title: '酒店列表'
+				title: '酒店'
+			}
+		},
+		computed: {
+			title_(){
+				return this.title === '酒店列表'?this.title.slice(0,-2):this.title
 			}
 		},
 		watch: {
@@ -100,7 +105,7 @@
 					if(this.$route.query.name){
 						this.title = this.$route.query.name
 					}else{
-						this.title = '酒店列表'
+						this.title = '酒店'
 					}
 				}
 			}
@@ -112,6 +117,7 @@
 	.box{
 		width: 100%;
 		background-color: #fff;
+		padding-bottom: rem(60px);
 		.title{
 			p{
 				text-align: center;
@@ -129,7 +135,8 @@
 			}
 		}
 		.message{
-			padding: rem(15px) 8%;
+			padding: rem(15px) 6%;
+			font-size: rem(14px);
 			.msg{
 				padding: rem(5px) 0;
 				.head{
@@ -151,7 +158,7 @@
 					&:first-child{
 						padding-bottom: rem(10px);
 						span{
-							font-size: rem(16px);
+							font-size: rem(14px);
 							font-weight: bold;
 						}
 					}
@@ -178,25 +185,32 @@
 			}
 		}
 		.btn{
+			width: 100%;
 			border-top: 1px solid #aaa;
 			text-align: center;
-
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			background-color: #ffffff;
+			display: flex;
 			.total{
 				width: 50%;
-				height: rem(50px);
-				display: inline-block;
+				// height: rem(40px);
+				// display: inline-block;
 				color: red;
-				font-size: rem(18px);
-				line-height: rem(50px);
+				font-size: rem(16px);
+				padding: rem(10px) 0;
+				// line-height: rem(40px);
 			}
 			.pay{
-				width: 49%;
-				height: rem(50px);
-				display: inline-block;
+				width: 50%;
+				// height: rem(40px);
+				// display: inline-block;
 				background-color: #43c122;
-				line-height: rem(50px);
+				// line-height: rem(40px);
 				color: #fff;
-				font-size: rem(18px);
+				font-size: rem(16px);
+				padding: rem(10px) 0;
 			}
 		}
 	}

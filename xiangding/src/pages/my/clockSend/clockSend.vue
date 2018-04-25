@@ -235,6 +235,7 @@
 					margin-left: 35%;
 					border-radius: rem(9px);
 					color: #43c122;
+					z-index: 999;
 				 }
 				.hide_1{
 					color: #e5e5e5;

@@ -44,12 +44,20 @@
 					<input type="text" placeholder="请输入电子邮箱" name="">
 				</p>
 				<p class="input">
-					<label>酒店地区:</label>
-					<span class="color_aaa">请选择酒店的详细地区 &nbsp;<i class="fas fa-chevron-down"></i></span>
+					<label>所在城市:</label>
+					<span class="color_aaa">点击选择地址 &nbsp;<i class="fas fa-chevron-down"></i></span>
 				</p>
 				<p class="input">
-					<label>酒店地址:</label>
-					<input type="text" placeholder="请输入酒店的详细地址" name="">
+					<label>街道:</label>
+					<input type="text" placeholder="请选择所在街道" name="">
+				</p>
+				<p class="input">
+					<label>详细地址:</label>
+					<input type="text" placeholder="请输入街道门牌号" name="">
+				</p>
+				<p class="input">
+					<label>地理位置:</label>
+					<span>经度: 13.141111 维度: 25.5555</span>
 				</p>
 				<p class="input">
 					<label>酒店收款账号:</label>
@@ -99,6 +107,7 @@
 		width: 100%;
 		background-color: #e5e5e5;
 		position: relative;
+		font-size: rem(14px);
 		.form{
 			background-color: #ffffff;
 			margin-top: rem(8px);
@@ -111,7 +120,8 @@
 				padding: rem(10px) 2%;
 				display: flex;
 				label{
-					width: 30%;
+					width: 32%;
+
 				}
 				input{
 					width: 60%;

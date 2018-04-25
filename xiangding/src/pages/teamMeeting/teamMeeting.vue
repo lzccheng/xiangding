@@ -575,7 +575,7 @@
 	.box{
 		background-color: #ededed;
 		width: 100%;
-
+		font-size: rem(14px);
 		._box{
 			width: 100%;
 			background-color: rgba(0,0,0,0.5);
@@ -618,6 +618,7 @@
 					span{
 						color: #aaa;
 						input{
+							// font-size: rem(18px);
 							border: none;
 							color: #aaa;
 						}
@@ -626,6 +627,7 @@
 			}
 			.date{
 				padding-top: rem(13px);
+				font-size: rem(14px);
 			}
 			.style{
 				padding-top: rem(10px);
@@ -673,6 +675,7 @@
 				.tip{
 					background-color: #EDEDED;
 					padding: rem(10px) rem(20px);
+					font-size: rem(12px);
 					p{
 						.border{
 							display: inline-block;
@@ -693,7 +696,7 @@
 							padding: rem(10px) 0;
 							position: relative;
 							.erea{
-								font-size: rem(18px);
+								// font-size: rem(18px);
 								position: relative;
 								&.erea_{
 									font-size: rem(14px);
@@ -702,8 +705,9 @@
 								input{
 									position: absolute;
 									left: rem(10px);
-									top: rem(5px);
+									top: 0;
 									border: none;
+									font-size: rem(18px);
 								}
 							}
 							.text_erea{
@@ -726,7 +730,6 @@
 							}
 							.date{
 								font-size: rem(20px);
-								font-weight: bold;
 							}
 							.line{
 								display: inline-block;
@@ -776,9 +779,11 @@
 					.border_bottom{
 						border-bottom: 1px solid #aaa;
 						padding-bottom: rem(10px);
+
 					}
 					.btn{
 						margin-top: rem(15px);
+						// font-size: rem(16px);
 						button{
 							width: 100%;
 							border: none;
@@ -786,6 +791,7 @@
 							padding: rem(13px) 0;
 							color: #fff;
 							border-radius: rem(5px);
+							font-size: rem(16px);
 						}
 					}
 					.bottom{

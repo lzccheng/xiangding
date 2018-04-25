@@ -9,6 +9,8 @@
 			        </div>
 			    </div>
 			</div>
+			<p class="name">广州银河大酒店</p>
+			<p class="name_1">豪华酒店 | 四星级</p>
 			<span class="hearts"><i class="fas fa-heart"></i></span>
 			<span class="share"><i class="fas fa-share-alt"></i></span>
 		</div>
@@ -35,7 +37,7 @@
 				<div>
 					<p v-if="title === '会议室'">开会</p>
 					<p v-else>入住</p>
-					<p><span>01-29</span> <span>后天</span></p>
+					<p><span>01-29日</span> <!-- <span>后天</span> --></p>
 				</div>
 				<div>
 					<span>共一天</span>
@@ -43,7 +45,7 @@
 				<div>
 					<p v-if="title === '会议室'">退厅</p>
 					<p v-else>退房</p>
-					<p><span>01-30</span> <span>大后天</span></p>
+					<p><span>01-30日</span> <!-- <span>大后天</span> --></p>
 				</div>
 			</div>
 			<div class="massage">
@@ -65,7 +67,8 @@
 							</div>
 							<div class="price">
 								<p>￥{{i.price}}元</p>
-								<p><router-link tag="button" :to="{path:'/hotelDetail/hotelSelect',query:{name: title}}">订房</router-link></p>
+								<p v-if="title !== '会议室'"><router-link tag="button" :to="{path:'/hotelDetail/hotelSelect',query:{name: title}}">订房</router-link></p>
+								<p v-else><router-link tag="button" :to="{path:'/hotelDetail/hotelSelect',query:{name: title}}">预定</router-link></p>
 							</div>
 						</div>
 					</router-link>
@@ -172,6 +175,23 @@
 			    	height: rem(250px);
 			    }
 			}
+			.name{
+				color: #ffffff;
+				font-size: rem(18px);
+				font-weight: bold;
+				position: absolute;
+				top: rem(238px);
+				left: rem(15px);
+				z-index: 100;
+			}
+			.name_1{
+				color: #ffffff;
+				font-size: rem(14px);
+				position: absolute;
+				top: rem(270px);
+				left: rem(15px);
+				z-index: 100;
+			}
 			.hearts{
 				color: red;
 				font-size: rem(20px);
@@ -247,6 +267,7 @@
 				display: flex;
 				justify-content: space-around;
 				align-items:center;
+				font-size: rem(14px);
 				div{
 					p{
 						text-align: center;

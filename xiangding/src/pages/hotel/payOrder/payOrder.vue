@@ -149,6 +149,7 @@
 		.custom{
 			padding: rem(10px) 0;
 			.numb{
+				font-size: rem(14px);
 				padding-bottom: rem(8px);
 				.icon{
 					padding: 0 rem(13px);
@@ -166,6 +167,7 @@
 			padding: rem(5px) 0;
 		}
 		.hotel{
+			font-size: rem(14px);
 			position: relative;
 			padding: rem(10px) 4% rem(60px);
 			p{
@@ -235,6 +237,7 @@
 			}
 		}
 		.footer{
+			font-size: rem(14px);
 			color: #aaa;
 			padding: rem(15px) 4% rem(50px);
 			p{
