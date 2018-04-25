@@ -13,6 +13,7 @@ module.exports = {
     proxyTable: { 
       '/api': {  //使用"/api"来代替"http://f.apiplus.c" 
         target: 'https://www.share-hotel.cn', //源地址 
+        // target: 'http://localhost/', //源地址 
         changeOrigin: true, //改变源 
         pathRewrite: { 
           '^/api': 'https://www.share-hotel.cn/' //路径重写 

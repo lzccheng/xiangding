@@ -1,7 +1,7 @@
 <template>  
   <div class="box">
       
-      <!-- <iframe src="http://www.share-hotel.cn/sample.php"></iframe> -->
+      <iframe src="api/sample.php" ref="_iframe" style="display: none"></iframe>
       <div id="map"></div>
       <div class="_box" ref="_box" @click="_boxClick">
         <div class="erea" ref="_erea" @click="handleCancel">
@@ -18,14 +18,6 @@
         <div class="date" ref="_date" @click="handleCancel">
           <p>
             <span>入住日期：</span>
-            <!-- <el-date-picker
-                v-model="value1"
-                type="date"
-                placeholder="入住日期" 
-                :picker-options="pickerOptions1" 
-                @change="handleChange" 
-                @focus="_blur">
-            </el-date-picker> -->
             <span>
               <input id="date1" type="text" readonly="" @focus="handleBlur" placeholder="日期选择特效" data-lcalendar="2016-05-11,2016-05-11" v-model="date1_value"/>
             </span>
@@ -33,13 +25,6 @@
           </p>
           <p>
             <span>退房日期：</span>
-            <!-- <el-date-picker
-                v-model="value2"
-                type="date"
-                placeholder="入住日期" 
-                :picker-options="pickerOptions2" 
-                @focus="_blur">
-            </el-date-picker> -->
             <span>
               <input id="date2" type="text" readonly="" placeholder="日期选择特效" data-lcalendar="2016-05-11,2016-05-11" v-model="date2_value"/>
             </span>
@@ -56,16 +41,6 @@
             </p>
             <p><el-rate v-model="star"></el-rate></p>
           </div>
-          <!-- <div>
-            <p class="title">酒店类型：</p>
-            <p class="hotelStyle">
-              <span>经济酒店</span>
-              <span>主题酒店</span>
-              <span class="active">商务酒店</span>
-              <span>度假酒店</span>
-              <span>豪华酒店</span>
-            </p>
-          </div> -->
           <div>
             <p class="title">价格：</p>
             <p class="slider">
@@ -81,22 +56,6 @@
               <span class="max_price">￥{{price[1]}}</span>
             </p>
           </div>
-          <!-- <div>
-            <p class="title">房间类型：</p>
-            <p class="hotelStyle">
-              <span>单人房</span>
-              <span>大床房</span>
-              <span class="active">双人房</span>
-              <span>套间</span>
-            </p>
-          </div> -->
-          <!-- <div>
-            <p class="title">房间数量：</p>
-            <p class="hotelStyle">
-              <span>单间</span>
-              <span class="active">团房</span>
-            </p>
-          </div> -->
           <div class="btn">
             <button @click="_boxClick" class="green_btn">确定</button>
           </div>
@@ -120,10 +79,8 @@
   		<div class="msg">
   			<ul>
   				<li>
-            <!-- <div class="map" @click="handleErea"> -->
   					<div class="map">
   						<span class="_right"><i class="fas fa-map-marker-alt"></i></span>
-              <!-- <span>{{selectedOptions[1]}}</span> -->
               <span ref="show_erea"><input id="area" type="text" readonly="" placeholder="城市选择特效"  value="广东省,深圳市,南山区" v-model="area_value"/></span>
 	  					<span v-if="!show_erea" @click="handleChange_erea">{{text_erea}}</span>
               <input id="value1" type="hidden" value="20,234,504"/> 
@@ -167,23 +124,6 @@
               <span>{{night}}晚</span>
               <i class="fas fa-angle-right"></i>
             </div> 
-            <!-- <div class="block">
-              <el-date-picker
-                v-model="value1"
-                type="date"
-                placeholder="入住日期" 
-                :picker-options="pickerOptions1">
-              </el-date-picker>
-              <span>&nbsp;</span>
-              <div class="num">
-                <div>
-                  <span class="day">入住天数：</span>
-                </div>
-                <div class="">
-                  <el-input v-model="input1" value="number" placeholder="输入数字" type="number"></el-input>
-                </div>
-              </div>
-            </div> -->
           </li>
   				<li @click="handleStyle">
             <div class="select">
@@ -250,8 +190,24 @@
         star
       },
       mounted:function(){
+
         let that = this
-        this.$axios({url:'/api/bannerData',method: 'get',data:{id:123}}).then((res)=>{
+        let imterval = setInterval(()=>{
+          if(that.$refs._iframe.contentWindow.local){
+            // console.log(new Date().getTime(),that.$refs._iframe.contentWindow)
+            window.$local = JSON.parse(that.$refs._iframe.contentWindow.local)
+            // console.log(window.$local)
+            let point = new BMap.Point(window.$local.longitude, window.$local.latitude)
+            let myGeo = new BMap.Geocoder()
+            myGeo.getLocation(point,function(res){
+              that.text_erea = res.surroundingPois[0].title+'附近'
+              that.show_erea = false
+              that.$refs.show_erea.style.display = 'none'
+            })
+            clearInterval(imterval)
+          }
+        },50)
+        this.$axios({url:'/api/bannerData',data:{id:123}}).then((res)=>{
           that.arrItem = res.data
           setTimeout(function(){
             var mySwiper = new Swiper('.swiper-container', {
@@ -285,11 +241,8 @@
             'data': LAreaData
           });
 
-          // console.log(window)
           let date = new Date()
           let min_date = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()
-          // let min_date2 = new Date(tomo.getTime()).getFullYear()+'-'+(new Date(tomo.getTime()).getMonth()+1)+'-'+new Date(tomo.getTime()).getDate()
-          // console.log(min_date)
           new LCalendar().init({
               'trigger': '#date1', //标签id
               'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
@@ -302,70 +255,71 @@
               'minDate': this.min_date2, //最小日期
               'maxDate': (new Date().getFullYear()+2) + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate() //最大日期
           })
-          // console.log(wx)
-          this.$axios({url:'/api/jssdka.php',method: 'get'}).then((res)=>{
-            // console.log(res.data)
-            wx.config({
-              debug: false,
-              appId: res.data.appId,
-              timestamp: res.data.timestamp,
-              nonceStr: res.data.nonceStr,
-              signature: res.data.signature,
-              jsApiList: [
-                'getLocation'
-              ]
-            })
-            
-            wx.ready(function(){
-              wx.getLocation({
-                success: function(res){
-                  that._lng = res.longitude
-                  that._lat = res.latitude
-                  let point = new BMap.Point(res.longitude, res.latitude)
-                  // console.log('point',point)
-                  // let map = new BMap.Map("map")
-                  let myGeo = new BMap.Geocoder()
-                  // console.log(that)
-                  myGeo.getLocation(point,function(res){
-                    // console.log(res)
-                    that.text_erea = res.surroundingPois[0].title+'附近'
-                    that.show_erea = false
-                    that.$refs.show_erea.style.display = 'none'
-                    // alert('你的位置在'+res.surroundingPois[0].title+'附近，地址为：'+res.address+res.surroundingPois[0].address)
-                  })
 
-                  // let geolocation = new BMap.Geolocation()
-                  // geolocation.getCurrentPosition(function(r){
-                  //   if(this.getStatus() == BMAP_STATUS_SUCCESS){
-                  //     console.log(r.point)
-                  //     var mk = new BMap.Marker(r.point);
-                  //     mk.setAnimation(BMAP_ANIMATION_BOUNCE);
-                  //     map.addOverlay(mk);
-                  //     // map.panTo(r.point);
-                  //     // map.centerAndZoom(r.point, 15);
-                  //     myGeo.getLocation(r.point,function(res){
-                  //       console.log(res)
-                  //       alert('你的位置在'+res.surroundingPois[0].title+'附近，地址为：'+res.address+res.surroundingPois[0].address)
-                  //     })
-                  //     console.log(r)
-                  //     // alert('您的位置(浏览器定位)：'+r.point.lng+','+r.point.lat);
-                  //   }
-                  //   else {
-                  //     alert('位置获取失败：'+this.getStatus());
-                  //   }        
-                  // })
-                  // console.log(888,map)
-                  // console.log(999999,res,map)
-                },
-                fail: function(){
-                  console.log(777777,'err')
-                  alert('定位失败！')
-                }
-              })
-            })
-          }).catch((err)=>{
-            console.log(err)
-          })
+          // console.log(wx)
+          // this.$axios({url:'/api/jssdk.php?host=http://localhost:8080',method: 'get'}).then((res)=>{
+          //   console.log(res.data)
+          //   wx.config({
+          //     debug: false,
+          //     appId: res.data.appId,
+          //     timestamp: res.data.timestamp,
+          //     nonceStr: res.data.nonceStr,
+          //     signature: res.data.signature,
+          //     jsApiList: [
+          //       'getLocation'
+          //     ]
+          //   })
+            
+          //   wx.ready(function(){
+          //     wx.getLocation({
+          //       success: function(res){
+          //         that._lng = res.longitude
+          //         that._lat = res.latitude
+          //         let point = new BMap.Point(res.longitude, res.latitude)
+          //         // console.log('point',point)
+          //         // let map = new BMap.Map("map")
+          //         let myGeo = new BMap.Geocoder()
+          //         // console.log(that)
+          //         myGeo.getLocation(point,function(res){
+          //           // console.log(res)
+          //           that.text_erea = res.surroundingPois[0].title+'附近'
+          //           that.show_erea = false
+          //           that.$refs.show_erea.style.display = 'none'
+          //           // alert('你的位置在'+res.surroundingPois[0].title+'附近，地址为：'+res.address+res.surroundingPois[0].address)
+          //         })
+
+          //         // let geolocation = new BMap.Geolocation()
+          //         // geolocation.getCurrentPosition(function(r){
+          //         //   if(this.getStatus() == BMAP_STATUS_SUCCESS){
+          //         //     console.log(r.point)
+          //         //     var mk = new BMap.Marker(r.point);
+          //         //     mk.setAnimation(BMAP_ANIMATION_BOUNCE);
+          //         //     map.addOverlay(mk);
+          //         //     // map.panTo(r.point);
+          //         //     // map.centerAndZoom(r.point, 15);
+          //         //     myGeo.getLocation(r.point,function(res){
+          //         //       console.log(res)
+          //         //       alert('你的位置在'+res.surroundingPois[0].title+'附近，地址为：'+res.address+res.surroundingPois[0].address)
+          //         //     })
+          //         //     console.log(r)
+          //         //     // alert('您的位置(浏览器定位)：'+r.point.lng+','+r.point.lat);
+          //         //   }
+          //         //   else {
+          //         //     alert('位置获取失败：'+this.getStatus());
+          //         //   }        
+          //         // })
+          //         // console.log(888,map)
+          //         // console.log(999999,res,map)
+          //       },
+          //       fail: function(){
+          //         console.log(777777,'err')
+          //         alert('定位失败！')
+          //       }
+          //     })
+          //   })
+          // }).catch((err)=>{
+          //   console.log(err)
+          // })
       },
       data(){
       	return {
@@ -429,7 +383,7 @@
         handlePosition(){
           let that = this
           let myGeo = new BMap.Geocoder()
-          let point = new BMap.Point(this._lng, this._lat)
+          let point = new BMap.Point(window.$local.longitude, window.$local.latitude)
           myGeo.getLocation(point,res=>{
             // console.log(res)
             that.show_erea = false
