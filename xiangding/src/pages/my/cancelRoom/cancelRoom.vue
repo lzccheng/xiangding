@@ -106,7 +106,6 @@
 			}
 		}
 		.hr_10{
-			width: 100%;
 			border: #e5e5e5 solid rem(7px);
 		}
 		.body{

@@ -58,15 +58,15 @@
 			return {
 				arrItem: [
 					{
-						imgUrl: '../../../../static/img/payMethods/weChat.jpg',
+						imgUrl: 'http://www.share-hotel.cn/addons/share/img/payMethods/weChat.jpg',
 						text: '微信支付'
 					},
 					{
-						imgUrl: '../../../../static/img/payMethods/friend.png',
+						imgUrl: 'http://www.share-hotel.cn/addons/share/img/payMethods/friend.png',
 						text: '朋友代付'
 					},
 					{
-						imgUrl: '../../../../static/img/payMethods/pag.jpg',
+						imgUrl: 'http://www.share-hotel.cn/addons/share/img/payMethods/pag.jpg',
 						text: '余额支付'
 					}
 				],

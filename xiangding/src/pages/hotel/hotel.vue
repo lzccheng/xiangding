@@ -20,11 +20,11 @@
 			</div>
 			<div class="select">
 				<ul>
-					<li>
-						<div class="tabss" @click="handleGeneral">
+					<!-- <li> -->
+						<!-- <div class="tabss" @click="handleGeneral">
 							<span :class="{'color': 0 == show}">价格</span>
 							<span v-if="0 != show"><i class="fas fa-angle-down"></i></span>
-						</div>
+						</div> -->
 						
 						<!-- <div class="tabs" v-if="tabs" ref="tabs">
 							<div class="tabs_" @click="onHandlecancelBubble">
@@ -33,88 +33,20 @@
 								<p>价格升序</p>
 							</div>
 						</div> -->
-							
+				    <!-- 	</li> -->
+					<li>
+						<div class="tabss" @click="handleLocal">
+							<span :class="{'color': 0 == show}">筛选</span>
+							<span v-if="0 != show"><i class="fas fa-angle-down"></i></span>
+						</div>
+						
 					</li>
 					<li>
 						<div class="tabss" @click="handlePrice">
 							<span :class="{'color': 1 == show}">位置</span>
 							<span v-if="1 != show"><i class="fas fa-angle-down"></i></span>
 						</div>
-						<!-- <div class="tabs" ref="local">
-							<div class="tabs_" v-if="local" @click="onHandlecancelBubble">
-								<p>1米-500米</p>
-								<p>500米-1500米</p>
-								<p>1500米-3000米</p>
-							</div>
-						</div> -->
-					</li>
-					<li>
-						<div class="tabss" @click="handleLocal">
-							<span :class="{'color': 2 == show}">筛选</span>
-							<span v-if="2 != show"><i class="fas fa-angle-down"></i></span>
-						</div>
-						<!-- <div class="tabs" ref="filter">
-							<div class="tabs_" v-if="filter">
-								<div class="filter" @click="onHandlecancelBubble">
-									<div class="filter_">
-										<div class="title">酒店品牌:</div>
-										<div class="body">
-											   <el-checkbox-group v-model="checkList">
-											    <el-checkbox label="维也纳"></el-checkbox>
-											    <el-checkbox label="汉庭"></el-checkbox>
-											    <el-checkbox label="如家"></el-checkbox>
-											    <el-checkbox label="几天"></el-checkbox>
-											    <el-checkbox label="锦江"></el-checkbox>
-											  </el-checkbox-group>
-										</div>
-									</div>
-									<div class="filter_">
-										<div class="title">酒店类型:</div>
-										<div class="body">
-											   <el-checkbox-group v-model="checkList2">
-											    <el-checkbox label="豪华酒店"></el-checkbox>
-											    <el-checkbox label="度假酒店"></el-checkbox>
-											    <el-checkbox label="商务酒店"></el-checkbox>
-											    <el-checkbox label="经济酒店"></el-checkbox>
-											    <el-checkbox label="主题酒店"></el-checkbox>
-											  </el-checkbox-group>
-										</div>
-									</div>
-									<div class="filter_">
-										<div class="title">房间类型:</div>
-										<div class="body">
-											   <el-checkbox-group v-model="checkList3">
-											    <el-checkbox label="双人房"></el-checkbox>
-											    <el-checkbox label="大床房"></el-checkbox>
-											    <el-checkbox label="单人房"></el-checkbox>
-											    <el-checkbox label="套件"></el-checkbox>
-											  </el-checkbox-group>
-										</div>
-									</div>
-									<div class="filter_">
-										<div class="title">房间数量:</div>
-										<div class="body">
-											   <el-checkbox-group v-model="checkList4">
-											    <el-checkbox label="单间"></el-checkbox>
-											    <el-checkbox label="团房"></el-checkbox>
-											  </el-checkbox-group>
-										</div>
-									</div>
-									<div class="filter_ none">
-										<div class="title">设施:</div>
-										<div class="body">
-											   <el-checkbox-group v-model="checkList5">
-											    <el-checkbox label="WiFi"></el-checkbox>
-											    <el-checkbox label="餐饮美食"></el-checkbox>
-											    <el-checkbox label="健身房"></el-checkbox>
-											    <el-checkbox label="游泳池"></el-checkbox>
-											  </el-checkbox-group>
-										</div>
-									</div>
-									<div class="btn"><button class="reset">重置</button><button class="sure">筛选</button></div>
-								</div>
-							</div>
-						</div> -->
+						
 					</li>
 				</ul>
 			</div>
@@ -138,7 +70,7 @@
 				<div class="content">
 				    <div class="back_box">
 						<div class="choice_title">
-							<p v-for="(i,index) in arrItem" :key="index"  @click="handleShow(index)" :class="{color: item_show==index}">{{i.name}}</p>
+							<p v-for="(i,index) in arrItem" :key="index"  @click="handleShow(index)" :class="{color: item_show==index}"><span>{{i.name}}</span></p>
 						</div>
 						<div class="choice_text">
 							<div v-for="(i,index_) in arrItem" class="item" v-if="index_ == item_show">
@@ -153,6 +85,12 @@
 					</div>
 				</div>
 			</div>
+		</div>
+		<div class="star">
+			<span>二星</span>
+			<span>三星</span>
+			<span>四星</span>
+			<span>五星</span>
 		</div>
 		<div class="hotel">
 			<div class="hotelItem" v-for='(i,index) in hotel' :key='index'>
@@ -175,7 +113,11 @@
 							<span class="max">&nbsp;&nbsp;&nbsp;&nbsp;最多容纳：{{i.max_people}}人</span>
 						</p>
 						<span>总房间：{{i.room_total}}间</span>
-						<span class="_right">￥<span class="num">{{i.min_price}}</span>起</span>
+						<span class="_right">
+							<span class="text_1">￥</span>
+							<span class="num">{{i.min_price}}</span>
+							起
+						</span>
 					</div>
 				</router-link>
 			</div>
@@ -290,22 +232,22 @@
 					{
 						name: '设施',
 						child: [
-							{
-								name: 'wifi',
-								active: false
-							},
-							{
-								name: '餐饮美食',
-								active: false
-							},
-							{
-								name: '健身房',
-								active: false
-							},
-							{
-								name: '游泳池',
-								active: false
-							},
+							// {
+							// 	name: 'wifi',
+							// 	active: false
+							// },
+							// {
+							// 	name: '餐饮美食',
+							// 	active: false
+							// },
+							// {
+							// 	name: '健身房',
+							// 	active: false
+							// },
+							// {
+							// 	name: '游泳池',
+							// 	active: false
+							// },
 						]
 					}
 				],
@@ -429,6 +371,13 @@
 					}
 				}
 			}
+		},
+		watch:{
+			$route(to,from){
+				if(to.name === 'hotel'){
+					this.handleBack()
+				}
+			}
 		}
 	}
 </script>
@@ -437,7 +386,7 @@
 	.box{
 		width: 100%;
 		background-color: #fff;
-		padding-top: rem(100px);
+		padding-top: rem(93px);
 		position: relative;
 		.top_box{
 			width: 100%;
@@ -511,6 +460,7 @@
 						}
 						.tabss{
 							padding: rem(8px) 0;
+							padding-bottom: rem(4px);
 							.color{
 								color: #43c122;
 							}
@@ -556,7 +506,7 @@
 		.back{
 			background-color: rgba(0,0,0,0.3);
 			position: fixed;
-			top: rem(97px);
+			top: rem(92px);
 			left: 0;
 			height: 100%;
 			z-index: 33;
@@ -580,12 +530,26 @@
 				    }
 					.choice_title{
 						width: 50%;
+						background-color: #EDEDED;
 						p{
-						    padding: rem(10px) 6%;
+						    padding: rem(10px) 0;
 						    background-color: #EDEDED;
 						    &.color{
 						    	background-color: #ffffff;
 						    }
+						    &:last-child{
+								background-color: transparent;
+								color: transparent;
+								padding: none;
+								width: 0;
+							}
+							span{
+								margin-left: 8%;
+							}
+						}
+						&:last-child{
+							background-color: transparent;
+							color: transparent;
 						}
 					}
 					.choice_text{
@@ -617,6 +581,17 @@
 						}
 					}
 				}
+			}
+		}
+		.star{
+			background-color: #F2F2F2;
+			display: flex;
+			justify-content: space-around;
+			padding: rem(6px) 0;
+			span{
+				padding: rem(5px) 6%;
+				font-size: rem(14px);
+				background-color: #ffffff;
 			}
 		}
 		.hotel{
@@ -660,10 +635,13 @@
 					}
 					._right{
 						float: right;
-						font-weight:bold;
-						color: #ff9800;
 						.num{
 							font-size: rem(18px);
+							color: #ff9800;
+							font-weight:bold;
+						}
+						.text_1{
+							color: #ff9800
 						}
 					}
 					p{

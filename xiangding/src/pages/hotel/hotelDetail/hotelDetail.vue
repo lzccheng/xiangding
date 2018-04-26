@@ -56,7 +56,7 @@
 					</p>
 				</div>
 				<div v-if="title === '会议室'">
-					<router-link tag="div" :to="{path:'/hotelDetail/hotelSelect',query:{name: title}}">
+					<router-link tag="div" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title}}">
 						<div v-for='(i,index) in room' :key='index' class="rooms">
 							<div>
 								<img :src="i.imgUrl">
@@ -67,15 +67,28 @@
 							</div>
 							<div class="price">
 								<p>￥{{i.price}}元</p>
-								<p v-if="title !== '会议室'"><router-link tag="button" :to="{path:'/hotelDetail/hotelSelect',query:{name: title}}">订房</router-link></p>
-								<p v-else><router-link tag="button" :to="{path:'/hotelDetail/hotelSelect',query:{name: title}}">预定</router-link></p>
+								<p v-if="title !== '会议室'"><router-link tag="button" :to="{path:'/hotelDetail/hotelOrder',query:{name: title}}">订房</router-link></p>
+								<p v-else>
+									<span  v-if="!order">
+										<router-link tag="button" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title}}">预定</router-link>
+									</span>	
+									<span v-else @click="handleBubbole">
+										<span class="icon_s" @click="handleDelete"><i class="fas fa-minus-circle"></i></span>
+										<span class="number_s">{{num}}</span>
+										<span class="icon_s" @click="handleAdd"><i class="fas fa-plus-circle"></i></span>
+									</span>
+									<!-- <div v-if="!order" class="button_1">
+										<p>取消</p>
+										<p>确定</p>
+									</div> -->
+								</p>
 							</div>
 						</div>
 					</router-link>
 				</div>
 
 				<div v-else>
-					<router-link tag="div" :to="{path:'/hotelDetail/hotelSelect',query:{name: title}}">
+					<router-link tag="div" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title}}">
 						<div v-for='(i,index) in room' :key='index' class="rooms">
 							<div>
 								<img :src="i.imgUrl">
@@ -86,7 +99,7 @@
 							</div>
 							<div class="price">
 								<p>￥{{i.price}}元</p>
-								<p><router-link tag="button" :to="{path:'/hotelDetail/hotelSelect',query:{name: title}}">订房</router-link></p>
+								<p><router-link tag="button" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title}}">订房</router-link></p>
 							</div>
 						</div>
 					</router-link>
@@ -113,6 +126,9 @@
 			if(this.$route.query.name){
 				this.title = this.$route.query.name
 			}
+			if(this.$route.query.order){
+				this.order = this.$route.query.order
+			}
 
 		},
 		data(){
@@ -127,7 +143,9 @@
 				near: [],
 				room: [],
 				title: '酒店列表',
-				people: 100
+				people: 100,
+				order: false,
+				num: 0
 			}
 		},
 		methods:{
@@ -146,6 +164,16 @@
 				}).catch((err)=>{
 					console.log(err)
 				})
+			},
+			handleBubbole(event){
+				event.cancelBubble = true
+			},
+			handleDelete(event){
+				this.num --
+				if(this.num<=0){this.num=0}
+			},
+			handleAdd(){
+				this.num++
 			}
 		},
 		watch: {
@@ -156,6 +184,11 @@
 						this.title = this.$route.query.name
 					}else{
 						this.title = '酒店列表'
+					}
+					if(this.$route.query.order){
+						this.order = this.$route.query.order
+					}else{
+						this.order = false
 					}
 				}
 			}
@@ -168,6 +201,7 @@
 	.box{
 		width: 100%;
 		background-color: #fff;
+		position: relative;
 		.banner{
 			.swiper-container {
 			    img{
@@ -334,6 +368,23 @@
 									padding: rem(6px) rem(16px);
 									background-color: #43c122;
 									border-radius: rem(5px);
+								}
+								.icon_s{
+									font-size: rem(16px);
+									color: #43c122;
+								}
+								.number_s{
+									font-size: rem(14px);
+									padding: 0 rem(7px);
+								}
+								.button_1{
+									display: flex;
+									position: fixed;
+									bottom: 0;
+									left: 0;
+									p{
+										width: 50%;
+									}
 								}
 							}
 						}
