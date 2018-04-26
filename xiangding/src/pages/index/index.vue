@@ -136,7 +136,7 @@
           </li>
   			</ul>
         <div class="button">
-          <router-link tag="button" :to="{path: '/hotel/hotelSearch',query: {data}}">查找酒店</router-link>
+          <router-link tag="button" :to="{path: '/hotel',query: {data}}">查找酒店</router-link>
         </div>
   		</div>
 
@@ -194,6 +194,7 @@
       mounted:function(){
 
         let that = this
+<<<<<<< HEAD
         //高德地图
          // 实例化地图， 命名定位插件实例、标记实例、地理编码实例、输出变量
            const loading = this.$loading({
@@ -264,6 +265,8 @@
         console.log('aMap finsh')
 
         let nowDate = new Date()
+=======
+>>>>>>> aaabccdc4e6293fd53f1aba913a8a5c5884200d4
         // let imterval = setInterval(()=>{
         //   if(that.$refs._iframe.contentWindow.local){
         //     // console.log(new Date().getTime(),that.$refs._iframe.contentWindow)
@@ -278,10 +281,13 @@
         //     })
         //     clearInterval(imterval)
         //   }
+<<<<<<< HEAD
         //   if(new Date().getTime()-nowDate.getTime()>5000){
         //     alert('位置请求超时！')
         //     clearInterval(imterval)
         //   }
+=======
+>>>>>>> aaabccdc4e6293fd53f1aba913a8a5c5884200d4
         // },50)
         this.$axios({url:'/api/bannerData',data:{id:123}}).then((res)=>{
           that.arrItem = res.data
@@ -727,7 +733,7 @@
       left: 0;
       top: 0;
       background-color: rgba(0,0,0,0.5);
-      z-index: 99;
+      z-index: 130;
       overflow-y: scroll;
       >div{
         width: 100%;
@@ -851,6 +857,7 @@
           #area{
             width: 85%;
             border: none;
+            font-size: rem(14px);
           }
           .local{
             float: right;
