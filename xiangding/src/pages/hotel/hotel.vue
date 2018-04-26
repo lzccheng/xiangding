@@ -175,7 +175,11 @@
 							<span class="max">&nbsp;&nbsp;&nbsp;&nbsp;最多容纳：{{i.max_people}}人</span>
 						</p>
 						<span>总房间：{{i.room_total}}间</span>
-						<span class="_right">￥<span class="num">{{i.min_price}}</span>起</span>
+						<span class="_right">
+							<span class="text_1">￥</span>
+							<span class="num">{{i.min_price}}</span>
+							起
+						</span>
 					</div>
 				</router-link>
 			</div>
@@ -556,7 +560,7 @@
 		.back{
 			background-color: rgba(0,0,0,0.3);
 			position: fixed;
-			top: rem(97px);
+			top: rem(92px);
 			left: 0;
 			height: 100%;
 			z-index: 33;
@@ -660,10 +664,13 @@
 					}
 					._right{
 						float: right;
-						font-weight:bold;
-						color: #ff9800;
 						.num{
 							font-size: rem(18px);
+							color: #ff9800;
+							font-weight:bold;
+						}
+						.text_1{
+							color: #ff9800
 						}
 					}
 					p{

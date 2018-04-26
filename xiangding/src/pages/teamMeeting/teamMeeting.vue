@@ -242,21 +242,6 @@
 	            'minDate': min_date2, //最小日期
 	            'maxDate': (new Date().getFullYear()+2) + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate() //最大日期
 	        })
-	        let imterval = setInterval(()=>{
-	          if(that.$refs._iframe.contentWindow.local){
-	            // console.log(new Date().getTime(),that.$refs._iframe.contentWindow)
-	            window.$local = JSON.parse(that.$refs._iframe.contentWindow.local)
-	            // console.log(window.$local)
-	            let point = new BMap.Point(window.$local.longitude, window.$local.latitude)
-	            let myGeo = new BMap.Geocoder()
-	            myGeo.getLocation(point,function(res){
-	              that.text_erea = res.surroundingPois[0].title+'附近'
-	              that.show_erea = false
-	              that.$refs.show_erea2[0].style.display = 'none'
-	            })
-	            clearInterval(imterval)
-	          }
-	        },50)
 	        // this.$axios({url:'/api/jssdka.php',method: 'get'}).then((res)=>{
 	        //     // console.log(res.data)
 	        //     wx.config({
@@ -707,7 +692,7 @@
 									left: rem(10px);
 									top: 0;
 									border: none;
-									font-size: rem(15px);
+									font-size: rem(14px);
 								}
 							}
 							.text_erea{

@@ -526,7 +526,7 @@
       left: 0;
       top: 0;
       background-color: rgba(0,0,0,0.5);
-      z-index: 99;
+      z-index: 130;
       overflow-y: scroll;
       >div{
         width: 100%;
@@ -650,6 +650,7 @@
           #area{
             width: 85%;
             border: none;
+            font-size: rem(14px);
           }
           .local{
             float: right;

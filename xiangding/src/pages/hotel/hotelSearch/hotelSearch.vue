@@ -384,7 +384,7 @@
 				background-color: rgba(0,0,0,0.3);
 				height: 100%;
 				position: fixed;
-				top: rem(140px);
+				top: rem(135px);
 				left: 0;
 				z-index: 9999;
 				width: 100%;
@@ -521,12 +521,12 @@
 							bottom: rem(8px);
 							>span{
 								span{
-									font-weight: bold;
 									&:first-child{
 										color: #FFA44F;
 									}
 									&.num{
-										font-size:rem(16px);
+										font-size:rem(18px);
+										font-weight: bold;
 										color: #FFA44F;
 									}
 									&.text{

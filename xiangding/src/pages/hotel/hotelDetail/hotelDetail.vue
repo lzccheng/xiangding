@@ -68,7 +68,14 @@
 							<div class="price">
 								<p>￥{{i.price}}元</p>
 								<p v-if="title !== '会议室'"><router-link tag="button" :to="{path:'/hotelDetail/hotelSelect',query:{name: title}}">订房</router-link></p>
-								<p v-else><router-link tag="button" :to="{path:'/hotelDetail/hotelSelect',query:{name: title}}">预定</router-link></p>
+								<p v-else>
+									<router-link v-if="!order" tag="button" :to="{path:'/hotelDetail/hotelSelect',query:{name: title}}">预定</router-link>
+									
+										<span class="icon_s"><i class="fas fa-minus-circle"></i></span>
+										<span class="number_s">1</span>
+										<span class="icon_s"><i class="fas fa-plus-circle"></i></span>
+									
+								</p>
 							</div>
 						</div>
 					</router-link>
@@ -113,6 +120,9 @@
 			if(this.$route.query.name){
 				this.title = this.$route.query.name
 			}
+			if(this.$route.query.order){
+				this.order = this.$route.query.order
+			}
 
 		},
 		data(){
@@ -127,7 +137,8 @@
 				near: [],
 				room: [],
 				title: '酒店列表',
-				people: 100
+				people: 100,
+				order: false,
 			}
 		},
 		methods:{
@@ -156,6 +167,9 @@
 						this.title = this.$route.query.name
 					}else{
 						this.title = '酒店列表'
+					}
+					if(this.$route.query.order){
+						this.order = this.$route.query.order
 					}
 				}
 			}
@@ -334,6 +348,14 @@
 									padding: rem(6px) rem(16px);
 									background-color: #43c122;
 									border-radius: rem(5px);
+								}
+								.icon_s{
+									font-size: rem(16px);
+									color: #43c122;
+								}
+								.number_s{
+									font-size: rem(14px);
+									padding: 0 rem(7px);
 								}
 							}
 						}

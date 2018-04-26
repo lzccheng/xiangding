@@ -59,7 +59,7 @@
 				</p>
 				<p v-if="title === '团房'" class="black">
 					<span>是否需要会议室</span>
-					<router-link tag="span" to="/hotelDetail" class="check_box"><i class="fas fa-chevron-right"></i></router-link>
+					<router-link tag="span" :to="{path:'/hotelDetail',query:{name: '会议室',id: 2,order: true}}" class="check_box"><i class="fas fa-chevron-right"></i></router-link>
 				</p>
 				<p class="black">
 					<span>预计到店</span>
