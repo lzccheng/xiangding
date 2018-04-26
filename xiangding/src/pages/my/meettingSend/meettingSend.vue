@@ -36,6 +36,10 @@
 					</div>
 				</li>
 				<li class="item">
+					<span class="name">提供LED屏:</span>
+					<span class="check_box"><el-checkbox v-model="checked">&nbsp;</el-checkbox></span>
+				</li>
+				<li class="item">
 					<span class="name">服务手机号:</span>
 					<span class="hide_1"><input type="text" placeholder="请输入会议室服务手机号"></span>
 				</li>
@@ -91,7 +95,8 @@
 			      input5: '',
 			      select1: '60平方',
 			      select6: '是',
-			      checkList: ['24小时热水']
+			      checkList: ['24小时热水'],
+			      checked: true
 			}
 		},
 		methods: {
@@ -122,6 +127,9 @@
 				.name{
 					display: inline-block;
 					width: 22%;
+				}
+				.check_box{
+					float: right;
 				}
 				.select{
 					margin-left: 5%;

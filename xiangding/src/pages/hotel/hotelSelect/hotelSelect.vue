@@ -6,52 +6,52 @@
 		</div>
 
 		<div class="message">
-		<div v-if="title === '会议室'">
-			<p class="msg">
-				<span class="head">窗户</span>
-				<span class="text">有窗</span>
-				<span class="head">面积</span>
-				<span class="text">28m <sup>2</sup></span>
-			</p>
-			<p class="msg">
-				<span class="head">网络</span>
-				<span class="text">WiFi供应</span>
-				<span class="head">容纳</span>
-				<span class="text">2人</span>
-			</p>
-			<p class="msg">
-				<span class="head">楼层</span>
-				<span class="text">5-15</span>
-				<span class="head">电话</span>
-				<span class="text">暂无信息</span>
-			</p>
-		</div>
-		<div v-else>
-			<p class="msg">
-				<span class="head">床型</span>
-				<span class="text">2张双人床1.5米</span>
-				<span class="head">面积</span>
-				<span class="text">28m <sup>2</sup></span>
-			</p>
-			<p class="msg">
-				<span class="head">窗户</span>
-				<span class="text">有窗</span>
-				<span class="head">可住</span>
-				<span class="text">2人</span>
-			</p>
-			<p class="msg">
-				<span class="head">网络</span>
-				<span class="text">WiFi供应</span>
-				<span class="head">电话</span>
-				<span class="text">暂无信息</span>
-			</p>
-			<p class="msg">
-				<span class="head">楼层</span>
-				<span class="text">5-15</span>
-				<span class="head">早餐</span>
-				<span class="text">双早</span>
-			</p>
-		</div>
+			<div v-if="title === '会议室'">
+				<p class="msg">
+					<span class="head">窗户</span>
+					<span class="text">有窗</span>
+					<span class="head">面积</span>
+					<span class="text">28m <sup>2</sup></span>
+				</p>
+				<p class="msg">
+					<span class="head">网络</span>
+					<span class="text">WiFi供应</span>
+					<span class="head">容纳</span>
+					<span class="text">2人</span>
+				</p>
+				<p class="msg">
+					<span class="head">楼层</span>
+					<span class="text">5-15</span>
+					<span class="head">电话</span>
+					<span class="text">暂无信息</span>
+				</p>
+			</div>
+			<div v-else>
+				<p class="msg">
+					<span class="head">床型</span>
+					<span class="text">2张双人床1.5米</span>
+					<span class="head">面积</span>
+					<span class="text">28m <sup>2</sup></span>
+				</p>
+				<p class="msg">
+					<span class="head">窗户</span>
+					<span class="text">有窗</span>
+					<span class="head">可住</span>
+					<span class="text">2人</span>
+				</p>
+				<p class="msg">
+					<span class="head">网络</span>
+					<span class="text">WiFi供应</span>
+					<span class="head">电话</span>
+					<span class="text">暂无信息</span>
+				</p>
+				<p class="msg">
+					<span class="head">楼层</span>
+					<span class="text">5-15</span>
+					<span class="head">早餐</span>
+					<span class="text">双早</span>
+				</p>
+			</div>
 			<div class="line"></div>
 			<div class="base">
 				<p><span>服务与设施</span></p>

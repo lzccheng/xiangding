@@ -1,6 +1,17 @@
 <template>
 	<div class="box">
 		<Header title="团房发布" />
+		<div v-if="general" class="back" @click="handBack">
+			<div class="alert" @click="cancelBubble">
+				<p class="tip">退房扣费设置</p>
+				<p class="tip_1">超过<input type="text">小时</p>
+				<p class="tip_1">扣除<input type="text"> &nbsp;&nbsp;%</p>
+				<p>
+					<span @click="backHide">取消</span>
+					<span>确定</span>
+				</p>
+			</div>
+		</div>
 		<div class="body">
 			<ul>
 				<li class="item">
@@ -62,7 +73,7 @@
 						    	</span>
 						    </p>
 						    <p class="add">
-						    	<span class="add_icon"><i class="fas fa-plus-square"></i></span>
+						    	<span @click="handGeneral" class="add_icon"><i class="fas fa-plus-square"></i></span>
 						    	<span>添加</span>
 						    </p>
 						 </el-collapse-item>
@@ -162,18 +173,81 @@
 			      checkList: ['24小时热水'],
 			      value1: true,
                   value2: true,
-                  checkList: ['超过1小时扣费10']
+                  checkList: ['超过1小时扣费10'],
+                  general: false
 			}
 		},
 		methods: {
-
+			handGeneral(event){
+					this.general = true
+				},
+			handBack(){
+				this.general = false
+			},
+			cancelBubble(event){
+				event.cancelBubble = true
+			},
+			backHide(){
+				this.general = false
+			}
 		}
 	}
 </script>
 <style scoped lang="scss">
 	@import "../../../common/css/common.scss";
 	.box{
-		width: 100%;
+		width: 100%;.back{
+			background-color: rgba(0,0,0,0.3);
+			position: fixed;
+			top: 0;
+			left: 0;
+			height: 100%;
+			z-index: 999;
+			width: 100%;
+			font-size: rem(14px);
+			.alert{
+				width: 80%;
+				background-color: #ffffff;
+				position: absolute;
+				top: rem(200px);
+				left: 10%;
+				text-align: center;
+				border-radius: rem(8px);
+				.tip{
+					font-weight: bold;
+				}
+				.tip_1{
+					width: 58%;
+					margin: 0 auto;
+					input{
+						width: 20%;
+						text-align: center;
+						border-top: none;
+						border-left: none;
+						border-right: none; 
+						border-bottom: #333 solid rem(1px);
+						margin: 0;
+					}
+				}
+				p{
+					padding-top: rem(20px);
+					display: flex;
+					justify-content: space-around;
+					&:first-child{
+						font-weight: bold;
+					}
+					span{
+						border-top: #aaa solid rem(1px);
+						width: 50%;
+						padding: rem(10px) 0;
+						&:first-child{
+							border-right: #aaa solid rem(1px);
+						}
+					}
+				}
+			}
+		}
+		
 		.body{
 			padding: 0 rem(16px);
 			p{

@@ -35,6 +35,54 @@
 					
 				</div>
 			</div>
+			<div class="hotelSelect">
+				<div v-if="title === '会议室'">
+					<p class="msg_1">
+						<span class="head">窗户</span>
+						<span class="text">有窗</span>
+						<span class="head">面积</span>
+						<span class="text">28m <sup>2</sup></span>
+					</p>
+					<p class="msg_1">
+						<span class="head">网络</span>
+						<span class="text">WiFi供应</span>
+						<span class="head">容纳</span>
+						<span class="text">2人</span>
+					</p>
+					<p class="msg_1">
+						<span class="head">楼层</span>
+						<span class="text">5-15</span>
+						<span class="head">电话</span>
+						<span class="text">暂无信息</span>
+					</p>
+				</div>
+				<div v-else>
+					<p class="msg_1">
+						<span class="head">床型</span>
+						<span class="text">2张双人床1.5米</span>
+						<span class="head">面积</span>
+						<span class="text">28m <sup>2</sup></span>
+					</p>
+					<p class="msg_1">
+						<span class="head">窗户</span>
+						<span class="text">有窗</span>
+						<span class="head">可住</span>
+						<span class="text">2人</span>
+					</p>
+					<p class="msg_1">
+						<span class="head">网络</span>
+						<span class="text">WiFi供应</span>
+						<span class="head">电话</span>
+						<span class="text">暂无信息</span>
+					</p>
+					<p class="msg_1">
+						<span class="head">楼层</span>
+						<span class="text">5-15</span>
+						<span class="head">早餐</span>
+						<span class="text">双早</span>
+					</p>
+				</div>
+			</div>
 			<div class="inform">
 				<p class="black">
 					<span v-if="title === '钟点房'">时间</span>
@@ -52,6 +100,13 @@
 					<span class="number_box1">
 					    <el-input-number size="mini" v-model="num7"></el-input-number>
 					</span>
+				</p>
+				<p class="black" v-if="title === '会议室'">
+					<span>是否需要LED屏</span>
+					<span class="check_box" ><el-checkbox v-model="checked1"></el-checkbox></span>
+				</p>
+				<p class="black" v-if="checked1">
+					lllll
 				</p>
 				<p class="black">
 					<span>是否需要发票</span>
@@ -89,8 +144,6 @@
 				   <span class="aaa">已加入免费取消政策</span>
 				</p>
 				</div>
-				<p>备注</p>
-				<p class="add_text"><input type="text" placeholder="请输入文字" name=""></p>
 				<p class="color_aaa">
 					<span><i class="far fa-smile"></i></span>
 					<span class="text_size">请你在30分钟内完成支付,否则订单会自动取消</span>
@@ -137,8 +190,10 @@
 				},
 				num7: 1,
 				num6: 1,
-				checked: true,
-				title: '酒店列表'
+				checked: false,
+				checked1: false,
+				title: '酒店列表',
+				show: false
 			}
 		},
 		watch: {
@@ -151,6 +206,9 @@
 					}
 				}
 			}
+		},
+		methods:{
+			
 		}
 	}
 </script>
@@ -183,6 +241,7 @@
 					margin-left: rem(10px);
 				}
 			}
+
 			.msg{
 				margin-top: rem(15px);
 				div{
@@ -217,6 +276,22 @@
 							}
 						
 						}
+					}
+				}
+			}
+			.hotelSelect{
+				padding: rem(7px) 2%;
+				font-size: rem(14px);
+				.msg_1{
+					padding: rem(5px) 0;
+					.head{
+						width: 10%;
+						display: inline-block;
+						color: #aaa;
+					}
+					.text{
+						width: 38%;
+						display: inline-block;
 					}
 				}
 			}
