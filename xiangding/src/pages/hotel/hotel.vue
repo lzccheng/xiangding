@@ -433,6 +433,13 @@
 					}
 				}
 			}
+		},
+		watch:{
+			$route(to,from){
+				if(to.name === 'hotel'){
+					this.handleBack()
+				}
+			}
 		}
 	}
 </script>

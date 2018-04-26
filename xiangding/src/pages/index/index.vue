@@ -134,7 +134,7 @@
           </li>
   			</ul>
         <div class="button">
-          <router-link tag="button" :to="{path: '/hotel/hotelSearch',query: {data}}">查找酒店</router-link>
+          <router-link tag="button" :to="{path: '/hotel',query: {data}}">查找酒店</router-link>
         </div>
   		</div>
 
@@ -192,21 +192,21 @@
       mounted:function(){
 
         let that = this
-        let imterval = setInterval(()=>{
-          if(that.$refs._iframe.contentWindow.local){
-            // console.log(new Date().getTime(),that.$refs._iframe.contentWindow)
-            window.$local = JSON.parse(that.$refs._iframe.contentWindow.local)
-            // console.log(window.$local)
-            let point = new BMap.Point(window.$local.longitude, window.$local.latitude)
-            let myGeo = new BMap.Geocoder()
-            myGeo.getLocation(point,function(res){
-              that.text_erea = res.surroundingPois[0].title+'附近'
-              that.show_erea = false
-              that.$refs.show_erea.style.display = 'none'
-            })
-            clearInterval(imterval)
-          }
-        },50)
+        // let imterval = setInterval(()=>{
+        //   if(that.$refs._iframe.contentWindow.local){
+        //     // console.log(new Date().getTime(),that.$refs._iframe.contentWindow)
+        //     window.$local = JSON.parse(that.$refs._iframe.contentWindow.local)
+        //     // console.log(window.$local)
+        //     let point = new BMap.Point(window.$local.longitude, window.$local.latitude)
+        //     let myGeo = new BMap.Geocoder()
+        //     myGeo.getLocation(point,function(res){
+        //       that.text_erea = res.surroundingPois[0].title+'附近'
+        //       that.show_erea = false
+        //       that.$refs.show_erea.style.display = 'none'
+        //     })
+        //     clearInterval(imterval)
+        //   }
+        // },50)
         this.$axios({url:'/api/bannerData',data:{id:123}}).then((res)=>{
           that.arrItem = res.data
           setTimeout(function(){
