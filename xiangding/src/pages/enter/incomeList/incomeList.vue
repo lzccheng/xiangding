@@ -79,6 +79,7 @@
 					.item{
 						padding: rem(5px) rem(10px);
 						display: flex;
+						position: relative;
 						.img{
 							width: 30%;
 							height: rem(100px);
@@ -100,7 +101,10 @@
 							}
 						}
 						.price{
-							margin-left: 18%;
+							// margin-left: 18%;
+							position: absolute;
+							bottom: rem(5px);
+							right: 0;
 							.btn{
 								margin-top: rem(18px);
 								span{

@@ -520,7 +520,7 @@
 						}
 					}
 					.price{
-						width: 35%;
+						width: 37%;
 						position: relative;
 						.star{
 						}

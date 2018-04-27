@@ -53,6 +53,7 @@
 		width: 100%;
 		background-color: #e5e5e5;
 		position: relative;
+		font-size: rem(14px);
 		.form{
 			background-color: #ffffff;
 			margin-top: rem(8px);
@@ -131,9 +132,10 @@
 		}
 		.body{
 			background-color: #ffffff;
-			padding-bottom: rem(50px);
-			padding-top: rem(16px);
+			// padding-bottom: rem(50px);
+			// padding-top: rem(16px);
 			margin-top: rem(10px);
+			padding: rem(16px) 5% rem(50px);
 			border-top: #aaa solid rem(1px);
 			.button{
 				background-color: #43c122;
@@ -141,6 +143,7 @@
 				font-size: rem(16px);
 				text-align: center;
 				padding: rem(12px) 0;
+				border-radius: rem(5px);
 			}
 		}
 	}

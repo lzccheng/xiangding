@@ -57,7 +57,7 @@
 	    		<p class="icon"><i class="fas fa-th-list"></i></p>
 	    		<p>账号密码</p>
 	    	</router-link>
-	    	<router-link tag="div" to="/enter/hotelManage/incomeDetail" class="room_4 rooms">
+	    	<router-link tag="div" to="/enter/hotelManage/incomeList" class="room_4 rooms">
 	    		<p class="icon"><i class="fas fa-th-list"></i></p>
 	    		<p>收入明细</p>
 	    	</router-link>

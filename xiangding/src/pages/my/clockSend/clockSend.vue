@@ -56,13 +56,15 @@
 						    <p class="select">
 						    	<span>
 						    		 <el-checkbox-group v-model="checkList">
-									    <el-checkbox label="超过1小时扣费10%"></el-checkbox>
+									    <el-checkbox label="超过1小时扣费10%" :disabled="value2" ></el-checkbox>
 									  </el-checkbox-group>
 						    	</span>
 						    </p><br/>
-						    <p class="add">
-						    	<span class="add_icon"  @click="handGeneral"><i class="fas fa-plus-square"></i></span>
-						    	<span class="add_text">添加</span>
+						    <p class="add_1">
+						        <span @click="handGeneral" :class="{color:value2}" >
+							    	<span class="add_icon" ><i class="fas fa-plus-square"></i></span>
+							    	<span class="add_text">添加</span>
+						    	</span>
 						    </p>
 						 </el-collapse-item>
 					</el-collapse>
@@ -241,6 +243,13 @@
 		.body{
 			padding: 0 rem(16px);
 			p{
+				&.add_1{
+					.color{
+						span{
+							color: #C6C9D1;
+						}
+					}
+				}
 				.open{
 					float: right;
 				}

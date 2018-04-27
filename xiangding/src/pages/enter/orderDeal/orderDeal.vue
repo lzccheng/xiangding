@@ -157,7 +157,7 @@
 		}
 		.show{
 			.body{
-				padding: rem(10px) 0;
+				padding: rem(7px) 0;
 				div{
 					&.item{
 						background-color: #fff;
@@ -165,7 +165,7 @@
 						display: flex;
 						justify-content: spase-around;
 						align-items: center;
-						padding: rem(15px) 2%;
+						padding: rem(13px) 2%;
 						border-bottom: #e5e5e5 solid rem(9px);
 						div{
 							padding-left: 1%;

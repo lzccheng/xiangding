@@ -133,7 +133,7 @@
 						<span>距市中心{{i.distance}}公里&nbsp;/&nbsp;&nbsp;{{i.city[0]}}、{{i.city[1]}}</span>
 						<p>
 							<span>最大房间：{{i.max_room_erea}}m<sup>2</sup></span>
-							<span class="max">&nbsp;&nbsp;&nbsp;&nbsp;最多容纳：{{i.max_people}}人</span>
+							<!-- <span class="max">&nbsp;&nbsp;&nbsp;&nbsp;最多容纳：{{i.max_people}}人</span> -->
 						</p>
 						<span>总房间：{{i.room_total}}间</span>
 						<span class="_right">
@@ -260,41 +260,41 @@
 							},
 						]
 					},
-					{
-						name: '房间数量',
-						child: [
-							{
-								name: '单间',
-								active: false
-							},
-							{
-								name: '团房',
-								active: false
-							},
+					// {
+					// 	name: '房间数量',
+					// 	child: [
+					// 		{
+					// 			name: '单间',
+					// 			active: false
+					// 		},
+					// 		{
+					// 			name: '团房',
+					// 			active: false
+					// 		},
 							
-						]
-					},
-					{
-						name: '设施',
-						child: [
-							// {
-							// 	name: 'wifi',
-							// 	active: false
-							// },
-							// {
-							// 	name: '餐饮美食',
-							// 	active: false
-							// },
-							// {
-							// 	name: '健身房',
-							// 	active: false
-							// },
-							// {
-							// 	name: '游泳池',
-							// 	active: false
-							// },
-						]
-					}
+					// 	]
+					// },
+					// {
+					// 	name: '设施',
+					// 	child: [
+					// 		// {
+					// 		// 	name: 'wifi',
+					// 		// 	active: false
+					// 		// },
+					// 		// {
+					// 		// 	name: '餐饮美食',
+					// 		// 	active: false
+					// 		// },
+					// 		// {
+					// 		// 	name: '健身房',
+					// 		// 	active: false
+					// 		// },
+					// 		// {
+					// 		// 	name: '游泳池',
+					// 		// 	active: false
+					// 		// },
+					// 	]
+					// }
 				],
 				tabsItem: [
 					{
@@ -567,7 +567,7 @@
 		.back{
 			background-color: rgba(0,0,0,0.3);
 			position: fixed;
-			top: rem(92px);
+			top: rem(89px);
 			left: 0;
 			height: 100%;
 			z-index: 33;
@@ -655,12 +655,12 @@
 						    &.color{
 						    	background-color: #ffffff;
 						    }
-						    &:last-child{
-								background-color: transparent;
-								color: transparent;
-								padding: none;
-								width: 0;
-							}
+						 //    &:last-child{
+							// 	background-color: transparent;
+							// 	color: transparent;
+							// 	padding: none;
+							// 	width: 0;
+							// }
 							span{
 								margin-left: 8%;
 							}
@@ -731,7 +731,7 @@
 				.msg{
 					position: relative;
 					padding-left: rem(5px);
-					width: 65%;
+					width: 70%;
 					.min_title{
 						font-size: rem(16px);
 						font-weight: bold;

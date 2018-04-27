@@ -108,6 +108,10 @@
 			</div>
 			
 		</div>
+		<div class="button" v-if="order">
+			<span>取消</span>
+			<span>确定</span>
+		</div>
 	</div>
 </template>
 <script>
@@ -202,6 +206,7 @@
 		width: 100%;
 		background-color: #fff;
 		position: relative;
+		padding-bottom: rem(75px);
 		.banner{
 			.swiper-container {
 			    img{
@@ -331,7 +336,7 @@
 				}
 				.rooms{
 					margin-top: rem(10px);
-					padding: 0 rem(15px);
+					padding-left: rem(15px);
 					display: flex;
 					div{
 						border-top: #e5e5e5 solid rem(0.5px);
@@ -344,6 +349,8 @@
 							border-radius: rem(8px);
 						}
 						&.title{
+							// display: black;
+							// margin-right: 3%;
 							p{
 								&:first-child{
 									font-size: rem(18px);
@@ -392,6 +399,27 @@
 				}
 			}
 			
+		}
+		.button{
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			display: flex;
+			width: 100%;
+			text-align: center;
+			// align-items:center;
+			background-color: #ffffff;
+			font-size: rem(14px);
+			border-top: #aaa solid rem(1px);
+			span{
+				width: 50%;
+				display: inline-block;
+				padding: rem(12px);
+				&:last-child{
+					background-color: #43c122;
+					color: #ffffff;
+				}
+			}
 		}
 	}
 	  
