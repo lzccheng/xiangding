@@ -27,7 +27,7 @@
 					      @focus="_blur">
 					    </el-date-picker> -->
 					    <span class="date_">
-			              <input id="date1" type="text" readonly="" @focus="handleBlur" placeholder="日期选择特效" data-lcalendar="2016-05-11,2016-05-11" v-model="date1_value"/>
+			              <input id="date1" onfocus="this.blur()" type="text" readonly="" @focus="handleBlur" placeholder="日期选择特效" data-lcalendar="2016-05-11,2016-05-11" v-model="date1_value"/>
 			            </span>
 			            <span><i class="fas fa-angle-right"></i></span>
 					</p>
@@ -42,7 +42,7 @@
 					      @focus="_blur">
 					    </el-date-picker> -->
 					    <span class="date_">
-			              <input id="date2" type="text" readonly="" placeholder="日期选择特效" data-lcalendar="2016-05-11,2016-05-11" v-model="date2_value"/>
+			              <input id="date2" type="text" readonly="" placeholder="日期选择特效" onfocus="this.blur()" data-lcalendar="2016-05-11,2016-05-11" v-model="date2_value"/>
 			            </span>
 			            <span><i class="fas fa-angle-right"></i></span>
 					</p>
@@ -106,7 +106,7 @@
 										    @change="handleChange">
 									 	</el-cascader>
 									</div> -->
-									<input type="text" @focus="handleBlur" :id="i.id" v-model="area_value">
+									<input type="text" @focus="handleBlur" :id="i.id" v-model="area_value" onfocus="this.blur()">
 									<!-- <p>{{text_erea}}</p> -->
 									<input type="hidden" :id="i.h_id">
 								</span>

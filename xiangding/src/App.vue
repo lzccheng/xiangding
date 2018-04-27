@@ -68,7 +68,7 @@ ul,li{
   list-style: none;
 }
 #app {
-  font-family: 'Microsoft YaHei';
+  font-family: "微软雅黑" ，Arial ;
   font-size: rem(12px);
   color: #555;
   -webkit-font-smoothing: antialiased;
