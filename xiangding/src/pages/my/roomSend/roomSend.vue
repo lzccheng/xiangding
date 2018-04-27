@@ -6,7 +6,7 @@
 				<p class="tip">退房扣费设置</p>
 				<p class="tip_1">超过<input type="text">小时</p>
 				<p class="tip_1">扣除<input type="text"> &nbsp;&nbsp;%</p>
-				<p>
+				<p class="choice">
 					<span @click="backHide">取消</span>
 					<span>确定</span>
 				</p>
@@ -40,10 +40,10 @@
 					<span class="name">可住人数:</span>
 					<span class="hide_1"><input type="text" placeholder="请填写房间可住人数"></span>
 				</li>
-				<li class="item">
+				<!-- <li class="item">
 					<span class="name">服务手机号:</span>
 					<span class="hide_1"><input type="text" placeholder="请输入房间负责人的手机号码"></span>
-				</li>
+				</li> -->
 				<li >
 					<el-collapse v-model="activeNames">
 						<el-collapse-item title="取消政策" name="1">
@@ -63,10 +63,10 @@
 									    <el-checkbox label="超过1小时扣费10%"></el-checkbox>
 									  </el-checkbox-group>
 						    	</span>
-						    </p>
+						    </p><br/>
 						    <p class="add">
 						    	<span @click="handGeneral"  class="add_icon"><i class="fas fa-plus-square"></i></span>
-						    	<span>添加</span>
+						    	<span class="add_text">添加</span>
 						    </p>
 						 </el-collapse-item>
 					</el-collapse>
@@ -234,6 +234,13 @@
 				left: 10%;
 				text-align: center;
 				border-radius: rem(8px);
+				.choice{
+					span{
+						&:last-child{
+							color: #43c122;
+						}
+					}
+				}
 				.tip{
 					font-weight: bold;
 				}
@@ -271,20 +278,24 @@
 		.body{
 			padding: 0 rem(16px);
 			p{
-					&.button{
-						span{
-							// padding-left: rem(10px);
-						}
-					}
-					.open{
-						float: right;
-					}
-					.add_icon{
-						color: #aaa;
-						// padding: 0 rem(17px);
-						font-size: rem(14px);
+				&.button{
+					span{
+						// padding-left: rem(10px);
 					}
 				}
+				.open{
+					float: right;
+				}
+				.add_icon{
+					color: #409EFF;
+					// padding: 0 rem(17px);
+					font-size: rem(14px);
+				}
+				.add_text{
+					color: #409EFF;
+					font-size: rem(14px);
+				}
+			}
 			.item{
 				position: relative;
 				border-bottom: #e5e5e5 solid rem(1px);

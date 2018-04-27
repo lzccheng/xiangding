@@ -119,6 +119,7 @@
 				}
 				.more_icon{
 					color: #43c122;
+					margin-right: rem(8px);
 				}
 				&.box_add{
 					padding: rem(30px) 36%;

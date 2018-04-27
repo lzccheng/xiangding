@@ -45,11 +45,15 @@
 				</p>
 				<p class="input">
 					<label>所在城市:</label>
-					<span class="color_aaa">点击选择地址 &nbsp;<i class="fas fa-chevron-down"></i></span>
+					<span class="color_aaa">点击选择地址 
+					<span class="down"><i class="fas fa-chevron-down"></i></span>
+					</span>
 				</p>
 				<p class="input">
 					<label>街道:</label>
-					<input type="text" placeholder="请选择所在街道" name="">
+					<span class="color_aaa">请选择所在街道 
+					<span class="down"><i class="fas fa-chevron-down"></i></span>
+					</span>
 				</p>
 				<p class="input">
 					<label>详细地址:</label>
@@ -114,6 +118,7 @@
 			padding: rem(2px) 0 0 rem(15px);
 			border-top: 0.5px solid #aaa;
 			border-bottom: 0.5px solid #aaa;
+			position: relative;
 			.input{
 				position: relative;
 				border-bottom: 0.5px solid #aaa;
@@ -146,6 +151,11 @@
 			}
 			.color_aaa{
 				color: #aaa;
+			}
+			.down{
+				position: absolute;
+				top: rem(10px);
+				right: 6%;
 			}
 			.get{
 				position: absolute;

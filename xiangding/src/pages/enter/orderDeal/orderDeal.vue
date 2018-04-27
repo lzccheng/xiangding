@@ -54,6 +54,26 @@
 		            </div>
 				</div>
 			</div>
+			<div v-if="2==index_">
+				<div class="body">
+					<div v-for="(i,index) in 5" class="item" :key="index">
+						<router-link tag="div" :to="{path: '/enter/hotelManage/orderStatus', query: {status: 1}}" class="img">
+							<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425433535&di=f7d324b2c95bd6f203fb8741290c02e3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D41481487a2773912d02b8d219161e374%2Ff3d3572c11dfa9ec3d58042d69d0f703918fc192.jpg" alt="">
+						</router-link>
+						<router-link tag="div" :to="{path: '/enter/hotelManage/orderStatus', query: {status: 1}}" class="text_box">
+							<div class="left">
+								<p class="name_1">商务大床房</p>
+								<p class="name_2">客户名称: 胡勇蝶</p>
+								<p class="name_2">入住: 3月28 &nbsp;&nbsp;退房: 3月29</p>
+								<p class="name_2">办理时间: 2018-1-12</p>
+							</div>
+							<div class="right">
+								<p class="numb"><i class="fas fa-chevron-right"></i></p>
+							</div>
+						</router-link>
+		            </div>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -67,6 +87,7 @@
 				arrItem: [
 					'待处理',
 					'已处理',
+					'待入住'
 				],
 				index_: 0,
 				status: 0,

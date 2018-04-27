@@ -78,7 +78,7 @@
 				</div>
 				<div v-if="1 == index_">
 					<div class="body">
-						<div class="top">
+						<!-- <div class="top">
 							<div class="line_green"></div>
 							<div @click="handleLive(0)" :class="{pay_y: (0 == index_1)}">
 								<p class="numb">10</p>
@@ -88,7 +88,7 @@
 								<p class="numb">10</p>
 								<p class="text">已退房</p>
 							</div>
-						</div>
+						</div> -->
 						<div v-if="0 == index_1">
 							<router-link tag="div" to="/enter/hotelManage/orderStatus">
 								<div v-for="(i,index) in 5" class="item" key=index>
@@ -342,7 +342,7 @@
 									.right{
 										position: absolute;
 										right: rem(20px);
-										bottom: rem(40px);
+										bottom: rem(50px);
 										p{
 											&.numb{
 												font-size: rem(16px);

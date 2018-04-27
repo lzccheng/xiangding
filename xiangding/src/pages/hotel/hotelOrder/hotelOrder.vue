@@ -106,7 +106,11 @@
 					<span class="check_box" ><el-checkbox v-model="checked1"></el-checkbox></span>
 				</p>
 				<p class="black" v-if="checked1">
-					lllll
+					<span class="right">
+						 <el-radio v-model="radio" label="1">1 × 2米LED屏</el-radio><br/>
+                         <el-radio v-model="radio" label="2">1.5 × 3.5米LED屏</el-radio><br/>  
+                         <el-radio v-model="radio" label="3">2.5 × 5.5米LED屏</el-radio>  
+					</span>
 				</p>
 				<p class="black">
 					<span>是否需要发票</span>
@@ -116,7 +120,7 @@
 					<span>是否需要会议室</span>
 					<router-link tag="span" :to="{path:'/hotelDetail',query:{name: '会议室',id: 2,order: true}}" class="check_box"><i class="fas fa-chevron-right"></i></router-link>
 				</p>
-				<p class="black">
+				<!-- <p class="black">
 					<span>预计到店</span>
 					<span class="time">
 						<span class="line">14</span>
@@ -124,7 +128,7 @@
 						<span class="line">30</span>
 						<span class="line">本日</span>
 					</span>
-				</p>
+				</p> -->
 				<p  class="day"><input type="text" placeholder="请输入您的姓名" name=""></p>
 				<p  class="day"><input type="text" placeholder="请输入您的手机号码" name=""></p>
 
@@ -193,7 +197,8 @@
 				checked: false,
 				checked1: false,
 				title: '酒店列表',
-				show: false
+				show: false,
+				radio: '1'
 			}
 		},
 		watch: {

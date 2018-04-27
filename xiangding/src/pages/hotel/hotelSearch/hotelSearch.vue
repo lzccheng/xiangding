@@ -18,8 +18,8 @@
 							</span>
 						</div>
 						<div class="search_">
-							<span><i class="fas fa-search"></i></span>
 							<input type="text" placeholder="酒店 / 品牌" class="">
+							<span><i class="fas fa-search"></i></span>
 						</div>
 					</div>
 				</div>
@@ -31,7 +31,7 @@
 						<i class="fas fa-angle-down"></i></span> -->
 					</div>
 					<div @click="handlePrice" class="tab_">
-						<span :class="{'color': 1 == show}">星际价格</span>
+						<span :class="{'color': 1 == show}">星级价格</span>
 						<span v-if="1 != show"><i class="fas fa-angle-down"></i></span>
 					</div>
 					<div @click="handleLocal" class="tab_">
@@ -44,7 +44,9 @@
 				<div v-if="0 == show" @click="handleCancel">
 					<div class="content">
 						<div class="item">
-							<p class="title">会议室数量</p>
+							<p v-if="title === '会议室'" class="title" >会议室数量</p>
+							<p v-if="title === '团房'" class="title" >团房数量</p>
+							<p v-if="title === '钟点房'" class="title" >钟点房数量</p>
 							<p class="top">
 								<span>最低值</span>
 								<span class="line">一</span>
@@ -52,7 +54,9 @@
 							</p>
 						</div>
 						<div class="item">
-							<p class="title">会议室面积</p>
+							<p v-if="title === '会议室'" class="title" >会议室面积</p>
+							<p v-if="title === '团房'" class="title" >团房面积</p>
+							<p v-if="title === '钟点房'" class="title" >钟点房面积</p>
 							<p class="top">
 								<span>最低值</span>
 								<span class="line">一</span>
@@ -299,7 +303,7 @@
 			.top_box{
 				width: 100%;
 				position: fixed;
-				top: rem(48px);
+				top: rem(45px);
 				left: 0;
 				z-index: 999;
 				._search{
@@ -311,6 +315,7 @@
 						background-color: #fff;
 						border-radius: rem(5px);
 						padding: 5px rem(13px);
+						position: relative;
 						>div{
 							display: inline-block;
 							&.erea{
@@ -344,15 +349,19 @@
 								width: 50%;
 								font-size: rem(16px);
 								border-left: 1px solid #43c122;
+
 								span{
-									display: inline-block;
-									padding: 0 rem(8px);
+									// display: inline-block;
+									position: absolute;
+									top: rem(5px);
+									right: 5%;
 								}
 								input{
 									width: 70%;
 									border: none;
 									padding: rem(3px) rm(8px);
 									font-size: rem(14px);
+									margin-left: rem(12px);
 									&::-webkit-input-placeholder { 
 									    color:    #aaa;
 									}

@@ -12,19 +12,27 @@
 						<span>广州</span>
 					</div>
 					<div class="input">
-						<span><i class="fas fa-search"></i></span>
 						<input type="text" placeholder="酒店搜索/关键字">
+						<span><i class="fas fa-search"></i></span>
 					</div>
 				</div>
 				
 			</div>
 			<div class="select">
 				<ul>
-					<!-- <li> -->
-						<!-- <div class="tabss" @click="handleGeneral">
-							<span :class="{'color': 0 == show}">价格</span>
+					
+					<li>
+						<div class="tabss" @click="handleLocal">
+							<span :class="{'color': 2== show}">筛选</span>
+							<span v-if="2 != show"><i class="fas fa-angle-down"></i></span>
+						</div>
+						
+					</li>
+					<li>
+						<div class="tabss" @click="handleGeneral">
+							<span :class="{'color': 0 == show}">星级</span>
 							<span v-if="0 != show"><i class="fas fa-angle-down"></i></span>
-						</div> -->
+						</div>
 						
 						<!-- <div class="tabs" v-if="tabs" ref="tabs">
 							<div class="tabs_" @click="onHandlecancelBubble">
@@ -33,14 +41,7 @@
 								<p>价格升序</p>
 							</div>
 						</div> -->
-				    <!-- 	</li> -->
-					<li>
-						<div class="tabss" @click="handleLocal">
-							<span :class="{'color': 0 == show}">筛选</span>
-							<span v-if="0 != show"><i class="fas fa-angle-down"></i></span>
-						</div>
-						
-					</li>
+				    </li>
 					<li>
 						<div class="tabss" @click="handlePrice">
 							<span :class="{'color': 1 == show}">位置</span>
@@ -54,9 +55,31 @@
 		<div class="back" v-if="general" @click="handleBack">
 			<div v-if="0 == show" @click="handleCancel">
 				<div class="content">
-					<p class="m"><span>综合</span></p>
-					<p class="m"><span>价格降序</span></p>
-					<p class="m none"><span>价格升序</span></p>
+					<div class="item">
+						<p class="title">价格区间</p>
+						<p class="top">
+							<span>最低值</span>
+							<span class="line">一</span>
+							<span>最高值</span>
+						</p>
+					</div>
+					<div class="item">
+						<p class="title">酒店星级</p>
+						<p class="rank">
+							<span class="star" :class="{color_box: colorBoolen}" @click="handleNo">不限</span>
+							<span class="star" :class="{color_box: starItem[0].active}" @click="handleStar(0)">一星</span>
+							<span class="star" :class="{color_box: starItem[1].active}" @click="handleStar(1)">二星</span>
+						</p>
+						<p class="rank">
+							<span class="star" :class="{color_box: starItem[2].active}" @click="handleStar(2)">三星</span>
+							<span class="star" :class="{color_box: starItem[3].active}" @click="handleStar(3)">四星</span>
+							<span class="star" :class="{color_box: starItem[4].active}" @click="handleStar(4)">五星</span>
+						</p>
+					</div>
+				</div>
+				<div class="button">
+					<span>重置</span>
+					<span>确定</span>
 				</div>
 			</div>
 			<div v-if="1 == show" @click="handleCancel">
@@ -86,12 +109,12 @@
 				</div>
 			</div>
 		</div>
-		<div class="star">
+		<!-- <div class="star">
 			<span>二星</span>
 			<span>三星</span>
 			<span>四星</span>
 			<span>五星</span>
-		</div>
+		</div> -->
 		<div class="hotel">
 			<div class="hotelItem" v-for='(i,index) in hotel' :key='index'>
 				<router-link :to="{path: '/hotelDetail',query:{id:i.id}}" tag='div'>
@@ -143,6 +166,28 @@
 		data(){
 			return {
 				aa: [],
+				starItem: [
+					{
+						name: '一星',
+						active: false
+					},
+					{
+						name: '二星',
+						active: false
+					},
+					{
+						name: '三星',
+						active: false
+					},
+					{
+						name: '四星',
+						active: false
+					},
+					{
+						name: '五星',
+						active: false
+					},
+				],
 				arrItem: [
 					{
 						name: '酒店品牌',
@@ -370,7 +415,17 @@
 						this.arrItem[i].child[j].active = false
 					}
 				}
-			}
+			},
+			handleNo(){
+				this.colorBoolen = !this.colorBoolen
+				for(let i=0;i< this.starItem.length;i++){
+					this.starItem[i].active = false
+				}
+			},
+			handleStar(i){
+				this.starItem[i].active = !this.starItem[i].active
+				this.colorBoolen = false
+			},
 		},
 		watch:{
 			$route(to,from){
@@ -401,9 +456,10 @@
 				.header_{
 					background-color: #fff;
 					border-radius: rem(5px);
-					padding: rem(8px) rem(12px);
+					padding: rem(6px) rem(12px);
 					display: flex;
 					align-items:center;
+					position: relative;
 					.local{
 						font-size: rem(18px);
 						color: #43c122;
@@ -412,17 +468,22 @@
 					}
 					.input{
 						margin-left: rem(20px);
+						padding: rem(3px);
 						input{
-							width: 70%;
+							width: 88%;
 							height: rem(25px);
 							border: none;
+							vertical-align: middle;
 						}
 						span{
 							font-size: rem(18px);
-							display: inline-block;
-							padding: rem(3px) rem(8px);
-							vertical-align: middle;
+							// display: inline-block;
+							// padding: rem(3px) 0 ;
+							// vertical-align: middle;
 							color: #aaa;
+							position: absolute;
+							top: rem(9px);
+							right: 5%;
 						}
 					}
 				}
@@ -511,8 +572,65 @@
 			height: 100%;
 			z-index: 33;
 			width: 100%;
+			.button{
+				background-color: #ffffff;
+				display: flex;
+				justify-content: space-around;
+				text-align: center;
+				span{
+					border-top: #aaa solid rem(0.5px);
+					width: 50%;
+					padding: rem(10px) 0;
+					&:first-child{
+						border-right: #aaa solid rem(1px);
+					}
+					&:last-child{
+						background-color: #43c122;
+						color: #ffffff;
+					}
+				}
+			}
 			.content{
 				background-color: #ffffff;
+				.item{
+					padding: rem(10px) 3%;
+					p{
+						&.rank{
+							display: flex;
+							justify-content: center;
+							padding: rem(10px) 0;
+							.star{
+								padding: rem(8px) 10%;
+								background-color: #EDEDED;
+								border-radius: rem(5px);
+								margin: 0 rem(8px);
+							}
+							.color_box{
+								background-color: #ffffff;
+								border: #43c122 solid rem(1px);
+								color: #43c122;
+							}
+						}
+						&.title{
+							font-size: rem(14px);
+						}
+						&.top{
+							padding: rem(15px) 0;
+							display: flex;
+							 justify-content:center;
+							span{
+								padding: rem(8px) 12%;
+								background-color: #EDEDED;
+								border-radius: rem(5px);
+								&.line{
+									background-color: #ffffff;
+								}
+							}
+						}
+
+					}
+					
+				}
 				.m{
 					border-bottom: #aaa solid rem(0.5px);
 					padding: rem(10px) rem(15px);

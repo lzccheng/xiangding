@@ -1,6 +1,17 @@
 <template>
 	<div class="box">
 		<Header title="会议室发布" />
+		<div v-if="general" class="back" @click="handBack">
+			<div class="alert" @click="cancelBubble">
+				<p class="tip">LED屏设置</p>
+				<p class="tip_1">屏幕大小<input type="text">×<input type="text">米</p>
+				<p class="tip_1">价格<input type="text"> 元</p>
+				<p class="choice">
+					<span @click="backHide">取消</span>
+					<span>确定</span>
+				</p>
+			</div>
+		</div>
 		<div class="body">
 			<ul>
 				<li class="item">
@@ -37,12 +48,32 @@
 				</li>
 				<li class="item">
 					<span class="name">提供LED屏:</span>
-					<span class="check_box"><el-checkbox v-model="checked">&nbsp;</el-checkbox></span>
+					<span class="check_box"><el-checkbox v-model="checked1">&nbsp;</el-checkbox></span>
 				</li>
-				<li class="item">
+				<li class="item" v-if="checked1">
+					<span class="right">
+						 <el-radio v-model="radio" label="1">1 × 2米LED屏</el-radio>
+						 <br/>
+                         <el-radio v-model="radio" label="2">1.5 × 3.5米LED屏</el-radio>
+                         <br/>  
+                         <el-radio v-model="radio" label="3">2.5 × 5.5米LED屏</el-radio>
+                         <br/><br/>
+                         <div class="led_money">
+                         	<p>299元</p>
+                         	<p>499元</p>
+                         	<p>599元</p>
+                         </div>
+                         <span @click="handGeneral">
+                            <span class="i">
+                            <i class="fas fa-plus-square"></i><span class="text">添加</span>
+                            </span>
+                         </span>
+					</span>
+				</li>
+				<!-- <li class="item">
 					<span class="name">服务手机号:</span>
 					<span class="hide_1"><input type="text" placeholder="请输入会议室服务手机号"></span>
-				</li>
+				</li> -->
 				<li class="item">
 					<span class="name">可容纳人数:</span>
 					<span class="hide_1"><input type="text" placeholder="请输入会议室大约可容纳人数"></span>
@@ -59,26 +90,27 @@
 				<li class="item ">
 				    <p class="name_1 padding-bottom">房间配套设施:</p>
 					<div class="check">
-					<div class="padding-bottom">
-						  <el-checkbox-group v-model="checkList">
-						  	<span class="check_box"><el-checkbox label="24小时热水"></el-checkbox></span>
-						  	<span class="check_box"><el-checkbox label="拖鞋"></el-checkbox></span>
-						  	<span class="check_box"><el-checkbox label="吹风机"></el-checkbox></span>
-						  	<span class="check_box"><el-checkbox label="电视机"></el-checkbox></span>
-						  	<span class="check_box"><el-checkbox label="有线无线宽带"></el-checkbox></span>
-						  	
-						    
-						    <!-- <el-checkbox label="拖鞋"></el-checkbox> -->
-						  </el-checkbox-group>
-					</div>
-						  <span class="add_more"><i class="far fa-plus-square"></i></span>
-						  <span>添加更多</span>
+						<div class="padding-bottom">
+							  <el-checkbox-group v-model="checkList">
+							  	<span class="check_box">
+							  	   <el-checkbox label="LED"></el-checkbox>
+							  	</span>
+							  	<span class="check_box">
+							  	    <el-checkbox label="有线无线宽带"></el-checkbox>
+							  	</span>
+							  	
+							  </el-checkbox-group>
+						</div>
+						<div class="add_box">
+							  <span class="add_more"><i class="far fa-plus-square"></i></span>
+							  <span class="=addmore_text">添加更多</span>
+						</div>
 					</div>
 				</li>
 			</ul>
 			<div class="add_room">
 				<span><i class="far fa-plus-square"></i></span>
-				<span class="color">添加房间</span>
+				<span class="color">添加会议室</span>
 			</div>
 			<div class="send">
 				<button class="green_btn">发布</button>
@@ -95,12 +127,26 @@
 			      input5: '',
 			      select1: '60平方',
 			      select6: '是',
-			      checkList: ['24小时热水'],
-			      checked: true
+			      checkList: ['LED'],
+			      checked: true,
+			      checked1: false,
+			      radio: '1',
+			      general: false
 			}
 		},
 		methods: {
-
+			handGeneral(event){
+					this.general = true
+				},
+			handBack(){
+				this.general = false
+			},
+			cancelBubble(event){
+				event.cancelBubble = true
+			},
+			backHide(){
+				this.general = false
+			}
 		}
 	}
 </script>
@@ -108,17 +154,101 @@
 	@import "../../../common/css/common.scss";
 	.box{
 		width: 100%;
+		.back{
+			background-color: rgba(0,0,0,0.3);
+			position: fixed;
+			top: 0;
+			left: 0;
+			height: 100%;
+			z-index: 999;
+			width: 100%;
+			font-size: rem(14px);
+			.alert{
+				width: 80%;
+				background-color: #ffffff;
+				position: absolute;
+				top: rem(200px);
+				left: 10%;
+				text-align: center;
+				border-radius: rem(8px);
+				.choice{
+					span{
+						&:last-child{
+							color: #43c122;
+						}
+					}
+				}
+				.tip{
+					font-weight: bold;
+				}
+				.tip_1{
+					width: 58%;
+					margin: 0 auto;
+					input{
+						width: 20%;
+						text-align: center;
+						border-top: none;
+						border-left: none;
+						border-right: none; 
+						border-bottom: #333 solid rem(1px);
+						margin: 0;
+					}
+				}
+				p{
+					padding-top: rem(20px);
+					display: flex;
+					justify-content: space-around;
+					&:first-child{
+						font-weight: bold;
+					}
+					span{
+						border-top: #aaa solid rem(1px);
+						width: 50%;
+						padding: rem(10px) 0;
+						&:first-child{
+							border-right: #aaa solid rem(1px);
+						}
+					}
+				}
+			}
+		}
 		.body{
 			padding: 0 rem(16px);
 			.item{
 				position: relative;
 				border-bottom: #e5e5e5 solid rem(1px);
 				padding: rem(15px) 0;
+				.right{
+					position: relative;
+					display: inline-block;
+					width: 98%;
+					.led_money{
+						font-size: rem(13px);
+						position: absolute;
+						top: 0;
+						right: 0;
+					}
+					.i{
+						font-size: rem(14px);
+						color: #409EFF;
+						.text{
+							font-size: rem(15px);
+							margin-left: rem(7px);
+						}
+					}
+				}
 				.check{
+					position: relative;
+					padding-bottom: rem(40px);
 					.check_box{
-						display: inline-block;
-						width: 33%;
-						padding: rem(3px) 0;
+						padding: rem(3px) 5%;
+					}
+					.add_box{
+						padding: rem(10px) 0;
+						position: absolute;
+						bottom: rem(-20px);
+						right: 0;
+
 					}
 				}
 				.padding-bottom{
@@ -162,6 +292,7 @@
 				}
 				.add_more{
 					color: #43c122;
+					font-size: rem(14px);
 				}
 			}
 			.room{
@@ -180,9 +311,10 @@
 					margin-left: 35%;
 					border-radius: rem(9px);
 					color: #43c122;
+					font-size: rem(18px);
 				 }
 				.hide_1{
-					color: #e5e5e5;
+					color: #aaa;
 					margin-left: 5%;
 				}
 			 }
@@ -191,9 +323,15 @@
 				text-align: center;
 				padding: rem(20px) 0;
 				color: #43c122;
-				.color{
-					color: #000;
+				span{
+					&:first-child{
+						font-size: rem(14px);
+					}
+					&.color{
+						color: #000;
+					}
 				}
+				
 			}
 		}
 
