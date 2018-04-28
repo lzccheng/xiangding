@@ -67,7 +67,7 @@
 						    </p>
 						    <p class="select">
 						    	<span>
-						    		 <el-checkbox-group v-model="checkList">
+						    		 <el-checkbox-group v-model="checkList2">
 									    <el-checkbox label="超过1小时扣费10%" :disabled="value2"></el-checkbox>
 									  </el-checkbox-group>
 						    	</span>
@@ -131,10 +131,10 @@
 					</div>
 				</li>
 				<li class="item ">
-				    <p class="name padding-bottom">房间配套设施:</p>
+				    <p>房间配套设施:</p>
 					<div class="check">
 					<div class="padding-bottom">
-						  <el-checkbox-group v-model="checkList">
+						  <el-checkbox-group v-model="checkList1">
 						  	<span class="check_box"><el-checkbox label="24小时热水"></el-checkbox></span>
 						  	<span class="check_box"><el-checkbox label="拖鞋"></el-checkbox></span>
 						  	<span class="check_box"><el-checkbox label="吹风机"></el-checkbox></span>
@@ -143,7 +143,7 @@
 						  	
 						    
 						    <!-- <el-checkbox label="拖鞋"></el-checkbox> -->
-						  </el-checkbox-group>
+						  </el-checkbox-group><br/>
 					</div>
 						  <span class="add_more"><i class="far fa-plus-square"></i></span>
 						  <span>添加更多</span>
@@ -172,10 +172,10 @@
 			      select4: '1张',
 			      select5: '1.2',
 			      select6: '是',
-			      checkList: ['24小时热水'],
+			      checkList1: ['24小时热水'],
 			      value1: true,
                   value2: true,
-                  checkList: ['超过1小时扣费10'],
+                  checkList2: ['超过1小时扣费10'],
                   general: false
 			}
 		},
@@ -199,6 +199,7 @@
 	@import "../../../common/css/common.scss";
 	.box{
 		width: 100%;
+		font-size: rem(13px);
 		.back{
 			background-color: rgba(0,0,0,0.3);
 			position: fixed;
@@ -306,7 +307,6 @@
 					color: #e5e5e5;
 				}
 				.hide_1{
-					color: #e5e5e5;
 					input{
 						width: 60%;
 						border: none;
@@ -349,7 +349,7 @@
 					color: #43c122;
 				 }
 				.hide_1{
-					color: #e5e5e5;
+					color: #aaa;
 					margin-left: 5%;
 				}
 			 }

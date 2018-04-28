@@ -132,7 +132,7 @@
 					</div>
 				</li>
 				<li class="item ">
-				    <p class="name_1 padding-bottom">房间配套设施:</p>
+				    <p class="padding-bottom">房间配套设施:</p>
 					<div class="check">
 					<div class="padding-bottom">
 						  <el-checkbox-group v-model="checkList1">
@@ -146,8 +146,10 @@
 						    <!-- <el-checkbox label="拖鞋"></el-checkbox> -->
 						  </el-checkbox-group>
 					</div>
+					<span class="add">
 						  <span class="add_more"><i class="far fa-plus-square"></i></span>
 						  <span>添加更多</span>
+					</span>
 					</div>
 				</li>
 			</ul>
@@ -222,6 +224,7 @@
 	.box{
 		width: 100%;
 		position: relative;
+		font-size: rem(13px);
 		.back{
 			background-color: rgba(0,0,0,0.3);
 			position: fixed;
@@ -305,14 +308,19 @@
 				}
 				.add_text{
 					color: #409EFF;
-					font-size: rem(14px);
+					// font-size: rem(14px);
 				}
 			}
 			.item{
 				position: relative;
 				border-bottom: #e5e5e5 solid rem(1px);
 				padding: rem(15px) 0;
-				
+				// .add{
+				// 	font-size: rem(14px);
+				// }
+				.name_1{
+					font-size: rem(13px);
+				}
 				.check{
 					.check_box{
 						display: inline-block;
@@ -326,18 +334,18 @@
 				.name{
 					display: inline-block;
 					width: 20%;
+					font-size: rem(13px);
 				}
 				.select{
 					margin-left: 5%;
 
 			     }
 			     
-				.hide{
-					margin-left: 2%;
-					color: #e5e5e5;
-				}
+				// .hide{
+				// 	margin-left: 2%;
+				// 	color: #aaa;
+				// }
 				.hide_1{
-					color: #e5e5e5;
 					input{
 						width: 60%;
 						border: none;
@@ -369,21 +377,26 @@
 			.item_1{
 				border-bottom: #e5e5e5 solid rem(1px);
 				padding: rem(15px) 0;
+				// .name{
+				// 	font-size: rem(13px);
+				// }
 				.photo{
-				padding-bottom: rem(4px);
-				.icon{
-					display: inline-block;
-					border: #c9c9c9 solid rem(1px);
-					padding: rem(32px) rem(35px);
-					margin-left: 35%;
-					border-radius: rem(9px);
-					color: #43c122;
-				 }
-				.hide_1{
-					color: #e5e5e5;
-					margin-left: 5%;
-				}
-			 }
+					padding-bottom: rem(4px);
+					.icon{
+						display: inline-block;
+						border: #c9c9c9 solid rem(1px);
+						padding: rem(32px) rem(35px);
+						margin-left: 35%;
+						border-radius: rem(9px);
+						color: #43c122;
+						font-size: rem(14px);
+					 }
+					.hide_1{
+						color: #aaa;
+						margin-left: 5%;
+						// font-size: rem(13px);
+					}
+			    }
 			}
 			.add_room{
 				text-align: center;

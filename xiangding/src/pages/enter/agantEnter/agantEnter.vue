@@ -80,12 +80,12 @@
 				.on{
 					position: absolute;
 					top: rem(120px);
-					left: 18%;
+					left: 15%;
 				}
 				.down{
 					position: absolute;
 					top: rem(120px);
-					left: 63%;
+					right: 15%;
 				}
 			}
 			.footer{

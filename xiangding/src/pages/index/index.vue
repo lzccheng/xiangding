@@ -84,7 +84,7 @@
   					<div class="map">
   						<span class="_right"><i class="fas fa-map-marker-alt"></i></span>
               <span ref="show_erea"><input onfocus="this.blur()" id="area" type="text" readonly="" placeholder="城市选择特效"  value="广东省,深圳市,南山区" v-model="area_value"/></span>
-	  					<span v-if="!show_erea" @click="handleChange_erea">{{text_erea}}</span>
+	  					<span class="location" v-if="!show_erea" @click="handleChange_erea">{{text_ere}}</span>
               <input id="value1" type="hidden" value="20,234,504"/> 
   					</div>
   					<span class="right"><i class="fas fa-angle-right"></i></span>
@@ -160,7 +160,7 @@
               </p>
               <p>
                 <span>{{i.area}}&nbsp;&nbsp;|&nbsp;&nbsp;{{i.room_total}}间房</span>
-                <span class="min_price"><span class="num">￥{{i.min_price}}</span>起</span>
+                <span class="min_price"><span class="i">￥</span>  <span class="num">{{i.min_price}}</span>  起</span>
               </p>
             </div>
           </router-link>
@@ -822,6 +822,9 @@
         line-height: rem(40px);
         padding: 0 rem(5px);
       }
+      // .i{
+      //   font-size: rem(15px);
+      // }
       .num{
         display: flex;
         .day{
@@ -859,6 +862,9 @@
             width: 60%;
             padding-top: rem(15px) ;
             display: inline-block;
+            .location{
+              font-size: rem(13px);
+            }
           }
           #area{
             width: 85%;

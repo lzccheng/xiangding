@@ -236,6 +236,7 @@
 				border: 2px solid #fff;
 				border-right: none;
 				padding: rem(8px) rem(22px);
+				font-size: rem(13px);
 			}
 		}
 		.earn{
@@ -278,6 +279,7 @@
 		.earning{
 			background-color: #fff;
 			text-align: center;
+			font-size: rem(13px);
 			.text{
 				padding-top: rem(20px);
 			}
@@ -303,13 +305,13 @@
 							display: inline-block;
 							&.right{
 								float: right;
-								margin-top: -0.6rem;
+								margin-top: -0.5rem;
 								span{
 									&:first-child{
 										color: #aaa;
 									}
 									&.detailt{
-										padding-left: rem(8px);
+										padding-left: rem(12px);
 										margin-top: rem(-16px);
 										float: right;
 										color: #0075FF;

@@ -88,20 +88,20 @@
 					</div>
 				</li>
 				<li class="item ">
-				    <p class="name_1 padding-bottom">房间配套设施:</p>
+				    <p class="padding-bottom">房间配套设施:</p>
 					<div class="check">
-						<div class="padding-bottom">
+						<div>
 							  <el-checkbox-group v-model="checkList">
-							  	<span class="check_box">
+							  	<span>
 							  	   <el-checkbox label="LED"></el-checkbox>
 							  	</span>
-							  	<span class="check_box">
+							  	<span>
 							  	    <el-checkbox label="有线无线宽带"></el-checkbox>
 							  	</span>
 							  	
-							  </el-checkbox-group>
+							  </el-checkbox-group><br/>
 						</div>
-						<div class="add_box">
+						<div >
 							  <span class="add_more"><i class="far fa-plus-square"></i></span>
 							  <span class="=addmore_text">添加更多</span>
 						</div>
@@ -154,6 +154,7 @@
 	@import "../../../common/css/common.scss";
 	.box{
 		width: 100%;
+		font-size: rem(13px);
 		.back{
 			background-color: rgba(0,0,0,0.3);
 			position: fixed;
@@ -239,17 +240,24 @@
 				}
 				.check{
 					position: relative;
-					padding-bottom: rem(40px);
-					.check_box{
-						padding: rem(3px) 5%;
+					padding-bottom: rem(5px);
+					div{
+						&:first-child{
+							span{
+								margin-right: 5%;
+							}
+						}
 					}
-					.add_box{
-						padding: rem(10px) 0;
-						position: absolute;
-						bottom: rem(-20px);
-						right: 0;
+					// .check_box{
+					// 	padding: rem(3px) 5%;
+					// }
+					// .add_box{
+					// 	padding: rem(10px) 0;
+					// 	position: absolute;
+					// 	bottom: rem(-20px);
+					// 	right: 0;
 
-					}
+					// }
 				}
 				.padding-bottom{
 					padding-bottom: rem(10px);

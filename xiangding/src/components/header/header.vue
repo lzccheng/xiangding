@@ -25,7 +25,7 @@
 	@import '../../common/css/common';
 	._box{
 		width: 100%;
-		height: rem(50px);
+		height: rem(48px);
 		._header{
 			width: 100%;
 			position: fixed;
@@ -39,7 +39,7 @@
 			border-bottom: 1px solid #aaa;
 			._left{
 				position: absolute;
-				left: 0;
+				left: rem(10px);
 				top: rem(12px);
 				padding: 0 rem(5px);
 				z-index: 999;

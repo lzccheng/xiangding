@@ -182,6 +182,7 @@
 	@import "../../../common/css/common.scss";
 	.box{
 		width: 100%;
+		font-size: rem(13px);
 		.back{
 			background-color: rgba(0,0,0,0.3);
 			position: fixed;
@@ -289,7 +290,6 @@
 					color: #e5e5e5;
 				}
 				.hide_1{
-					color: #e5e5e5;
 					input{
 						width: 60%;
 						border: none;
@@ -333,7 +333,7 @@
 					z-index: 999;
 				 }
 				.hide_1{
-					color: #e5e5e5;
+					color: #aaa;
 					margin-left: 5%;
 				}
 			 }

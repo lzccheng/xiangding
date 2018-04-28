@@ -65,6 +65,7 @@
 				<span >完成</span>
 			</div>
 		</div>
+		<div class="line_"></div>
 		<div class="footer">
 			<div class="room_box">
 				<router-link tag="div" to="/my/roomEnter/meettingSend" class="room" >
@@ -123,6 +124,7 @@
 	@import "../../../common/css/common.scss";
 	.box{
 		width: 100%;
+		padding-bottom: rem(150px);
 		.header{
 			padding: rem(15px) 10%;
 			font-size: rem(22px);
@@ -278,7 +280,12 @@
 				}
 			}
 		}
-		
+		.line_{
+			border: #ffffff solid rem(1px);
+			position: fixed;
+			bottom: rem(42px);
+			width: 100%;
+		}
 		.footer{
 			position: fixed;
 			bottom: 0;

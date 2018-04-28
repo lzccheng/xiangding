@@ -82,7 +82,7 @@
 			</div>
 			<div class="form">
 				<p class="hotel upload">酒店简介</p>
-				<p class="content">请填写酒店简介...</p>
+				<p class="content"><textarea cols="46" rows="10" placeholder="请填写酒店简介..."></textarea></p>
 			</div>
 			<div class="body">
 				<router-link class="button" tag="div" to="/enter/login">
@@ -201,7 +201,9 @@
 			}
 			.content{
 				color: #aaa;
-				margin-bottom: rem(80px);
+				textarea{
+					border: none;
+				}
 			}
 		}
 		.body{

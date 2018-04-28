@@ -124,7 +124,7 @@
 					<div class="msg">
 						<span class="flex">
 							<span class="min_title">{{i.name}}</span>
-						<span><el-rate
+						<span class="stars"><el-rate
 							  v-model="i.star"
 							  disabled>
 							</el-rate>
@@ -139,7 +139,7 @@
 						<span class="_right">
 							<span class="text_1">￥</span>
 							<span class="num">{{i.min_price}}</span>
-							起
+							<span class="text_1 size">起</span>
 						</span>
 					</div>
 				</router-link>
@@ -322,7 +322,8 @@
 				show: 3,
 				value5:2,
 				general: false,
-				item_show: 0
+				item_show: 0,
+				colorBoolen: false
 			}
 		},
 		methods: {
@@ -736,9 +737,7 @@
 						font-size: rem(16px);
 						font-weight: bold;
 					}
-					.flex{
-						display: flex;
-					}
+					
 					img{
 						width: rem(13px);
 						height: rem(13px);
@@ -756,10 +755,13 @@
 						.num{
 							font-size: rem(18px);
 							color: #ff9800;
-							font-weight:bold;
 						}
 						.text_1{
-							color: #ff9800
+							color: #ff9800;
+							font-size: rem(15px);
+						}
+						.size{
+							font-size: rem(12px);
 						}
 					}
 					p{

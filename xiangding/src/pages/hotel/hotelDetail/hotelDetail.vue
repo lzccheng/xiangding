@@ -66,7 +66,7 @@
 								<p>{{i.area}}m <sup>2</sup> / <span>{{people}}</span>人</p>
 							</div>
 							<div class="price">
-								<p>￥{{i.price}}元</p>
+								<p><span class="first">￥</span>{{i.price}}<span class="first">元</span></p>
 								<p v-if="title !== '会议室'"><router-link tag="button" :to="{path:'/hotelDetail/hotelOrder',query:{name: title}}">订房</router-link></p>
 								<p v-else>
 									<span  v-if="!order">
@@ -257,6 +257,7 @@
 		}
 		.msg{
 			position: relative;
+			font-size: rem(13px);
 			.tip{
 				margin: rem(5px) 0 0 rem(8px);
 				width: 90%;
@@ -278,7 +279,7 @@
 				color: #aaa;
 				font-size: rem(15px);
 				.map{
-					font-size: rem(12px);
+					font-size: rem(13px);
 					color: #43c122;
 				}
 			}
@@ -349,8 +350,6 @@
 							border-radius: rem(8px);
 						}
 						&.title{
-							// display: black;
-							// margin-right: 3%;
 							p{
 								&:first-child{
 									font-size: rem(18px);
@@ -365,9 +364,15 @@
 							p{
 								&:first-child{
 									color: #ff9b09;
-									font-size: rem(18px);
+									font-size: rem(17px);
 									padding-bottom: rem(24px);
+									// span{
+									// 	&.first{
+									// 		font-size: rem(15px);
+									// 	}
+									// }
 								}
+
 								button{
 									color: #fff;
 									border: none;
@@ -409,12 +414,12 @@
 			text-align: center;
 			// align-items:center;
 			background-color: #ffffff;
-			font-size: rem(14px);
+			font-size: rem(15px);
 			border-top: #aaa solid rem(1px);
 			span{
 				width: 50%;
 				display: inline-block;
-				padding: rem(12px);
+				padding: rem(13px);
 				&:last-child{
 					background-color: #43c122;
 					color: #ffffff;

@@ -393,7 +393,7 @@
 				background-color: rgba(0,0,0,0.3);
 				height: 100%;
 				position: fixed;
-				top: rem(135px);
+				top: rem(136px);
 				left: 0;
 				z-index: 9999;
 				width: 100%;
@@ -456,6 +456,7 @@
 					display: flex;
 					justify-content: space-around;
 					text-align: center;
+					font-size: rem(14px);
 					span{
 						border-top: #aaa solid rem(0.5px);
 						width: 50%;
@@ -471,6 +472,7 @@
 				}
 			}
 			.free{
+				
 				.text{
 					display: inline-block;
 					padding: rem(5px) rem(10px);
@@ -523,6 +525,7 @@
 						width: 37%;
 						position: relative;
 						.star{
+							padding-top: rem(2px);
 						}
 						.pay{
 							position: absolute;
@@ -530,17 +533,14 @@
 							bottom: rem(8px);
 							>span{
 								span{
+									color: #FFA44F;
 									&:first-child{
-										color: #FFA44F;
+										font-size: rem(15px);
 									}
 									&.num{
 										font-size:rem(18px);
-										font-weight: bold;
-										color: #FFA44F;
 									}
-									&.text{
-										color: #333;
-									}
+									
 								}
 							}
 						}

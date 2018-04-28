@@ -3,11 +3,11 @@
 		<Header title="反馈"/>
 		<div class="body">
 			<div class="body_div">
-				<textarea name="" id="" cols="53" rows="19">请输入您的宝贵建议或意见:</textarea>
+				<textarea name="" id="" cols="53" rows="19" placeholder="请输入您宝贵建议或意见..."></textarea>
 			</div>
 			<div class="post"><span>提交</span></div>
 			<p class="text1"><span>欢迎您为我们提供宝贵建议和意见,您留下的任<br>何信息都将用来改善我们的软件.</span></p>
-			<p class="text2"><span>注:订单相关问题或紧急问题请拨打188-8888-8888	获得及时的帮助,意见反馈无法处理订单相关问题</span></p>
+			<p class="text2"><span>注:  订单相关问题或紧急问题请拨打188-8888-8888 	  &nbsp;获得及时的帮助,意见反馈无法处理订单相关问题</span></p>
 		</div>
 	</div>
 </template>
@@ -60,8 +60,9 @@
 				padding: rem(32px) 8%;
 			}
 			.text2{
-				font-size: rem(17px);
+				font-size: rem(15px);
 				padding-bottom: rem(30px);
+				text-align: center;
 			}
 			.post{
 				width: rem(100px);

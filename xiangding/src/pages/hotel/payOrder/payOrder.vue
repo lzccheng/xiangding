@@ -125,7 +125,7 @@
 		.top{
 			background-color: #43c122;
 			color: #ffffff;
-			padding: rem(18px) 0;
+			padding: rem(32px) 0;
 			text-align: center;
 			span{
 				&:first-child{
@@ -141,13 +141,14 @@
 		}
 		.i{
 			position: absolute;
-			top: rem(59px);
+			top: rem(71px);
 			left: 34%;
 			color: #ffffff;
 			font-size: rem(25px);
 		}
 		.custom{
-			padding: rem(10px) 0;
+			padding: rem(14px) 0;
+			padding-bottom: rem(8px);
 			.numb{
 				font-size: rem(14px);
 				padding-bottom: rem(8px);
@@ -178,6 +179,9 @@
 						&:first-child{
 							padding-right: rem(10px);
 						}
+						&:last-child{
+							font-size: rem(15px);
+						}
 					}
 				}
 			}
@@ -207,6 +211,7 @@
 								position: absolute;
 								bottom: rem(23px);
 								right: rem(1px);
+								font-size: rem(14px);
 							}
 						}
 					}
@@ -233,6 +238,7 @@
 				.totle_color{
 					color: #FF9800;
 					padding-left: rem(7px);
+					font-size: rem(17px);
 				}
 			}
 		}
@@ -259,7 +265,7 @@
 					width: 50%;
 					font-size: rem(15px);
 					color: #FF9800;
-					padding: rem(10px) 0;
+					padding: rem(13px) 0;
 				}
 				.talk{
 					color: #000;
@@ -269,7 +275,7 @@
 					background-color: #43c122;
 					color: #ffffff;
 					width: 50%;
-					padding: rem(10px) 0;
+					padding: rem(13px) 0;
 				}
 			
 			}
