@@ -123,7 +123,8 @@
 				    <span class="name">房间照片:</span>
 				    <div class="photo">
 						<div class="icon">
-							<i class="far fa-plus-square"></i>
+							<label for="file"><i class="far fa-plus-square"></i></label>
+							<input type="file" id="file" style="display: none">
 						</div>
 						<span class="hide_1">最多添加4张</span>
 					</div>

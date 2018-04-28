@@ -803,6 +803,7 @@
                 padding: 0 rem(20px) rem(15px);
                 .min_price{
                   float: left;
+
                 }
                 .max_price{
                   float: right;
@@ -851,6 +852,7 @@
           border-bottom: rem(1px) solid #aaa;
           ._right{
             margin-right: rem(10px);
+
             i{
               color: #aaa;
             }
@@ -952,8 +954,8 @@
         .min_price{
           float: right;
           color: #FF9800;
+          font-weight: bold;
           .num{
-            font-weight: bold;
             font-size: rem(16px);
           }
         }

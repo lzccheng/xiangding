@@ -82,7 +82,8 @@
 				    <span class="name">房间照片:</span>
 				    <div class="photo">
 						<div class="icon">
-							<i class="far fa-plus-square"></i>
+							<label for="file"><i class="far fa-plus-square"></i></label>
+							<input type="file" id="file" style="display: none">
 						</div>
 						<span class="hide_1">最多添加4张</span>
 					</div>
@@ -311,7 +312,7 @@
 				border-bottom: #e5e5e5 solid rem(1px);
 				padding: rem(15px) 0;
 				.photo{
-				padding-bottom: rem(4px);
+				    padding-bottom: rem(4px);
 				.icon{
 					display: inline-block;
 					border: #c9c9c9 solid rem(1px);
@@ -319,7 +320,6 @@
 					margin-left: 35%;
 					border-radius: rem(9px);
 					color: #43c122;
-					font-size: rem(18px);
 				 }
 				.hide_1{
 					color: #aaa;

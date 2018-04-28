@@ -23,8 +23,14 @@
 			</p>
 			<div class="photo">
 				<p>
-					<span class="icon_photo"><i class="fas fa-camera"></i></span>
-					<span class="icon_photo"><i class="fas fa-camera"></i></span>
+					<span class="icon_photo">
+					   <label for="file"><i class="fas fa-camera"></i></label>
+					   <input type="file" id="file" style="display: none">
+					</span>
+					<span class="icon_photo">
+					    <label for="file"><i class="fas fa-camera"></i></label>
+					    <input type="file" id="file" style="display: none">
+					</span>
 				</p>
 				<p>
 					<span class="on">身份证正面照</span>

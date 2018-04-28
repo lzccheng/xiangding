@@ -386,6 +386,7 @@
 					background-color: #fff;
 	 				.tab_{
 						padding: rem(12px);
+						font-size: rem(14px);
 					}
 				}
 			}

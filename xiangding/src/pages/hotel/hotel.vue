@@ -523,6 +523,7 @@
 						.tabss{
 							padding: rem(8px) 0;
 							padding-bottom: rem(4px);
+							font-size: rem(14px);
 							.color{
 								color: #43c122;
 							}

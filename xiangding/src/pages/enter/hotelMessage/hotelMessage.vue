@@ -57,7 +57,10 @@
 			  </p>
 			  <p class="box_add">
 			  	<span class="icon_big">
-			  	  <i class="far fa-plus-square"></i><br/>
+
+			  	  <label for="file"><i class="far fa-plus-square"></i></label><br/>
+			  	  <input type="file" id="file" style="display: none">
+
 			  	  <span class="text_add">添加酒店封面图</span>
 			  	</span>
 			  </p>
@@ -87,6 +90,7 @@
 	@import "../../../common/css/common.scss";
 	.box{
 		width: 100%;
+		font-size: rem(13px);
 		.body{
 			padding: rem(8px) 0 rem(8px) 4%;
 			p{
@@ -131,6 +135,9 @@
 					.icon_big{
 						color: #43c122;
 						font-size: rem(60px);
+						label{
+							padding: 0;
+						}
 						.text_add{
 							color: #000;
 							font-size: rem(12px);
