@@ -51,7 +51,23 @@ let getLocation = (onComplete=function(){},onError=function(){})=>{
 	    geolocation.getCurrentPosition();
 	  });
 }
+let checkPhone = (value)=>{
+	return /^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/.test(value)
+}
+let checkId = (value)=>{
+	return /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)/.test(value)
+}
+let checkFixedPhone = (value)=>{
+	return /^((0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/.test(value)
+}
+let checkCredit= (value)=>{
+	return /^([1-9]{1})(\d{14}|\d{18})$/.test(value)
+}
 export default {
 	getStyle,
-	getLocation
+	getLocation,
+	checkPhone,
+	checkId,
+	checkFixedPhone,
+	checkCredit
 }

@@ -17,7 +17,7 @@
 		</div>
 		<div class="earning">
 			<p class="text"><span>当前收益</span></p>
-			<p class="money"><span>￥</span><span>{{msg.earning}}</span></p>
+			<p class="money" style="font-family:'微软雅黑' ,Arial !import"><span>￥</span><span>{{msg.earning}}</span></p>
 			<div class="earn">
 				<div class="order">
 					<p class="icon"><i class="far fa-file"></i></p>

@@ -9,7 +9,7 @@
 				</p>
 				<p class="input">
 					<label>手机号</label>
-					<input type="text" placeholder="请输入手机号" name="">
+					<input @blur="handleCheck" type="text" placeholder="请输入手机号" name="">
 					<router-link tag="span" to="/my/bindPhone" class="get">   &nbsp;<i class="fas fa-chevron-right"></i></router-link>
 				</p>
 				<p class="mm">
@@ -37,6 +37,7 @@
 
 </template>
 <script>
+	import common from '../../../common/js/common'
 	export default {
 		data(){
 			return {
@@ -44,7 +45,24 @@
 			}
 		},
 		methods: {
-
+			handleCheck(event){
+				let value = event.path[0].value
+				// event.path[0].value
+				// (/^1[3|4|5|8][0-9]\d{4,8}$/.test(sMobile))
+				if(value){
+					if(!common.checkPhone(value)){
+						this.$message({
+				          message: '请输入正确的手机号',
+				          type: 'warning'
+				        });
+					}
+				}else{
+					this.$message({
+			          message: '手机号不能为空',
+			          type: 'warning'
+			        });
+				}
+			},
 		}
 	}
 </script>

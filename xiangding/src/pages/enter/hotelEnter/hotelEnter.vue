@@ -9,7 +9,7 @@
 				</p>
 				<p class="input">
 					<label>联系电话:</label>
-					<input type="text" placeholder="请输入电话号码" name="">
+					<input @blur="handleCheck" type="text" placeholder="请输入电话号码" name="">
 				</p>
 				<p class="input">
 					<label>验证码:</label>
@@ -37,7 +37,7 @@
 				</p>
 				<p class="input">
 					<label>前台电话:</label>
-					<input type="text" placeholder="请输入带有区号的座机号码" name="">
+					<input @blur="hanndleFixPhone" type="text" placeholder="请输入带有区号的座机号码" name="">
 				</p>
 				<p class="input">
 					<label>电子邮箱:</label>
@@ -65,7 +65,7 @@
 				</p>
 				<p class="input">
 					<label>酒店收款账号:</label>
-					<input type="text" placeholder="请输入银行卡号" name="">
+					<input @blur="handleCheckCredit" type="text" placeholder="请输入银行卡号" name="">
 				</p>
 				<p class="input">
 					<label>代理服务商姓名:</label>
@@ -78,7 +78,12 @@
 			</div>
 			<div class="form">
 				<p class="upload">上传营业执照</p>
-				<p class="add_icon"><i class="far fa-plus-square"></i></p>
+				<p class="add_icon">
+				<!-- <label for="file"><i class="far fa-plus-square"></i></label>
+							<input type="file" id="file" style="display: none"> -->
+				   <label for="file"><i class="far fa-plus-square"></i></label>
+				   <input type="file" style="display: none" id="file">
+				</p>
 			</div>
 			<div class="form">
 				<p class="hotel upload">酒店简介</p>
@@ -94,6 +99,7 @@
 
 </template>
 <script>
+	import common from '../../../common/js/common'
 	export default {
 		data(){
 			return {
@@ -101,6 +107,56 @@
 			}
 		},
 		methods: {
+			handleCheck(event){
+				let value = event.path[0].value
+				// event.path[0].value
+				// (/^1[3|4|5|8][0-9]\d{4,8}$/.test(sMobile))
+				if(value){
+					if(!common.checkPhone(value)){
+						this.$message({
+				          message: '请输入正确的联系电话',
+				          type: 'warning'
+				        });
+					}
+				}else{
+					this.$message({
+			          message: '联系电话不能为空',
+			          type: 'warning'
+			        });
+				}
+			},
+			hanndleFixPhone(event){
+				let value = event.path[0].value
+				if(value){
+					if (!common.checkFixedPhone(value)) {
+						this.$message({
+							message: '请输入正确的座机号码',
+							type: 'warning'
+						});
+					}
+				}else{
+					this.$message({
+						message: '前台电话不能为空',
+						type: 'warning'
+					})
+				}
+			},
+			handleCheckCredit(event){
+				let value = event.path[0].value
+				if(value){
+					if (!common.checkCredit(value)) {
+						this.$message({
+							message: '请输入正确的银行卡号',
+							type: 'warning'
+						});
+					}
+				}else{
+					this.$message({
+						message: '银行卡号不能为空',
+						type: 'warning'
+					})
+				}
+			},
 
 		}
 	}

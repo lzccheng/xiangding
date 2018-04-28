@@ -8,7 +8,7 @@
 			</p>
 			<p class="input">
 				<label>联系电话:</label>
-				<input type="text" placeholder="请输入电话号码" name="">
+				<input @blur="handleCheck" type="text" placeholder="请输入电话号码" name="">
 			</p>
 			<p class="input" style="border-bottom: none">
 				<label>验证码:</label>
@@ -19,7 +19,7 @@
 		<div class="form_1">
 			<p class="mm">
 				<label>身份证号码:</label>
-				<input type="text" placeholder="请输入身份证号码" name="">
+				<input @blur="handleCheckId" type="text" placeholder="请输入身份证号码" name="">
 			</p>
 			<div class="photo">
 				<p>
@@ -45,6 +45,7 @@
 	</div>
 </template>
 <script>
+	import common from '../../../common/js/common'
 	export default {
 		data(){
 			return {
@@ -52,7 +53,44 @@
 			}
 		},
 		methods: {
-
+			handleCheck(event){
+				let value = event.path[0].value
+				// event.path[0].value
+				// (/^1[3|4|5|8][0-9]\d{4,8}$/.test(sMobile))
+				if(value){
+					if(!common.checkPhone(value)){
+						this.$message({
+				          message: '请输入正确的联系电话',
+				          type: 'warning'
+				        });
+					}
+				}else{
+					this.$message({
+			          message: '联系电话不能为空',
+			          type: 'warning'
+			        });
+				}
+			},
+			handleCheckId(event){
+				let value = event.path[0].value
+				// event.path[0].value
+				// (/^1[3|4|5|8][0-9]\d{4,8}$/.test(sMobile))
+				// var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/
+				// var reg = /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)/
+				if(value){
+					if(!common.checkId(value)){
+						this.$message({
+				          message: '请输入正确身份证号',
+				          type: 'warning'
+				        });
+					}
+				}else{
+					this.$message({
+			          message: '身份证号不能为空',
+			          type: 'warning'
+			        });
+				}
+			},
 		}
 	}
 </script>
