@@ -3,12 +3,6 @@ let getStyle = (obj,attr) => {
 	return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle( obj )[attr]
 }
 let getLocation = (onComplete=function(){},onError=function(){})=>{
-	const loading = this.$loading({
-	    lock: true,
-	    text: ' 定位中..........',
-	    background: 'rgba(0, 0, 0, 0.7)',
-	    // target: '.msg'
-	  })
 	  var map = new AMap.Map('aMap', {
 	      resizeEnable: true,
 	      zoom: 16
@@ -44,8 +38,8 @@ let getLocation = (onComplete=function(){},onError=function(){})=>{
 	    map.addControl(geolocation);
 
 	    // 添加地图全局定位事件
-	    AMap.event.addListener(geolocation, 'complete', onComp); //返回定位信息
-	    AMap.event.addListener(geolocation, 'error', onErr); //返回定位出错信息
+	    AMap.event.addListener(geolocation, 'complete', onComplete); //返回定位信息
+	    AMap.event.addListener(geolocation, 'error', onError); //返回定位出错信息
 
 	    // 调用定位
 	    geolocation.getCurrentPosition();

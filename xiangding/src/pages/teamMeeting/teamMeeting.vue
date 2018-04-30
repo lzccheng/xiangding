@@ -1,6 +1,5 @@
 <template>
 	<div class="box">
-		<iframe src="api/sample.php" ref="_iframe" style="display: none"></iframe>
 		<div class="_box" ref="_box" @click="onHandleBox">
 			<div class="eara none" @click="onHandleCancel" ref="eara">
 				<div class="select">
