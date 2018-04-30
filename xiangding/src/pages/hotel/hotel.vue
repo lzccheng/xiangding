@@ -11,10 +11,10 @@
 					<div class="local">
 						<span>广州</span>
 					</div>
-					<div class="input">
+					<router-link tag="div" to="/hotel/searchPage" class="input" >
 						<input type="text" placeholder="酒店搜索/关键字">
 						<span><i class="fas fa-search"></i></span>
-					</div>
+					</router-link>
 				</div>
 				
 			</div>
@@ -58,9 +58,9 @@
 					<div class="item">
 						<p class="title">价格区间</p>
 						<p class="top">
-							<span>最低值</span>
-							<span class="line">一</span>
-							<span>最高值</span>
+							<span class="input_"><input type="text" v-model="starSelect.price.min" placeholder="最低值"></span>
+							<span class="line1"></span>
+							<span class="input_"><input type="text" v-model="starSelect.price.max" placeholder="最高值"></span>
 						</p>
 					</div>
 					<div class="item">
@@ -78,7 +78,7 @@
 					</div>
 				</div>
 				<div class="button">
-					<span>重置</span>
+					<span @click="handleStarReset">重置</span>
 					<span>确定</span>
 				</div>
 			</div>
@@ -166,6 +166,13 @@
 		data(){
 			return {
 				aa: [],
+				starSelect: {
+					price: {
+						min: '',
+						max: ''
+					},
+					
+				},
 				starItem: [
 					{
 						name: '一星',
@@ -410,6 +417,14 @@
 			handleColor(i){
 				this.arrItem[this.item_show].child[i].active = !this.arrItem[this.item_show].child[i].active
 			},
+			handleStarReset(){
+				this.starSelect.price.min = ''
+				this.starSelect.price.max = ''
+				for(let i in this.starItem){
+					this.starItem[i].active = false
+				}
+				this.colorBoolen = true
+			},
 			handleReset(){
 				for(let i = 0;i<this.arrItem.length;i++){
 					for(let j = 0;j<this.arrItem[i].child.length;j++ ){
@@ -617,15 +632,47 @@
 							font-size: rem(14px);
 						}
 						&.top{
-							padding: rem(15px) 0;
 							display: flex;
-							 justify-content:center;
+							padding: rem(15px) 0;
+							justify-content:center;
 							span{
-								padding: rem(8px) 12%;
 								background-color: #EDEDED;
+								padding: rem(7px) 0;
 								border-radius: rem(5px);
-								&.line{
-									background-color: #ffffff;
+								&.line1{
+									background-color: #fff;
+									padding: 0 rem(14px);
+									vertical-align: middle;
+									display: inline-block;
+									border: #000 solid rem(1px);
+									height: 0;
+									margin-top: rem(12px);
+								}
+								&.input_{
+									width: 30%;
+									display: inline-block;
+									margin: 0 rem(30px);
+									input{
+										width: 99%;
+										border: none;
+										padding: rem(2px) 0;
+										font-size: rem(10px);
+										background-color: #EDEDED;
+										text-align: center;
+										border-radius: rem(5px);
+										&::-webkit-input-placeholder { 
+										}
+										&:-moz-placeholder { 
+										    color:    #aaa;
+										}
+										&::-moz-placeholder { 
+										    color:    #aaa;
+										}
+										&:-ms-input-placeholder { 
+										    color:    #aaa;
+										}
+
+									}
 								}
 							}
 						}

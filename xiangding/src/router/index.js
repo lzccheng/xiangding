@@ -50,6 +50,7 @@ import bindPhone from '@/pages/my/bindPhone/bindPhone'
 import bindCard from '@/pages/my/bindCard/bindCard'
 import payPassword from '@/pages/my/payPassword/payPassword'
 import cardMessage from '@/pages/enter/cardMessage/cardMessage'
+import searchPage from '@/pages/hotel/searchPage/searchPage'
 
 Vue.use(Router)
 
@@ -93,6 +94,14 @@ export default new Router({
       component: payOrder,
       meta: {
         title: '酒店支付订单'
+      }
+    },
+    {
+      path: '/hotel/searchPage',
+      name: 'searchPage',
+      component: searchPage,
+      meta: {
+        title: '酒店搜索'
       }
     },
     {

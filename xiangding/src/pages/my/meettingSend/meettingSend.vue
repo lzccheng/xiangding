@@ -39,7 +39,7 @@
 				<li class="item">
 					<span class="name">窗户:</span>
 					<div class="select_1">
-						<el-select v-model="select6" slot="prepend" placeholder="请选择">
+						<el-select focus="this.blur()" v-model="select6" slot="prepend" placeholder="请选择">
 					      <el-option label="是" value="1"></el-option>
 					      <el-option label="否" value="2"></el-option>
 					      <el-option label="部分有窗" value="3"></el-option>
