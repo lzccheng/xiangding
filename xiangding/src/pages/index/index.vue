@@ -136,7 +136,7 @@
           </li>
   			</ul>
         <div class="button">
-          <router-link tag="button" :to="{path: '/hotel',query: {data}}">查找酒店</router-link>
+          <router-link tag="button" :to="{path: '/hotel/hotelSearch',query: {data,name: '酒店列表'}}">查找酒店</router-link>
         </div>
   		</div>
 

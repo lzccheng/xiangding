@@ -36,18 +36,21 @@
 			<div v-if="1==index_">
 				<div v-for="(i,index) in 5" class="item_delete" :key="index">
 					<div>
-						<input type="checkbox">
+						<input type="checkbox" :id="'_'+index">
 					</div>
-					<div class="img">
-						<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425433535&di=f7d324b2c95bd6f203fb8741290c02e3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D41481487a2773912d02b8d219161e374%2Ff3d3572c11dfa9ec3d58042d69d0f703918fc192.jpg" alt="">
-					 </div>
-					<div class="text_box">
-						<p class="name_1">特惠商务房</p>
-						<p class="name_2">
-							<span>¥</span>
-							<span class="name_money">299元</span>
-						</p>
-					</div>
+					<label :for="'_'+index">
+						<div class="img">
+							<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425433535&di=f7d324b2c95bd6f203fb8741290c02e3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D41481487a2773912d02b8d219161e374%2Ff3d3572c11dfa9ec3d58042d69d0f703918fc192.jpg" alt="">
+						 </div>
+						<div class="text_box">
+							<p class="name_1">特惠商务房</p>
+							<p class="name_2">
+								<span>¥</span>
+								<span class="name_money">299元</span>
+							</p>
+						</div>
+					</label>
+					
 				</div>
 			</div>
 		</div>
@@ -223,18 +226,23 @@
 			padding: rem(18px) 0;
 			margin-left: rem(5px);
 			border-bottom: #EDEDED solid rem(1px);
-			div{
+			label{
+				display: flex;
+				justify-content: spase-around;
+			    align-items: center;
 				padding: 0 rem(5px);
-				&.img{
+				.img{
 					width: 25%;
 					height: rem(80px);
+					padding-right: 5%;
 					img{
 						width: 100%;
 						height: 100%;
 						border-radius: rem(12px);
 					}
 				}
-				&.text_box{
+				.text_box{
+
 					.name_1{
 						font-size: rem(17px);
 						margin-bottom: rem(5px);

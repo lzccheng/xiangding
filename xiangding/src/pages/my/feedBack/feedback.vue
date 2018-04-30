@@ -3,7 +3,7 @@
 		<Header title="反馈"/>
 		<div class="body">
 			<div class="body_div">
-				<textarea name="" id="" cols="53" rows="19" placeholder="请输入您宝贵建议或意见..."></textarea>
+				<textarea name="" id="" cols="43" rows="15" placeholder="请输入您宝贵建议或意见..."></textarea>
 			</div>
 			<div class="post"><span>提交</span></div>
 			<p class="text1"><span>欢迎您为我们提供宝贵建议和意见,您留下的任<br>何信息都将用来改善我们的软件.</span></p>
@@ -42,6 +42,7 @@
 			}
 		}
 		.body{
+			padding: 0 5%;
 			.body_div{
 				display: flex;
 				align-items: center;
@@ -65,14 +66,18 @@
 				text-align: center;
 			}
 			.post{
-				width: rem(100px);
-				padding: rem(7px) rem(40px);
+				padding: rem(10px) 5%;
 				background-color: #43c122;
 				text-align: center;
 				color: #ffffff;
-				font-size: rem(14px);
-				border-radius: rem(20px);
 				margin: rem(17px) auto 0;
+				border-radius: rem(5px);
+				span{
+					display: inline-block;
+					font-size: rem(14px);
+			     	
+				}
+
 			}
 		}
 	}
