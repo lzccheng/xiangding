@@ -194,74 +194,39 @@
       mounted:function(){
 
         let that = this
-        //高德地图
-         // 实例化地图， 命名定位插件实例、标记实例、地理编码实例、输出变量
-        //    const loading = this.$loading({
-        //     lock: true,
-        //     text: ' 定位中............',
-        //     background: 'rgba(0, 0, 0, 0.7)',
-        //     // target: '.msg'
-        //   })
-        //   var map = new AMap.Map('aMap', {
-        //       resizeEnable: true,
-        //       zoom: 16
-        //     }),
-        //     geolocation = null,
-        //     geocoder = null
-
-        //   // 加载地理位置编码插件
-        //   AMap.service('AMap.Geocoder', function() { //回调函数
-        //     //实例化Geocoder
-        //     geocoder = new AMap.Geocoder({
-        //       city: "010" //城市，默认：“全国”
-        //     });
-        //     //TODO: 使用geocoder 对象完成相关功能
-        //   });
-        //   // 加载定位插件
-        //   map.plugin('AMap.Geolocation', function() {
-        //     // 初始化定位插件
-        //     geolocation = new AMap.Geolocation({
-        //       enableHighAccuracy: true, //是否使用高精度定位，默认:true
-        //       timeout: 10000, //超过10秒后停止定位，默认：无穷大
-        //       maximumAge: 0, //定位结果缓存0毫秒，默认：0
-        //       convert: true, //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
-        //       showButton: true, //显示定位按钮，默认：true
-        //       buttonPosition: 'LB', //定位按钮停靠位置，默认：'LB'，左下角
-        //       buttonOffset: new AMap.Pixel(10, 20), //定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
-        //       showMarker: false, //定位成功后在定位到的位置显示点标记，默认：true
-        //       showCircle: false, //定位成功后用圆圈表示定位精度范围，默认：true
-        //       panToLocation: true, //定位成功后将定位到的位置作为地图中心点，默认：true
-        //       zoomToAccuracy: true //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
-        //     });
-        //     // 把定位插件加入地图实例
-        //     map.addControl(geolocation);
-
-        //     // 添加地图全局定位事件
-        //     AMap.event.addListener(geolocation, 'complete', onComplete); //返回定位信息
-        //     AMap.event.addListener(geolocation, 'error', onError); //返回定位出错信息
-
-        //     // 调用定位
-        //     geolocation.getCurrentPosition();
-        //   });
-
-        //   /*
-        //    *解析定位结果
-        //    */
-        //   function onComplete(data) {
-        //     console.log(data)
-        //     alert(data.formattedAddress+'附近')
-        //     loading.close()
-        //   };
-        //   /*
-        //    *解析定位错误信息
-        //    */
-        //   function onError(data) {
-        //     console.log(data)
-        //     alert('Error')
-        //     loading.close()
-
-        //   };
-        // console.log('aMap finsh')
+        const loading = that.$loading({
+            lock: true,
+            text: '定位中..........',
+            background: 'rgba(0, 0, 0, 0.7)',
+            // target: '.msg'
+          })
+          that.show_erea = true
+          that.$refs.show_erea.style.display = 'inline-block'
+          common.getLocation(onComplete,onError)
+          function onComplete(data) {
+            loading.close()
+            let addr = data.formattedAddress.split('街道')
+            if(!addr[1]){
+              addr = data.formattedAddress.split('号')
+            }
+            that.text_erea = addr[1]+'附近'
+            that.show_erea = false
+            that.$refs.show_erea.style.display = 'none'
+            that.$message({
+              message: '定位成功！'+that.text_erea,
+              type: 'success'
+            })
+          }
+          /*
+           *解析定位错误信息
+           */
+          function onError(data) {
+            loading.close()
+            that.$message({
+              message: '定位失败！'+data.message,
+              type: 'warning'
+            })
+          }
 
         let nowDate = new Date()
         // let imterval = setInterval(()=>{
@@ -469,10 +434,6 @@
           common.getLocation(onComplete,onError)
           function onComplete(data) {
             loading.close()
-            that.$message({
-              message: '定位成功！'+that.text_erea,
-              type: 'success'
-            })
             let addr = data.formattedAddress.split('街道')
             if(!addr[1]){
               addr = data.formattedAddress.split('号')
@@ -480,6 +441,10 @@
             that.text_erea = addr[1]+'附近'
             that.show_erea = false
             that.$refs.show_erea.style.display = 'none'
+            that.$message({
+              message: '定位成功！'+that.text_erea,
+              type: 'success'
+            })
           }
           /*
            *解析定位错误信息

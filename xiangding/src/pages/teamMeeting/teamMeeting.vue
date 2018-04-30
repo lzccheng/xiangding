@@ -383,18 +383,39 @@
 		methods: {
 			handleMap(){
 				let that = this
-				let point = new BMap.Point(window.$local.longitude, window.$local.latitude)
-                  // console.log('point',point)
-                  // let map = new BMap.Map("map")
-                  let myGeo = new BMap.Geocoder()
-                  // console.log(that)
-                  myGeo.getLocation(point,function(res){
-                    that.text_erea = res.surroundingPois[0].title+'附近'
-                    that.show_erea = false
-                    // console.log(that.$refs)
-                    that.$refs.show_erea2[0].style.display = 'none'
-                    // alert('你的位置在'+res.surroundingPois[0].title+'附近，地址为：'+res.address+res.surroundingPois[0].address)
-                  })
+				const loading = that.$loading({
+		            lock: true,
+		            text: '定位中..........',
+		            background: 'rgba(0, 0, 0, 0.7)',
+		            // target: '.msg'
+		          })
+	          that.show_erea = true
+	          that.$refs.show_erea2[0].style.display = 'block'
+	          common.getLocation(onComplete,onError)
+	          function onComplete(data) {
+	            loading.close()
+	            let addr = data.formattedAddress.split('街道')
+	            if(!addr[1]){
+	              addr = data.formattedAddress.split('号')
+	            }
+	            that.text_erea = addr[1]+'附近'
+	            that.show_erea = false
+	            that.$refs.show_erea2[0].style.display = 'none'
+	            that.$message({
+	              message: '定位成功！'+that.text_erea,
+	              type: 'success'
+	            })
+	          }
+	          /*
+	           *解析定位错误信息
+	           */
+	          function onError(data) {
+	            loading.close()
+	            that.$message({
+	              message: '定位失败！'+data.message,
+	              type: 'warning'
+	            })
+	          }
 			},
 			handleChange_erea(){
 				this.show_erea = true
@@ -426,6 +447,13 @@
 			            'type': 1,
 			            'data': LAreaData
 			        })
+			        if(that.text_erea){
+			        	if(that.show_erea){
+				        	that.$refs.show_erea2[0].style.display = 'block'
+				        }else{
+				        	that.$refs.show_erea2[0].style.display = 'none'
+				        }
+			        }
 				},50)
 				
 			},
@@ -697,7 +725,7 @@
 							.text_erea{
 								position: absolute;
 								left: rem(8px);
-								top: rem(15px);
+								top: rem(8px);
 								width: 70%;
 								border-bottom: none;
 							}
