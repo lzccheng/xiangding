@@ -46,6 +46,26 @@
 			Nav:function(index){
 				this.indexData = index;
 			}
+		},
+		watch: {
+			$route(to,from){
+				if(to.name === 'index'){
+					this.indexData = 0
+				}
+				if(to.name === 'hotel'){
+					this.indexData = 1
+				}
+				if(to.name === 'teamMeeting'){
+					this.indexData = 2
+				}
+				if(to.name === 'enter'){
+					this.indexData = 3
+				}
+				if(to.name === 'my'){
+					this.indexData = 4
+				}
+
+			}
 		}
 	}
 </script>
