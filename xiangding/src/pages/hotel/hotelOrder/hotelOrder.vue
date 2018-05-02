@@ -263,7 +263,7 @@
 				}
 				.text{
 					width: 70%;
-					padding-left: rem(8px);
+					padding-left: 3%;
 					font-size: rem(14px);
 					p{
 						padding-top: rem(3px);
@@ -290,12 +290,12 @@
 				.msg_1{
 					padding: rem(5px) 0;
 					.head{
-						width: 10%;
+						// width: 10%;
 						display: inline-block;
 						color: #aaa;
 					}
 					.text{
-						width: 38%;
+						width: 37%;
 						display: inline-block;
 					}
 				}

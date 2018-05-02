@@ -58,7 +58,11 @@ export default {
 <style lang='scss'>
 @import 'common/css/common.scss';
 @import 'common/css/swiper.min';
-
+@media screen and (max-width: 325px) {
+    html {
+        font-size: 10px;
+    }
+}
 *{
   padding: 0;
   margin: 0;

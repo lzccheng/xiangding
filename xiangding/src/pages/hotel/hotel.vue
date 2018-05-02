@@ -122,15 +122,18 @@
 						<img :src="i.imgUrl">
 					</div>
 					<div class="msg">
-						<span class="flex">
-							<span class="min_title">{{i.name}}</span>
-						<span class="stars"><el-rate
-							  v-model="i.star"
-							  disabled>
-							</el-rate>
+						<span class="span_width lineHidden">
+							<span class="flex">
+								<span class="min_title">{{i.name}}</span>
+							<span class="stars"><el-rate
+								  v-model="i.star"
+								  disabled>
+								</el-rate>
+							</span>
 						</span>
+						
 						</span>
-						<span>距市中心{{i.distance}}公里&nbsp;/&nbsp;&nbsp;{{i.city[0]}}、{{i.city[1]}}</span>
+						<span class="span_width lineHidden">距市中心{{i.distance}}公里&nbsp;/&nbsp;&nbsp;{{i.city[0]}}、{{i.city[1]}}</span>
 						<p>
 							<span>最大房间：{{i.max_room_erea}}m<sup>2</sup></span>
 							<!-- <span class="max">&nbsp;&nbsp;&nbsp;&nbsp;最多容纳：{{i.max_people}}人</span> -->
@@ -793,10 +796,14 @@
 					}
 					span{
 						display: inline-block;
-						padding: rem(3px) 0;
+						padding: rem(2px) 0;
 						&:first-child{
 							display: inline;
 						}
+					}
+					.span_width{
+						padding: 0;
+						width: 100%;
 					}
 					._right{
 						float: right;

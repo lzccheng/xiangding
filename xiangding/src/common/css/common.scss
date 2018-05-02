@@ -26,3 +26,8 @@ $rem: 16px !default;
 	    color:    #aaa;
 	}
 }
+.lineHidden{
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}

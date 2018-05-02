@@ -154,7 +154,7 @@
 							<p class="title">
 								<span>广州银河大酒店</span>
 							</p>
-							<p>
+							<p class="lineHidden">
 								<span>珠江新城、</span>
 								<span>五羊商城</span>
 							</p>
@@ -170,7 +170,7 @@
 							</p>
 						</div>
 						<div class="price">
-							<p class="star">
+							<p class="star lineHidden">
 								<el-rate
 								  v-model="star"
 								  disabled
@@ -864,7 +864,6 @@
 							font-size: rem(16px);
 							font-weight: bold;
 							color: #000;
-							padding-bottom: rem(15px);
 						}
 						p{
 							color: #aaa;
