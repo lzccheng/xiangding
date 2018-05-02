@@ -123,8 +123,7 @@ window.ereaPlugin = function(obj){
 		
 		var divTabs = document.createElement('div');
 		divTabs.setAttribute('class','ereaPlugin_tabs');
-		divTabs.style.top = divElChild.offsetTop +  (Number(that.getStyle(divElChild,'height').slice(0,-2)) + 11) + 'px';
-		console.log(divElChild)
+		divTabs.style.top = divElChild.offsetTop + 32 + 'px';
 		that.divTabsChild1 = document.createElement('div');
 		that.divTabsChild1.setAttribute('class','ereaPlugin_tabs_child');
 		var divTabsChild_span = document.createElement('span');
