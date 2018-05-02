@@ -1,8 +1,9 @@
 <template>  
   <div class="box">
       
-      <div id="aMap" style="height: 300xp"></div>
+      <div id="aMap"></div>
       <div id="mess"></div>
+      <div id="bbb"></div>
       <div id="map"></div>
       <div class="_box" ref="_box" @click="_boxClick">
         <div class="erea" ref="_erea" @click="handleCancel">
@@ -82,9 +83,9 @@
   				<li>
   					<div class="map">
   						<span class="_right"><i class="fas fa-map-marker-alt"></i></span>
-              <span ref="show_erea"><input onfocus="this.blur()" id="area" type="text" readonly="" placeholder="城市选择特效"  value="广东省,深圳市,南山区" v-model="area_value"/></span>
-	  					<span class="location" v-if="!show_erea" @click="handleChange_erea">{{text_erea}}</span>
-              <input id="value1" type="hidden" value="20,234,504"/> 
+              <!-- <span ref="show_erea"><input onfocus="this.blur()" id="area" type="text" readonly="" placeholder="城市选择特效"  value="广东省,深圳市,南山区" v-model="area_value"/></span> -->
+	  					<span class="location" id="aaa">{{text_erea}}</span>
+              <!-- <input id="value1" type="hidden" value="20,234,504"/>  -->
   					</div>
   					<span class="right"><i class="fas fa-angle-right"></i></span>
   					<p class="local">
@@ -192,78 +193,42 @@
         star
       },
       mounted:function(){
-
-        this.$axios.get('api/addons/yun_shop/api.php?i=3&c=entry&do=shop&m=yun_shop&route=member.member.wxJsSdkConfig').then((res)=>{
-          console.log(res.data.data.config)
-          wx.config({
-            appId: res.data.data.config.appId,
-            nonceStr: res.data.data.config.nonceStr,
-            timestamp: res.data.data.config.timestamp,
-            signature: res.data.data.config.signature,
-            jsApiList: res.data.data.config.jsApiList
-          })
-          wx.ready(function(){
-            console.log(888)
-          })
-        },(err)=>{
-          console.log(err)
-        })
-        console.log(wx)
         let that = this
-        const loading = that.$loading({
-            lock: true,
-            text: '定位中..........',
-            background: 'rgba(0, 0, 0, 0.7)',
-            // target: '.msg'
-          })
-          that.show_erea = true
-          that.$refs.show_erea.style.display = 'inline-block'
-          common.getLocation(onComplete,onError)
-          function onComplete(data) {
-            loading.close()
-            let addr = data.formattedAddress.split('街道')
-            if(!addr[1]){
-              addr = data.formattedAddress.split('号')
-            }
-            that.text_erea = addr[1]+'附近'
-            that.show_erea = false
-            that.$refs.show_erea.style.display = 'none'
-            that.$message({
-              message: '定位成功！'+that.text_erea,
-              type: 'success'
-            })
-          }
-          /*
-           *解析定位错误信息
-           */
-          function onError(data) {
-            loading.close()
-            that.$message({
-              message: '定位失败！'+data.message,
-              type: 'warning'
-            })
-          }
+        // const loading = that.$loading({
+        //     lock: true,
+        //     text: '定位中..........',
+        //     background: 'rgba(0, 0, 0, 0.7)',
+        //     // target: '.msg'
+        //   })
+          // that.show_erea = true
+          // // that.$refs.show_erea.style.display = 'inline-block'
+          // common.getLocation(onComplete,onError)
+          // function onComplete(data) {
+          //   loading.close()
+          //   let addr = data.formattedAddress.split('街道')
+          //   if(!addr[1]){
+          //     addr = data.formattedAddress.split('号')
+          //   }
+          //   that.text_erea = addr[1]+'附近'
+          //   that.show_erea = false
+          //   that.$refs.show_erea.style.display = 'none'
+          //   that.$message({
+          //     message: '定位成功！'+that.text_erea,
+          //     type: 'success'
+          //   })
+          // }
+          // /*
+          //  *解析定位错误信息
+          //  */
+          // function onError(data) {
+          //   loading.close()
+          //   that.$message({
+          //     message: '定位失败！'+data.message,
+          //     type: 'warning'
+          //   })
+          // }
 
         let nowDate = new Date()
-        // let imterval = setInterval(()=>{
-        //   if(that.$refs._iframe.contentWindow.local){
-        //     // console.log(new Date().getTime(),that.$refs._iframe.contentWindow)
-        //     window.$local = JSON.parse(that.$refs._iframe.contentWindow.local)
-        //     // console.log(window.$local)
-        //     let point = new BMap.Point(window.$local.longitude, window.$local.latitude)
-        //     let myGeo = new BMap.Geocoder()
-        //     myGeo.getLocation(point,function(res){
-        //       that.text_erea = res.surroundingPois[0].title+'附近'
-        //       that.show_erea = false
-        //       that.$refs.show_erea.style.display = 'none'
-        //     })
-        //     clearInterval(imterval)
-        //   }
-        //   if(new Date().getTime()-nowDate.getTime()>5000){
-        //     alert('位置请求超时！')
-        //     clearInterval(imterval)
-        //   }
-        // },50)
         this.$axios({url:'/api/bannerData',data:{id:123}}).then((res)=>{
           that.arrItem = res.data
           setTimeout(function(){
@@ -287,17 +252,33 @@
           })
 
           // let area = new LArea()
-          new LArea().init({
-            'trigger': '#area',
-            'valueTo': '#value',
-            'keys': {
-                id: 'id',
-                name: 'name'
-            },
-            'type': 1,
-            'data': LAreaData
-          });
-
+          // new LArea().init({
+          //   'trigger': '#area',
+          //   'valueTo': '#value',
+          //   'keys': {
+          //       id: 'id',
+          //       name: 'name'
+          //   },
+          //   'type': 1,
+          //   'data': LAreaData
+          // });
+          // var erea = ereaPlugin({
+          //   showEl: '#bbb',
+          //   clickEl: '#aaa',
+          //   data: ereaPlugin_data,
+          //   callBack: function(res){
+          //     console.log(res)
+          //   }
+          // })
+          var erea = ereaPlugin({
+            showEl: '#bbb',
+            clickEl: '#aaa',
+            data: ereaPlugin_data,
+            callBack: function(res){
+              that.erea_value = res.erea_value
+              that.text_erea = that.erea_value[2]+that.erea_value[3]
+            }
+          }).init()
           let date = new Date()
           let min_date = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()
           new LCalendar().init({
@@ -312,71 +293,6 @@
               'minDate': this.min_date2, //最小日期
               'maxDate': (new Date().getFullYear()+2) + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate() //最大日期
           })
-
-          // console.log(wx)
-          // this.$axios({url:'/api/jssdk.php?host=http://localhost:8080',method: 'get'}).then((res)=>{
-          //   console.log(res.data)
-          //   wx.config({
-          //     debug: false,
-          //     appId: res.data.appId,
-          //     timestamp: res.data.timestamp,
-          //     nonceStr: res.data.nonceStr,
-          //     signature: res.data.signature,
-          //     jsApiList: [
-          //       'getLocation'
-          //     ]
-          //   })
-            
-          //   wx.ready(function(){
-          //     wx.getLocation({
-          //       success: function(res){
-          //         that._lng = res.longitude
-          //         that._lat = res.latitude
-          //         let point = new BMap.Point(res.longitude, res.latitude)
-          //         // console.log('point',point)
-          //         // let map = new BMap.Map("map")
-          //         let myGeo = new BMap.Geocoder()
-          //         // console.log(that)
-          //         myGeo.getLocation(point,function(res){
-          //           // console.log(res)
-          //           that.text_erea = res.surroundingPois[0].title+'附近'
-          //           that.show_erea = false
-          //           that.$refs.show_erea.style.display = 'none'
-          //           // alert('你的位置在'+res.surroundingPois[0].title+'附近，地址为：'+res.address+res.surroundingPois[0].address)
-          //         })
-
-          //         // let geolocation = new BMap.Geolocation()
-          //         // geolocation.getCurrentPosition(function(r){
-          //         //   if(this.getStatus() == BMAP_STATUS_SUCCESS){
-          //         //     console.log(r.point)
-          //         //     var mk = new BMap.Marker(r.point);
-          //         //     mk.setAnimation(BMAP_ANIMATION_BOUNCE);
-          //         //     map.addOverlay(mk);
-          //         //     // map.panTo(r.point);
-          //         //     // map.centerAndZoom(r.point, 15);
-          //         //     myGeo.getLocation(r.point,function(res){
-          //         //       console.log(res)
-          //         //       alert('你的位置在'+res.surroundingPois[0].title+'附近，地址为：'+res.address+res.surroundingPois[0].address)
-          //         //     })
-          //         //     console.log(r)
-          //         //     // alert('您的位置(浏览器定位)：'+r.point.lng+','+r.point.lat);
-          //         //   }
-          //         //   else {
-          //         //     alert('位置获取失败：'+this.getStatus());
-          //         //   }        
-          //         // })
-          //         // console.log(888,map)
-          //         // console.log(999999,res,map)
-          //       },
-          //       fail: function(){
-          //         console.log(777777,'err')
-          //         alert('定位失败！')
-          //       }
-          //     })
-          //   })
-          // }).catch((err)=>{
-          //   console.log(err)
-          // })
       },
       data(){
       	return {
@@ -429,7 +345,8 @@
           _lng: '',
           _lat: '',
           show_erea: true,
-          text_erea: ''
+          text_erea: '请选择',
+          erea_value: []
         }
       },
       methods: {
@@ -445,8 +362,8 @@
             background: 'rgba(0, 0, 0, 0.7)',
             // target: '.msg'
           })
-          that.show_erea = true
-          that.$refs.show_erea.style.display = 'inline-block'
+          // that.show_erea = true
+          // that.$refs.show_erea.style.display = 'inline-block'
           common.getLocation(onComplete,onError)
           function onComplete(data) {
             loading.close()
@@ -455,8 +372,8 @@
               addr = data.formattedAddress.split('号')
             }
             that.text_erea = addr[1]+'附近'
-            that.show_erea = false
-            that.$refs.show_erea.style.display = 'none'
+            // that.show_erea = false
+            // that.$refs.show_erea.style.display = 'none'
             that.$message({
               message: '定位成功！'+that.text_erea,
               type: 'success'
@@ -705,9 +622,12 @@
       }
     }
 		.banner{
+      z-index: 99;
 			.iSlide{
+        z-index: 99;
 				width: 100%;
 				.img{
+          z-index: 99;
 					width: 100%;
 					height: 13rem;
 				}

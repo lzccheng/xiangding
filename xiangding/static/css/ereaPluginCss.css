@@ -1,0 +1,78 @@
+/*
+	author： laizhicheng(赖志成);
+	time：2018-04-28
+ */
+ul,li{
+	list-style: none;
+}
+*{
+	padding: 0;
+	margin: 0;
+}
+.ereaPlugin_box{
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	background-color: #fff;
+	font-size: 14px;
+	height: 70%;
+	overflow: auto;
+	z-index: 999;
+}
+.ereaPlugin_box .ereaPlugin_box_child{
+	width: 100%;
+	position: fixed;
+	left: 0;
+	top: 30%;
+	font-size: 16px;
+	padding: 5px 0;
+	text-align: center;
+	background-color: #fff;
+	border-bottom: 1px #ddd solid;
+	z-index: 999;
+}
+.ereaPlugin_box .ereaPlugin_tabs{
+	background-color: #fff;
+	position: fixed;
+	left: 0;
+	width: 100%;
+	border-bottom: 1px #ddd solid;
+	z-index: 999;
+}
+.ereaPlugin_box .ereaPlugin_tabs .ereaPlugin_tabs_child{
+	padding: 5px 8px;
+	cursor: pointer;
+	display: inline-block;
+}
+.ereaPlugin_box .ereaPulgin_item{
+	position: absolute;
+	left: 0;
+	top: 62px;
+}
+.ereaPlugin_box .ereaPulgin_item ul{
+	overflow: auto;
+}
+.ereaPlugin_box .ereaPulgin_item ul li{
+	padding: 5px 8px;
+	cursor: pointer;
+}
+.ereaPlugin_active{
+	color: #E87234;
+}
+.ereaPlugin_line{
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 3px;
+	border-radius: 3px;
+	background-color: #E87234;
+	z-index: 999;
+	transition: all 0.5s;
+}
+.ereaPlugin_times{
+	position: absolute;
+	right: 0;
+	top: 30%;
+	padding: 5px 15px;
+	z-index: 999;
+}
