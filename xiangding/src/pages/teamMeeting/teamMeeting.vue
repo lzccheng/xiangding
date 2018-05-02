@@ -82,6 +82,7 @@
 		<div class="tab">
 			<div class="tab_header">
 				<div class="header" ref="tab">
+
 					<div v-for='(i,index) in arrItem' :key=index @click='onHandleClick(index,$event)'>{{i.name}}</div>
 				</div>
 				<div class="line" ref="line"></div>
@@ -241,70 +242,6 @@
 	            'minDate': min_date2, //最小日期
 	            'maxDate': (new Date().getFullYear()+2) + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate() //最大日期
 	        })
-	        // this.$axios({url:'/api/jssdka.php',method: 'get'}).then((res)=>{
-	        //     // console.log(res.data)
-	        //     wx.config({
-	        //       debug: false,
-	        //       appId: res.data.appId,
-	        //       timestamp: res.data.timestamp,
-	        //       nonceStr: res.data.nonceStr,
-	        //       signature: res.data.signature,
-	        //       jsApiList: [
-	        //         'getLocation'
-	        //       ]
-	        //     })
-	            
-	        //     wx.ready(function(){
-	        //       wx.getLocation({
-	        //         success: function(res){
-	        //           that._lng = res.longitude
-	        //           that._lat = res.latitude
-	        //           let point = new BMap.Point(res.longitude, res.latitude)
-	        //           // console.log('point',point)
-	        //           // let map = new BMap.Map("map")
-	        //           let myGeo = new BMap.Geocoder()
-	        //           // console.log(that)
-	        //           myGeo.getLocation(point,function(res){
-	        //             console.log(res.surroundingPois[0].title)
-	        //             that.text_erea = res.surroundingPois[0].title+'附近'
-	        //             that.show_erea = false
-	        //             // console.log(that.$refs)
-	        //             that.$refs.show_erea2[0].style.display = 'none'
-	        //             // alert('你的位置在'+res.surroundingPois[0].title+'附近，地址为：'+res.address+res.surroundingPois[0].address)
-	        //           })
-
-	        //           // let geolocation = new BMap.Geolocation()
-	        //           // geolocation.getCurrentPosition(function(r){
-	        //           //   if(this.getStatus() == BMAP_STATUS_SUCCESS){
-	        //           //     console.log(r.point)
-	        //           //     var mk = new BMap.Marker(r.point);
-	        //           //     mk.setAnimation(BMAP_ANIMATION_BOUNCE);
-	        //           //     map.addOverlay(mk);
-	        //           //     // map.panTo(r.point);
-	        //           //     // map.centerAndZoom(r.point, 15);
-	        //           //     myGeo.getLocation(r.point,function(res){
-	        //           //       console.log(res)
-	        //           //       alert('你的位置在'+res.surroundingPois[0].title+'附近，地址为：'+res.address+res.surroundingPois[0].address)
-	        //           //     })
-	        //           //     console.log(r)
-	        //           //     // alert('您的位置(浏览器定位)：'+r.point.lng+','+r.point.lat);
-	        //           //   }
-	        //           //   else {
-	        //           //     alert('位置获取失败：'+this.getStatus());
-	        //           //   }        
-	        //           // })
-	        //           // console.log(888,map)
-	        //           // console.log(999999,res,map)
-	        //         },
-	        //         fail: function(){
-	        //           console.log(777777,'err')
-	        //           alert('定位失败！')
-	        //         }
-	        //       })
-	        //     })
-	        //   }).catch((err)=>{
-	        //     console.log(err)
-	        //   })
 		},
 		data(){
 			return {
@@ -431,10 +368,8 @@
 			datePicker2(time){
 				// console.log(this.date_value.getDate(),this.date_value2.getDate())
 			},
-			onHandleClick(i,event){
-				event.path[2].lastElementChild.style.marginLeft = event.path[0].offsetLeft + 'px'
-				event.path[2].lastElementChild.style.width = common.getStyle(event.path[0],'width')
-				this.index_ = i
+			onHandleClick(i,e){
+				console.log(e)
 				let that = this
 				setTimeout(()=>{
 					new LArea().init({
@@ -455,6 +390,11 @@
 				        }
 			        }
 				},50)
+				event.path[2].lastElementChild.style.marginLeft = event.path[0].offsetLeft + 'px'
+				event.path[2].lastElementChild.style.width = common.getStyle(event.path[0],'width')
+				this.index_ = i
+				
+				
 				
 			},
 			onHandleClose(){
@@ -491,9 +431,11 @@
 		    },
 		    _boxShow(){
 		    	this.$refs._box.style.height = window.innerHeight + 'px'
+		    	document.querySelectorAll('body')[0].style.overflow = 'hidden'
 		    },
 		    _boxHide(){
 		    	this.$refs._box.style.height = '0px'
+		    	document.querySelectorAll('body')[0].style.overflow = 'auto'
 		    },
 		    show(obj){
 		    	obj.style.display = 'block'
@@ -560,7 +502,7 @@
 				let date = new Date(this.date1_value).getTime()
           		let date2 = date+1000*60*60*24
           		this.date2_value = new Date(date2).getFullYear()+'-'+this.zero(new Date(date2).getMonth()+1)+'-'+this.zero(new Date(date2).getDate())
-				return this.zero((new Date(this.date1_value).getMonth()+1)) + '.' + this.zero(new Date(this.date1_value).getDate())
+				return this.zero(new Date(this.date1_value).getDate())
 			},
 			day2(){
 
@@ -669,6 +611,9 @@
 				
 				position: relative;
 				.header{
+					div{
+						cursor: pointer;
+					}
 					display: flex;
 					justify-content: space-around;
 					align-items:center;

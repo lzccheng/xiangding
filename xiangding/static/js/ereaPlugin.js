@@ -71,8 +71,8 @@ window.ereaPlugin = function(obj){
 		this.erea_value[3] = thisText;
 		this.now_value = thisText;
 		this.divTabsChild4.children[0].innerHTML = this.erea_value[3];
-		
-		obj.callBack&&obj.callBack(this)
+		document.querySelectorAll('body')[0].style.overflow = 'auto';
+		obj.callBack&&obj.callBack(this);
 		this.showEl.style.display = 'none';
 		var showEl_ = this.showEl.querySelectorAll('.ereaPulgin_item');
 		for(var i=1;i<showEl_.length;i++){
@@ -106,8 +106,9 @@ window.ereaPlugin = function(obj){
 		that.divTimes.setAttribute('class','ereaPlugin_times');
 		that.divTimes.innerHTML = '&times;';
 		that.divEl.style.width = window.outerWidth + 'px';
-		that.divEl.addEventListener('click',function(event){
-			event.cancelBubble = true;
+		that.divEl.addEventListener('click',function(e){
+			var e = e || event;
+			e.cancelBubble = true;
 		});
 		that.divTimes.addEventListener('click',function(){
 			that.showEl.style.display = 'none';
@@ -124,7 +125,6 @@ window.ereaPlugin = function(obj){
 		var divTabs = document.createElement('div');
 		divTabs.setAttribute('class','ereaPlugin_tabs');
 		divTabs.style.top = divElChild.offsetTop +  (Number(that.getStyle(divElChild,'height').slice(0,-2)) + 11) + 'px';
-		console.log(divElChild)
 		that.divTabsChild1 = document.createElement('div');
 		that.divTabsChild1.setAttribute('class','ereaPlugin_tabs_child');
 		var divTabsChild_span = document.createElement('span');
@@ -138,7 +138,7 @@ window.ereaPlugin = function(obj){
 		
 		divTabs.appendChild(that.divTabsChild1);
 		//ereaPlugin_line的sytle
-		that.divLine.style.top = divElChild.offsetTop + (29 + Number(that.getStyle(divTabs,'height').slice(0,-2))) + 'px';
+		that.divLine.style.top = divTabs.offsetTop + ( Number(that.getStyle(divTabs,'height').slice(0,-2))) + 'px';
 		that.setEreaPlugin_line(that.divTabsChild1);
 		that.item1 = document.createElement('div');
 		that.item1.setAttribute('class','ereaPulgin_item province_item');
@@ -270,10 +270,11 @@ window.ereaPlugin = function(obj){
 			document.getElementById(showId).style.display = 'block';
 			that.addClass(that.divTabsChild1,'ereaPlugin_active');
 			that.setEreaPlugin_line(that.divTabsChild1);
-
 			that.showEl.querySelectorAll('.ereaPulgin_item')[0].style.display = 'block';
+			document.querySelectorAll('body')[0].style.overflow = 'hidden';
 		})
 		this.showEl.style.display = 'none';
+
 	}
 	return new EreaPlugin();
 }

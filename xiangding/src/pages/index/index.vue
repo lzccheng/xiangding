@@ -171,7 +171,7 @@
       </div>
   </div>
 </template>  
-<script>  
+<script type="x/template">  
   import Swiper from 'swiper' 
   import star from '../../components/star/star'
   import common from '../../common/js/common'
@@ -200,33 +200,33 @@
         //     background: 'rgba(0, 0, 0, 0.7)',
         //     // target: '.msg'
         //   })
-          // that.show_erea = true
-          // // that.$refs.show_erea.style.display = 'inline-block'
-          // common.getLocation(onComplete,onError)
-          // function onComplete(data) {
-          //   loading.close()
-          //   let addr = data.formattedAddress.split('街道')
-          //   if(!addr[1]){
-          //     addr = data.formattedAddress.split('号')
-          //   }
-          //   that.text_erea = addr[1]+'附近'
-          //   that.show_erea = false
-          //   that.$refs.show_erea.style.display = 'none'
-          //   that.$message({
-          //     message: '定位成功！'+that.text_erea,
-          //     type: 'success'
-          //   })
-          // }
-          // /*
-          //  *解析定位错误信息
-          //  */
-          // function onError(data) {
-          //   loading.close()
-          //   that.$message({
-          //     message: '定位失败！'+data.message,
-          //     type: 'warning'
-          //   })
-          // }
+        //   that.show_erea = true
+        //   // that.$refs.show_erea.style.display = 'inline-block'
+        //   common.getLocation(onComplete,onError)
+        //   function onComplete(data) {
+        //     loading.close()
+        //     let addr = data.formattedAddress.split('街道')
+        //     if(!addr[1]){
+        //       addr = data.formattedAddress.split('号')
+        //     }
+        //     that.text_erea = addr[1]+'附近'
+        //     that.show_erea = false
+        //     that.$refs.show_erea.style.display = 'none'
+        //     that.$message({
+        //       message: '定位成功！'+that.text_erea,
+        //       type: 'success'
+        //     })
+        //   }
+        //   /*
+        //    *解析定位错误信息
+        //    */
+        //   function onError(data) {
+        //     loading.close()
+        //     that.$message({
+        //       message: '定位失败！'+data.message,
+        //       type: 'warning'
+        //     })
+        //   }
 
         let nowDate = new Date()
         this.$axios({url:'/api/bannerData',data:{id:123}}).then((res)=>{
@@ -280,7 +280,10 @@
             }
           }).init()
           let date = new Date()
-          let min_date = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()
+          let min_date = date.getFullYear()+'-'+this.zero(date.getMonth()+1)+'-'+this.zero(date.getDate())
+          let min_date2 = new Date(tomo.getTime()).getFullYear()+'-'+this.zero(new Date(tomo.getTime()).getMonth()+1)+'-'+this.zero(new Date(tomo.getTime()).getDate())
+          this.date1_value = min_date
+          this.date2_value = min_date2
           new LCalendar().init({
               'trigger': '#date1', //标签id
               'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
@@ -290,7 +293,7 @@
           new LCalendar().init({
               'trigger': '#date2', //标签id
               'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-              'minDate': this.min_date2, //最小日期
+              'minDate': min_date2, //最小日期
               'maxDate': (new Date().getFullYear()+2) + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate() //最大日期
           })
       },
@@ -336,9 +339,8 @@
           selectedOptions: ['广东省','广州市'],
           value1: new Date(),
           value2: tomo,
-          date1_value: new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate(),
-          date2_value: new Date(tomo.getTime()).getFullYear()+'-'+(new Date(tomo.getTime()).getMonth()+1)+'-'+new Date(tomo.getTime()).getDate(),
-          min_date2: new Date(tomo.getTime()).getFullYear()+'-'+(new Date(tomo.getTime()).getMonth()+1)+'-'+new Date(tomo.getTime()).getDate(),
+          date1_value: '',
+          date2_value: '',
           input1: '',
           star: 4,
           price: [80, 800],
@@ -413,6 +415,7 @@
           _date = time
         },
         _showBox(event){
+          document.querySelectorAll('body')[0].style.overflow = 'hidden'
           this.$refs._box.style.height = window.outerHeight + 'px'
         },
         _boxClick(){
@@ -420,6 +423,7 @@
           this.$refs._erea.style.display = 'none'
           this.$refs._date.style.display = 'none'
           this.$refs._style.style.display = 'none'
+          document.querySelectorAll('body')[0].style.overflow = 'auto'
         },
         zero(num){
           return Number(num) >10?num:'0'+num
@@ -469,18 +473,16 @@
           // return this.zero(this.value1.getDate())
           let date = new Date(this.date1_value).getTime()
           let date2 = date+1000*60*60*24
-          // alert(new Date('2018/4/20').getDate())
-          this.date2_value = new Date(date2).getFullYear()+'-'+(new Date(date2).getMonth()+1)+'-'+new Date(date2).getDate()
-          return this.zero(new Date(date).getDate())
+          this.date2_value = new Date(date2).getFullYear()+'-'+this.zero(new Date(date2).getMonth()+1)+'-'+this.zero(new Date(date2).getDate())
+        return this.zero(new Date(this.date1_value).getDate())
         },
         day2(){
-          // return this.zero(this.value2.getDate())
-          if(new Date(this.date2_value).getTime()<new Date(this.date1_value).getTime()){
-            let date = new Date(this.date1_value).getTime()
-            let date2 = date+1000*60*60*24
-            this.date2_value = new Date(date2).getFullYear()+'-'+(new Date(date2).getMonth()+1)+'-'+new Date(date2).getDate() 
-          }
-          return this.zero(new Date(this.date2_value).getDate())
+            if(new Date(this.date1_value).getTime()>new Date(this.date2_value).getTime()){
+              let date = new Date(this.date1_value).getTime()
+              let date2 = date+1000*60*60*24
+              this.date2_value = new Date(date2).getFullYear()+'-'+this.zero(new Date(date2).getMonth()+1)+'-'+this.zero(new Date(date2).getDate())
+            }
+            return this.zero(new Date(this.date2_value).getDate())
         },
         month1(){
           // return this.zero(this.value1.getMonth()+1)
