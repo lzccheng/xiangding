@@ -36,7 +36,7 @@
 							<span :class="{'color': 1 == show}">星级价格</span>
 							<span v-if="1 != show"><i class="fas fa-angle-down"></i></span>
 						</div>
-						<div @click="handleLocal" class="tab_">
+						<div v-if="title !== '会议室'" @click="handleLocal" class="tab_">
 							<span :class="{'color': 2 == show}">位置距离</span>
 							<span v-if="2 != show"><i class="fas fa-angle-down"></i></span>
 						</div>
@@ -69,10 +69,10 @@
 						<div v-else>
 							<div class="content">
 								<div class="item">
-									<p v-if="title === '会议室'" class="title" >会议室数量</p>
+									<!-- <p v-if="title !== '会议室'" class="title" ></p> -->
 									<p v-if="title === '团房'" class="title" >团房数量</p>
 									<p v-if="title === '钟点房'" class="title" >钟点房数量</p>
-									<p class="top">
+									<p v-if="title !== '会议室'" class="top">
 										<span class="input_"><input type="text" v-model="select.num.min" placeholder="最低值"></span>
 										<span class="line1"></span>
 										<span class="input_"><input type="text" v-model="select.num.max" placeholder="最高值"></span>
@@ -366,6 +366,7 @@
 				for(let j = 0;j<this.tabsItem.length;j++){
 					this.tabsItem[j].active = false
 				}
+				document.querySelectorAll('body')[0].style.overflow = 'auto'
 			},
 			handleShow(i){
 				this.item_show = i
@@ -397,6 +398,7 @@
 						this.tabsItem[j].active = false
 					}
 				}
+				document.querySelectorAll('body')[0].style.overflow = 'hidden'
 			},
 			handleCancel(event){
 				event.cancelBubble = true
@@ -741,6 +743,7 @@
 					.item{
 						padding-bottom: rem(20px);
 						p{
+							padding-left: 4%;
 							&.rank{
 								display: flex;
 								justify-content: center;

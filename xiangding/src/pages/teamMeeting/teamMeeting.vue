@@ -140,15 +140,11 @@
 							</div> -->
 							
 						</li>   
-						<li class="border_bottom" @click="onHandleMeetting">
+						<!-- <li class="border_bottom" @click="onHandleMeetting">
 							<span class="text">{{i.name}}间数 : {{meettingNum}}</span>
 							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
-							<!-- <p>
-								<el-input placeholder="请输入数字" v-model="meetting_total" type="number">
-							    <template slot="prepend">{{i}}间数:</template>
-							  </el-input>
-							</p> -->
-						</li>
+							
+						</li> -->
 						<li class="border_bottom" @click="onHandleStyle">
 							<span class="text">价格：{{pay[0]}} - {{pay[1]}} 元 / 星级： {{star}} 星</span>
 							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
@@ -181,8 +177,8 @@
 					<p class="btn"><router-link :to="{path: '/hotel/hotelSearch',query: {name: arrItem[index_].name}}" tag="button">开始搜索</router-link></p>
 					<div class="bottom">
 						<router-link tag="div" :to="{path: '/my/collection',query: {name: '浏览记录'}}">
-							<span><i class="fas fa-history"></i></span>
-							<span>浏览记录</span>
+								<span><i class="fas fa-history"></i></span>
+								<span>浏览记录</span>
 						</router-link>
 						<router-link tag="div" :to="{path: '/my/collection',query: {name: '收藏酒店'}}">
 							<span><i class="far fa-star"></i></span>
@@ -813,13 +809,20 @@
 						}
 					}
 					.bottom{
+						width: 100%;
 						display: flex;
 						justify-content: space-around;
 						align-items: center;
-						margin-top: rem(15px);
+						margin-top: rem(30px);
 						padding-bottom: 20%;
 						div{
-							padding: rem(15px) 0;
+							width: 50%;
+							// padding: rem(15px) 0;
+							text-align: center;
+							border-right: #aaa solid rem(1px);
+							&:last-child{
+								border-right: none;
+							}
 						}
 					}
 				}

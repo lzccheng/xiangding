@@ -39,6 +39,7 @@ import orderDeal from '@/pages/enter/orderDeal/orderDeal'
 import cashStatus from '@/pages/enter/cashStatus/cashStatus'
 import incomeList from '@/pages/enter/incomeList/incomeList'
 import orderStatus from '@/pages/enter/orderStatus/orderStatus'
+import foodManage from '@/pages/enter/foodManage/foodManage'
 import forgotPassword from '@/pages/enter/forgotPassword/forgotPassword'
 import cancelRoom from '@/pages/my/cancelRoom/cancelRoom'
 import weChatCash from '@/pages/my/weChatCash/weChatCash'
@@ -198,6 +199,14 @@ export default new Router({
       component: orderStatus,
       meta: {
         title: '酒店管理订单处理状态'
+      }
+    },
+    {
+      path: '/enter/hotelManage/foodManage',
+      name: 'foodManage',
+      component: foodManage,
+      meta: {
+        title: '酒店管理餐饮管理'
       }
     },
     {

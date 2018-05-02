@@ -71,6 +71,13 @@
 	    		<p class="icon"><i class="fas fa-th-list"></i></p>
 	    		<p>订单处理</p>
 	    	</router-link>
+	    	
+	    </div>
+	    <div class="item">
+	    	<router-link tag="div" to="/enter/hotelManage/foodManage" class="room_3 rooms">
+	    		<p class="icon"><i class="fas fa-utensils"></i></p>
+	    		<p>餐饮管理</p>
+	    	</router-link>
 	    </div>
 	</div>
 </template>

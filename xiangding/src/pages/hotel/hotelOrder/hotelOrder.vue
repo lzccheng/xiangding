@@ -88,7 +88,7 @@
 					<span v-if="title === '钟点房'">时间</span>
 					<span v-else>天数</span>
 					<span class="number_box">
-					    <el-input-number size="mini" focus="this.blur()" v-model="num6"></el-input-number>
+					    <el-input-number size="mini" @focus="handleBlur" v-model="num6"></el-input-number>
 					</span>
 				</p>
 				<p class="black">
