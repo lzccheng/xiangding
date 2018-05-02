@@ -665,6 +665,9 @@
 		}
 		.tab{
 			background-color: #fff;
+			div{
+				cursor: pointer;
+			}
 			.tab_header{
 				
 				position: relative;

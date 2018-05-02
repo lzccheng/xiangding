@@ -78,7 +78,9 @@ ul,li{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
+  min-height: 100%;
   .wrap{
+    min-height: 100%;
   }
 }
 .App_route{
