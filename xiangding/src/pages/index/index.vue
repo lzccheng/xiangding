@@ -193,6 +193,22 @@
       },
       mounted:function(){
 
+        this.$axios.get('api/addons/yun_shop/api.php?i=3&c=entry&do=shop&m=yun_shop&route=member.member.wxJsSdkConfig').then((res)=>{
+          console.log(res.data.data.config)
+          wx.config({
+            appId: res.data.data.config.appId,
+            nonceStr: res.data.data.config.nonceStr,
+            timestamp: res.data.data.config.timestamp,
+            signature: res.data.data.config.signature,
+            jsApiList: res.data.data.config.jsApiList
+          })
+          wx.ready(function(){
+            console.log(888)
+          })
+        },(err)=>{
+          console.log(err)
+        })
+        console.log(wx)
         let that = this
         const loading = that.$loading({
             lock: true,
