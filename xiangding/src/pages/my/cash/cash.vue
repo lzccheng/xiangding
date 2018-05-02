@@ -107,6 +107,7 @@
 		}
 		.btn{
 			text-align: center;
+			font-size: rem(14px);
 			button{
 				border: none;
 				color: #fff;

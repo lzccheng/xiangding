@@ -89,7 +89,7 @@
 				padding: rem(40px) 10%;
 				text-align: center;
 				.text{
-					padding: rem(5px) 10%;
+					padding: rem(8px) 12%;
 					background-color: #43c122;
 					font-size: rem(14px);
 					color: #ffffff;
@@ -106,7 +106,7 @@
 					padding: rem(40px) 10%;
 				    text-align: center;
 				    .text{
-						padding: rem(5px) 10%;
+						padding: rem(8px) 12%;
 						background-color: #43c122;
 						font-size: rem(14px);
 						color: #ffffff;

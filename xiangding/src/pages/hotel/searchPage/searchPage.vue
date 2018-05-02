@@ -84,25 +84,26 @@
 				background-color: #43C122;
 				padding: 0 3%;
 				display: flex;
+				justify-content: center;
+				align-items: center;
 				padding: rem(5px) 0;
 				.left_icon{
 					color: #fff;
 					font-size: rem(20px);
-					padding: 0 3%;
+					padding-right: 4%;
+
 				}
 				.search_{
 					background-color: #fff;
 					border-radius: rem(5px);
-					padding: rem(7px) 15% rem(7px) 3%;
+					padding: rem(7px) 18% rem(7px) 3%;
 					span{
-						// padding: 0 10%;
 						&:first-child{
 							font-size: rem(14px);
 							padding-right: rem(5px);
 						}
 						input{
 							border: none;
-							// width: 100%;
 						}
 					}
 					
@@ -110,9 +111,8 @@
 				.select_text{
 					font-size: rem(16px);
 					color: #fff;
-					padding: 0 4%;
-					margin-top: rem(5px);
-					// text-align: center;
+					width: 15%;
+					text-align: center;
 				}
 			}
 			.history{
@@ -122,10 +122,10 @@
 				span{
 					&:first-child{
 						font-size: rem(14px);
-						padding-right: 75%;
+						padding-right: 77%;
 					}
 					&:last-child{
-						font-size: rem(17px);
+						font-size: rem(15px);
 					}
 				}
 			}

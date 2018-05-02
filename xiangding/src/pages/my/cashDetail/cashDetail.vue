@@ -221,14 +221,14 @@
         		}
         	.hotel{
         		font-size: rem(14px);
-        		margin-right: 55%;
+        		margin-right: 59%;
         	}
         	.num{
         		background-color: #43c122;
         		font-size: rem(14px);
         		color: #ffffff;
-        		padding: rem(2px) rem(13px);
-        		border-radius: rem(8px);
+        		padding: rem(2px) 4%;
+        		border-radius: rem(11px);
         	}
         }
         .line{

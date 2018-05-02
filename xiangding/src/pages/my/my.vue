@@ -70,7 +70,7 @@
 			</p>
 			<div class="earning">
 				<p class="text"><span>当前收益</span></p>
-				<router-link tag="p" to="/my/cashDetail" class="money"><span>￥</span><span>{{msg.earning}}</span></router-link>
+				<router-link tag="p" to="/my/cashDetail" class="money" style="font-family:'微软雅黑' ,Arial !important"><span>￥</span><span>{{msg.earning}}</span></router-link>
 				<div class="earn">
 					<div class="order">
 						<p class="icon"><i class="far fa-file"></i></p>
@@ -235,8 +235,7 @@
 				border-radius: rem(28px) 0 0 rem(28px);
 				border: 2px solid #fff;
 				border-right: none;
-				padding: rem(8px) rem(22px);
-				font-size: rem(13px);
+				padding: rem(8px) rem(21px);
 			}
 		}
 		.earn{

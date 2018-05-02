@@ -25,7 +25,8 @@
 				<p>
 					<span class="icon_photo">
 					   <label for="file"><i class="fas fa-camera"></i></label>
-					   <input type="file" id="file" style="display: none">
+					    <input type="file" id="file" style="display: none">
+
 					</span>
 					<span class="icon_photo">
 					    <label for="file"><i class="fas fa-camera"></i></label>
@@ -119,16 +120,18 @@
 					color: #aaa;
 					font-size: rem(23px);
 					text-align: center;
+					display: inline-block;
+					width: rem(23px);
 					margin: 0 rem(4px);
 				}
 				.on{
 					position: absolute;
-					top: rem(120px);
+					top: rem(150px);
 					left: 15%;
 				}
 				.down{
 					position: absolute;
-					top: rem(120px);
+					top: rem(150px);
 					right: 15%;
 				}
 			}

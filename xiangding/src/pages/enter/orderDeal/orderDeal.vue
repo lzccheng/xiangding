@@ -184,7 +184,7 @@
 								position: absolute;
 								top: rem(20px);
 								left: 30%;
-								padding-bottom: rem(10px);
+								padding-bottom: rem(35px);
 								.left{
 									margin-right: 14%;
 									.name_1{
@@ -218,7 +218,7 @@
 										display: inline-block;
 										position: absolute;
 										right: 32%;
-										bottom: rem(5px);
+										bottom: 21%;
 										padding: rem(6px) 9%;
 										border: #aaa solid rem(1px);
 										border-radius: rem(5px);
@@ -226,7 +226,7 @@
 										&.agreement{
 											position: absolute;
 											right: 0;
-											bottom: rem(5px);
+											bottom: 21%;
 											border: #8bc34a solid rem(1px);
 											color: #8bc34a;
 										}
