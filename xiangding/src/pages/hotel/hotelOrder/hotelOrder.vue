@@ -88,7 +88,7 @@
 					<span v-if="title === '钟点房'">时间</span>
 					<span v-else>天数</span>
 					<span class="number_box">
-					    <el-input-number size="mini" v-model="num6"></el-input-number>
+					    <el-input-number size="mini" @focus="handleBlur" v-model="num6"></el-input-number>
 					</span>
 				</p>
 				<p class="black">
@@ -98,7 +98,7 @@
 					   <p v-if="title === '团房'" class="room">注: 团房间最少订购两间及以上</p>
 					</span>
 					<span class="number_box1">
-					    <el-input-number size="mini" v-model="num7"></el-input-number>
+					    <el-input-number size="mini" @focus="handleBlur" v-model="num7"></el-input-number>
 					</span>
 				</p>
 				<p class="black" v-if="title === '会议室'">
@@ -213,7 +213,9 @@
 			}
 		},
 		methods:{
-			
+			handleBlur(event){
+				event.path[0].blur()
+			}
 		}
 	}
 </script>

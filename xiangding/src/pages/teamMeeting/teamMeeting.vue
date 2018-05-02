@@ -52,7 +52,7 @@
 				</div>
 			</div>
 			<div class="date none" @click="onHandleCancel" ref="_date">
-				<el-input-number v-model="meettingNum" :min="1" :max="500"></el-input-number>
+				<el-input-number @focus="handleBlur" v-model="meettingNum" :min="1" :max="500"></el-input-number>
 				<div class="btn">
 					<button class="green_btn" @click="onMeettingSure">确定</button>
 				</div>
@@ -549,7 +549,10 @@
 		    },
 		    zero(value){
 		    	return Number(value)<10?'0'+value:value
-		    }
+		    },
+		    handleBlur(event){
+				event.path[0].blur()
+			}
 		},
 		computed: {
 			day1(){
@@ -811,6 +814,7 @@
 						justify-content: space-around;
 						align-items: center;
 						margin-top: rem(15px);
+						padding-bottom: 20%;
 						div{
 							padding: rem(15px) 0;
 						}

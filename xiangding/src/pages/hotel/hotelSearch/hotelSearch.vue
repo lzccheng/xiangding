@@ -860,6 +860,7 @@
 					}
 					.msg{
 						padding: 0 rem(8px);
+						font-size: rem(13px);
 						.title{
 							font-size: rem(16px);
 							font-weight: bold;

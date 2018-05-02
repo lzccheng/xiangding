@@ -91,6 +91,7 @@
 	.box{
 		width: 100%;
 		font-size: rem(13px);
+		padding-bottom: rem(50px);
 		.body{
 			padding: rem(8px) 0 rem(8px) 4%;
 			p{
@@ -107,6 +108,7 @@
 						width: 87%;
 						border: none;
 						height: rem(20px);
+						 -webkit-appearance: none;
 						&::-webkit-input-placeholder { 
 						    color:    #aaa;
 						}

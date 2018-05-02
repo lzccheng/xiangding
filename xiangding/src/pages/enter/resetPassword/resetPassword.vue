@@ -43,10 +43,10 @@
 				border-bottom: #e5e5e5 solid rem(1px);
 				margin: rem(10px) 0;
 				text-align: center;
-				display: flex;
-				justify-conent: center;
+				// display: flex;
+				// justify-conent: center;
 				&.box_p{
-					padding: 0 26%;
+					// padding: 0 26%;
 					position: relative;
 					span{
 						// display: inline-block;

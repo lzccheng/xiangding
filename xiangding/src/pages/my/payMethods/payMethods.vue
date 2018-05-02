@@ -131,11 +131,10 @@
 			}
 		}
 		.know{
-			position: absolute;
-			bottom: 0;
-			left: 40%;
+			text-align: center;
 			color: #4e9de6;
 			font-size: rem(14px);
+			margin-top: rem(15px);
 		}
 	}
 </style>

@@ -766,6 +766,7 @@
 		}
 		.hotel{
 			padding: rem(10px) rem(5px); 
+			font-size: rem(13px);
 			.hotelItem{
 				padding-bottom: rem(15px);
 				div{
