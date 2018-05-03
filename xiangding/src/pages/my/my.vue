@@ -165,6 +165,14 @@
 </template> 
 <script>
 	export default {
+		mounted(){
+			this.$axios.get('/addons/yun_shop/api.php?i=3&c=entry&do=shop&m=yun_shop&route=member.member.getUserInfo').then((res)=>{
+				console.log(res.data.data.avatar)
+				alert(res.data.data.avatar)
+			},(err)=>{
+				console.log(err)
+			})
+		},
 		data(){
 			return {
 				msg: {

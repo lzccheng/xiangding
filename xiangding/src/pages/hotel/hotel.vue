@@ -155,7 +155,7 @@
 	import common from '../../common/js/common'
 	export default {
 		mounted: function(){
-			this.$axios({url:'/api/hotel'}).then((res)=>{
+			this.$axios({url:'/hotel'}).then((res)=>{
 				this.hotel = res.data
 			})
 			// this.$axios({url:'/api/addons/yun_shop/api.php?i=3&route=home-page.index'}).then((res)=>{

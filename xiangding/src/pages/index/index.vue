@@ -97,7 +97,7 @@
   						
   					</p>
   				</li>
-  				<li @click="handleDate">
+  				<li @click=" ">
             <div class="date">
               <div class="time">
                 <p><span class="text">入住</span><br/></p>
@@ -229,7 +229,7 @@
         //   }
 
         let nowDate = new Date()
-        this.$axios({url:'/api/bannerData',data:{id:123}}).then((res)=>{
+        this.$axios({url:'/bannerData',data:{id:123}}).then((res)=>{
           that.arrItem = res.data
           setTimeout(function(){
             var mySwiper = new Swiper('.swiper-container', {
@@ -240,13 +240,14 @@
         }).catch((err)=>{
           console.log(err)
         })
-        this.$axios({url:'/api/hotelData',method: 'get'}).then((res)=>{
+        this.$axios({url:'/hotelData',method: 'get'}).then((res)=>{
             that.hotel = res.data
           }).catch((err)=>{
             console.log(err)
           })
-          this.$axios({url:'/api/addons/yun_shop/api.php?i=3&route=home-page.index',method: 'get'}).then((res)=>{
+          this.$axios({url:'/addons/yun_shop/api.php?i=3&route=home-page.index',method: 'get'}).then((res)=>{
             // console.log(res.data)
+            // alert(res.data.msg)
           }).catch((err)=>{
             console.log(err)
           })

@@ -112,6 +112,8 @@ window.ereaPlugin = function(obj){
 		});
 		that.divTimes.addEventListener('click',function(){
 			that.showEl.style.display = 'none';
+			document.querySelectorAll('body')[0].style.overflow = 'auto';
+			ocument.querySelectorAll('body')[0].removeEventListener('touchmove', func, { passive: false })
 		})
 		this.showEl.appendChild(that.divEl);
 		this.showEl.appendChild(that.divLine);
@@ -271,6 +273,9 @@ window.ereaPlugin = function(obj){
 			that.addClass(that.divTabsChild1,'ereaPlugin_active');
 			that.setEreaPlugin_line(that.divTabsChild1);
 			that.showEl.querySelectorAll('.ereaPulgin_item')[0].style.display = 'block';
+			that.showEl.addEventListener('touchmove',function(e){
+				e.stopPropagation();
+			})
 			document.querySelectorAll('body')[0].style.overflow = 'hidden';
 		})
 		this.showEl.style.display = 'none';

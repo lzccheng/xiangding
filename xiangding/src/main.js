@@ -8,10 +8,12 @@ import Element from 'element-ui'
 import Vuex from 'vuex'
 import Vuexjs from './vuex'
 import Header from './components/header/header'
+import Fn from './common/js/common'
 
 
-// axios.defaults.baseURL = '/api/'
+axios.defaults.baseURL = process.env.API_ROOT
 Vue.prototype.$axios = axios
+Vue.prototype.Fn = Fn
 Vue.prototype.$baseURL = '/addons/xiangding/dist'
 Vue.config.productionTip = false
 
