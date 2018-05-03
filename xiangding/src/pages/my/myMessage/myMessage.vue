@@ -18,14 +18,14 @@
 				</p>
 			</div>
 			<div class="form">
-				<p class="input">
+				<router-link tag="p" to="/my/bindCard" class="input">
 					<label>银行卡</label>
-					<router-link tag="span" to="/my/bindCard" class="get">   &nbsp;<i class="fas fa-chevron-right"></i></router-link>
-				</p>
-				<p class="mm">
+					<span  class="get">   &nbsp;<i class="fas fa-chevron-right"></i></span>
+				</router-link>
+				<router-link tag="p" to="/my/payPassword" class="mm">
 					<label>余额支付密码</label>
-					<router-link tag="span" to="/my/payPassword" class="get">   &nbsp;<i class="fas fa-chevron-right"></i></router-link>
-				</p>
+					<span  class="get">   &nbsp;<i class="fas fa-chevron-right"></i></span>
+				</router-link>
 			</div>
 		
 			<div class="body">

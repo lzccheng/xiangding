@@ -8,9 +8,9 @@
 	    <div class="top_box">
 			<div class="header">
 				<div class="header_">
-					<div class="local">
+					<!-- <div class="local">
 						<span>广州</span>
-					</div>
+					</div> -->
 					<router-link tag="div" to="/hotel/searchPage" class="input" >
 						<input type="text" placeholder="酒店搜索/关键字">
 						<span><i class="fas fa-search"></i></span>
@@ -477,7 +477,7 @@
 				.header_{
 					background-color: #fff;
 					border-radius: rem(5px);
-					padding: rem(6px) rem(12px);
+					padding: rem(5px) rem(12px);
 					display: flex;
 					align-items:center;
 					position: relative;

@@ -1,13 +1,14 @@
 <template>
 	<div class="box">
 		<Header title="余额支付密码"/>
+		<div>
 			<div class="form">
 				<p class="input">
 					<label>支付密码</label>
 					<input type="text" placeholder="请输入支付密码" name="">
 				</p>
 				
-				<p class="mm">
+				<p class="input" style="border-bottom: none">
 					<label>确认密码</label>
 					<input type="text" placeholder="请输入确认密码" name="">
 				</p>
@@ -17,6 +18,30 @@
 					<span>确认</span>
 				</router-link>
 			</div>
+		</div>
+		<div v-if="title === ''">
+			<div class="form">
+				<p class="input"  >
+					<label>验证码</label>
+					<input type="text" placeholder="请输入验证码" name="">
+					<span class="get"><span>获取验证码</span></span>
+				</p>
+				
+				<p class="input">
+					<label>新的支付密码</label>
+					<input type="text" placeholder="请输入支付密码" name="">
+				</p>
+				<p class="input" style="border-bottom: none">
+					<label>确认支付密码</label>
+					<input type="text" placeholder="请输入确认密码" name="">
+				</p>
+			</div>
+			<div class="body">
+				<router-link class="button" tag="div" to="/enter/login">
+					<span>确认修改</span>
+				</router-link>
+			</div>
+		</div>
 	</div>
 
 </template>
@@ -42,46 +67,21 @@
 		.form{
 			background-color: #ffffff;
 			margin-top: rem(8px);
-			padding: rem(2px) 0 0 rem(15px);
+			padding: 0 0 0 rem(15px);
 			border-top: 0.5px solid #aaa;
 			border-bottom: 0.5px solid #aaa;
-			.mm{
-				position: relative;
-				padding: rem(10px) 2%;
-				display: flex;
-				label{
-					font-size: rem(14px);
-					width: 30%;
-				}
-				input{
-					width: 64%;
-					border: none;
-					height: rem(20px);
-					&::-webkit-input-placeholder { 
-					    color:    #aaa;
-					}
-					&:-moz-placeholder { 
-					    color:    #aaa;
-					}
-					&::-moz-placeholder { 
-					    color:    #aaa;
-					}
-					&:-ms-input-placeholder { 
-					    color:    #aaa;
-					}
-				}
-			}
 			.input{
 				position: relative;
 				border-bottom: 0.5px solid #aaa;
-				padding: rem(10px) 2%;
-				display: flex;
+				padding: rem(10px) rem(8px);
 				label{
 					width: 30%;
+					display: inline-block;
 				}
 				input{
-					width: 60%;
+					width: 42%;
 					border: none;
+					height: rem(20px);
 					&::-webkit-input-placeholder { 
 					    color:    #aaa;
 					}
@@ -100,6 +100,17 @@
 				margin-top: rem(15px);
 				text-align: center;
 			}
+			.get{
+				position: absolute;
+				top: 0;
+				right: 0;
+				background-color: #43c122;
+				height: 100%;
+				display: flex;
+				align-items: center;
+				color: #fff;
+				padding: 0 rem(10px);
+			}
 			.color_aaa{
 				color: #aaa;
 			}
@@ -117,8 +128,6 @@
 		}
 		.body{
 			background-color: #ffffff;
-			// padding-bottom: rem(50px);
-			// padding-top: rem(16px);
 			padding: rem(16px) 5% rem(50px);
 			margin-top: rem(10px);
 			border-top: #aaa solid rem(1px);

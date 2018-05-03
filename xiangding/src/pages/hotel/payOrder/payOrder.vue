@@ -44,6 +44,16 @@
 					</p>
 				</div>
 			</div>
+			<div class="item" v-if="title === '会议室'||title === '团房'">
+				<div class="img"><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425433535&di=f7d324b2c95bd6f203fb8741290c02e3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D41481487a2773912d02b8d219161e374%2Ff3d3572c11dfa9ec3d58042d69d0f703918fc192.jpg" alt=""></div>
+				<div class="text_box">
+					<p>A套餐</p>
+					<p class="color">
+						<span>¥269</span>
+						<span>×1</span>
+					</p>
+				</div>
+			</div>
 			<div class="pag">
 				<p>
 					<span>红包返现</span>

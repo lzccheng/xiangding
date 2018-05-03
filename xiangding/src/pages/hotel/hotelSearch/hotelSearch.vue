@@ -8,9 +8,9 @@
 			    <div class="top_box">
 					<div class="_search">
 						<div class="_text">
-							<div class="erea">
+							<!-- <div class="erea">
 								<span >广州</span>
-							</div>
+							</div> -->
 							<div class="date">
 								<span class="posi p1">
 									<span><span class="color">3.29 </span> 到</span>
@@ -36,7 +36,7 @@
 							<span :class="{'color': 1 == show}">星级价格</span>
 							<span v-if="1 != show"><i class="fas fa-angle-down"></i></span>
 						</div>
-						<div v-if="title !== '会议室'" @click="handleLocal" class="tab_">
+						<div @click="handleLocal" class="tab_">
 							<span :class="{'color': 2 == show}">位置距离</span>
 							<span v-if="2 != show"><i class="fas fa-angle-down"></i></span>
 						</div>
@@ -134,16 +134,16 @@
 						</div>
 					</div>
 					<div v-if="2 == show" @click="handleCancel">
-						<div class="content">
+						<!-- <div class="content"  v-if="title !== '会议室'" >
 							<p class="m top">1米 - 500米</p>
 							<p class="m">500米 - 1500米</p>
 							<p class="m none">1500米 - 3000米</p>
-						</div>
+						</div> -->
 					</div>
 				</div>
 				<div class="free">
-					<div class="text">免费取消</div>
-					<div class="text">活动优惠</div>
+					<div class="text" :class="{color_free: free[0].active}" @click="handleChoice(0)">免费取消</div>
+					<div class="text" :class="{color_free: free[1].active}" @click="handleChoice(1)">活动优惠</div>
 				</div>
 				<div class="show">
 					<router-link :to="{path: '/hotelDetail',query:{id:2,name: title}}" tag="div" class="item" v-for="(i,index) in 10" :key='index'>
@@ -204,6 +204,16 @@
 		},
 		data(){
 			return {
+				free: [
+					{
+						name: '免费取消',
+						active: false
+					},
+					{
+						name: '活动优惠',
+						active: false
+					}
+				],
 				select: {
 					num: {
 						min: '',
@@ -345,6 +355,18 @@
 			}
 		},
 		methods: {
+			handleChoice(i){
+				this.free[i].active = !this.free[i].active
+				if(this.free[i].active){
+					for(let a=0;a<this.free.length;a++){
+						if(a == i){
+							continue;
+						}else{
+							this.free[a].active = false
+						}
+					}
+				}
+			},
 			handleLook(){
 				this.look = true
 			},
@@ -841,6 +863,9 @@
 					margin: rem(8px) rem(12px);
 					background-color: #fff;
 					border-radius: rem(3px);
+				}
+				.color_free{
+					color: #43C122;
 				}
 			}
 			.show{
