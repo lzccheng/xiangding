@@ -265,7 +265,7 @@
 								active: false
 							},
 							{
-								name: '套件',
+								name: '套间',
 								active: false
 							},
 						]
@@ -386,6 +386,7 @@
 				for(let j = 0;j<this.tabsItem.length;j++){
 					this.tabsItem[j].active = false
 				}
+				document.querySelectorAll('body')[0].style.overflow = 'auto'
 			},
 			handleTabChange(i){
 				if(this.tabsItem[i].active){
@@ -404,6 +405,7 @@
 						this.tabsItem[j].active = false
 					}
 				}
+				document.querySelectorAll('body')[0].style.overflow = 'hidden'
 			},
 			handleGeneral(i){
 				this.handleTabChange(0)

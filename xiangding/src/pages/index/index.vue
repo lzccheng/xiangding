@@ -522,6 +522,7 @@
 		width: 100%;
     background-color: #fff;
     margin-bottom: rem(50px);
+    padding-bottom: 30%;
     ._box{
       width: 100%;
       position: fixed;
