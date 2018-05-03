@@ -128,7 +128,7 @@
 						<div class="icon">
 
 							<label for="file"><i class="far fa-plus-square"></i></label>
-							<input type="file" id="file" style="display: none">
+							<input type="file" @change="handleFile" id="file" style="display: none">
 						</div>
 						<span class="hide_1">最多添加4张</span>
 					</div>
@@ -194,21 +194,32 @@
 			}
 		},
 		methods: {
-				handGeneral(event){
-					if(!this.value2){
-						this.general = true
-					}
-					
-				},
-				handBack(){
-					this.general = false
-				},
-				cancelBubble(event){
-					event.cancelBubble = true
-				},
-				backHide(){
-					this.general = false
+			handleFile(e){
+				var e = e || event
+				console.log(e.path[0].files)
+				console.log(e.path[0].files[0])
+				var formData = new FormData()
+				var file = e.path[0].files[0]
+				console.log('formData',formData)
+				formData.append('file',file)
+				console.log(formData)
+			},
+			handGeneral(event){
+				if(!this.value2){
+					this.general = true
 				}
+				
+			},
+			handBack(){
+				this.general = false
+			},
+			cancelBubble(e){
+				var e = e || event
+				e.cancelBubble = true
+			},
+			backHide(){
+				this.general = false
+			}
 		},
 		watch:{
 			$route(to,from){

@@ -365,9 +365,12 @@
 				// console.log(this.date_value.getDate(),this.date_value2.getDate())
 			},
 			onHandleClick(i,e){
-				console.log(e)
+				var e = e || event
+
 				let that = this
+				alert(1)
 				setTimeout(()=>{
+					alert(2)
 					new LArea().init({
 			            'trigger': '#'+that.arrItem[i].id,
 			            'valueTo': '#'+that.arrItem[i].h_id,
@@ -386,9 +389,16 @@
 				        }
 			        }
 				},50)
-				event.path[2].lastElementChild.style.marginLeft = event.path[0].offsetLeft + 'px'
-				event.path[2].lastElementChild.style.width = common.getStyle(event.path[0],'width')
+				alert(3)
+				alert(e.path)
+				alert(e.path[2])
+				alert(e.path[2].lastElementChild)
+				e.path[2].lastElementChild.style.marginLeft = e.path[0].offsetLeft + 'px'
+				alert(4)
+				e.path[2].lastElementChild.style.width = common.getStyle(e.path[0],'width')
+				alert(5)
 				this.index_ = i
+				alert(6)
 				
 				
 				

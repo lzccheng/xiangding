@@ -155,7 +155,7 @@
 		methods:{
 			getData:function(){
 				let that = this
-				this.$axios({url:'/api/hotelDetail',method:'get',data:{id:this.$route.query.id}}).then((res)=>{
+				this.$axios({url:'/hotelDetail',method:'get',data:{id:this.$route.query.id}}).then((res)=>{
 					that.id = res.data.id?res.data.id:0
 					that.data = res.data
 					that.imgList = res.data.hotelDetail.imgList
