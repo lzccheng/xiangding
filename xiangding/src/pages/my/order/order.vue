@@ -28,7 +28,7 @@
 					<div class="body">
 						<div class="item">
 							<span class="time">预定日期: 03-20</span>
-							<div class="content_box" v-for="(i,index) in 2" :key="index">
+							<div class="content_box" v-for="(i,index) in 10" :key="index">
 								<router-link tag="div" :to="{path: '/my/order/orderPay',query: {isPay: false}}" class="content">
 									<p>
 										<span class="title">银河大酒店</span>
@@ -168,9 +168,11 @@
 		methods: {
 			handleCancel(event){
 				this.back_show = true
+				document.querySelectorAll('body')[0].style.overflow = 'hidden'
 			},
 			backHide(){
 				this.back_show = false
+				document.querySelectorAll('body')[0].style.overflow = 'auto'
 			},
 			cancelBubble(event){
 				event.cancelBubble = true
