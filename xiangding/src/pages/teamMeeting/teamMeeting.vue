@@ -366,11 +366,8 @@
 			},
 			onHandleClick(i,e){
 				var e = e || event
-
 				let that = this
-				alert(1)
 				setTimeout(()=>{
-					alert(2)
 					new LArea().init({
 			            'trigger': '#'+that.arrItem[i].id,
 			            'valueTo': '#'+that.arrItem[i].h_id,
@@ -389,16 +386,20 @@
 				        }
 			        }
 				},50)
-				alert(3)
-				alert(e.path)
-				alert(e.path[2])
-				alert(e.path[2].lastElementChild)
-				e.path[2].lastElementChild.style.marginLeft = e.path[0].offsetLeft + 'px'
-				alert(4)
-				e.path[2].lastElementChild.style.width = common.getStyle(e.path[0],'width')
-				alert(5)
+				if(e.path){
+					alert(e.path[0].offsetLeft)
+					alert(common.getStyle(e.path[0],'width'))
+					console.log(e.path[2])
+					console.log(e.target.parentNode)
+					e.path[2].lastElementChild.style.marginLeft = e.path[0].offsetLeft + 'px'
+					e.path[2].lastElementChild.style.width = common.getStyle(e.path[0],'width')
+				}else{
+					alert(e.target.offsetLeft)
+					alert(common.getStyle(e.target,'width'))
+					e.target.parentNode.lastElementChild.style.marginLeft = e.target.offsetLeft + 'px'
+					e.target.parentNode.lastElementChild.style.width = common.getStyle(e.target,'width')
+				}
 				this.index_ = i
-				alert(6)
 				
 				
 				

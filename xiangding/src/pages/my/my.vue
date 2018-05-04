@@ -5,8 +5,8 @@
 				<p>
 					<img :src="msg.imgUrl">
 					<div class="text">
-						<span>最尊贵的会员</span><br>
-						<span>ID:{{msg.id}}</span>
+						<span>{{msg.name}}</span><br>
+						<span>ID: {{msg.id}}</span>
 						<router-link tag="span" to="/my/myMessage" class="i"><i class="fas fa-cog"></i></router-link>
 					</div>
 				</p>
@@ -166,9 +166,14 @@
 <script>
 	export default {
 		mounted(){
+			let that = this
 			this.$axios.get('/addons/yun_shop/api.php?i=3&c=entry&do=shop&m=yun_shop&route=member.member.getUserInfo').then((res)=>{
-				console.log(res.data.data.avatar)
-				alert(res.data.data.avatar)
+				console.log(res.data.result)
+				alert(res.data.result)
+				that.msg.id = res.data.data.uid
+				that.msg.name = res.data.data.nickname
+				that.msg.imgUrl = res.data.data.avatar
+				console.log(res)
 			},(err)=>{
 				console.log(err)
 			})
@@ -181,6 +186,7 @@
 					earning:'88888.00',
 					order_num: '1369',
 					poeple_num: '569',
+					name: 'aaa',
 					income: {
 						firstAgent: '2644',
 						secondAgent: '9637',
