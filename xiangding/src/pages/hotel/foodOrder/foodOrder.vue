@@ -9,7 +9,9 @@
 						<p>¥ {{i.price}}</p>
 					</div>
 					<div class="icon">
-					   <span><i class="fas fa-chevron-right"></i></span>
+					    <span class="icon_s" @click="handleDelete"><i class="fas fa-minus-circle"></i></span>
+						<span class="number_s">{{num}}</span>
+						<span class="icon_s" @click="handleAdd"><i class="fas fa-plus-circle"></i></span>
 					</div>
 				</div>
 				<div class="botton">
@@ -51,10 +53,17 @@
 						checkList: []
 					},
 				],
+				num: 0
 			}
 		},
 		methods: {
-
+			handleDelete(event){
+				this.num --
+				if(this.num<=0){this.num=0}
+			},
+			handleAdd(){
+				this.num++
+			}
 		}
 	}
 </script>
@@ -94,8 +103,15 @@
 						}
 					}
 					.icon{
-						padding-left: 50%;
-						font-size: rem(17px);
+						padding-left: 35%;
+						.icon_s{
+							font-size: rem(16px);
+							color: #43c122;
+						}
+						.number_s{
+							font-size: rem(14px);
+							padding: 0 rem(7px);
+						}
 					}
 				}
 				&.botton{

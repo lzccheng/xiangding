@@ -338,7 +338,7 @@
 								active: false
 							},
 							{
-								name: '套件',
+								name: '套间',
 								active: false
 							},
 						]

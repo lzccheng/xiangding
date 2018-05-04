@@ -1,12 +1,12 @@
 <template>
 	<div class="box">
 		<Header title='提现'/>
-		<div class="img">
+		<router-link tag="div" to="/enter/hotelManage/myCard" class="img">
 			<div class="image">
 				<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522736413424&di=852254dd751b973f30bc1945dadb1565&imgtype=0&src=http%3A%2F%2Fwww.ytlhqz.com%2Fmanage%2Fupload%2F%25E4%25B8%25AD%25E5%259B%25BD%25E5%25BB%25BA%25E8%25AE%25BE%25E9%2593%25B6%25E8%25A1%258C.jpg">
 			</div>
 			<p class="text"><span>卡号：</span><span>**** **** **** 1234</span> <span class="gt">&gt;</span></p>
-		</div>
+		</router-link>
 		<div class="cash">
 			<p><span>提现金额：</span><input type="text" placeholder="可提现全额(元)80.00" name=""><span class="text">全部提现</span></p>
 			<p><span>提现手续费：20%</span><span class="right">24小时内到账</span></p>

@@ -73,9 +73,9 @@
 										<router-link tag="button" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title}}">预定</router-link>
 									</span>	
 									<span v-else @click="handleBubbole">
-										<span class="icon_s" @click="handleDelete"><i class="fas fa-minus-circle"></i></span>
-										<span class="number_s">{{num}}</span>
-										<span class="icon_s" @click="handleAdd"><i class="fas fa-plus-circle"></i></span>
+										<span class="icon_s" @click="handleDelete(index)"><i class="fas fa-minus-circle"></i></span>
+										<span class="number_s">{{numarr[index].num}}</span>
+										<span class="icon_s" @click="handleAdd(index)"><i class="fas fa-plus-circle"></i></span>
 									</span>
 									<!-- <div v-if="!order" class="button_1">
 										<p>取消</p>
@@ -149,7 +149,7 @@
 				title: '酒店列表',
 				people: 100,
 				order: false,
-				num: 0
+				numarr:[]
 			}
 		},
 		methods:{
@@ -165,6 +165,13 @@
 					that.distance = res.data.hotelDetail.distance
 					that.near = res.data.hotelDetail.near
 					that.room = res.data.hotelDetail.room
+					for(let i = 0;i < that.room.length;i++){
+						let item = {
+							title: '某某会议室',
+							num: 0
+						}
+						that.numarr.push(item)
+					}
 				}).catch((err)=>{
 					console.log(err)
 				})
@@ -172,12 +179,12 @@
 			handleBubbole(event){
 				event.cancelBubble = true
 			},
-			handleDelete(event){
-				this.num --
-				if(this.num<=0){this.num=0}
+			handleDelete(i){
+				this.numarr[i].num --
+				if(this.numarr[i].num<=0){this.numarr[i].num=0}
 			},
-			handleAdd(){
-				this.num++
+			handleAdd(i){
+				this.numarr[i].num++
 			}
 		},
 		watch: {
@@ -383,12 +390,12 @@
 								}
 								.icon_s{
 									font-size: rem(16px);
-									color: #43c122;
-								}
-								.number_s{
+									color: #43c122;.number_s{
 									font-size: rem(14px);
 									padding: 0 rem(7px);
 								}
+								}
+								
 								.button_1{
 									display: flex;
 									position: fixed;
