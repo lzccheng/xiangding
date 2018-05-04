@@ -97,7 +97,7 @@
   						
   					</p>
   				</li>
-  				<li @click=" ">
+  				<li @click="handleDate">
             <div class="date">
               <div class="time">
                 <p><span class="text">入住</span><br/></p>
@@ -393,8 +393,9 @@
             })
           }
         },
-        handleBlur(event){
-          event.path[0].blur()
+        handleBlur(e){
+          var e = e || event
+          e.path[0].blur()
         },
         handleErea(){
           this._showBox()
@@ -408,16 +409,17 @@
           this._showBox()
           this.$refs._style.style.display = 'block'
         },
-        handleCancel(event){
-          event.cancelBubble = true
+        handleCancel(e){
+          var e = e || event
+          e.cancelBubble = true
         },
         handleChange(time){
           this.value2 = new Date(time.getTime()+1000*60*60*24)
           _date = time
         },
-        _showBox(event){
+        _showBox(){
           document.querySelectorAll('body')[0].style.overflow = 'hidden'
-          this.$refs._box.style.height = window.outerHeight + 'px'
+          this.$refs._box.style.height = window.innerHeight + 'px'
         },
         _boxClick(){
           this.$refs._box.style.height = '0px'
