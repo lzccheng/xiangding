@@ -83,11 +83,11 @@
 				</div>
 			</div>
 			<div v-if="1 == show" @click="handleCancel">
-				<div class="content">
+				<!-- <div class="content">
 					<p class="m"><span>1米 - 500米</span></p>
 					<p class="m"><span>500米 - 1500米</span></p>
 					<p class="m none"><span>1500米 - 3000米</span></p>
-				</div>
+				</div> -->
 			</div>
 			<div v-if="2 == show" @click="handleCancel">
 				<div class="content">

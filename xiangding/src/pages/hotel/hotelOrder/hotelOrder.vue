@@ -120,10 +120,10 @@
 					<span>是否需要发票</span>
 					<span class="check_box"><el-checkbox v-model="checked"></el-checkbox></span>
 				</p>
-				<p v-if="title === '会议室'" class="black">
+				<router-link tag="p" :to="{path:'/hotelDetail',query:{name: '团房',id: 2,order: true}}" v-if="title === '会议室'" class="black color_green">
 					<span>是否需要团房</span>
-					<span class="check_box"><i class="fas fa-chevron-right"></i></span>
-				</p>
+					<span class="check_box" style="color: #000"><i class="fas fa-chevron-right"></i></span>
+				</router-link>
 				<router-link tag="p" :to="{path:'/hotelDetail',query:{name: '会议室',id: 2,order: true}}"  v-if="title === '团房'" class="black">
 					<span class="color_green">是否需要会议室</span>
 					<span class="check_box"><i class="fas fa-chevron-right"></i></span>
@@ -313,18 +313,20 @@
 			.inform{
 				margin-top: rem(10px);
 				padding-bottom: rem(120px);
+				.color_green{
+		        	color: #43c122;
+		        }
 				p{
 					padding: 0 rem(5px);
 					font-size: rem(14px);
 					margin: rem(12px) 0;
+
 					&.black{
 						margin-top: rem(13px);
 				        padding-bottom: rem(20px);
 				        border-bottom: #EBEBEB solid rem(1px);
 				        position: relative;
-				        .color_green{
-				        	color: #43c122;
-				        }
+				       
 				        span{
 				        	&:first-child{
 				        		display: inline-block;
