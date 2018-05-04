@@ -8,11 +8,13 @@
 				</p>
 				<p class="input">
 					<label>开户行省份</label>
-					<input type="text" placeholder="请输入开户行" name="">
+					<span class="color_aaa">选择开户行省份</span>
+					<span class="i"><i class="fas fa-chevron-right"></i></span>
 				</p>
 				<p class="input">
 					<label>开户行城市</label>
-					<input type="text" placeholder="请输入开户行城市" name="">
+					<span class="color_aaa">选择开户行城市</span>
+					<span class="i"><i class="fas fa-chevron-right"></i></span>
 				</p>
 				<p class="input">
 					<label>开户行支行</label>
@@ -93,6 +95,12 @@
 				display: flex;
 				label{
 					width: 30%;
+				}
+				.color_aaa{
+					color: #aaa;
+				}
+				.i{
+					padding-left: 35%;
 				}
 				input{
 					width: 60%;

@@ -1,11 +1,12 @@
 <template>
 	<div class="box">
-		<div class="_box">
+	<Header title="酒店管理"/>
+		<!-- <div class="_box">
 			<div class="_header">
 				<span class="_left" @click='_handleClick'><i class="fas fa-arrow-left"></i></span>
 				<span> 酒店管理 </span>
 			</div>
-		</div>
+		</div> -->
 		<div class="header">
 		    <div class="big">
 		    	<div class="ball">

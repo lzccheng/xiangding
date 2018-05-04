@@ -112,15 +112,23 @@
                          <el-radio v-model="radio" label="3">2.5 × 5.5米LED屏</el-radio>  
 					</span>
 				</p>
+				<router-link tag="p" to="/hotel/hotelManage/foodOrder" v-if="title === '团房'||title === '会议室'" class="black">
+					<span>餐饮团购</span>
+					<span  class="check_box"><i class="fas fa-chevron-right"></i></span>
+				</router-link>
 				<p class="black">
 					<span>是否需要发票</span>
 					<span class="check_box"><el-checkbox v-model="checked"></el-checkbox></span>
 				</p>
-				<p v-if="title === '团房'" class="black">
-					<span>是否需要会议室</span>
-					<router-link tag="span" :to="{path:'/hotelDetail',query:{name: '会议室',id: 2,order: true}}" class="check_box"><i class="fas fa-chevron-right"></i></router-link>
+				<p v-if="title === '会议室'" class="black">
+					<span>是否需要团房</span>
+					<span class="check_box"><i class="fas fa-chevron-right"></i></span>
 				</p>
-				<!-- <p class="black">
+				<router-link tag="p" :to="{path:'/hotelDetail',query:{name: '会议室',id: 2,order: true}}"  v-if="title === '团房'" class="black">
+					<span class="color_green">是否需要会议室</span>
+					<span class="check_box"><i class="fas fa-chevron-right"></i></span>
+				</router-link>
+				<p class="black" v-if="title !== '会议室'">
 					<span>预计到店</span>
 					<span class="time">
 						<span class="line">14</span>
@@ -128,7 +136,7 @@
 						<span class="line">30</span>
 						<span class="line">本日</span>
 					</span>
-				</p> -->
+				</p>
 				<p  class="day"><input type="text" placeholder="请输入您的姓名" name=""></p>
 				<p  class="day"><input type="text" placeholder="请输入您的手机号码" name=""></p>
 
@@ -314,6 +322,9 @@
 				        padding-bottom: rem(20px);
 				        border-bottom: #EBEBEB solid rem(1px);
 				        position: relative;
+				        .color_green{
+				        	color: #43c122;
+				        }
 				        span{
 				        	&:first-child{
 				        		display: inline-block;

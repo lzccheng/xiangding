@@ -12,7 +12,7 @@
 			</p>
 			<p class="input" style="border-bottom: none">
 				<label>可提现金额:</label>
-				<input type="text" placeholder="0.99元" name="">
+				<span class="weChat_text">0.99</span>
 			</p>
 		</div>
 		<div class="form">
@@ -21,7 +21,7 @@
 				  <p>手续费</p>
 				  <p class="text_5">收取5%手续费</p>
 				</label>
-				<input class="input_top" type="text" placeholder="0.00元" name="">
+				<input type="text" placeholder="0.00元" name="">
 			</p>
 			<p class="input" style="border-bottom: none">
 				<label>实际到账:</label>
@@ -64,7 +64,7 @@
 		.form{
 			background-color: #ffffff;
 			margin-top: rem(8px);
-			padding: rem(2px) 0 0 rem(15px);
+			padding: 0 0 0 rem(15px);
 			border-top: 0.5px solid #aaa;
 			border-bottom: 0.5px solid #aaa;
 			.input{
@@ -114,7 +114,7 @@
 				background-color: #43c122;
 				color: #ffffff;
 				position: absolute;
-				top: rem(-1px);
+				top: 0;
 				right: 0;
 				padding: 0 rem(10px);
 				height: 100%;

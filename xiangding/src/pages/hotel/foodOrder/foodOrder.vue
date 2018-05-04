@@ -1,11 +1,8 @@
 <template>
 	<div class="box">
-		<Header title="餐饮管理"/>
-		<span class="manage" v-if="index_ != 1" @click="onHandleChange(1)">管理</span>
-		<span class="manage" v-if="index_ == 1" @click="onHandleChange(0)">完成</span>
+		<Header title="餐饮团购"/>
 		<div class="body">
-			<div v-if="index_ != 1">
-				<router-link  tag="div" :to="{path: '/enter/hotelManage/foodAdd',query: {name: '套餐修改'}}" v-for="(i,index) in dataArr" :key="index" class="item">
+				<div  v-for="(i,index) in dataArr" :key="index" class="item">
 					<div class="img"><img :src="i.urlImg" alt=""></div>
 					<div class="text">
 						<p>{{i.title}}</p>
@@ -14,36 +11,13 @@
 					<div class="icon">
 					   <span><i class="fas fa-chevron-right"></i></span>
 					</div>
-				</router-link>
-			</div>
-			
-			<div v-if="index_ == 1">
-				<div v-for="(i,index) in dataArr" :key="index" class="item" @click="handleDelect(index)">
-					<div class="img"><img :src="i.urlImg" alt=""></div>
-					<div class="text">
-						<p>{{i.title}}</p>
-						<p>¥ {{i.price}}</p>
-					</div>
-					<div class="icon">
-					   <span> 
-					   <el-checkbox-group v-model="i.checkList">
-					    <el-checkbox label=""></el-checkbox>
-					  </el-checkbox-group></span>
-					</div>
 				</div>
-			</div>
+				<div class="botton">
+					<p>确定</p>
+				</div>
+			
 			
 		
-		</div>
-		<div class="add_box">
-			<router-link tag="p" :to="{path: '/enter/hotelManage/foodAdd',query: {name: '添加套餐'}}" v-if="0==index_" class="botton">
-				<span><i class="fas fa-plus-circle"></i></span>
-				<span>添加</span>
-			</router-link>
-			<p v-if="1==index_" class="botton ">
-				<span><i class="fas fa-trash-alt"></i></span>
-				<span>删除</span>
-			</p>
 		</div>
 	</div>
 </template>
@@ -77,38 +51,17 @@
 						checkList: []
 					},
 				],
-				index_: 0,
-				
 			}
 		},
 		methods: {
-			onHandleChange(i){
-				this.index_ = i
-			},
-			handleDelect(i){
-				if(this.dataArr[i].checkList.length){
-					this.dataArr[i].checkList.shift('')
-				}else{
-					this.dataArr[i].checkList.push('')
-				}
-				
-			}
+
 		}
 	}
 </script>
 <style scoped lang="scss">
-	@import '../../../common/css/common.scss';
+	@import '../../../common/css/common';
 	.box{
 		width: 100%;
-		position: relative;
-
-		.manage{
-			position: fixed;
-			top: rem(17px);
-			right: 5%;
-			z-index: 999;
-			font-size: rem(16px);
-		}
 		.body{
 			// padding-bottom: rem(100px);
 			div{
@@ -145,26 +98,18 @@
 						font-size: rem(17px);
 					}
 				}
-			}
-		}
-		.add_box{
-			padding: rem(100px) 0;
-			.botton{
-				// background-color: #43c122;
-				font-size: rem(14px);
-				text-align: center;
-				display: fixed;
-				bottom: 0;
-				left: 0;
-				z-index: 999;
-				background-color: #43c122;
-				padding: rem(10px) 0;
-				span{
-					color: #ffffff;
+				&.botton{
+					text-align: center;
+					padding: rem(25px) 5%;
 					
+					p{
+						background-color: #43c122;
+						color: #ffffff;
+						padding: rem(10px) 0;
+						border-radius: rem(5px);
+					}
 				}
 			}
 		}
-		
 	}
 </style>
