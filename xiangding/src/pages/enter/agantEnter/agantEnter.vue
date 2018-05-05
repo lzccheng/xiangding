@@ -1,6 +1,16 @@
 <template>
 	<div class="box">
 		<Header title="申请入驻"/>
+		<div class="back" v-if="general" @click="handleClose_back"> 
+			<div class="box" @click="cancelBubble">
+				<p class="title">享订入驻协议</p>
+				<div class="bottom">
+					<p @click="handleClose_back">
+					   <span >我知道了</span>
+					</p>
+				</div>
+			</div>
+		</div>
 		<div class="form">
 			<p class="input">
 				<label>代理商姓名:</label>
@@ -8,18 +18,18 @@
 			</p>
 			<p class="input">
 				<label>联系电话:</label>
-				<input @blur="handleCheck" type="text" placeholder="请输入电话号码" name="">
+				<input @blur="handleCheck" class="handleCheck" type="text" placeholder="请输入电话号码" name="">
 			</p>
 			<p class="input" style="border-bottom: none">
 				<label>验证码:</label>
-				<input type="text" placeholder="请输入验证码" name="">
+				<input type="text" style="width: 40%" placeholder="请输入验证码" name="">
 				<span class="get"><span>获取验证码</span></span>
 			</p>
 		</div>
 		<div class="form_1">
 			<p class="mm">
 				<label>身份证号码:</label>
-				<input @blur="handleCheckId" type="text" placeholder="请输入身份证号码" name="">
+				<input @blur="handleCheckId" class="handleCheckId" type="text" placeholder="请输入身份证号码" name="">
 			</p>
 			<div class="photo">
 				<p>
@@ -42,24 +52,25 @@
 			<router-link tag="p" to="/my/myagantEnter" class="button">立即申请</router-link>
 			</div>
 		</div>
-		<p class="know">《入住协议》</p>
+		<div class="agreement_box">
+			<span class="agreement" @click="handleShow_back">《入驻协议》</span>
+		</div>
 	</div>
 </template>
 <script>
-	import common from '../../../common/js/common'
 	export default {
 		data(){
 			return {
-				
+				general: false
 			}
 		},
 		methods: {
 			handleCheck(event){
-				let value = event.path[0].value
+				let value = document.querySelector('.handleCheck').value
 				// event.path[0].value
 				// (/^1[3|4|5|8][0-9]\d{4,8}$/.test(sMobile))
 				if(value){
-					if(!common.checkPhone(value)){
+					if(!this.Fn.checkPhone(value)){
 						this.$message({
 				          message: '请输入正确的联系电话',
 				          type: 'warning'
@@ -73,13 +84,13 @@
 				}
 			},
 			handleCheckId(event){
-				let value = event.path[0].value
+				let value = document.querySelector('.handleCheckId').value
 				// event.path[0].value
 				// (/^1[3|4|5|8][0-9]\d{4,8}$/.test(sMobile))
 				// var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/
 				// var reg = /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)/
 				if(value){
-					if(!common.checkId(value)){
+					if(!this.Fn.checkId(value)){
 						this.$message({
 				          message: '请输入正确身份证号',
 				          type: 'warning'
@@ -92,6 +103,15 @@
 			        });
 				}
 			},
+			handleShow_back(){
+				this.general = true
+			},
+			handleClose_back(){
+				this.general = false
+			},
+			cancelBubble(event){
+				event.cancelBubble = true
+			},
 		}
 	}
 </script>
@@ -102,6 +122,39 @@
 		background-color: #e5e5e5;
 		position: relative;
 		font-size: rem(14px);
+		.back{
+			background-color: rgba(0,0,0,0.3);
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 999;
+			width: 100%;
+			height: 100%;
+			.box{
+				padding: rem(15px) 0;
+				text-align: center;
+				width: 90%;
+				// background-color: #ffffff;
+				position: absolute;
+				top: rem(80px);
+				left: 5%;
+				border-radius: rem(8px);
+				.title{
+					font-size: rem(17px);
+					font-weight: bold;
+					padding-bottom: rem(30px);
+				}
+				.bottom{
+					padding: 0 3%;
+					p{
+						background-color: #43c122;
+						color: #fff;
+						padding: rem(5px) 0;
+						border-radius: rem(5px);
+					}
+				}
+			}
+		}
 		.form_1{
 			background-color: #ffffff;
 			margin-top: rem(10px);
@@ -234,14 +287,26 @@
 				}
 			}
 		}
-		.know{
-			color: #4ea9ec;
-			font-size: rem(14px);
-			background-color: #ffffff;
+		// .know{
+		// 	color: #4ea9ec;
+		// 	font-size: rem(14px);
+		// 	background-color: #ffffff;
+		// 	position: absolute;
+		// 	bottom: rem(10px);
+		// 	left: 50%;
+		// 	margin-left: rem(-42px);
+		// }
+		.agreement_box{
 			position: absolute;
-			bottom: rem(10px);
-			left: 50%;
-			margin-left: rem(-42px);
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			text-align: center;
+			.agreement{
+				background-color: #ffffff;
+				color: #769de6;
+				
+			}
 		}
 	}
 </style>

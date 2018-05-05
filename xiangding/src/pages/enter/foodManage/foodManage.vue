@@ -101,7 +101,7 @@
 	.box{
 		width: 100%;
 		position: relative;
-
+		min-height: 100%;
 		.manage{
 			position: fixed;
 			top: rem(17px);
@@ -148,15 +148,15 @@
 			}
 		}
 		.add_box{
-			padding: rem(100px) 0;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			z-index: 999;
+			width: 100%;
 			.botton{
 				// background-color: #43c122;
 				font-size: rem(14px);
 				text-align: center;
-				display: fixed;
-				bottom: 0;
-				left: 0;
-				z-index: 999;
 				background-color: #43c122;
 				padding: rem(10px) 0;
 				span{

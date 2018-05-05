@@ -130,8 +130,14 @@
   				<li @click="handleStyle">
             <div class="select">
               <span><i class="fas fa-search-plus"></i></span>  
-              <span>星级:{{star}}星/价格:{{price[0]}}-{{price[1]}}/设备</span>  
+              <span>星级:{{star}}星/价格:{{price[0]}}-{{price[1]}}</span>  
               <span class="angle"><i class="fas fa-angle-right"></i></span>
+            </div>
+          </li>
+          <li>
+            <div class="select">
+              <span><i class="fas fa-search"></i></span>  
+              <span>酒店名称</span>  
             </div>
           </li>
   			</ul>

@@ -5,7 +5,7 @@
 		<div class="nav">
 			<div class="input">
 				<span class="addr">广州</span>
-				<span class="text"><i class="fas fa-search"></i><input type="text" placeholder="酒店/品牌"></span>
+				<span class="text"><input type="text" placeholder="酒店/品牌"><i class="fas fa-search"></i></span>
 			</div>
 			<div class="i"><i class="far fa-calendar-alt"></i></div>
 		</div>
@@ -216,6 +216,7 @@
 							margin-left: rem(10px);
 							border: none;
 							color: #aaa;
+							width: 74%;
 							&::-webkit-input-placeholder { 
 							    color:    #aaa;
 							}

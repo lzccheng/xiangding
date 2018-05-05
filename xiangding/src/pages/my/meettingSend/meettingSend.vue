@@ -52,12 +52,11 @@
 				</li>
 				<li class="item" v-if="checked1">
 					<span class="right">
-						 <el-radio v-model="radio" label="1">1 × 2米LED屏</el-radio>
-						 <br/>
-                         <el-radio v-model="radio" label="2">1.5 × 3.5米LED屏</el-radio>
-                         <br/>  
-                         <el-radio v-model="radio" label="3">2.5 × 5.5米LED屏</el-radio>
-                         <br/><br/>
+						<el-checkbox-group v-model="checkList2">
+							 <el-checkbox label="1 × 2米LED屏"></el-checkbox><br/>
+	                         <el-checkbox label="1.5 × 3.5米LED屏"></el-checkbox><br/>
+	                         <el-checkbox label="2.5 × 5.5米LED屏"></el-checkbox>
+	                    </el-checkbox-group>
                          <div class="led_money">
                          	<p>299元</p>
                          	<p>499元</p>
@@ -94,7 +93,7 @@
 						<div>
 							  <el-checkbox-group v-model="checkList">
 							  	<span>
-							  	   <el-checkbox label="LED"></el-checkbox>
+							  	   <el-checkbox label="话筒"></el-checkbox>
 							  	</span>
 							  	<span>
 							  	    <el-checkbox label="有线无线宽带"></el-checkbox>
@@ -128,11 +127,12 @@
 			      input5: '',
 			      select1: '60平方',
 			      select6: '是',
-			      checkList: ['LED'],
+			      checkList: ['话筒'],
 			      checked: true,
 			      checked1: false,
 			      radio: '1',
-			      general: false
+			      general: false,
+			      checkList2: ['1 × 2米LED屏']
 			}
 		},
 		methods: {
@@ -233,6 +233,8 @@
 					.i{
 						font-size: rem(14px);
 						color: #409EFF;
+						margin-top: rem(20px);
+						display: inline-block;
 						.text{
 							font-size: rem(15px);
 							margin-left: rem(7px);

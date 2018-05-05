@@ -144,7 +144,7 @@
 				   <span class="yz_text"><input type="text" placeholder="请输入验证码" name=""></span>
 				   <span class="yz_numb"><span>获取验证码</span></span>
 				</p>
-				<div v-if="title === '酒店列表'">
+				<div v-if="title !== '会议室'">
 				<p class="indent">
 				   <span class="minus">立减</span>
 				   <span class="farvourable">优惠返现</span>
@@ -427,7 +427,7 @@
 						}
 					}
 					&.indent{
-						border-bottom: #aaa solid rem(0.5px);
+						border-bottom: #EDEDED solid rem(0.5px);
 						padding-bottom: rem(10px);
 						.minus{
 							color: #e51c63;

@@ -1,5 +1,15 @@
 <template>
 	<div class="box">
+		<div class="back" v-if="general" @click="handleClose_back"> 
+			<div class="box" @click="cancelBubble">
+				<p class="title">享订登录协议</p>
+				<div class="bottom">
+					<p @click="handleClose_back">
+					   <span>我知道了</span>
+					</p>
+				</div>
+			</div>
+		</div>
 		<div class="background">
 			
 		</div>
@@ -35,17 +45,35 @@
 				<span class="user">用户协议及隐私政策</span>
 				<span class="problem">登录遇到问题</span>
 			</div>
-			<p class="idear">《登录协议》</p>
+			<p class="idear" @click="handleShow_back">《登录协议》</p>
 		</div>
 		
 	</div>
 </template>
 <script>
 	export default{
+		mounted(){
+			window.onresize = function(){
+				console.log(document.querySelector('.background'))
+				document.querySelector('.background').style.backgroundSize = "100% "+window.innerHeight+"px"
+				// alert(document.querySelector('.background').style.height)
+			}
+		},
 		data(){
 			return {
-
+				general: false
 			}
+		},
+		methods: {
+			handleShow_back(){
+				this.general = true
+			},
+			handleClose_back(){
+				this.general = false
+			},
+			cancelBubble(event){
+				event.cancelBubble = true
+			},
 		}
 	}
 </script>
@@ -129,6 +157,41 @@
 					text-align: center;
 					color: #ffffff;
 					font-size: rem(14px);
+				}
+			}
+			&.back{
+				background-color: rgba(0,0,0,0.3);
+				position: fixed;
+				top: 0;
+				left: 0;
+				z-index: 999;
+				width: 100%;
+				height: 100%;
+				// background-color: #fff;
+				.box{
+					padding: rem(15px) 0;
+					text-align: center;
+					width: 90%;
+					background-color: #ffffff;
+					position: absolute;
+					top: rem(80px);
+					left: 5%;
+					height: 20%;
+					border-radius: rem(8px);
+					.title{
+						font-size: rem(17px);
+						font-weight: bold;
+						padding-bottom: rem(30px);
+					}
+					.bottom{
+						padding: 0 3%;
+						p{
+							background-color: #43c122;
+							color: #fff;
+							padding: rem(5px) 0;
+							border-radius: rem(5px);
+						}
+					}
 				}
 			}
 			&.background{

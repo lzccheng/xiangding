@@ -86,68 +86,9 @@
 			
 		</div>
 		<div v-else>
-			<!-- <div class="nav">
-				<div class="tab" ref="tab">
-					<div v-for="(i,index) in arrItem" :key='index' @click="handleClick(index,$event)">
-						<span>{{i}}</span>
-					</div>
-				</div>
-				<div class="line" ref="_line"></div>
-			</div> -->
+		
 			<div class="show">
-				<!-- <div v-if="0==index_">
-					<div class="body">
-						<div class="left">
-							<div class="_line"></div>
-							<div class="radius radius1"></div>
-							<div class="radius radius2"></div>
-							<div class="radius radius3"></div>
-							<div class="radius radius4"></div>
-							<div class="radius radius5"></div>
-						</div>
-						<div class="content">
-							<p>
-								<span>
-									<span class="word">订单已提交</span><br/>
-									<span class="i">请耐心 等待商家确认</span>
-								</span>
-								<span class="time i">3月14日 23:43</span>
-							</p>
-							<p>
-								<span>
-									<span class="word">支付成功</span>
-								</span>
-								<span class="time i">3月14日 23:43</span>
-							</p>
-							<p>
-								<span>
-									<span class="word i">等待商家接待</span>
-								</span>
-								<span class="time i">等待中</span>
-							</p>
-							<p>
-								<span>
-									<span class="word i">等待订单完成</span>
-								</span>
-								<span class="time i">等待中</span>
-							</p>
-							<p>
-								<span>
-									<span class="word i">分享用户</span>
-								</span>
-								<span class="time i">等待中</span>
-							</p>
-							<div class="img_box">
-								<p class="images"><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425433535&di=f7d324b2c95bd6f203fb8741290c02e3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D41481487a2773912d02b8d219161e374%2Ff3d3572c11dfa9ec3d58042d69d0f703918fc192.jpg" alt=""></p>
-								<p class="img_text">一键分享</p>
-								
-							</div>
-						</div>
-
-						
-					</div>
-				</div> -->
-				<div v-if="1==index_">
+								<div v-if="1==index_">
 					<div class="body">
 						<div>
 							<div class="top">

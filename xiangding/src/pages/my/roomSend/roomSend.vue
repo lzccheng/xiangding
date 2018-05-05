@@ -103,14 +103,13 @@
 				</li>
 				<li class="item">
 					<span class="name">双人床:</span>
-					<div class="select_1">
+					<span class="select_1">
 						<el-select v-model="select5" slot="prepend" placeholder="请选择">
-						<el-option label="1.2" value="1"></el-option>
+					      <el-option label="1.2" value="1"></el-option>
 					      <el-option label="1.3" value="2"></el-option>
 					      <el-option label="1.5" value="3"></el-option>
 					    </el-select>
-					    <span> &nbsp;米</span>
-					</div>
+					</span>
 				</li>
 				<li class="item">
 					<span class="name">窗户:</span>

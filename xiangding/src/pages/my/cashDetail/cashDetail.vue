@@ -210,7 +210,9 @@
             }
         }
         .nav{
+            width: 100%;
         	display: flex;
+            align-items: center;
         	padding: rem(12px) rem(13px);
         	background-color: #ffffff;
         	.green{
@@ -221,7 +223,7 @@
         		}
         	.hotel{
         		font-size: rem(14px);
-        		margin-right: 59%;
+        		margin-right: 53%;
         	}
         	.num{
         		background-color: #43c122;
