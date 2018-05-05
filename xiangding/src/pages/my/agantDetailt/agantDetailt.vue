@@ -7,8 +7,9 @@
 			</div>
 			<div class="search">
 				<div class="search_">
+				    <span><input type="text" placeholder="请输入您要搜索的名称"></span>
 					<span class="icon"><i class="fas fa-search"></i></span>
-					<span><input type="text" placeholder="请输入您要搜索的名称"></span>
+					
 				</div>
 			</div>
 		</div>
@@ -96,11 +97,12 @@
 					border-radius: rem(5px);
 					span{
 						&.icon{
-							padding:rem(2px) rem(5px);
+							padding:rem(2px) 0;
+							padding-left: 5%;
 						}
 						input{
 							border: none;
-							width: 80%;
+							width: 82%;
 							height: rem(18px);
 							padding: rem(3px) rem(8px);
 							&:placeholder{

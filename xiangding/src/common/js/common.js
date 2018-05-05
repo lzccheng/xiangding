@@ -57,11 +57,16 @@ let checkFixedPhone = (value)=>{
 let checkCredit= (value)=>{
 	return /^([1-9]{1})(\d{14}|\d{18})$/.test(value)
 }
+let checkPassword= (value)=>{
+	return /^([A-Z]|[a-z]|[0-9]|[\`\-\=\[\];\,\./\~\!\@\#\$\%\^\*\(\)_\+\}\{:\?]){6,20}$/.test(value)
+}
+//([A-Z]|[a-z]|[0-9]|[`-=[];,./~!@#$%^*()_+}{:?]){6,20}$
 export default {
 	getStyle,
 	getLocation,
 	checkPhone,
 	checkId,
 	checkFixedPhone,
-	checkCredit
+	checkCredit,
+	checkPassword
 }

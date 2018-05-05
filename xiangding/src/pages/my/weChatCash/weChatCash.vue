@@ -21,11 +21,11 @@
 				  <p>手续费</p>
 				  <p class="text_5">收取5%手续费</p>
 				</label>
-				<input type="text" placeholder="0.00元" name="">
+				<span class="weChat_text">0.00</span>
 			</p>
 			<p class="input" style="border-bottom: none">
 				<label>实际到账:</label>
-				<input type="text" placeholder="0.00元" name="">
+				<span class="weChat_text">0.00</span>
 			</p>
 		</div>
 		<div class="form">

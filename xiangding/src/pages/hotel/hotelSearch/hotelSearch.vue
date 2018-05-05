@@ -467,6 +467,7 @@
 					}else{
 						this.title = '酒店列表'
 					}
+					this.handleBack()
 				}
 			}
 		}
@@ -707,7 +708,7 @@
 				width: 100%;
 				.content{
 					background-color: #ffffff;
-					padding: 0 0;
+					// padding: rem(15px) 0;
 					// padding-bottom: rem(10px);
 					.back_box{
 						display: flex;
@@ -721,6 +722,7 @@
 							p{
 							    padding: rem(10px) 0;
 							    background-color: #EDEDED;
+
 							    &.color{
 							    	background-color: #ffffff;
 							    }
@@ -745,6 +747,7 @@
 								padding: 0 5%;
 								p{
 								    padding: rem(10px) 20%;
+								    border-bottom: #e5e5e5 solid rem(1px);
 								}
 							}
 						}
@@ -798,7 +801,7 @@
 										padding: 0 rem(14px);
 										vertical-align: middle;
 										display: inline-block;
-										border: #000 solid rem(1px);
+										border: #aaa solid rem(1px);
 										height: 0;
 										margin-top: rem(12px);
 									}

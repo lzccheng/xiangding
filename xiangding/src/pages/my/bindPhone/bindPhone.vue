@@ -14,9 +14,9 @@
 				</p>
 			</div>
 			<div class="body">
-				<router-link class="button" tag="div" to="/enter/login">
+				<div class="button" >
 					<span>绑定</span>
-				</router-link>
+				</div>
 			</div>
 		</div>
 		<!-- 修改手机号 -->
@@ -36,9 +36,9 @@
 				<span class="get">获取验证码</span>
 			</p>
 			<div class="body" style="border-top: none">
-				<router-link class="button" tag="div" to="/enter/login">
+				<div class="button" >
 					<span>下一步</span>
-				</router-link>
+				</div>
 			</div>
 		</div>
 		<!-- 绑定手机号 -->
@@ -47,9 +47,9 @@
 		    	<p class="i"><span><i class="fas fa-check-circle"></i></span></p>
 		     	<p class="fixed_text">绑定的手机号:   13800138000</p>
 		     	<div class="body" style="border-top: none">
-					<router-link class="button" tag="div" to="/enter/login">
+					<div class="button">
 						<span>更换手机号</span>
-					</router-link>
+					</div>
 				</div>
 		</div>
 	</div>

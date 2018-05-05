@@ -56,7 +56,34 @@
 					</p>
 				</div>
 				<div v-if="title === '会议室'">
-					<router-link tag="div" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title}}">
+						<router-link v-if="!order" tag="div" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title}}" v-for='(i,index) in room' :key='index' class="rooms">
+							<div>
+								<img :src="i.imgUrl">
+							</div>
+							<div class="title">
+								<p>某某会议室</p>
+								<p>{{i.area}}m <sup>2</sup> / <span>{{people}}</span>人</p>
+							</div>
+							<div class="price">
+								<p><span class="first">￥</span>{{i.price}}<span class="first">元</span></p>
+								<p v-if="title !== '会议室'"><router-link tag="button" :to="{path:'/hotelDetail/hotelOrder',query:{name: title}}">订房</router-link></p>
+								<p v-else>
+									<span  >
+										<router-link tag="button" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title}}">预定</router-link>
+									</span>	
+									<!-- <span v-else @click="handleBubbole">
+										<span class="icon_s" @click="handleDelete(index)"><i class="fas fa-minus-circle"></i></span>
+										<span class="number_s">{{numarr[index].num}}</span>
+										<span class="icon_s" @click="handleAdd(index)"><i class="fas fa-plus-circle"></i></span>
+									</span> -->
+									<!-- <div v-if="!order" class="button_1">
+										<p>取消</p>
+										<p>确定</p>
+									</div> -->
+								</p>
+							</div>
+						</router-link>
+					<div v-else>
 						<div v-for='(i,index) in room' :key='index' class="rooms">
 							<div>
 								<img :src="i.imgUrl">
@@ -69,10 +96,10 @@
 								<p><span class="first">￥</span>{{i.price}}<span class="first">元</span></p>
 								<p v-if="title !== '会议室'"><router-link tag="button" :to="{path:'/hotelDetail/hotelOrder',query:{name: title}}">订房</router-link></p>
 								<p v-else>
-									<span  v-if="!order">
+									<!-- <span >
 										<router-link tag="button" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title}}">预定</router-link>
-									</span>	
-									<span v-else @click="handleBubbole">
+									</span>	 -->
+									<span  @click="handleBubbole">
 										<span class="icon_s" @click="handleDelete(index)"><i class="fas fa-minus-circle"></i></span>
 										<span class="number_s">{{numarr[index].num}}</span>
 										<span class="icon_s" @click="handleAdd(index)"><i class="fas fa-plus-circle"></i></span>
@@ -84,12 +111,12 @@
 								</p>
 							</div>
 						</div>
-					</router-link>
+					</div>
 				</div>
 
 				<div v-else>
-					<router-link tag="div" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title}}">
-						<div v-for='(i,index) in room' :key='index' class="rooms">
+					
+						<router-link v-if="!order" tag="div" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title}}" v-for='(i,index) in room' :key='index' class="rooms">
 							<div>
 								<img :src="i.imgUrl">
 							</div>
@@ -101,8 +128,37 @@
 								<p>￥{{i.price}}元</p>
 								<p><router-link tag="button" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title}}">订房</router-link></p>
 							</div>
+						</router-link>
+					
+					<div v-else>
+						<div v-for='(i,index) in room' :key='index' class="rooms">
+							<div>
+								<img :src="i.imgUrl">
+							</div>
+							<div class="title">
+								<p>特惠商务房</p>
+								<p>{{i.area}}m <sup>2</sup> / <span>{{people}}</span>人</p>
+							</div>
+							<div class="price">
+								<p><span class="first">￥</span>{{i.price}}<span class="first">元</span></p>
+								<!-- <p v-if="title !== '会议室'"><router-link tag="button" :to="{path:'/hotelDetail/hotelOrder',query:{name: title}}">订房</router-link></p> -->
+								<p>
+									<!-- <span >
+										<router-link tag="button" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title}}">预定</router-link>
+									</span>	 -->
+									<span  @click="handleBubbole">
+										<span class="icon_s" @click="handleDelete(index)"><i class="fas fa-minus-circle"></i></span>
+										<span class="number_s">{{numarr[index].num}}</span>
+										<span class="icon_s" @click="handleAdd(index)"><i class="fas fa-plus-circle"></i></span>
+									</span>
+									<!-- <div v-if="!order" class="button_1">
+										<p>取消</p>
+										<p>确定</p>
+									</div> -->
+								</p>
+							</div>
 						</div>
-					</router-link>
+					</div>
 				</div>
 				
 			</div>
@@ -315,6 +371,7 @@
 				justify-content: space-around;
 				align-items:center;
 				font-size: rem(14px);
+				padding-bottom: rem(13px);
 				div{
 					p{
 						text-align: center;

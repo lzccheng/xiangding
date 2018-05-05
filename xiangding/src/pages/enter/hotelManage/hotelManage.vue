@@ -1,12 +1,12 @@
 <template>
 	<div class="box">
-	<Header title="酒店管理"/>
-		<!-- <div class="_box">
+	<!-- <Header title="酒店管理"/> -->
+		<div class="_box">
 			<div class="_header">
 				<span class="_left" @click='_handleClick'><i class="fas fa-arrow-left"></i></span>
 				<span> 酒店管理 </span>
 			</div>
-		</div> -->
+		</div>
 		<div class="header">
 		    <div class="big">
 		    	<div class="ball">
@@ -114,7 +114,7 @@
 		width: 100%;
 		._box{
 			width: 100%;
-			height: rem(50px);
+			height: rem(46px);
 			._header{
 				width: 100%;
 				position: fixed;
@@ -129,7 +129,7 @@
 				._left{
 					position: absolute;
 					top: rem(12px);
-					left: 0;
+					left: rem(10px);
 					padding: 0 rem(5px);
 					z-index: 999;
 				}

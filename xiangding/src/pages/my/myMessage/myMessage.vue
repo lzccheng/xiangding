@@ -29,9 +29,9 @@
 			</div>
 		
 			<div class="body">
-				<router-link class="button" tag="div" to="/enter/login">
+				<div class="button" >
 					<span>确认修改</span>
-				</router-link>
+				</div>
 			</div>
 	</div>
 

@@ -82,28 +82,34 @@
 			font-size: rem(14px);
 			.top_box{
 				background-color: #43C122;
-				padding: 0 3%;
+				// padding: 0 3%;
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				padding: rem(5px) 0;
+				padding: rem(7px) 0;
 				.left_icon{
 					color: #fff;
 					font-size: rem(20px);
-					padding-right: 4%;
-
+					width: 10%;
+					margin-left: rem(10px);
+					
 				}
 				.search_{
 					background-color: #fff;
 					border-radius: rem(5px);
-					padding: rem(7px) 18% rem(7px) 3%;
+					// padding: rem(7px) 16% rem(7px) 3%;
+					padding: rem(4px) 0;
+					width: 70%;
 					span{
 						&:first-child{
 							font-size: rem(14px);
-							padding-right: rem(5px);
+							padding: 0 5%;
+							padding-right: 3%;
 						}
 						input{
 							border: none;
+							height: rem(24px);
+							// line-height: rem(24px);
 						}
 					}
 					
@@ -113,6 +119,8 @@
 					color: #fff;
 					width: 15%;
 					text-align: center;
+
+
 				}
 			}
 			.history{

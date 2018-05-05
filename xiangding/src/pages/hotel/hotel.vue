@@ -268,43 +268,10 @@
 								name: '套间',
 								active: false
 							},
+							
 						]
 					},
-					// {
-					// 	name: '房间数量',
-					// 	child: [
-					// 		{
-					// 			name: '单间',
-					// 			active: false
-					// 		},
-					// 		{
-					// 			name: '团房',
-					// 			active: false
-					// 		},
-							
-					// 	]
-					// },
-					// {
-					// 	name: '设施',
-					// 	child: [
-					// 		// {
-					// 		// 	name: 'wifi',
-					// 		// 	active: false
-					// 		// },
-					// 		// {
-					// 		// 	name: '餐饮美食',
-					// 		// 	active: false
-					// 		// },
-					// 		// {
-					// 		// 	name: '健身房',
-					// 		// 	active: false
-					// 		// },
-					// 		// {
-					// 		// 	name: '游泳池',
-					// 		// 	active: false
-					// 		// },
-					// 	]
-					// }
+					
 				],
 				tabsItem: [
 					{
@@ -333,7 +300,8 @@
 				value5:2,
 				general: false,
 				item_show: 0,
-				colorBoolen: false
+				colorBoolen: false,
+				windowY: 0
 			}
 		},
 		methods: {
@@ -386,7 +354,6 @@
 				for(let j = 0;j<this.tabsItem.length;j++){
 					this.tabsItem[j].active = false
 				}
-				document.querySelectorAll('body')[0].style.overflow = 'auto'
 			},
 			handleTabChange(i){
 				if(this.tabsItem[i].active){
@@ -405,7 +372,6 @@
 						this.tabsItem[j].active = false
 					}
 				}
-				document.querySelectorAll('body')[0].style.overflow = 'hidden'
 			},
 			handleGeneral(i){
 				this.handleTabChange(0)
@@ -488,7 +454,7 @@
 						border-right: 1px solid #aaa;
 					}
 					.input{
-						margin-left: rem(20px);
+						// margin-left: rem(10px);
 						padding: rem(3px);
 						input{
 							width: 88%;
@@ -649,7 +615,7 @@
 									padding: 0 rem(14px);
 									vertical-align: middle;
 									display: inline-block;
-									border: #000 solid rem(1px);
+									border: #aaa solid rem(1px);
 									height: 0;
 									margin-top: rem(12px);
 								}
