@@ -4,6 +4,7 @@
 		<span class="manage" v-if="index_ != 1" @click="onHandleChange(1)">管理</span>
 		<span class="manage" v-if="index_ == 1" @click="onHandleChange(0)">完成</span>
 		<div class="body">
+			
 			<div v-if="index_ != 1">
 				<router-link  tag="div" :to="{path: '/enter/hotelManage/foodAdd',query: {name: '套餐修改'}}" v-for="(i,index) in dataArr" :key="index" class="item">
 					<div class="img"><img :src="i.urlImg" alt=""></div>

@@ -105,24 +105,26 @@
 					<span>是否需要LED屏</span>
 					<span class="check_box" ><el-checkbox v-model="checked1"></el-checkbox></span>
 				</p>
-				<p class="black" v-if="checked1">
-					<span class="right">
-						 <el-radio v-model="radio" label="1">1 × 2米LED屏</el-radio><br/>
-                         <el-radio v-model="radio" label="2">1.5 × 3.5米LED屏</el-radio><br/>  
-                         <el-radio v-model="radio" label="3">2.5 × 5.5米LED屏</el-radio>  
-					</span>
+				<p class="black" v-if="checked1" >
+					<p v-if="title === '会议室'">
+						<span class="right" >
+							 <el-radio v-model="radio" label="1">1 × 2米LED屏</el-radio><br/>
+	                         <el-radio v-model="radio" label="2">1.5 × 3.5米LED屏</el-radio><br/>  
+	                         <el-radio v-model="radio" label="3">2.5 × 5.5米LED屏</el-radio>  
+						</span>
+					</p>
 				</p>
 				<router-link tag="p" to="/hotel/hotelManage/foodOrder" v-if="title === '团房'||title === '会议室'" class="black">
-					<span>餐饮团购</span>
+					<span style="color: #43c122">餐饮团购</span>
 					<span  class="check_box"><i class="fas fa-chevron-right"></i></span>
 				</router-link>
 				<p class="black">
-					<span>是否需要发票</span>
-					<span class="check_box"><el-checkbox v-model="checked"></el-checkbox></span>
+						<span>是否需要发票</span>
+						<span class="check_box"><el-checkbox v-model="checked"></el-checkbox></span>
 				</p>
 				<router-link tag="p" :to="{path:'/hotelDetail',query:{name: '团房',id: 2,order: true}}" v-if="title === '会议室'" class="black color_green">
-					<span>是否需要团房</span>
-					<span class="check_box" style="color: #000"><i class="fas fa-chevron-right"></i></span>
+					<span >是否需要团房</span>
+					<span class="check_box"><i class="fas fa-chevron-right"></i></span>
 				</router-link>
 				<router-link tag="p" :to="{path:'/hotelDetail',query:{name: '会议室',id: 2,order: true}}"  v-if="title === '团房'" class="black">
 					<span class="color_green">是否需要会议室</span>
@@ -326,7 +328,7 @@
 				        padding-bottom: rem(20px);
 				        border-bottom: #EBEBEB solid rem(1px);
 				        position: relative;
-				       
+
 				        span{
 				        	&:first-child{
 				        		display: inline-block;
@@ -377,6 +379,7 @@
 					}
 					.check_box{
 						float: right;
+						color: #43c122;
 					} 
 					.time{
 						position: absolute;

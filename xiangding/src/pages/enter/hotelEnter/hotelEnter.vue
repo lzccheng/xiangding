@@ -18,7 +18,7 @@
 			</p>
 			<p class="input">
 				<label>联系电话:</label>
-				<input @blur="handleCheck" type="text" placeholder="请输入电话号码" name="">
+				<input @blur="handleCheck" class="handleCheck" type="text" placeholder="请输入电话号码" name="">
 			</p>
 			<p class="input">
 				<label>验证码:</label>
@@ -32,7 +32,14 @@
 			<p class="input">
 				<label>密码:</label>
 				<input type="password" class="pass" placeholder="请输入密码"  name="" @bulr="handleCheckPassword">
-				<span class="eye" @click="handlePassword"><i class="fas fa-eye"></i></span>
+				<span class="eye" @click="handlePassword">
+					<span ref="eye_one">
+						<i  class="fas fa-eye"></i>
+					</span>
+					<span ref="eye_two">
+						<i  class="fas fa-eye-slash"></i>
+					</span>
+				</span>
 			</p>
 		</div>
 		<div class="form">
@@ -47,7 +54,7 @@
 			
 			<p class="input">
 				<label>前台电话:</label>
-				<input @blur="hanndleFixPhone" type="text" placeholder="请输入带区号得座机号码" name="">
+				<input @blur="hanndleFixPhone" type="text" placeholder="请输入带区号得座机号码" class="hanndleFixPhone" name="">
 			</p>
 			<p class="input">
 				<label>电子邮箱:</label>
@@ -81,7 +88,7 @@
 			</p>
 			<p class="input" style="border-bottom: none">
 				<label>代理服务商电话:</label>
-				<input @blur="handleCheck_" type="text" class="handleCheck_" placeholder="请输入代理服务商的电话号码" name="">
+				<input style="width: 60%" @blur="handleCheck_" type="text" class="handleCheck_" placeholder="请输入代理服务商的电话号码" name="">
 			</p>
 		</div>
 		<div class="form">
@@ -115,15 +122,19 @@
 </template>
 <script>
 	export default {
+		mounted(){
+			this.$refs.eye_two.style.display = 'inline-block'
+			this.$refs.eye_one.style.display = 'none'
+		},
 		data(){
 			return {
 				value1: null,
-				general: false,
+				general: false
 			}
 		},
 		methods: {
 			handleCheckPassword(){
-				let value = document.querySelector('.pass')
+				let value = document.querySelector('.pass').value
 				if(value){
 					if(!this.Fn.checkPassword(value)){
 						this.$message({
@@ -138,12 +149,16 @@
 			        });
 				}
 			},
-			handlePassword(){
+			handlePassword(e){
 				let dom = document.querySelector('.pass')
 				if(dom.getAttribute('type') === 'password'){
 					dom.setAttribute('type','text')
+					this.$refs.eye_two.style.display = 'none'
+					this.$refs.eye_one.style.display = 'inline-block'
 				}else{
 					dom.setAttribute('type','password')
+					this.$refs.eye_two.style.display = 'inline-block'
+					this.$refs.eye_one.style.display = 'none'
 				}
 
 				
@@ -194,7 +209,7 @@
 				}
 			},
 			hanndleFixPhone(event){
-				let value = event.path[0].value
+				let value = document.querySelector('.hanndleFixPhone').value
 				if(value){
 					if (!common.checkFixedPhone(value)) {
 						this.$message({

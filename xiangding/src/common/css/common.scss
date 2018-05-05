@@ -2,6 +2,7 @@ $rem: 16px !default;
 @function rem($num){
 	@return $num/$rem*1rem;
 }
+
 .green_btn{
 	width: 100%;
 	padding: rem(10px);
@@ -25,6 +26,10 @@ $rem: 16px !default;
 	&:-ms-input-placeholder { 
 	    color:    #aaa;
 	}
+}
+input{
+	font-size: rem(14px);
+	@extend  ._input;
 }
 .lineHidden{
 	overflow: hidden;

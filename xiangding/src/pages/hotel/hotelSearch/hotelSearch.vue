@@ -708,7 +708,7 @@
 				width: 100%;
 				.content{
 					background-color: #ffffff;
-					padding: rem(15px) 0;
+					// padding: rem(15px) 0;
 					// padding-bottom: rem(10px);
 					.back_box{
 						display: flex;
@@ -722,6 +722,7 @@
 							p{
 							    padding: rem(10px) 0;
 							    background-color: #EDEDED;
+
 							    &.color{
 							    	background-color: #ffffff;
 							    }
@@ -746,6 +747,7 @@
 								padding: 0 5%;
 								p{
 								    padding: rem(10px) 20%;
+								    border-bottom: #e5e5e5 solid rem(1px);
 								}
 							}
 						}

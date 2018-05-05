@@ -127,20 +127,15 @@
           </li>
   				<li @click="handleStyle">
             <div class="select">
-<<<<<<< HEAD
               <span><i class="fas fa-search-plus"></i></span>  
               <span>星级:{{star}}星/价格:{{price[0]}}-{{price[1]}}</span>  
-=======
-              <span><i class="fas fa-search-plus"></i></span>
-              <span>星级:{{star}}星/价格:{{price[0]}}-{{price[1]}}/设备</span>
->>>>>>> f0e88e2328665792e31788992732cd8ddfacfe22
               <span class="angle"><i class="fas fa-angle-right"></i></span>
             </div>
           </li>
           <li>
             <div class="select">
               <span><i class="fas fa-search"></i></span>  
-              <span>酒店名称</span>  
+              <span><input type="text" placeholder="酒店名称"></span>  
             </div>
           </li>
   			</ul>
@@ -727,6 +722,10 @@
             span{
               margin-right: 5%;
               font-size: rem(14px);
+              input{
+                border: none;
+                font-size: rem(14px);
+              }
             }
           }
         }
