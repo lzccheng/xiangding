@@ -387,17 +387,11 @@
 			        }
 				},50)
 				if(e.path){
-					alert(e.path[0].offsetLeft)
-					alert(common.getStyle(e.path[0],'width'))
-					console.log(e.path[2])
-					console.log(e.target.parentNode)
 					e.path[2].lastElementChild.style.marginLeft = e.path[0].offsetLeft + 'px'
 					e.path[2].lastElementChild.style.width = common.getStyle(e.path[0],'width')
 				}else{
-					alert(e.target.offsetLeft)
-					alert(common.getStyle(e.target,'width'))
-					e.target.parentNode.lastElementChild.style.marginLeft = e.target.offsetLeft + 'px'
-					e.target.parentNode.lastElementChild.style.width = common.getStyle(e.target,'width')
+					e.target.parentNode.parentNode.lastElementChild.style.marginLeft = e.target.offsetLeft + 'px'
+					e.target.parentNode.parentNode.lastElementChild.style.width = common.getStyle(e.target,'width')
 				}
 				this.index_ = i
 				

@@ -37,6 +37,14 @@ window.ereaPlugin = function(obj){
 	}
 	EreaPlugin.prototype.cityClick = function(){
 	}
+	EreaPlugin.prototype.showElHidden = function(){
+		this.showEl.style.display = 'none';
+		var showEl_ = this.showEl.querySelectorAll('.ereaPulgin_item');
+		for(var i=1;i<showEl_.length;i++){
+			showEl_[i].parentNode.removeChild(showEl_[i]);
+			this['divTabsChild'+(i+1)].parentNode.removeChild(this['divTabsChild'+(i+1)]);
+		}
+	}
 	EreaPlugin.prototype.setEreaPlugin_line = function(dom){
 		this.divLine.style.left = dom.offsetLeft + 'px';
 		this.divLine.style.width = (Number(this.getStyle(dom,'width').slice(0,-2))+16) + 'px';
@@ -73,20 +81,15 @@ window.ereaPlugin = function(obj){
 		this.divTabsChild4.children[0].innerHTML = this.erea_value[3];
 		document.querySelectorAll('body')[0].style.overflow = 'auto';
 		obj.callBack&&obj.callBack(this);
-		this.showEl.style.display = 'none';
-		var showEl_ = this.showEl.querySelectorAll('.ereaPulgin_item');
-		for(var i=1;i<showEl_.length;i++){
-			showEl_[i].parentNode.removeChild(showEl_[i]);
-			this['divTabsChild'+(i+1)].parentNode.removeChild(this['divTabsChild'+(i+1)]);
-		}
-
+		
+		this.showElHidden()
 	}
 	EreaPlugin.prototype.init = function(){
 		var showEl = this.showEl;
 		var that = this;
 		//background
-		this.showEl.style.width = window.outerWidth + 'px';
-		this.showEl.style.height = window.outerHeight + 'px';
+		this.showEl.style.width = window.innerWidth + 'px';
+		this.showEl.style.height = window.innerWidth + 'px';
 		this.showEl.style.backgroundColor = 'rgba(0,0,0,0.5)';
 		this.showEl.style.position = 'fixed';
 		this.showEl.style.left = '0px';
@@ -104,21 +107,24 @@ window.ereaPlugin = function(obj){
 		that.divEl.setAttribute('class','ereaPlugin_box');
 		that.divLine.setAttribute('class','ereaPlugin_line');
 		that.divTimes.setAttribute('class','ereaPlugin_times');
-		that.divTimes.innerHTML = '&times;';
-		that.divEl.style.width = window.outerWidth + 'px';
+		that.divTimes.innerHTML = 'x';
+		that.divEl.style.width = window.innerWidth + 'px';
 		that.divEl.addEventListener('click',function(e){
 			var e = e || event;
 			e.cancelBubble = true;
 		});
+
 		that.divTimes.addEventListener('click',function(){
 			that.showEl.style.display = 'none';
 			document.querySelectorAll('body')[0].style.overflow = 'auto';
-			ocument.querySelectorAll('body')[0].removeEventListener('touchmove', func, { passive: false })
+			document.querySelectorAll('body')[0].removeEventListener('touchmove', function(e){
+				e.stopPropagation();
+			}, { passive: false })
+			that.showElHidden()
 		})
 		this.showEl.appendChild(that.divEl);
 		this.showEl.appendChild(that.divLine);
 		this.showEl.appendChild(that.divTimes);
-
 		var divElChild = document.createElement('div');
 		divElChild.setAttribute('class','ereaPlugin_box_child');
 		divElChild.innerHTML = '所在地区';
@@ -146,7 +152,6 @@ window.ereaPlugin = function(obj){
 		that.item1.setAttribute('class','ereaPulgin_item province_item');
 		that.item1.innerHTML = that.addEl(that.data,'province');
 		that.divEl.appendChild(that.item1)
-
 		var province = showEl.querySelectorAll('.province');
 		that.divTabsChild1.addEventListener('click',function(){
 			that.showItem(1,'province_item');

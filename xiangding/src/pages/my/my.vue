@@ -167,16 +167,39 @@
 	export default {
 		mounted(){
 			let that = this
-			this.$axios.get('/addons/yun_shop/api.php?i=3&c=entry&do=shop&m=yun_shop&route=member.member.getUserInfo').then((res)=>{
-				console.log(res.data.result)
-				alert(res.data.result)
-				that.msg.id = res.data.data.uid
-				that.msg.name = res.data.data.nickname
-				that.msg.imgUrl = res.data.data.avatar
+			setTimeout(()=>{
+				// window.location.href = 'https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&do=shop&m=yun_shop&type=3&route=member.login.index'
+				// that.$axios.get('/addons/yun_shop/api.php?i=3&do=shop&m=yun_shop&type=3&route=member.login.index').then((res)=>{
+				// 	console.log(res)
+				// })
+			},15000)
+			that.$axios.get('/addons/yun_shop/api.php?i=3&do=shop&m=yun_shop&type=1&route=member.login.index',{'show_wechat_login':true}).then((res)=>{
 				console.log(res)
-			},(err)=>{
-				console.log(err)
+				alert('login---status:'+res.data.result)
 			})
+			// this.$axios.post('/addons/yun_shop/api.php?i=3&do=shop&m=yun_shop&type=1&route=member.login.index').then((res)=>{
+			// 	console.log(res)
+			// 	this.$axios.get('/addons/yun_shop/api.php?i=3&c=entry&do=shop&m=yun_shop&route=member.member.getUserInfo').then((res)=>{
+			// 		console.log(res.data.result)
+			// 		alert(res.data.result)
+			// 		that.msg.id = res.data.data.uid
+			// 		that.msg.name = res.data.data.nickname
+			// 		that.msg.imgUrl = res.data.data.avatar
+			// 		console.log(res)
+			// 	},(err)=>{
+			// 		console.log(err)
+			// 	})
+			// })
+			// this.$axios.get('/addons/yun_shop/api.php?i=3&c=entry&do=shop&m=yun_shop&route=member.member.getUserInfo').then((res)=>{
+			// 	console.log('getUserInfo---status'+res.data.result)
+			// 	alert('getUserInfo---status:'+res.data.result)
+			// 	that.msg.id = res.data.data.uid
+			// 	that.msg.name = res.data.data.nickname
+			// 	that.msg.imgUrl = res.data.data.avatar
+			// 	console.log(res)
+			// },(err)=>{
+			// 	console.log(err)
+			// })
 		},
 		data(){
 			return {

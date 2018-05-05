@@ -70,9 +70,9 @@ ul,li{
 	transition: all 0.5s;
 }
 .ereaPlugin_times{
-	position: absolute;
+	position: fixed;
 	right: 0;
 	top: 30%;
 	padding: 5px 15px;
-	z-index: 999;
+	z-index: 9999;
 }

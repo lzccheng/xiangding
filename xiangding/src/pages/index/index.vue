@@ -1,10 +1,6 @@
-<template>  
+<template>
   <div class="box">
-      
       <div id="aMap"></div>
-      <div id="mess"></div>
-      <div id="bbb"></div>
-      <div id="map"></div>
       <div class="_box" ref="_box" @click="_boxClick">
         <div class="erea" ref="_erea" @click="handleCancel">
           <div class="_erea">
@@ -44,12 +40,12 @@
             <p><el-rate v-model="star"></el-rate></p>
           </div>
           <div>
-            <p class="title">价格：</p>
+            <p class="title">价格： </p>
             <p class="slider">
               <el-slider
                 v-model="price"
                 range
-                :step="50" 
+                :step="50"
                 :max="3000">
               </el-slider>
             </p>
@@ -73,7 +69,7 @@
                     <img class="img" :src="i.imgUrl">
                   </div>
               </router-link>
-               
+
             </div>
           </div>
         </div>
@@ -84,20 +80,22 @@
   					<div class="map">
   						<span class="_right"><i class="fas fa-map-marker-alt"></i></span>
               <!-- <span ref="show_erea"><input onfocus="this.blur()" id="area" type="text" readonly="" placeholder="城市选择特效"  value="广东省,深圳市,南山区" v-model="area_value"/></span> -->
-	  					<span class="location" id="aaa">{{text_erea}}</span>
+              <label for="">
+                <span class="location" id="cccc">{{text_erea}}</span>
+              </label>
               <!-- <input id="value1" type="hidden" value="20,234,504"/>  -->
   					</div>
   					<span class="right"><i class="fas fa-angle-right"></i></span>
   					<p class="local">
-              
+
               <span @click="handlePosition">
                 <span><i class="fa fa-crosshairs"></i></span><br>
                 <span>我的位置</span>
               </span>
-  						
+
   					</p>
   				</li>
-  				<li @click=" ">
+  				<li @click="handleDate">
             <div class="date">
               <div class="time">
                 <p><span class="text">入住</span><br/></p>
@@ -121,16 +119,21 @@
                   </p>
                 </p>
               </div>
-            </div>   
+            </div>
             <div class="total" style="float:right;color:#aaa;padding-top:20px;font-size:16px;">
               <span>{{night}}晚</span>
               <i class="fas fa-angle-right"></i>
-            </div> 
+            </div>
           </li>
   				<li @click="handleStyle">
             <div class="select">
+<<<<<<< HEAD
               <span><i class="fas fa-search-plus"></i></span>  
               <span>星级:{{star}}星/价格:{{price[0]}}-{{price[1]}}</span>  
+=======
+              <span><i class="fas fa-search-plus"></i></span>
+              <span>星级:{{star}}星/价格:{{price[0]}}-{{price[1]}}/设备</span>
+>>>>>>> f0e88e2328665792e31788992732cd8ddfacfe22
               <span class="angle"><i class="fas fa-angle-right"></i></span>
             </div>
           </li>
@@ -176,9 +179,9 @@
         </div>
       </div>
   </div>
-</template>  
-<script type="x/template">  
-  import Swiper from 'swiper' 
+</template>
+<script>
+  import Swiper from 'swiper'
   import star from '../../components/star/star'
   import common from '../../common/js/common'
 
@@ -194,11 +197,28 @@
     '周五',
     '周六'
   ]
-  export default{  
+  export default{
       components: {
         star
       },
       mounted:function(){
+        var mobileSelect5 = new MobileSelect({
+            trigger: '#cccc',
+            title: '请选择地区',
+            wheels: [
+                        {data : ereaPlugin_data}
+                    ],
+            keyMap: {
+                id:'code',
+                value: 'name',
+                childs :'children'
+            },
+          triggerDisplayData: false,
+          position: [18,0],
+          callback:function(indexArr, data){
+            that.text_erea = data[1].name+data[2].name+data[3].name
+          }
+        });
         let that = this
         // const loading = that.$loading({
         //     lock: true,
@@ -277,15 +297,15 @@
           //     console.log(res)
           //   }
           // })
-          var erea = ereaPlugin({
-            showEl: '#bbb',
-            clickEl: '#aaa',
-            data: ereaPlugin_data,
-            callBack: function(res){
-              that.erea_value = res.erea_value
-              that.text_erea = that.erea_value[2]+that.erea_value[3]
-            }
-          }).init()
+          // var erea = ereaPlugin({
+          //   showEl: '#bbb',
+          //   clickEl: '#aaa',
+          //   data: ereaPlugin_data,
+          //   callBack: function(res){
+          //     that.erea_value = res.erea_value
+          //     that.text_erea = that.erea_value[2]+that.erea_value[3]
+          //   }
+          // }).init()
           let date = new Date()
           let min_date = date.getFullYear()+'-'+this.zero(date.getMonth()+1)+'-'+this.zero(date.getDate())
           let min_date2 = new Date(tomo.getTime()).getFullYear()+'-'+this.zero(new Date(tomo.getTime()).getMonth()+1)+'-'+this.zero(new Date(tomo.getTime()).getDate())
@@ -399,8 +419,9 @@
             })
           }
         },
-        handleBlur(event){
-          event.path[0].blur()
+        handleBlur(e){
+          var e = e || event
+          e.path[0].blur()
         },
         handleErea(){
           this._showBox()
@@ -414,16 +435,17 @@
           this._showBox()
           this.$refs._style.style.display = 'block'
         },
-        handleCancel(event){
-          event.cancelBubble = true
+        handleCancel(e){
+          var e = e || event
+          e.cancelBubble = true
         },
         handleChange(time){
           this.value2 = new Date(time.getTime()+1000*60*60*24)
           _date = time
         },
-        _showBox(event){
+        _showBox(){
           document.querySelectorAll('body')[0].style.overflow = 'hidden'
-          this.$refs._box.style.height = window.outerHeight + 'px'
+          this.$refs._box.style.height = window.innerHeight + 'px'
         },
         _boxClick(){
           this.$refs._box.style.height = '0px'
@@ -519,8 +541,8 @@
           return data
         }
       }
-  }  
-</script>  
+  }
+</script>
 
 <style scoped lang='scss'>
 	@import '../../common/css/common';
@@ -547,7 +569,7 @@
         text-align: center;
         display: none;
         .btn{
-          padding: rem(10px) 8%;  
+          padding: rem(10px) 8%;
         }
         &.erea{
           ._erea{
@@ -606,7 +628,7 @@
                 }
               }
             }
-            
+
           }
         }
       }
@@ -765,6 +787,6 @@
       }
     }
 	}
-	
-	
+
+
 </style>
