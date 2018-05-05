@@ -13,39 +13,6 @@
 				</span>
 			</div>
 		</div>
-		<!-- <div class="item">
-			<div class="img"><img src="../../../../static/img/payMethods/weChat.jpg" alt=""></div>
-			<div class="text">
-				<p>微信支付</p>
-				<span class="right">
-					<el-radio-group v-model="radio2">
-					    <el-radio :label="1">&nbsp;</el-radio>
-					  </el-radio-group>
-				</span>
-			</div>
-		</div>
-		<div class="item">
-			<div class="img"><img src="../../../../static/img/payMethods/friend.png" alt=""></div>
-			<div class="text">
-				<p>朋友代付</p>
-				<span class="right">
-					<el-radio-group v-model="radio2">
-					    <el-radio :label="2" checked>&nbsp;</el-radio>
-					  </el-radio-group>
-				</span>
-			</div>
-		</div>
-		<div class="item">
-			<div class="img"><img src="../../../../static/img/payMethods/pag.jpg" alt=""></div>
-			<div class="text">
-				<p>余额支付</p>
-				<span class="right">
-					<el-radio-group v-model="radio2">
-					    <el-radio :label="3">&nbsp;</el-radio>
-					  </el-radio-group>
-				</span>
-			</div>
-		</div> -->
 		<div class="bottom_box">
 		    <p class="button">确认支付</p>
 		</div>
