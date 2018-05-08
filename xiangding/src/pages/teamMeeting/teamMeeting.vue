@@ -1,56 +1,6 @@
 <template>
 	<div class="box">
 		<div class="_box" ref="_box" @click="onHandleBox">
-			<div class="eara none" @click="onHandleCancel" ref="eara">
-				<div class="select">
-					<span>位置：</span><el-cascader
-					    :options="options"
-					    v-model="selectedOptions"
-					    @change="handleChange">
-				 	</el-cascader>
-				</div>
-				<div class="btn">
-					<button class="green_btn" @click="onMeettingSure">确定</button>
-				</div>
-			</div>
-			<div class="day none" @click="onHandleCancel" ref="_day">
-				<div class="_day">
-					<p>
-						<span class="enter">入住日期：</span>
-						<!-- <el-date-picker
-					      v-model="date_value"
-					      type="date"
-					      placeholder="入住日期" 
-					      :picker-options="pickerOptions1" 
-					      @change="datePicker1" 
-					      @focus="_blur">
-					    </el-date-picker> -->
-					    <span class="date_">
-			              <input id="date1" onfocus="this.blur()" type="text" readonly="" @focus="handleBlur" placeholder="日期选择特效" data-lcalendar="2016-05-11,2016-05-11" v-model="date1_value"/>
-			            </span>
-			            <span><i class="fas fa-angle-right"></i></span>
-					</p>
-					<p>
-						<span class="enter">退房日期：</span>
-						<!-- <el-date-picker
-					      v-model="date_value2"
-					      type="date"
-					      placeholder="退房日期" 
-					      :picker-options="pickerOptions2" 
-					      @change="datePicker2" 
-					      @focus="_blur">
-					    </el-date-picker> -->
-					    <span class="date_">
-			              <input id="date2" type="text" readonly="" placeholder="日期选择特效" onfocus="this.blur()" data-lcalendar="2016-05-11,2016-05-11" v-model="date2_value"/>
-			            </span>
-			            <span><i class="fas fa-angle-right"></i></span>
-					</p>
-					
-				</div>
-				<div class="btn">
-					<button class="green_btn" @click="onMeettingSure">确定</button>
-				</div>
-			</div>
 			<div class="date none" @click="onHandleCancel" ref="_date">
 				<el-input-number @focus="handleBlur" v-model="meettingNum" :min="1" :max="500"></el-input-number>
 				<div class="btn">
@@ -82,8 +32,7 @@
 		<div class="tab">
 			<div class="tab_header">
 				<div class="header" ref="tab">
-
-					<div v-for='(i,index) in arrItem' :key=index @click='onHandleClick(index,$event)'>{{i.name}}</div>
+					<div v-for='(i,index) in arrItem' :key="index" @click='onHandleClick(index,$event)'>{{i.name}}</div>
 				</div>
 				<div class="line" ref="line"></div>
 			</div>
@@ -91,26 +40,13 @@
 				<div class="tip" v-if="close">
 					<p><span class="border">下单优惠</span><span class="text">现在下单即享红包返现</span><span class="close" @click="onHandleClose"><i class="fas fa-times"></i></span></p>
 				</div>
-				<div v-for="(i,index) in arrItem" v-if="index == index_" class="body">
+				<div class="body">
 					<ul>
 						<li>
-							<!-- <span class="border_bottom" @click="onHandleErea"> -->
 							<span class="border_bottom">
-								<!-- <span class="erea"> -->
 								<span class="erea" ref="show_erea2">
-									<!-- {{selectedOptions[1]}} -->
-									<!-- <div class="select">
-										<el-cascader
-										    :options="options"
-										    v-model="selectedOptions"
-										    @change="handleChange">
-									 	</el-cascader>
-									</div> -->
-									<input type="text" @focus="handleBlur" :id="i.id" v-model="area_value" onfocus="this.blur()">
-									<!-- <p>{{text_erea}}</p> -->
-									<input type="hidden" :id="i.h_id">
+									<input type="text" id="myErea" v-model="text_erea" onfocus="this.blur()">
 								</span>
-								<span v-if="!show_erea" class="text_erea" @click="handleChange_erea">{{text_erea}}</span>
 								<span class="icon"><i class="fas fa-angle-right"></i></span>
 							</span>
 							
@@ -119,61 +55,23 @@
 								<span>我的位置</span>
 							</span>
 						</li>
-						<li class="border_bottom" @click="onHandleDay">
+						<li class="border_bottom" id="myDatePlugin">
 							<span class="date">{{day1}}</span>
 							<span class="day">{{computedDate1}}</span>
 							<span class="line">--</span>
 							<span class="date">{{day2}}</span>
 							<span class="day">{{computedDate2}}</span>
 							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
-							<!-- <div class="date_value">
-								<el-date-picker
-							      v-model="date_value"
-							      type="date"
-							      placeholder="入住日期" 
-							      :picker-options="pickerOptions1">
-							    </el-date-picker>
-							</div>
-							<div class="date_value input">
-								<p class="num">
-									<el-input type="number" v-model="input" placeholder="入住天数（数字）"></el-input>
-								</p>
-							</div> -->
 							
 						</li>   
-						<!-- <li class="border_bottom" @click="onHandleMeetting">
-							<span class="text">{{i.name}}间数 : {{meettingNum}}</span>
+						<li v-show="name!=='会议室'" class="border_bottom" @click="onHandleMeetting">
+							<span class="text">{{name}}间数 : {{meettingNum}}</span>
 							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
-							
-						</li> -->
+						</li>
 						<li class="border_bottom" @click="onHandleStyle">
 							<span class="text">价格：{{pay[0]}} - {{pay[1]}} 元 / 星级： {{star}} 星</span>
 							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
-							<!-- <div class="pay">
-								<span>价格：{{pay[0]}} - {{pay[1]}}</span>
-							</div>
-							<div>
-								<el-slider
-							      v-model="pay"
-							      range
-							      show-stops
-							      :max="3000">
-							    </el-slider>
-							</div> -->
 						</li>
-						<!-- <li>
-							<div class="star">
-								<p class="title">星级：</p>
-								<p class="startCheck">
-									<span><el-radio v-model="starType" label="no">不限</el-radio></span>
-									<span><el-radio v-model="starType" label="1">一星级</el-radio></span>
-									<span><el-radio v-model="starType" label="2">二星级</el-radio></span>
-									<span><el-radio v-model="starType" label="3">三星级</el-radio></span>
-									<span><el-radio v-model="starType" label="4">四星级</el-radio></span>
-									<span><el-radio v-model="starType" label="5">五星级</el-radio></span>
-								</p>
-							</div>
-						</li> -->
 					</ul>
 					<p class="btn"><router-link :to="{path: '/hotel/hotelSearch',query: {name: arrItem[index_].name}}" tag="button">开始搜索</router-link></p>
 					<div class="bottom">
@@ -210,40 +108,33 @@
 			let that = this
 			this.$refs.line.style.marginLeft = this.$refs.tab.firstChild.offsetLeft + 'px'
 			this.$refs._box.style.width = window.innerWidth + 'px'
-	        new LArea().init({
-	            'trigger': '#choose_one',
-	            'valueTo': '#hidden_one',
-	            'keys': {
-	                id: 'id',
-	                name: 'name'
+	        var mobileSelect5 = new MobileSelect({
+	            trigger: '#myErea',
+	            title: '请选择地区',
+	            wheels: [
+	                        {data : ereaPlugin_data}
+	                    ],
+	            keyMap: {
+	                id:'code',
+	                value: 'name',
+	                childs :'children'
 	            },
-	            'type': 1,
-	            'data': LAreaData,
+	          triggerDisplayData: false,
+	          position: [18,0],
+	          callback:function(indexArr, data){
+	            that.text_erea = data[1].name+data[2].name+data[3].name
+	          }
 	        })
-	        let date = new Date()
-	        let min_date = date.getFullYear()+'-'+this.zero(date.getMonth()+1)+'-'+this.zero(date.getDate())
-	        let min_date2 = new Date(tomo.getTime()).getFullYear()+'-'+this.zero(new Date(tomo.getTime()).getMonth()+1)+'-'+this.zero(new Date(tomo.getTime()).getDate())
-	        this.date1_value = min_date
-	        this.date2_value = min_date2
-	          // console.log(min_date)
-	        new LCalendar().init({
-	            'trigger': '#date1', //标签id
-	            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-	            'minDate': min_date, //最小日期
-	            'maxDate': (new Date().getFullYear()+2) + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate() //最大日期
-	        })
-	        new LCalendar().init({
-	            'trigger': '#date2', //标签id
-	            'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-	            'minDate': min_date2, //最小日期
-	            'maxDate': (new Date().getFullYear()+2) + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate() //最大日期
+	        new lzcDatePlugin({
+           		 el: '#myDatePlugin',
+	            callback: function(res){
+	              that.date_value[0].datetime = res[0].dateTime;
+	              that.date_value[1].datetime = res[1].dateTime;
+	            }
 	        })
 		},
 		data(){
 			return {
-				_lng: '',
-				_lat: '',
-				area_value: "广东省,深圳市,南山区",
 				arrItem: [
 					{
 						name:'会议室',
@@ -264,30 +155,6 @@
 				index_: 0,
 				close: true,
 				control: true,
-				options: [
-					{
-			          value: '广东省',
-			          label: '广东省',
-			          children: [
-				          {
-				            value: '广州市',
-				            label: '广州市'
-				          },
-				          {
-				            value: '深圳市',
-				            label: '深圳市'
-				          },
-				          {
-				            value: '佛山市',
-				            label: '佛山市'
-				          },
-				          {
-				            value: '肇庆市',
-				            label: '肇庆市'
-				          },
-			          ]
-			         }
-				],
 				pickerOptions1: {
 		            disabledDate(time) {
 		              return time.getTime() <= (Date.now()-1000*60*60*24);
@@ -308,9 +175,16 @@
 				input: '',
 				meetting_total: '',
 				pay: [80,800],
-				starType: 'no',
-				show_erea: false,
-				text_erea: ''
+				text_erea: '广州市荔湾区沙面街道',
+				date_value: [
+		            {
+		              datetime: new Date().getTime()
+		            },
+		            {
+		              datetime: new Date(new Date().getTime()+1000*60*60*24).getTime()
+		            }
+		          ],
+		        name: '会议室',
 			}
 		},
 		methods: {
@@ -366,26 +240,7 @@
 			},
 			onHandleClick(i,e){
 				var e = e || event
-				let that = this
-				setTimeout(()=>{
-					new LArea().init({
-			            'trigger': '#'+that.arrItem[i].id,
-			            'valueTo': '#'+that.arrItem[i].h_id,
-			            'keys': {
-			                id: 'id',
-			                name: 'name'
-			            },
-			            'type': 1,
-			            'data': LAreaData
-			        })
-			        if(that.text_erea){
-			        	if(that.show_erea){
-				        	that.$refs.show_erea2[0].style.display = 'block'
-				        }else{
-				        	that.$refs.show_erea2[0].style.display = 'none'
-				        }
-			        }
-				},50)
+				this.name = this.arrItem[i].name
 				if(e.path){
 					e.path[2].lastElementChild.style.marginLeft = e.path[0].offsetLeft + 'px'
 					e.path[2].lastElementChild.style.width = common.getStyle(e.path[0],'width')
@@ -394,9 +249,6 @@
 					e.target.parentNode.parentNode.lastElementChild.style.width = common.getStyle(e.target,'width')
 				}
 				this.index_ = i
-				
-				
-				
 			},
 			onHandleClose(){
 				this.close = false
@@ -410,8 +262,6 @@
 		    },
 		    onHandleBox(){
 		    	this._boxHide()
-		    	this.hide(this.$refs.eara)
-		    	this.hide(this.$refs._day)
 		    	this.hide(this.$refs._date)
 		    	this.hide(this.$refs._style)
 		    },
@@ -459,18 +309,6 @@
 		        let tody = new Date(str)
 				return new Date(tody.getTime()+time)
 		    },
-		    _time(value){
-		    	if(this._getTime(1000*60*60*24).getTime() > value.getTime()){
-					return '今天'
-				}
-				if(this._getTime(2*1000*60*60*24).getTime() > value.getTime() && value.getTime() >=this._getTime(1000*60*60*24).getTime()){
-					return '明天'
-				}	
-				if(this._getTime(3*1000*60*60*24).getTime() > value.getTime() && value.getTime() >=this._getTime(2*1000*60*60*24).getTime()){
-					return '后天'
-				}
-				return _day[value.getDay()]
-		    },
 		    time_(value){
 		    	let dd = new Date()
 		        let date = new Date(value).getTime()
@@ -499,31 +337,16 @@
 		},
 		computed: {
 			day1(){
-				// return (this.date_value.getMonth()+1) + '.' + this.date_value.getDate()
-				let date = new Date(this.date1_value).getTime()
-          		let date2 = date+1000*60*60*24
-          		this.date2_value = new Date(date2).getFullYear()+'-'+this.zero(new Date(date2).getMonth()+1)+'-'+this.zero(new Date(date2).getDate())
-				return this.zero(new Date(this.date1_value).getDate())
+				return this.zero((new Date(this.date_value[0].datetime).getMonth()+1)) + '.' + this.zero(new Date(this.date_value[0].datetime).getDate())
 			},
 			day2(){
-
-				// return (this.date_value2.getMonth()+1) + '.' + this.date_value2.getDate()
-				if(new Date(this.date1_value).getTime()>new Date(this.date2_value).getTime()){
-					let date = new Date(this.date1_value).getTime()
-          			let date2 = date+1000*60*60*24
-          			this.date2_value = new Date(date2).getFullYear()+'-'+this.zero(new Date(date2).getMonth()+1)+'-'+this.zero(new Date(date2).getDate())
-				}
-				return this.zero((new Date(this.date2_value).getMonth()+1)) + '.' + this.zero(new Date(this.date2_value).getDate())
+				return this.zero((new Date(this.date_value[1].datetime).getMonth()+1)) + '.' + this.zero(new Date(this.date_value[1].datetime).getDate())
 			},
 			computedDate1(){
-				// let value = this.date_value
-				// return this._time(value)
-				return this.time_(this.date1_value)
+				return this.time_(this.date_value[0].datetime)
 			},
 			computedDate2(){
-				// let value = this.date_value2
-				// return this._time(value)
-				return this.time_(this.date2_value)
+				return this.time_(this.date_value[1].datetime)
 			}
 		}
 	}

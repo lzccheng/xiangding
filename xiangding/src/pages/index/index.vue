@@ -2,36 +2,6 @@
   <div class="box">
       <div id="aMap"></div>
       <div class="_box" ref="_box" @click="_boxClick">
-        <div class="erea" ref="_erea" @click="handleCancel">
-          <div class="_erea">
-            <el-cascader
-                  :options="options"
-                  v-model="selectedOptions">
-              </el-cascader>
-          </div>
-          <div class="btn">
-            <button @click="_boxClick" class="green_btn">确定</button>
-          </div>
-        </div>
-        <div class="date" ref="_date" @click="handleCancel">
-          <p>
-            <span>入住日期：</span>
-            <span>
-              <input id="date1" type="text" onfocus="this.blur()" readonly="" @focus="handleBlur" placeholder="日期选择特效" data-lcalendar="2016-05-11,2016-05-11" v-model="date1_value"/>
-            </span>
-            <span><i class="fas fa-angle-right"></i></span>
-          </p>
-          <p>
-            <span>退房日期：</span>
-            <span>
-              <input id="date2" type="text" onfocus="this.blur()" readonly="" placeholder="日期选择特效" data-lcalendar="2016-05-11,2016-05-11" v-model="date2_value"/>
-            </span>
-            <span><i class="fas fa-angle-right"></i></span>
-          </p>
-          <div class="btn">
-            <button @click="_boxClick" class="green_btn">确定</button>
-          </div>
-        </div>
         <div class="style" ref="_style" @click="handleCancel">
           <div>
             <p class="title">
@@ -79,11 +49,9 @@
   				<li>
   					<div class="map">
   						<span class="_right"><i class="fas fa-map-marker-alt"></i></span>
-              <!-- <span ref="show_erea"><input onfocus="this.blur()" id="area" type="text" readonly="" placeholder="城市选择特效"  value="广东省,深圳市,南山区" v-model="area_value"/></span> -->
               <label for="">
                 <span class="location" id="cccc">{{text_erea}}</span>
               </label>
-              <!-- <input id="value1" type="hidden" value="20,234,504"/>  -->
   					</div>
   					<span class="right"><i class="fas fa-angle-right"></i></span>
   					<p class="local">
@@ -95,7 +63,7 @@
 
   					</p>
   				</li>
-  				<li @click="handleDate">
+  				<li id="myDate">
             <div class="date">
               <div class="time">
                 <p><span class="text">入住</span><br/></p>
@@ -197,6 +165,7 @@
         star
       },
       mounted:function(){
+        let that = this
         var mobileSelect5 = new MobileSelect({
             trigger: '#cccc',
             title: '请选择地区',
@@ -213,41 +182,41 @@
           callback:function(indexArr, data){
             that.text_erea = data[1].name+data[2].name+data[3].name
           }
-        });
-        let that = this
-        // const loading = that.$loading({
-        //     lock: true,
-        //     text: '定位中..........',
-        //     background: 'rgba(0, 0, 0, 0.7)',
-        //     // target: '.msg'
-        //   })
-        //   that.show_erea = true
-        //   // that.$refs.show_erea.style.display = 'inline-block'
-        //   common.getLocation(onComplete,onError)
-        //   function onComplete(data) {
-        //     loading.close()
-        //     let addr = data.formattedAddress.split('街道')
-        //     if(!addr[1]){
-        //       addr = data.formattedAddress.split('号')
-        //     }
-        //     that.text_erea = addr[1]+'附近'
-        //     that.show_erea = false
-        //     that.$refs.show_erea.style.display = 'none'
-        //     that.$message({
-        //       message: '定位成功！'+that.text_erea,
-        //       type: 'success'
-        //     })
-        //   }
-        //   /*
-        //    *解析定位错误信息
-        //    */
-        //   function onError(data) {
-        //     loading.close()
-        //     that.$message({
-        //       message: '定位失败！'+data.message,
-        //       type: 'warning'
-        //     })
-        //   }
+        })
+        
+        const loading = that.$loading({
+            lock: true,
+            text: '定位中..........',
+            background: 'rgba(0, 0, 0, 0.7)',
+            // target: '.msg'
+          })
+          that.show_erea = true
+          // that.$refs.show_erea.style.display = 'inline-block'
+          common.getLocation(onComplete,onError)
+          function onComplete(data) {
+            loading.close()
+            let addr = data.formattedAddress.split('街道')
+            if(!addr[1]){
+              addr = data.formattedAddress.split('号')
+            }
+            that.text_erea = addr[1]+'附近'
+            that.show_erea = false
+            that.$refs.show_erea.style.display = 'none'
+            that.$message({
+              message: '定位成功！'+that.text_erea,
+              type: 'success'
+            })
+          }
+          /*
+           *解析定位错误信息
+           */
+          function onError(data) {
+            loading.close()
+            that.$message({
+              message: '定位失败！'+data.message,
+              type: 'warning'
+            })
+          }
 
         let nowDate = new Date()
         this.$axios({url:'/bannerData',data:{id:123}}).then((res)=>{
@@ -272,51 +241,12 @@
           }).catch((err)=>{
             console.log(err)
           })
-
-          // let area = new LArea()
-          // new LArea().init({
-          //   'trigger': '#area',
-          //   'valueTo': '#value',
-          //   'keys': {
-          //       id: 'id',
-          //       name: 'name'
-          //   },
-          //   'type': 1,
-          //   'data': LAreaData
-          // });
-          // var erea = ereaPlugin({
-          //   showEl: '#bbb',
-          //   clickEl: '#aaa',
-          //   data: ereaPlugin_data,
-          //   callBack: function(res){
-          //     console.log(res)
-          //   }
-          // })
-          // var erea = ereaPlugin({
-          //   showEl: '#bbb',
-          //   clickEl: '#aaa',
-          //   data: ereaPlugin_data,
-          //   callBack: function(res){
-          //     that.erea_value = res.erea_value
-          //     that.text_erea = that.erea_value[2]+that.erea_value[3]
-          //   }
-          // }).init()
-          let date = new Date()
-          let min_date = date.getFullYear()+'-'+this.zero(date.getMonth()+1)+'-'+this.zero(date.getDate())
-          let min_date2 = new Date(tomo.getTime()).getFullYear()+'-'+this.zero(new Date(tomo.getTime()).getMonth()+1)+'-'+this.zero(new Date(tomo.getTime()).getDate())
-          this.date1_value = min_date
-          this.date2_value = min_date2
-          new LCalendar().init({
-              'trigger': '#date1', //标签id
-              'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-              'minDate': min_date, //最小日期
-              'maxDate': (new Date().getFullYear()+2) + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate() //最大日期
-          })
-          new LCalendar().init({
-              'trigger': '#date2', //标签id
-              'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-              'minDate': min_date2, //最小日期
-              'maxDate': (new Date().getFullYear()+2) + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate() //最大日期
+          new lzcDatePlugin({
+            el: '#myDate',
+            callback: function(res){
+              that.date_value[0].datetime = res[0].dateTime;
+              that.date_value[1].datetime = res[1].dateTime;
+            }
           })
       },
       data(){
@@ -334,31 +264,6 @@
               return time.getTime() <= _date.getTime();
             }
           },
-          options: [
-            {
-              value: '广东省',
-              label: '广东省',
-              children: [
-                {
-                  value: '广州市',
-                  label: '广州市'
-                },
-                {
-                  value: '深圳市',
-                  label: '深圳市'
-                },
-                {
-                  value: '佛山市',
-                  label: '佛山市'
-                },
-                {
-                  value: '肇庆市',
-                  label: '肇庆市'
-                },
-              ]
-             }
-          ],
-          selectedOptions: ['广东省','广州市'],
           value1: new Date(),
           value2: tomo,
           date1_value: '',
@@ -369,8 +274,16 @@
           _lng: '',
           _lat: '',
           show_erea: true,
-          text_erea: '请选择',
-          erea_value: []
+          text_erea: '广州市荔湾区沙面街道',
+          erea_value: [],
+          date_value: [
+            {
+              datetime: new Date().getTime()
+            },
+            {
+              datetime: new Date(new Date().getTime()+1000*60*60*24).getTime()
+            }
+          ]
         }
       },
       methods: {
@@ -494,39 +407,30 @@
       },
       computed: {
         day1(){
-          // return this.zero(this.value1.getDate())
-          let date = new Date(this.date1_value).getTime()
-          let date2 = date+1000*60*60*24
-          this.date2_value = new Date(date2).getFullYear()+'-'+this.zero(new Date(date2).getMonth()+1)+'-'+this.zero(new Date(date2).getDate())
-        return this.zero(new Date(this.date1_value).getDate())
+          return this.zero(new Date(this.date_value[0].datetime).getDate())
         },
         day2(){
-            if(new Date(this.date1_value).getTime()>new Date(this.date2_value).getTime()){
-              let date = new Date(this.date1_value).getTime()
-              let date2 = date+1000*60*60*24
-              this.date2_value = new Date(date2).getFullYear()+'-'+this.zero(new Date(date2).getMonth()+1)+'-'+this.zero(new Date(date2).getDate())
-            }
-            return this.zero(new Date(this.date2_value).getDate())
+            return this.zero(new Date(this.date_value[1].datetime).getDate())
         },
         month1(){
           // return this.zero(this.value1.getMonth()+1)
-          return this.zero(new Date(this.date1_value).getMonth()+1)
+          return this.zero(new Date(this.date_value[0].datetime).getMonth()+1)
         },
         month2(){
           // return this.zero(this.value2.getMonth()+1)
-          return this.zero(new Date(this.date2_value).getMonth()+1)
+          return this.zero(new Date(this.date_value[1].datetime).getMonth()+1)
         },
         date1(){
           // return this._getDay(this.value1)
-          return this.getDay_(this.date1_value)
+          return this.getDay_(this.date_value[0].datetime)
         },
         date2(){
           // return this._getDay(this.value2)
-          return this.getDay_(this.date2_value)
+          return this.getDay_(this.date_value[1].datetime)
         },
         night(){
           // return Math.round((this.value2.getTime()-this.value1.getTime())/(1000*60*60*24))
-          return Math.round((new Date(this.date2_value).getTime()-new Date(this.date1_value).getTime())/(1000*60*60*24))
+          return Math.round((this.date_value[1].datetime-this.date_value[0].datetime)/(1000*60*60*24))
         },
         data(){
           let data = {
