@@ -23,13 +23,20 @@
 					<span class="id">id</span>
 					<span class="line">|</span>
 					<span class="text"><input type="text" placeholder="账号"></span>
-					<span class="icon"><i class="far fa-times-circle"></i></span>
+					<span class="icon_1"><i class="far fa-times-circle"></i></span>
 				</div> 
 				<div class="agentEnter">
 					<span class="id"><i class="fas fa-lock"></i></span>
 					<span class="line">|</span>
-					<span class="text"><input type="text" placeholder="密码"></span>
-					<span class="icon"><i class="fas fa-eye"></i></span>
+					<span class="text"><input type="password" class="pass" @blur="handleCheckPassword" placeholder="密码"></span>
+					<span class="icon" @click="handlePassword">
+						<span ref="eye_one">
+							<i class="fas fa-eye"></i>
+						</span>
+						<span ref="eye_two">
+							<i  class="fas fa-eye-slash"></i>
+						</span>
+					</span>
 				</div>
 				<router-link tag="p" to="/enter/forgotPassword" class="forget">忘记密码</router-link>
 				<router-link tag="div" to="/enter/hotelManage" class="login agentEnter"><span>登录</span> </router-link>
@@ -54,10 +61,11 @@
 	export default{
 		mounted(){
 			window.onresize = function(){
-				console.log(document.querySelector('.background'))
 				document.querySelector('.background').style.backgroundSize = "100% "+window.innerHeight+"px"
 				// alert(document.querySelector('.background').style.height)
 			}
+			this.$refs.eye_two.style.display = 'none'
+			this.$refs.eye_one.style.display = 'inline-block'
 		},
 		data(){
 			return {
@@ -73,6 +81,36 @@
 			},
 			cancelBubble(event){
 				event.cancelBubble = true
+			},
+			handleCheckPassword(){
+				let value = document.querySelector('.pass').value
+				if(value){
+					if(!this.Fn.checkPassword(value)){
+						this.$message({
+				          message: '请输入正确的密码',
+				          type: 'warning'
+				        });
+					}
+				}else{
+					this.$message({
+			          message: '密码不能为空',
+			          type: 'warning'
+			        });
+				}
+			},
+			handlePassword(e){
+				let dom = document.querySelector('.pass')
+				if(dom.getAttribute('type') === 'password'){
+					dom.setAttribute('type','text')
+					this.$refs.eye_two.style.display = 'none'
+					this.$refs.eye_one.style.display = 'inline-block'
+				}else{
+					dom.setAttribute('type','password')
+					this.$refs.eye_two.style.display = 'inline-block'
+					this.$refs.eye_one.style.display = 'none'
+				}
+
+				
 			},
 		}
 	}
@@ -176,7 +214,7 @@
 					position: absolute;
 					top: rem(80px);
 					left: 5%;
-					height: 20%;
+					height: 15%;
 					border-radius: rem(8px);
 					.title{
 						font-size: rem(17px);
@@ -188,7 +226,7 @@
 						p{
 							background-color: #43c122;
 							color: #fff;
-							padding: rem(5px) 0;
+							padding: rem(10px) 0;
 							border-radius: rem(5px);
 						}
 					}
@@ -209,6 +247,9 @@
 			line-height: rem(42px);
 			background: rgba(250, 250, 250,0.4);
 			position: relative;
+			.icon_1{
+				font-size: rem(16px);
+			}
 			.text_box{
 				height: rem(30px);
 				position: absolute;
@@ -224,6 +265,10 @@
 			background: rgba(250, 250, 250,0.5);
 			margin-bottom: rem(20px);
 			margin-top: rem(15px);
+			.icon{
+				font-size: rem(17px);
+			}
+			
 		}
 
 		.id{

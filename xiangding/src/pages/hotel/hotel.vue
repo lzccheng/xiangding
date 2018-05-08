@@ -20,7 +20,13 @@
 			</div>
 			<div class="select">
 				<ul>
-					
+					<li>
+						<div class="tabss" @click="handlePrice">
+							<span :class="{'color': 1 == show}">位置</span>
+							<span v-if="1 != show"><i class="fas fa-angle-down"></i></span>
+						</div>
+						
+					</li>
 					<li>
 						<div class="tabss" @click="handleLocal">
 							<span :class="{'color': 2== show}">筛选</span>
@@ -42,13 +48,7 @@
 							</div>
 						</div> -->
 				    </li>
-					<li>
-						<div class="tabss" @click="handlePrice">
-							<span :class="{'color': 1 == show}">位置</span>
-							<span v-if="1 != show"><i class="fas fa-angle-down"></i></span>
-						</div>
-						
-					</li>
+					
 				</ul>
 			</div>
 		</div>
@@ -97,7 +97,7 @@
 						</div>
 						<div class="choice_text">
 							<div v-for="(i,index_) in arrItem" class="item" v-if="index_ == item_show">
-								<p v-for="(item,index) in i.child" :key="index" :class="{color: item.active}" @click="handleColor(index)">{{item.name}}</p>
+								<p v-for="(item,index) in i.child" :key="index" :class="{color: item.active}" @click="handleColor(index)" v-html="item.name"></p>
 							</div>
 						</div>
 						
@@ -268,7 +268,10 @@
 								name: '套间',
 								active: false
 							},
-							
+							{
+								name: '&nbsp;',
+								active: false
+							},
 						]
 					},
 					

@@ -149,7 +149,7 @@
 					p{
 						background-color: #43c122;
 						color: #fff;
-						padding: rem(5px) 0;
+						padding: rem(10px) 0;
 						border-radius: rem(5px);
 					}
 				}

@@ -26,6 +26,10 @@
 						</div>
 					</div>
 					<div class="_tabs">
+						<div @click="handleLocal" class="tab_">
+							<span :class="{'color': 2 == show}">位置距离</span>
+							<span v-if="2 != show"><i class="fas fa-angle-down"></i></span>
+						</div>
 						<div @click="handleGeneral" class="tab_">
 							<span :class="{'color': 0 == show}">综合筛选</span>
 							<span v-if="0 != show"><i class="fas fa-angle-down"></i></span>
@@ -36,10 +40,7 @@
 							<span :class="{'color': 1 == show}">星级价格</span>
 							<span v-if="1 != show"><i class="fas fa-angle-down"></i></span>
 						</div>
-						<div @click="handleLocal" class="tab_">
-							<span :class="{'color': 2 == show}">位置距离</span>
-							<span v-if="2 != show"><i class="fas fa-angle-down"></i></span>
-						</div>
+						
 					</div>
 				</div>
 				<div v-if="general" @click="handleBack" class="back">
@@ -407,18 +408,14 @@
 				if(this.tabsItem[i].active){
 					this.handleBack()
 				}else{
-					this.tabsItem[i].active = true
-
 					if(!this.general){
 						this.general = !this.general
 					}
 					this.show = i
 					for(let j = 0;j<this.tabsItem.length;j++){
-						if(this.tabsItem[j].active){
-							continue
-						}
 						this.tabsItem[j].active = false
 					}
+					this.tabsItem[i].active = true
 				}
 				document.querySelectorAll('body')[0].style.overflow = 'hidden'
 			},
@@ -635,12 +632,11 @@
 								}
 							}
 							&.date{
-								width: 20%;
+								width: 16%;
 								position: relative;
 								.posi{
 									position: absolute;
 									left: 0;
-									padding-left: rem(10px);
 
 									.color{
 										color: #43c122;

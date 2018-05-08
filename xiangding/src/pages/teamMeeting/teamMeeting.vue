@@ -141,11 +141,11 @@
 							</div> -->
 							
 						</li>   
-						<!-- <li class="border_bottom" @click="onHandleMeetting">
+						<li v-show="i.name !== '会议室'" class="border_bottom" @click="onHandleMeetting">
 							<span class="text">{{i.name}}间数 : {{meettingNum}}</span>
 							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
 							
-						</li> -->
+						</li>
 						<li class="border_bottom" @click="onHandleStyle">
 							<span class="text">价格：{{pay[0]}} - {{pay[1]}} 元 / 星级： {{star}} 星</span>
 							<span class="icon_"><i class="fas fa-chevron-right"></i></span>

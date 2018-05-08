@@ -5,7 +5,7 @@
 			<div class="form">
 				<p class="input">
 					<label>手机号:</label>
-					<input @blur="handleCheck" type="text" placeholder="请输入手机号" name="">
+					<input @blur="handleCheck" class="handleCheck" type="text" placeholder="请输入手机号" name="">
 				</p>
 				<p class="input line">
 					<label>验证码:</label>
@@ -65,11 +65,9 @@
 		},
 		methods: {
 			handleCheck(event){
-				let value = event.path[0].value
-				// event.path[0].value
-				// (/^1[3|4|5|8][0-9]\d{4,8}$/.test(sMobile))
+				let value = document.querySelector('.handleCheck').value
 				if(value){
-					if(!common.checkPhone(value)){
+					if(!this.Fn.checkPhone(value)){
 						this.$message({
 				          message: '请输入正确的手机号',
 				          type: 'warning'
