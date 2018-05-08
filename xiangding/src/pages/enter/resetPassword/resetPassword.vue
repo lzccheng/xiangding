@@ -6,8 +6,15 @@
 			  <span><input type="text" placeholder="请输入旧密码"></span>
 			</div>
 			<div class="box_p">
-			  <span><input type="text" placeholder="请输入新密码"></span>
-			  <span class="i"><i class="fas fa-eye"></i></span>
+			  <span><input type="password" class="pass" @blur="handleCheckPassword" placeholder="请输入新密码"></span>
+			  <span class="i" @click="handlePassword">
+			    <span ref="eye_one">
+					<i class="fas fa-eye"></i>
+				</span>
+				<span ref="eye_two">
+					<i  class="fas fa-eye-slash"></i>
+				</span>
+			  </span>
 			</div>
 			<div class="post">
 			    <router-link tag="p" to="/enter/login" class="button">提交</router-link>
@@ -21,13 +28,46 @@
 </template>
 <script>
 	export default {
+		mounted(){
+			this.$refs.eye_two.style.display = 'none'
+			this.$refs.eye_one.style.display = 'inline-block'
+		},
 		data(){
 			return {
 
 			}
 		},
 		methods: {
+			handleCheckPassword(){
+				let value = document.querySelector('.pass').value
+				if(value){
+					if(!this.Fn.checkPassword(value)){
+						this.$message({
+				          message: '请输入正确的密码',
+				          type: 'warning'
+				        });
+					}
+				}else{
+					this.$message({
+			          message: '新密码不能为空',
+			          type: 'warning'
+			        });
+				}
+			},
+			handlePassword(e){
+				let dom = document.querySelector('.pass')
+				if(dom.getAttribute('type') === 'password'){
+					dom.setAttribute('type','text')
+					this.$refs.eye_two.style.display = 'none'
+					this.$refs.eye_one.style.display = 'inline-block'
+				}else{
+					dom.setAttribute('type','password')
+					this.$refs.eye_two.style.display = 'inline-block'
+					this.$refs.eye_one.style.display = 'none'
+				}
 
+				
+			},
 		}
 	}
 </script>

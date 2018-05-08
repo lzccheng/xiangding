@@ -12,7 +12,12 @@
 			</p>
 			<div class="photo_box">
 				<div><span>套餐照片</span></div>
-				<div><span><i class="fas fa-plus"></i></span></div>
+				<div>
+					<span>
+					    <label for="file"><i class="fas fa-plus"></i></label>
+					    <input type="file" id="file" style="display: none">
+					</span>
+				</div>
 			</div>
 			<div class="botton">
 				<p v-if="title === '添加套餐'">添加</p>
@@ -92,7 +97,6 @@
 			}
 			.botton{
 				padding: rem(20px) 5%;
-				
 				text-align: center;
 				p{
 					background-color: #43c122;

@@ -10,6 +10,24 @@
 </template>
 <script>
 	export default {
+		mounted(){
+			var routeName = this.$route.name
+			if(routeName === 'index'){
+				this.indexData = 0
+			}
+			if(routeName === 'hotel'){
+				this.indexData = 1
+			}
+			if(routeName === 'teamMeeting'){
+				this.indexData = 2
+			}
+			if(routeName === 'enter'){
+				this.indexData = 3
+			}
+			if(routeName === 'my'){
+				this.indexData = 4
+			}
+		},
 		data(){
 			return {
 				navItem:[

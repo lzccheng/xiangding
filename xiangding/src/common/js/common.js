@@ -45,6 +45,27 @@ let getLocation = (onComplete=function(){},onError=function(){})=>{
 	    geolocation.getCurrentPosition();
 	  });
 }
+let addClass = (dom,className)=>{
+	if(dom.getAttribute('class')){
+		dom.setAttribute('class',dom.getAttribute('class')+' '+className)
+	}else{
+		dom.setAttribute('class',className)
+	}
+	console.log(dom.getAttribute('class'))
+}
+let removeClass = (dom,className)=>{
+	if(dom.getAttribute('class')){
+		let arr = dom.getAttribute('class').split(' ')
+		let newArr = []
+		for(let i = 0;i < arr.length;i++){
+			if(arr[i] !== className){
+				newArr.push(arr[i])
+			}
+		}
+		dom.setAttribute('class',newArr.join(' '))
+	}
+}
+let zero = value=>(Number(value)>10?value: '0'+value)
 let checkPhone = (value)=>{
 	return /^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/.test(value)
 }
@@ -68,5 +89,8 @@ export default {
 	checkId,
 	checkFixedPhone,
 	checkCredit,
-	checkPassword
+	checkPassword,
+	addClass,
+	removeClass,
+	zero
 }

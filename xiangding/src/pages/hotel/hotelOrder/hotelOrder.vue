@@ -13,13 +13,6 @@
 		<div class="message">
 			<p class="title"><span>{{data.name}}</span></p>
 			<p class="star"><span>豪华酒店 | 四星级</span></p>
-			<!-- <p class="tip">
-				<span><i class="fas fa-wifi"></i> 网络</span>
-				<span><i class="fas fa-utensils"></i> 餐饮</span>
-				<span><i class="fas fa-heartbeat"></i> 健身</span>
-				<span><i class="fab fa-docker"></i> 游泳</span>
-				<span><i class="fab fa-product-hunt"></i> 停车位</span>
-			</p> -->
 			<div class="msg">
 				<div class="img"><img :src="data.imgUrl"></div>
 				<div class="text">
@@ -122,7 +115,7 @@
 				</p>
 				<router-link tag="p" :to="{path:'/hotelDetail',query:{name: '团房',id: 2,order: true}}" v-if="title === '会议室'" class="black color_green">
 					<span>是否需要团房</span>
-					<span class="check_box" style="color: #000"><i class="fas fa-chevron-right"></i></span>
+					<span class="check_box"><i class="fas fa-chevron-right"></i></span>
 				</router-link>
 				<router-link tag="p" :to="{path:'/hotelDetail',query:{name: '会议室',id: 2,order: true}}"  v-if="title === '团房'" class="black">
 					<span class="color_green">是否需要会议室</span>
@@ -166,10 +159,13 @@
 				</p>
 			</div>
 			<div class="footer">
-				<p class="need_pay">需支付</p>
+				<p class="need_pay">需支付
+					<router-link class="button" :to="{path:'/hotel/payOrder',query:{name: title}}" tag='span'>提交订单</router-link>
+				</p>
+
 				<p>
 					<span class="money_color">289.00元</span>
-					<router-link class="button" :to="{path:'/hotel/payOrder',query:{name: title}}" tag='span'>提交订单</router-link>
+					
 				</p>
 			</div>
 		</div>
@@ -466,20 +462,22 @@
 				.need_pay{
 					font-size: rem(15px);
 					margin-bottom: rem(15px);
+					.button{
+						padding: rem(10px) 6%;
+						background-color: #43c122;
+						color: #ffffff;
+						float: right;
+						border-radius: rem(20px);
+						font-size: rem(16px);
+						margin-right: 10%;
+						margin-top: rem(9px);
+					}
 				}
 				.money_color{
 					font-size: rem(19px);
 					color: #ff9800;
 				}
-				.button{
-					padding: rem(7px) 6%;
-					background-color: #43c122;
-					color: #ffffff;
-					float: right;
-					border-radius: rem(14px);
-					font-size: rem(14px);
-					margin-right: 10%;
-				}
+				
 			}
 		}
 		

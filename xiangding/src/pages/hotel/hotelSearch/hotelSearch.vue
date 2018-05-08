@@ -1,6 +1,6 @@
 <template>
 
-	<div class="box">
+	<div class="box" @click="handleBack">
 		
 		<div >
 			<Header :title="title"/>
@@ -11,12 +11,12 @@
 							<!-- <div class="erea">
 								<span >广州</span>
 							</div> -->
-							<div class="date">
+							<div class="date" id="myDate">
 								<span class="posi p1">
-									<span><span class="color">3.29 </span> 到</span>
+									<span><span class="color">{{date1}}</span> 到</span>
 								</span>
 								<span class="posi p2">
-									<span><span class="color">3.30 </span> 离</span>
+									<span><span class="color">{{date2}}</span> 离</span>
 								</span>
 							</div>
 							<router-link tag="div" to="/hotel/searchPage" class="search_" @click="handleSearch">
@@ -26,6 +26,10 @@
 						</div>
 					</div>
 					<div class="_tabs">
+						<div @click="handleLocal" class="tab_">
+							<span :class="{'color': 2 == show}">位置距离</span>
+							<span v-if="2 != show"><i class="fas fa-angle-down"></i></span>
+						</div>
 						<div @click="handleGeneral" class="tab_">
 							<span :class="{'color': 0 == show}">综合筛选</span>
 							<span v-if="0 != show"><i class="fas fa-angle-down"></i></span>
@@ -36,10 +40,7 @@
 							<span :class="{'color': 1 == show}">星级价格</span>
 							<span v-if="1 != show"><i class="fas fa-angle-down"></i></span>
 						</div>
-						<div @click="handleLocal" class="tab_">
-							<span :class="{'color': 2 == show}">位置距离</span>
-							<span v-if="2 != show"><i class="fas fa-angle-down"></i></span>
-						</div>
+						
 					</div>
 				</div>
 				<div v-if="general" @click="handleBack" class="back">
@@ -198,9 +199,18 @@
 <script>
 	export default {
 		mounted(){
+			let that = this
 			if(this.$route.query.name){
 				this.title = this.$route.query.name
 			}
+			console.log(window)
+			new lzcDatePlugin({
+				el: '#myDate',
+				callback: function(res){
+					that.dateValue[0].datetime = res[0].dateTime
+					that.dateValue[1].datetime = res[1].dateTime
+				}
+			})
 		},
 		data(){
 			return {
@@ -351,7 +361,15 @@
 				star: 5,
 				title: '酒店列表',
 				isSearch: false,
-				look: false
+				look: false,
+				dateValue: [
+					{
+						datetime: new Date().getTime()
+					},
+					{
+						datetime:new Date(new Date().getTime()+1000*60*60*24)
+					}
+				]
 			}
 		},
 		methods: {
@@ -373,13 +391,19 @@
 			handleResetLook(){
 				this.look = false
 			},
-			handleGeneral(){
+			handleGeneral(e){
+				var e = e || event
+				e.cancelBubble = true
 				this.handleTabChange(0)
 			},
-			handlePrice(){
+			handlePrice(e){
+				var e = e || event
+				e.cancelBubble = true
 				this.handleTabChange(1)
 			},
-			handleLocal(){
+			handleLocal(e){
+				var e = e || event
+				e.cancelBubble = true
 				this.handleTabChange(2)
 			},
 			handleBack(){
@@ -407,18 +431,14 @@
 				if(this.tabsItem[i].active){
 					this.handleBack()
 				}else{
-					this.tabsItem[i].active = true
-
 					if(!this.general){
 						this.general = !this.general
 					}
 					this.show = i
 					for(let j = 0;j<this.tabsItem.length;j++){
-						if(this.tabsItem[j].active){
-							continue
-						}
 						this.tabsItem[j].active = false
 					}
+					this.tabsItem[i].active = true
 				}
 				document.querySelectorAll('body')[0].style.overflow = 'hidden'
 			},
@@ -458,6 +478,16 @@
 			handleReturn(){
 				this.isSearch = false
 			},
+		},
+		computed: {
+			date1(){
+				var dd = new Date(this.dateValue[0].datetime)
+				return this.Fn.zero(dd.getMonth()+1) + '.' + this.Fn.zero(dd.getDate())
+			},
+			date2(){
+				var dd = new Date(this.dateValue[1].datetime)
+				return this.Fn.zero(dd.getMonth()+1) + '.' + this.Fn.zero(dd.getDate())
+			}
 		},
 		watch: {
 			$route (to,from){
@@ -635,12 +665,11 @@
 								}
 							}
 							&.date{
-								width: 20%;
+								width: 16%;
 								position: relative;
 								.posi{
 									position: absolute;
 									left: 0;
-									padding-left: rem(10px);
 
 									.color{
 										color: #43c122;

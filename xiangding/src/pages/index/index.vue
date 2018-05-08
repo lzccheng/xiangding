@@ -184,41 +184,40 @@
           }
         })
         
-        const loading = that.$loading({
-            lock: true,
-            text: '定位中..........',
-            background: 'rgba(0, 0, 0, 0.7)',
-            // target: '.msg'
-          })
-          that.show_erea = true
-          // that.$refs.show_erea.style.display = 'inline-block'
-          common.getLocation(onComplete,onError)
-          function onComplete(data) {
-            loading.close()
-            let addr = data.formattedAddress.split('街道')
-            if(!addr[1]){
-              addr = data.formattedAddress.split('号')
-            }
-            that.text_erea = addr[1]+'附近'
-            that.show_erea = false
-            that.$refs.show_erea.style.display = 'none'
-            that.$message({
-              message: '定位成功！'+that.text_erea,
-              type: 'success'
-            })
-          }
-          /*
-           *解析定位错误信息
-           */
-          function onError(data) {
-            loading.close()
-            that.$message({
-              message: '定位失败！'+data.message,
-              type: 'warning'
-            })
-          }
+        // const loading = that.$loading({
+        //     lock: true,
+        //     text: '定位中..........',
+        //     background: 'rgba(0, 0, 0, 0.7)',
+        //     // target: '.msg'
+        //   })
+        //   that.show_erea = true
+        //   // that.$refs.show_erea.style.display = 'inline-block'
+        //   common.getLocation(onComplete,onError)
+        //   function onComplete(data) {
+        //     loading.close()
+        //     let addr = data.formattedAddress.split('街道')
+        //     if(!addr[1]){
+        //       addr = data.formattedAddress.split('号')
+        //     }
+        //     that.text_erea = addr[1]+'附近'
+        //     that.show_erea = false
+        //     that.$refs.show_erea.style.display = 'none'
+        //     that.$message({
+        //       message: '定位成功！'+that.text_erea,
+        //       type: 'success'
+        //     })
+        //   }
+        //   /*
+        //    *解析定位错误信息
+        //    */
+        //   function onError(data) {
+        //     loading.close()
+        //     that.$message({
+        //       message: '定位失败！'+data.message,
+        //       type: 'warning'
+        //     })
+        //   }
 
-        let nowDate = new Date()
         this.$axios({url:'/bannerData',data:{id:123}}).then((res)=>{
           that.arrItem = res.data
           setTimeout(function(){
@@ -357,8 +356,6 @@
         },
         _boxClick(){
           this.$refs._box.style.height = '0px'
-          this.$refs._erea.style.display = 'none'
-          this.$refs._date.style.display = 'none'
           this.$refs._style.style.display = 'none'
           document.querySelectorAll('body')[0].style.overflow = 'auto'
         },
@@ -450,6 +447,11 @@
     background-color: #fff;
     margin-bottom: rem(50px);
     padding-bottom: 30%;
+    .posi_fixed{
+      position: fixed;
+      left: 0;
+      top: 0;
+    }
     ._box{
       width: 100%;
       position: fixed;

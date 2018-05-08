@@ -159,7 +159,7 @@
 				font-size: rem(14px);
 				text-align: center;
 				background-color: #43c122;
-				padding: rem(10px) 0;
+				padding: rem(13px) 0;
 				span{
 					color: #ffffff;
 					

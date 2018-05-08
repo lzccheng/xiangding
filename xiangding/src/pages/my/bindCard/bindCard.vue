@@ -8,12 +8,12 @@
 				</p>
 				<p class="input">
 					<label>开户行省份</label>
-					<span class="color_aaa">选择开户行省份</span>
+					<span >选择开户行省份</span>
 					<span class="i"><i class="fas fa-chevron-right"></i></span>
 				</p>
 				<p class="input">
 					<label>开户行城市</label>
-					<span class="color_aaa">选择开户行城市</span>
+					<span >选择开户行城市</span>
 					<span class="i"><i class="fas fa-chevron-right"></i></span>
 				</p>
 				<p class="input">

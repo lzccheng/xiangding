@@ -42,9 +42,10 @@
 	width: 100%;
 	margin-top: 35%;
 	background-color: #ffffff;
+	z-index: 999999;
 }
 .lzcBox .lzcDateBox .lzcFixed .lzcTitle{
-	color: red;
+	line-height: normal;
 	padding: 8px 0;
 	text-align: center;
 }
@@ -61,7 +62,8 @@
 .lzcBox .lzcDateBox .lzcFixed .lzcDay{
 	display: flex;
 	justify-content: space-around;
-	padding: 3px 0 8px;
+	margin: 0;
+	padding: 3px 5px 8px;
 	border-bottom: 1px solid #ccc;
 }
 .lzcBox .lzcDateBox .lzcFixed .lzcDay .lzcDayItem:last-child{
@@ -88,10 +90,20 @@
 	border-collapse:collapse;
 }
 .lzcBox .lzcDateBox .lzcMonth .lzcMonthTable tr{
+	
 }
 .lzcBox .lzcDateBox .lzcMonth .lzcMonthTable tr td{
+	position: relative;
 	cursor: pointer;
-	padding: 8px 0;
+	padding: 0.8rem 0;
+}
+.lzcBox .lzcDateBox .lzcMonth .lzcMonthTable tr td .lzcTdSpan{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
 }
 .lzcBox .lzcDateBox .lzcMonth .lzcSure{
 	position: fixed;

@@ -19,15 +19,10 @@
 			<p>
 				<span>退款原因</span>
 				<span class="green">*</span>
-				<el-select v-model="value" placeholder="请选择">
-				    <el-option
-				      v-for="item in options"
-				      :key="item.value"
-				      :label="item.label"
-				      :value="item.value"
-
-				      >
-				    </el-option>
+				<el-select v-model="value" placeholder="请选择" slot="prepend">
+				   <el-option label="环境不喜欢" value="1"></el-option>
+			       <el-option label="态度恶劣" value="2"></el-option>
+			       <el-option label="有急事离开" value="3"></el-option>
 				</el-select>
 			</p>
 			<p>
@@ -46,18 +41,19 @@
 	export default {
 		data(){
 			return {
-				 options: [{
-			          value: '选项1',
-			          label: '环境不喜欢'
-			        }, {
-			          value: '选项2',
-			          label: '态度恶劣'
-			        }, {
-			          value: '选项3',
-			          label: '有急事离开'
-			        }],
-			        value: ''
-			}
+				 value: '环境不喜欢',
+				 // options: [{
+				 //          value: '选项1',
+				 //          label: '环境不喜欢'
+				 //        }, 
+				 //        {
+				 //          value: '选项2',
+				 //          label: '态度恶劣'
+				 //        }, {
+				 //          value: '选项3',
+				 //          label: '有急事离开'
+				 //        }],
+				}
 		},
 		methods: {
 

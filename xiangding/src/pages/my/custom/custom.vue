@@ -126,7 +126,7 @@
                 	margin-right: rem(5px);
                 }
                 input{
-                	width: 80%;
+                	width: 86%;
                 	margin-left: rem(8px);
                 	border: none;
                 }

@@ -431,16 +431,10 @@
 		}
 		.tab{
 			background-color: #fff;
-			div{
-				cursor: pointer;
-			}
 			.tab_header{
 				
 				position: relative;
 				.header{
-					div{
-						cursor: pointer;
-					}
 					display: flex;
 					justify-content: space-around;
 					align-items:center;

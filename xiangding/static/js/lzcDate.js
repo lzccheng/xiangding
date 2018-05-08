@@ -59,17 +59,20 @@ window.lzcDatePlugin = (function(){
 				}
 				if(!that.elObj.firstEl){
 					that.elObj.firstEl = this;
+					that.elObj.firstEl.children[1].firstChild.innerHTML = '入住';
 					that.addClass(this,'lzcActive');
 				}else{
 					if(Number(this.getAttribute('dataindex'))<Number(that.elObj.firstEl.getAttribute('dataindex'))){
 						that.removeClass(that.elObj.firstEl,'lzcActive');
+						that.elObj.firstEl.children[1].firstChild.innerHTML = '';
 						that.elObj.firstEl = this;
 						that.addClass(this,'lzcActive');
+						that.elObj.firstEl.children[1].firstChild.innerHTML = '入住';
 					}else{
 						if(that.elObj.firstEl !== this&&!that.elObj.secondEl){
 							that.elObj.secondEl = this;
 							that.addClass(this,'lzcActive2');
-
+							that.elObj.secondEl.children[1].firstChild.innerHTML = '离店';
 							for(var h=Number(that.elObj.firstEl.getAttribute('dataindex')) + 1;h<Number(that.elObj.secondEl.getAttribute('dataindex'));h++){
 								if(lzcTdEl[h].innerText){
 									that.addClass(lzcTdEl[h],'lzcActiveCenter');
@@ -88,7 +91,9 @@ window.lzcDatePlugin = (function(){
 					}
 				};
 				that.removeClass(that.elObj.firstEl,'lzcActive');
+				that.elObj.firstEl.children[1].firstChild.innerHTML = '';
 				that.removeClass(that.elObj.secondEl,'lzcActive2');
+				that.elObj.secondEl.children[1].firstChild.innerHTML = '';
 				that.elObj.firstEl = null;
 				that.elObj.secondEl = null;
 			}
@@ -187,7 +192,7 @@ window.lzcDatePlugin = (function(){
 				for(var a=0;a<7;a++){
 					num = todyTime + (a-dd.getDay())*1000*60*60*24;
 					if((new Date(num).getMonth()+1) == (dd.getMonth() + 1)){
-						lzcMonthBoxHtml += '<td datatime=' + new Date(num).getTime() + '>'+ new Date(num).getDate() +'</td>';
+						lzcMonthBoxHtml += '<td datatime=' + new Date(num).getTime() + '>'+ new Date(num).getDate() +'<br/><span class="lzcTdSpan"><span></span></span></td>';
 					}else{
 						lzcMonthBoxHtml += '<td></td>';
 					} 

@@ -229,7 +229,6 @@
 						that.numarr.push(item)
 					}
 				}).catch((err)=>{
-					console.log(err)
 				})
 			},
 			handleBubbole(event){
