@@ -282,7 +282,7 @@
 			background-color: #ffffff;
 			border-top: #fff solid rem(1px);
 			text-align: center;
-			padding-bottom: rem(20px);
+			padding: rem(20px) 0;
 			.status{
 				font-size: rem(17px);
 				font-weight: bold;

@@ -39,6 +39,7 @@ import orderDeal from '@/pages/enter/orderDeal/orderDeal'
 import cashStatus from '@/pages/enter/cashStatus/cashStatus'
 import incomeList from '@/pages/enter/incomeList/incomeList'
 import orderStatus from '@/pages/enter/orderStatus/orderStatus'
+import mealDetail from '@/pages/enter/mealDetail/mealDetail'
 import foodManage from '@/pages/enter/foodManage/foodManage'
 import foodAdd from '@/pages/enter/foodAdd/foodAdd'
 import foodOrder from '@/pages/hotel/foodOrder/foodOrder'
@@ -201,6 +202,14 @@ export default new Router({
       component: orderStatus,
       meta: {
         title: '酒店管理订单处理状态'
+      }
+    },
+     {
+      path: '/enter/hotelManage/mealDetail',
+      name: 'mealDetail',
+      component: mealDetail,
+      meta: {
+        title: '餐饮管理订单详情'
       }
     },
     {
