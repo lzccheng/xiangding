@@ -58,6 +58,9 @@ export default {
 <style lang='scss'>
 @import 'common/css/common.scss';
 @import 'common/css/swiper.min';
+@import 'static/css/lzcDate';
+@import 'static/css/mobileSelect';
+
 @media screen and (max-width: 325px) {
     html {
         font-size: 10px;
