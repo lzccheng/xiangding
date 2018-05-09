@@ -76,18 +76,6 @@ let removeClass = (dom,className)=>{
 		dom.setAttribute('class',newArr.join(' '))
 	}
 }
-let haveClass = (dom,className)=>{
-	let oldClass = dom.getAttribute('class')
-	let classArr = oldClass?oldClass.split(' '):[]
-	let bool = false
-	for(let i=0;i<classArr.length;i++){
-		if(classArr[i] === className){
-			bool = true
-			break
-		}
-	}
-	return bool
-}
 let zero = value=>(Number(value)>9?value: '0'+value)
 let checkPhone = (value)=>{
 	return /^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/.test(value)

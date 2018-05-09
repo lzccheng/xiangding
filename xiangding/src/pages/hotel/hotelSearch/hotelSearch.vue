@@ -154,10 +154,15 @@
 										{{i.name}}
 									</li>
 								</ul>
-								<ul v-show="1 == erea_show">
-									<li v-for="(i,index) in ereaBox[1].children" :key="index">
+								<ul v-show="1 == erea_show" class="erea_selector">
+									<li @click="handleEreaLi" v-for="(i,index) in ereaArr" :key="index">
 										{{i.name}}
 									</li>
+									<div class="erea_li_item">
+										<ul class="erea_li_selector">
+											<li @click="handleEreaLiItem" v-for="(i,index) in cityArr">{{i.name}}</li>
+										</ul>
+									</div>
 								</ul>
 							</div>
 						</div>
@@ -228,7 +233,11 @@
 			if(this.$route.query.name){
 				this.title = this.$route.query.name
 			}
-			console.log(window)
+			if(this.$route.query.province){
+				this.province = this.$route.query.province
+				this.city = this.$route.query.city
+				this.changeEreaArr()
+			}
 			new lzcDatePlugin({
 				el: '#myDate',
 				callback: function(res){
@@ -425,10 +434,48 @@
 					{
 						datetime:new Date(new Date().getTime()+1000*60*60*24)
 					}
-				]
+				],
+				province: '广东省',
+				city: '广州市',
+		        ereaArr: [],
+		        cityArr: []
 			}
 		},
 		methods: {
+			changeEreaArr(){
+				for(let i=0;i<ereaPlugin_data.length;i++){
+
+					if(ereaPlugin_data[i].name === this.province){
+						for(let a=0;a<ereaPlugin_data[i].children.length;a++){
+							if(ereaPlugin_data[i].children[a].name === this.city){
+								this.ereaArr = ereaPlugin_data[i].children[a].children
+							}
+						}
+						break
+					}
+				}
+			},
+			handleEreaLi(e){
+				var e = e || event
+				var eParentChild = e.target.parentNode.children
+				for(let i=0;i<eParentChild.length;i++){
+					this.Fn.removeClass(eParentChild[i],'active')
+				}
+				this.Fn.addClass(e.target,'active')
+				for(let a=0;a<this.ereaArr.length;a++){
+					if(this.ereaArr[a].name === e.target.innerText){
+						this.cityArr = this.ereaArr[a].children
+					}
+				}
+			},
+			handleEreaLiItem(e){
+				var e = e || event
+				var eParentChild = e.target.parentNode.children
+				for(let i=0;i<eParentChild.length;i++){
+					this.Fn.removeClass(eParentChild[i],'active')
+				}
+				this.Fn.addClass(e.target,'active')
+			},
 			handleEreaChange(i,e){
 				var e = e || event
 				var childrenArr = e.target.parentNode.children
@@ -559,10 +606,16 @@
 		watch: {
 			$route (to,from){
 				if(to.name === 'hotelSearch'){
+					console.log(this.$route)
 					if(this.$route.query.name){
 						this.title = this.$route.query.name
 					}else{
 						this.title = '酒店列表'
+					}
+					if(this.$route.query.province){
+						this.province = this.$route.query.province
+						this.city = this.$route.query.city
+						this.changeEreaArr()
 					}
 					this.handleBack()
 				}
@@ -978,12 +1031,38 @@
 				}
 				.erea_item{
 					width: 75%;
+					.active{
+						color: #43c122;
+					}
 					ul{
 						padding-left: rem(8px);
 						li{
 							width: 100%;							
 							padding: rem(10px) rem(8px);
 							border-bottom: 1px solid #eeeeee;
+						}
+						&.erea_selector{
+							position: relative;
+							li{
+								width: 25%;
+								text-align: center;
+								border-right: 1px solid #cccccc;
+							}
+							.erea_li_item{
+								position: absolute;
+								right: 0;
+								top: 0;
+								width: 70%;
+								max-height: 100%;
+								overflow-y: auto; 
+								overflow-x: hidden; 
+								padding-left: rem(10px);
+								ul{
+									li{
+										width: 100%;
+									}
+								}
+							}
 						}
 					}
 				}

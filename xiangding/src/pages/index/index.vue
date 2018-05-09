@@ -108,7 +108,7 @@
           </li>
   			</ul>
         <div class="button">
-          <router-link tag="button" :to="{path: '/hotel/hotelSearch',query: {data,name: '酒店列表'}}">查找酒店</router-link>
+          <router-link tag="button" :to="{path: '/hotel/hotelSearch',query: {data,name: '酒店列表',province: province,city: city}}">查找酒店</router-link>
         </div>
   		</div>
 
@@ -181,6 +181,8 @@
           position: [18,0],
           callback:function(indexArr, data){
             that.text_erea = data[1].name+data[2].name+data[3].name
+            that.province = data[0].name
+            that.city = data[1].name
           }
         })
         
@@ -282,7 +284,9 @@
             {
               datetime: new Date(new Date().getTime()+1000*60*60*24).getTime()
             }
-          ]
+          ],
+          province:'广东省',
+          city: '广州市'
         }
       },
       methods: {
@@ -360,7 +364,7 @@
           document.querySelectorAll('body')[0].style.overflow = 'auto'
         },
         zero(num){
-          return Number(num) >10?num:'0'+num
+          return Number(num) >9?num:'0'+num
         },
         _getDay(value){
           let dd = new Date()
