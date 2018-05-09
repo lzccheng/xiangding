@@ -9,6 +9,10 @@ import Vuex from 'vuex'
 import Vuexjs from './vuex'
 import Header from './components/header/header'
 import Fn from './common/js/common'
+//static
+import './static/js/ereaPluginData'
+import './static/js/lzcDate'
+import './static/js/mobileSelect.min'
 
 
 axios.defaults.baseURL = process.env.API_ROOT

@@ -76,7 +76,7 @@ let haveClass = (dom,className)=>{
 	}
 	return bool
 }
-let zero = value=>(Number(value)>10?value: '0'+value)
+let zero = value=>(Number(value)>9?value: '0'+value)
 let checkPhone = (value)=>{
 	return /^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/.test(value)
 }

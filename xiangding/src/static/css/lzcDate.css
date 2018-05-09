@@ -94,6 +94,7 @@
 }
 .lzcBox .lzcDateBox .lzcMonth .lzcMonthTable tr td{
 	position: relative;
+	margin: 0;
 	line-height: normal;
 	padding: 0.8rem 0;
 }

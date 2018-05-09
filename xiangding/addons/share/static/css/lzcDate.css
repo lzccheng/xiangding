@@ -42,6 +42,7 @@
 	width: 100%;
 	margin-top: 35%;
 	background-color: #ffffff;
+	z-index: 999999;
 }
 .lzcBox .lzcDateBox .lzcFixed .lzcTitle{
 	line-height: normal;
@@ -93,7 +94,7 @@
 }
 .lzcBox .lzcDateBox .lzcMonth .lzcMonthTable tr td{
 	position: relative;
-	cursor: pointer;
+	line-height: normal;
 	padding: 0.8rem 0;
 }
 .lzcBox .lzcDateBox .lzcMonth .lzcMonthTable tr td .lzcTdSpan{
