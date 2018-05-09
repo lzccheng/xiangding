@@ -24,7 +24,7 @@
 			<div class="line"></div>
 			<div class="eye">
 				<p class="look">
-					<div>
+					<div class="look_eye">
 						<span v-if="!look" @click="handleLook">
 							<span><i class="fas fa-eye"></i></span>
 							<span>查看推荐</span>
@@ -124,7 +124,7 @@
 				}
 			}
 			.history{
-				padding: rem(8px) 5%;
+				padding: rem(8px) 4%;
 				border-bottom: #aaa solid rem(1px);
 
 				span{
@@ -166,15 +166,22 @@
 				// }
 				div{
 					text-align: center;
+					&.look_eye{
+						span{
+							font-size: rem(15px);
+						}
+					}
 					&.recommend{
 						// border-bottom: #aaa solid rem(1px);
 						// padding: rem(12px);
 						.title{
 							padding-bottom: rem(14px);
 							span{
-
 								&:first-child{
-									margin-right: 67%;
+									margin-right: 62%;
+									display:  inline-block;
+									width: 23%;
+									float: left;
 								}	
 								&:last-child{
 									font-size: rem(16px);

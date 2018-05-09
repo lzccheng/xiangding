@@ -13,10 +13,16 @@
 							</div> -->
 							<div class="date" id="myDate">
 								<span class="posi p1">
-									<span><span class="color">{{date1}}</span> 到</span>
+									<span>
+									    <span class="color">{{date1}}</span> 
+									    <span class="color_text">到</span>
+									</span>
 								</span>
 								<span class="posi p2">
-									<span><span class="color">{{date2}}</span> 离</span>
+									<span>
+									   <span class="color">{{date2}}</span> 
+									   <span class="color_text">离</span>
+									</span>
 								</span>
 							</div>
 							<router-link tag="div" to="/hotel/searchPage" class="search_" @click="handleSearch">
@@ -726,14 +732,16 @@
 								}
 							}
 							&.date{
-								width: 16%;
+								width: 18%;
 								position: relative;
 								.posi{
 									position: absolute;
 									left: 0;
-
 									.color{
 										color: #43c122;
+									}
+									.color_text{
+										padding-left: rem(5px);
 									}
 								}
 								.p1{

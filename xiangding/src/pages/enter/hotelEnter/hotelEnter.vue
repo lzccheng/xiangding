@@ -83,7 +83,7 @@
 				<input @blur="handleCheckCredit" type="text" class="handleCheckCredit" placeholder="请输入银行卡号" name="">
 			</p>
 			<p class="input">
-				<label>代理服务商姓名:</label>
+				<label >代理服务商姓名:</label>
 				<input type="text" placeholder="请输入代理服务商姓名" name="">
 			</p>
 			<p class="input" style="border-bottom: none">
@@ -105,7 +105,7 @@
 				<label>填写酒店简介</label>
 			</p>
 			<div class="photo">
-				<textarea cols="46" rows="10" placeholder="请填写酒店简介..."></textarea>
+				<textarea cols="40" rows="10" placeholder="请填写酒店简介..."></textarea>
 			</div>	
 			
 		</div>
@@ -305,7 +305,7 @@
 				label{
 					display: inline-block;
 					font-size: rem(14px);
-					width: 30%;
+					width: 32%;
 				}
 				input{
 					width: 52%;

@@ -52,7 +52,7 @@
 				</ul>
 			</div>
 		</div>
-		<div class="back" v-if="general" @click="handleBack">
+		<div class="back" v-if="general" @click="handleBack" >
 			<div v-if="0 == show" @click="handleCancel">
 				<div class="content">
 					<div class="item">
@@ -115,7 +115,7 @@
 			<span>四星</span>
 			<span>五星</span>
 		</div> -->
-		<div class="hotel">
+		<div class="hotel" >
 			<div class="hotelItem" v-for='(i,index) in hotel' :key='index'>
 				<router-link :to="{path: '/hotelDetail',query:{id:i.id}}" tag='div'>
 					<div class="img">
@@ -362,18 +362,15 @@
 				if(this.tabsItem[i].active){
 					this.handleBack()
 				}else{
-					this.tabsItem[i].active = true
-
+					
 					if(!this.general){
 						this.general = !this.general
 					}
 					this.show = i
 					for(let j = 0;j<this.tabsItem.length;j++){
-						if(this.tabsItem[j].active){
-							continue
-						}
 						this.tabsItem[j].active = false
 					}
+					this.tabsItem[i].active = true
 				}
 			},
 			handleGeneral(i){

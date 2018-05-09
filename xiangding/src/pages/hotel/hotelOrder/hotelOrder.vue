@@ -52,7 +52,7 @@
 				<div v-else>
 					<p class="msg_1">
 						<span class="head">床型</span>
-						<span class="text">2张双人床1.5米</span>
+						<span class="text">2张双人床1.8米</span>
 						<span class="head">面积</span>
 						<span class="text">28m <sup>2</sup></span>
 					</p>
@@ -81,7 +81,7 @@
 					<span v-if="title === '钟点房'">时间</span>
 					<span v-else>天数</span>
 					<span class="number_box">
-					    <el-input-number size="mini" @focus="handleBlur" v-model="num6"></el-input-number>
+					    <el-input-number size="mini" :min="1" :max="Infinity" @focus="handleBlur" v-model="num6"></el-input-number>
 					</span>
 				</p>
 				<p class="black">
@@ -91,7 +91,7 @@
 					   <p v-if="title === '团房'" class="room">注: 团房间最少订购两间及以上</p>
 					</span>
 					<span class="number_box1">
-					    <el-input-number size="mini" @focus="handleBlur" v-model="num7"></el-input-number>
+					    <el-input-number size="mini" :min="1" :max="Infinity" @focus="handleBlur" v-model="num7"></el-input-number>
 					</span>
 				</p>
 				<p class="black" v-if="title === '会议室'">
@@ -154,7 +154,7 @@
 					<span class="text_size">请你在30分钟内完成支付,否则订单会自动取消</span>
 				</p>
 				<p class="color_aaa">
-					<span><i class="fas fa-clipboard-check"></i></span>
+					<span class="yes_icon"><i class="fas fa-clipboard-check"></i></span>
 					<span class="text_size">我们保障快速确认,到店有房,资金安全,请放心预定</span>
 				</p>
 			</div>
@@ -398,6 +398,9 @@
 					}
 					&.color_aaa{
 						color: #aaa;
+						.yes_icon{
+							padding-right: rem(3px);
+						}
 						.text_size{
 							font-size: rem(12px);
 						}

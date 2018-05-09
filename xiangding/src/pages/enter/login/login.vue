@@ -48,8 +48,8 @@
 				<span class="green g2"></span>
 			</div>
 			<div class="content">
-				<span class="i"><i class="far fa-circle"></i></span>
-				<span class="user">用户协议及隐私政策</span>
+				<span class="i i_select" @click="handleChoice"><span></span></span>
+				<span class="user" @click="handleChoice">用户协议及隐私政策</span>
 				<span class="problem">登录遇到问题</span>
 			</div>
 			<p class="idear" @click="handleShow_back">《登录协议》</p>
@@ -73,6 +73,16 @@
 			}
 		},
 		methods: {
+			handleChoice(){
+				var dom = document.querySelector('.i_select')
+				if(this.Fn.haveClass(dom.children[0],'choice')){
+					this.Fn.removeClass(dom.children[0],'choice')
+					dom.style.border =  '1px solid #fff'
+				}else{
+					this.Fn.addClass(dom.children[0],'choice')
+					dom.style.border =  '1px solid #43c122'
+				}
+			},
 			handleShow_back(){
 				this.general = true
 			},
@@ -184,8 +194,37 @@
 					color: #ffffff;
 					padding: rem(10px) rem(15px);
 					font-size: rem(14px);
+					display: flex;
+					align-items: center;
+					.choice{
+			    		background-color: #43c122;
+			    	}
+			    	
+					.i{
+						display: inline-block;
+						width: rem(14px);
+						height: rem(14px);
+						border-radius: 100%;
+						border: #fff solid rem(1px);
+						margin-right: 2%;
+						display: flex;
+				    	align-items: center;
+				    	justify-content: center;
+				    	.border{
+				    		border: rem(1px) #43c122 solid;
+				    	}
+						span{
+							display: inline-block;
+							width: rem(10px);
+							height: rem(10px);
+							border-radius: 100%;
+							// background-color: #43c122;
+							text-align: center;
+						}
+
+					}
 					.problem{
-						float: right;
+						padding-left: 25%;
 					}
 				}
 				.idear{
@@ -210,7 +249,7 @@
 					padding: rem(15px) 0;
 					text-align: center;
 					width: 90%;
-					background-color: #ffffff;
+					background-color: #e5e5e5;
 					position: absolute;
 					top: rem(80px);
 					left: 5%;
@@ -270,7 +309,6 @@
 			}
 			
 		}
-
 		.id{
 			font-weight: bold;
 			margin-left: rem(16px);

@@ -1,5 +1,10 @@
 <template>
 	<div class="box">
+	    <div class="back" v-if="general" @click="handleClose_back">
+	    	<div class="img_box">
+	    		<div class="img"><img src="https://f10.baidu.com/it/u=1208544201,1064095414&fm=72" alt=""></div>
+	    	</div>
+	    </div>
 		<Header title="支付订单"/>
 		<div class="top">
 			<span>待付款</span>
@@ -22,8 +27,8 @@
 				<span><i class="fas fa-warehouse"></i></span>
 				<span>银河大酒店</span>
 			</p>
-			<div class="item">
-				<div class="img"><img  src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425433535&di=f7d324b2c95bd6f203fb8741290c02e3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D41481487a2773912d02b8d219161e374%2Ff3d3572c11dfa9ec3d58042d69d0f703918fc192.jpg" alt=""></div>
+			<div class="item" v-for="(i,index) in 2" :key=index >
+				<div class="img" @click="handleShow_back"><img  src="https://f10.baidu.com/it/u=1208544201,1064095414&fm=72" alt=""></div>
 				<div class="text_box">
 					<p>商务大床房</p>
 					<p class="time">2018-04-08/2018-04-09</p>
@@ -33,19 +38,9 @@
 					</p>
 				</div>
 			</div>
-			<div class="item">
-				<div class="img"><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425433535&di=f7d324b2c95bd6f203fb8741290c02e3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D41481487a2773912d02b8d219161e374%2Ff3d3572c11dfa9ec3d58042d69d0f703918fc192.jpg" alt=""></div>
-				<div class="text_box">
-					<p>商务大床房</p>
-					<p class="time">2018-04-08/2018-04-09</p>
-					<p class="color">
-						<span>¥269</span>
-						<span>×1</span>
-					</p>
-				</div>
-			</div>
+			
 			<div class="item" v-if="title === '会议室'||title === '团房'">
-				<div class="img"><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425433535&di=f7d324b2c95bd6f203fb8741290c02e3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D41481487a2773912d02b8d219161e374%2Ff3d3572c11dfa9ec3d58042d69d0f703918fc192.jpg" alt=""></div>
+				<div class="img"><img src="https://f10.baidu.com/it/u=1208544201,1064095414&fm=72" alt=""></div>
 				<div class="text_box">
 					<p>A套餐</p>
 					<p class="color">
@@ -107,11 +102,17 @@
 			return {
 				value1: true,
                 value2: true,
-                title: '酒店列表'
+                title: '酒店列表',
+                general: false
 			}
 		},
 		methods: {
-
+			handleShow_back(){
+				this.general = true
+			},
+			handleClose_back(){
+				this.general = false
+			},
 		},
 		watch: {
 			'$route':function(to,from){
@@ -132,6 +133,35 @@
 		width: 100%;
 		padding-bottom: rem(100px);
 		position: relative;
+		.back{
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 9999;
+			.img_box{
+				text-align: center;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				display: flex;
+				align-items: center;
+				background-color: #000;
+				// padding: rem(15px) 0;
+				.img{
+					
+					width: 100%;
+					// height: rem(20px);
+					img{
+						width: 100%;
+						height: 100%;
+					}
+				}
+			}
+		}
 		.top{
 			background-color: #43c122;
 			color: #ffffff;

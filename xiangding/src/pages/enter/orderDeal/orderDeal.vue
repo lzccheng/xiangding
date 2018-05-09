@@ -95,14 +95,11 @@
 			}
 		},
 		methods: {
-			handleAgree(event){
-				this.status = 1
-				console.log(event.path[0].innerText)
-				this.text = event.path[0].innerText
-			},
-			handleClick(i,event){
-				this.$refs._line.style.left = event.path[0].offsetLeft + 'px'
-				this.$refs._line.style.width =  event.path[0].offsetWidth +'px'
+			handleClick(i,e){
+				var e = e || event
+				// console.log(e.target.event.path[0])
+				this.$refs._line.style.left = e.target.offsetLeft + 'px'
+				this.$refs._line.style.width =  e.target.offsetWidth +'px'
 				this.index_ = i
 			},
 			onHandleChange(i){
