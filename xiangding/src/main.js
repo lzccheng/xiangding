@@ -18,7 +18,7 @@ import './static/js/mobileSelect.min'
 axios.defaults.baseURL = process.env.API_ROOT
 Vue.prototype.$axios = axios
 Vue.prototype.Fn = Fn
-Vue.prototype.$baseURL = '/addons/xiangding/dist'
+
 Vue.config.productionTip = false
 
 Vue.use(Element)

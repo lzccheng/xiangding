@@ -135,11 +135,30 @@
 						</div>
 					</div>
 					<div v-if="2 == show" @click="handleCancel">
-						<!-- <div class="content"  v-if="title !== '会议室'" >
-							<p class="m top">1米 - 500米</p>
-							<p class="m">500米 - 1500米</p>
-							<p class="m none">1500米 - 3000米</p>
-						</div> -->
+						<div class="erea_box">
+							<div class="erea_nav">
+								<ul>
+									<li @click="handleEreaChange(0,$event)" class="active">{{ereaBox[0].name}}</li>
+									<li @click="handleEreaChange(1,$event)">{{ereaBox[1].name}}</li>
+								</ul>
+							</div>
+							<div class="erea_item">
+								<ul v-show="0 == erea_show">
+									<li v-for="(i,index) in ereaBox[0].children" :key="index">
+										{{i.name}}
+									</li>
+								</ul>
+								<ul v-show="1 == erea_show">
+									<li v-for="(i,index) in ereaBox[1].children" :key="index">
+										{{i.name}}
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="erea_btn">
+							<div>重置</div>
+							<div>完成</div>
+						</div>
 					</div>
 				</div>
 				<div class="free">
@@ -214,6 +233,37 @@
 		},
 		data(){
 			return {
+				ereaBox: [
+					{
+						name: '距离我',
+						children: [
+							{
+								name: '全城'
+							},
+							{
+								name: '1km'
+							},
+							{
+								name: '3km'
+							},
+							{
+								name: '5km'
+							},
+							{
+								name: '10km'
+							},
+						]
+					},
+					{
+						name: '行政区域',
+						children: [
+							{
+								name: '广州市'
+							}
+						]
+					}
+				],
+				erea_show: 0,
 				free: [
 					{
 						name: '免费取消',
@@ -373,6 +423,17 @@
 			}
 		},
 		methods: {
+			handleEreaChange(i,e){
+				var e = e || event
+				var childrenArr = e.target.parentNode.children
+				for(let i=0;i<childrenArr.length;i++){
+					if(this.Fn.haveClass(childrenArr[i],'active')){
+						this.Fn.removeClass(childrenArr[i],'active')
+					}
+				}
+				this.erea_show = i
+				this.Fn.addClass(e.target,'active')
+			},
 			handleChoice(i){
 				this.free[i].active = !this.free[i].active
 				if(this.free[i].active){
@@ -879,6 +940,56 @@
 						padding: rem(10px) 0;
 						&:first-child{
 							border-right: #aaa solid rem(1px);
+						}
+						&:last-child{
+							background-color: #43c122;
+							color: #ffffff;
+						}
+					}
+				}
+				.erea_box{
+					background-color: #ffffff;
+					display: flex;
+					justify-content: space-around;
+					.erea_nav{
+						width: 25%;
+						border-right: 1px solid #cccccc;
+						ul{
+							li{
+								color: #888888;
+								border-bottom: 1px solid #cccccc;
+								padding: rem(10px) rem(18px);
+								background-color: #eeeeee;
+								&.active{
+									background-color: #ffffff;
+									color: #43c122;
+								}
+							}
+						}
+					}
+				}
+				.erea_item{
+					width: 75%;
+					ul{
+						padding-left: rem(8px);
+						li{
+							width: 100%;							
+							padding: rem(10px) rem(8px);
+							border-bottom: 1px solid #eeeeee;
+						}
+					}
+				}
+				.erea_btn{
+					display: flex;
+					div{
+						width: 50%;
+						text-align: center;
+						padding: rem(12px) 0;
+						font-size: rem(14px);
+						border-top: 1px solid #cccccc;
+						&:first-child{
+							background-color: #ffffff;
+							color: #888888;
 						}
 						&:last-child{
 							background-color: #43c122;

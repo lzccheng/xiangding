@@ -7,7 +7,7 @@
         </keep-alive>
       <!-- </transition> -->
       <div ref="_footer">
-        <myFooter :baseURL='$baseURL'/>
+        <myFooter/>
       </div>
       
     </div>

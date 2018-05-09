@@ -45,13 +45,24 @@ let getLocation = (onComplete=function(){},onError=function(){})=>{
 	    geolocation.getCurrentPosition();
 	  });
 }
+let haveClass = (dom,className)=>{
+	let domClass = dom.getAttribute('class')
+	let bool = false
+	let classArr = domClass?domClass.split(' '):[]
+	for(let i=0;i<classArr.length;i++){
+		if(classArr[i] === className){
+			bool = true
+			break
+		}
+	}
+	return bool
+}
 let addClass = (dom,className)=>{
 	if(dom.getAttribute('class')){
-		dom.setAttribute('class',dom.getAttribute('class')+' '+className)
+		!haveClass(dom,className)&&dom.setAttribute('class',dom.getAttribute('class')+' '+className)
 	}else{
 		dom.setAttribute('class',className)
 	}
-	console.log(dom.getAttribute('class'))
 }
 let removeClass = (dom,className)=>{
 	if(dom.getAttribute('class')){
@@ -92,5 +103,6 @@ export default {
 	checkPassword,
 	addClass,
 	removeClass,
+	haveClass,
 	zero
 }
