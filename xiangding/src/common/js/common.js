@@ -51,7 +51,6 @@ let addClass = (dom,className)=>{
 	}else{
 		dom.setAttribute('class',className)
 	}
-	console.log(dom.getAttribute('class'))
 }
 let removeClass = (dom,className)=>{
 	if(dom.getAttribute('class')){
@@ -64,6 +63,18 @@ let removeClass = (dom,className)=>{
 		}
 		dom.setAttribute('class',newArr.join(' '))
 	}
+}
+let haveClass = (dom,className)=>{
+	let oldClass = dom.getAttribute('class')
+	let classArr = oldClass?oldClass.split(' '):[]
+	let bool = false
+	for(let i=0;i<classArr.length;i++){
+		if(classArr[i] === className){
+			bool = true
+			break
+		}
+	}
+	return bool
 }
 let zero = value=>(Number(value)>10?value: '0'+value)
 let checkPhone = (value)=>{
@@ -92,5 +103,6 @@ export default {
 	checkPassword,
 	addClass,
 	removeClass,
+	haveClass,
 	zero
 }
