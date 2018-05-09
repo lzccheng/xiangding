@@ -62,15 +62,17 @@
 			
 		
 		</div>
-		<div class="add_box">
-			<router-link tag="p" :to="{path: '/enter/hotelManage/foodAdd',query: {name: '添加套餐'}}" v-if="0==index_" class="botton">
-				<span><i class="fas fa-plus-circle"></i></span>
-				<span>添加</span>
-			</router-link>
-			<p v-if="1==index_" class="botton ">
-				<span><i class="fas fa-trash-alt"></i></span>
-				<span>删除</span>
-			</p>
+		<div class="add_box" >
+			<div v-if="0 == index_c">
+				<router-link tag="p" :to="{path: '/enter/hotelManage/foodAdd',query: {name: '添加套餐'}}" v-if="0==index_" class="botton">
+					<span><i class="fas fa-plus-circle"></i></span>
+					<span>添加</span>
+				</router-link>
+				<p v-if="1==index_" class="botton ">
+					<span><i class="fas fa-trash-alt"></i></span>
+					<span>删除</span>
+				</p>
+			</div>
 		</div>
 	</div>
 </template>
@@ -121,7 +123,6 @@
 			}
 		},
 		methods: {
-
 			handleClick(i,e){
 				var e = e || event  
 				//console.log(e.target,event.path[0])
