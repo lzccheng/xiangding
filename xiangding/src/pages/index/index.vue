@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div class="box" @click="_boxClick">
       <div id="aMap"></div>
       <div class="_box" ref="_box" @click="_boxClick">
         <div class="style" ref="_style" @click="handleCancel">
@@ -342,9 +342,11 @@
           this._showBox()
           this.$refs._date.style.display = 'block'
         },
-        handleStyle(){
+        handleStyle(e){
+          this.handleCancel()
           this._showBox()
           this.$refs._style.style.display = 'block'
+
         },
         handleCancel(e){
           var e = e || event
@@ -355,13 +357,13 @@
           _date = time
         },
         _showBox(){
-          document.querySelectorAll('body')[0].style.overflow = 'hidden'
+
           this.$refs._box.style.height = window.innerHeight + 'px'
+          console.log(this.$refs._box,window.innerHeight + 'px')
         },
         _boxClick(){
           this.$refs._box.style.height = '0px'
           this.$refs._style.style.display = 'none'
-          document.querySelectorAll('body')[0].style.overflow = 'auto'
         },
         zero(num){
           return Number(num) >9?num:'0'+num
