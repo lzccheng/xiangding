@@ -73,6 +73,12 @@ export default {
 ul,li{
   list-style: none;
 }
+.noscroll{
+  position: fixed;
+  lef: 0;
+  top: 0;
+  width: 100%;
+}
 #app {
   font-family:'微软雅黑' ,Arial;
   font-size: rem(12px);

@@ -526,7 +526,7 @@
 				for(let j = 0;j<this.tabsItem.length;j++){
 					this.tabsItem[j].active = false
 				}
-				document.querySelectorAll('body')[0].style.overflow = 'auto'
+				this.Fn.removeClass(document.querySelector('html'),'noscroll')
 			},
 			handleShow(i){
 				this.item_show = i
@@ -554,7 +554,7 @@
 					}
 					this.tabsItem[i].active = true
 				}
-				document.querySelectorAll('body')[0].style.overflow = 'hidden'
+				this.Fn.addClass(document.querySelector('html'),'noscroll')
 			},
 			handleCancel(event){
 				event.cancelBubble = true
