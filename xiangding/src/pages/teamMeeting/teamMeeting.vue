@@ -127,7 +127,7 @@
 	            that.city = data[1].name
 	          }
 	        })
-	        new lzcDatePlugin({
+	        let lD = new lzcDatePlugin({
            		 el: '#myDatePlugin',
 	            callback: function(res){
 	              that.date_value[0].datetime = res[0].dateTime;

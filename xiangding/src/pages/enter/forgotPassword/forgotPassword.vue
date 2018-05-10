@@ -16,7 +16,7 @@
 			<div v-else class="yz_body">
 				<p class="next_item">
 					<span>验证码</span>
-					<span><input type="text" placeholder="请输入您的验证码"></span>
+					<span><input type="text" style="width: 40%" placeholder="请输入您的验证码"></span>
 					<span class="green_yz"><span>重发验证码</span></span>
 				</p>
 				<p class="next_item">

@@ -4,6 +4,7 @@
 		<div class="back" v-if="general" @click="handleClose_back"> 
 			<div class="box" @click="cancelBubble">
 				<p class="title">享订入驻协议</p>
+				<p class="text">hello</p>
 				<div class="bottom">
 					<p @click="handleClose_back">
 					   <span >我知道了</span>
@@ -132,7 +133,6 @@
 			height: 100%;
 			.box{
 				padding: rem(15px) 0;
-				text-align: center;
 				width: 90%;
 				background-color: #f8f9fc;
 				position: absolute;
@@ -141,11 +141,17 @@
 				border-radius: rem(8px);
 				.title{
 					font-size: rem(17px);
+					text-align: center;
 					font-weight: bold;
-					padding-bottom: rem(30px);
+					padding-bottom: rem(10px);
+				}
+				.text{
+					padding: 0 4%;
 				}
 				.bottom{
 					padding: 0 3%;
+					padding-top: rem(18px);
+					text-align: center;
 					p{
 						background-color: #43c122;
 						color: #fff;
