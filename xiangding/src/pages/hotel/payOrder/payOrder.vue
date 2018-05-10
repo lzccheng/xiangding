@@ -86,7 +86,7 @@
 		</div>
 		<div  class="button">
 			<router-link v-if="title === '团房'||title ==='会议室'" tag="span" to="/my/custom" class="need_pay ">讲价</router-link>
-			<span v-else  class="need_pay talk">取消订单</span>
+			<router-link tag="span" to="/hotelDetail/hotelSelect/hotelOrder" v-else  class="need_pay talk">取消订单</router-link>
 			<router-link tag="span" to="/my/order/payMethods" class="money_color">立即支付</router-link>
 		</div>
 	</div>

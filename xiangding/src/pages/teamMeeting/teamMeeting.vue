@@ -477,7 +477,6 @@
 							padding: rem(10px) 0;
 							position: relative;
 							.erea{
-								// font-size: rem(18px);
 								position: relative;
 								&.erea_{
 									font-size: rem(14px);

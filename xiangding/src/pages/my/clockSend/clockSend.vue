@@ -102,9 +102,9 @@
 					<span class="name">双人床:</span>
 					<span class="select_1">
 						<el-select v-model="select5" slot="prepend" placeholder="请选择">
-					      <el-option label="1.2" value="1"></el-option>
-					      <el-option label="1.3" value="2"></el-option>
-					      <el-option label="1.5" value="3"></el-option>
+					      <el-option label="1.2米" value="1"></el-option>
+					      <el-option label="1.3米" value="2"></el-option>
+					      <el-option label="1.5米" value="3"></el-option>
 					    </el-select>
 					</span>
 				</li>
@@ -161,7 +161,7 @@
 			      select2: '商务大床房',
 			      select3: '3小时',
 			      select4: '1张',
-			      select5: '1.2',
+			      select5: '1.2米',
 			      select6: '是',
 			      // activeNames: ['1'],
 			      value1: true,

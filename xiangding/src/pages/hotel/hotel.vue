@@ -695,6 +695,7 @@
 						.item{
 							p{
 							    padding: rem(10px) 20%;
+							    border-bottom: #EDEDED solid rem(1px);
 							}
 						}
 					}
