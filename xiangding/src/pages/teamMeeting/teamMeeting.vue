@@ -125,7 +125,7 @@
 	            that.text_erea = data[1].name+data[2].name+data[3].name
 	          }
 	        })
-	        new lzcDatePlugin({
+	        let lD = new lzcDatePlugin({
            		 el: '#myDatePlugin',
 	            callback: function(res){
 	              that.date_value[0].datetime = res[0].dateTime;
@@ -196,6 +196,8 @@
 		            background: 'rgba(0, 0, 0, 0.7)',
 		            // target: '.msg'
 		          })
+	          that.show_erea = true
+	          that.$refs.show_erea2[0].style.display = 'block'
 	          common.getLocation(onComplete,onError)
 	          function onComplete(data) {
 	            loading.close()
@@ -204,6 +206,8 @@
 	              addr = data.formattedAddress.split('号')
 	            }
 	            that.text_erea = addr[1]+'附近'
+	            that.show_erea = false
+	            that.$refs.show_erea2[0].style.display = 'none'
 	            that.$message({
 	              message: '定位成功！'+that.text_erea,
 	              type: 'success'
@@ -473,6 +477,7 @@
 							padding: rem(10px) 0;
 							position: relative;
 							.erea{
+								// font-size: rem(18px);
 								position: relative;
 								&.erea_{
 									font-size: rem(14px);

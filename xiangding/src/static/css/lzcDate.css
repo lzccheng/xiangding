@@ -51,13 +51,15 @@
 }
 .lzcBox .lzcDateBox .lzcFixed .lzcTitle .lzcTitle_{
 	color: #555;
+	font-size: 16px;
 }
 .lzcBox .lzcDateBox .lzcFixed .lzcTitle .lzcIcon{
 	color: #3DB788;
 	padding: 3px 8px;
 	position: absolute;
 	left: 0;
-	top: 5px;
+	top: 2px;
+	font-size: 18px;
 }
 .lzcBox .lzcDateBox .lzcFixed .lzcDay{
 	display: flex;
@@ -83,6 +85,7 @@
 	padding: 5px 0;
 	text-align: center;
 	border-bottom: 1px solid #ddd;
+	font-size: 14px;
 }
 .lzcBox .lzcDateBox .lzcMonth .lzcMonthTable{
 	width: 100%;
@@ -105,6 +108,9 @@
 	width: 100%;
 	display: flex;
 	justify-content: space-around;
+}
+.lzcBox .lzcDateBox .lzcMonth .lzcMonthTable tr td .lzcTdSpan span{
+	font-size: 10px;
 }
 .lzcBox .lzcDateBox .lzcMonth .lzcSure{
 	position: fixed;
