@@ -150,7 +150,7 @@
 							</div>
 							<div class="erea_item">
 								<ul v-show="0 == erea_show">
-									<li v-for="(i,index) in ereaBox[0].children" :key="index">
+									<li @click="handleEreaLiItem" v-for="(i,index) in ereaBox[0].children" :key="index">
 										{{i.name}}
 									</li>
 								</ul>
@@ -606,7 +606,6 @@
 		watch: {
 			$route (to,from){
 				if(to.name === 'hotelSearch'){
-					console.log(this.$route)
 					if(this.$route.query.name){
 						this.title = this.$route.query.name
 					}else{

@@ -33,8 +33,8 @@ import './mockjs/api'
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  router,
-  store,
-  components: { App },
+  router: router,
+  store: store,
+  components: { App: App },
   template: '<App/>'
 })

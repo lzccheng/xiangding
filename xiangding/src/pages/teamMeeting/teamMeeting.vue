@@ -73,7 +73,7 @@
 							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
 						</li>
 					</ul>
-					<p class="btn"><router-link :to="{path: '/hotel/hotelSearch',query: {name: arrItem[index_].name}}" tag="button">开始搜索</router-link></p>
+					<p class="btn"><router-link :to="{path: '/hotel/hotelSearch',query: {name: arrItem[index_].name,province: province,city: city}}" tag="button">开始搜索</router-link></p>
 					<div class="bottom">
 						<router-link tag="div" :to="{path: '/my/collection',query: {name: '浏览记录'}}">
 								<span><i class="fas fa-history"></i></span>
@@ -123,6 +123,8 @@
 	          position: [18,0],
 	          callback:function(indexArr, data){
 	            that.text_erea = data[1].name+data[2].name+data[3].name
+	            that.province = data[0].name
+	            that.city = data[1].name
 	          }
 	        })
 	        new lzcDatePlugin({
@@ -185,6 +187,8 @@
 		            }
 		          ],
 		        name: '会议室',
+		        province: '广东省',
+		        city: '广州市'
 			}
 		},
 		methods: {
