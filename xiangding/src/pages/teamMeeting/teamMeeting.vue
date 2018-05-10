@@ -196,8 +196,6 @@
 		            background: 'rgba(0, 0, 0, 0.7)',
 		            // target: '.msg'
 		          })
-	          that.show_erea = true
-	          that.$refs.show_erea2[0].style.display = 'block'
 	          common.getLocation(onComplete,onError)
 	          function onComplete(data) {
 	            loading.close()
@@ -206,8 +204,6 @@
 	              addr = data.formattedAddress.split('号')
 	            }
 	            that.text_erea = addr[1]+'附近'
-	            that.show_erea = false
-	            that.$refs.show_erea2[0].style.display = 'none'
 	            that.$message({
 	              message: '定位成功！'+that.text_erea,
 	              type: 'success'

@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div class="box" @click="_boxClick">
       <div id="aMap"></div>
       <div class="_box" ref="_box" @click="_boxClick">
         <div class="style" ref="_style" @click="handleCancel">
