@@ -168,7 +168,7 @@
 		mounted(){
 			let that = this
 			setTimeout(()=>{
-				// window.location.href = 'https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&do=shop&m=yun_shop&type=3&route=member.login.index'
+				// window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx5e65662844fc54d4&redirect_uri=https%3a%2f%2fwww.share-hotel.cn%2faddons%2fyun_shop%2fapi.php%3fi%3d3%26do%3dshop%26m%3dyun_shop%26type%3d1%26route%3dmember.login.index&response_type=code&scope=snsapi_userinfo&state=1245#wechat_redirect'
 				// that.$axios.get('/addons/yun_shop/api.php?i=3&do=shop&m=yun_shop&type=3&route=member.login.index').then((res)=>{
 				// 	console.log(res)
 				// })

@@ -12,8 +12,10 @@ window.lzcDatePlugin = (function(){
 	}
 	LzcDatePlugin.prototype = {
 		init: function(){
+			this.obj.before&&this.obj.before();
 			var elParent = this.el.parentNode;
 			var that = this;
+			
 			//生成弹出层
 			var lzcBox = document.createElement('div');
 			lzcBox.setAttribute('class','lzcBox');
@@ -113,6 +115,7 @@ window.lzcDatePlugin = (function(){
 					onTip(lzcTip,'请选择离店日期');
 				}
 				if(that.elObj.secondEl){
+					//数据处理
 					var data = [];
 					var date1 = new Date(Number(that.elObj.firstEl.getAttribute('datatime')));
 					var obj1 = {
@@ -128,6 +131,8 @@ window.lzcDatePlugin = (function(){
 					data.push(obj2);
 					that.obj.callback && that.obj.callback(data);
 					lzcBox.style.display = 'none';
+					//释放背景层
+					that.removeClass(document.querySelector('html'),'lzcHtmlPosition');
 				}
 			}
 			//tip
@@ -142,11 +147,15 @@ window.lzcDatePlugin = (function(){
 			that.el.addEventListener('click',onElClick);
 			function onElClick(){
 				lzcBox.style.display = 'block';
+				//禁止背景层滚动
+				that.addClass(document.querySelector('html'),'lzcHtmlPosition');
 			}
 			//给lzcIcon添加点击事件
 			lzcBox.querySelector('.lzcIcon').addEventListener('click',onLzcIconClick);
 			function onLzcIconClick(){
 				lzcBox.style.display = 'none';
+				//释放背景层
+				that.removeClass(document.querySelector('html'),'lzcHtmlPosition');
 			}
 			//填入lzcBox
 			elParent.appendChild(lzcBox);

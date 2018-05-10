@@ -150,3 +150,7 @@
 .lzcDisable{
 	color: #bbb;
 }
+.lzcHtmlPosition{
+	position: fixed;
+	width: 100%;
+}
