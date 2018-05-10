@@ -7,7 +7,7 @@
 				<p class="tip_1">超过<input type="text">小时</p>
 				<p class="tip_1">扣除<input type="text"> &nbsp;&nbsp;%</p>
 				<p class="choice">
-					<span @click="backHide">取消</span>
+					<span @click="handBack">取消</span>
 					<span>确定</span>
 				</p>
 			</div>
@@ -175,16 +175,15 @@
 		      },
 		    handGeneral(event){
 				this.general = true
+				this.Fn.addClass(document.querySelector('html'),'noscroll')
 			},
 			handBack(){
 				this.general = false
+				this.Fn.removeClass(document.querySelector('html'),'noscroll')
 			},
 			cancelBubble(event){
 				event.cancelBubble = true
 			},
-			backHide(){
-				this.general = false
-			}
 
 		}
 	}
@@ -200,7 +199,7 @@
 			top: 0;
 			left: 0;
 			height: 100%;
-			z-index: 999;
+			z-index: 9999;
 			width: 100%;
 			font-size: rem(14px);
 			.alert{

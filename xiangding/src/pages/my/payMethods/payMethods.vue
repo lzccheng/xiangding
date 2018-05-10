@@ -84,7 +84,7 @@
 			position: fixed;
 			top: 0;
 			left: 0;
-			z-index: 999;
+			z-index: 9999;
 			.box{
 				padding: rem(15px) 0;
 				width: 90%;
