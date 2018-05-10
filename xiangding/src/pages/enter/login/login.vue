@@ -249,7 +249,7 @@
 					padding: rem(15px) 0;
 					text-align: center;
 					width: 90%;
-					background-color: #e5e5e5;
+					background-color: #f8f9fc;
 					position: absolute;
 					top: rem(80px);
 					left: 5%;

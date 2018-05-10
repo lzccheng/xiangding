@@ -91,7 +91,7 @@
 				position: absolute;
 				top: rem(80px);
 				left: 5%;
-				background-color: #e5e5e5;
+				background-color: #f8f9fc;
 				border-radius: rem(8px);
 				.title{
 					font-size: rem(17px);

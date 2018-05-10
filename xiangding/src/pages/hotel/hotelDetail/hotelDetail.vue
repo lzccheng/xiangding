@@ -433,7 +433,6 @@
 									// 	&.first{
 									// 		font-size: rem(15px);
 									// 	}
-									// }
 								}
 
 								button{
@@ -446,10 +445,11 @@
 								}
 								.icon_s{
 									font-size: rem(16px);
-									color: #43c122;.number_s{
-									font-size: rem(14px);
-									padding: 0 rem(7px);
+									color: #43c122;
 								}
+								.number_s{
+									font-size: rem(14px);
+									padding: 0 5%;
 								}
 								
 								.button_1{

@@ -1,5 +1,15 @@
 <template>
 	<div class="box">
+		<div class="back" v-if="general" @click="handleClose_back"> 
+			<div class="box" @click="cancelBubble">
+				<p class="title">享订提现协议</p>
+				<div class="bottom">
+					<p @click="handleClose_back">
+					   <span>我知道了</span>
+					</p>
+				</div>
+			</div>
+		</div>
 		<Header title="提现"/>
 		<div class="form">
 			<p class="input">
@@ -39,7 +49,7 @@
 			<p>提现</p>
 		</div>
 		<div class="know_box">
-		<p class="know">《提现协议》</p>
+		<p class="know" @click="handleShow_back">《提现协议》</p>
 		</div>
 	</div>
 </template>
@@ -47,11 +57,19 @@
 	export default {
 		data(){
 			return {
-
+				general: false
 			}
 		},
 		methods: {
-
+			handleShow_back(){
+				this.general = true
+			},
+			handleClose_back(){
+				this.general = false
+			},
+			cancelBubble(event){
+				event.cancelBubble = true
+			},
 		}
 	}
 </script>
@@ -61,6 +79,41 @@
 		width: 100%;
 		background-color: #e5e5e5;
 		font-size: rem(14px);
+		.back{
+			background-color: rgba(0,0,0,0.3);
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 9999;
+			width: 100%;
+			height: 100%;
+			// background-color: #fff;
+			.box{
+				padding: rem(15px) 0;
+				text-align: center;
+				width: 90%;
+				background-color: #f8f9fc;
+				position: absolute;
+				top: rem(80px);
+				left: 5%;
+				height: 15%;
+				border-radius: rem(8px);
+				.title{
+					font-size: rem(17px);
+					font-weight: bold;
+					padding-bottom: rem(30px);
+				}
+				.bottom{
+					padding: 0 3%;
+					p{
+						background-color: #43c122;
+						color: #fff;
+						padding: rem(10px) 0;
+						border-radius: rem(5px);
+					}
+				}
+			}
+		}
 		.form{
 			background-color: #ffffff;
 			margin-top: rem(8px);
