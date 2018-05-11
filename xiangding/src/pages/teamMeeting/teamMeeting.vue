@@ -476,6 +476,7 @@
 						li{
 							padding: rem(10px) 0;
 							position: relative;
+							margin-top: rem(1px);
 							.erea{
 								// font-size: rem(18px);
 								position: relative;

@@ -169,10 +169,12 @@
 			handleCancel(event){
 				this.back_show = true
 				document.querySelectorAll('body')[0].style.overflow = 'hidden'
+				this.Fn.addClass(document.querySelector('html'),'noscroll')
 			},
 			backHide(){
 				this.back_show = false
 				document.querySelectorAll('body')[0].style.overflow = 'auto'
+				this.Fn.removeClass(document.querySelector('html'),'noscroll')
 			},
 			cancelBubble(event){
 				event.cancelBubble = true
@@ -228,10 +230,10 @@
 		background-color: #e5e5e5;
 		.back{
 			width: 100%;
-			position: absolute;
+			position: fixed;
 			top: 0;
 			left: 0;
-			z-index: 999;
+			z-index: 9999;
 			background-color: rgba(0,0,0,0.3);
 			height: 100%;
 			.alert{

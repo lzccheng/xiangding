@@ -357,6 +357,7 @@
 				for(let j = 0;j<this.tabsItem.length;j++){
 					this.tabsItem[j].active = false
 				}
+				this.Fn.removeClass(document.querySelector('html'),'noscroll')
 			},
 			handleTabChange(i){
 				if(this.tabsItem[i].active){
@@ -372,6 +373,7 @@
 					}
 					this.tabsItem[i].active = true
 				}
+				this.Fn.addClass(document.querySelector('html'),'noscroll')
 			},
 			handleGeneral(i){
 				this.handleTabChange(0)

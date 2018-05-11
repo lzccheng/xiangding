@@ -88,7 +88,6 @@
 			z-index: 9999;
 			width: 100%;
 			height: 100%;
-			// background-color: #fff;
 			.box{
 				padding: rem(15px) 0;
 				width: 90%;
@@ -96,7 +95,6 @@
 				position: absolute;
 				top: rem(80px);
 				left: 5%;
-				height: 15%;
 				border-radius: rem(8px);
 				.title{
 					font-size: rem(17px);
@@ -109,8 +107,8 @@
 				}
 				.bottom{
 					padding: 0 3%;
-					text-align: center;
 					padding-top: rem(18px);
+					text-align: center;
 					p{
 						background-color: #43c122;
 						color: #fff;

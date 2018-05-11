@@ -355,6 +355,7 @@
         handleCancel(e){
           var e = e || event
           e.cancelBubble = true
+          
         },
         handleChange(time){
           this.value2 = new Date(time.getTime()+1000*60*60*24)
