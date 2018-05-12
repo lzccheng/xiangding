@@ -179,6 +179,10 @@
             },
           triggerDisplayData: false,
           position: [18,0],
+          onShow: function(){
+          },
+          onHide:function(){
+          },
           callback:function(indexArr, data){
             that.text_erea = data[1].name+data[2].name+data[3].name
             that.province = data[0].name
@@ -346,7 +350,7 @@
           this.handleCancel()
           this._showBox()
           this.$refs._style.style.display = 'block'
-
+          this.Fn.addClass(document.querySelector('html'),'noscroll')
         },
         handleCancel(e){
           var e = e || event
@@ -360,11 +364,11 @@
         _showBox(){
 
           this.$refs._box.style.height = window.innerHeight + 'px'
-          console.log(this.$refs._box,window.innerHeight + 'px')
         },
         _boxClick(){
           this.$refs._box.style.height = '0px'
           this.$refs._style.style.display = 'none'
+          this.Fn.removeClass(document.querySelector('html'),'noscroll')
         },
         zero(num){
           return Number(num) >9?num:'0'+num
