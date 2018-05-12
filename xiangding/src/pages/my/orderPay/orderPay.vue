@@ -48,27 +48,31 @@
 						<li class="item">
 							<span class="day">天数</span>
 							<span class="number_box">
-								 <el-input-number size="mini" v-model="num7"></el-input-number>
+							   <span class="icon_s" style="border-right: none" @click="handleDelete(index)">-</span>
+								<span class="number_s">{{num_1}}</span>
+								<span class="icon_s radius" style="border-left: none" @click="handleAdd(index)">+</span>
 							</span>
 						</li>
 						<li class="item">
 							<span class="day">房间</span>
 							<span class="number_box">
-								  <el-input-number size="mini" v-model="num7"></el-input-number>
+							    <span class="icon_s" style="border-right: none" @click="handleDelete1(index)">-</span>
+								<span class="number_s">{{num_2}}</span>
+								<span class="icon_s radius" style="border-left: none" @click="handleAdd1(index)">+</span>
 							</span>
 						</li>
 						<li class="item">
 						    <span class="day">商品金额</span>
 							<span class="number_box">
 								<span class="money_icon">¥</span>
-								<span class="money_icon">289.00</span>
+								<span class="money_icon" style="padding-left: 0">289.00</span>
 							</span>
 						</li>
 						<li class="item">
 							<span class="day">应付金额</span>
 							<span class="number_box">
 								<span class="money_icon color">¥</span>
-								<span class="money_icon color">289.00</span>
+								<span class="money_icon color" style="padding-left: 0">289.00</span>
 							</span>
 						</li>
 						<div class="send_box">
@@ -135,14 +139,14 @@
 									    <span class="day">商品金额</span>
 										<span class="number_box">
 											<span class="money_icon">¥</span>
-											<span class="money_icon">289.00</span>
+											<span class="money_icon" style="padding-left: 0">289.00</span>
 										</span>
 									</li>
 									<li class="item">
 										<span class="day">应付金额</span>
-										<span class="number_box">
-											<span class="money_icon color">¥</span>
-											<span class="money_icon color">289.00</span>
+										<span class="number_box" style="color: #43c122">
+											<span class="money_icon">¥</span>
+											<span class="money_icon" style="padding-left: 0">289.00</span>
 										</span>
 									</li>
 									<div class="send_box">
@@ -179,8 +183,9 @@
 					'订单状态',
 					'订单详情',
 				],
-				 num7: 1,
-				 index_: 1
+				 index_: 1,
+				 num_1: 0,
+				 num_2: 0
 			}
 		},
 		methods: {
@@ -188,6 +193,20 @@
 				this.$refs._line.style.left = event.path[0].offsetLeft + 'px'
 				this.$refs._line.style.width =  event.path[0].offsetWidth +'px'
 				this.index_ = i
+			},
+			handleDelete(i){
+				this.num_1 --
+				if(this.num_1<=0){this.num_1=0}
+			},
+			handleAdd(i){
+				this.num_1++
+			},
+			handleDelete1(i){
+				this.num_2 --
+				if(this.num_2<=0){this.num_2=0}
+			},
+			handleAdd1(i){
+				this.num_2++
 			}
 		},
 		computed: {
@@ -415,7 +434,8 @@
 				li{
 					margin-bottom: rem(22px);
 					.day{
-						font-size: rem(13px);
+						font-size: rem(14px);
+						
 					}
 					.color{
 						color: #43c122;
@@ -423,6 +443,25 @@
 					.number_box{
 						display: flex;
 						float: right;
+						width: 30%;
+						margin-top: rem(-7px);
+						.number_s{
+							width: 50%;
+							text-align: center;
+							display: inline-block;
+							border: #DCDFE6 solid rem(1px);
+							padding: rem(7px) 0;
+						}
+						.icon_s{
+							width: 25%;
+							padding: rem(7px) 0;
+							text-align: center;
+							border: #DCDFE6 solid rem(1px);
+							border-radius: rem(5px) 0 0 rem(5px); 
+						}
+						.radius{
+							border-radius: 0 rem(5px) rem(5px) 0; 
+						}
 						.delete{
 							border: #43c122 solid rem(1px);
 						}
@@ -433,6 +472,7 @@
 						.money_icon{
 							font-size: rem(17px);
 							margin-right: 2%;
+							padding-left: 40%;
 						}
 					}
 				}

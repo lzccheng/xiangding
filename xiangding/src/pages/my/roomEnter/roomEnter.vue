@@ -1,6 +1,7 @@
 <template>
 	<div class="box">
 		<Header title="我的发布"/>
+		<span class="delect" v-if="1==index_">删除</span>
 		<div>
 			<div v-if="0==index_">
 			    <router-link tag="div" :to="{path: '/my/roomSend/roomSend',query:{title: '房间编辑'}} ">
@@ -128,6 +129,14 @@
 	.box{
 		width: 100%;
 		padding-bottom: rem(150px);
+		position: relative;
+		.delect{
+			position: fixed;
+			top: rem(13px);
+			right: 6%;
+			z-index: 1000;
+			font-size: rem(15px);
+		}
 		.header{
 			padding: rem(15px) 10%;
 			font-size: rem(22px);

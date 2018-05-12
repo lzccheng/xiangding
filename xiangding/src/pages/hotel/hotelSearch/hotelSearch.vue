@@ -784,7 +784,7 @@
 								}
 							}
 							&.date{
-								width: 18%;
+								width: 17%;
 								position: relative;
 								.posi{
 									position: absolute;
@@ -793,7 +793,7 @@
 										color: #43c122;
 									}
 									.color_text{
-										padding-left: rem(5px);
+										padding-left: rem(4px);
 									}
 								}
 								.p1{

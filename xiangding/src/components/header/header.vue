@@ -31,7 +31,7 @@
 			position: fixed;
 			top: 0;
 			left: 0;
-			z-index: 9998;
+			z-index: 999;
 			text-align: center;
 			padding: rem(12px) 0;
 			font-size: rem(18px);

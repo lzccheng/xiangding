@@ -74,7 +74,7 @@
 					.text{
 						color: #43c122;
 						display: inline-block;
-						margin-left: 10%;
+						margin-left: 2%;
 					}
 				}
 				&:nth-child(2){

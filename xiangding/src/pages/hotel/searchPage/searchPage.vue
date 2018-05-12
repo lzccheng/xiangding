@@ -178,10 +178,10 @@
 							padding-bottom: rem(14px);
 							span{
 								&:first-child{
-									margin-right: 62%;
+									margin-right: 70%;
 									display:  inline-block;
-									width: 23%;
-									float: left;
+									// width: 20%;
+									// float: left;
 								}	
 								&:last-child{
 									font-size: rem(16px);

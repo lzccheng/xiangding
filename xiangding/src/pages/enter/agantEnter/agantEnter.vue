@@ -128,7 +128,7 @@
 			position: fixed;
 			top: 0;
 			left: 0;
-			z-index: 9999;
+			z-index: 999;
 			width: 100%;
 			height: 100%;
 			.box{
@@ -293,18 +293,10 @@
 				}
 			}
 		}
-		// .know{
-		// 	color: #4ea9ec;
-		// 	font-size: rem(14px);
-		// 	background-color: #ffffff;
-		// 	position: absolute;
-		// 	bottom: rem(10px);
-		// 	left: 50%;
-		// 	margin-left: rem(-42px);
-		// }
+		
 		.agreement_box{
 			position: absolute;
-			bottom: 0;
+			bottom: rem(10px);
 			left: 0;
 			width: 100%;
 			text-align: center;

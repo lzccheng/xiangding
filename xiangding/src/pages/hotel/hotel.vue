@@ -372,17 +372,21 @@
 						this.tabsItem[j].active = false
 					}
 					this.tabsItem[i].active = true
+					this.Fn.addClass(document.querySelector('html'),'noscroll')
 				}
-				this.Fn.addClass(document.querySelector('html'),'noscroll')
+				
 			},
 			handleGeneral(i){
 				this.handleTabChange(0)
+				
 			},
 			handlePrice(i){
 				this.handleTabChange(1)
+				
 			},
 			handleLocal(i){
 				this.handleTabChange(2)
+
 			},
 			handleShow(i){
 				this.item_show = i

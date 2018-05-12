@@ -30,9 +30,9 @@
 				<label>账号:</label>
 				<input type="text" placeholder="请输入账号" name="">
 			</p>
-			<p class="input">
+			<p class="input" style="border-bottom: none">
 				<label>密码:</label>
-				<input type="password" class="pass" placeholder="请输入密码"  name="" @blur ="handleCheckPassword">
+				<input type="password" class="pass"  placeholder="请输入密码"  name="" @blur ="handleCheckPassword">
 				<span class="eye" @click="handlePassword">
 					<span ref="eye_one">
 						<i  class="fas fa-eye"></i>

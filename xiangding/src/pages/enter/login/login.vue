@@ -248,6 +248,7 @@
 				// background-color: #fff;
 				.box{
 					padding: rem(15px) 0;
+					padding-bottom: rem(30px);
 					width: 90%;
 					background-color: #f8f9fc;
 					position: absolute;

@@ -16,7 +16,7 @@
 			<div class="msg">
 				<div class="img"><img :src="data.imgUrl"></div>
 				<div class="text">
-					<p>01-29入住，1-30离开，共{{num6}}天</p>
+					<p>01-29入住，1-30离开，共{{num_1}}天</p>
 					<p v-if="title === '会议室'">董事长会议室</p>
 					<p v-else>商务大床房</p>
 					<p><span>25m <sup>2</sup>	
@@ -81,7 +81,9 @@
 					<span v-if="title === '钟点房'">时间</span>
 					<span v-else>天数</span>
 					<span class="number_box">
-					    <el-input-number size="mini" :min="1" :max="Infinity" @focus="handleBlur" v-model="num6"></el-input-number>
+					    <span class="icon_s" style="border-right: none" @click="handleDelete(index)">-</span>
+						<span class="number_s">{{num_1}}</span>
+						<span class="icon_s radius" style="border-left: none" @click="handleAdd(index)">+</span>
 					</span>
 				</p>
 				<p class="black">
@@ -90,8 +92,10 @@
 					   <p v-else>房间</p>
 					   <p v-if="title === '团房'" class="room">注: 团房间最少订购两间及以上</p>
 					</span>
-					<span class="number_box1">
-					    <el-input-number size="mini" :min="1" :max="Infinity" @focus="handleBlur" v-model="num7"></el-input-number>
+					<span class="number_box" >
+					    <span class="icon_s" style="border-right: none"  @click="handleDelete1(index)">-</span>
+						<span class="number_s">{{num_2}}</span>
+						<span class="icon_s radius" style="border-left: none" @click="handleAdd1(index)">+</span>
 					</span>
 				</p>
 				<p class="black" v-if="title === '会议室'">
@@ -110,8 +114,8 @@
 					<span  class="check_box"><i class="fas fa-chevron-right"></i></span>
 				</router-link>
 				<p class="black">
-						<span>是否需要发票</span>
-						<span class="check_box"><el-checkbox v-model="checked"></el-checkbox></span>
+					<span>是否需要发票</span>
+					<span class="check_box"><el-checkbox v-model="checked"></el-checkbox></span>
 				</p>
 				<router-link tag="p" :to="{path:'/hotelDetail',query:{name: '团房',id: 2,order: true}}" v-if="title === '会议室'" class="black color_green">
 					<span>是否需要团房</span>
@@ -196,13 +200,13 @@
 						'http://pic.35pic.com/normal/04/16/23/5713677_151916236164_2.jpg'
 					]
 				},
-				num7: 1,
-				num6: 1,
 				checked: false,
 				checked1: false,
 				title: '酒店列表',
 				show: false,
-				radio: '1'
+				radio: '1',
+				num_1: 0,
+				num_2: 0
 			}
 		},
 		watch: {
@@ -219,6 +223,20 @@
 		methods:{
 			handleBlur(event){
 				event.path[0].blur()
+			},
+			handleDelete(i){
+				this.num_1 --
+				if(this.num_1<=0){this.num_1=0}
+			},
+			handleAdd(i){
+				this.num_1++
+			},
+			handleDelete1(i){
+				this.num_2 --
+				if(this.num_2<=0){this.num_2=0}
+			},
+			handleAdd1(i){
+				this.num_2++
 			}
 		}
 	}
@@ -249,7 +267,7 @@
 					&:first-child{
 						margin:0;
 					}
-					margin-left: rem(10px);
+					// margin-left: rem(10px);
 				}
 			}
 
@@ -316,13 +334,11 @@
 					padding: 0 rem(5px);
 					font-size: rem(14px);
 					margin: rem(12px) 0;
-
 					&.black{
 						margin-top: rem(13px);
-				        padding-bottom: rem(20px);
+				        padding-bottom: rem(16px);
 				        border-bottom: #EBEBEB solid rem(1px);
 				        position: relative;
-
 				        span{
 				        	&:first-child{
 				        		display: inline-block;
@@ -349,14 +365,6 @@
 						display: inline-block;
 						border: 1px solid teal;
 					}
-					.number_box{
-						float: right;
-					}
-					.number_box1{
-						position: absolute;
-						top: rem(3px);
-						right: rem(5px);
-					}
 					.yz_numb{
 						background-color: #43c122;
 						color: #ffffff;
@@ -375,6 +383,32 @@
 						float: right;
 						color: #43c122;
 					} 
+					.number_box{
+						float: right;
+						display: flex;
+						width: 30%;
+						margin-top: rem(-7px);
+						.number_s{
+							width: 50%;
+							text-align: center;
+							display: inline-block;
+							border: #DCDFE6 solid rem(1px);
+							padding: rem(7px) 0;
+						}
+						.icon_s{
+							width: 25%;
+							padding: rem(7px) 0;
+							text-align: center;
+							border: #DCDFE6 solid rem(1px);
+							border-radius: rem(5px) 0 0 rem(5px); 
+						}
+						.radius{
+							border-radius: 0 rem(5px) rem(5px) 0; 
+						}
+					}
+					// .top{
+					// 	margin-top: rem(3px);
+					// }
 					.time{
 						position: absolute;
 						top: rem(-6px);
