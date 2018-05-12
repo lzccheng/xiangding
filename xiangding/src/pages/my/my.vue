@@ -5,7 +5,7 @@
 				<p>
 					<img :src="msg.imgUrl">
 					<div class="text">
-						<span>{{msg.name}}</span><br>
+						<span>{{msg.name}} ({{msg.level_name}})</span><br>
 						<span>ID: {{msg.id}}</span>
 						<router-link tag="span" to="/my/myMessage" class="i"><i class="fas fa-cog"></i></router-link>
 					</div>
@@ -16,7 +16,7 @@
 			</router-link>
 		</div>
 		<div class="earning">
-			<p class="text"><span>当前收益</span></p>
+			<p class="text"><span>当前余额</span></p>
 			<p class="money" style="font-family:'微软雅黑' ,Arial !important"><span>￥</span><span>{{msg.earning}}</span></p>
 			<div class="earn">
 				<div class="order">
@@ -167,49 +167,35 @@
 	export default {
 		mounted(){
 			let that = this
-			setTimeout(()=>{
-				// window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx5e65662844fc54d4&redirect_uri=https%3a%2f%2fwww.share-hotel.cn%2faddons%2fyun_shop%2fapi.php%3fi%3d3%26do%3dshop%26m%3dyun_shop%26type%3d1%26route%3dmember.login.index&response_type=code&scope=snsapi_userinfo&state=1245#wechat_redirect'
-				// that.$axios.get('/addons/yun_shop/api.php?i=3&do=shop&m=yun_shop&type=3&route=member.login.index').then((res)=>{
-				// 	console.log(res)
-				// })
-			},15000)
-			that.$axios.get('/addons/yun_shop/api.php?i=3&do=shop&m=yun_shop&type=1&route=member.login.index',{'show_wechat_login':true}).then((res)=>{
-				console.log(res)
-				alert('login---status:'+res.data.result)
+			// let baseUrl = 'https://www.share-hotel.cn'
+			let baseUrl = ''
+			this.$axios.get(baseUrl+'/addons/yun_shop/api.php?i=3&c=entry&do=shop&m=yun_shop&route=member.member.getUserInfo').then((res)=>{
+				if(res.data.data.login_url){
+					window.location.href = res.data.data.login_url + '&yz_redirect=' + that.Fn.base64_encode(window.location.href+'?')
+				}else{
+					// console.log(res.data)
+					localStorage.setItem('userInfo',JSON.stringify(res.data))
+					that.msg.id = res.data.data.uid
+					that.msg.name = res.data.data.nickname
+					that.msg.imgUrl = res.data.data.avatar
+					that.msg.earning = res.data.data.credit.data
+					that.msg.level_name = res.data.data.level_name
+				}
+				
+			},(err)=>{
+				console.log(err)
 			})
-			// this.$axios.post('/addons/yun_shop/api.php?i=3&do=shop&m=yun_shop&type=1&route=member.login.index').then((res)=>{
-			// 	console.log(res)
-			// 	this.$axios.get('/addons/yun_shop/api.php?i=3&c=entry&do=shop&m=yun_shop&route=member.member.getUserInfo').then((res)=>{
-			// 		console.log(res.data.result)
-			// 		alert(res.data.result)
-			// 		that.msg.id = res.data.data.uid
-			// 		that.msg.name = res.data.data.nickname
-			// 		that.msg.imgUrl = res.data.data.avatar
-			// 		console.log(res)
-			// 	},(err)=>{
-			// 		console.log(err)
-			// 	})
-			// })
-			// this.$axios.get('/addons/yun_shop/api.php?i=3&c=entry&do=shop&m=yun_shop&route=member.member.getUserInfo').then((res)=>{
-			// 	console.log('getUserInfo---status'+res.data.result)
-			// 	alert('getUserInfo---status:'+res.data.result)
-			// 	that.msg.id = res.data.data.uid
-			// 	that.msg.name = res.data.data.nickname
-			// 	that.msg.imgUrl = res.data.data.avatar
-			// 	console.log(res)
-			// },(err)=>{
-			// 	console.log(err)
-			// })
 		},
 		data(){
 			return {
 				msg: {
-					imgUrl: 'http://imgtu.5011.net/uploads/content/20170428/1436171493371991.jpg',
-					id: '147258369',
-					earning:'88888.00',
+					imgUrl: '',
+					id: '',
+					earning:'',
 					order_num: '1369',
 					poeple_num: '569',
-					name: 'aaa',
+					name: '',
+					level_name: '',
 					income: {
 						firstAgent: '2644',
 						secondAgent: '9637',

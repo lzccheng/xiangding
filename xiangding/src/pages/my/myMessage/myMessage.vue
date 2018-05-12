@@ -5,16 +5,16 @@
 			<div class="form">
 				<p class="input">
 					<label>姓名</label>
-					<input type="text" placeholder="请输入姓名" name="">
+					<input type="text" placeholder="请输入姓名" name="" v-model="name">
 				</p>
 				<p class="input">
 					<label>手机号</label>
-					<input @blur="handleCheck" class="handleCheck" type="text" placeholder="请输入手机号" name="">
+					<input @blur="handleCheck" @focus="handleNo" class="handleCheck" type="text" placeholder="请输入手机号" name="" v-model="mobile">
 					<router-link tag="span" to="/my/bindPhone" class="get">   &nbsp;<i class="fas fa-chevron-right"></i></router-link>
 				</p>
 				<p class="mm">
 					<label>微信号:</label>
-					<input type="text" placeholder="请输入微信号" name="">
+					<input type="text" placeholder="请输入微信号" name="" v-model="wechat">
 				</p>
 			</div>
 			<div class="form">
@@ -38,12 +38,32 @@
 </template>
 <script>
 	export default {
+		mounted(){
+
+			let userInfo = localStorage.getItem('userInfo')
+			if(userInfo){
+				let userInfoData =JSON.parse(userInfo)
+				// console.log(userInfoData.data)
+				this.mobile = userInfoData.data.mobile
+				this.name = userInfoData.data.realname
+				this.wechat = userInfoData.data.realname
+			}
+		},
 		data(){
 			return {
+				name: '',
+				mobile: '',
+				wechat: '',
 				value1: null,
 			}
 		},
 		methods: {
+			handleNo(e){
+				if(this.mobile){
+					var e = e || event
+					e.target.blur()
+				}
+			},
 			handleCheck(event){
 				let value = document.querySelector('.handleCheck').value
 				// event.path[0].value

@@ -166,10 +166,6 @@
 								</ul>
 							</div>
 						</div>
-						<div class="erea_btn">
-							<div>重置</div>
-							<div>完成</div>
-						</div>
 					</div>
 				</div>
 				<div class="free">
@@ -475,6 +471,7 @@
 					this.Fn.removeClass(eParentChild[i],'active')
 				}
 				this.Fn.addClass(e.target,'active')
+				this.handleBack()
 			},
 			handleEreaChange(i,e){
 				var e = e || event
