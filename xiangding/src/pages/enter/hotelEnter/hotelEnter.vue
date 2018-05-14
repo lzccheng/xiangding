@@ -127,7 +127,9 @@
 		mounted(){
 			this.$refs.eye_two.style.display = 'inline-block'
 			this.$refs.eye_one.style.display = 'none'
-			
+			// this.$axios.get('/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=plugin.store-cashier.frontend.store.store.verify-apply-status&').then((res)=>{
+			// 	console.log(res)
+			// })
 		},
 		data(){
 			return {
@@ -150,10 +152,9 @@
 		},
 		methods: {
 			handleFormSubmit(){
-				console.log(888)
 				let that = this
 				console.log({...that.formData})
-				this.$axios.post('/addons/yun_shop/api.php?i=3&c=entry&do=shop&m=yun_shop&route=plugin.store-cashier.frontend.store.store.apply',{password:'nihaode'}).then((res)=>{
+				this.$axios.post('/addons/yun_shop/api.php?i=3&c=entry&do=shop&m=yun_shop&route=plugin.store-cashier.frontend.store.store.apply',{apply:{...that.formData}}).then((res)=>{
 					console.log(res)
 				})
 			},
