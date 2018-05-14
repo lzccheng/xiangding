@@ -101,18 +101,18 @@
 				   <input type="file" style="display: none" id="file">
 			</div>
 		</div>
-		<div class="form">
+		<div class="form bottom">
 			<p class="input" style="border-bottom: none">
 				<label>填写酒店简介</label>
 			</p>
 			<div class="photo">
-				<textarea cols="40" rows="10" placeholder="请填写酒店简介..."></textarea>
+				<textarea cols="40" rows="5" placeholder="请填写酒店简介..."></textarea>
 			</div>	
 			
 		</div>
-		<div class="form" style="border-bottom: none">
+		<div class="form" style="border-bottom: none;padding-left: 0">
 			<div class="footer">
-			   <router-link tag="p" to="/enter/login" class="button">立即申请</router-link>
+			   <router-link tag="p" to="/enter/login" class="green_btn">立即申请</router-link>
 			</div>
 			<div class="agreement_box">
 				<span @click="handleShow_back" class="agreement">《入驻协议》</span>
@@ -301,10 +301,11 @@
 			.photo{
 				color: #aaa;
 				font-size: rem(48px);
-				padding-bottom: rem(20px);
+				padding-bottom: rem(8px);
 				padding-left: 3%;
 				textarea{
 					border: none;
+					font-size: rem(14px);
 				}
 			}
 			.input{
@@ -363,13 +364,8 @@
 			}
 			.footer{
 				padding: rem(20px) 5%;
-				text-align: center;
-				p{
-					background-color: #43c122;
-					color: #fff;
-					padding: rem(10px) 0;
-					border-radius: rem(5px);
-				}
+				// text-align: center;
+				
 			}
 			.agreement_box{
 				width: 100%;
@@ -381,6 +377,7 @@
 				}
 			}
 		}
+
 		
 	}
 </style>

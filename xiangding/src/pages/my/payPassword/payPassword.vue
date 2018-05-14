@@ -14,7 +14,7 @@
 				</p>
 			</div>
 			<div class="body">
-				<div class="button" >
+				<div class="green_btn" >
 					<span>确认</span>
 				</div>
 			</div>
@@ -37,7 +37,7 @@
 				</p>
 			</div>
 			<div class="body">
-				<router-link class="button" tag="div" to="/enter/login">
+				<router-link class="green_btn" tag="div" to="/enter/login">
 					<span>确认修改</span>
 				</router-link>
 			</div>
@@ -49,7 +49,7 @@
 	export default {
 		data(){
 			return {
-				value1: null,
+				// value1: null,
 			}
 		},
 		methods: {
@@ -114,31 +114,24 @@
 			.color_aaa{
 				color: #aaa;
 			}
-			.btn{
-				margin-top: rem(25px);
-				button{
-					width: 100%;
-					border: none; 
-					color: #fff;
-					border-radius: rem(5px);
-					background-color: #43c122;
-					padding: rem(12px);
-				}
-			}
+			// .btn{
+			// 	margin-top: rem(25px);
+			// 	button{
+			// 		width: 100%;
+			// 		border: none; 
+			// 		color: #fff;
+			// 		border-radius: rem(5px);
+			// 		background-color: #43c122;
+			// 		padding: rem(12px);
+			// 	}
+			// }
 		}
 		.body{
 			background-color: #ffffff;
 			padding: rem(16px) 5% rem(50px);
 			margin-top: rem(10px);
 			border-top: #aaa solid rem(1px);
-			.button{
-				background-color: #43c122;
-				color: #ffffff;
-				font-size: rem(16px);
-				text-align: center;
-				padding: rem(12px) 0;
-				border-radius: rem(5px);
-			}
+		
 		}
 	}
 </style>

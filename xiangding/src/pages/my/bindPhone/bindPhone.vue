@@ -14,7 +14,7 @@
 				</p>
 			</div>
 			<div class="body">
-				<div class="button" >
+				<div class="green_btn" >
 					<span>绑定</span>
 				</div>
 			</div>
@@ -36,7 +36,7 @@
 				<span class="get">获取验证码</span>
 			</p>
 			<div class="body" style="border-top: none">
-				<div class="button" >
+				<div class="green_btn" >
 					<span>下一步</span>
 				</div>
 			</div>
@@ -47,7 +47,7 @@
 		    	<p class="i"><span><i class="fas fa-check-circle"></i></span></p>
 		     	<p class="fixed_text">绑定的手机号:   13800138000</p>
 		     	<div class="body" style="border-top: none">
-					<div class="button">
+					<div class="green_btn">
 						<span>更换手机号</span>
 					</div>
 				</div>
@@ -270,19 +270,10 @@
 		}
 		.body{
 			background-color: #ffffff;
-			// padding-bottom: rem(50px);
-			// padding-top: rem(16px);
 			padding: rem(16px) 5% rem(50px);
 			margin-top: rem(10px);
 			border-top: #aaa solid rem(1px);
-			.button{
-				background-color: #43c122;
-				color: #ffffff;
-				font-size: rem(16px);
-				text-align: center;
-				padding: rem(12px) 0;
-				border-radius: rem(5px);
-			}
+			
 		}
 	}
 </style>

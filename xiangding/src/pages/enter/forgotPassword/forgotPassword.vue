@@ -10,7 +10,7 @@
 					<input type="text" placeholder="请输入您绑定的手机号码">
 				</p>
 				<p class="button"  >
-					<span class="text" @click="handleNext">下一步</span>
+					<span class="green_btn" @click="handleNext">下一步</span>
 				</p>
 			</div>
 			<div v-else class="yz_body">
@@ -86,15 +86,14 @@
 				}
 			}
 			.button{
-				padding: rem(40px) 10%;
-				text-align: center;
-				.text{
-					padding: rem(8px) 12%;
-					background-color: #43c122;
-					font-size: rem(14px);
-					color: #ffffff;
-					border-radius: rem(5px);
-				}
+				padding: rem(40px) 20%;
+				// .text{
+				// 	padding: rem(8px) 12%;
+				// 	background-color: #43c122;
+				// 	font-size: rem(14px);
+				// 	color: #ffffff;
+				// 	border-radius: rem(5px);
+				// }
 			}
 			.yz_body{
 				width: 85%;
@@ -106,9 +105,9 @@
 					padding: rem(40px) 10%;
 				    text-align: center;
 				    .text{
-						padding: rem(8px) 12%;
+						padding: rem(10px) 17%;
 						background-color: #43c122;
-						font-size: rem(14px);
+						font-size: rem(16px);
 						color: #ffffff;
 						border-radius: rem(5px);
 					}

@@ -1,7 +1,10 @@
 <template>
 	<div class="box">
 		<Header title="申请入驻"/>
-		<div class="back" v-if="general" @click="handleClose_back"> 
+		<div v-show="alertShow">
+			<myalert :innerHtml="htmltest" title_2="享订入驻协议" @handleCancel="aaa" status="1"/>
+		</div>
+		<!-- <div class="back" v-if="general" @click="handleClose_back"> 
 			<div class="box" @click="cancelBubble">
 				<p class="title">享订入驻协议</p>
 				<p class="text">hello</p>
@@ -11,7 +14,7 @@
 					</p>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<div class="form">
 			<p class="input">
 				<label>代理商姓名:</label>
@@ -50,22 +53,34 @@
 				</p>
 			</div>
 			<div class="footer">
-			<router-link tag="p" to="/my/myagantEnter" class="button">立即申请</router-link>
+			<router-link tag="p" to="/my/myagantEnter" class="green_btn">立即申请</router-link>
 			</div>
 		</div>
 		<div class="agreement_box">
-			<span class="agreement" @click="handleShow_back">《入驻协议》</span>
+			<span class="agreement" @click="handleShow">《入驻协议》</span>
 		</div>
 	</div>
 </template>
 <script>
+	import myalert from '../../../components/alert/alert'
 	export default {
+		components: {
+	        myalert
+	      },
 		data(){
 			return {
-				general: false
+				// general: false,
+				htmltest: '<span style="font-size: 5px; text-align: left;">文字文字文字文字文字文字文字文字文字文字一段文字还有一段</span>',
+				alertShow: false
 			}
 		},
 		methods: {
+			handleShow(){
+				this.alertShow = true
+			},
+			aaa(res){
+				this.alertShow = false
+			},
 			handleCheck(event){
 				let value = document.querySelector('.handleCheck').value
 				// event.path[0].value
@@ -104,15 +119,15 @@
 			        });
 				}
 			},
-			handleShow_back(){
-				this.general = true
-			},
-			handleClose_back(){
-				this.general = false
-			},
-			cancelBubble(event){
-				event.cancelBubble = true
-			},
+			// handleShow_back(){
+			// 	this.$refs.alert_test.style.display = 'block'
+			// },
+			// handleClose_back(){
+			// 	this.general = false
+			// },
+			// cancelBubble(event){
+			// 	event.cancelBubble = true
+			// },
 		}
 	}
 </script>
@@ -195,16 +210,8 @@
 				}
 			}
 			.footer{
-				padding: 0 5%;
-				.button{
-					background-color: #43c122;
-					font-size: rem(15px);
-					text-align: center;
-					padding: rem(10px) 0;
-					color: #ffffff;
-					margin-top: rem(20px);
-					border-radius: rem(5px);
-				}
+				padding: rem(10px) 5%;
+				
 			}
 			.mm{
 				position: relative;

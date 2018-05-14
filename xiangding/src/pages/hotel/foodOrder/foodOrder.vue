@@ -15,7 +15,7 @@
 					</div>
 				</div>
 				<div class="botton">
-					<p>确定</p>
+					<p class="green_btn">确定</p>
 				</div>
 			
 			
@@ -107,7 +107,7 @@
 						}
 					}
 					.icon{
-						padding-left: 35%;
+						padding-left: 34%;
 						.icon_s{
 							font-size: rem(16px);
 							color: #43c122;

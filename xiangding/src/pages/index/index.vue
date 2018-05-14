@@ -108,7 +108,7 @@
           </li>
   			</ul>
         <div class="button">
-          <router-link tag="button" :to="{path: '/hotel/hotelSearch',query: {data,name: '酒店列表',province: province,city: city}}">查找酒店</router-link>
+          <router-link tag="p" class="green_btn" :to="{path: '/hotel/hotelSearch',query: {data,name: '酒店列表',province: province,city: city}}">查找酒店</router-link>
         </div>
   		</div>
 
@@ -648,17 +648,16 @@
         }
       }
       .button{
-        padding: rem(10px) 0;
-        text-align: center;
-        button{
-          width: 90%;
-          height: rem(40px);
-          font-size: rem(16px);
-          border-radius: rem(5px);
-          border: none;
-          color: #fff;
-          background-color: #43c122;
-        }
+        padding: rem(10px) 5%;
+        // button{
+        //   width: 90%;
+        //   height: rem(40px);
+        //   font-size: rem(16px);
+        //   border-radius: rem(5px);
+        //   border: none;
+        //   color: #fff;
+        //   background-color: #43c122;
+        // }
       }
 		}
     .near{
@@ -699,7 +698,7 @@
         }
       }
       .btn{
-        padding: rem(40px) rem(15px) rem(10px);
+        padding: rem(40px) 5% rem(10px);
       }
     }
 	}

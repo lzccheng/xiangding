@@ -15,7 +15,7 @@
 			<p><span><i class="fas fa-question-circle"></i></span><span>提现规则</span></p>
 		</div>
 		<div class="btn">
-			<button>提现</button>
+			<div class="green_btn">提现</div>
 		</div>
 	</div>
 </template>
@@ -106,15 +106,7 @@
 			}
 		}
 		.btn{
-			text-align: center;
-			font-size: rem(14px);
-			button{
-				border: none;
-				color: #fff;
-				padding: rem(10px) 40%;
-				background-color: #43c122;
-				border-radius: rem(5px);
-			}
+			padding: rem(10px) 5%;
 		}
 	}
 </style>

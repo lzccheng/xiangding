@@ -742,6 +742,7 @@
 		.hotel{
 			padding: rem(10px) rem(5px); 
 			font-size: rem(13px);
+			padding-bottom: rem(50px);
 			.hotelItem{
 				padding-bottom: rem(15px);
 				div{

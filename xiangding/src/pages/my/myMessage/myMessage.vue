@@ -29,7 +29,7 @@
 			</div>
 		
 			<div class="body">
-				<div class="button" >
+				<div class="green_btn" >
 					<span>确认修改</span>
 				</div>
 			</div>
@@ -153,16 +153,9 @@
 		}
 		.body{
 			border-top: #aaa solid rem(1px);
-			background-color: #ffffff;
 			padding: rem(30px) 5% rem(50px);
-			.button{
-				background-color: #43c122;
-				color: #ffffff;
-				font-size: rem(16px);
-				text-align: center;
-				padding: rem(12px) 0;
-				border-radius: rem(5px);
-			}
+			background-color: #fff;
+			
 		}
 	}
 </style>
