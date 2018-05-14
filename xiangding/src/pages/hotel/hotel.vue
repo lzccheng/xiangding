@@ -83,11 +83,41 @@
 				</div>
 			</div>
 			<div v-if="1 == show" @click="handleCancel">
-				<!-- <div class="content">
-					<p class="m"><span>1米 - 500米</span></p>
-					<p class="m"><span>500米 - 1500米</span></p>
-					<p class="m none"><span>1500米 - 3000米</span></p>
-				</div> -->
+				<div class="local_box">
+					<div class="content_">
+						<div class="content_nav">
+							<div class="nav_item">距离我</div>
+							<div class="nav_item">行政区域</div>
+						</div>
+						<div class="content_show">
+							<div class="show_item" v-show="local_box == 0">
+								<ul class="out_tome">
+									<li>全城</li>
+									<li>1km</li>
+									<li>3km</li>
+									<li>5km</li>
+									<li>10km</li>
+								</ul>
+							</div>
+							<div class="show_item" v-show="local_box == 1">
+								<div>
+									<ul>
+										<li>天河区</li>
+									</ul>
+								</div>
+								<div>
+									<ul>
+										<li>沙里街道</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div>
+						<div>重置</div>
+						<div>完成</div>
+					</div>
+				</div>				
 			</div>
 			<div v-if="2 == show" @click="handleCancel">
 				<div class="content">
@@ -109,12 +139,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- <div class="star">
-			<span>二星</span>
-			<span>三星</span>
-			<span>四星</span>
-			<span>五星</span>
-		</div> -->
 		<div class="hotel" >
 			<div class="hotelItem" v-for='(i,index) in hotel' :key='index'>
 				<router-link :to="{path: '/hotelDetail',query:{id:i.id}}" tag='div'>
@@ -151,21 +175,13 @@
 	</div>
 </template>
 <script>
-	import star from '../../components/star/star'
 	import common from '../../common/js/common'
 	export default {
 		mounted: function(){
 			this.$axios({url:'/hotel'}).then((res)=>{
 				this.hotel = res.data
 			})
-			// this.$axios({url:'/api/addons/yun_shop/api.php?i=3&route=home-page.index'}).then((res)=>{
-			// 	console.log(res.data.data.default.goods)
-			// 	this.aa = res.data.data.default.goods
-			// })
 		},
-		components: {
-	        star
-	      },
 		data(){
 			return {
 				aa: [],
@@ -304,7 +320,8 @@
 				general: false,
 				item_show: 0,
 				colorBoolen: false,
-				windowY: 0
+				windowY: 0,
+				local_box: 0
 			}
 		},
 		methods: {
@@ -723,6 +740,34 @@
 							padding: rem(12px) 0;
 							background-color: #43c122;
 							color: #ffffff;
+						}
+					}
+				}
+			}
+			.local_box{
+				background-color: #ffffff;
+				.content_{
+					display: flex;
+					.content_nav{
+						
+						.nav_item{
+							padding: rem(5px) rem(8px);
+							border-bottom: 1px #aaaaaa solid;
+						}
+					}
+					.content_show{
+						.show_item{
+							color: red;
+							width: 100%;
+							.out_tome{
+								width: 100%;
+								li{
+									width: 100%;
+									padding: rem(5px) rem(8px);
+									border-bottom: 1px #aaaaaa solid;
+									border-left: 1px #aaaaaa solid;
+								}
+							}
 						}
 					}
 				}

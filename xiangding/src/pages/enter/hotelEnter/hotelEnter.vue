@@ -15,11 +15,11 @@
 		<div class="form"> 
 			<p class="input">
 				<label>申请人:</label>
-				<input type="text" placeholder="请输入姓名" name="">
+				<input type="text" placeholder="请输入姓名" name="" v-model="formData.realname">
 			</p>
 			<p class="input">
 				<label>联系电话:</label>
-				<input @blur="handleCheck" class="handleCheck" type="text" placeholder="请输入电话号码" name="">
+				<input @blur="handleCheck" class="handleCheck" type="text" placeholder="请输入电话号码" name="" v-model="formData.mobile">
 			</p>
 			<p class="input">
 				<label>验证码:</label>
@@ -28,11 +28,11 @@
 			</p>
 			<p class="input">
 				<label>账号:</label>
-				<input type="text" placeholder="请输入账号" name="">
+				<input type="text" placeholder="请输入账号" name="" v-model="formData.username">
 			</p>
 			<p class="input" style="border-bottom: none">
 				<label>密码:</label>
-				<input type="password" class="pass"  placeholder="请输入密码"  name="" @blur ="handleCheckPassword">
+				<input type="password" class="pass"  placeholder="请输入密码"  name="" @blur ="handleCheckPassword" v-model="formData.password">
 				<span class="eye" @click="handlePassword">
 					<span ref="eye_one">
 						<i  class="fas fa-eye"></i>
@@ -46,20 +46,20 @@
 		<div class="form">
 			<p class="input">
 				<label>酒店名称:</label>
-				<input type="text" placeholder="请输入酒店名称" name="">
+				<input type="text" v-model="formData.storeName" placeholder="请输入酒店名称" name="">
 			</p>
 			<p class="input">
 				<label>酒店星级:</label>
-				<span class="star"><el-rate v-model="value1"></el-rate></span>
+				<span class="star"><el-rate v-model="formData.categoryId"></el-rate></span>
 			</p>
 			
 			<p class="input">
 				<label>前台电话:</label>
-				<input @blur="hanndleFixPhone" type="text" placeholder="请输入带区号得座机号码" class="hanndleFixPhone" name="">
+				<input @blur="hanndleFixPhone" v-model="formData.storetel" type="text" placeholder="请输入带区号得座机号码" class="hanndleFixPhone" name="">
 			</p>
 			<p class="input">
 				<label>电子邮箱:</label>
-				<input type="text" placeholder="请输入电子邮箱" name="">
+				<input type="text" v-model="formData.storeemail" placeholder="请输入电子邮箱" name="">
 			</p>
 			<p class="input">
 				<label>所在城市:</label>
@@ -81,15 +81,15 @@
 			</p>
 			<p class="input">
 				<label>酒店收款账号:</label>
-				<input @blur="handleCheckCredit" type="text" class="handleCheckCredit" placeholder="请输入银行卡号" name="">
+				<input @blur="handleCheckCredit" v-model="formData.hotelbank" type="text" class="handleCheckCredit" placeholder="请输入银行卡号" name="">
 			</p>
 			<p class="input">
 				<label >代理服务商姓名:</label>
-				<input type="text" placeholder="请输入代理服务商姓名" name="">
+				<input type="text" v-model="formData.dailiname" placeholder="请输入代理服务商姓名" name="">
 			</p>
 			<p class="input" style="border-bottom: none">
 				<label>代理服务商电话:</label>
-				<input style="width: 60%" @blur="handleCheck_" type="text" class="handleCheck_" placeholder="请输入代理服务商的电话号码" name="">
+				<input style="width: 60%" v-model="formData.dailitel" @blur="handleCheck_" type="text" class="handleCheck_" placeholder="请输入代理服务商的电话号码" name="">
 			</p>
 		</div>
 		<div class="form">
@@ -112,7 +112,12 @@
 		</div>
 		<div class="form" style="border-bottom: none;padding-left: 0">
 			<div class="footer">
+<<<<<<< HEAD
 			   <router-link tag="p" to="/enter/login" class="green_btn">立即申请</router-link>
+=======
+			   <!-- <router-link tag="p" to="/enter/login" class="button">立即申请</router-link> -->
+			   <p class="button" @click="handleFormSubmit">立即申请</p>
+>>>>>>> 3efa62a211a98eac02113a84c15fbacfda87278b
 			</div>
 			<div class="agreement_box">
 				<span @click="handleShow_back" class="agreement">《入驻协议》</span>
@@ -126,14 +131,36 @@
 		mounted(){
 			this.$refs.eye_two.style.display = 'inline-block'
 			this.$refs.eye_one.style.display = 'none'
+			
 		},
 		data(){
 			return {
 				value1: null,
-				general: false
+				general: false,
+				formData: {
+					realname: '',  //申请人
+					mobile: '',		//联系电话
+					username: '',	//账号
+					password: '',	//密码
+					storeName: '',	//酒店名称
+					categoryId: null,	//酒店星级
+					storetel: '',	//酒店前台电话
+					storeemail: '', //酒店电子邮件
+					dailiname: '', //代理服务商姓名
+					dailitel: '', //代理服务商电话
+					hotelbank: ''  // 酒店收款账号
+				}
 			}
 		},
 		methods: {
+			handleFormSubmit(){
+				console.log(888)
+				let that = this
+				console.log({...that.formData})
+				this.$axios.post('/addons/yun_shop/api.php?i=3&c=entry&do=shop&m=yun_shop&route=plugin.store-cashier.frontend.store.store.apply',{password:'nihaode'}).then((res)=>{
+					console.log(res)
+				})
+			},
 			handleCheckPassword(){
 				let value = document.querySelector('.pass').value
 				if(value){
@@ -214,7 +241,7 @@
 			hanndleFixPhone(event){
 				let value = document.querySelector('.hanndleFixPhone').value
 				if(value){
-					if (!common.checkFixedPhone(value)) {
+					if (!this.Fn.checkFixedPhone(value)) {
 						this.$message({
 							message: '请输入正确的座机号码',
 							type: 'warning'
