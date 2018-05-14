@@ -68,7 +68,7 @@
 			width: 80%;
 			background-color: #ffffff;
 			position: absolute;
-			top: rem(220px);
+			top: rem(200px);
 			left: 10%;
 			text-align: center;
 			border-radius: rem(8px);

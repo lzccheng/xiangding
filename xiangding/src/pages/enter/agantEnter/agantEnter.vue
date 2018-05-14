@@ -70,7 +70,7 @@
 		data(){
 			return {
 				// general: false,
-				htmltest: '<span style="font-size: 5px; text-align: left;">文字文字文字文字文字文字文字文字文字文字一段文字还有一段</span>',
+				htmltest: '<span style="font-size: 13px; text-align: left;">文字文字文字文字文字文字文字文字文字文字一段文字还有一段</span>',
 				alertShow: false
 			}
 		},

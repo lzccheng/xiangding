@@ -39,7 +39,7 @@
 			textarea{
 				border: none;
 				padding: rem(5px) 0;
-				font-size: rem(14px);
+				font-size: rem(15px);
 			}
 			.text1{
 				font-size: rem(14px);

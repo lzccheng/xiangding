@@ -194,7 +194,7 @@
 		},
 		data(){
 			return {
-				htmltest: '<div style="display: block; padding-bottom: 10px;">超过<input type="text" style="width: 20%;border-bottom: #000 solid 1px;text-align: center;">小时</div><div>扣除&nbsp;<input type="text" style="width: 20%;border-bottom: #000 solid 1px;text-align: center;">% &nbsp;&nbsp;</div>'
+				htmltest: '<div style="display: block; padding-bottom: 10px;">超过<input type="text" style="width: 19%;border-bottom: #000 solid 1px;text-align: center;">小时</div><div>&nbsp;扣除&nbsp;<input type="text" style="width: 19%;border-bottom: #000 solid 1px;text-align: center;">% &nbsp;&nbsp;</div>'
 				,
 				htmltest_1: '<p><input type="text" style="border: #aaa solid 1px;border-radius: 5px;padding: 5px 0;" placeholder="请输入设备名称"></p>',
 				alertShow: false,

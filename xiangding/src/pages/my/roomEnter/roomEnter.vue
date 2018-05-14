@@ -221,7 +221,7 @@
 						.right{
 							color: #a7a5a6;
 							position: absolute;
-							top: rem(70px);
+							top: rem(75px);
 							right: 5%;
 						}
 					}

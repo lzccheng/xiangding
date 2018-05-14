@@ -105,19 +105,15 @@
 			<p class="input" style="border-bottom: none">
 				<label>填写酒店简介</label>
 			</p>
-			<div class="photo">
+			<div class="photo" style="padding-left: 2%;">
 				<textarea cols="40" rows="5" placeholder="请填写酒店简介..."></textarea>
 			</div>	
 			
 		</div>
 		<div class="form" style="border-bottom: none;padding-left: 0">
 			<div class="footer">
-<<<<<<< HEAD
-			   <router-link tag="p" to="/enter/login" class="green_btn">立即申请</router-link>
-=======
 			   <!-- <router-link tag="p" to="/enter/login" class="button">立即申请</router-link> -->
-			   <p class="button" @click="handleFormSubmit">立即申请</p>
->>>>>>> 3efa62a211a98eac02113a84c15fbacfda87278b
+			   <router-link tag="p" to="/enter/login"  @click="handleFormSubmit" class="green_btn">立即申请</router-link>
 			</div>
 			<div class="agreement_box">
 				<span @click="handleShow_back" class="agreement">《入驻协议》</span>
@@ -330,10 +326,11 @@
 				font-size: rem(48px);
 				padding-bottom: rem(8px);
 				padding-left: 3%;
-				textarea{
-					border: none;
-					font-size: rem(14px);
-				}
+
+			}
+			textarea{
+				border: none;
+				font-size: rem(15px);
 			}
 			.input{
 				position: relative;

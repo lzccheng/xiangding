@@ -12,7 +12,7 @@
 					<input @blur="handleCheck" @focus="handleNo" class="handleCheck" type="text" placeholder="请输入手机号" name="" v-model="mobile">
 					<router-link tag="span" to="/my/bindPhone" class="get">   &nbsp;<i class="fas fa-chevron-right"></i></router-link>
 				</p>
-				<p class="mm">
+				<p class="input" style="border-bottom: none">
 					<label>微信号:</label>
 					<input type="text" placeholder="请输入微信号" name="" v-model="wechat">
 				</p>
@@ -22,7 +22,7 @@
 					<label>银行卡</label>
 					<span  class="get">   &nbsp;<i class="fas fa-chevron-right"></i></span>
 				</router-link>
-				<router-link tag="p" to="/my/payPassword" class="mm">
+				<router-link tag="p" to="/my/payPassword" class="input" style="border-bottom: none">
 					<label>余额支付密码</label>
 					<span  class="get">   &nbsp;<i class="fas fa-chevron-right"></i></span>
 				</router-link>

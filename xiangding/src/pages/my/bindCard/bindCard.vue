@@ -24,7 +24,7 @@
 					<label>账号</label>
 					<input type="text" placeholder="请输入账号" name="">
 				</p>
-				<p class="mm">
+				<p class="input" style="border-bottom: none">
 					<label>姓名</label>
 					<input type="text" placeholder="请输入姓名" name="">
 				</p>

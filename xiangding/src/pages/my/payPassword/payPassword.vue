@@ -7,7 +7,6 @@
 					<label>支付密码</label>
 					<input type="text" placeholder="请输入支付密码" name="">
 				</p>
-				
 				<p class="input" style="border-bottom: none">
 					<label>确认密码</label>
 					<input type="text" placeholder="请输入确认密码" name="">
@@ -26,7 +25,6 @@
 					<input type="text" placeholder="请输入验证码" name="">
 					<span class="get"><span>获取验证码</span></span>
 				</p>
-				
 				<p class="input">
 					<label>新的支付密码</label>
 					<input type="text" placeholder="请输入支付密码" name="">
