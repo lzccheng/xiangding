@@ -166,6 +166,7 @@
       },
       mounted:function(){
         let that = this
+        console.log(window)
         var mobileSelect5 = new MobileSelect({
             trigger: '#cccc',
             title: '请选择地区',
