@@ -5,8 +5,10 @@ $rem: 16px !default;
 
 .green_btn{
 	width: 100%;
-	padding: rem(10px);
+	display: inline-block;
+	padding: rem(10px) 0;
 	border-radius: rem(5px);
+	text-align: center;
 	color: #fff;
 	border: none;
 	background-color: #43c122;

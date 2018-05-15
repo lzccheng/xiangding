@@ -48,17 +48,17 @@
 						<li class="item">
 							<span class="day">天数</span>
 							<span class="number_box">
-							   <span class="icon_s" style="border-right: none" @click="handleDelete(index)">-</span>
+							   <span class="icon_s" style="border-right: none" @click="handleDelete">-</span>
 								<span class="number_s">{{num_1}}</span>
-								<span class="icon_s radius" style="border-left: none" @click="handleAdd(index)">+</span>
+								<span class="icon_s radius" style="border-left: none" @click="handleAdd">+</span>
 							</span>
 						</li>
 						<li class="item">
 							<span class="day">房间</span>
 							<span class="number_box">
-							    <span class="icon_s" style="border-right: none" @click="handleDelete1(index)">-</span>
+							    <span class="icon_s" style="border-right: none" @click="handleDelete1">-</span>
 								<span class="number_s">{{num_2}}</span>
-								<span class="icon_s radius" style="border-left: none" @click="handleAdd1(index)">+</span>
+								<span class="icon_s radius" style="border-left: none" @click="handleAdd1">+</span>
 							</span>
 						</li>
 						<li class="item">
@@ -173,9 +173,7 @@
 <script>
 	export default {
 		mounted(){
-			// console.log(this.$refs.tab)
-			// this.$refs._line.style.left = this.$refs.tab.lastChild.offsetLeft + 'px'
-			// this.$refs._line.style.width =  this.$refs.tab.lastChild.offsetWidth + 'px'
+			
 		},
 		data(){
 			return {

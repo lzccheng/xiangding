@@ -64,7 +64,6 @@
 	.box{
 		width: 100%;
 		padding-top: rem(90px);
-		padding-bottom: rem(500px);
 		.top_box{
 			width: 100%;
 			position: fixed;
@@ -89,7 +88,7 @@
 				}
 			}
 			.search{
-				background-color: #8BC34A;
+				background-color: #43c122;
 				padding: rem(5px) rem(10px);
 				.search_{
 					background-color: #fff;

@@ -46,11 +46,9 @@
 				<span class="get"><span>获取验证码</span></span>
 			</p> 
 		</div>
-		<div class="button_box">
-			<p>提现</p>
-		</div>
 		<div class="know_box">
-		<p class="know" @click="handleShow_back">《提现协议》</p>
+			<p class="green_btn">提现</p>
+			<p class="know" @click="handleShow_back">《提现协议》</p>
 		</div>
 	</div>
 </template>
@@ -180,24 +178,16 @@
 			}
 		}
 		.button_box{
-			background-color: #ffffff;
 			padding: rem(20px) 5%;
-			p{
-				color: #ffffff;
-				font-size: rem(14px);
-				background-color: #43c122;
-				padding: rem(14px) 20%;
-				text-align: center;
-				border-radius: rem(5px);
-			}
 		}
 		.know_box{
 			background-color: #ffffff;
-			padding: rem(50px) 0 rem(10px);
+			padding: rem(20px) 5%;
 			.know{
 				text-align: center;
 				color: #4e9dea;
 				font-size: rem(14px);
+				padding: rem(10px) 0;
 			}
 		}
 	}

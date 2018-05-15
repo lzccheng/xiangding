@@ -55,6 +55,7 @@ import bindCard from '@/pages/my/bindCard/bindCard'
 import payPassword from '@/pages/my/payPassword/payPassword'
 import cardMessage from '@/pages/enter/cardMessage/cardMessage'
 import searchPage from '@/pages/hotel/searchPage/searchPage'
+import page404 from '@/pages/page404/page404'
 
 Vue.use(Router)
 
@@ -493,13 +494,20 @@ export default new Router({
         title: '我的提现'
       }
     },
-
     {
       path: '/my/cash',
       name: 'cash',
       component: cash,
       meta: {
         title: '提现'
+      }
+    },
+    {
+      path: '/*',
+      name: 'page404',
+      component: page404,
+      meta: {
+        title: '404'
       }
     }
   ]

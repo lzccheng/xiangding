@@ -81,9 +81,9 @@
 					<span v-if="title === '钟点房'">时间</span>
 					<span v-else>天数</span>
 					<span class="number_box">
-					    <span class="icon_s" style="border-right: none" @click="handleDelete(index)">-</span>
+					    <span class="icon_s" style="border-right: none" @click="handleDelete">-</span>
 						<span class="number_s">{{num_1}}</span>
-						<span class="icon_s radius" style="border-left: none" @click="handleAdd(index)">+</span>
+						<span class="icon_s radius" style="border-left: none" @click="handleAdd">+</span>
 					</span>
 				</p>
 				<p class="black">
@@ -93,9 +93,9 @@
 					   <p v-if="title === '团房'" class="room">注: 团房间最少订购两间及以上</p>
 					</span>
 					<span class="number_box" >
-					    <span class="icon_s" style="border-right: none"  @click="handleDelete1(index)">-</span>
+					    <span class="icon_s" style="border-right: none"  @click="handleDelete1">-</span>
 						<span class="number_s">{{num_2}}</span>
-						<span class="icon_s radius" style="border-left: none" @click="handleAdd1(index)">+</span>
+						<span class="icon_s radius" style="border-left: none" @click="handleAdd1">+</span>
 					</span>
 				</p>
 				<p class="black" v-if="title === '会议室'">
@@ -371,7 +371,7 @@
 						position: absolute;
 						right: 0;
 						bottom: 0;
-						height: 100%;
+						height: 94%;
 						display: flex;
 						padding: 0 rem(8px);
 						align-items: center;

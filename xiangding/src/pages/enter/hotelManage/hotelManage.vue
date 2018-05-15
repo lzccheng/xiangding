@@ -46,21 +46,21 @@
 	    <div class="item">
 	    	<router-link to="/my/roomEnter" tag="div" class="room_1 rooms">
 	    		<p class="icon"><i class="fas fa-archive"></i></p>
-	    		<p>房态管理</p>
+	    		<p class="name">房态管理</p>
 	    	</router-link>
 	    	<router-link tag="div" to="/enter/hotelManage/orderManage" class="room_2 rooms">
 	    		<p class="icon"><i class="fas fa-th-list"></i></p>
-	    		<p>订单管理</p>
+	    		<p class="name">订单管理</p>
 	    	</router-link>
 	    </div>
 	    <div class="item">
 	    	<router-link tag="div" to="/enter/hotelManage/resetPassword" class="room_3 rooms">
 	    		<p class="icon"><i class="fas fa-th-list"></i></p>
-	    		<p>账号密码</p>
+	    		<p class="name">账号密码</p>
 	    	</router-link>
-	    	<router-link tag="div" to="/enter/hotelManage/incomeList" class="room_4 rooms">
+	    	<router-link tag="div" to="/enter/hotelManage/incomeList" class="room_3 rooms">
 	    		<p class="icon"><i class="fas fa-th-list"></i></p>
-	    		<p>收入明细</p>
+	    		<p class="name">收入明细</p>
 	    	</router-link>
 	    </div>
 	    <div class="item">
@@ -70,15 +70,19 @@
 	    	</router-link>
 	    	<router-link tag="div" to="/enter/hotelManage/orderDeal" class="room_6 rooms">
 	    		<p class="icon"><i class="fas fa-th-list"></i></p>
-	    		<p>订单处理</p>
+	    		<p class="name">订单处理</p>
 	    	</router-link>
 	    	
 	    </div>
 	    <div class="item">
 	    	<router-link tag="div" to="/enter/hotelManage/foodManage" class="room_3 rooms">
 	    		<p class="icon"><i class="fas fa-utensils"></i></p>
-	    		<p>餐饮管理</p>
+	    		<p class="name">餐饮管理</p>
 	    	</router-link>
+	    	<div class="room_3 rooms" style="background-color: #fff;">
+	    		<!-- <p class="icon"><i class="fas fa-utensils"></i></p> -->
+	    		<p class="name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+	    	</div>
 	    </div>
 	</div>
 </template>
@@ -276,22 +280,26 @@
 		}
 		.item{
 			display: flex;
+			justify-content: space-around;
+			// flex-direction: row;
 			padding: rem(13px) rem(18px);
 			color: #ffffff;
 			font-size: rem(16px);
 			font-weight: bold;
 			text-align: center;
 			.rooms{
-				padding: rem(24px) 14%;
+				padding: rem(24px) 13%;
 				border-radius: rem(6px);
 			}
 			.icon{
-					font-size: rem(33px);
-					margin-bottom: rem(5px);
-				}
+				font-size: rem(33px);
+				margin-bottom: rem(5px);
+			}
+			.name{
+				width: 100%;
+			}
 			.room_1{
 				background-color: #e51c23;
-				margin-right: rem(14px);
 				
 			}
 			.room_2{
@@ -299,17 +307,14 @@
 			}
 			.room_3{
 				background-color: #ff9800;
-				margin-right: rem(14px);
 			}
-			.room_4{
-				background-color: #ff9800;
-			}
+			
 			.room_5{
 				background-color: #00c2ff;
-				margin-right: rem(14px);
 			}
 			.room_6{
 				background-color: #43c122;
+
 			}
 		}
 	}

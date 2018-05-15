@@ -365,7 +365,7 @@
 		}
 
 		.send{
-			padding: rem(10px) rem(20px);
+			padding: rem(10px) 5%;
 		}
 	}
 </style>

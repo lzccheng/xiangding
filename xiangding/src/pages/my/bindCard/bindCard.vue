@@ -24,13 +24,13 @@
 					<label>账号</label>
 					<input type="text" placeholder="请输入账号" name="">
 				</p>
-				<p class="mm">
+				<p class="input" style="border-bottom: none">
 					<label>姓名</label>
 					<input type="text" placeholder="请输入姓名" name="">
 				</p>
 			</div>
 			<div class="body">
-				<div class="button" >
+				<div class="green_btn" >
 					<span>绑定</span>
 				</div>
 			</div>
@@ -140,19 +140,10 @@
 		}
 		.body{
 			background-color: #ffffff;
-			// padding-bottom: rem(50px);
-			// padding-top: rem(16px);
 			margin-top: rem(10px);
 			padding: rem(16px) 5% rem(50px);
 			border-top: #aaa solid rem(1px);
-			.button{
-				background-color: #43c122;
-				color: #ffffff;
-				font-size: rem(16px);
-				text-align: center;
-				padding: rem(12px) 0;
-				border-radius: rem(5px);
-			}
+			
 		}
 	}
 </style>

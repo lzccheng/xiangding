@@ -73,7 +73,7 @@
 							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
 						</li>
 					</ul>
-					<p class="btn"><router-link :to="{path: '/hotel/hotelSearch',query: {name: arrItem[index_].name,province: province,city: city}}" tag="button">开始搜索</router-link></p>
+					<p class="btn"><router-link :to="{path: '/hotel/hotelSearch',query: {name: arrItem[index_].name,province: province,city: city}}" tag="p" class="green_btn">开始搜索</router-link></p>
 					<div class="bottom">
 						<router-link tag="div" :to="{path: '/my/collection',query: {name: '浏览记录'}}">
 								<span><i class="fas fa-history"></i></span>
@@ -228,8 +228,10 @@
 				this.show_erea = true
 				this.$refs.show_erea2[0].style.display = 'block'
 			},
-			handleBlur(event){
-				event.path[0].blur()
+			handleBlur(e){
+				alert(4555)
+				var e = e || event
+				e.target.blur()
 			},
 			datePicker1(time){
 				_date = time.getTime()

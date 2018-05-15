@@ -1,7 +1,13 @@
 <template>
 	<div class="box">
 		<Header :title="title" />
-		<div v-if="general" class="back" @click="handBack">
+		<div v-show="alertShow" >
+			<myalert :innerHtml="htmltest" title_3="退房扣费设置" @handleCancel="aaa" status="0" />
+		</div>
+		<div v-show="alertShow_1" >
+			<myalert :innerHtml="htmltest_1" title_3="设施设备" @handleCancel="aaa_1" status="0" />
+		</div>
+		<!-- <div v-if="general" class="back" @click="handBack">
 			<div class="alert" @click="cancelBubble">
 				<p class="tip">退房扣费设置</p>
 				<p class="tip_1">超过<input type="text">小时</p>
@@ -12,6 +18,16 @@
 				</p>
 			</div>
 		</div>
+		<div v-if="general_1" class="back" @click="handleClose_back">
+			<div class="alert" @click="cancelBubble">
+				<p class="tip">设施设备</p>
+				<p class="tip_1"><input type="text" class="input" placeholder="请输入设备名称"></p>
+				<p class="choice">
+					<span @click="handleClose_back">取消</span>
+					<span>确定</span>
+				</p>
+			</div>
+		</div> -->
 		<div class="body">
 			<ul>
 				<li class="item">
@@ -65,7 +81,7 @@
 						    	</span>
 						    </p><br/>
 						    <p class="add_1">
-						        <span @click="handGeneral" :class="{color:value2}" >
+						        <span @click="handleShow" :class="{color:value2}" >
 							    	<span  class="add_icon"><i class="fas fa-plus-square"></i></span>
 							    	<span class="add_text">添加</span>
 						    	</span>
@@ -147,7 +163,7 @@
 						    <!-- <el-checkbox label="拖鞋"></el-checkbox> -->
 						  </el-checkbox-group>
 					</div>
-					<span class="add">
+					<span class="add" @click="handleShow_1">
 						  <span class="add_more"><i class="far fa-plus-square"></i></span>
 						  <span>添加更多</span>
 					</span>
@@ -166,7 +182,11 @@
 	</div>
 </template>
 <script>
+ 	import myalert from '../../../components/alert/alert'
 	export default {
+		components: {
+			myalert
+		},
 		mounted(){
 			if(this.$route.query.title){
 				this.title = this.$route.query.title
@@ -174,25 +194,51 @@
 		},
 		data(){
 			return {
-				  input3: '',
-			      input4: '',
-			      input5: '',
-			      select1: '60平方',
-			      select2: '商务大床房',
-			      select3: '免费取消',
-			      select4: '1张',
-			      select5: '1.2米',
-			      select6: '是',
-			      checkList1: ['24小时热水'],
-			      value1: true,
-                  value2: true,
-                  checkList2: ['超过1小时扣费10'],
-                  activeNames:[],
-                  title: '房间发布',
-                  general: false
+				htmltest: '<div style="display: block; padding-bottom: 10px;">超过<input type="text" style="width: 19%;border-bottom: #000 solid 1px;text-align: center;">小时</div><div>&nbsp;扣除&nbsp;<input type="text" style="width: 19%;border-bottom: #000 solid 1px;text-align: center;">% &nbsp;&nbsp;</div>'
+				,
+				htmltest_1: '<p><input type="text" style="border: #aaa solid 1px;border-radius: 5px;padding: 5px 0;" placeholder="请输入设备名称"></p>',
+				alertShow: false,
+				alertShow_1: false,
+				input3: '',
+			    input4: '',
+			    input5: '',
+			    select1: '60平方',
+			    select2: '商务大床房',
+			    select3: '免费取消',
+		        select4: '1张',
+			    select5: '1.2米',
+			    select6: '是',
+			    checkList1: ['24小时热水'],
+			    value1: true,
+	            value2: true,
+	            checkList2: ['超过1小时扣费10'],
+	            activeNames:[],
+	            title: '房间发布',
+	            // general: false,
+	            // general_1: false
 			}
 		},
 		methods: {
+			handleShow(){
+				// this.alertShow = true
+				if(!this.value2){
+					this.alertShow = true
+				}
+				this.Fn.addClass(document.querySelector('html'),'noscroll')
+			},
+			aaa(res){
+				this.alertShow = false
+				this.Fn.removeClass(document.querySelector('html'),'noscroll')
+			},
+			handleShow_1(){
+				// this.alertShow = true
+				this.alertShow_1 = true
+				this.Fn.addClass(document.querySelector('html'),'noscroll')
+			},
+			aaa_1(res){
+				this.alertShow_1 = false
+				this.Fn.removeClass(document.querySelector('html'),'noscroll')
+			},
 			handleFile(e){
 				var e = e || event
 				console.log(e.path[0].files)
@@ -203,17 +249,25 @@
 				formData.append('file',file)
 				console.log(formData)
 			},
-			handGeneral(event){
-				if(!this.value2){
-					this.general = true
-				}
-				this.Fn.addClass(document.querySelector('html'),'noscroll')
+			// handGeneral(event){
+			// 	if(!this.value2){
+			// 		this.general = true
+			// 	}
+			// 	this.Fn.addClass(document.querySelector('html'),'noscroll')
 				
-			},
-			handBack(){
-				this.general = false
-				this.Fn.removeClass(document.querySelector('html'),'noscroll')
-			},
+			// },
+			// handleShow_back(event){
+			// 	this.general_1 = true
+			// 	this.Fn.addClass(document.querySelector('html'),'noscroll')
+			// },
+			// handBack(){
+			// 	this.general = false
+			// 	this.Fn.removeClass(document.querySelector('html'),'noscroll')
+			// },
+			// handleClose_back(){
+			// 	this.general_1 = false
+			// 	this.Fn.removeClass(document.querySelector('html'),'noscroll')
+			// },
 			cancelBubble(e){
 				var e = e || event
 				e.cancelBubble = true
@@ -275,6 +329,13 @@
 						border-right: none; 
 						border-bottom: #333 solid rem(1px);
 						margin: 0;
+					}
+					.input{
+						width: 100%;
+						border: #aaa solid rem(1px);
+						border-radius: rem(5px);
+						padding: rem(7px) 6%;
+						text-align: left;
 					}
 				}
 				p{
@@ -421,7 +482,7 @@
 		}
 
 		.send{
-			padding: rem(10px) rem(20px);
+			padding: rem(10px) 5%;
 		}
 	}
 </style>

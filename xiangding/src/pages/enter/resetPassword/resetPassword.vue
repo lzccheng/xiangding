@@ -17,7 +17,7 @@
 			  </span>
 			</div>
 			<div class="post">
-			    <router-link tag="p" to="/enter/login" class="button">提交</router-link>
+			    <router-link tag="p" to="/enter/login" class="green_btn">提交</router-link>
 			</div>
 			<router-link tag="div" to="/enter/forgotPassword" class="forget">
 			    <span class="text">忘记密码</span>
@@ -122,17 +122,13 @@
 			}
 			.post{
 				padding: rem(19px) 10%;
+				padding-bottom: rem(30px);
 				border: none;
-				color: #ffffff;
-				.button{
-					padding: rem(6px) 12%;
-					background-color: #43c122;
-					border-radius: rem(5px);
-					margin: 0 auto;
-				}
+				
 			}
 			.forget{
 				color: #000;
+				padding: rem(10px) 0;
 				.text{
 					margin: rem(10px) 3%;
 				}
