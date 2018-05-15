@@ -15,22 +15,22 @@
 		<div class="form">
 			<p class="input">
 				<label>代理商姓名:</label>
-				<input type="text" placeholder="请输入姓名" name="">
+				<input type="text" placeholder="请输入姓名" name="" v-model="formData.name">
 			</p>
 			<p class="input">
 				<label>联系电话:</label>
-				<input @blur="handleCheck" class="handleCheck" type="text" placeholder="请输入电话号码" name="">
+				<input @blur="handleCheck" class="handleCheck" v-model="formData.mobile" type="text" placeholder="请输入电话号码" name="">
 			</p>
 			<p class="input" style="border-bottom: none">
 				<label>验证码:</label>
-				<input type="text" style="width: 40%" placeholder="请输入验证码" name="">
-				<span class="get"><span>获取验证码</span></span>
+				<input type="text" style="width: 40%" v-model="formData.code" placeholder="请输入验证码" name="">
+				<span class="get" @click="handleGetCode"><span>获取验证码</span></span>
 			</p>
 		</div>
 		<div class="form_1">
 			<p class="mm">
 				<label>身份证号码:</label>
-				<input @blur="handleCheckId" class="handleCheckId" type="text" placeholder="请输入身份证号码" name="">
+				<input @blur="handleCheckId" v-model="formData.IDcard" class="handleCheckId" type="text" placeholder="请输入身份证号码" name="">
 			</p>
 			<div class="photo">
 				<p>
@@ -50,7 +50,8 @@
 				</p>
 			</div>
 			<div class="footer">
-			<router-link tag="p" to="/my/myagantEnter" class="button">立即申请</router-link>
+			<!-- <router-link tag="p" to="/my/myagantEnter" class="button">立即申请</router-link> -->
+			<p class="button" @click="handleFormSubmit">立即申请</p>
 			</div>
 		</div>
 		<div class="agreement_box">
@@ -60,16 +61,37 @@
 </template>
 <script>
 	export default {
+		mounted(){
+			
+		},
 		data(){
 			return {
-				general: false
+				general: false,
+				formData: {
+					name: '',
+					mobile: '',
+					code: '5555',
+					IDcard: '',
+					IDcard_back: '',
+					IDcard_facade: ''
+				}
 			}
 		},
 		methods: {
+			handleFormSubmit(){
+				console.log(this.formData)
+				this.$axios.get('/addons/yun_shop/api.php?i=3&c=entry&do=shop&m=yun_shop&route=plugin.merchant.frontend.merchant-apply.staff',{...this.formData}).then((res)=>{
+				console.log(res)
+			})
+				
+			},
+			handleGetCode(){
+				this.$axios.get('/addons/yun_shop/api.php?i=3&c=entry&do=shop&type=1&m=yun_shop&route=member.register.sendCode&mobile=' + this.formData.mobile).then((res)=>{
+					console.log(res)
+				})
+			},
 			handleCheck(event){
 				let value = document.querySelector('.handleCheck').value
-				// event.path[0].value
-				// (/^1[3|4|5|8][0-9]\d{4,8}$/.test(sMobile))
 				if(value){
 					if(!this.Fn.checkPhone(value)){
 						this.$message({
@@ -86,10 +108,6 @@
 			},
 			handleCheckId(event){
 				let value = document.querySelector('.handleCheckId').value
-				// event.path[0].value
-				// (/^1[3|4|5|8][0-9]\d{4,8}$/.test(sMobile))
-				// var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/
-				// var reg = /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)/
 				if(value){
 					if(!this.Fn.checkId(value)){
 						this.$message({

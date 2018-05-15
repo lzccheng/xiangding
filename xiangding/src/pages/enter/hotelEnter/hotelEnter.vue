@@ -1,125 +1,140 @@
 <template>
 	<div class="box">
 		<Header title="申请入驻"/>
-		<div class="back" v-if="general" @click="handleClose_back"> 
-			<div class="box" @click="cancelBubble">
-				<p class="title">享订入驻协议</p>
-				<p class="text">hello</p>
-				<div class="bottom">
-					<p @click="handleClose_back">
-					   <span >我知道了</span>
-					</p>
+		<div v-show="status === 1">
+			<div class="back" v-if="general" @click="handleClose_back"> 
+				<div class="box" @click="cancelBubble">
+					<p class="title">享订入驻协议</p>
+					<p class="text">hello</p>
+					<div class="bottom">
+						<p @click="handleClose_back">
+						   <span >我知道了</span>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="form"> 
+				<p class="input">
+					<label>申请人:</label>
+					<input type="text" placeholder="请输入姓名" name="" v-model="formData.realname">
+				</p>
+				<p class="input">
+					<label>联系电话:</label>
+					<input @blur="handleCheck" class="handleCheck" type="text" placeholder="请输入电话号码" name="" v-model="formData.mobile">
+				</p>
+				<p class="input">
+					<label>验证码:</label>
+					<input type="text" style="width: 40%" placeholder="请输入验证码" name="">
+					<span class="get"><span>获取验证码</span></span>
+				</p>
+				<p class="input">
+					<label>账号:</label>
+					<input type="text" placeholder="请输入账号" name="" v-model="formData.username">
+				</p>
+				<p class="input" style="border-bottom: none">
+					<label>密码:</label>
+					<input type="password" class="pass"  placeholder="请输入密码"  name="" @blur ="handleCheckPassword" v-model="formData.password">
+					<span class="eye" @click.stop="handlePassword">
+						<span ref="eye_one">
+							<i  class="fas fa-eye"></i>
+						</span>
+						<span ref="eye_two">
+							<i  class="fas fa-eye-slash"></i>
+						</span>
+					</span>
+				</p>
+			</div>
+			<div class="form">
+				<p class="input">
+					<label>酒店名称:</label>
+					<input type="text" v-model="formData.storeName" placeholder="请输入酒店名称" name="">
+				</p>
+				<p class="input">
+					<label>酒店星级:</label>
+					<span class="star"><el-rate v-model="formData.categoryId"></el-rate></span>
+				</p>
+				
+				<p class="input">
+					<label>前台电话:</label>
+					<input @blur="hanndleFixPhone" v-model="formData.storetel" type="text" placeholder="请输入带区号得座机号码" class="hanndleFixPhone" name="">
+				</p>
+				<p class="input">
+					<label>电子邮箱:</label>
+					<input type="text" v-model="formData.storeemail" placeholder="请输入电子邮箱" name="">
+				</p>
+				<p class="input">
+					<label>所在城市:</label>
+					<span class="choice">点击选择地址</span>
+					<span><i class="fas fa-chevron-down"></i></span>
+				</p>
+				<p class="input">
+					<label>街道:</label>
+					<span class="choice">请选择所在街道</span>
+					<span><i class="fas fa-chevron-down"></i></span>
+				</p>
+				<p class="input">
+					<label>详细地址:</label>
+					<input type="text" placeholder="请输入街道门牌号" name="">
+				</p>
+				<p class="input">
+					<label>地理位置:</label>
+					<span>经度: 13.141111  维度: 23.5555</span>
+				</p>
+				<p class="input">
+					<label>酒店收款账号:</label>
+					<input @blur="handleCheckCredit" v-model="formData.hotelbank" type="text" class="handleCheckCredit" placeholder="请输入银行卡号" name="">
+				</p>
+				<p class="input">
+					<label >代理服务商姓名:</label>
+					<input type="text" v-model="formData.dailiname" placeholder="请输入代理服务商姓名" name="">
+				</p>
+				<p class="input" style="border-bottom: none">
+					<label>代理服务商电话:</label>
+					<input style="width: 60%" v-model="formData.dailitel" @blur="handleCheck_" type="text" class="handleCheck_" placeholder="请输入代理服务商的电话号码" name="">
+				</p>
+			</div>
+			<div class="form">
+				<p class="input" style="border-bottom: none">
+					<label>上传营业执照</label>
+				</p>
+				<div class="photo">
+				    <label for="file"><i class="far fa-plus-square"></i></label>
+					   <input type="file" style="display: none" id="file">
+				</div>
+			</div>
+			<div class="form">
+				<p class="input" style="border-bottom: none">
+					<label>填写酒店简介</label>
+				</p>
+				<div class="photo">
+					<textarea cols="40" rows="10" placeholder="请填写酒店简介..."></textarea>
+				</div>	
+				
+			</div>
+			<div class="form" style="border-bottom: none">
+				<div class="footer">
+				   <!-- <router-link tag="p" to="/enter/login" class="button">立即申请</router-link> -->
+				   <p class="button" @click="handleFormSubmit">立即申请</p>
+				</div>
+				<div class="agreement_box">
+					<span @click="handleShow_back" class="agreement">《入驻协议》</span>
 				</div>
 			</div>
 		</div>
-		<div class="form"> 
-			<p class="input">
-				<label>申请人:</label>
-				<input type="text" placeholder="请输入姓名" name="" v-model="formData.realname">
-			</p>
-			<p class="input">
-				<label>联系电话:</label>
-				<input @blur="handleCheck" class="handleCheck" type="text" placeholder="请输入电话号码" name="" v-model="formData.mobile">
-			</p>
-			<p class="input">
-				<label>验证码:</label>
-				<input type="text" style="width: 40%" placeholder="请输入验证码" name="">
-				<span class="get"><span>获取验证码</span></span>
-			</p>
-			<p class="input">
-				<label>账号:</label>
-				<input type="text" placeholder="请输入账号" name="" v-model="formData.username">
-			</p>
-			<p class="input" style="border-bottom: none">
-				<label>密码:</label>
-				<input type="password" class="pass"  placeholder="请输入密码"  name="" @blur ="handleCheckPassword" v-model="formData.password">
-				<span class="eye" @click="handlePassword">
-					<span ref="eye_one">
-						<i  class="fas fa-eye"></i>
-					</span>
-					<span ref="eye_two">
-						<i  class="fas fa-eye-slash"></i>
-					</span>
-				</span>
-			</p>
-		</div>
-		<div class="form">
-			<p class="input">
-				<label>酒店名称:</label>
-				<input type="text" v-model="formData.storeName" placeholder="请输入酒店名称" name="">
-			</p>
-			<p class="input">
-				<label>酒店星级:</label>
-				<span class="star"><el-rate v-model="formData.categoryId"></el-rate></span>
-			</p>
-			
-			<p class="input">
-				<label>前台电话:</label>
-				<input @blur="hanndleFixPhone" v-model="formData.storetel" type="text" placeholder="请输入带区号得座机号码" class="hanndleFixPhone" name="">
-			</p>
-			<p class="input">
-				<label>电子邮箱:</label>
-				<input type="text" v-model="formData.storeemail" placeholder="请输入电子邮箱" name="">
-			</p>
-			<p class="input">
-				<label>所在城市:</label>
-				<span class="choice">点击选择地址</span>
-				<span><i class="fas fa-chevron-down"></i></span>
-			</p>
-			<p class="input">
-				<label>街道:</label>
-				<span class="choice">请选择所在街道</span>
-				<span><i class="fas fa-chevron-down"></i></span>
-			</p>
-			<p class="input">
-				<label>详细地址:</label>
-				<input type="text" placeholder="请输入街道门牌号" name="">
-			</p>
-			<p class="input">
-				<label>地理位置:</label>
-				<span>经度: 13.141111  维度: 23.5555</span>
-			</p>
-			<p class="input">
-				<label>酒店收款账号:</label>
-				<input @blur="handleCheckCredit" v-model="formData.hotelbank" type="text" class="handleCheckCredit" placeholder="请输入银行卡号" name="">
-			</p>
-			<p class="input">
-				<label >代理服务商姓名:</label>
-				<input type="text" v-model="formData.dailiname" placeholder="请输入代理服务商姓名" name="">
-			</p>
-			<p class="input" style="border-bottom: none">
-				<label>代理服务商电话:</label>
-				<input style="width: 60%" v-model="formData.dailitel" @blur="handleCheck_" type="text" class="handleCheck_" placeholder="请输入代理服务商的电话号码" name="">
-			</p>
-		</div>
-		<div class="form">
-			<p class="input" style="border-bottom: none">
-				<label>上传营业执照</label>
-			</p>
-			<div class="photo">
-			    <label for="file"><i class="far fa-plus-square"></i></label>
-				   <input type="file" style="display: none" id="file">
+		<div v-show="status === 2">
+			<div class="waiting">
+				<img src="../../../../static/img/hotelStatus/hotelStatus.gif">
+				<div>您的申请正在加急审核</div>
+				<div>请耐心等待</div>
+				<router-link to="/" tag="div" class="div_item">去首页溜达溜达</router-link>
 			</div>
 		</div>
-		<div class="form">
-			<p class="input" style="border-bottom: none">
-				<label>填写酒店简介</label>
-			</p>
-			<div class="photo">
-				<textarea cols="40" rows="10" placeholder="请填写酒店简介..."></textarea>
-			</div>	
-			
-		</div>
-		<div class="form" style="border-bottom: none">
-			<div class="footer">
-			   <!-- <router-link tag="p" to="/enter/login" class="button">立即申请</router-link> -->
-			   <p class="button" @click="handleFormSubmit">立即申请</p>
-			</div>
-			<div class="agreement_box">
-				<span @click="handleShow_back" class="agreement">《入驻协议》</span>
+		<div v-show="status === 3">
+			<div class="waiting">
+				<span class="btnn">你的申请已通过！</span>
+				<router-link to="/" tag="div" class="div_item">去首页溜达溜达</router-link>
 			</div>
 		</div>
-		
 	</div>
 </template>
 <script>
@@ -130,11 +145,14 @@
 			// this.$axios.get('/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=plugin.store-cashier.frontend.store.store.verify-apply-status&').then((res)=>{
 			// 	console.log(res)
 			// })
+			this.getStatus()
 		},
 		data(){
 			return {
 				value1: null,
 				general: false,
+				statusMsg: '',
+				status: 0,
 				formData: {
 					realname: '',  //申请人
 					mobile: '',		//联系电话
@@ -154,8 +172,67 @@
 			handleFormSubmit(){
 				let that = this
 				console.log({...that.formData})
+
+
+				if(this.formData.mobile){
+					if(!this.Fn.checkPhone(this.formData.mobile)){
+						return this.$message({
+				          message: '请输入正确的联系电话',
+				          type: 'warning'
+				        });
+					}
+				}else{
+					return this.$message({
+			          message: '联系电话不能为空',
+			          type: 'warning'
+			        });
+				}
+
+				if(this.formData.password){
+					if(!this.Fn.checkPassword(this.formData.password)){
+						return this.$message({
+				          message: '请输入正确的密码',
+				          type: 'warning'
+				        })
+					}
+				}else{
+					return this.$message({
+			          message: '密码不能为空',
+			          type: 'warning'
+			        })
+				}
+
+				if(this.formData.storetel){
+					if (!this.Fn.checkFixedPhone(this.formData.storetel)) {
+						return this.$message({
+							message: '请输入正确的前台电话',
+							type: 'warning'
+						});
+					}
+				}else{
+					return this.$message({
+						message: '前台电话不能为空',
+						type: 'warning'
+					})
+				}
+
+
+				if(this.formData.dailitel){
+					if(!this.Fn.checkPhone(this.formData.dailitel)){
+						return this.$message({
+				          message: '请输入代理服务商的联系电话',
+				          type: 'warning'
+				        });
+					}
+				}else{
+					return this.$message({
+			          message: '代理服务商电话不能为空',
+			          type: 'warning'
+			        });
+				}
+
 				this.$axios.post('/addons/yun_shop/api.php?i=3&c=entry&do=shop&m=yun_shop&route=plugin.store-cashier.frontend.store.store.apply',{apply:{...that.formData}}).then((res)=>{
-					console.log(res)
+					that.$router.push({path: '/my'})
 				})
 			},
 			handleCheckPassword(){
@@ -165,13 +242,15 @@
 						this.$message({
 				          message: '请输入正确的密码',
 				          type: 'warning'
-				        });
+				        })
+				        return
 					}
 				}else{
 					this.$message({
 			          message: '密码不能为空',
 			          type: 'warning'
-			        });
+			        })
+			        return
 				}
 			},
 			handlePassword(e){
@@ -205,13 +284,13 @@
 				// (/^1[3|4|5|8][0-9]\d{4,8}$/.test(sMobile))
 				if(value){
 					if(!this.Fn.checkPhone(value)){
-						this.$message({
+						return this.$message({
 				          message: '请输入正确的联系电话',
 				          type: 'warning'
 				        });
 					}
 				}else{
-					this.$message({
+					return this.$message({
 			          message: '联系电话不能为空',
 			          type: 'warning'
 			        });
@@ -223,13 +302,13 @@
 				// (/^1[3|4|5|8][0-9]\d{4,8}$/.test(sMobile))
 				if(value){
 					if(!this.Fn.checkPhone(value)){
-						this.$message({
+						return this.$message({
 				          message: '请输入代理服务商的联系电话',
 				          type: 'warning'
 				        });
 					}
 				}else{
-					this.$message({
+					return this.$message({
 			          message: '代理服务商电话不能为空',
 			          type: 'warning'
 			        });
@@ -239,13 +318,13 @@
 				let value = document.querySelector('.hanndleFixPhone').value
 				if(value){
 					if (!this.Fn.checkFixedPhone(value)) {
-						this.$message({
+						return this.$message({
 							message: '请输入正确的座机号码',
 							type: 'warning'
 						});
 					}
 				}else{
-					this.$message({
+					return this.$message({
 						message: '前台电话不能为空',
 						type: 'warning'
 					})
@@ -255,18 +334,33 @@
 				let value = document.querySelector('.handleCheckCredit').value
 				if(value){
 					if (!this.Fn.checkCredit(value)) {
-						this.$message({
+						return this.$message({
 							message: '请输入正确的银行卡号',
 							type: 'warning'
 						});
 					}
 				}else{
-					this.$message({
+					return this.$message({
 						message: '银行卡号不能为空',
 						type: 'warning'
 					})
 				}
 			},
+			getStatus(){
+				let that = this
+				this.$axios.get('/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=plugin.store-cashier.frontend.store.store.verify-apply-status&').then((res)=>{
+					that.status = res.data.data.status
+					that.statusMsg = res.data.msg
+					console.log(res.data)
+				})
+			}
+		},
+		watch: {
+			$route(to,from){
+				if(to.name === 'hotelEnter'){
+					this.getStatus()
+				}
+			}
 		}
 	}
 </script>
@@ -405,6 +499,25 @@
 				}
 			}
 		}
-		
+		.waiting{
+			height: 30%;
+			background-color: #fff;
+			text-align: center;
+			img{
+				height: rem(250px);
+			}
+			div{
+				margin-top: rem(15px);
+			}
+			.div_item{
+				color: #fff;
+				background-color: #43c122;
+				padding: rem(7px) 0;
+			}
+			.btnn{
+				display: block;
+				padding: rem(50px) 0;
+			}
+		}	
 	}
 </style>
