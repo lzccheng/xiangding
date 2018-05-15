@@ -1,0 +1,407 @@
+<template>
+	<div class="box">
+		<Header title="申请入驻"/>
+		<div class="back" v-if="general" @click="handleClose_back"> 
+			<div class="box" @click="cancelBubble">
+				<p class="title">享订入驻协议</p>
+				<p class="text">hello</p>
+				<div class="bottom">
+					<p @click="handleClose_back">
+					   <span >我知道了</span>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="form"> 
+			<p class="input">
+				<label>申请人:</label>
+				<input type="text" placeholder="请输入姓名" name="" v-model="formData.realname">
+			</p>
+			<p class="input">
+				<label>联系电话:</label>
+				<input @blur="handleCheck" class="handleCheck" type="text" placeholder="请输入电话号码" name="" v-model="formData.mobile">
+			</p>
+			<p class="input">
+				<label>验证码:</label>
+				<input type="text" style="width: 40%" placeholder="请输入验证码" name="">
+				<span class="get"><span>获取验证码</span></span>
+			</p>
+			<p class="input">
+				<label>账号:</label>
+				<input type="text" placeholder="请输入账号" name="" v-model="formData.username">
+			</p>
+			<p class="input" style="border-bottom: none">
+				<label>密码:</label>
+				<input type="password" class="pass"  placeholder="请输入密码"  name="" @blur ="handleCheckPassword" v-model="formData.password">
+				<span class="eye" @click="handlePassword">
+					<span ref="eye_one">
+						<i  class="fas fa-eye"></i>
+					</span>
+					<span ref="eye_two">
+						<i  class="fas fa-eye-slash"></i>
+					</span>
+				</span>
+			</p>
+		</div>
+		<div class="form">
+			<p class="input">
+				<label>酒店名称:</label>
+				<input type="text" v-model="formData.storeName" placeholder="请输入酒店名称" name="">
+			</p>
+			<p class="input">
+				<label>酒店星级:</label>
+				<span class="star"><el-rate v-model="formData.categoryId"></el-rate></span>
+			</p>
+			
+			<p class="input">
+				<label>前台电话:</label>
+				<input @blur="hanndleFixPhone" v-model="formData.storetel" type="text" placeholder="请输入带区号得座机号码" class="hanndleFixPhone" name="">
+			</p>
+			<p class="input">
+				<label>电子邮箱:</label>
+				<input type="text" v-model="formData.storeemail" placeholder="请输入电子邮箱" name="">
+			</p>
+			<p class="input">
+				<label>所在城市:</label>
+				<span class="choice">点击选择地址</span>
+				<span><i class="fas fa-chevron-down"></i></span>
+			</p>
+			<p class="input">
+				<label>街道:</label>
+				<span class="choice">请选择所在街道</span>
+				<span><i class="fas fa-chevron-down"></i></span>
+			</p>
+			<p class="input">
+				<label>详细地址:</label>
+				<input type="text" placeholder="请输入街道门牌号" name="">
+			</p>
+			<p class="input">
+				<label>地理位置:</label>
+				<span>经度: 13.141111  维度: 23.5555</span>
+			</p>
+			<p class="input">
+				<label>酒店收款账号:</label>
+				<input @blur="handleCheckCredit" v-model="formData.hotelbank" type="text" class="handleCheckCredit" placeholder="请输入银行卡号" name="">
+			</p>
+			<p class="input">
+				<label >代理服务商姓名:</label>
+				<input type="text" v-model="formData.dailiname" placeholder="请输入代理服务商姓名" name="">
+			</p>
+			<p class="input" style="border-bottom: none">
+				<label>代理服务商电话:</label>
+				<input style="width: 60%" v-model="formData.dailitel" @blur="handleCheck_" type="text" class="handleCheck_" placeholder="请输入代理服务商的电话号码" name="">
+			</p>
+		</div>
+		<div class="form">
+			<p class="input" style="border-bottom: none">
+				<label>上传营业执照</label>
+			</p>
+			<div class="photo">
+			    <label for="file"><i class="far fa-plus-square"></i></label>
+				   <input type="file" style="display: none" id="file">
+			</div>
+		</div>
+		<div class="form bottom">
+			<p class="input" style="border-bottom: none">
+				<label>填写酒店简介</label>
+			</p>
+			<div class="photo" style="padding-left: 2%;">
+				<textarea cols="40" rows="5" placeholder="请填写酒店简介..."></textarea>
+			</div>	
+			
+		</div>
+		<div class="form" style="border-bottom: none;padding-left: 0">
+			<div class="footer">
+			   <!-- <router-link tag="p" to="/enter/login" class="button">立即申请</router-link> -->
+			   <router-link tag="p" to="/enter/login"  @click="handleFormSubmit" class="green_btn">立即申请</router-link>
+			</div>
+			<div class="agreement_box">
+				<span @click="handleShow_back" class="agreement">《入驻协议》</span>
+			</div>
+		</div>
+		
+	</div>
+</template>
+<script>
+	export default {
+		mounted(){
+			this.$refs.eye_two.style.display = 'inline-block'
+			this.$refs.eye_one.style.display = 'none'
+			
+		},
+		data(){
+			return {
+				value1: null,
+				general: false,
+				formData: {
+					realname: '',  //申请人
+					mobile: '',		//联系电话
+					username: '',	//账号
+					password: '',	//密码
+					storeName: '',	//酒店名称
+					categoryId: null,	//酒店星级
+					storetel: '',	//酒店前台电话
+					storeemail: '', //酒店电子邮件
+					dailiname: '', //代理服务商姓名
+					dailitel: '', //代理服务商电话
+					hotelbank: ''  // 酒店收款账号
+				}
+			}
+		},
+		methods: {
+			handleFormSubmit(){
+				console.log(888)
+				let that = this
+				console.log({...that.formData})
+				this.$axios.post('/addons/yun_shop/api.php?i=3&c=entry&do=shop&m=yun_shop&route=plugin.store-cashier.frontend.store.store.apply',{password:'nihaode'}).then((res)=>{
+					console.log(res)
+				})
+			},
+			handleCheckPassword(){
+				let value = document.querySelector('.pass').value
+				if(value){
+					if(!this.Fn.checkPassword(value)){
+						this.$message({
+				          message: '请输入正确的密码',
+				          type: 'warning'
+				        });
+					}
+				}else{
+					this.$message({
+			          message: '密码不能为空',
+			          type: 'warning'
+			        });
+				}
+			},
+			handlePassword(e){
+				let dom = document.querySelector('.pass')
+				if(dom.getAttribute('type') === 'password'){
+					dom.setAttribute('type','text')
+					this.$refs.eye_two.style.display = 'none'
+					this.$refs.eye_one.style.display = 'inline-block'
+				}else{
+					dom.setAttribute('type','password')
+					this.$refs.eye_two.style.display = 'inline-block'
+					this.$refs.eye_one.style.display = 'none'
+				}
+
+				
+			},
+			handleShow_back(){
+				this.general = true
+				this.Fn.addClass(document.querySelector('html'),'noscroll')
+			},
+			handleClose_back(){
+				this.general = false
+				this.Fn.removeClass(document.querySelector('html'),'noscroll')
+			},
+			cancelBubble(event){
+				event.cancelBubble = true
+			},
+			handleCheck(event){
+				let value = document.querySelector('.handleCheck').value
+				// event.path[0].value
+				// (/^1[3|4|5|8][0-9]\d{4,8}$/.test(sMobile))
+				if(value){
+					if(!this.Fn.checkPhone(value)){
+						this.$message({
+				          message: '请输入正确的联系电话',
+				          type: 'warning'
+				        });
+					}
+				}else{
+					this.$message({
+			          message: '联系电话不能为空',
+			          type: 'warning'
+			        });
+				}
+			},
+			handleCheck_(event){
+				let value = document.querySelector('.handleCheck_').value
+				// event.path[0].value
+				// (/^1[3|4|5|8][0-9]\d{4,8}$/.test(sMobile))
+				if(value){
+					if(!this.Fn.checkPhone(value)){
+						this.$message({
+				          message: '请输入代理服务商的联系电话',
+				          type: 'warning'
+				        });
+					}
+				}else{
+					this.$message({
+			          message: '代理服务商电话不能为空',
+			          type: 'warning'
+			        });
+				}
+			},
+			hanndleFixPhone(event){
+				let value = document.querySelector('.hanndleFixPhone').value
+				if(value){
+					if (!this.Fn.checkFixedPhone(value)) {
+						this.$message({
+							message: '请输入正确的座机号码',
+							type: 'warning'
+						});
+					}
+				}else{
+					this.$message({
+						message: '前台电话不能为空',
+						type: 'warning'
+					})
+				}
+			},
+			handleCheckCredit(event){
+				let value = document.querySelector('.handleCheckCredit').value
+				if(value){
+					if (!this.Fn.checkCredit(value)) {
+						this.$message({
+							message: '请输入正确的银行卡号',
+							type: 'warning'
+						});
+					}
+				}else{
+					this.$message({
+						message: '银行卡号不能为空',
+						type: 'warning'
+					})
+				}
+			},
+		}
+	}
+</script>
+<style scoped lang="scss">
+	@import "../../../common/css/common.scss";
+	.box{
+		width: 100%;
+		background-color: #e5e5e5;
+		position: relative;
+		font-size: rem(14px);
+		.back{
+			background-color: rgba(0,0,0,0.3);
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 9999;
+			width: 100%;
+			height: 100%;
+			.box{
+				padding: rem(15px) 0;
+				width: 90%;
+				background-color: #f8f9fc;
+				position: absolute;
+				top: rem(80px);
+				left: 5%;
+				border-radius: rem(8px);
+				.title{
+					text-align: center;
+					font-size: rem(17px);
+					font-weight: bold;
+					padding-bottom: rem(10px);
+
+				}
+				.text{
+					padding: 0 4%;
+				}
+				.bottom{
+					padding: 0 3%;
+					padding-top: rem(18px);
+					text-align: center;
+					p{
+						background-color: #43c122;
+						color: #fff;
+						padding: rem(10px) 0;
+						border-radius: rem(5px);
+					}
+				}
+			}
+		}
+		.form{
+			background-color: #ffffff;
+			margin-top: rem(10px);
+			padding: rem(2px) 0 0 rem(15px);
+			border-top: 0.5px solid #aaa;
+			border-bottom: 0.5px solid #aaa;
+			.photo{
+				color: #aaa;
+				font-size: rem(48px);
+				padding-bottom: rem(8px);
+				padding-left: 3%;
+
+			}
+			textarea{
+				border: none;
+				font-size: rem(15px);
+			}
+			.input{
+				position: relative;
+				border-bottom: 0.5px solid #aaa;
+				padding: rem(10px) rem(8px);
+				label{
+					display: inline-block;
+					font-size: rem(14px);
+					width: 32%;
+				}
+				input{
+					width: 52%;
+					border: none;
+					height: rem(20px);
+					&::-webkit-input-placeholder { 
+					    color:    #aaa;
+					}
+					&:-moz-placeholder { 
+					    color:    #aaa;
+					}
+					&::-moz-placeholder { 
+					    color:    #aaa;
+					}
+					&:-ms-input-placeholder { 
+					    color:    #aaa;
+					}
+				}
+				.eye{
+					color: #43c122;
+					font-size: rem(16px);
+				}
+				.star{
+					display: inline-block;
+					width: 50%;
+				}
+				.choice{
+					display: inline-block;
+					width: 60%;
+				}
+			}
+			// .text{
+			// 	margin-top: rem(15px);
+			// 	text-align: center;
+			// }
+			.get{
+				position: absolute;
+				top: 0;
+				right: 0;
+				background-color: #43c122;
+				height: 100%;
+				display: flex;
+				align-items: center;
+				color: #fff;
+				padding: 0 rem(10px);
+			}
+			.footer{
+				padding: rem(20px) 5%;
+				// text-align: center;
+				
+			}
+			.agreement_box{
+				width: 100%;
+				text-align: center;
+				padding-bottom: rem(10px);
+				.agreement{
+					background-color: #ffffff;
+					color: #769de6;
+				}
+			}
+		}
+
+		
+	}
+</style>
