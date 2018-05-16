@@ -18,6 +18,7 @@ import './static/js/mobileSelect.min'
 axios.defaults.baseURL = process.env.API_ROOT
 Vue.prototype.$axios = axios
 Vue.prototype.Fn = Fn
+Vue.prototype.baseUrl = 'addons/yun_shop/api.php?'
 
 Vue.config.productionTip = false
 

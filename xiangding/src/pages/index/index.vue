@@ -166,6 +166,7 @@
       },
       mounted:function(){
         let that = this
+        console.log(window)
         var mobileSelect5 = new MobileSelect({
             trigger: '#cccc',
             title: '请选择地区',
@@ -240,7 +241,7 @@
           }).catch((err)=>{
             console.log(err)
           })
-          this.$axios({url:'/addons/yun_shop/api.php?i=3&route=home-page.index',method: 'get'}).then((res)=>{
+          this.$axios({url:'?i=3&route=home-page.index',method: 'get'}).then((res)=>{
             // console.log(res.data)
             // alert(res.data.msg)
           }).catch((err)=>{

@@ -18,43 +18,72 @@
 		<div class="form">
 			<p class="input">
 				<label>代理商姓名:</label>
-				<input type="text" placeholder="请输入姓名" name="">
+				<input type="text" placeholder="请输入姓名" name="" v-model="formData.name">
 			</p>
 			<p class="input">
 				<label>联系电话:</label>
-				<input @blur="handleCheck" class="handleCheck" type="text" placeholder="请输入电话号码" name="">
+				<input @blur="handleCheck" class="handleCheck" v-model="formData.mobile" type="text" placeholder="请输入电话号码" name="">
 			</p>
 			<p class="input" style="border-bottom: none">
 				<label>验证码:</label>
-				<input type="text" style="width: 40%" placeholder="请输入验证码" name="">
-				<span class="get"><span>获取验证码</span></span>
+				<input type="text" style="width: 40%" v-model="formData.code" placeholder="请输入验证码" name="">
+				<span class="get" @click="handleGetCode"><span>获取验证码</span></span>
 			</p>
 		</div>
 		<div class="form_1">
 			<p class="mm">
 				<label>身份证号码:</label>
-				<input @blur="handleCheckId" class="handleCheckId" type="text" placeholder="请输入身份证号码" name="">
+				<input @blur="handleCheckId" v-model="formData.IDcard" class="handleCheckId" type="text" placeholder="请输入身份证号码" name="">
 			</p>
 			<div class="photo">
 				<p>
 					<span class="icon_photo">
 					   <label for="file"><i class="fas fa-camera"></i></label>
-					    <input type="file" id="file" style="display: none">
+					    <input type="file" id="file" style="display: none" @change="handleFileUpload">
 
 					</span>
 					<span class="icon_photo">
 					    <label for="file"><i class="fas fa-camera"></i></label>
 					    <input type="file" id="file" style="display: none">
+
 					</span>
 				</p>
 				<p>
 					<span class="on">身份证正面照</span>
 					<span class="down">身份证反面照</span>
 				</p>
+				<!-- <div class="text">身份证正面照:</div>
+				<el-upload
+				  class="upload-demo"
+				  :action="actionUrl"
+				  :on-success="handleSuccess1"
+				  :before-upload="checkFile"
+				  :file-list="fileList1"
+				  :on-error="fileError"
+				  :limit="fileNum"
+				  list-type="picture">
+				  <el-button size="small" type="primary">点击上传</el-button>
+				  <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过3M</div>
+				</el-upload>
+				<div class="text">身份证反面照:</div>
+				<el-upload
+				  class="upload-demo"
+				  :action="actionUrl"
+				  :on-success="handleSuccess2"
+				  :on-error="fileError"
+				  :before-upload="checkFile"
+				  :file-list="fileList2"
+				  :limit="fileNum"
+				  list-type="picture">
+				  <el-button size="small" type="primary">点击上传</el-button>
+				  <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过3M</div>
+				</el-upload> -->
 			</div>
 			<div class="footer">
-			<router-link tag="p" to="/my/myagantEnter" class="green_btn">立即申请</router-link>
+			<!-- <router-link tag="p" to="/my/myagantEnter" class="button">立即申请</router-link> -->
+				<p class="green_btn" @click="handleFormSubmit">立即申请</p>
 			</div>
+			<img :src="formData.IDcard_facade">
 		</div>
 		<div class="agreement_box">
 			<span class="agreement" @click="handleShow">《入驻协议》</span>
@@ -64,6 +93,11 @@
 <script>
 	import myalert from '../../../components/alert/alert'
 	export default {
+		mounted(){
+			// this.$axios.post('/addons/yun_shop/api.php?i=3&c=entry&do=shop&type=1&m=yun_shop&route=plugin.store-cashier.frontend.store.store.upload').then((res)=>{
+			// 	console.log(res)
+			// })
+		},
 		components: {
 	        myalert
 	      },
@@ -71,10 +105,63 @@
 			return {
 				// general: false,
 				htmltest: '<span style="font-size: 13px; text-align: left;">文字文字文字文字文字文字文字文字文字文字一段文字还有一段</span>',
-				alertShow: false
+				alertShow: false,
+				general: false,
+				formData: {
+					name: '',
+					mobile: '',
+					code: '5555',
+					IDcard: '',
+					IDcard_back: '',
+					IDcard_facade: ''
+				},
+				actionUrl: process.env.API_ROOT+'?i=3&c=entry&do=shop&type=1&m=yun_shop&route=plugin.store-cashier.frontend.store.store.upload',
+				fileList1: [],
+				fileList2: [],
+				fileNum: 1
 			}
 		},
 		methods: {
+			fileError(){
+				this.$message.error('上传失败！');
+			},
+			checkFile(file){
+				const isPNG = (file.type === 'image/png' || file.type === 'image/jpeg');
+	            const isLt2M = file.size / 1024 / 1024 < 3;
+	            console.log(file.size / 1024 / 1024)
+	            if (!isPNG) {
+	                this.$message.error('图片只能是 JPG或PNG 格式!');
+	            }
+	            if (!isLt2M) {
+	                this.$message.error('图片大小不能超过 3MB!');
+	            }
+	            return isPNG && isLt2M;
+			},
+			handleSuccess1(res, file, fileList){
+				this.formData.IDcard_facade = res.data.login_url
+			},
+			handleSuccess2(res, file, fileList){
+				this.formData.IDcard_back = res.data.login_url
+			},
+			handleRemove(file, fileList) {
+	        	console.log(file, fileList);
+	      	},
+	      	handlePreview(file) {
+	        	console.log(file);
+	      	},
+	      	handleFileUpload(){},
+			handleFormSubmit(){
+				console.log({...this.formData})
+				this.$axios.get('?i=3&c=entry&do=shop&m=yun_shop&route=plugin.merchant.frontend.merchant-apply.staff',{params:{...this.formData}}).then((res)=>{
+				console.log(res)
+			})
+				
+			},
+			handleGetCode(){
+				this.$axios.get('?i=3&c=entry&do=shop&type=1&m=yun_shop&route=member.register.sendCode&mobile=' + this.formData.mobile).then((res)=>{
+					console.log(res)
+				})
+			},
 			handleShow(){
 				this.alertShow = true
 			},
@@ -83,8 +170,6 @@
 			},
 			handleCheck(event){
 				let value = document.querySelector('.handleCheck').value
-				// event.path[0].value
-				// (/^1[3|4|5|8][0-9]\d{4,8}$/.test(sMobile))
 				if(value){
 					if(!this.Fn.checkPhone(value)){
 						this.$message({
@@ -101,10 +186,6 @@
 			},
 			handleCheckId(event){
 				let value = document.querySelector('.handleCheckId').value
-				// event.path[0].value
-				// (/^1[3|4|5|8][0-9]\d{4,8}$/.test(sMobile))
-				// var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/
-				// var reg = /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)/
 				if(value){
 					if(!this.Fn.checkId(value)){
 						this.$message({
@@ -138,6 +219,10 @@
 		background-color: #e5e5e5;
 		position: relative;
 		font-size: rem(14px);
+		.upload-demo{
+			padding-bottom: rem(8px);
+			text-align: center;
+		}
 		.back{
 			background-color: rgba(0,0,0,0.3);
 			position: fixed;
@@ -208,10 +293,14 @@
 					top: rem(150px);
 					right: 15%;
 				}
+				// .text{
+				// 	border-top: 1px solid #aaa;
+				// 	text-align: center;
+				// 	padding: rem(8px) 0;
+				// }
 			}
 			.footer{
 				padding: rem(10px) 5%;
-				
 			}
 			.mm{
 				position: relative;
@@ -313,5 +402,6 @@
 				
 			}
 		}
+
 	}
 </style>

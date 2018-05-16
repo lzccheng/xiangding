@@ -15,14 +15,14 @@
 		</div>
 		<div class="agant">
 			<ul>
-				<li v-for="(i,index) in 6" :key=index>
+				<li v-for="(i,index) in arrItem" :key="index">
 					<div class="img">
-						<img src="http://g.hiphotos.baidu.com/zhidao/pic/item/b8014a90f603738da763cbb9b51bb051f819ec04.jpg" alt="">
+						<img :src="i.avatar" alt="">
 					</div>
 					<div class="msg">
-						<div>小猪佩奇</div>
-						<div>粉丝数量：<span class="text">256455</span></div>
-						<div>收入：<span class="text">4887</span></div>
+						<div>昵称：{{i.nickname}}</div>
+						<!-- <div>粉丝数量：<span class="text">256455</span></div>
+						<div>收入：<span class="text">4887</span></div> -->
 					</div>
 				</li>
 			</ul>
@@ -37,22 +37,54 @@
 	}
 	export default {
 		mounted(){
+			let that = this
 			this.agant = agant[this.$route.query.agant]
+			this.agantLevel = this.$route.query.agant
+			this.getAgent()
 		},
 		data(){
 			return {
-				agant: ''
+				agant: '',
+				agantLevel: 0,
+				arrItem: [
+
+				]
 			}
 		},
 		methods: {
 			onHandleBack(){
 				this.$router.go(-1)
+			},
+			getAgent(){
+				let that = this
+				that.arrItem = []
+				const loading = that.$loading({
+		            lock: true,
+		            text: '加载中..........',
+		            background: 'rgba(0, 0, 0, 0.7)'
+		          })
+				this.$axios.get('?i=3&c=entry&do=shop&m=yun_shop&route=member.member.getMyAgentData_v2&relationLevel='+this.agantLevel).then((res)=>{
+					loading.close()
+					if(res.data.data.data.length){
+						for(let i=0;i<res.data.data.data.length;i++){
+							let item = {
+								avatar: res.data.data.data[i].avatar,
+								nickname: res.data.data.data[i].nickname
+							}
+							that.arrItem.push(item)
+						}
+					}
+				},()=>{
+					loading.close()
+				})
 			}
 		},
 		watch: {
 			'$route':function(to,from){
 				if(to.name == 'agantDetailt'){
 					this.agant = agant[this.$route.query.agant]
+					this.agantLevel = this.$route.query.agant
+					this.getAgent()
 				}
 			}
 		}

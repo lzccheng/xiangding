@@ -6,6 +6,7 @@
 					<img :src="msg.imgUrl">
 					<div class="text">
 						<span>{{msg.name}} ({{msg.level_name}})</span><br>
+						<span>推荐人: {{msg.agent_nickname}}</span><br>
 						<span>ID: {{msg.id}}</span>
 						<router-link tag="span" to="/my/myMessage" class="i"><i class="fas fa-cog"></i></router-link>
 					</div>
@@ -39,24 +40,33 @@
 					<li>
 						<p><span>VIP1</span></p>
 						<p class="right">
-							<span>收入</span><br>
-							<span>{{msg.income.firstAgent}}</span>
+							<span>
+								<span>收入</span><br>
+								<span>{{msg.income.firstAgent}}</span>
+							</span>
+							
 							<router-link tag="span" :to="{path: '/my/agantDetailt',query:{agant:1}}" class="detailt">详情</router-link>
 						</p>
 					</li>
 					<li>
 						<p><span>VIP2</span></p>
 						<p class="right">
-							<span>收入</span><br>
-							<span>{{msg.income.secondAgent}}</span>
+							<span>
+								<span>收入</span><br>
+								<span>{{msg.income.secondAgent}}</span>
+							</span>
+							
 							<router-link tag="span" :to="{path: '/my/agantDetailt',query:{agant:2}}" class="detailt">详情</router-link>
 						</p>
 					</li>
 					<li>
 						<p><span>VIP3</span></p>
 						<p class="right">
-							<span>收入</span><br>
-							<span>{{msg.income.thirdAgent}}</span>
+							<span>
+								<span>收入</span><br>
+								<span>{{msg.income.thirdAgent}}</span>
+							</span>
+							
 							<router-link tag="span" :to="{path: '/my/agantDetailt',query:{agant:3}}" class="detailt">详情</router-link>
 						</p>
 					</li>
@@ -167,9 +177,10 @@
 	export default {
 		mounted(){
 			let that = this
-			// let baseUrl = 'https://www.share-hotel.cn'
-			let baseUrl = ''
-			this.$axios.get(baseUrl+'/addons/yun_shop/api.php?i=3&c=entry&do=shop&m=yun_shop&route=member.member.getUserInfo').then((res)=>{
+			this.$axios.get('?i=3&c=entry&do=shop&m=yun_shop&route=member.member.getUserInfo').then((res)=>{
+				console.log(res)
+				// console.log(process.env.API_ROOT)
+
 				if(res.data.data.login_url){
 					window.location.href = res.data.data.login_url + '&yz_redirect=' + that.Fn.base64_encode(window.location.href+'?')
 				}else{
@@ -180,8 +191,17 @@
 					that.msg.imgUrl = res.data.data.avatar
 					that.msg.earning = res.data.data.credit.data
 					that.msg.level_name = res.data.data.level_name
+					that.msg.agent_nickname = res.data.data.yz_member.agent.nickname
 				}
 				
+			},(err)=>{
+				console.log(err)
+			})
+			this.$axios.get('?i=3&mid=undefined&type=1&shop_id=null&route=member.member.getMyAgent_v2').then((res)=>{
+				console.log(res)
+				that.msg.income.firstAgent = res.data.data.level1.total
+				that.msg.income.secondAgent = res.data.data.level2.total
+				that.msg.income.thirdAgent = res.data.data.level3.total
 			},(err)=>{
 				console.log(err)
 			})
@@ -191,15 +211,16 @@
 				msg: {
 					imgUrl: '',
 					id: '',
-					earning:'',
+					earning:'0',
 					order_num: '1369',
 					poeple_num: '569',
 					name: '',
 					level_name: '',
+					agent_nickname:'',
 					income: {
-						firstAgent: '2644',
-						secondAgent: '9637',
-						thirdAgent: '6788'
+						firstAgent: 0,
+						secondAgent: 0,
+						thirdAgent: 0
 					}
 
 				}
@@ -229,7 +250,7 @@
 						width: 75%;
 						position: absolute;
 						left: rem(60px);
-						top: rem(23px);
+						top: rem(15px);
 						margin: rem(5px) rem(8px);
 						font-size: rem(14px);
 						color: #fff;
@@ -330,7 +351,16 @@
 								margin-top: -0.5rem;
 								span{
 									&:first-child{
-										color: #aaa;
+										margin-right: rem(20px);
+										text-align: center;
+										span{
+											&:first-child{
+												color: #aaa;
+											}
+											&:last-child{
+												padding-left: rem(10px);
+											}
+										}
 									}
 									&.detailt{
 										padding-left: rem(12px);

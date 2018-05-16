@@ -86,8 +86,8 @@
 				<div class="local_box">
 					<div class="content_">
 						<div class="content_nav">
-							<div class="nav_item">距离我</div>
-							<div class="nav_item">行政区域</div>
+							<div class="nav_item" @click="handleLocalNav(0)">距离我</div>
+							<div class="nav_item" @click="handleLocalNav(1)">行政区域</div>
 						</div>
 						<div class="content_show">
 							<div class="show_item" v-show="local_box == 0">
@@ -100,23 +100,25 @@
 								</ul>
 							</div>
 							<div class="show_item" v-show="local_box == 1">
-								<div>
-									<ul>
-										<li>天河区</li>
-									</ul>
-								</div>
-								<div>
-									<ul>
-										<li>沙里街道</li>
-									</ul>
+								<div class="show_item_erea">
+									<div class="show_item_Nav">
+										<ul>
+											<li>天河区</li>
+										</ul>
+									</div>
+									<div class="show_item_item">
+										<ul>
+											<li>沙里街道</li>
+										</ul>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div>
+					<!-- <div>
 						<div>重置</div>
 						<div>完成</div>
-					</div>
+					</div> -->
 				</div>				
 			</div>
 			<div v-if="2 == show" @click="handleCancel">
@@ -334,6 +336,9 @@
 			}
 		},
 		methods: {
+			handleLocalNav(i){
+				this.local_box = i
+			},
 			onHandleTabs(event){
 				event.cancelBubble = true
 				this.tabs = !this.tabs
@@ -361,7 +366,6 @@
 				this._setTimeout(this.$refs.filter)
 			},
 			_setTimeout(obj){
-
 				setTimeout(()=>{
 					if(obj){
 						obj.style.width = common.getStyle(this.$refs.hotel,'width')
@@ -771,23 +775,38 @@
 				.content_{
 					display: flex;
 					.content_nav{
-						
+						width: 20%;
 						.nav_item{
 							padding: rem(5px) rem(8px);
-							border-bottom: 1px #aaaaaa solid;
+							border-bottom: 1px #ccc solid;
 						}
 					}
 					.content_show{
+						width: 80%;
 						.show_item{
-							color: red;
 							width: 100%;
 							.out_tome{
 								width: 100%;
 								li{
 									width: 100%;
-									padding: rem(5px) rem(8px);
-									border-bottom: 1px #aaaaaa solid;
-									border-left: 1px #aaaaaa solid;
+									padding: rem(5px) rem(10px);
+									border-bottom: 1px #ccc solid;
+									border-left: 1px #ccc solid;
+								}
+							}
+							.show_item_erea{
+								display: flex;
+								div{
+									padding: rem(5px) rem(10px);
+									border-bottom: 1px #ccc solid;
+									border-left: 1px #ccc solid;
+								}
+								.show_item_Nav{
+									width:20%;
+									text-align: center;
+								}
+								.show_item_item{
+									width: 80%;
 								}
 							}
 						}

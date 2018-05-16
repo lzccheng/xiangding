@@ -5,6 +5,7 @@
  */
 
 (function() {
+	
 	function getClass(dom,string) {
 		return dom.getElementsByClassName(string);
 	}
@@ -703,7 +704,7 @@
 	    }
 
 	};
-
+	window.MobileSelect = MobileSelect;
 	if (typeof exports == "object") {
 		module.exports = MobileSelect;
 	} else if (typeof define == "function" && define.amd) {

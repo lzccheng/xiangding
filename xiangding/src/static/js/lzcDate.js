@@ -225,7 +225,7 @@ window.lzcDatePlugin = (function(){
 		removeClass: function(dom,className){
 			var domClass = dom.getAttribute('class');
 			if(domClass){
-				arr = domClass.split(' ');
+				var arr = domClass.split(' ');
 				var newArr = [];
 				for(var i=0;i<arr.length;i++){
 					if(arr[i] !== className){
