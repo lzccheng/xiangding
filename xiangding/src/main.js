@@ -9,6 +9,7 @@ import Vuex from 'vuex'
 import Vuexjs from './vuex'
 import Header from './components/header/header'
 import Fn from './common/js/common'
+import Http from './common/js/http'
 //static
 // import './static/js/ereaPluginData'
 import './static/js/lzcDate'
@@ -18,6 +19,7 @@ import './static/js/mobileSelect.min'
 axios.defaults.baseURL = process.env.API_ROOT
 Vue.prototype.$axios = axios
 Vue.prototype.Fn = Fn
+Vue.prototype.Http = Http
 Vue.prototype.baseUrl = 'addons/yun_shop/api.php?'
 
 Vue.config.productionTip = false

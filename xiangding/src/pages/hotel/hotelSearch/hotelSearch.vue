@@ -447,8 +447,8 @@
 		},
 		methods: {
 			changeEreaArr(){
-				this.$axios.get('https://www.share-hotel.cn/addons/share/img/ereaPhp/erea.php').then((res)=>{
-					let ereaPlugin_data = JSON.parse(res.data)
+				this.Http.getEreaData((res)=>{
+		            let ereaPlugin_data = JSON.parse(res.data)
 		            for(let i=0;i<ereaPlugin_data.length;i++){
 						if(ereaPlugin_data[i].name === this.province){
 							for(let a=0;a<ereaPlugin_data[i].children.length;a++){
@@ -460,7 +460,6 @@
 						}
 					}
 		        })
-				
 			},
 			handleEreaLi(e){
 				var e = e || event

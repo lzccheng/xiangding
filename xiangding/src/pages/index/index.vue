@@ -198,42 +198,31 @@
             that.city = data[1].name
           }
         })
-        this.$axios.get('https://www.share-hotel.cn/addons/share/img/ereaPhp/erea.php').then((res)=>{
+        this.Http.getEreaData((res)=>{
           mobileSelect5.updateWheels(JSON.parse(res.data));
         })
-        // const loading = that.$loading({
-        //     lock: true,
-        //     text: '定位中..........',
-        //     background: 'rgba(0, 0, 0, 0.7)',
-        //     // target: '.msg'
-        //   })
-        //   that.show_erea = true
-        //   // that.$refs.show_erea.style.display = 'inline-block'
-        //   common.getLocation(onComplete,onError)
-        //   function onComplete(data) {
-        //     loading.close()
-        //     let addr = data.formattedAddress.split('街道')
-        //     if(!addr[1]){
-        //       addr = data.formattedAddress.split('号')
-        //     }
-        //     that.text_erea = addr[1]+'附近'
-        //     that.show_erea = false
-        //     that.$refs.show_erea.style.display = 'none'
-        //     that.$message({
-        //       message: '定位成功！'+that.text_erea,
-        //       type: 'success'
-        //     })
-        //   }
-        //   /*
-        //    *解析定位错误信息
-        //    */
-        //   function onError(data) {
-        //     loading.close()
-        //     that.$message({
-        //       message: '定位失败！'+data.message,
-        //       type: 'warning'
-        //     })
-        //   }
+          //定位
+          common.getLocation(onComplete,onError)
+          function onComplete(data) {
+            let addr = data.formattedAddress.split('街道')
+            if(!addr[1]){
+              addr = data.formattedAddress.split('号')
+            }
+            that.text_erea = addr[1]+'附近'
+            that.$message({
+              message: '定位成功！'+that.text_erea,
+              type: 'success'
+            })
+          }
+          /*
+           *解析定位错误信息
+           */
+          function onError(data) {
+            that.$message({
+              message: '定位失败！'+data.message,
+              type: 'warning'
+            })
+          }
 
         this.$axios({url:'/bannerData',data:{id:123}}).then((res)=>{
           that.arrItem = res.data
