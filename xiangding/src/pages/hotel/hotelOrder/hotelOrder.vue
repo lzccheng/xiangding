@@ -1,6 +1,7 @@
 <template>
 	<div class="box">
-		<Header title="提交订单"/>
+		<Header v-if="title === '会议室'" :title="meetingName"/>
+		<Header v-else :title="roomName"/>
 		<div class="banner">
 			<div class="swiper-container">
 			    <div class="swiper-wrapper">
@@ -11,13 +12,14 @@
 			</div>
 		</div>
 		<div class="message">
-			<p class="title"><span>{{data.name}}</span></p>
+			<p class="title"><span>{{hotelName}}</span></p>
 			<p class="star"><span>豪华酒店 | 四星级</span></p>
 			<div class="msg">
 				<div class="img"><img :src="data.imgUrl"></div>
 				<div class="text">
-					<p>01-29入住，1-30离开，共{{num_1}}天</p>
-					<p v-if="title === '会议室'">董事长会议室</p>
+					<p  v-if="title === '钟点房'">{{month1}}入住，共{{num_1}}小时</p>
+					<p v-else>{{month1}}入住，{{month2}}离开，共{{days}}天</p>
+					<p v-if="title === '会议室'">董事长会议厅</p>
 					<p v-else>商务大床房</p>
 					<p><span>25m <sup>2</sup>	
 					<span v-if="title === '会议室'">100人</span> 
@@ -77,13 +79,13 @@
 				</div>
 			</div>
 			<div class="inform">
-				<p class="black">
-					<span v-if="title === '钟点房'">时间</span>
-					<span v-else>天数</span>
+				<p class="black" v-if="title === '钟点房'" >
+					<span >时间</span>
+					<!-- <span v-else>天数</span> -->
 					<span class="number_box">
-					    <span class="icon_s" style="border-right: none" @click="handleDelete">-</span>
+					    <span class="icon_s" style="border-right: none"  @click="handleDelete">-</span>
 						<span class="number_s">{{num_1}}</span>
-						<span class="icon_s radius" style="border-left: none" @click="handleAdd">+</span>
+						<span class="icon_s radius" style="border-left: none"  @click="handleAdd">+</span>
 					</span>
 				</p>
 				<p class="black">
@@ -93,7 +95,7 @@
 					   <p v-if="title === '团房'" class="room">注: 团房间最少订购两间及以上</p>
 					</span>
 					<span class="number_box" >
-					    <span class="icon_s" style="border-right: none"  @click="handleDelete1">-</span>
+					    <span class="icon_s"  style="border-right: none"  @click="handleDelete1">-</span>
 						<span class="number_s">{{num_2}}</span>
 						<span class="icon_s radius" style="border-left: none" @click="handleAdd1">+</span>
 					</span>
@@ -113,10 +115,10 @@
 					<span style="color: #43c122">餐饮团购</span>
 					<span  class="check_box"><i class="fas fa-chevron-right"></i></span>
 				</router-link>
-				<p class="black">
+				<!-- <p class="black">
 					<span>是否需要发票</span>
 					<span class="check_box"><el-checkbox v-model="checked"></el-checkbox></span>
-				</p>
+				</p> -->
 				<router-link tag="p" :to="{path:'/hotelDetail',query:{name: '团房',id: 2,order: true}}" v-if="title === '会议室'" class="black color_green">
 					<span>是否需要团房</span>
 					<span class="check_box"><i class="fas fa-chevron-right"></i></span>
@@ -134,34 +136,39 @@
 						<span class="line">本日</span>
 					</span>
 				</p>
-				<p  class="day"><input type="text" placeholder="请输入您的姓名" name=""></p>
-				<p  class="day"><input type="text" placeholder="请输入您的手机号码" name=""></p>
+				<p  class="day"><input type="text" placeholder="请输入入住客人姓名" name=""></p>
+				<p  class="day"><input type="text" placeholder="请输入入住客人的手机号码" name=""></p>
 
-				<p  class="input_box">
+				<!-- <p  class="input_box">
 				   <span class="yz_text"><input type="text" placeholder="请输入验证码" name=""></span>
 				   <span class="yz_numb"><span>获取验证码</span></span>
-				</p>
+				</p> -->
 				<div v-if="title !== '会议室'">
-				<p class="indent">
-				   <span class="minus">立减</span>
-				   <span class="farvourable">优惠返现</span>
-				   <span class="money">-¥8.88</span>
-				</p>
-				<p class="indent">
-				   <span class="cancel">取消</span>
-				   <span class="farvourable">免费取消</span>
-				   <span class="aaa">已加入免费取消政策</span>
-				</p>
+					<p class="indent">
+					   <span class="minus">立减</span>
+					   <span class="farvourable">优惠返现</span>
+					   <span class="money">¥8.88</span>
+					</p>
+					<p class="indent">
+					   <span class="minus">奖励</span>
+					   <span class="farvourable">推送奖励</span>
+					   <span class="money">¥8.88</span>
+					</p>
+					<p class="indent">
+					   <span class="cancel">取消</span>
+					   <span class="farvourable">免费取消</span>
+					   <span class="aaa">已加入免费取消政策</span>
+					</p>
+					</div>
+					<p class="color_aaa">
+						<span><i class="far fa-smile"></i></span>
+						<span class="text_size">请你在30分钟内完成支付,否则订单会自动取消</span>
+					</p>
+					<p class="color_aaa">
+						<span class="yes_icon"><i class="fas fa-clipboard-check"></i></span>
+						<span class="text_size">我们保障快速确认,到店有房,资金安全,请放心预定</span>
+					</p>
 				</div>
-				<p class="color_aaa">
-					<span><i class="far fa-smile"></i></span>
-					<span class="text_size">请你在30分钟内完成支付,否则订单会自动取消</span>
-				</p>
-				<p class="color_aaa">
-					<span class="yes_icon"><i class="fas fa-clipboard-check"></i></span>
-					<span class="text_size">我们保障快速确认,到店有房,资金安全,请放心预定</span>
-				</p>
-			</div>
 			<div class="footer">
 				<p class="need_pay">需支付
 					<router-link class="button" :to="{path:'/hotel/payOrder',query:{name: title}}" tag='span'>提交订单</router-link>
@@ -188,7 +195,27 @@
 			if(this.$route.query.name){
 				this.title = this.$route.query.name
 			}
-
+			if(this.$route.query.hotelName){
+				this.hotelName = this.$route.query.hotelName
+			}
+			if(this.$route.query.roomName){
+				this.roomName = this.$route.query.roomName
+			}
+			if(this.$route.query.meetingName){
+				this.meetingName = this.$route.query.meetingName
+			}
+			if(this.$route.query.date1){
+				this.date1 = this.$route.query.date1
+			}
+			if(this.$route.query.date2){
+				this.date2 = this.$route.query.date2
+			}
+			 new lzcDatePlugin({
+	            el: '#time',
+	            callback: function(res){
+	            	console.log(res)
+	            }
+	          })
 
 		},
 		data(){
@@ -206,7 +233,26 @@
 				show: false,
 				radio: '1',
 				num_1: 0,
-				num_2: 0
+				num_2: 0,
+				roomName: '',
+				hotelName: '',
+				meetingName: '',
+				date1: 0,
+				date2: 0
+
+			}
+		},
+		computed: {
+			month1(){
+				let dd = new Date(Number(this.$route.query.date1))
+				return this.Fn.zero(dd.getMonth()+1)+'-'+this.Fn.zero(dd.getDate())
+			},
+			month2(){
+				let dd = new Date(Number(this.$route.query.date2))
+				return this.Fn.zero(dd.getMonth()+1)+'-'+this.Fn.zero(dd.getDate())
+			},
+			days(){
+				return Math.round((Number(this.$route.query.date2) - Number(this.$route.query.date1))/1000/60/60/24)
 			}
 		},
 		watch: {
@@ -218,6 +264,21 @@
 						this.title = '酒店列表'
 					}
 				}
+				if(this.$route.query.hotelName){
+					this.hotelName = this.$route.query.hotelName
+				}
+				if(this.$route.query.roomName){
+					this.roomName = this.$route.query.roomName
+				}
+				if(this.$route.query.meetingName){
+					this.meetingName = this.$route.query.meetingName
+				}
+				if(this.$route.query.date1){
+					this.date1 = this.$route.query.date1
+				}
+				if(this.$route.query.date2){
+					this.date2 = this.$route.query.date2
+				}
 			}
 		},
 		methods:{
@@ -226,14 +287,14 @@
 			},
 			handleDelete(i){
 				this.num_1 --
-				if(this.num_1<=0){this.num_1=0}
+				if(this.num_1<=0){this.num_1=1}
 			},
 			handleAdd(i){
 				this.num_1++
 			},
 			handleDelete1(i){
 				this.num_2 --
-				if(this.num_2<=0){this.num_2=0}
+				if(this.num_2<=0){this.num_2=1}
 			},
 			handleAdd1(i){
 				this.num_2++
@@ -337,7 +398,7 @@
 					&.black{
 						margin-top: rem(13px);
 				        padding-bottom: rem(16px);
-				        border-bottom: #EBEBEB solid rem(1px);
+				        border-bottom: #EDEDED solid rem(1px);
 				        position: relative;
 				        span{
 				        	&:first-child{
@@ -424,12 +485,12 @@
 						}
 					}
 					&.day{
-						border-bottom: 0.5px solid #EBEBEB;
+						border-bottom: rem(1px) solid #EDEDED;
 					}
-					&.add_text{
-						border-bottom: 0.5px solid #EBEBEB;
-						padding-bottom: rem(40px);
-					}
+					// &.add_text{
+					// 	border-bottom: 0.5px solid red;
+					// 	padding-bottom: rem(40px);
+					// }
 					&.color_aaa{
 						color: #aaa;
 						.yes_icon{
@@ -441,7 +502,7 @@
 					}
 					&.input_box{
 						display: flex;
-						border-bottom: 0.5px solid #EBEBEB;
+						border-bottom: rem(1px) solid #EDEDED;
 						margin-top: rem(-15px);
 						position: relative;
 					}
@@ -461,7 +522,7 @@
 						}
 					}
 					&.indent{
-						border-bottom: #EDEDED solid rem(0.5px);
+						border-bottom: #EDEDED solid rem(1px);
 						padding-bottom: rem(10px);
 						.minus{
 							color: #e51c63;

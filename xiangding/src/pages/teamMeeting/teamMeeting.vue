@@ -2,7 +2,11 @@
 	<div class="box">
 		<div class="_box" ref="_box" @click="onHandleBox">
 			<div class="date none" @click="onHandleCancel" ref="_date">
-				<el-input-number @focus="handleBlur" v-model="meettingNum" :min="1" :max="500"></el-input-number>
+				<span class="number_box" >
+				    <span class="icon_s"  style="border-right: none"  @click="handleDelete1">-</span>
+					<span class="number_s">{{num_2}}</span>
+					<span class="icon_s radius" style="border-left: none" @click="handleAdd1">+</span>
+				</span>
 				<div class="btn">
 					<button class="green_btn" @click="onMeettingSure">确定</button>
 				</div>
@@ -65,7 +69,7 @@
 							
 						</li>   
 						<li v-show="name!=='会议室'" class="border_bottom" @click="onHandleMeetting">
-							<span class="text">{{name}}间数 : {{meettingNum}}</span>
+							<span class="text">{{name}}间数 : {{num_2}}</span>
 							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
 						</li>
 						<li class="border_bottom" @click="onHandleStyle">
@@ -73,7 +77,7 @@
 							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
 						</li>
 					</ul>
-					<p class="btn"><router-link :to="{path: '/hotel/hotelSearch',query: {name: arrItem[index_].name,province: province,city: city}}" tag="p" class="green_btn">开始搜索</router-link></p>
+					<p class="btn"><router-link :to="{path: '/hotel/hotelSearch',query: {name: arrItem[index_].name,province: province,city: city,date1:date_value[0].datetime,date2:date_value[1].datetime}}" tag="p" class="green_btn">开始搜索</router-link></p>
 					<div class="bottom">
 						<router-link tag="div" :to="{path: '/my/collection',query: {name: '浏览记录'}}">
 								<span><i class="fas fa-history"></i></span>
@@ -157,6 +161,7 @@
 				index_: 0,
 				close: true,
 				control: true,
+				num_2: 1,
 				pickerOptions1: {
 		            disabledDate(time) {
 		              return time.getTime() <= (Date.now()-1000*60*60*24);
@@ -228,11 +233,11 @@
 				this.show_erea = true
 				this.$refs.show_erea2[0].style.display = 'block'
 			},
-			handleBlur(e){
-				alert(4555)
-				var e = e || event
-				e.target.blur()
-			},
+			// handleBlur(e){
+			// 	alert(4555)
+			// 	var e = e || event
+			// 	e.target.blur()
+			// },
 			datePicker1(time){
 				_date = time.getTime()
 				this.date_value2 = new Date(time.getFullYear()+'/'+(time.getMonth()+1)+'/'+(time.getDate()+1))
@@ -335,6 +340,13 @@
 		    },
 		    handleBlur(event){
 				event.path[0].blur()
+			},
+			handleDelete1(i){
+				this.num_2 --
+				if(this.num_2<=0){this.num_2=1}
+			},
+			handleAdd1(i){
+				this.num_2++
 			}
 		},
 		computed: {
@@ -410,7 +422,30 @@
 			}
 			.date{
 				padding-top: rem(13px);
-				font-size: rem(14px);
+				font-size: rem(20px);
+				.number_box{
+					display: flex;
+					justify-content: center;
+					width: 50%;
+					margin: rem(10px) 25%;
+					.number_s{
+						width: 60%;
+						text-align: center;
+						display: inline-block;
+						border: #DCDFE6 solid rem(1px);
+						padding: rem(7px) 0;
+					}
+					.icon_s{
+						width: 28%;
+						padding: rem(7px) 0;
+						text-align: center;
+						border: #DCDFE6 solid rem(1px);
+						border-radius: rem(5px) 0 0 rem(5px); 
+					}
+					.radius{
+						border-radius: 0 rem(5px) rem(5px) 0; 
+					}
+				}
 			}
 			.style{
 				padding-top: rem(10px);

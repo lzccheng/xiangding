@@ -28,13 +28,7 @@
 				</li>
 				<li class="item">
 					<span class="name">会议室面积:</span>
-					<div class="select_1">
-						<el-select v-model="select1" slot="prepend" placeholder="请选择">
-					      <el-option label="60平方" value="1"></el-option>
-					      <el-option label="70平方" value="2"></el-option>
-					      <el-option label="80平方" value="3"></el-option>
-					    </el-select>
-					</div>
+					<span class="hide_1"><input type="text" placeholder="请填写酒店会议室面积"></span>
 				</li>
 				<li class="item">
 					<span class="name">窗户:</span>
@@ -125,7 +119,6 @@
 				  input3: '',
 			      input4: '',
 			      input5: '',
-			      select1: '60平方',
 			      select6: '是',
 			      checkList: ['话筒'],
 			      checked: true,

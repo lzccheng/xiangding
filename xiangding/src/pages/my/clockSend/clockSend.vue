@@ -40,6 +40,10 @@
 					<span class="name">可住人数:</span>
 					<span class="hide_1"><input type="text" placeholder="请输入钟点房可住人数"></span>
 				</li>
+				<li class="item">
+					<span class="name">房间规格:</span>
+					<span class="hide_1"><input type="text" placeholder="请输入房间大小"></span>
+				</li>
 				<li >
 					<el-collapse v-model="activeNames" @change="handleChange">
 						<el-collapse-item title="取消政策" name="1">
@@ -69,6 +73,25 @@
 						 </el-collapse-item>
 					</el-collapse>
 				</li>
+				<li >
+					<el-collapse v-model="activeNames" @change="handleChange">
+						<el-collapse-item title="时间/价格" name="2">
+						    <p class="button" style="margin-bottom: 17px">
+							    <el-checkbox-group v-model="checkList1">
+								    <el-checkbox label="1小时99元"></el-checkbox><br/>
+								    <el-checkbox label="2小时159元"></el-checkbox><br/>
+								    <el-checkbox label="3小时239元"></el-checkbox><br/>
+								</el-checkbox-group>
+							</p>
+						    <p class="add_1">
+						        <span @click="handGeneral" >
+							    	<span class="add_icon" ><i class="fas fa-plus-square"></i></span>
+							    	<span class="add_text">添加</span>
+						    	</span>
+						    </p>
+						 </el-collapse-item>
+					</el-collapse>
+				</li>
 				<li class="item">
 					<span class="name">住房时间:</span>
 					<span class="select_1">
@@ -79,7 +102,7 @@
 					    </el-select>
 					</span>
 				</li>
-				<li class="item">
+				<!-- <li class="item">
 					<span class="name">规格:</span>
 					<div class="select_1">
 						<el-select v-model="select1" slot="prepend" placeholder="请选择">
@@ -88,7 +111,7 @@
 					      <el-option label="80平方" value="3"></el-option>
 					    </el-select>
 					</div>
-				</li>
+				</li> -->
 				<li class="item">
 					<span class="name">床型:</span>
 					<div class="select_1">
@@ -102,9 +125,9 @@
 					<span class="name">双人床:</span>
 					<span class="select_1">
 						<el-select v-model="select5" slot="prepend" placeholder="请选择">
-					      <el-option label="1.2米" value="1"></el-option>
-					      <el-option label="1.3米" value="2"></el-option>
-					      <el-option label="1.5米" value="3"></el-option>
+					      <el-option label="1.5米" value="1"></el-option>
+					      <el-option label="1.8米" value="2"></el-option>
+					      <el-option label="2米" value="3"></el-option>
 					    </el-select>
 					</span>
 				</li>
@@ -157,17 +180,17 @@
 				  input3: '',
 			      input4: '',
 			      input5: '',
-			      select1: '60平方',
 			      select2: '商务大床房',
 			      select3: '3小时',
 			      select4: '1张',
-			      select5: '1.2米',
+			      select5: '1.5米',
 			      select6: '是',
 			      // activeNames: ['1'],
 			      value1: true,
                   value2: true,
                   checkList: ['超过1小时扣费10'],
-                  general: false
+                  general: false,
+                  checkList1: ['1小时99元']
 			}
 		},
 		methods: {

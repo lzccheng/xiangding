@@ -1,6 +1,6 @@
 <template>
 	<div class="box">
-		<Header :title="title"/>
+		<Header :title="hotelName"/>
 		<div class="banner">
 			<div class="swiper-container">
 				<div class="swiper-wrapper">
@@ -9,7 +9,7 @@
 			        </div>
 			    </div>
 			</div>
-			<p class="name">广州银河大酒店</p>
+			<p class="name">{{hotelName}}</p>
 			<p class="name_1">豪华酒店 | 四星级</p>
 			<span class="hearts"><i class="fas fa-heart"></i></span>
 			<span class="share"><i class="fas fa-share-alt"></i></span>
@@ -37,15 +37,15 @@
 				<div>
 					<p v-if="title === '会议室'">开会</p>
 					<p v-else>入住</p>
-					<p><span>01-29日</span> <!-- <span>后天</span> --></p>
+					<p><span>{{month1}}日</span> <!-- <span>后天</span> --></p>
 				</div>
 				<div>
-					<span>共一天</span>
+					<span>共{{days}}天</span>
 				</div>
 				<div>
 					<p v-if="title === '会议室'">退厅</p>
 					<p v-else>退房</p>
-					<p><span>01-30日</span> <!-- <span>大后天</span> --></p>
+					<p><span>{{month2}}日</span> <!-- <span>大后天</span> --></p>
 				</div>
 			</div>
 			<div class="massage">
@@ -56,7 +56,7 @@
 					</p>
 				</div>
 				<div v-if="title === '会议室'">
-						<router-link v-if="!order" tag="div" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title}}" v-for='(i,index) in room' :key='index' class="rooms">
+						<router-link v-if="!order" tag="div" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,meetingName: '某某会议室',hotelName,date1:date1,date2:date2}}" v-for='(i,index) in room' :key='index' class="rooms">
 							<div>
 								<img :src="i.imgUrl">
 							</div>
@@ -116,7 +116,7 @@
 
 				<div v-else>
 					
-						<router-link v-if="!order" tag="div" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title}}" v-for='(i,index) in room' :key='index' class="rooms">
+						<router-link v-if="!order" tag="div" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,roomName:'特惠商务房',hotelName,date1:date1,date2:date2}}" v-for='(i,index) in room' :key='index' class="rooms">
 							<div>
 								<img :src="i.imgUrl">
 							</div>
@@ -126,7 +126,7 @@
 							</div>
 							<div class="price">
 								<p>￥{{i.price}}元</p>
-								<p><router-link tag="button" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title}}">订房</router-link></p>
+								<p><router-link tag="button" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,roomName:'特惠商务房',hotelName,date1:date1,date2:date2}}">订房</router-link></p>
 							</div>
 						</router-link>
 					
@@ -189,7 +189,17 @@
 			if(this.$route.query.order){
 				this.order = this.$route.query.order
 			}
-
+			if(this.$route.query.hotelName){
+				this.hotelName = this.$route.query.hotelName
+			}
+			if(this.$route.query.date1){
+				this.date1 = this.$route.query.date1
+			}
+			if(this.$route.query.date2){
+				this.date2 = this.$route.query.date2
+			}
+			
+			console.log((Number(this.$route.query.date2) - Number(this.$route.query.date1)))
 		},
 		data(){
 			return {
@@ -205,7 +215,10 @@
 				title: '酒店列表',
 				people: 100,
 				order: false,
-				numarr:[]
+				numarr:[],
+				hotelName: '',
+				date1: 0,
+				date2: 0
 			}
 		},
 		methods:{
@@ -242,6 +255,19 @@
 				this.numarr[i].num++
 			}
 		},
+		computed: {
+			month1(){
+				let dd = new Date(Number(this.$route.query.date1))
+				return this.Fn.zero(dd.getMonth()+1)+'-'+this.Fn.zero(dd.getDate())
+			},
+			month2(){
+				let dd = new Date(Number(this.$route.query.date2))
+				return this.Fn.zero(dd.getMonth()+1)+'-'+this.Fn.zero(dd.getDate())
+			},
+			days(){
+				return Math.round((Number(this.$route.query.date2) - Number(this.$route.query.date1))/1000/60/60/24)
+			}
+		},
 		watch: {
 			'$route':function(to,from){
 				if(to.name == 'hotelDetail'){
@@ -255,6 +281,15 @@
 						this.order = this.$route.query.order
 					}else{
 						this.order = false
+					}
+					if(this.$route.query.hotelName){
+						this.hotelName = this.$route.query.hotelName
+					}
+					if(this.$route.query.date1){
+						this.date1 = this.$route.query.date1
+					}
+					if(this.$route.query.date2){
+						this.date2 = this.$route.query.date2
 					}
 				}
 			}
