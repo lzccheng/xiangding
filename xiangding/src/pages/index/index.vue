@@ -241,7 +241,7 @@
           }).catch((err)=>{
             console.log(err)
           })
-          this.$axios({url:'/addons/yun_shop/api.php?i=3&route=home-page.index',method: 'get'}).then((res)=>{
+          this.$axios({url:'?i=3&route=home-page.index',method: 'get'}).then((res)=>{
             // console.log(res.data)
             // alert(res.data.msg)
           }).catch((err)=>{

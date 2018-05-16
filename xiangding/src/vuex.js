@@ -1,5 +1,5 @@
 let state = {
-	count: 2
+	userInfo: {}
 }
 
 

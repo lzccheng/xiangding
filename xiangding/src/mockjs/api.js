@@ -147,9 +147,9 @@
     // 第三个参数可以是对象也可以是返回对象的函数
     // Mock.mock('/api/hotelData', 'get', hotelData)
     
-    Mock.mock('/api/hotel', 'get', hotel)
-    Mock.mock('/api', 'get', api)
-    Mock.mock('/api/hotelDetail', 'get', hotelDetail)
+    Mock.mock(process.env.API_ROOT+'/hotel', 'get', hotel)
+    Mock.mock(process.env.API_ROOT, 'get', api)
+    Mock.mock(process.env.API_ROOT+'/hotelDetail', 'get', hotelDetail)
 
     //首页轮播图数据
     const bannerData = (res)=>{
@@ -170,7 +170,7 @@
         ]
         return data
     }
-    Mock.mock('/api/bannerData', 'get', bannerData)//url：'/api/bannerData'，请求方法：get(url、请求方法可根据后台改)
+    Mock.mock(process.env.API_ROOT+'/bannerData', 'get', bannerData)//url：'/api/bannerData'，请求方法：get(url、请求方法可根据后台改)
 
     //首页附近酒店的数据
     const hotelData =  ()  => {
@@ -208,5 +208,5 @@
         ]
         return data
     }
-    Mock.mock('/api/hotelData', 'get', hotelData)//url：'/api/hotelData'，请求方法：get(url、请求方法可根据后台改)
+    Mock.mock(process.env.API_ROOT+'/hotelData', 'get', hotelData)//url：'/api/hotelData'，请求方法：get(url、请求方法可根据后台改)
     

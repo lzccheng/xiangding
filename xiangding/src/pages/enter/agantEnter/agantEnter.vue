@@ -36,7 +36,7 @@
 				<input @blur="handleCheckId" v-model="formData.IDcard" class="handleCheckId" type="text" placeholder="请输入身份证号码" name="">
 			</p>
 			<div class="photo">
-				<!-- <p>
+				<p>
 					<span class="icon_photo">
 					   <label for="file"><i class="fas fa-camera"></i></label>
 					    <input type="file" id="file" style="display: none" @change="handleFileUpload">
@@ -51,8 +51,8 @@
 				<p>
 					<span class="on">身份证正面照</span>
 					<span class="down">身份证反面照</span>
-				</p> -->
-				<div class="text">身份证正面照:</div>
+				</p>
+				<!-- <div class="text">身份证正面照:</div>
 				<el-upload
 				  class="upload-demo"
 				  :action="actionUrl"
@@ -77,7 +77,7 @@
 				  list-type="picture">
 				  <el-button size="small" type="primary">点击上传</el-button>
 				  <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过3M</div>
-				</el-upload>
+				</el-upload> -->
 			</div>
 			<div class="footer">
 			<!-- <router-link tag="p" to="/my/myagantEnter" class="button">立即申请</router-link> -->
@@ -115,7 +115,7 @@
 					IDcard_back: '',
 					IDcard_facade: ''
 				},
-				actionUrl: process.env.API_ROOT+'i=3&c=entry&do=shop&type=1&m=yun_shop&route=plugin.store-cashier.frontend.store.store.upload',
+				actionUrl: process.env.API_ROOT+'?i=3&c=entry&do=shop&type=1&m=yun_shop&route=plugin.store-cashier.frontend.store.store.upload',
 				fileList1: [],
 				fileList2: [],
 				fileNum: 1
@@ -138,28 +138,27 @@
 	            return isPNG && isLt2M;
 			},
 			handleSuccess1(res, file, fileList){
-				console.log(11111,res,process.env.API_ROOT)
 				this.formData.IDcard_facade = res.data.login_url
 			},
 			handleSuccess2(res, file, fileList){
 				this.formData.IDcard_back = res.data.login_url
 			},
 			handleRemove(file, fileList) {
-		        console.log(file, fileList);
-		      },
-		      handlePreview(file) {
-		        console.log(file);
-		      },
+	        	console.log(file, fileList);
+	      	},
+	      	handlePreview(file) {
+	        	console.log(file);
+	      	},
+	      	handleFileUpload(){},
 			handleFormSubmit(){
-				console.log(11111,process.env.API_ROOT)
 				console.log({...this.formData})
-				this.$axios.get('i=3&c=entry&do=shop&m=yun_shop&route=plugin.merchant.frontend.merchant-apply.staff',{params:{...this.formData}}).then((res)=>{
+				this.$axios.get('?i=3&c=entry&do=shop&m=yun_shop&route=plugin.merchant.frontend.merchant-apply.staff',{params:{...this.formData}}).then((res)=>{
 				console.log(res)
 			})
 				
 			},
 			handleGetCode(){
-				this.$axios.get('i=3&c=entry&do=shop&type=1&m=yun_shop&route=member.register.sendCode&mobile=' + this.formData.mobile).then((res)=>{
+				this.$axios.get('?i=3&c=entry&do=shop&type=1&m=yun_shop&route=member.register.sendCode&mobile=' + this.formData.mobile).then((res)=>{
 					console.log(res)
 				})
 			},
@@ -268,37 +267,37 @@
 			border-top: 0.5px solid #aaa;
 			padding-bottom: rem(100px);
 			.photo{
-				// position: relative;
-				// border-top: #aaa solid rem(1px);
-				// border-bottom: #aaa solid rem(1px);
-				// padding: rem(43px) 2% rem(80px);
-				// text-align: center;
-				// .icon_photo{
-				// 	padding: rem(30px) 19%;
-				// 	border: #aaa solid rem(1px);
-				// 	border-radius: rem(5px);
-				// 	color: #aaa;
-				// 	font-size: rem(23px);
-				// 	text-align: center;
-				// 	display: inline-block;
-				// 	width: rem(23px);
-				// 	margin: 0 rem(4px);
-				// }
-				// .on{
-				// 	position: absolute;
-				// 	top: rem(150px);
-				// 	left: 15%;
-				// }
-				// .down{
-				// 	position: absolute;
-				// 	top: rem(150px);
-				// 	right: 15%;
-				// }
-				.text{
-					border-top: 1px solid #aaa;
+				position: relative;
+				border-top: #aaa solid rem(1px);
+				border-bottom: #aaa solid rem(1px);
+				padding: rem(43px) 2% rem(80px);
+				text-align: center;
+				.icon_photo{
+					padding: rem(30px) 19%;
+					border: #aaa solid rem(1px);
+					border-radius: rem(5px);
+					color: #aaa;
+					font-size: rem(23px);
 					text-align: center;
-					padding: rem(8px) 0;
+					display: inline-block;
+					width: rem(23px);
+					margin: 0 rem(4px);
 				}
+				.on{
+					position: absolute;
+					top: rem(150px);
+					left: 15%;
+				}
+				.down{
+					position: absolute;
+					top: rem(150px);
+					right: 15%;
+				}
+				// .text{
+				// 	border-top: 1px solid #aaa;
+				// 	text-align: center;
+				// 	padding: rem(8px) 0;
+				// }
 			}
 			.footer{
 				padding: rem(10px) 5%;
