@@ -200,7 +200,6 @@
         })
         this.$axios.get('https://www.share-hotel.cn/addons/share/img/ereaPhp/erea.php').then((res)=>{
           mobileSelect5.updateWheels(JSON.parse(res.data));
-          window.ereaPlugin_data  = JSON.parse(res.data)
         })
         // const loading = that.$loading({
         //     lock: true,

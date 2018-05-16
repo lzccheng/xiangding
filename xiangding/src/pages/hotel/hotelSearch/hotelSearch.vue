@@ -439,17 +439,20 @@
 		},
 		methods: {
 			changeEreaArr(){
-				for(let i=0;i<ereaPlugin_data.length;i++){
-
-					if(ereaPlugin_data[i].name === this.province){
-						for(let a=0;a<ereaPlugin_data[i].children.length;a++){
-							if(ereaPlugin_data[i].children[a].name === this.city){
-								this.ereaArr = ereaPlugin_data[i].children[a].children
+				this.$axios.get('https://www.share-hotel.cn/addons/share/img/ereaPhp/erea.php').then((res)=>{
+					let ereaPlugin_data = JSON.parse(res.data)
+		            for(let i=0;i<ereaPlugin_data.length;i++){
+						if(ereaPlugin_data[i].name === this.province){
+							for(let a=0;a<ereaPlugin_data[i].children.length;a++){
+								if(ereaPlugin_data[i].children[a].name === this.city){
+									this.ereaArr = ereaPlugin_data[i].children[a].children
+								}
 							}
+							break
 						}
-						break
 					}
-				}
+		        })
+				
 			},
 			handleEreaLi(e){
 				var e = e || event
