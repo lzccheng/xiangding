@@ -52,6 +52,10 @@
 					<span class="name">可住人数:</span>
 					<span class="hide_1"><input type="text" placeholder="请输入可住人数"></span>
 				</li>
+				<li class="item">
+					<span class="name">房间规格:</span>
+					<span class="hide_1"><input type="text" placeholder="请输入房间大小"></span>
+				</li>
 				<li >
 					<el-collapse v-model="activeNames" @change="handleChange">
 						<el-collapse-item title="取消政策" name="1">
@@ -81,7 +85,7 @@
 						 </el-collapse-item>
 					</el-collapse>
 				</li>
-				<li class="item">
+				<!-- <li class="item">
 					<span class="name">规格:</span>
 					<div class="select_1">
 						<el-select v-model="select1" slot="prepend" placeholder="请选择">
@@ -90,7 +94,7 @@
 					      <el-option label="80平方" value="3"></el-option>
 					    </el-select>
 					</div>
-				</li>
+				</li> -->
 				<li class="item">
 					<span class="name">床型:</span>
 					<div class="select_1">
@@ -104,9 +108,9 @@
 					<span class="name">双人床:</span>
 					<span class="select_1">
 						<el-select v-model="select5" slot="prepend" placeholder="请选择">
-					      <el-option label="1.2米" value="1"></el-option>
-					      <el-option label="1.3米" value="2"></el-option>
-					      <el-option label="1.5米" value="3"></el-option>
+					      <el-option label="1.5米" value="1"></el-option>
+					      <el-option label="1.8米" value="2"></el-option>
+					      <el-option label="2米" value="3"></el-option>
 					    </el-select>
 					</span>
 				</li>
@@ -167,10 +171,9 @@
 				  input3: '',
 			      input4: '',
 			      input5: '',
-			      select1: '60平方',
 			      select2: '商务大床房',
 			      select4: '1张',
-			      select5: '1.2米',
+			      select5: '1.5米',
 			      select6: '是',
 			      checkList1: ['24小时热水'],
 			      value1: true,

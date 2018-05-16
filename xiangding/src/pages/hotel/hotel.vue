@@ -67,13 +67,13 @@
 						<p class="title">酒店星级</p>
 						<p class="rank">
 							<span class="star" :class="{color_box: colorBoolen}" @click="handleNo">不限</span>
-							<span class="star" :class="{color_box: starItem[0].active}" @click="handleStar(0)">一星</span>
-							<span class="star" :class="{color_box: starItem[1].active}" @click="handleStar(1)">二星</span>
+							<span class="star" :class="{color_box: starItem[0].active}" @click="handleStar(0)">一星/经济</span>
+							<span class="star" :class="{color_box: starItem[1].active}" @click="handleStar(1)">二星/舒适</span>
 						</p>
 						<p class="rank">
-							<span class="star" :class="{color_box: starItem[2].active}" @click="handleStar(2)">三星</span>
-							<span class="star" :class="{color_box: starItem[3].active}" @click="handleStar(3)">四星</span>
-							<span class="star" :class="{color_box: starItem[4].active}" @click="handleStar(4)">五星</span>
+							<span class="star" :class="{color_box: starItem[2].active}" @click="handleStar(2)">三星/商务</span>
+							<span class="star" :class="{color_box: starItem[3].active}" @click="handleStar(3)">四星/高档</span>
+							<span class="star" :class="{color_box: starItem[4].active}" @click="handleStar(4)">五星/豪华</span>
 						</p>
 					</div>
 				</div>
@@ -143,7 +143,7 @@
 		</div>
 		<div class="hotel" >
 			<div class="hotelItem" v-for='(i,index) in hotel' :key='index'>
-				<router-link :to="{path: '/hotelDetail',query:{id:i.id}}" tag='div'>
+				<router-link :to="{path: '/hotelDetail',query:{id:i.id,hotelName: i.name,date1:dateValue[0].datetime,date2:dateValue[1].datetime}}" tag='div'>
 					<div class="img">
 						<img :src="i.imgUrl">
 					</div>
@@ -183,6 +183,7 @@
 			this.$axios({url:'/hotel'}).then((res)=>{
 				this.hotel = res.data
 			})
+			console.log(new Date().getTime(),new Date(new Date().getTime()+1000*60*60*24))
 		},
 		data(){
 			return {
@@ -196,23 +197,23 @@
 				},
 				starItem: [
 					{
-						name: '一星',
+						name: '一星/经济',
 						active: false
 					},
 					{
-						name: '二星',
+						name: '二星/舒适',
 						active: false
 					},
 					{
-						name: '三星',
+						name: '三星/商务',
 						active: false
 					},
 					{
-						name: '四星',
+						name: '四星/高档',
 						active: false
 					},
 					{
-						name: '五星',
+						name: '五星/豪华',
 						active: false
 					},
 				],
@@ -323,7 +324,15 @@
 				item_show: 0,
 				colorBoolen: false,
 				windowY: 0,
-				local_box: 0
+				local_box: 0,
+				dateValue: [
+					{
+						datetime: new Date().getTime()
+					},
+					{
+						datetime:new Date(new Date().getTime()+1000*60*60*24).getTime()
+					}
+				],
 			}
 		},
 		methods: {
@@ -440,6 +449,17 @@
 				this.starItem[i].active = !this.starItem[i].active
 				this.colorBoolen = false
 			},
+		},
+		computed: {
+			// date1(){
+			// 	var dd = new Date(this.dateValue[0].datetime)
+			// 	return this.Fn.zero(dd.getMonth()+1) + '.' + this.Fn.zero(dd.getDate())
+			// },
+			// date2(){
+			// 	var dd = new Date(this.dateValue[1].datetime)
+			// 	return this.Fn.zero(dd.getMonth()+1) + '.' + this.Fn.zero(dd.getDate())
+			// }
+			
 		},
 		watch:{
 			$route(to,from){
@@ -613,12 +633,14 @@
 						&.rank{
 							display: flex;
 							justify-content: center;
-							padding: rem(10px) 0;
+							padding: rem(6px) 0;
 							.star{
-								padding: rem(8px) 10%;
+								width: 24%;
+								text-align: center;
+								padding: rem(8px) 0;
 								background-color: #EDEDED;
 								border-radius: rem(5px);
-								margin: 0 rem(8px);
+								margin: 0 4%;
 							}
 							.color_box{
 								background-color: #ffffff;

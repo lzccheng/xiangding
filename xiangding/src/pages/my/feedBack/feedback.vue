@@ -3,7 +3,7 @@
 		<Header title="反馈"/>
 		<div class="body">
 			<div class="body_div">
-				<textarea name="" id="" cols="40" rows="15" placeholder="请输入您宝贵建议或意见..."></textarea>
+				<textarea name="" id="" cols="35" rows="15" placeholder="请输入您宝贵建议或意见..."></textarea>
 			</div>
 			<div class="post"><p class="green_btn">提交</p></div>
 			<p class="text1"><span>欢迎您为我们提供宝贵建议和意见,您留下的任何<br>信息都将用来改善我们的软件</span></p>

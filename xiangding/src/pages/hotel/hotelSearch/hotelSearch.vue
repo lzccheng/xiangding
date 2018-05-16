@@ -125,13 +125,13 @@
 								<p class="title">酒店星级</p>
 								<p class="rank">
 									<span class="star" :class="{color_box: colorBoolen}" @click="handleNo">不限</span>
-									<span class="star" :class="{color_box: starItem[0].active}" @click="handleStar(0)">一星</span>
-									<span class="star" :class="{color_box: starItem[1].active}" @click="handleStar(1)">二星</span>
+									<span class="star" :class="{color_box: starItem[0].active}" @click="handleStar(0)">一星/经济</span>
+									<span class="star" :class="{color_box: starItem[1].active}" @click="handleStar(1)">二星/舒适</span>
 								</p>
 								<p class="rank">
-									<span class="star" :class="{color_box: starItem[2].active}" @click="handleStar(2)">三星</span>
-									<span class="star" :class="{color_box: starItem[3].active}" @click="handleStar(3)">四星</span>
-									<span class="star" :class="{color_box: starItem[4].active}" @click="handleStar(4)">五星</span>
+									<span class="star" :class="{color_box: starItem[2].active}" @click="handleStar(2)">三星/商务</span>
+									<span class="star" :class="{color_box: starItem[3].active}" @click="handleStar(3)">四星/高档</span>
+									<span class="star" :class="{color_box: starItem[4].active}" @click="handleStar(4)">五星/豪华</span>
 								</p>
 							</div>
 						</div>
@@ -173,7 +173,7 @@
 					<div class="text" :class="{color_free: free[1].active}" @click="handleChoice(1)">活动优惠</div>
 				</div>
 				<div class="show">
-					<router-link :to="{path: '/hotelDetail',query:{id:2,name: title}}" tag="div" class="item" v-for="(i,index) in 10" :key='index'>
+					<router-link :to="{path: '/hotelDetail',query:{id:2,name: title,hotelName: '广州银河大酒店',date1:dateValue[0].datetime,date2:dateValue[1].datetime}}" tag="div" class="item" v-for="(i,index) in 10" :key='index'>
 						<div class="img">
 							<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523706249725&di=7bd2cda519bba9f885f6504617bc853b&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F9922720e0cf3d7cac93f8f64f81fbe096a63a9d3.jpg" alt="">
 						</div>
@@ -229,6 +229,7 @@
 			if(this.$route.query.name){
 				this.title = this.$route.query.name
 			}
+			
 			if(this.$route.query.province){
 				this.province = this.$route.query.province
 				this.city = this.$route.query.city
@@ -241,6 +242,12 @@
 					that.dateValue[1].datetime = res[1].dateTime
 				}
 			})
+			if(this.$route.query.date1){
+				that.dateValue[0].datetime = Number(this.$route.query.date1)
+			}
+			if(this.$route.query.date2){
+				that.dateValue[1].datetime = Number(this.$route.query.date2)
+			}
 		},
 		data(){
 			return {
@@ -308,23 +315,23 @@
 				},
 				starItem: [
 					{
-						name: '一星',
+						name: '一星/经济',
 						active: false
 					},
 					{
-						name: '二星',
+						name: '二星/舒适',
 						active: false
 					},
 					{
-						name: '三星',
+						name: '三星/商务',
 						active: false
 					},
 					{
-						name: '四星',
+						name: '四星/高档',
 						active: false
 					},
 					{
-						name: '五星',
+						name: '五星/豪华',
 						active: false
 					},
 				],
@@ -434,7 +441,8 @@
 				province: '广东省',
 				city: '广州市',
 		        ereaArr: [],
-		        cityArr: []
+		        cityArr: [],
+
 			}
 		},
 		methods: {
@@ -602,6 +610,7 @@
 				var dd = new Date(this.dateValue[1].datetime)
 				return this.Fn.zero(dd.getMonth()+1) + '.' + this.Fn.zero(dd.getDate())
 			}
+			
 		},
 		watch: {
 			$route (to,from){
@@ -611,12 +620,19 @@
 					}else{
 						this.title = '酒店列表'
 					}
+
 					if(this.$route.query.province){
 						this.province = this.$route.query.province
 						this.city = this.$route.query.city
 						this.changeEreaArr()
 					}
 					this.handleBack()
+					if(this.$route.query.date1){
+						this.dateValue[0].datetime = Number(this.$route.query.date1)
+					}
+					if(this.$route.query.date2){
+						this.dateValue[1].datetime = Number(this.$route.query.date2)
+					}
 				}
 			}
 		}
@@ -818,7 +834,7 @@
 									width: 70%;
 									border: none;
 									padding: rem(3px) rm(8px);
-									font-size: rem(14px);
+									font-size: rem(15px);
 									margin-left: rem(12px);
 									&::-webkit-input-placeholder { 
 									    color:    #aaa;
@@ -922,12 +938,16 @@
 							&.rank{
 								display: flex;
 								justify-content: center;
-								padding: rem(10px) 0;
+								padding: rem(6px) 0;
 								.star{
-									padding: rem(8px) 10%;
+									// font-size: rem(13px);
+									width: 23%;
+									padding: rem(8px) 0;
+									// height: rem(40px);
+									text-align: center;
 									background-color: #EDEDED;
 									border-radius: rem(5px);
-									margin: 0 rem(8px);
+									margin: 0 3%;
 								}
 								.color_box{
 									background-color: #ffffff;
