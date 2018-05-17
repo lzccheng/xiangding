@@ -108,7 +108,7 @@
           </li>
   			</ul>
         <div class="button">
-          <router-link tag="p" class="green_btn" :to="{path: '/hotel/hotelSearch',query: {data,name: '酒店列表',province: province,city: city,date1:date_value[0].datetime,date2:date_value[1].datetime}}">查找酒店</router-link>
+          <router-link tag="p" class="green_btn" :to="{path: '/hotel/hotelSearch',query: {data,name: '酒店列表',province,city,erea,struct,date1:date_value[0].datetime,date2:date_value[1].datetime}}">查找酒店</router-link>
         </div>
   		</div>
 
@@ -196,6 +196,8 @@
             that.text_erea = data[1].name+data[2].name+data[3].name
             that.province = data[0].name
             that.city = data[1].name
+            that.erea = data[2].name
+            that.struct = data[3].name
           }
         })
         this.Http.getEreaData((res)=>{
@@ -298,7 +300,10 @@
             }
           ],
           province:'广东省',
-          city: '广州市'
+          city: '广州市',
+          erea: '荔湾区',
+          struct: '沙面街道'
+
         }
       },
       methods: {

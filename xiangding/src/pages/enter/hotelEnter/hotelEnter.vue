@@ -100,8 +100,11 @@
 				<label>上传营业执照</label>
 			</p>
 			<div class="photo">
-			    <label for="file"><i class="far fa-plus-square"></i></label>
+			    	<label for="file"><i class="far fa-plus-square"></i></label>
 				   <input @change="handleFile" type="file" style="display: none" id="file">
+				   <div class="file_img" v-show="formData.aptitudeImg">
+				   		<img :src="formData.aptitudeImg">
+				   </div>
 			</div>
 		</div>
 		<div class="form bottom">
@@ -191,11 +194,12 @@
 					password: '',	//密码
 					storeName: '',	//酒店名称
 					categoryId: null,	//酒店星级
-					storetel: '',	//酒店前台电话
-					storeemail: '', //酒店电子邮件
-					dailiname: '', //代理服务商姓名
-					dailitel: '', //代理服务商电话
-					hotelbank: ''  // 酒店收款账号
+					storetel: '',	//*酒店前台电话
+					storeemail: '', //*酒店电子邮件
+					dailiname: '', //*代理服务商姓名
+					dailitel: '', //*代理服务商电话
+					hotelbank: '',  // 酒店收款账号
+					aptitudeImg: '' //营业执照
 				},
 				province: '',
 				city: '',
@@ -210,7 +214,20 @@
 		methods: {
 			handleFile(e){
 				var e = e || event 
+				let that = this
 				console.log(e.target.files)
+				//?i=3&c=entry&do=shop&type=1&m=yun_shop&route=plugin.store-cashier.frontend.store.store.upload
+				let formData = new FormData()
+				formData.append('file',e.target.files[0])
+				this.$axios({
+					url:'?i=3&c=entry&do=shop&type=1&m=yun_shop&route=plugin.store-cashier.frontend.store.store.upload',
+					method: 'post',
+					data: formData,
+					processData: false
+				}).then((res)=>{
+					console.log(res)
+					that.formData.aptitudeImg = res.data.data.img
+				})
 			},
 			getLongAndLat(e){
 				var e = e || event
@@ -460,6 +477,13 @@
 				padding-bottom: rem(8px);
 				padding-left: 3%;
 
+			}
+			.file_img{
+
+				img{
+					max-height: 80%;
+					height:rem(120px);
+				}
 			}
 			textarea{
 				border: none;

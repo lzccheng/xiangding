@@ -146,8 +146,8 @@
 						<div class="erea_box">
 							<div class="erea_nav">
 								<ul>
-									<li @click="handleEreaChange(0,$event)" class="active">{{ereaBox[0].name}}</li>
-									<li @click="handleEreaChange(1,$event)">{{ereaBox[1].name}}</li>
+									<li @click="handleEreaChange(0,$event)" :class="{active:erea_show === 0}">{{ereaBox[0].name}}</li>
+									<li @click="handleEreaChange(1,$event)" :class="{active:erea_show === 1}">{{ereaBox[1].name}}</li>
 								</ul>
 							</div>
 							<div class="erea_item">
@@ -157,12 +157,12 @@
 									</li>
 								</ul>
 								<ul v-show="1 == erea_show" class="erea_selector">
-									<li @click="handleEreaLi" v-for="(i,index) in ereaArr" :key="index">
+									<li @click="handleEreaLi" v-for="(i,index) in ereaArr" :key="index" :class="{active: erea ===i.name}">
 										{{i.name}}
 									</li>
 									<div class="erea_li_item">
 										<ul class="erea_li_selector">
-											<li @click="handleEreaLiItem" v-for="(i,index) in cityArr">{{i.name}}</li>
+											<li @click="handleEreaLiItem" v-for="(i,index) in cityArr" :class="{active: struct === i.name}">{{i.name}}</li>
 										</ul>
 									</div>
 								</ul>
@@ -235,6 +235,8 @@
 			if(this.$route.query.province){
 				this.province = this.$route.query.province
 				this.city = this.$route.query.city
+				this.erea = this.$route.query.erea
+				this.struct = this.$route.query.struct
 				this.changeEreaArr()
 			}
 			new lzcDatePlugin({
@@ -442,6 +444,8 @@
 				],
 				province: '广东省',
 				city: '广州市',
+				erea: '荔湾区',
+				struct: '沙面街道',
 		        ereaArr: [],
 		        cityArr: [],
 
@@ -456,7 +460,15 @@
 							for(let a=0;a<ereaPlugin_data[i].children.length;a++){
 								if(ereaPlugin_data[i].children[a].name === this.city){
 									this.ereaArr = ereaPlugin_data[i].children[a].children
+									for(let c=0;c<this.ereaArr.length;c++){
+										if(this.ereaArr[c].name === this.erea){
+											this.cityArr = this.ereaArr[c].children
+											break
+										}
+									}
+									break
 								}
+								
 							}
 							break
 						}
@@ -466,6 +478,8 @@
 			handleEreaLi(e){
 				var e = e || event
 				var eParentChild = e.target.parentNode.children
+				console.log(e.target.innerText)
+				this.erea = e.target.innerText
 				for(let i=0;i<eParentChild.length;i++){
 					this.Fn.removeClass(eParentChild[i],'active')
 				}
@@ -479,6 +493,7 @@
 			handleEreaLiItem(e){
 				var e = e || event
 				var eParentChild = e.target.parentNode.children
+				this.struct = e.target.innerText
 				for(let i=0;i<eParentChild.length;i++){
 					this.Fn.removeClass(eParentChild[i],'active')
 				}
@@ -625,6 +640,8 @@
 					if(this.$route.query.province){
 						this.province = this.$route.query.province
 						this.city = this.$route.query.city
+						this.erea = this.$route.query.erea
+						this.struct = this.$route.query.struct
 						this.changeEreaArr()
 					}
 					this.handleBack()
@@ -634,6 +651,7 @@
 					if(this.$route.query.date2){
 						this.dateValue[1].datetime = Number(this.$route.query.date2)
 					}
+					this.erea_show = 0
 				}
 			}
 		}
@@ -1040,7 +1058,6 @@
 								color: #888888;
 								border-bottom: 1px solid #cccccc;
 								padding: rem(10px) rem(18px);
-								background-color: #eeeeee;
 								&.active{
 									background-color: #ffffff;
 									color: #43c122;
