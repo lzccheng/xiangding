@@ -136,6 +136,7 @@
 			right: 6%;
 			z-index: 1000;
 			font-size: rem(15px);
+			color: red;
 		}
 		.header{
 			padding: rem(15px) 10%;

@@ -3,7 +3,7 @@
 		<Header title="团房发布" />
 		<div v-if="general" class="back" @click="handBack">
 			<div class="alert" @click="cancelBubble">
-				<p class="tip">退房扣费设置</p>
+				<p class="tip">取消扣费设置</p>
 				<p class="tip_1">超过<input type="text">小时</p>
 				<p class="tip_1">扣除<input type="text"> &nbsp;&nbsp;%</p>
 				<p class="choice"> 
@@ -95,7 +95,7 @@
 					    </el-select>
 					</div>
 				</li> -->
-				<li class="item">
+				<!-- <li class="item">
 					<span class="name">床型:</span>
 					<div class="select_1">
 						<el-select v-model="select4" slot="prepend" placeholder="请选择">
@@ -103,9 +103,9 @@
 					      <el-option label="2张" value="2"></el-option>
 					    </el-select>
 					</div>
-				</li>
+				</li> -->
 				<li class="item">
-					<span class="name">双人床:</span>
+					<span class="name">床型:</span>
 					<span class="select_1">
 						<el-select v-model="select5" slot="prepend" placeholder="请选择">
 					      <el-option label="1.5米" value="1"></el-option>
@@ -154,10 +154,10 @@
 					</div>
 				</li>
 			</ul>
-			<div class="add_room">
+			<!-- <div class="add_room">
 				<span><i class="far fa-plus-square"></i></span>
 				<span class="color">添加房间</span>
-			</div>
+			</div> -->
 			<div class="send">
 				<button class="green_btn">发布</button>
 			</div>
@@ -172,7 +172,6 @@
 			      input4: '',
 			      input5: '',
 			      select2: '商务大床房',
-			      select4: '1张',
 			      select5: '1.5米',
 			      select6: '是',
 			      checkList1: ['24小时热水'],
@@ -203,6 +202,7 @@
 	.box{
 		width: 100%;
 		font-size: rem(13px);
+		padding-top: rem(20px);
 		.back{
 			background-color: rgba(0,0,0,0.3);
 			position: fixed;

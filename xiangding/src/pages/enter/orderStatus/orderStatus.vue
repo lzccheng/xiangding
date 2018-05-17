@@ -12,7 +12,6 @@
 					<div class="middle_1">
 						<p class="sex">客户: 胡勇蝶</p>
 						<p class="photo">手机号码: 15913932217<br/>&nbsp;</p>
-						<p class="input">备注:</p>
 					</div>
 					<div class="middle_3">
 						<div class="img">
@@ -49,12 +48,6 @@
 									<span class="money_icon color">289.00</span>
 								</span>
 							</li>
-							<li class="item">
-								<span class="day">是否需要发票</span>
-								<span class="number_box">
-									<span class="money_icon">否</span>
-								</span>
-							</li>
 						</ul>
 					</div>
 					<div class="footer">
@@ -67,18 +60,18 @@
 			</div>
 			<div v-else>
 				<div class="top">
-					<p class="status">订单状态: 订单处理中</p>
+					<p class="status">订单状态: <span>订单待付款</span></p>
 					<p class="time">2018-02-29 18:32</p>
 					<div class="send"></div>
-					<div class="send_box">
+					<!-- <div class="send_box">
 						<span class="custom" @click="handleAgree">同意住房</span>
 						<span class="custom" @click="handleAgree">拒绝住房</span>
-					</div>
+					</div> -->
 				</div>
 				<div class="middle_1">
 					<p class="sex">客户: 胡勇蝶</p>
 					<p class="photo">手机号码: 15913932217<br/>&nbsp;</p>
-					<p class="input">备注:</p>
+					<!-- <p class="input">备注:</p> -->
 				</div>
 				<div class="middle_3">
 					<div class="img">
@@ -115,12 +108,12 @@
 								<span class="money_icon color">289.00</span>
 							</span>
 						</li>
-						<li class="item">
+						<!-- <li class="item">
 							<span class="day">是否需要发票</span>
 							<span class="number_box">
 								<span class="money_icon">否</span>
 							</span>
-						</li>
+						</li> -->
 					</ul>
 				</div>
 				<div class="footer">
@@ -282,12 +275,17 @@
 			background-color: #ffffff;
 			border-top: #fff solid rem(1px);
 			text-align: center;
-			padding: rem(20px) 0;
+			// padding: rem(20px) 0;
+			padding-top: rem(37px);
+			padding-bottom: rem(10px);
 			.status{
 				font-size: rem(17px);
 				font-weight: bold;
 				margin-top: rem(10px);
 				margin-bottom: rem(10px);
+				span{
+					color: #43c122;
+				}
 			}
 			.time{
 				font-size: rem(13px);

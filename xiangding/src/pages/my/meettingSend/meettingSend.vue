@@ -15,6 +15,10 @@
 		<div class="body">
 			<ul>
 				<li class="item">
+					<span class="name">会议室名称:</span>
+					<span class="hide_1"><input type="text" placeholder="请填写会议室名称"></span>
+				</li>
+				<li class="item">
 					<span class="name">会议室原价:</span>
 					<span class="hide_1"><input type="text" placeholder="请填写会议室原价"></span>
 				</li>
@@ -102,10 +106,10 @@
 					</div>
 				</li>
 			</ul>
-			<div class="add_room">
+			<!-- <div class="add_room">
 				<span><i class="far fa-plus-square"></i></span>
 				<span class="color">添加会议室</span>
-			</div>
+			</div> -->
 			<div class="send">
 				<button class="green_btn">发布</button>
 			</div>
@@ -149,6 +153,7 @@
 	.box{
 		width: 100%;
 		font-size: rem(13px);
+		padding-top: rem(20px);
 		.back{
 			background-color: rgba(0,0,0,0.3);
 			position: fixed;

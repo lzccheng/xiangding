@@ -475,7 +475,7 @@
 	.box{
 		width: 100%;
 		background-color: #fff;
-		padding-top: rem(93px);
+		padding-top: rem(75px);
 		position: relative;
 		.top_box{
 			width: 100%;

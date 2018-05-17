@@ -269,6 +269,7 @@
 			}
 		}
 			.show{
+				padding-top: rem(20px);
 				.body{
 					padding: rem(22px) 0;
 					.top{

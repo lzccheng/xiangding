@@ -1,9 +1,7 @@
 <template>
 	<div class="box">
 		<Header title="申请入驻"/>
-		<div v-show="alertShow">
-			<myalert :innerHtml="htmltest" title_2="享订入驻协议" @handleCancel="aaa" status="1"/>
-		</div>
+		<myalert :innerHtml="htmltest" title_2="享订入驻协议" @handleCancel="aaa" :show="alertShow" status="1"/>
 		<!-- <div class="back" v-if="general" @click="handleClose_back"> 
 			<div class="box" @click="cancelBubble">
 				<p class="title">享订入驻协议</p>
@@ -51,6 +49,10 @@
 				<p>
 					<span class="on">身份证正面照</span>
 					<span class="down">身份证反面照</span>
+<<<<<<< HEAD
+				</p>
+				
+=======
 				</p> -->
 				<div class="item">
 					<div class="msg_tt">身份证正面照</div>
@@ -121,6 +123,7 @@
 				  <el-button size="small" type="primary">点击上传</el-button>
 				  <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过3M</div>
 				</el-upload> -->
+>>>>>>> 0b04a37b8b02cf5edfd9c457e653a09ea521e30d
 			</div>
 			<div class="footer">
 			<!-- <router-link tag="p" to="/my/myagantEnter" class="button">立即申请</router-link> -->
@@ -146,7 +149,7 @@
 		data(){
 			return {
 				// general: false,
-				htmltest: '<span style="font-size: 13px; text-align: left;">文字文字文字文字文字文字文字文字文字文字一段文字还有一段</span>',
+				htmltest: '<p style="font-size: 13px; text-align: left;">文字文字文字文字文字文字文字文字文字文字一段文字还有一段.......</p>',
 				alertShow: false,
 				general: false,
 				formData: {

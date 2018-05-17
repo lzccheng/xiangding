@@ -38,6 +38,7 @@
 	.box{
 		width: 100%;
 		background-color: #e5e5e5;
+		padding-top: rem(20px);
 		.content{
 			margin-bottom: rem(10px);
 			background-color: #ffffff;

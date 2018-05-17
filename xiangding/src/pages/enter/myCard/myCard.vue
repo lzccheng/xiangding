@@ -37,6 +37,7 @@
 	.box{
 		width: 100%;
 		height: 100%;
+		padding-top: rem(20px);
 		.content{
 			padding: rem(15px) rem(12px);
 			background-color: #2D3132;

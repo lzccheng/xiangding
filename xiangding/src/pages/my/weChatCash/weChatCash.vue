@@ -78,6 +78,7 @@
 		width: 100%;
 		background-color: #e5e5e5;
 		font-size: rem(14px);
+		padding-top: rem(20px);
 		.back{
 			background-color: rgba(0,0,0,0.3);
 			position: fixed;

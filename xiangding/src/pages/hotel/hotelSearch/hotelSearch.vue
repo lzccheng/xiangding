@@ -76,6 +76,7 @@
 						<div v-else>
 							<div class="content">
 								<div class="item">
+									<br/>
 									<!-- <p v-if="title !== '会议室'" class="title" ></p> -->
 									<p v-if="title === '团房'" class="title" >团房数量</p>
 									<p v-if="title === '钟点房'" class="title" >钟点房数量</p>
@@ -114,6 +115,7 @@
 					<div v-if="1 == show" @click="handleCancel">
 						<div class="content">
 							<div class="item">
+								<br/>
 								<p class="title">价格区间</p>
 								<p class="top">
 									<span class="input_"><input type="text" v-model="starSelect.price.min"  placeholder="最低值"></span>
@@ -1121,7 +1123,7 @@
 				}
 			}
 			.free{
-				
+				padding-top: rem(20px);
 				.text{
 					display: inline-block;
 					padding: rem(5px) rem(10px);

@@ -87,6 +87,7 @@
 	@import "../../../common/css/common.scss";
 	.box{
 		width: 100%;
+		padding-top: rem(20px);
 		.header{
         	height: rem(125px);
             background-color: #43c122;

@@ -34,6 +34,7 @@
 		width: 100%;
 		height: 90%;
 		background-color: #ebebeb;
+		padding-top: rem(20px);
 		.img{
 			margin: rem(15px) rem(15px);
 			background-color: #fff;
