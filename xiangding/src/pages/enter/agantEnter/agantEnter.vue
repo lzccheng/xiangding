@@ -34,7 +34,7 @@
 				<input @blur="handleCheckId" v-model="formData.IDcard" class="handleCheckId" type="text" placeholder="请输入身份证号码" name="">
 			</p>
 			<div class="photo">
-				<p>
+				<!-- <p>
 					<span class="icon_photo">
 					   <label for="file"><i class="fas fa-camera"></i></label>
 					    <input type="file" id="file" style="display: none" @change="handleFileUpload">
@@ -49,14 +49,86 @@
 				<p>
 					<span class="on">身份证正面照</span>
 					<span class="down">身份证反面照</span>
+<<<<<<< HEAD
 				</p>
 				
+=======
+				</p> -->
+				<div class="item">
+					<div class="msg_tt">身份证正面照</div>
+					<div class="icon">
+						<div>
+							<el-upload
+							  :action="actionUrl"
+							  :on-success="handleSuccess1"
+							  list-type="text"
+							  :on-error="fileError"
+							  :on-remove="removeFile1"
+							  :before-upload="checkFile">
+							  <i class="el-icon-plus" v-show="!formData.IDcard_facade"></i>
+							</el-upload>
+						</div>
+						
+						<div class="img" v-show="formData.IDcard_facade">
+							<img :src="formData.IDcard_facade">
+						</div>
+					</div>
+					
+				</div>
+				<div class="item">
+					<div class="msg_tt">身份证反面照</div>
+					<div class="icon">
+						<div>
+							<el-upload
+							  :action="actionUrl"
+							  :on-success="handleSuccess2"
+							  list-type="text"
+							  :on-error="fileError"
+							  :on-remove="removeFile2"
+							  :before-upload="checkFile">
+							  <i class="el-icon-plus" v-show="!formData.IDcard_back"></i>
+							</el-upload>
+						</div>
+						
+						<div class="img" v-show="formData.IDcard_back">
+							<img :src="formData.IDcard_back">
+						</div>
+					</div>
+					
+				</div>
+				
+				<!-- <div class="text">身份证正面照:</div>
+				<el-upload
+				  class="upload-demo"
+				  :action="actionUrl"
+				  :on-success="handleSuccess1"
+				  :before-upload="checkFile"
+				  :file-list="fileList1"
+				  :on-error="fileError"
+				  :limit="fileNum"
+				  list-type="picture">
+				  <el-button size="small" type="primary">点击上传</el-button>
+				  <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过3M</div>
+				</el-upload>
+				<div class="text">身份证反面照:</div>
+				<el-upload
+				  class="upload-demo"
+				  :action="actionUrl"
+				  :on-success="handleSuccess2"
+				  :on-error="fileError"
+				  :before-upload="checkFile"
+				  :file-list="fileList2"
+				  :limit="fileNum"
+				  list-type="picture">
+				  <el-button size="small" type="primary">点击上传</el-button>
+				  <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过3M</div>
+				</el-upload> -->
+>>>>>>> 0b04a37b8b02cf5edfd9c457e653a09ea521e30d
 			</div>
 			<div class="footer">
 			<!-- <router-link tag="p" to="/my/myagantEnter" class="button">立即申请</router-link> -->
 				<p class="green_btn" @click="handleFormSubmit">立即申请</p>
 			</div>
-			<img :src="formData.IDcard_facade">
 		</div>
 		<div class="agreement_box">
 			<span class="agreement" @click="handleShow">《入驻协议》</span>
@@ -91,7 +163,8 @@
 				actionUrl: process.env.API_ROOT+'?i=3&c=entry&do=shop&type=1&m=yun_shop&route=plugin.store-cashier.frontend.store.store.upload',
 				fileList1: [],
 				fileList2: [],
-				fileNum: 1
+				fileNum: 1,
+				imageUrl:''
 			}
 		},
 		methods: {
@@ -111,10 +184,19 @@
 	            return isPNG && isLt2M;
 			},
 			handleSuccess1(res, file, fileList){
-				this.formData.IDcard_facade = res.data.login_url
+				// this.formData.IDcard_facade&&this.fileList1[0].splice(0,1)
+				console.log(this.fileList1)
+				this.formData.IDcard_facade = res.data.img
 			},
 			handleSuccess2(res, file, fileList){
-				this.formData.IDcard_back = res.data.login_url
+				this.formData.IDcard_back&&this.fileList2.shift()
+				this.formData.IDcard_back = res.data.img
+			},
+			removeFile1(){
+				this.formData.IDcard_facade = ''
+			},
+			removeFile2(){
+				this.formData.IDcard_back = ''
 			},
 			handleRemove(file, fileList) {
 	        	console.log(file, fileList);
@@ -131,8 +213,12 @@
 				
 			},
 			handleGetCode(){
+				let that = this
 				this.$axios.get('?i=3&c=entry&do=shop&type=1&m=yun_shop&route=member.register.sendCode&mobile=' + this.formData.mobile).then((res)=>{
 					console.log(res)
+					if(res.data.result === 0){
+						return that.$message.error(res.data.msg);
+					}
 				})
 			},
 			handleShow(){
@@ -240,37 +326,59 @@
 			border-top: 0.5px solid #aaa;
 			padding-bottom: rem(100px);
 			.photo{
-				position: relative;
-				border-top: #aaa solid rem(1px);
-				border-bottom: #aaa solid rem(1px);
-				padding: rem(43px) 2% rem(80px);
-				text-align: center;
-				.icon_photo{
-					padding: rem(30px) 19%;
-					border: #aaa solid rem(1px);
-					border-radius: rem(5px);
-					color: #aaa;
-					font-size: rem(23px);
-					text-align: center;
-					display: inline-block;
-					width: rem(23px);
-					margin: 0 rem(4px);
-				}
-				.on{
-					position: absolute;
-					top: rem(150px);
-					left: 15%;
-				}
-				.down{
-					position: absolute;
-					top: rem(150px);
-					right: 15%;
-				}
-				// .text{
-				// 	border-top: 1px solid #aaa;
+				// position: relative;
+				// border-top: #aaa solid rem(1px);
+				// border-bottom: #aaa solid rem(1px);
+				// padding: rem(43px) 2% rem(80px);
+				// text-align: center;
+				// .icon_photo{
+				// 	padding: rem(30px) 19%;
+				// 	border: #aaa solid rem(1px);
+				// 	border-radius: rem(5px);
+				// 	color: #aaa;
+				// 	font-size: rem(23px);
 				// 	text-align: center;
-				// 	padding: rem(8px) 0;
+				// 	display: inline-block;
+				// 	width: rem(23px);
+				// 	margin: 0 rem(4px);
 				// }
+				// .on{
+				// 	position: absolute;
+				// 	top: rem(150px);
+				// 	left: 15%;
+				// }
+				// .down{
+				// 	position: absolute;
+				// 	top: rem(150px);
+				// 	right: 15%;
+				// }
+				
+				display: flex;
+				justify-content: space-around;
+				.item{
+					i.el-icon-plus{
+						font-size: rem(20px);
+					}
+					text-align: center;
+					width: 50%;
+					.msg_tt{
+						padding: rem(5px) 0;
+					}
+					.icon{
+						width: 80%;
+						margin: 0 auto;
+						padding: rem(20px) 0;
+						border: rem(1px) solid #aaa;
+						border-radius: rem(5px);
+						.img{
+							img{
+								width: 100%;
+								height: rem(100px);
+							}
+						}
+					}
+					
+				}
 			}
 			.footer{
 				padding: rem(10px) 5%;

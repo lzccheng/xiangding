@@ -116,7 +116,16 @@
 	            trigger: '#myErea',
 	            title: '请选择地区',
 	            wheels: [
-	                        {data : ereaPlugin_data}
+	                        {data : [
+		                          {name: '广东省',code: '1',children:[
+		                            {name: '广州市',code: '22',children:[
+		                              {name:'天河区',code:'55',children:[
+		                                {name: '景山街道',code: '666'}
+		                              ]}
+		                            ]}
+		                          ]}
+		                        ]
+                    		}
 	                    ],
 	            keyMap: {
 	                id:'code',
@@ -130,6 +139,10 @@
 	            that.province = data[0].name
 	            that.city = data[1].name
 	          }
+	        })
+	        
+	        this.Http.getEreaData((res)=>{
+	          mobileSelect5.updateWheels(JSON.parse(res.data));
 	        })
 	        let lD = new lzcDatePlugin({
            		 el: '#myDatePlugin',

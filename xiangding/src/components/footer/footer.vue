@@ -36,11 +36,11 @@
 						class:'fa fa-home',
 						url: '/'
 					},
-					{
-						name: '酒店',
-						class:'fa fa-building',
-						url: '/hotel'
-					},
+					// {
+					// 	name: '酒店',
+					// 	class:'fa fa-building',
+					// 	url: '/hotel'
+					// },
 					{
 						name: '团队会议',
 						class:'fas fa-comment-dots',
@@ -70,17 +70,17 @@
 				if(to.name === 'index'){
 					this.indexData = 0
 				}
-				if(to.name === 'hotel'){
+				// if(to.name === 'hotel'){
+				// 	this.indexData = 1
+				// }
+				if(to.name === 'teamMeeting'){
 					this.indexData = 1
 				}
-				if(to.name === 'teamMeeting'){
+				if(to.name === 'enter'){
 					this.indexData = 2
 				}
-				if(to.name === 'enter'){
-					this.indexData = 3
-				}
 				if(to.name === 'my'){
-					this.indexData = 4
+					this.indexData = 3
 				}
 
 			}
@@ -105,7 +105,7 @@
 		border-top: 0.5px solid #aaa;
 		z-index: 99;
 		.route{
-			width: 20%;
+			width: 25%;
 			display: inline-block;
 			height: rem(40px);
 			padding: rem(8px) 0 rem(2px);

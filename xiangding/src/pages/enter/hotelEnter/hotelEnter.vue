@@ -21,14 +21,14 @@
 				<label>联系电话:</label>
 				<input @blur="handleCheck" class="handleCheck" type="text" placeholder="请输入电话号码" name="" v-model="formData.mobile">
 			</p>
-			<p class="input">
+			<!-- <p class="input">
 				<label>验证码:</label>
 				<input type="text" style="width: 40%" placeholder="请输入验证码" name="">
 				<span class="get"><span>获取验证码</span></span>
-			</p>
+			</p> -->
 			<p class="input">
 				<label>账号:</label>
-				<input type="text" placeholder="请输入账号" name="" v-model="formData.username">
+				<input type="text" placeholder="请输入账号" name="" v-model="formData.username" @blur="checkUsername">
 			</p>
 			<p class="input" style="border-bottom: none">
 				<label>密码:</label>
@@ -61,23 +61,26 @@
 				<label>电子邮箱:</label>
 				<input type="text" v-model="formData.storeemail" placeholder="请输入电子邮箱" name="">
 			</p>
-			<p class="input">
-				<label>所在城市:</label>
-				<span class="choice">点击选择地址</span>
+			<p class="input" id="erea_choose">
+				<label>所在地区:</label>
+				<span class="choice lineHidden">{{text_erea}}</span>
 				<span><i class="fas fa-chevron-down"></i></span>
 			</p>
-			<p class="input">
+			<!-- <p class="input">
 				<label>街道:</label>
 				<span class="choice">请选择所在街道</span>
 				<span><i class="fas fa-chevron-down"></i></span>
-			</p>
+			</p> -->
 			<p class="input">
 				<label>详细地址:</label>
-				<input type="text" placeholder="请输入街道门牌号" name="">
+				<input type="text" placeholder="请输入街道门牌号" name="" @blur="getLongAndLat">
 			</p>
 			<p class="input">
 				<label>地理位置:</label>
-				<span>经度: 13.141111  维度: 23.5555</span>
+				<span>经度: {{choseLng}} , 维度: {{choseLat}}</span>
+				<br/>
+				<label v-show="formatAddr"></label>
+				<span v-show="formatAddr">{{formatAddr}}</span>
 			</p>
 			<p class="input">
 				<label>酒店收款账号:</label>
@@ -98,7 +101,7 @@
 			</p>
 			<div class="photo">
 			    <label for="file"><i class="far fa-plus-square"></i></label>
-				   <input type="file" style="display: none" id="file">
+				   <input @change="handleFile" type="file" style="display: none" id="file">
 			</div>
 		</div>
 		<div class="form bottom">
@@ -112,8 +115,8 @@
 		</div>
 		<div class="form" style="border-bottom: none;padding-left: 0">
 			<div class="footer">
-			   <!-- <router-link tag="p" to="/enter/login" class="button">立即申请</router-link> -->
 			   <router-link tag="p" to="/enter/login"  @click="handleFormSubmit" class="green_btn">立即申请</router-link>
+			   <!-- <p @click="handleFormSubmit" class="green_btn">立即申请</p> -->
 			</div>
 			<div class="agreement_box">
 				<span @click="handleShow_back" class="agreement">《入驻协议》</span>
@@ -123,11 +126,59 @@
 	</div>
 </template>
 <script>
+	import wx from 'weixin-js-sdk'
 	export default {
 		mounted(){
 			this.$refs.eye_two.style.display = 'inline-block'
 			this.$refs.eye_one.style.display = 'none'
-			
+			let that = this
+	        var mobileSelect5 = new MobileSelect({
+	            trigger: '#erea_choose',
+	            title: '请选择地区',
+	            wheels: [
+	                      {data : [
+	                          {name: '广东省',code: '1',children:[
+	                            {name: '广州市',code: '22',children:[
+	                              {name:'天河区',code:'55',children:[
+	                                {name: '景山街道',code: '666'}
+	                              ]}
+	                            ]}
+	                          ]}
+	                        ]
+	                      }
+	                    ],
+	            position: [18,0],
+	            keyMap: {
+	                id:'code',
+	                value: 'name',
+	                childs :'children'
+	            },
+	          triggerDisplayData: false,
+	          onShow: function(){
+	          },
+	          onHide:function(){
+	          },
+	          callback:function(indexArr, data){
+	            that.text_erea = data[1].name+data[2].name+data[3].name
+	            that.province = data[0].name
+	            that.city = data[1].name
+	            that.erea = data[2].name
+	            that.struct = data[3].name
+	          }
+	        })
+	        this.Http.getEreaData((res)=>{
+	          mobileSelect5.updateWheels(JSON.parse(res.data))
+	        })
+
+	        // console.log(wx)
+	        // this.$axios.get('?i=3&type=1&shop_id=null&route=member.member.wxJsSdkConfig').then((res)=>{
+	        // 	console.log(res)
+	        // 	wx.config(res.data.data.config)
+	        // 	wx.ready(function(){
+	        // 		console.log(888)
+	        // 	})
+	        // })
+	        
 		},
 		data(){
 			return {
@@ -145,15 +196,89 @@
 					dailiname: '', //代理服务商姓名
 					dailitel: '', //代理服务商电话
 					hotelbank: ''  // 酒店收款账号
-				}
+				},
+				province: '',
+				city: '',
+				erea: '',
+				struct: '',
+				text_erea:'请选择地区',
+				choseLng: 0,
+				choseLat: 0,
+				formatAddr: ''
 			}
 		},
 		methods: {
+			handleFile(e){
+				var e = e || event 
+				console.log(e.target.files)
+			},
+			getLongAndLat(e){
+				var e = e || event
+				if(!this.struct){
+					return this.$message({
+				          message: '请选择地区',
+				          type: 'warning'
+				        });
+				}
+				if(e.target.value){
+					let that = this
+					let value = e.target.value
+					let addr = this.province+'/'+this.city+'/'+this.erea+'/'+this.struct+'/'+e.target.value
+					let success = (res)=>{
+						console.log(111,res)
+						if(res.geocodes[0].formattedAddress.split('|').join('').indexOf(value)<0){
+							that.$message({
+					          message: '没找到'+value,
+					          type: 'warning'
+					        });
+						}
+						that.choseLng = res.geocodes[0].location.lng
+						that.choseLat= res.geocodes[0].location.lat
+						that.formatAddr= res.geocodes[0].formattedAddress
+					}
+					let error = (res)=>{
+						console.log(2222,res)
+					}
+					this.Fn.getLongAndLat(addr,success)
+				}else{
+					return this.$message({
+				          message: '请输入详细地址',
+				          type: 'warning'
+				        });
+				}
+			},
 			handleFormSubmit(){
 				console.log(888)
 				let that = this
 				console.log({...that.formData})
-				this.$axios.post('/addons/yun_shop/api.php?i=3&c=entry&do=shop&m=yun_shop&route=plugin.store-cashier.frontend.store.store.apply',{password:'nihaode'}).then((res)=>{
+				if(!this.formData.realname){
+					return this.$message({
+				          message: '请输入申请人',
+				          type: 'warning'
+				        });
+				}
+				if(this.formData.mobile){
+					if(!this.Fn.checkPhone(this.formData.mobile)){
+						return this.$message({
+				          message: '请输入正确的联系电话',
+				          type: 'warning'
+				        });
+					}
+				}else{
+					return this.$message({
+			          message: '联系电话不能为空',
+			          type: 'warning'
+			        });
+				}
+
+				if(!this.formData.username){
+					return this.$message({
+			          message: '账号不能为空！',
+			          type: 'warning'
+			        });
+				}
+				return 
+				this.$axios.post('?i=3&c=entry&do=shop&m=yun_shop&route=plugin.store-cashier.frontend.store.store.apply',{...that.formData}).then((res)=>{
 					console.log(res)
 				})
 			},
@@ -186,6 +311,14 @@
 				}
 
 				
+			},
+			checkUsername(){
+				if(!this.formData.username){
+					return this.$message({
+			          message: '账号不能为空！',
+			          type: 'warning'
+			        });
+				}
 			},
 			handleShow_back(){
 				this.general = true

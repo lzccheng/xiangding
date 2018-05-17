@@ -166,12 +166,20 @@
       },
       mounted:function(){
         let that = this
-        console.log(window)
         var mobileSelect5 = new MobileSelect({
             trigger: '#cccc',
             title: '请选择地区',
             wheels: [
-                        {data : ereaPlugin_data}
+                      {data : [
+                          {name: '广东省',code: '1',children:[
+                            {name: '广州市',code: '22',children:[
+                              {name:'天河区',code:'55',children:[
+                                {name: '景山街道',code: '666'}
+                              ]}
+                            ]}
+                          ]}
+                        ]
+                      }
                     ],
             keyMap: {
                 id:'code',
@@ -190,40 +198,39 @@
             that.city = data[1].name
           }
         })
-        
-        // const loading = that.$loading({
-        //     lock: true,
-        //     text: '定位中..........',
-        //     background: 'rgba(0, 0, 0, 0.7)',
-        //     // target: '.msg'
-        //   })
-        //   that.show_erea = true
-        //   // that.$refs.show_erea.style.display = 'inline-block'
-        //   common.getLocation(onComplete,onError)
-        //   function onComplete(data) {
-        //     loading.close()
-        //     let addr = data.formattedAddress.split('街道')
-        //     if(!addr[1]){
-        //       addr = data.formattedAddress.split('号')
-        //     }
-        //     that.text_erea = addr[1]+'附近'
-        //     that.show_erea = false
-        //     that.$refs.show_erea.style.display = 'none'
-        //     that.$message({
-        //       message: '定位成功！'+that.text_erea,
-        //       type: 'success'
-        //     })
-        //   }
-        //   /*
-        //    *解析定位错误信息
-        //    */
-        //   function onError(data) {
-        //     loading.close()
-        //     that.$message({
-        //       message: '定位失败！'+data.message,
-        //       type: 'warning'
-        //     })
-        //   }
+        this.Http.getEreaData((res)=>{
+          mobileSelect5.updateWheels(JSON.parse(res.data));
+        })
+          //定位
+          const loading = that.$loading({
+            lock: true,
+            text: '定位中..........',
+            background: 'rgba(0, 0, 0, 0.7)',
+            // target: '.msg'
+          })
+          common.getLocation(onComplete,onError)
+          function onComplete(data) {
+            loading.close()
+            let addr = data.formattedAddress.split('街道')
+            if(!addr[1]){
+              addr = data.formattedAddress.split('号')
+            }
+            that.text_erea = addr[1]+'附近'
+            that.$message({
+              message: '定位成功！'+that.text_erea,
+              type: 'success'
+            })
+          }
+          /*
+           *解析定位错误信息
+           */
+          function onError(data) {
+            loading.close()
+            that.$message({
+              message: '定位失败！'+data.message,
+              type: 'warning'
+            })
+          }
 
         this.$axios({url:'/bannerData',data:{id:123}}).then((res)=>{
           that.arrItem = res.data
