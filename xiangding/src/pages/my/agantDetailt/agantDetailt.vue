@@ -21,6 +21,7 @@
 					</div>
 					<div class="msg">
 						<div>昵称：{{i.nickname}}</div>
+						<div>消费金额：{{i.order_price}}</div>
 						<!-- <div>粉丝数量：<span class="text">256455</span></div>
 						<div>收入：<span class="text">4887</span></div> -->
 					</div>
@@ -65,11 +66,13 @@
 		          })
 				this.$axios.get('?i=3&c=entry&do=shop&m=yun_shop&route=member.member.getMyAgentData_v2&relationLevel='+this.agantLevel).then((res)=>{
 					loading.close()
+					console.log(res)
 					if(res.data.data.data.length){
 						for(let i=0;i<res.data.data.data.length;i++){
 							let item = {
 								avatar: res.data.data.data[i].avatar,
-								nickname: res.data.data.data[i].nickname
+								nickname: res.data.data.data[i].nickname,
+								order_price: res.data.data.data[i].order_price
 							}
 							that.arrItem.push(item)
 						}

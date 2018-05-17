@@ -6,7 +6,7 @@
 					<img :src="msg.imgUrl">
 					<div class="text">
 						<span>{{msg.name}} ({{msg.level_name}})</span><br>
-						<span>推荐人: {{msg.agent_nickname}}</span><br>
+						<span v-show="msg.agent_nickname">推荐人: {{msg.agent_nickname}}</span><br>
 						<span>ID: {{msg.id}}</span>
 						<router-link tag="span" to="/my/myMessage" class="i"><i class="fas fa-cog"></i></router-link>
 					</div>
@@ -38,33 +38,33 @@
 			<div class="agent">
 				<ul>
 					<li>
-						<p><span>VIP1</span></p>
+						<p><span>VIP1 ({{msg.income.firstAgent}}人)</span></p>
 						<p class="right">
 							<span>
 								<span>收入</span><br>
-								<span>{{msg.income.firstAgent}}</span>
+								<span>0</span>
 							</span>
 							
 							<router-link tag="span" :to="{path: '/my/agantDetailt',query:{agant:1}}" class="detailt">详情</router-link>
 						</p>
 					</li>
 					<li>
-						<p><span>VIP2</span></p>
+						<p><span>VIP2 ({{msg.income.secondAgent}}人)</span></p>
 						<p class="right">
 							<span>
 								<span>收入</span><br>
-								<span>{{msg.income.secondAgent}}</span>
+								<span>0</span>
 							</span>
 							
 							<router-link tag="span" :to="{path: '/my/agantDetailt',query:{agant:2}}" class="detailt">详情</router-link>
 						</p>
 					</li>
 					<li>
-						<p><span>VIP3</span></p>
+						<p><span>VIP3 ({{msg.income.thirdAgent}}人)</span></p>
 						<p class="right">
 							<span>
 								<span>收入</span><br>
-								<span>{{msg.income.thirdAgent}}</span>
+								<span>0</span>
 							</span>
 							
 							<router-link tag="span" :to="{path: '/my/agantDetailt',query:{agant:3}}" class="detailt">详情</router-link>

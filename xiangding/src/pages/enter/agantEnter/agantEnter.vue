@@ -210,8 +210,12 @@
 				
 			},
 			handleGetCode(){
+				let that = this
 				this.$axios.get('?i=3&c=entry&do=shop&type=1&m=yun_shop&route=member.register.sendCode&mobile=' + this.formData.mobile).then((res)=>{
 					console.log(res)
+					if(res.data.result === 0){
+						return that.$message.error(res.data.msg);
+					}
 				})
 			},
 			handleShow(){

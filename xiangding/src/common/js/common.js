@@ -1,8 +1,9 @@
 
-let getStyle = (obj,attr) => {
+const getStyle = (obj,attr) => {
 	return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle( obj )[attr]
 }
-let getLocation = (onComplete=function(){},onError=function(){})=>{
+//获取当前位置
+const getLocation = (onComplete=function(){},onError=function(){})=>{
 	  var map = new AMap.Map('aMap', {
 	      resizeEnable: true,
 	      zoom: 16
@@ -45,7 +46,29 @@ let getLocation = (onComplete=function(){},onError=function(){})=>{
 	    geolocation.getCurrentPosition();
 	  });
 }
-let haveClass = (dom,className)=>{
+//根据地址获取经纬度
+const getLongAndLat = (addr,success,error)=>{
+	let addrArr = addr.split('/')
+	AMap.service('AMap.Geocoder',function(){//回调函数
+    	//实例化Geocoder
+	    var geocoder = new AMap.Geocoder({
+	        city: addrArr[1]//城市，默认：“全国”
+	    });
+	    //TODO: 使用geocoder 对象完成相关功能
+	    geocoder.getLocation(addrArr.join(''), function(status, result) {
+		    if (status === 'complete' && result.info === 'OK') {
+		        //TODO:获得了有效经纬度，可以做一些展示工作
+		        //比如在获得的经纬度上打上一个Marker
+		        success&&success(result)
+		    }else{
+		        //获取经纬度失败
+		        error&&error(result)
+		    }
+		});
+	})
+    
+}
+const haveClass = (dom,className)=>{
 	let domClass = dom.getAttribute('class')
 	let bool = false
 	let classArr = domClass?domClass.split(' '):[]
@@ -57,14 +80,14 @@ let haveClass = (dom,className)=>{
 	}
 	return bool
 }
-let addClass = (dom,className)=>{
+const addClass = (dom,className)=>{
 	if(dom.getAttribute('class')){
 		!haveClass(dom,className)&&dom.setAttribute('class',dom.getAttribute('class')+' '+className)
 	}else{
 		dom.setAttribute('class',className)
 	}
 }
-let removeClass = (dom,className)=>{
+const removeClass = (dom,className)=>{
 	if(dom.getAttribute('class')){
 		let arr = dom.getAttribute('class').split(' ')
 		let newArr = []
@@ -76,8 +99,8 @@ let removeClass = (dom,className)=>{
 		dom.setAttribute('class',newArr.join(' '))
 	}
 }
-let zero = value=>(Number(value)>9?value: '0'+value)
-let base64_encode = stringToEncode => {
+const zero = value=>(Number(value)>9?value: '0'+value)
+const base64_encode = stringToEncode => {
   // eslint-disable-line camelcase
   //  discuss at: http://locutus.io/php/base64_encode/
   // original by: Tyler Akins (http://rumkin.com)
@@ -145,25 +168,26 @@ let base64_encode = stringToEncode => {
 
   return (r ? enc.slice(0, r - 3) : enc) + '==='.slice(r || 3)
 }
-let checkPhone = (value)=>{
+const checkPhone = (value)=>{
 	return /^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/.test(value)
 }
-let checkId = (value)=>{
+const checkId = (value)=>{
 	return /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)/.test(value)
 }
-let checkFixedPhone = (value)=>{
+const checkFixedPhone = (value)=>{
 	return /^((0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/.test(value)
 }
-let checkCredit= (value)=>{
+const checkCredit= (value)=>{
 	return /^([1-9]{1})(\d{14}|\d{18})$/.test(value)
 }
-let checkPassword= (value)=>{
+const checkPassword= (value)=>{
 	return /^([A-Z]|[a-z]|[0-9]|[\`\-\=\[\];\,\./\~\!\@\#\$\%\^\*\(\)_\+\}\{:\?]){6,20}$/.test(value)
 }
 //([A-Z]|[a-z]|[0-9]|[`-=[];,./~!@#$%^*()_+}{:?]){6,20}$
 export default {
 	getStyle,
 	getLocation,
+	getLongAndLat,
 	checkPhone,
 	checkId,
 	checkFixedPhone,

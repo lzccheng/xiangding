@@ -202,8 +202,15 @@
           mobileSelect5.updateWheels(JSON.parse(res.data));
         })
           //定位
+          const loading = that.$loading({
+            lock: true,
+            text: '定位中..........',
+            background: 'rgba(0, 0, 0, 0.7)',
+            // target: '.msg'
+          })
           common.getLocation(onComplete,onError)
           function onComplete(data) {
+            loading.close()
             let addr = data.formattedAddress.split('街道')
             if(!addr[1]){
               addr = data.formattedAddress.split('号')
@@ -218,6 +225,7 @@
            *解析定位错误信息
            */
           function onError(data) {
+            loading.close()
             that.$message({
               message: '定位失败！'+data.message,
               type: 'warning'
