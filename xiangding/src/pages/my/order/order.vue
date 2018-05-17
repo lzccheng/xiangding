@@ -1,8 +1,8 @@
 <template>
 	<div class="box">
 		<Header title="订单列表"/>
-		
-		<div class="back" v-if="back_show" @click="backHide">
+		<myalert :innerHtml="htmltest" title_3="温馨提示" @handleCancel="aaa" :show="alertShow" status="0" />
+		<!-- <div class="back" v-if="back_show" @click="backHide">
 			<div class="alert" @click="cancelBubble">
 				<p class="tip">温馨提示</p>
 				<p>您确定取消订单吗 ?</p>
@@ -11,7 +11,7 @@
 					<span>确定</span>
 				</p>
 			</div>
-		</div>
+		</div> -->
 
 		<div>
 			<div class="nav">
@@ -57,7 +57,7 @@
 								    </div>
 									
 									<div class="button">
-										<span class="change" @click="handleCancel">取消订单</span>
+										<span class="change" @click="handleShow">取消订单</span>
 										<router-link tag="span" :to="{path: '/my/order/orderPay',query: {isPay: 0}}" class="pay">付款</router-link>
 									</div>
 								</div>
@@ -150,7 +150,11 @@
 	</div>
 </template>
 <script>
+	import myalert from '../../../components/alert/alert'
 	export default {
+		components: {
+			myalert
+		},
 		mounted(){
 			this._lineLeft()
 		},
@@ -162,22 +166,31 @@
 					'全部订单'
 				],
 				index_: 0,
-				back_show: false
+				htmltest: '',
+				htmltest: '<p style="font-size: 14px;padding: 10px 0;">您真的要取消订单吗？</p>',
+                alertShow: false,
+				// back_show: false
 			} 
 		},
 		methods: {
-			handleCancel(event){
-				this.back_show = true
-				document.querySelectorAll('body')[0].style.overflow = 'hidden'
-				this.Fn.addClass(document.querySelector('html'),'noscroll')
+			// handleCancel(event){
+			// 	this.back_show = true
+			// 	document.querySelectorAll('body')[0].style.overflow = 'hidden'
+			// 	this.Fn.addClass(document.querySelector('html'),'noscroll')
+			// },
+			// backHide(){
+			// 	this.back_show = false
+			// 	document.querySelectorAll('body')[0].style.overflow = 'auto'
+			// 	this.Fn.removeClass(document.querySelector('html'),'noscroll')
+			// },
+			// cancelBubble(event){
+			// 	event.cancelBubble = true
+			// },
+			aaa(res){
+				this.alertShow = false
 			},
-			backHide(){
-				this.back_show = false
-				document.querySelectorAll('body')[0].style.overflow = 'auto'
-				this.Fn.removeClass(document.querySelector('html'),'noscroll')
-			},
-			cancelBubble(event){
-				event.cancelBubble = true
+			handleShow(){
+				this.alertShow = true
 			},
 			handleClick(i,e){
 				var e = e || event

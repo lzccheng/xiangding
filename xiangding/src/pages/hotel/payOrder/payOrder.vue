@@ -1,11 +1,12 @@
 <template>
 	<div class="box">
+		<myalert :innerHtml="htmltest" title_3="温馨提示" @handleCancel="aaa" :show="alertShow" status="0" />
 	    <div class="back" v-if="general" @click="handleClose_back">
 	    	<div class="img_box">
 	    		<div class="img"><img src="https://f10.baidu.com/it/u=1208544201,1064095414&fm=72" alt=""></div>
 	    	</div>
 	    </div>
-		<Header title="支付订单"/>
+		<Header title="订单详情"/>
 		<div class="top">
 			<span>待付款</span>
 		</div>
@@ -86,13 +87,18 @@
 		</div>
 		<div  class="button">
 			<router-link v-if="title ==='团房' || title ==='会议室'" tag="span" to="/my/custom" class="need_pay ">讲价</router-link>
-			<router-link tag="span" to="/hotelDetail/hotelSelect/hotelOrder" v-else  class="need_pay talk">取消订单</router-link>
+			<!-- <router-link tag="span" to="/hotelDetail/hotelSelect/hotelOrder" v-else  class="need_pay talk">取消订单</router-link> -->
+			<span  v-else @click="handleShow" class="need_pay talk">取消订单</span>
 			<router-link tag="span" to="/my/order/payMethods" class="money_color">立即支付</router-link>
 		</div>
 	</div>
 </template>
 <script>
+    import myalert from '../../../components/alert/alert'
 	export default {
+		components: {
+			myalert
+		},
 		mounted(){
 			if(this.$route.query.name){
 				this.title = this.$route.query.name
@@ -103,7 +109,9 @@
 				value1: true,
                 value2: true,
                 title: '酒店列表',
-                general: false
+                general: false,
+                htmltest: '<p style="font-size: 14px;padding: 10px 0;">您真的要取消订单吗？</p>',
+                alertShow: false,
 			}
 		},
 		methods: {
@@ -112,6 +120,12 @@
 			},
 			handleClose_back(){
 				this.general = false
+			},
+			aaa(res){
+				this.alertShow = false
+			},
+			handleShow(){
+				this.alertShow = true
 			},
 		},
 		watch: {
@@ -181,7 +195,7 @@
 		}
 		.i{
 			position: absolute;
-			top: rem(71px);
+			top: rem(52px);
 			left: 34%;
 			color: #ffffff;
 			font-size: rem(25px);
