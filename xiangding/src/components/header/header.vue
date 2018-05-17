@@ -25,7 +25,7 @@
 	@import '../../common/css/common';
 	._box{
 		width: 100%;
-		height: rem(46px);
+		height: rem(27px);
 		._header{
 			width: 100%;
 			position: fixed;

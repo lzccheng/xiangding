@@ -47,6 +47,7 @@
 	@import "../../../common/css/common.scss";
 	.box{
 		width: 100%;
+		padding-top: rem(20px);
 		.nav{
 			background-color: #e5e5e5;
 			padding: rem(8px) rem(13px);

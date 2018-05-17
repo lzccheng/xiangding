@@ -41,6 +41,7 @@
 	@import '../../../common/css/common.scss';
 	.box{
 		width: 100%;
+		padding-top: rem(20px);
 		.content{
 			position: relative;
 			.tabs{

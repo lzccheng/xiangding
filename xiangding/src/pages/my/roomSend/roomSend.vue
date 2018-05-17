@@ -1,12 +1,8 @@
 <template>
 	<div class="box">
 		<Header :title="title" />
-		<div v-show="alertShow" >
-			<myalert :innerHtml="htmltest" title_3="退房扣费设置" @handleCancel="aaa" status="0" />
-		</div>
-		<div v-show="alertShow_1" >
-			<myalert :innerHtml="htmltest_1" title_3="设施设备" @handleCancel="aaa_1" status="0" />
-		</div>
+		<myalert :innerHtml="htmltest" title_3="取消扣费设置" @handleCancel="aaa" :show="alertShow" status="0" />
+		<myalert :innerHtml="htmltest_1" title_3="设施设备" @handleCancel="aaa_1" :show="alertShow_1" status="0" />
 		<!-- <div v-if="general" class="back" @click="handBack">
 			<div class="alert" @click="cancelBubble">
 				<p class="tip">退房扣费设置</p>
@@ -108,7 +104,7 @@
 					    </el-select>
 					</div>
 				</li> -->
-				<li class="item">
+				<!-- <li class="item">
 					<span class="name">床型:</span>
 					<div class="select_1">
 						<el-select v-model="select4" slot="prepend" placeholder="请选择">
@@ -116,9 +112,9 @@
 					      <el-option label="2张" value="2"></el-option>
 					    </el-select>
 					</div>
-				</li>
+				</li> -->
 				<li class="item">
-					<span class="name">双人床:</span>
+					<span class="name">床型:</span>
 					<span class="select_1">
 						<el-select v-model="select5" slot="prepend" placeholder="请选择">
 					      <el-option label="1.5米" value="1"></el-option>
@@ -170,10 +166,10 @@
 					</div>
 				</li>
 			</ul>
-			<div class="add_room">
+			<!-- <div class="add_room">
 				<span><i class="far fa-plus-square"></i></span>
 				<span class="color">添加房间</span>
-			</div>
+			</div> -->
 			<div class="send">
 				<button v-if="title === '房间发布'" class="green_btn">发布</button>
 				<button v-else class="green_btn">确定</button>
@@ -204,7 +200,6 @@
 			    input5: '',
 			    select2: '商务大床房',
 			    select3: '免费取消',
-		        select4: '1张',
 			    select5: '1.5米',
 			    select6: '是',
 			    checkList1: ['24小时热水'],
@@ -223,20 +218,16 @@
 				if(!this.value2){
 					this.alertShow = true
 				}
-				this.Fn.addClass(document.querySelector('html'),'noscroll')
 			},
 			aaa(res){
 				this.alertShow = false
-				this.Fn.removeClass(document.querySelector('html'),'noscroll')
 			},
 			handleShow_1(){
 				// this.alertShow = true
 				this.alertShow_1 = true
-				this.Fn.addClass(document.querySelector('html'),'noscroll')
 			},
 			aaa_1(res){
 				this.alertShow_1 = false
-				this.Fn.removeClass(document.querySelector('html'),'noscroll')
 			},
 			handleFile(e){
 				var e = e || event

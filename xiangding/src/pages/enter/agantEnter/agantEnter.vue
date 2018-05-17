@@ -1,9 +1,7 @@
 <template>
 	<div class="box">
 		<Header title="申请入驻"/>
-		<div v-show="alertShow">
-			<myalert :innerHtml="htmltest" title_2="享订入驻协议" @handleCancel="aaa" status="1"/>
-		</div>
+		<myalert :innerHtml="htmltest" title_2="享订入驻协议" @handleCancel="aaa" :show="alertShow" status="1"/>
 		<!-- <div class="back" v-if="general" @click="handleClose_back"> 
 			<div class="box" @click="cancelBubble">
 				<p class="title">享订入驻协议</p>
@@ -52,32 +50,7 @@
 					<span class="on">身份证正面照</span>
 					<span class="down">身份证反面照</span>
 				</p>
-				<!-- <div class="text">身份证正面照:</div>
-				<el-upload
-				  class="upload-demo"
-				  :action="actionUrl"
-				  :on-success="handleSuccess1"
-				  :before-upload="checkFile"
-				  :file-list="fileList1"
-				  :on-error="fileError"
-				  :limit="fileNum"
-				  list-type="picture">
-				  <el-button size="small" type="primary">点击上传</el-button>
-				  <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过3M</div>
-				</el-upload>
-				<div class="text">身份证反面照:</div>
-				<el-upload
-				  class="upload-demo"
-				  :action="actionUrl"
-				  :on-success="handleSuccess2"
-				  :on-error="fileError"
-				  :before-upload="checkFile"
-				  :file-list="fileList2"
-				  :limit="fileNum"
-				  list-type="picture">
-				  <el-button size="small" type="primary">点击上传</el-button>
-				  <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过3M</div>
-				</el-upload> -->
+				
 			</div>
 			<div class="footer">
 			<!-- <router-link tag="p" to="/my/myagantEnter" class="button">立即申请</router-link> -->
@@ -104,7 +77,7 @@
 		data(){
 			return {
 				// general: false,
-				htmltest: '<span style="font-size: 13px; text-align: left;">文字文字文字文字文字文字文字文字文字文字一段文字还有一段</span>',
+				htmltest: '<p style="font-size: 13px; text-align: left;">文字文字文字文字文字文字文字文字文字文字一段文字还有一段.......</p>',
 				alertShow: false,
 				general: false,
 				formData: {

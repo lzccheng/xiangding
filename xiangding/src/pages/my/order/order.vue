@@ -227,6 +227,7 @@
 		width: 100%;
 		min-height: 100%;
 		background-color: #e5e5e5;
+		padding-top: rem(20px);
 		.back{
 			width: 100%;
 			position: fixed;

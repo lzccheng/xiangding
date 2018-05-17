@@ -19,11 +19,11 @@
 					<p class="sex">性别: 男</p>
 					<p class="sex">身份证号码: 440510199506132352</p>
 				</div>
-				<div class="middle_2">
+				<!-- <div class="middle_2">
 					<p>
 						<span class="input">备注:</span>
 					</p>
-				</div>
+				</div> -->
 				<div class="middle_3">
 					<div class="img">
 						<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425433535&di=f7d324b2c95bd6f203fb8741290c02e3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D41481487a2773912d02b8d219161e374%2Ff3d3572c11dfa9ec3d58042d69d0f703918fc192.jpg" alt="">
@@ -39,28 +39,24 @@
 							<span class="numb">×1</span>
 						</p>
 						<p><span class="title">预计入住: 2018-04-05 18:30</span></p>
-						<p><span class="title">预计入住: 2018-04-06</span></p>
+						<p><span class="title">预计退房: 2018-04-06</span></p>
 					</div>
 
 				</div>
 				<div class="middle_4">
 					<ul>
-						<li class="item">
-							<span class="day">天数</span>
+						<!-- <li class="item">
+							<span class="day">入住时间</span>
 							<span class="number_box">
-							   <span class="icon_s" style="border-right: none" @click="handleDelete">-</span>
-								<span class="number_s">{{num_1}}</span>
-								<span class="icon_s radius" style="border-left: none" @click="handleAdd">+</span>
+							   2018-04-05
 							</span>
 						</li>
 						<li class="item">
-							<span class="day">房间</span>
+							<span class="day">退房时间</span>
 							<span class="number_box">
-							    <span class="icon_s" style="border-right: none" @click="handleDelete1">-</span>
-								<span class="number_s">{{num_2}}</span>
-								<span class="icon_s radius" style="border-left: none" @click="handleAdd1">+</span>
+							    2018-04-06
 							</span>
-						</li>
+						</li> -->
 						<li class="item">
 						    <span class="day">商品金额</span>
 							<span class="number_box">
@@ -95,7 +91,7 @@
 								<div v-if="1==index_">
 					<div class="body">
 						<div>
-							<div class="top">
+							<div class="top padding-bottom" >
 								<p class="status">订单状态: 已付款</p>
 								<p class="time">2018-02-29 18:32</p>
 								<div class="send">
@@ -109,11 +105,11 @@
 								<p class="sex">性别: 男</p>
 								<p class="sex">身份证号码: 440510199506132352</p>
 							</div>
-							<div class="middle_2">
+							<!-- <div class="middle_2">
 								<p>
 									<span class="input">备注:</span>
 								</p>
-							</div>
+							</div> -->
 							<div class="middle_3">
 								<div class="img">
 									<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425433535&di=f7d324b2c95bd6f203fb8741290c02e3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D41481487a2773912d02b8d219161e374%2Ff3d3572c11dfa9ec3d58042d69d0f703918fc192.jpg" alt="">
@@ -129,7 +125,7 @@
 										<span class="numb">×1</span>
 									</p>
 									<p><span class="title">预计入住: 2018-04-05 18:30</span></p>
-									<p><span class="title">预计入住: 2018-04-06</span></p>
+									<p><span class="title">预计退房: 2018-04-06</span></p>
 								</div>
 
 							</div>
@@ -182,8 +178,7 @@
 					'订单详情',
 				],
 				 index_: 1,
-				 num_1: 0,
-				 num_2: 0
+				
 			}
 		},
 		methods: {
@@ -192,20 +187,7 @@
 				this.$refs._line.style.width =  event.path[0].offsetWidth +'px'
 				this.index_ = i
 			},
-			handleDelete(i){
-				this.num_1 --
-				if(this.num_1<=0){this.num_1=0}
-			},
-			handleAdd(i){
-				this.num_1++
-			},
-			handleDelete1(i){
-				this.num_2 --
-				if(this.num_2<=0){this.num_2=0}
-			},
-			handleAdd1(i){
-				this.num_2++
-			}
+			
 		},
 		computed: {
 			title(){
@@ -335,7 +317,7 @@
 			background-color: #ffffff;
 			border-top: #fff solid rem(1px);
 			text-align: center;
-			padding-bottom: rem(30px);
+			padding: rem(20px) 0;
 			.status{
 				font-size: rem(17px);
 				font-weight: bold;
@@ -348,6 +330,9 @@
 			.send{
 				padding: rem(13px) rem(125px);
 			}
+		}
+		.padding-bottom{
+			padding-bottom: rem(2px);
 		}
 		.middle_1{
 			margin: rem(13px) 0;

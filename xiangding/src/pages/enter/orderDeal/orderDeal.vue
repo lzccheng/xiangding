@@ -34,7 +34,7 @@
 		            </div>
 				</div>
 			</div>
-			<div v-if="1==index_">
+			<!-- <div v-if="1==index_">
 				<div class="body">
 					<div v-for="(i,index) in 5" class="item" :key="index">
 						<router-link tag="div" :to="{path: '/enter/hotelManage/orderStatus', query: {status: 1}}" class="img">
@@ -53,8 +53,8 @@
 						</router-link>
 		            </div>
 				</div>
-			</div>
-			<div v-if="2==index_">
+			</div> -->
+			<div v-if="1==index_">
 				<div class="body">
 					<div v-for="(i,index) in 5" class="item" :key="index">
 						<router-link tag="div" :to="{path: '/enter/hotelManage/orderStatus', query: {status: 1}}" class="img">
@@ -86,7 +86,6 @@
 			return {
 				arrItem: [
 					'待处理',
-					'已处理',
 					'待入住'
 				],
 				index_: 0,
@@ -125,6 +124,7 @@
 	.box{
 		width: 100%;
 		background-color: #e5e5e5;
+		padding-top: rem(20px);
 		.nav{
 			position: relative;
 			border-bottom: #aaa solid rem(1px);

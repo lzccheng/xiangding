@@ -57,6 +57,7 @@
 	.box{
 		width: 100%;
 		font-size: rem(15px);
+		padding-top: rem(20px);
 		.body{
 			p{
 				padding: rem(13px) 5%;

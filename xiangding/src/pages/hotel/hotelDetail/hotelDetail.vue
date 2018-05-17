@@ -33,20 +33,18 @@
 			
 		</div>
 		<div class="room">
-			<div class="time">
+			<div class="time" id="name">
 				<div>
-					<p v-if="title === '会议室'">开会</p>
-					<p v-else>入住</p>
-					<p><span>{{month1}}日</span> <!-- <span>后天</span> --></p>
+					<span><i class="far fa-calendar-alt"></i></span>
+					<span>{{month1}}日</span>
+
 				</div>
+				<div></div>
 				<div>
-					<span>共{{days}}天</span>
+					<span>{{month2}}日</span>
+					<span><i class="fas fa-chevron-right"></i></span>
 				</div>
-				<div>
-					<p v-if="title === '会议室'">退厅</p>
-					<p v-else>退房</p>
-					<p><span>{{month2}}日</span> <!-- <span>大后天</span> --></p>
-				</div>
+				
 			</div>
 			<div class="massage">
 				<div v-if="title === '团房'">
@@ -69,17 +67,8 @@
 								<p v-if="title !== '会议室'"><router-link tag="button" :to="{path:'/hotelDetail/hotelOrder',query:{name: title}}">订房</router-link></p>
 								<p v-else>
 									<span  >
-										<router-link tag="button" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title}}">预定</router-link>
+										<router-link tag="button" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,hotelName,date1:date1,date2:date2}}">预定</router-link>
 									</span>	
-									<!-- <span v-else @click="handleBubbole">
-										<span class="icon_s" @click="handleDelete(index)"><i class="fas fa-minus-circle"></i></span>
-										<span class="number_s">{{numarr[index].num}}</span>
-										<span class="icon_s" @click="handleAdd(index)"><i class="fas fa-plus-circle"></i></span>
-									</span> -->
-									<!-- <div v-if="!order" class="button_1">
-										<p>取消</p>
-										<p>确定</p>
-									</div> -->
 								</p>
 							</div>
 						</router-link>
@@ -96,18 +85,11 @@
 								<p><span class="first">￥</span>{{i.price}}<span class="first">元</span></p>
 								<p v-if="title !== '会议室'"><router-link tag="button" :to="{path:'/hotelDetail/hotelOrder',query:{name: title}}">订房</router-link></p>
 								<p v-else>
-									<!-- <span >
-										<router-link tag="button" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title}}">预定</router-link>
-									</span>	 -->
 									<span  @click="handleBubbole">
 										<span class="icon_s" @click="handleDelete(index)"><i class="fas fa-minus-circle"></i></span>
 										<span class="number_s">{{numarr[index].num}}</span>
 										<span class="icon_s" @click="handleAdd(index)"><i class="fas fa-plus-circle"></i></span>
 									</span>
-									<!-- <div v-if="!order" class="button_1">
-										<p>取消</p>
-										<p>确定</p>
-									</div> -->
 								</p>
 							</div>
 						</div>
@@ -199,7 +181,14 @@
 				this.date2 = this.$route.query.date2
 			}
 			
-			console.log((Number(this.$route.query.date2) - Number(this.$route.query.date1)))
+			let that = this
+			new lzcDatePlugin({
+            el: '#name',
+            callback: function(res){
+              that.date1 = res[0].dateTime;
+              that.date2 = res[1].dateTime;
+            }
+          })
 		},
 		data(){
 			return {
@@ -249,7 +238,7 @@
 			},
 			handleDelete(i){
 				this.numarr[i].num --
-				if(this.numarr[i].num<=0){this.numarr[i].num=0}
+				if(this.numarr[i].num<=1){this.numarr[i].num=1}
 			},
 			handleAdd(i){
 				this.numarr[i].num++
@@ -257,15 +246,15 @@
 		},
 		computed: {
 			month1(){
-				let dd = new Date(Number(this.$route.query.date1))
+				let dd = new Date(Number(this.date1))
 				return this.Fn.zero(dd.getMonth()+1)+'-'+this.Fn.zero(dd.getDate())
 			},
 			month2(){
-				let dd = new Date(Number(this.$route.query.date2))
+				let dd = new Date(Number(this.date2))
 				return this.Fn.zero(dd.getMonth()+1)+'-'+this.Fn.zero(dd.getDate())
 			},
 			days(){
-				return Math.round((Number(this.$route.query.date2) - Number(this.$route.query.date1))/1000/60/60/24)
+				return Math.round((Number(this.date2) - Number(this.date1))/1000/60/60/24)
 			}
 		},
 		watch: {
@@ -316,7 +305,7 @@
 				font-size: rem(18px);
 				font-weight: bold;
 				position: absolute;
-				top: rem(238px);
+				top: rem(220px);
 				left: rem(15px);
 				z-index: 100;
 			}
@@ -324,7 +313,7 @@
 				color: #ffffff;
 				font-size: rem(14px);
 				position: absolute;
-				top: rem(270px);
+				top: rem(250px);
 				left: rem(15px);
 				z-index: 100;
 			}
@@ -332,8 +321,8 @@
 				color: red;
 				font-size: rem(20px);
 				position: absolute;
-				top: rem(70px);
-				right: rem(45px);
+				top: rem(45px);
+				right: rem(55px);
 				z-index: 100;
 				padding: 0 rem(2.5px);
 				background-color: rgba(68,68,68,0.6);
@@ -343,10 +332,10 @@
 				color: #ffffff;
 				font-size: rem(17px);
 				position: absolute;
-				top: rem(70px);
-				right: rem(10px);
+				top: rem(45px);
+				right: rem(15px);
 				z-index: 100;
-				padding: rem(2px) rem(6px);
+				padding: rem(2px) rem(5.5px);
 				background-color: rgba(68,68,68,0.6);
 				border-radius: rem(100px);
 				text-align: center;
@@ -402,24 +391,44 @@
 			padding-top: rem(15px);
 			.time{
 				display: flex;
-				justify-content: space-around;
+				// justify-content: space-around;
 				align-items:center;
 				font-size: rem(14px);
-				padding-bottom: rem(13px);
+				padding-bottom: rem(10px);
+				border-bottom: rem(10px) solid #e5e5e5;
 				div{
-					p{
-						text-align: center;
-						&:first-child{
-							color: #aaa;
-						}
-						&:nth-child(2){
-							font-weight: bold;
+					font-size: rem(16px);
+					&:first-child{
+						span{
+							&:first-child{
+								color: #43c122;
+								font-size: rem(18px);
+								display: inline-block;
+								border-right: #e5e5e5 solid rem(1px);
+								padding: 0 rem(15px);
+							}
+							&:nth-child(2){
+								padding-left: 6%;
+								padding-right: rem(10px);
+
+							}
 						}
 					}
 					&:nth-child(2){
-						padding: rem(5px) rem(12px);
-						border-radius: 100%;
 						border: 1px solid #43c122;
+						width: 6%;
+					}
+					&:last-child{
+						width: 50%;
+						padding-left: 3%;
+						span{
+							&:first-child{
+							}
+							&:last-child{
+								float: right;
+							}
+
+						}
 					}
 				}
 			}
@@ -438,10 +447,11 @@
 					padding-left: rem(15px);
 					display: flex;
 					div{
-						border-top: #e5e5e5 solid rem(0.5px);
+						border-bottom: #e5e5e5 solid rem(0.5px);
 						flex: 1;
 						text-align: center;
-						padding-top: rem(15px); 
+						padding-bottom: rem(15px); 
+						padding-top: rem(5px);
 						img{
 							width: 100%;
 							height: rem(80px);

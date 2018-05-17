@@ -54,36 +54,30 @@
 	    	</router-link>
 	    </div>
 	    <div class="item">
-	    	<router-link tag="div" to="/enter/hotelManage/resetPassword" class="room_3 rooms">
+	    	<!-- <router-link tag="div" to="/enter/hotelManage/resetPassword" class="room_3 rooms">
 	    		<p class="icon"><i class="fas fa-th-list"></i></p>
 	    		<p class="name">账号密码</p>
-	    	</router-link>
+	    	</router-link> -->
 	    	<router-link tag="div" to="/enter/hotelManage/incomeList" class="room_3 rooms">
 	    		<p class="icon"><i class="fas fa-th-list"></i></p>
 	    		<p class="name">收入明细</p>
 	    	</router-link>
-	    </div>
-	    <div class="item">
-	    	<router-link tag="div" to="/enter/hotelManage/onlineMessage" class="room_5 rooms">
-	    		<p class="icon"><i class="fas fa-th-list"></i></p>
-	    		<p>在线信息</p>
-	    	</router-link>
-	    	<router-link tag="div" to="/enter/hotelManage/orderDeal" class="room_6 rooms">
-	    		<p class="icon"><i class="fas fa-th-list"></i></p>
-	    		<p class="name">订单处理</p>
-	    	</router-link>
-	    	
-	    </div>
-	    <div class="item">
 	    	<router-link tag="div" to="/enter/hotelManage/foodManage" class="room_3 rooms">
 	    		<p class="icon"><i class="fas fa-utensils"></i></p>
 	    		<p class="name">餐饮管理</p>
 	    	</router-link>
-	    	<div class="room_3 rooms" style="background-color: #fff;">
-	    		<!-- <p class="icon"><i class="fas fa-utensils"></i></p> -->
-	    		<p class="name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-	    	</div>
 	    </div>
+	    <div class="item">
+	    	<router-link tag="div" to="/enter/hotelManage/orderDeal" class="room_6 rooms">
+	    		<p class="icon"><i class="fas fa-th-list"></i></p>
+	    		<p class="name">订单处理</p>
+	    	</router-link>
+	    	<router-link tag="div" to="/enter/hotelManage/onlineMessage" class="room_5 rooms">
+	    		<p class="icon"><i class="fas fa-th-list"></i></p>
+	    		<p>在线信息</p>
+	    	</router-link>
+	    </div>
+	    
 	</div>
 </template>
 <script>

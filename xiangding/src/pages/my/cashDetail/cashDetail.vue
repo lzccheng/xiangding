@@ -177,6 +177,7 @@
 	.box{
 		width: 100%;
 		background-color: #fff;
+        padding-top: rem(20px);
         .header{
         	height: rem(125px);
             background-color: #43c122;

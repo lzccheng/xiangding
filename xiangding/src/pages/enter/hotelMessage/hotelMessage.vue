@@ -8,7 +8,7 @@
 			</p>
 			<p>
 			  <span class="name">酒店名称:</span>
-			  <span class="color_aaa"><input type="text" placeholder="请输入酒店名称"></span>
+			  <span class="color_aaa">银河大酒店</span>
 			</p>
 			<p>
 			  <span class="name">酒店介绍:</span>
@@ -16,7 +16,7 @@
 			</p>
 			<p>
 			  <span class="name">电话号码:</span>
-			  <span class="color_aaa"><input type="text" placeholder="请输入酒店的联系号码"></span>
+			  <span class="color_aaa">18877892216</span>
 			</p>
 			<p>
 			  <span class="name">酒店区域:</span>
@@ -77,7 +77,7 @@
 	export default {
 		data(){
 			return {
-				  checkList: ['复选框 A'],
+				  checkList: ['KTV'],
 				  value1: null
 			}
 		},
@@ -92,6 +92,7 @@
 		width: 100%;
 		font-size: rem(13px);
 		padding-bottom: rem(50px);
+		padding-top: rem(20px);
 		.body{
 			padding: rem(8px) 0 rem(8px) 4%;
 			p{

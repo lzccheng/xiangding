@@ -28,6 +28,7 @@
 	@import "../../../common/css/common.scss";
 	.box{
 		width: 100%;
+		padding-top: rem(20px);
 		.body{
 			padding: 0 5%;
 			.body_div{

@@ -1,5 +1,8 @@
 <template>
-	<div class="box" ref="_alert"  @click="handleCancel">
+	<div class="box" ref="_alert_" @click="handleCancel">
+		<div class="">
+			
+		</div>
 		<div class="alert" @click="handleBubble">
 			<p class="tip_2"  v-show="status === '1'">{{title_2}}</p>
 			<p class="tip_3"  v-show="status === '0'">{{title_3}}</p>
@@ -11,7 +14,7 @@
 				<span>确定</span>
 			</p>
 			<p class="know" v-show="status === '1'">
-				<span>我知道了</span>
+				<span @click="handleCancel">我知道了</span>
 			</p>
 		</div>
 	</div>
@@ -35,23 +38,47 @@
 				type: String,
 				default: ''
 			},
+			show: {
+				type: Boolean,
+				default: false
+			},
 		},
 		mounted(){
-			this.$refs._alert.style.width = window.innerWidth + 'px'
-			this.$refs._alert.style.height = window.innerHeight + 'px'
+			this.$refs._alert_.style.height = window.innerHeight + 'px'
+			this.$refs._alert_.style.width = window.innerWidth + 'px'
+			console.log(window.innerHeight + 'px',window.innerWidth + 'px')
 		},
 		data(){
 			return {
-
 			}
+		},
+		mounted(){
+			this.$refs._alert_.style.display = 'none'
 		},
 		methods: {
 			handleCancel(){
-				this.$emit('handleCancel',{aa:88})
+				this.$emit('handleCancel',{})
+				// this.$emit('handleCancel',{aa:88})
 			},
 			handleBubble(e){
 				var e = e|| event
 				e.cancelBubble = true
+			}
+		},
+		watch: {
+			show(){
+				if(this.show){
+					this.$refs._alert_.style.display = 'block'
+					this.$refs._alert_.style.height = window.innerHeight + 'px'
+					this.$refs._alert_.style.width = window.innerWidth + 'px'
+					this.$refs._alert_.style.position = 'fixed'
+					this.$refs._alert_.style.left = '0px'
+					this.$refs._alert_.style.top = '0px'
+					return this.Fn.addClass(document.querySelector('html'),'noscroll')
+				}else{
+					this.$refs._alert_.style.display = 'none'
+					return this.Fn.removeClass(document.querySelector('html'),'noscroll')
+				}
 			}
 		}
 	}
@@ -64,6 +91,8 @@
 		left: 0;
 		background-color: rgba(0,0,0,0.4); 
 		z-index: 9999999;
+		width: 100%;
+		height:100%;
 		.alert{
 			width: 80%;
 			background-color: #ffffff;

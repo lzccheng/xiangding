@@ -79,11 +79,11 @@
 					</ul>
 					<p class="btn"><router-link :to="{path: '/hotel/hotelSearch',query: {name: arrItem[index_].name,province: province,city: city,date1:date_value[0].datetime,date2:date_value[1].datetime}}" tag="p" class="green_btn">开始搜索</router-link></p>
 					<div class="bottom">
-						<router-link tag="div" :to="{path: '/my/collection',query: {name: '浏览记录'}}">
+						<router-link tag="div" :to="{path: '/my/collection',query: {name: '浏览记录',date1:date_value[0].datetime,date2:date_value[1].datetime}}">
 								<span><i class="fas fa-history"></i></span>
 								<span>浏览记录</span>
 						</router-link>
-						<router-link tag="div" :to="{path: '/my/collection',query: {name: '收藏酒店'}}">
+						<router-link tag="div" :to="{path: '/my/collection',query: {name: '收藏酒店',date1:date_value[0].datetime,date2:date_value[1].datetime}}">
 							<span><i class="far fa-star"></i></span>
 							<span>收藏酒店</span>
 						</router-link>
