@@ -501,15 +501,7 @@
 				this.handleBack()
 			},
 			handleEreaChange(i,e){
-				var e = e || event
-				var childrenArr = e.target.parentNode.children
-				for(let i=0;i<childrenArr.length;i++){
-					if(this.Fn.haveClass(childrenArr[i],'active')){
-						this.Fn.removeClass(childrenArr[i],'active')
-					}
-				}
 				this.erea_show = i
-				this.Fn.addClass(e.target,'active')
 			},
 			handleChoice(i){
 				this.free[i].active = !this.free[i].active

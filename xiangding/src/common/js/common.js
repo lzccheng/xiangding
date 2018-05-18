@@ -183,7 +183,12 @@ const checkCredit= (value)=>{
 const checkPassword= (value)=>{
 	return /^([A-Z]|[a-z]|[0-9]|[\`\-\=\[\];\,\./\~\!\@\#\$\%\^\*\(\)_\+\}\{:\?]){6,20}$/.test(value)
 }
-//([A-Z]|[a-z]|[0-9]|[`-=[];,./~!@#$%^*()_+}{:?]){6,20}$
+//^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$
+
+const checkEmail = (value)=>{
+	return /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/.test(value)
+}
+
 export default {
 	getStyle,
 	getLocation,
@@ -193,6 +198,7 @@ export default {
 	checkFixedPhone,
 	checkCredit,
 	checkPassword,
+	checkEmail,
 	addClass,
 	removeClass,
 	haveClass,

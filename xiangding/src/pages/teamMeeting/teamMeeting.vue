@@ -77,7 +77,7 @@
 							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
 						</li>
 					</ul>
-					<p class="btn"><router-link :to="{path: '/hotel/hotelSearch',query: {name: arrItem[index_].name,province: province,city: city,date1:date_value[0].datetime,date2:date_value[1].datetime}}" tag="p" class="green_btn">开始搜索</router-link></p>
+					<p class="btn"><router-link :to="{path: '/hotel/hotelSearch',query: {name: arrItem[index_].name,province,city,erea,struct,date1:date_value[0].datetime,date2:date_value[1].datetime}}" tag="p" class="green_btn">开始搜索</router-link></p>
 					<div class="bottom">
 						<router-link tag="div" :to="{path: '/my/collection',query: {name: '浏览记录',date1:date_value[0].datetime,date2:date_value[1].datetime}}">
 								<span><i class="fas fa-history"></i></span>
@@ -138,6 +138,8 @@
 	            that.text_erea = data[1].name+data[2].name+data[3].name
 	            that.province = data[0].name
 	            that.city = data[1].name
+	            that.erea = data[2].name
+            	that.struct = data[3].name
 	          }
 	        })
 	        
@@ -206,7 +208,9 @@
 		          ],
 		        name: '会议室',
 		        province: '广东省',
-		        city: '广州市'
+		        city: '广州市',
+		        erea: '荔湾区',
+		        struct: '沙面街道'
 			}
 		},
 		methods: {
