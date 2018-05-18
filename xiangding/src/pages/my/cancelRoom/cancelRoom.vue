@@ -64,6 +64,7 @@
 	@import "../../../common/css/common.scss";
 	.box{
 		width: 100%;
+		padding-top: rem(25px);
 		.top{
 			display: flex;
 			padding: rem(6px) 1%;

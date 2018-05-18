@@ -110,6 +110,7 @@
 					font-size: rem(16px);
 				}
 				&.choice{
+					font-size: rem(15px);
 					display: flex;
 					justify-content: space-around;
 					span{
@@ -136,7 +137,7 @@
 					// border: #aaa solid rem(1px);
 				}
 				&.tip_3{
-					font-size: rem(14px);
+					font-size: rem(15px);
 					font-weight: bold;
 				}
 				span{

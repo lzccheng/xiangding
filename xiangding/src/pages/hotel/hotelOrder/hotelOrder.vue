@@ -171,7 +171,7 @@
 				</div>
 			<div class="footer">
 				<p class="need_pay">需支付
-					<router-link class="button" :to="{path:'/hotel/payOrder',query:{name: title}}" tag='span'>提交订单</router-link>
+					<router-link class="button" :to="{path:'/hotel/payOrder',query:{name: title,date1,date2}}" tag='span'>提交订单</router-link>
 				</p>
 
 				<p>

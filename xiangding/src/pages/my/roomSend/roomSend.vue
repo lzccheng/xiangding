@@ -94,25 +94,6 @@
 					    </el-select>
 					</div>
 				</li>
-				<!-- <li class="item">
-					<span class="name">规格:</span>
-					<div class="select_1">
-						<el-select v-model="select1" slot="prepend" placeholder="请选择">
-					      <el-option label="60平方" value="1"></el-option>
-					      <el-option label="70平方" value="2"></el-option>
-					      <el-option label="80平方" value="3"></el-option>
-					    </el-select>
-					</div>
-				</li> -->
-				<!-- <li class="item">
-					<span class="name">床型:</span>
-					<div class="select_1">
-						<el-select v-model="select4" slot="prepend" placeholder="请选择">
-					      <el-option label="1张" value="1"></el-option>
-					      <el-option label="2张" value="2"></el-option>
-					    </el-select>
-					</div>
-				</li> -->
 				<li class="item">
 					<span class="name">床型:</span>
 					<span class="select_1">
@@ -190,8 +171,7 @@
 		},
 		data(){
 			return {
-				htmltest: '<div style="display: block; padding-bottom: 10px;">超过<input type="text" style="width: 19%;border-bottom: #000 solid 1px;text-align: center;">小时</div><div>&nbsp;扣除&nbsp;<input type="text" style="width: 19%;border-bottom: #000 solid 1px;text-align: center;">% &nbsp;&nbsp;</div>'
-				,
+				htmltest: '<div style="display: block; padding-bottom: 10px;">超过<input type="text" style="width: 19%;border-bottom: #000 solid 1px;text-align: center;">小时</div><div>&nbsp;扣除<input type="text" style="width: 19%;border-bottom: #000 solid 1px;text-align: center;">% &nbsp;&nbsp;&nbsp;&nbsp;</div>',
 				htmltest_1: '<p><input type="text" style="border: #aaa solid 1px;border-radius: 5px;padding: 5px 0;" placeholder="请输入设备名称"></p>',
 				alertShow: false,
 				alertShow_1: false,
@@ -199,7 +179,7 @@
 			    input4: '',
 			    input5: '',
 			    select2: '商务大床房',
-			    select3: '免费取消',
+			    // select3: '免费取消',
 			    select5: '1.5米',
 			    select6: '是',
 			    checkList1: ['24小时热水'],
@@ -239,25 +219,8 @@
 				formData.append('file',file)
 				console.log(formData)
 			},
-			// handGeneral(event){
-			// 	if(!this.value2){
-			// 		this.general = true
-			// 	}
-			// 	this.Fn.addClass(document.querySelector('html'),'noscroll')
-				
-			// },
-			// handleShow_back(event){
-			// 	this.general_1 = true
-			// 	this.Fn.addClass(document.querySelector('html'),'noscroll')
-			// },
-			// handBack(){
-			// 	this.general = false
-			// 	this.Fn.removeClass(document.querySelector('html'),'noscroll')
-			// },
-			// handleClose_back(){
-			// 	this.general_1 = false
-			// 	this.Fn.removeClass(document.querySelector('html'),'noscroll')
-			// },
+			
+			
 			cancelBubble(e){
 				var e = e || event
 				e.cancelBubble = true

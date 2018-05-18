@@ -24,7 +24,25 @@
 					    </el-select>
 					</span>
 				</li>
-				
+				<li >
+					<el-collapse v-model="activeNames" @change="handleChange">
+						<el-collapse-item title="价格设置" name="2">
+						    <p class="button" style="margin-bottom: 17px">
+							    <el-checkbox-group v-model="checkList1">
+								    <el-checkbox label="1小时99元"></el-checkbox><br/>
+								    <el-checkbox label="2小时159元"></el-checkbox><br/>
+								    <el-checkbox label="3小时239元"></el-checkbox><br/>
+								</el-checkbox-group>
+							</p>
+						    <p class="add_1">
+						        <span  >
+							    	<span class="add_icon" ><i class="fas fa-plus-square"></i></span>
+							    	<span class="add_text">添加</span>
+						    	</span>
+						    </p>
+						 </el-collapse-item>
+					</el-collapse>
+				</li>
 				<li class="item">
 					<span class="name">可住人数:</span>
 					<span class="hide_1"><input type="text" placeholder="请输入钟点房可住人数"></span>
@@ -62,34 +80,6 @@
 						 </el-collapse-item>
 					</el-collapse>
 				</li>
-				<li >
-					<el-collapse v-model="activeNames" @change="handleChange">
-						<el-collapse-item title="时间/价格" name="2">
-						    <p class="button" style="margin-bottom: 17px">
-							    <el-checkbox-group v-model="checkList1">
-								    <el-checkbox label="1小时99元"></el-checkbox><br/>
-								    <el-checkbox label="2小时159元"></el-checkbox><br/>
-								    <el-checkbox label="3小时239元"></el-checkbox><br/>
-								</el-checkbox-group>
-							</p>
-						    <p class="add_1">
-						        <span  >
-							    	<span class="add_icon" ><i class="fas fa-plus-square"></i></span>
-							    	<span class="add_text">添加</span>
-						    	</span>
-						    </p>
-						 </el-collapse-item>
-					</el-collapse>
-				</li>
-				<!-- <li class="item">
-					<span class="name">床型:</span>
-					<div class="select_1">
-						<el-select v-model="select4" slot="prepend" placeholder="请选择">
-					      <el-option label="1张" value="1"></el-option>
-					      <el-option label="2张" value="2"></el-option>
-					    </el-select>
-					</div>
-				</li> -->
 				<li class="item">
 					<span class="name">床型:</span>
 					<span class="select_1">
