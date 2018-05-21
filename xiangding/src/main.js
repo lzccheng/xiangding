@@ -10,6 +10,8 @@ import Vuexjs from './vuex'
 import Header from './components/header/header'
 import Fn from './common/js/common'
 import Http from './common/js/http'
+import 'core-js/fn/object/define-properties'
+import 'core-js/fn/object/define-property'
 //static
 // import './static/js/ereaPluginData'
 import './static/js/lzcDate'

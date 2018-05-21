@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import index from '@/pages/index/index'
+
+const index = r => require(['@/pages/index/index'], r)
+// import index from '@/pages/index/index'
 import hotel from '@/pages/hotel/hotel'
 import hotelDetail from '@/pages/hotel/hotelDetail/hotelDetail'
 import teamMeeting from '@/pages/teamMeeting/teamMeeting'
@@ -510,5 +512,12 @@ export default new Router({
         title: '404'
       }
     }
-  ]
+  ],
+  scrollBehavior(to,from,savePosition){
+    if (savePosition) {
+      return savePosition
+    } else {
+      return { x: 0, y: 0 }
+    }
+  }
 })
