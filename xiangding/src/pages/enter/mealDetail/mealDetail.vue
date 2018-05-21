@@ -10,7 +10,6 @@
 			<div class="middle_1">
 				<p class="sex">客户: 胡勇蝶</p>
 				<p class="photo">手机号码: 15913932217<br/>&nbsp;</p>
-				<p class="input">备注:</p>
 			</div>
 			<div class="middle_3">
 				<div class="img">
@@ -72,6 +71,7 @@
 	.box{
 		width: 100%;
 		background-color: #e5e5e5;
+		padding-top: rem(20px);
 		.body{
 			.top{
 				background-color: #ffffff;

@@ -32,7 +32,7 @@
 			return {
 				navItem:[
 					{
-						name: '首页',
+						name: '酒店',
 						class:'fa fa-home',
 						url: '/'
 					},

@@ -67,7 +67,7 @@
 								<p v-if="title !== '会议室'"><router-link tag="button" :to="{path:'/hotelDetail/hotelOrder',query:{name: title}}">订房</router-link></p>
 								<p v-else>
 									<span  >
-										<router-link tag="button" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,hotelName,date1:date1,date2:date2}}">预定</router-link>
+										<router-link tag="button" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,hotelName,meetingName: '某某会议室',date1:date1,date2:date2}}">预定</router-link>
 									</span>	
 								</p>
 							</div>
@@ -293,6 +293,7 @@
 		background-color: #fff;
 		position: relative;
 		padding-bottom: rem(75px);
+		padding-top: rem(20px);
 		.banner{
 			.swiper-container {
 			    img{
@@ -321,7 +322,7 @@
 				color: red;
 				font-size: rem(20px);
 				position: absolute;
-				top: rem(45px);
+				top: rem(60px);
 				right: rem(55px);
 				z-index: 100;
 				padding: 0 rem(2.5px);
@@ -332,7 +333,7 @@
 				color: #ffffff;
 				font-size: rem(17px);
 				position: absolute;
-				top: rem(45px);
+				top: rem(60px);
 				right: rem(15px);
 				z-index: 100;
 				padding: rem(2px) rem(5.5px);

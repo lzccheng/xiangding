@@ -75,6 +75,7 @@
 	@import '../../../common/css/common';
 	.box{
 		width: 100%;
+		padding-top: rem(20px);
 		.body{
 			// padding-bottom: rem(100px);
 			div{

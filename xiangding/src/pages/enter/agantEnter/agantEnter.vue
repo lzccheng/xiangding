@@ -145,10 +145,8 @@
 	      },
 		data(){
 			return {
-				// general: false,
-				htmltest: '<p style="font-size: 13px; text-align: left;">文字文字文字文字文字文字文字文字文字文字一段文字还有一段.......</p>',
+				htmltest: '<p style="font-size: 13px; text-align: left;">代理服务商入驻协议内容部分........</p>',
 				alertShow: false,
-				general: false,
 				formData: {
 					name: '',
 					mobile: '',
@@ -275,6 +273,7 @@
 		background-color: #e5e5e5;
 		position: relative;
 		font-size: rem(14px);
+		padding-top: rem(20px);
 		.upload-demo{
 			padding-bottom: rem(8px);
 			text-align: center;

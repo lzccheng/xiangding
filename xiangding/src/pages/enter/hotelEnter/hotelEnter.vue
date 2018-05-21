@@ -1,8 +1,9 @@
 <template>
 	<div class="box">
 		<Header title="申请入驻"/>
+		<myalert :innerHtml="htmltest" title_2="享订入驻协议" @handleCancel="aaa" :show="alertShow" status="1"/>
 		<div v-show="enter_status === 1">
-			<div class="back" v-if="general" @click="handleClose_back"> 
+			<!-- <div class="back" v-if="general" @click="handleClose_back"> 
 				<div class="box" @click="cancelBubble">
 					<p class="title">享订入驻协议</p>
 					<p class="text">hello</p>
@@ -12,7 +13,7 @@
 						</p>
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<div class="content">
 				<div class="form"> 
 					<p class="input">
@@ -124,11 +125,11 @@
 					   <p @click="handleFormSubmit" class="green_btn">立即申请</p>
 					</div>
 					<div class="agreement_box">
-						<span @click="handleShow_back" class="agreement">《入驻协议》</span>
+						<span @click="handleShow" class="agreement">《入驻协议》</span>
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> 
 		<div v-show="enter_status === 2">
 			<div class="box_2">
 				<div class="img">
@@ -153,8 +154,10 @@
 </template>
 <script>
 	import wx from 'weixin-js-sdk'
+	import myalert from '../../../components/alert/alert'
 	export default {
 		mounted(){
+			console.log('data','handleShow_back')
 			this.$refs.eye_two.style.display = 'inline-block'
 			this.$refs.eye_one.style.display = 'none'
 			let that = this
@@ -184,6 +187,7 @@
 	          },
 	          onHide:function(){
 	          },
+	          
 	          callback:function(indexArr, data){
 	            that.text_erea = data[1].name+data[2].name+data[3].name
 	            that.province = data[0].name
@@ -210,11 +214,16 @@
 	        // })
 	        this.getEnterStatus()
 		},
+		components: {
+		        myalert
+		  },
 		data(){
 			return {
+				htmltest: '<p style="font-size: 13px; text-align: left;">酒店入驻协议内容......</p>',
+				alertShow: false,
 				enter_status: 0,
 				value1: null,
-				general: false,
+				// general: false,
 				formData: {
 					realname: '',  //申请人
 					mobile: '',		//联系电话
@@ -484,17 +493,17 @@
 			        });
 				}
 			},
-			handleShow_back(){
-				this.general = true
-				this.Fn.addClass(document.querySelector('html'),'noscroll')
-			},
-			handleClose_back(){
-				this.general = false
-				this.Fn.removeClass(document.querySelector('html'),'noscroll')
-			},
-			cancelBubble(event){
-				event.cancelBubble = true
-			},
+			// handleShow_back(){
+			// 	this.general = true
+			// 	this.Fn.addClass(document.querySelector('html'),'noscroll')
+			// },
+			// handleClose_back(){
+			// 	this.general = false
+			// 	this.Fn.removeClass(document.querySelector('html'),'noscroll')
+			// },
+			// cancelBubble(event){
+			// 	event.cancelBubble = true
+			// },
 			handleCheck(event){
 				let value = document.querySelector('.handleCheck').value
 				// event.path[0].value
@@ -546,6 +555,12 @@
 						type: 'warning'
 					})
 				}
+			},
+			handleShow(){
+				this.alertShow = true
+			},
+			aaa(res){
+				this.alertShow = false
 			},
 			handleCheckCredit(event){
 				let value = document.querySelector('.handleCheckCredit').value

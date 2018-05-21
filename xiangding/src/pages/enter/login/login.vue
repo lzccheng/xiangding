@@ -1,6 +1,7 @@
 <template>
 	<div class="box">
-		<div class="back" v-if="general" @click="handleClose_back"> 
+	<myalert :innerHtml="htmltest" title_2="享订登录协议" @handleCancel="aaa" :show="alertShow" status="1"/>
+		<!-- <div class="back" v-if="general" @click="handleClose_back"> 
 			<div class="box" @click="cancelBubble">
 				<p class="title">享订登录协议</p>
 				<p class="text">Hello</p>
@@ -10,7 +11,7 @@
 					</p>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<div class="background">
 			
 		</div>
@@ -53,13 +54,17 @@
 				<span class="user" @click="handleChoice">用户协议及隐私政策</span>
 				<span class="problem">登录遇到问题</span>
 			</div>
-			<p class="idear" @click="handleShow_back">《登录协议》</p>
+			<p class="idear" @click="handleShow">《登录协议》</p>
 		</div>
 		
 	</div>
 </template>
 <script>
+	import myalert from '../../../components/alert/alert'
 	export default{
+		components: {
+	        myalert
+	      },
 		mounted(){
 			window.onresize = function(){
 				document.querySelector('.background').style.backgroundSize = "100% "+window.innerHeight+"px"
@@ -70,7 +75,9 @@
 		},
 		data(){
 			return {
-				general: false
+				htmltest: '<p style="font-size: 13px; text-align: left;">登录协议内容部分........</p>',
+				alertShow: false,
+				// general: false
 			}
 		},
 		methods: {
@@ -84,15 +91,15 @@
 					dom.style.border =  '1px solid #43c122'
 				}
 			},
-			handleShow_back(){
-				this.general = true
-			},
-			handleClose_back(){
-				this.general = false
-			},
-			cancelBubble(event){
-				event.cancelBubble = true
-			},
+			// handleShow_back(){
+			// 	this.general = true
+			// },
+			// handleClose_back(){
+			// 	this.general = false
+			// },
+			// cancelBubble(event){
+			// 	event.cancelBubble = true
+			// },
 			handleCheckPassword(){
 				let value = document.querySelector('.pass').value
 				if(value){
@@ -108,6 +115,12 @@
 			          type: 'warning'
 			        });
 				}
+			},
+			handleShow(){
+				this.alertShow = true
+			},
+			aaa(res){
+				this.alertShow = false
 			},
 			handlePassword(e){
 				let dom = document.querySelector('.pass')

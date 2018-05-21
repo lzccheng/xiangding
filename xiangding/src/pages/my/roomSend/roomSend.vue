@@ -3,38 +3,19 @@
 		<Header :title="title" />
 		<myalert :innerHtml="htmltest" title_3="取消扣费设置" @handleCancel="aaa" :show="alertShow" status="0" />
 		<myalert :innerHtml="htmltest_1" title_3="设施设备" @handleCancel="aaa_1" :show="alertShow_1" status="0" />
-		<!-- <div v-if="general" class="back" @click="handBack">
-			<div class="alert" @click="cancelBubble">
-				<p class="tip">退房扣费设置</p>
-				<p class="tip_1">超过<input type="text">小时</p>
-				<p class="tip_1">扣除<input type="text"> &nbsp;&nbsp;%</p>
-				<p class="choice">
-					<span @click="handBack">取消</span>
-					<span>确定</span>
-				</p>
-			</div>
-		</div>
-		<div v-if="general_1" class="back" @click="handleClose_back">
-			<div class="alert" @click="cancelBubble">
-				<p class="tip">设施设备</p>
-				<p class="tip_1"><input type="text" class="input" placeholder="请输入设备名称"></p>
-				<p class="choice">
-					<span @click="handleClose_back">取消</span>
-					<span>确定</span>
-				</p>
-			</div>
-		</div> -->
+		
 		<div class="body">
 			<ul>
 				<li class="item">
-					<span class="name">房间类型:</span>
-					<span class="select_1">
+					<span class="name">房间名称:</span>
+					<span class="hide_1"><input type="text" placeholder="请填写房间名称"></span>
+					<!-- <span class="select_1">
 						<el-select v-model="select2" slot="prepend" placeholder="请选择">
 					      <el-option label="商务大床房" value="1"></el-option>
 					      <el-option label="总统房" value="2"></el-option>
 					      <el-option label="特惠商务房" value="3"></el-option>
 					    </el-select>
-					</span>
+					</span> -->
 				</li>
 				<li class="item">
 					<span class="name">单间原价:</span>
@@ -135,9 +116,6 @@
 						  	<span class="check_box"><el-checkbox label="吹风机"></el-checkbox></span>
 						  	<span class="check_box"><el-checkbox label="电视机"></el-checkbox></span>
 						  	<span class="check_box"><el-checkbox label="有线无线宽带"></el-checkbox></span>
-						  	
-						    
-						    <!-- <el-checkbox label="拖鞋"></el-checkbox> -->
 						  </el-checkbox-group>
 					</div>
 					<span class="add" @click="handleShow_1">
@@ -178,23 +156,18 @@
 				input3: '',
 			    input4: '',
 			    input5: '',
-			    select2: '商务大床房',
-			    // select3: '免费取消',
 			    select5: '1.5米',
 			    select6: '是',
 			    checkList1: ['24小时热水'],
 			    value1: true,
 	            value2: true,
-	            checkList2: ['超过1小时扣费10'],
+	            checkList2: ['超过1小时扣费10%'],
 	            activeNames:[],
 	            title: '房间发布',
-	            // general: false,
-	            // general_1: false
 			}
 		},
 		methods: {
 			handleShow(){
-				// this.alertShow = true
 				if(!this.value2){
 					this.alertShow = true
 				}
@@ -203,7 +176,6 @@
 				this.alertShow = false
 			},
 			handleShow_1(){
-				// this.alertShow = true
 				this.alertShow_1 = true
 			},
 			aaa_1(res){

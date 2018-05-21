@@ -177,7 +177,7 @@
 	.box{
 		width: 100%;
 		background-color: #fff;
-        padding-top: rem(20px);
+        margin-top: rem(20px);
         .header{
         	height: rem(125px);
             background-color: #43c122;
@@ -211,7 +211,6 @@
             }
         }
         .nav{
-            width: 100%;
         	display: flex;
             align-items: center;
         	padding: rem(12px) rem(13px);

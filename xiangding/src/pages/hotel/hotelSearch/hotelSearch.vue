@@ -820,7 +820,7 @@
 										color: #43c122;
 									}
 									.color_text{
-										padding-left: rem(4px);
+										// padding-left: rem(4px);
 									}
 								}
 								.p1{
