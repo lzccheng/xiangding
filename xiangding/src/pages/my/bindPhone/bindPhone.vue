@@ -90,6 +90,7 @@
 		background-color: #e5e5e5;
 		position: relative;
 		font-size: rem(14px);
+		padding-top: rem(24px);
 		.change_{
 			padding: rem(30px) 0;
 			text-align: center;

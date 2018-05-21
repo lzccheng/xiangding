@@ -47,6 +47,7 @@ import forgotPassword from '@/pages/enter/forgotPassword/forgotPassword'
 import cancelRoom from '@/pages/my/cancelRoom/cancelRoom'
 import weChatCash from '@/pages/my/weChatCash/weChatCash'
 import myMessage from '@/pages/my/myMessage/myMessage'
+import myTeam from '@/pages/my/myTeam/myTeam'
 import myCard from '@/pages/enter/myCard/myCard'
 import hotelMessage from '@/pages/enter/hotelMessage/hotelMessage'
 import incomeTable from '@/pages/my/incomeTable/incomeTable'
@@ -371,6 +372,14 @@ export default new Router({
       component: myMessage,
       meta: {
         title: '我的信息'
+      }
+    },
+    {
+      path: '/my/myTeam',
+      name: 'myTeam',
+      component: myTeam,
+      meta: {
+        title: '我的团队'
       }
     },
     {

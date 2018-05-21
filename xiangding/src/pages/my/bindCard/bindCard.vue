@@ -55,6 +55,7 @@
 		width: 100%;
 		background-color: #e5e5e5;
 		position: relative;
+		padding-top: rem(24px);
 		font-size: rem(14px);
 		.form{
 			background-color: #ffffff;

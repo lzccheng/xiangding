@@ -121,7 +121,7 @@
 				</div>
 				<div class="form" style="border-bottom: none;padding-left: 0">
 					<div class="footer">
-					   <!-- <router-link tag="p" to="/enter/login"  @click="handleFormSubmit" class="green_btn">立即申请</router-link> -->
+					   <router-link tag="p" to="/enter/login"  @click="handleFormSubmit" class="green_btn">立即申请</router-link>
 					   <p @click="handleFormSubmit" class="green_btn">立即申请</p>
 					</div>
 					<div class="agreement_box">
@@ -418,7 +418,12 @@
 				this.$axios.get('?i=3&c=entry&do=shop&m=yun_shop&route=plugin.store-cashier.frontend.store.store.apply',{params:{apply:{...that.formData}}}).then((res)=>{
 					console.log(res)
 					if(res.data.data.result === 1){
-						this.getEnterStatus()
+						that.getEnterStatus()
+					}else{
+						return that.$message({
+				          message: res.data.msg,
+				          type: 'warning'
+				        });
 					}
 					
 				})
@@ -586,6 +591,7 @@
 		width: 100%;
 		background-color: #e5e5e5;
 		font-size: rem(14px);
+		padding-top: rem(5px);
 		.back{
 			background-color: rgba(0,0,0,0.3);
 			position: fixed;

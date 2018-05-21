@@ -36,7 +36,12 @@
 				</div>
 			</div>
 			<div class="agent">
-				<ul>
+				<router-link tag="div" to="/my/myTeam" class="my_team">
+					<p class="icon"><i class="fas fa-users"></i></p>
+					<p>我的团队</p>
+					<p><i class="fas fa-chevron-right"></i></p>
+				</router-link>
+				<!-- <ul>
 					<li>
 						<p><span>VIP1 ({{msg.income.firstAgent}}人)</span></p>
 						<p class="right">
@@ -70,7 +75,7 @@
 							<router-link tag="span" :to="{path: '/my/agantDetailt',query:{agant:3}}" class="detailt">详情</router-link>
 						</p>
 					</li>
-				</ul>
+				</ul> -->
 			</div>
 		</div>
 		<div class="hotelServe">
@@ -338,8 +343,30 @@
 			}
 			
 			.agent{
-				padding-top: rem(20px);
+				margin-top: rem(20px);
 				text-align: left;
+				border-top: #e5e5e5 solid rem(10px);
+				.my_team{
+					display: flex;
+					align-items: center;
+					font-size: rem(15px);
+					padding: rem(8px) 4%;
+					p{
+						&.icon{
+							padding: rem(10px) rem(9px);
+							background-color: #FF9800;
+							border-radius: 100%;
+							color: #fff;
+							font-size: rem(16px);
+							margin-right: rem(5px);
+						}
+						&:nth-child(2){
+							width: 85%;
+						}
+					}
+					
+					
+				}
 				ul{
 					li{
 						border-top: 1px solid #d5d5d5;

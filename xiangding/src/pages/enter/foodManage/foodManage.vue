@@ -161,6 +161,7 @@
 		width: 100%;
 		position: relative;
 		min-height: 100%;
+		padding-top: rem(20px);
 		.manage{
 			position: fixed;
 			top: rem(17px);

@@ -144,7 +144,10 @@
 	.box{
 		width: 100%;
 		height: 100%;
+		// position: relative;
 		div{
+			position: relative;
+			// height: 100%;
 			&.enter{
 				width: 100%;
 				position: absolute;
@@ -242,8 +245,8 @@
 					}
 				}
 				.idear{
-					position: fixed;
-					bottom: rem(15px);
+					position: absolute;
+					bottom: rem(-30px);
 					left: 40%;
 					text-align: center;
 					color: #ffffff;

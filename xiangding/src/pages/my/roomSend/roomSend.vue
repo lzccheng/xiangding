@@ -216,6 +216,7 @@
 		width: 100%;
 		position: relative;
 		font-size: rem(13px);
+		padding-top: rem(24px);
 		.back{
 			background-color: rgba(0,0,0,0.3);
 			position: fixed;
