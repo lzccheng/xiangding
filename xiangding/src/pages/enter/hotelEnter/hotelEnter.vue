@@ -194,10 +194,10 @@
 	            that.city = data[1].name
 	            that.erea = data[2].name
 	            that.struct = data[3].name
-	            that.formData.provinceId = data[0].name
-	            that.formData.cityId = data[1].name
-	            that.formData.districtId = data[2].name
-	            that.formData.streeId = data[3].name
+	            that.formData.provinceId = Number(data[0].code)
+	            that.formData.cityId = Number(data[1].code)
+	            that.formData.districtId = Number(data[2].code)
+	            that.formData.streeId = Number(data[3].code)
 	          }
 	        })
 	        this.Http.getEreaData((res)=>{
@@ -415,9 +415,13 @@
 			          type: 'warning'
 			        });
 				}
-				this.$axios.get('?i=3&c=entry&do=shop&m=yun_shop&route=plugin.store-cashier.frontend.store.store.apply',{params:{apply:{...that.formData}}}).then((res)=>{
+				this.$axios.post('?i=3&c=entry&do=shop&m=yun_shop&route=plugin.store-cashier.frontend.store.store.apply',{apply:{...that.formData}}).then((res)=>{
 					console.log(res)
-					if(res.data.data.result === 1){
+					if(res.data.result === 1){
+						that.$message({
+				          message: res.data.msg,
+				          type: 'success'
+				        });
 						that.getEnterStatus()
 					}else{
 						return that.$message({

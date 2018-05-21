@@ -202,7 +202,7 @@
 	      	handleFileUpload(){},
 			handleFormSubmit(){
 				console.log({...this.formData})
-				this.$axios.get('?i=3&c=entry&do=shop&m=yun_shop&route=plugin.merchant.frontend.merchant-apply.staff',{params:{...this.formData}}).then((res)=>{
+				this.$axios.post('?i=3&c=entry&do=shop&m=yun_shop&route=plugin.merchant.frontend.merchant-apply.staff',{...this.formData}).then((res)=>{
 				console.log(res)
 			})
 				
