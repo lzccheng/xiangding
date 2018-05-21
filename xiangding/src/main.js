@@ -29,6 +29,11 @@ Vue.config.productionTip = false
 Vue.use(Element)
 Vue.use(Vuex)
 
+router.beforeEach((to,from,next)=>{
+	console.log(555,window.navigator.userAgent.toLowerCase())
+	next()
+})
+
 Vue.component('Header',Header)
 
 const store = new Vuex.Store(Vuexjs)
