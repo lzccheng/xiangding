@@ -17,14 +17,15 @@
 		<div class="body">
 			<ul>
 				<li class="item">
-					<span class="name">房间类型:</span>
-					<span class="select_1">
+					<span class="name">房间名称:</span>
+					<span class="hide_1"><input type="text" placeholder="请填写房间名称"></span>
+					<!-- <span class="select_1">
 						<el-select v-model="select2" slot="prepend" placeholder="请选择">
 					      <el-option label="商务大床房" value="1"></el-option>
 					      <el-option label="总统房" value="2"></el-option>
 					      <el-option label="特惠商务房" value="3"></el-option>
 					    </el-select>
-					</span>
+					</span> -->
 				</li>
 				<li class="item">
 					<span class="name">房间原价:</span>
@@ -44,7 +45,12 @@
 				</li>
 				<li class="item">
 					<span class="name">早餐提供:</span>
-					<span class="hide_1"><input type="text" placeholder="是否提供早餐"></span>
+					<div class="select_1">
+						<el-select v-model="select6" slot="prepend" placeholder="请选择">
+					      <el-option label="是" value="1"></el-option>
+					      <el-option label="否" value="2"></el-option>
+					    </el-select>
+					</div>
 				</li>
 				<li class="item">
 					<span class="name">可住人数:</span>
@@ -152,14 +158,13 @@
 				input3: '',
 			    input4: '',
 			    input5: '',
-			    select2: '商务大床房',
 			    select5: '1.5米',
 			    select6: '是',
 			    checkList1: ['24小时热水'],
 			    value1: true,
                 value2: true,
                 activeNames:[],
-                checkList2: ['超过1小时扣费10'],
+                checkList2: ['超过1小时扣费10%'],
                 htmltest: '<div style="display: block; padding-bottom: 10px;">超过<input type="text" style="width: 19%;border-bottom: #000 solid 1px;text-align: center;">小时</div><div>&nbsp;扣除<input type="text" style="width: 19%;border-bottom: #000 solid 1px;text-align: center;">% &nbsp;&nbsp;&nbsp;&nbsp;</div>',
 			   	htmltest_1: '<p><input type="text" style="border: #aaa solid 1px;border-radius: 5px;padding: 5px 0;" placeholder="请输入设备名称"></p>',
 				alertShow: false,

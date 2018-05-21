@@ -60,7 +60,7 @@
 			</div>
 			<div v-else>
 				<div class="top">
-					<p class="status">订单状态: <span>订单待付款</span></p>
+					<p class="status">订单状态: 订单待付款</p>
 					<p class="time">2018-02-29 18:32</p>
 					<div class="send"></div>
 					<!-- <div class="send_box">

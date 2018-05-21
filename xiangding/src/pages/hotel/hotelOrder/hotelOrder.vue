@@ -54,7 +54,7 @@
 				<div v-else>
 					<p class="msg_1">
 						<span class="head">床型</span>
-						<span class="text">2张双人床1.8米</span>
+						<span class="text">1.8米</span>
 						<span class="head">面积</span>
 						<span class="text">28m <sup>2</sup></span>
 					</p>

@@ -17,7 +17,7 @@
 					<el-slider
 				      v-model="pay"
 				      range
-				      :max="8000">
+				      :max="3000">
 				    </el-slider>
 				</div>
 				<div>
@@ -439,6 +439,7 @@
 				.number_box{
 					display: flex;
 					justify-content: center;
+					align-items: center;
 					width: 50%;
 					margin: rem(10px) 25%;
 					.number_s{
@@ -451,7 +452,6 @@
 					.icon_s{
 						width: 28%;
 						padding: rem(7px) 0;
-						text-align: center;
 						border: #DCDFE6 solid rem(1px);
 						border-radius: rem(5px) 0 0 rem(5px); 
 					}

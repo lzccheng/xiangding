@@ -60,7 +60,7 @@
 			    <router-link tag="div" to="/my/roomSend/roomSend" class="icon_1"><i class="far fa-plus-square"></i></router-link>
 				<router-link tag="span" :to="{path: '/my/roomSend/roomSend',query:{title: '房间发布' }}" >房间发布</router-link>
 			</div>
-			<div class="add" v-if="index_ != 1" @click="onHandleChange(1)" >
+			<div class="add" style="border-right: #e5e5e5 solid 1px;" v-if="index_ != 1" @click="onHandleChange(1)" >
 			    <div class="icon_1"><i class="far fa-minus-square"></i></div>
 				<span >删减房间</span>
 			</div>
@@ -273,7 +273,7 @@
 		}
 		.control{
 			position: fixed;
-			bottom: rem(42px);
+			bottom: rem(36px);
 			background-color: #e5e5e5;
 			display: flex;
 			border-bottom: #ffffff solid rem(1px);
@@ -287,7 +287,6 @@
 				color: #ffffff;
 			}
 			.add{
-				
 				width: 50%;
 				text-align: center;
 				line-height: rem(50px);
@@ -299,7 +298,7 @@
 			}
 		}
 		.line_{
-			border: #ffffff solid rem(1px);
+			border: #ffffff solid rem(2px);
 			position: fixed;
 			bottom: rem(42px);
 			width: 100%;

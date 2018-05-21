@@ -1,7 +1,9 @@
 <template>
 	<div class="box">
 		<Header title="钟点房发布" />
-		<div v-if="general" class="back" @click="handBack">
+		<myalert :innerHtml="htmltest" title_3="价格设置" @handleCancel="aaa" :show="alertShow" status="0" />
+		<myalert :innerHtml="htmltest_1" title_3="取消扣费设置" @handleCancel="aaa_1" :show="alertShow_1" status="0" />
+		<!-- <div v-if="general" class="back" @click="handBack">
 			<div class="alert" @click="cancelBubble">
 				<p class="tip">取消扣费设置</p>
 				<p class="tip_1">超过<input type="text">小时</p>
@@ -11,18 +13,19 @@
 					<span>确定</span>
 				</p>
 			</div>
-		</div>
+		</div> -->
 		<div class="body">
 			<ul>
 				<li class="item">
-					<span class="name">房间类型:</span>
-					<span class="select_1">
+					<span class="name">房间名称:</span>
+					<span class="hide_1"><input type="text" placeholder="请填写房间名称"></span>
+					<!-- <span class="select_1">
 						<el-select v-model="select2" slot="prepend" placeholder="请选择">
 					      <el-option label="商务大床房" value="1"></el-option>
 					      <el-option label="总统房" value="2"></el-option>
 					      <el-option label="特惠商务房" value="3"></el-option>
 					    </el-select>
-					</span>
+					</span> -->
 				</li>
 				<li >
 					<el-collapse v-model="activeNames" @change="handleChange">
@@ -35,7 +38,7 @@
 								</el-checkbox-group>
 							</p>
 						    <p class="add_1">
-						        <span  >
+						        <span @click="handleShow" >
 							    	<span class="add_icon" ><i class="fas fa-plus-square"></i></span>
 							    	<span class="add_text">添加</span>
 						    	</span>
@@ -45,11 +48,11 @@
 				</li>
 				<li class="item">
 					<span class="name">可住人数:</span>
-					<span class="hide_1"><input type="text" placeholder="请输入钟点房可住人数"></span>
+					<span class="hide_1"><input type="text" placeholder="请填写钟点房可住人数"></span>
 				</li>
 				<li class="item">
 					<span class="name">房间规格:</span>
-					<span class="hide_1"><input type="text" placeholder="请输入房间大小"></span>
+					<span class="hide_1"><input type="text" placeholder="请填写房间大小"></span>
 				</li>
 				<li >
 					<el-collapse v-model="activeNames" @change="handleChange">
@@ -58,7 +61,7 @@
 						    	<span>免费取消</span>
 						    	<span class="open">
 						    		<el-switch
-									  v-model="value2"
+									  v-model="value3"
 									  active-color="#43c122"
 									  inactive-color="#999999">
 									</el-switch>
@@ -66,13 +69,13 @@
 						    </p>
 						    <p class="select">
 						    	<span>
-						    		 <el-checkbox-group v-model="checkList">
-									    <el-checkbox label="超过1小时扣费10%" :disabled="value2" ></el-checkbox>
+						    		 <el-checkbox-group v-model="checkList2">
+									    <el-checkbox label="超过1小时扣费10%" :disabled="value3" ></el-checkbox>
 									  </el-checkbox-group>
 						    	</span>
 						    </p><br/>
 						    <p class="add_1">
-						        <span @click="handGeneral" :class="{color:value2}" >
+						        <span @click="handleShow_1" :class="{color:value3}" >
 							    	<span class="add_icon" ><i class="fas fa-plus-square"></i></span>
 							    	<span class="add_text">添加</span>
 						    	</span>
@@ -123,9 +126,18 @@
 	</div>
 </template>
 <script>
+	import myalert from '../../../components/alert/alert'
 	export default {
+		components: {
+			myalert
+		},
 		data(){
 			return {
+				  htmltest: '<div style="display: block; padding-bottom: 10px;"><input type="text" style="width: 19%;border-bottom: #000 solid 1px;text-align: center;">小时</div><div>&nbsp;<input type="text" style="width: 19%;border-bottom: #000 solid 1px;text-align: center;">元 &nbsp;&nbsp;&nbsp;&nbsp;</div>',
+				  htmltest_1: '<div style="display: block; padding-bottom: 10px;">超过<input type="text" style="width: 19%;border-bottom: #000 solid 1px;text-align: center;">小时</div><div>&nbsp;扣除<input type="text" style="width: 19%;border-bottom: #000 solid 1px;text-align: center;">% &nbsp;&nbsp;&nbsp;&nbsp;</div>',
+				  alertShow: false,
+				  alertShow_1: false,
+				  activeNames:[],
 				  input3: '',
 			      input4: '',
 			      input5: '',
@@ -136,25 +148,40 @@
 			      // activeNames: ['1'],
 			      value1: true,
                   value2: true,
-                  checkList: ['超过1小时扣费10'],
-                  general: false,
+                  value3: true,
+                  checkList2: ['超过1小时扣费10%'],
+                  // general: false,
                   checkList1: ['1小时99元']
 			}
 		},
 		methods: {
 			handleChange(val) {
 		      },
-		    handGeneral(event){
-				this.general = true
-				this.Fn.addClass(document.querySelector('html'),'noscroll')
+		    handleShow(){
+				this.alertShow = true
 			},
-			handBack(){
-				this.general = false
-				this.Fn.removeClass(document.querySelector('html'),'noscroll')
+			aaa(res){
+				this.alertShow = false
 			},
-			cancelBubble(event){
-				event.cancelBubble = true
+			handleShow_1(){
+				if(!this.value3){
+					this.alertShow_1 = true
+				}
 			},
+			aaa_1(res){
+				this.alertShow_1 = false
+			},
+		 //    handGeneral(event){
+			// 	this.general = true
+			// 	this.Fn.addClass(document.querySelector('html'),'noscroll')
+			// },
+			// handBack(){
+			// 	this.general = false
+			// 	this.Fn.removeClass(document.querySelector('html'),'noscroll')
+			// },
+			// cancelBubble(event){
+			// 	event.cancelBubble = true
+			// },
 
 		}
 	}

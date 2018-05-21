@@ -61,7 +61,7 @@
 				that.arrItem = []
 				const loading = that.$loading({
 		            lock: true,
-		            text: '加载中..........',
+		            text: '加载中......',
 		            background: 'rgba(0, 0, 0, 0.7)'
 		          })
 				this.$axios.get('?i=3&c=entry&do=shop&m=yun_shop&route=member.member.getMyAgentData_v2&relationLevel='+this.agantLevel).then((res)=>{
@@ -109,12 +109,13 @@
 			.header{
 				span{
 					display: inline-block;
-					padding: rem(15px) rem(15px);
+					padding: rem(11px) rem(15px);
 					font-size: rem(18px);
+					border-bottom: #aaa solid rem(1px);
 					&.title{
 						display: inline-block;
 						text-align: center;
-						width: 70%;
+						width: 67%;
 					}
 					&.icon{
 						float: left;

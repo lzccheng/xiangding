@@ -49,6 +49,7 @@
 	.box{
 		width: 100%;
 		background-color: #e5e5e5;
+		margin-top: rem(20px);
 		.nav{
 			background-color: #e5e5e5;
 			padding: rem(8px) rem(13px);
