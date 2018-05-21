@@ -49,10 +49,8 @@
 				<p>
 					<span class="on">身份证正面照</span>
 					<span class="down">身份证反面照</span>
-<<<<<<< HEAD
 				</p>
 				
-=======
 				</p> -->
 				<div class="item">
 					<div class="msg_tt">身份证正面照</div>
@@ -275,6 +273,7 @@
 		background-color: #e5e5e5;
 		position: relative;
 		font-size: rem(14px);
+		padding-top: rem(20px);
 		.upload-demo{
 			padding-bottom: rem(8px);
 			text-align: center;

@@ -241,7 +241,7 @@
 			.me{
 				position: relative;
 				padding-top: rem(15px); 
-				margin: 0 0 rem(20px) rem(40px);
+				margin: 0 0 rem(20px) rem(25px);
 				p{
 					display: inline-block;
 					
