@@ -418,7 +418,7 @@
 				this.$axios.get('?i=3&c=entry&do=shop&m=yun_shop&route=plugin.store-cashier.frontend.store.store.apply',{params:{apply:{...that.formData}}}).then((res)=>{
 					console.log(res)
 					if(res.data.data.result === 1){
-						that.$route.push('/enter/login')
+						this.getEnterStatus()
 					}
 					
 				})
@@ -731,6 +731,9 @@
 				}
 			}
 			.bttn{
+				width: 90%;
+				margin: 0 auto;
+				border-radius: rem(5px);
 				padding: rem(8px) 0;
 				margin-top: rem(40px);
 				background-color: #43c122;
@@ -748,6 +751,9 @@
 				color: #43c122;
 			}
 			.login{
+				width: 90%;
+				margin: 0 auto;
+				border-radius: rem(5px);
 				margin-top: rem(50px);
 				padding: rem(10px) 0;
 				background-color: #43c122;
