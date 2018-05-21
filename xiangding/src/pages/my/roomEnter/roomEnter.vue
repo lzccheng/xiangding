@@ -130,6 +130,7 @@
 		width: 100%;
 		padding-bottom: rem(150px);
 		position: relative;
+		padding-top: rem(20px);
 		.delect{
 			position: fixed;
 			top: rem(13px);

@@ -62,6 +62,7 @@
 		background-color: #e5e5e5;
 		position: relative;
 		font-size: rem(14px);
+		padding-top: rem(24px);
 		.form{
 			background-color: #ffffff;
 			margin-top: rem(8px);

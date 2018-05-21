@@ -86,9 +86,9 @@
 											<span class="money_size">264</span>
 										</span>
 									</p>
-									<p>
+									<p style="padding-bottom: 18px;">
 										<span class="title_hide"> </span>
-										<span class="enter">待入住</span>
+										<span class="no_pay">待入住</span>
 									</p>
 								</router-link>
 								<div class="content_2">
@@ -127,9 +127,9 @@
 											<span class="money_size">264</span>
 										</span>
 									</p>
-									<p>
+									<p style="padding-bottom: 18px;">
 										<span class="title_hide"> </span>
-										<span class="enter">已入住</span>
+										<span class="no_pay">已入住</span>
 									</p>
 								</router-link>
 								<div class="content_2">
@@ -366,7 +366,7 @@
 							.enter{
 								display: inline-block;
 								margin-top: rem(5px);
-								margin-left: 88%;
+								margin-left: 86%;
 							}
 						}
 						.content_2{

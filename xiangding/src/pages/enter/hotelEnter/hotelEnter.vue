@@ -121,7 +121,7 @@
 				</div>
 				<div class="form" style="border-bottom: none;padding-left: 0">
 					<div class="footer">
-					   <!-- <router-link tag="p" to="/enter/login"  @click="handleFormSubmit" class="green_btn">立即申请</router-link> -->
+					   <router-link tag="p" to="/enter/login"  @click="handleFormSubmit" class="green_btn">立即申请</router-link>
 					   <p @click="handleFormSubmit" class="green_btn">立即申请</p>
 					</div>
 					<div class="agreement_box">
@@ -595,6 +595,7 @@
 		width: 100%;
 		background-color: #e5e5e5;
 		font-size: rem(14px);
+		padding-top: rem(5px);
 		.back{
 			background-color: rgba(0,0,0,0.3);
 			position: fixed;

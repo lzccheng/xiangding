@@ -2,62 +2,119 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 const index = r => require(['@/pages/index/index'], r)
+const hotel = r => require(['@/pages/hotel/hotel'], r)
+const hotelDetail = r => require(['@/pages/hotel/hotelDetail/hotelDetail'], r)
+const teamMeeting = r => require(['@/pages/teamMeeting/teamMeeting'], r)
+const enter = r => require(['@/pages/enter/enter'], r)
+const my = r => require(['@/pages/my/my'], r)
+const hotelOrder = r => require(['@/pages/hotel/hotelOrder/hotelOrder'], r)
+const payOrder = r => require(['@/pages/hotel/payOrder/payOrder'], r)
+const hotelSearch = r => require(['@/pages/hotel/hotelSearch/hotelSearch'], r)
+const hotelSelect = r => require(['@/pages/hotel/hotelSelect/hotelSelect'], r)
+const cash = r => require(['@/pages/my/cash/cash'], r)
+const hotelEnter = r => require(['@/pages/enter/hotelEnter/hotelEnter'], r)
+const agantEnter = r => require(['@/pages/enter/agantEnter/agantEnter'], r)
+const cashDetail = r => require(['@/pages/my/cashDetail/cashDetail'], r)
+const feedBack = r => require(['@/pages/my/feedBack/feedBack'], r)
+const custom = r => require(['@/pages/my/custom/custom'], r)
+const collection = r => require(['@/pages/my/collection/collection'], r)
+const roomEnter = r => require(['@/pages/my/roomEnter/roomEnter'], r)
+const meettingSend = r => require(['@/pages/my/meettingSend/meettingSend'], r)
+const clockSend = r => require(['@/pages/my/clockSend/clockSend'], r)
+const teamSend = r => require(['@/pages/my/teamSend/teamSend'], r)
+const roomSend = r => require(['@/pages/my/roomSend/roomSend'], r)
+const agantDetailt = r => require(['@/pages/my/agantDetailt/agantDetailt'], r)
+const order = r => require(['@/pages/my/order/order'], r)
+const orderPay = r => require(['@/pages/my/orderPay/orderPay'], r)
+const myagantEnter = r => require(['@/pages/my/myagantEnter/myagantEnter'], r)
+const agantIncome = r => require(['@/pages/my/agantIncome/agantIncome'], r)
+const agantHistory = r => require(['@/pages/my/agantHistory/agantHistory'], r)
+const payMethods = r => require(['@/pages/my/payMethods/payMethods'], r)
+const login = r => require(['@/pages/enter/login/login'], r)
+const hotelManage = r => require(['@/pages/enter/hotelManage/hotelManage'], r)
+const orderManage = r => require(['@/pages/enter/orderManage/orderManage'], r)
+const resetPassword = r => require(['@/pages/enter/resetPassword/resetPassword'], r)
+const incomeDetail = r => require(['@/pages/enter/incomeDetail/incomeDetail'], r)
+const onlineMessage = r => require(['@/pages/enter/onlineMessage/onlineMessage'], r)
+const orderDeal = r => require(['@/pages/enter/orderDeal/orderDeal'], r)
+const cashStatus = r => require(['@/pages/enter/cashStatus/cashStatus'], r)
+const incomeList = r => require(['@/pages/enter/incomeList/incomeList'], r)
+const orderStatus = r => require(['@/pages/enter/orderStatus/orderStatus'], r)
+const mealDetail = r => require(['@/pages/enter/mealDetail/mealDetail'], r)
+const foodManage = r => require(['@/pages/enter/foodManage/foodManage'], r)
+const foodAdd = r => require(['@/pages/enter/foodAdd/foodAdd'], r)
+const foodOrder = r => require(['@/pages/hotel/foodOrder/foodOrder'], r)
+const forgotPassword = r => require(['@/pages/enter/forgotPassword/forgotPassword'], r)
+const cancelRoom = r => require(['@/pages/my/cancelRoom/cancelRoom'], r)
+const weChatCash = r => require(['@/pages/my/weChatCash/weChatCash'], r)
+const myMessage = r => require(['@/pages/my/myMessage/myMessage'], r)
+const myTeam = r => require(['@/pages/my/myTeam/myTeam'], r)
+const myCard = r => require(['@/pages/enter/myCard/myCard'], r)
+const hotelMessage = r => require(['@/pages/enter/hotelMessage/hotelMessage'], r)
+const incomeTable = r => require(['@/pages/my/incomeTable/incomeTable'], r)
+const bindPhone = r => require(['@/pages/my/bindPhone/bindPhone'], r)
+const bindCard = r => require(['@/pages/my/bindCard/bindCard'], r)
+const payPassword = r => require(['@/pages/my/payPassword/payPassword'], r)
+const cardMessage = r => require(['@/pages/enter/cardMessage/cardMessage'], r)
+const searchPage = r => require(['@/pages/hotel/searchPage/searchPage'], r)
+const page404 = r => require(['@/pages/page404/page404'], r)
 // import index from '@/pages/index/index'
-import hotel from '@/pages/hotel/hotel'
-import hotelDetail from '@/pages/hotel/hotelDetail/hotelDetail'
-import teamMeeting from '@/pages/teamMeeting/teamMeeting'
-import enter from '@/pages/enter/enter'
-import my from '@/pages/my/my'
-import hotelOrder from '@/pages/hotel/hotelOrder/hotelOrder'
-import payOrder from '@/pages/hotel/payOrder/payOrder'
-import hotelSearch from '@/pages/hotel/hotelSearch/hotelSearch'
-import hotelSelect from '@/pages/hotel/hotelSelect/hotelSelect'
-import cash from '@/pages/my/cash/cash'
-import hotelEnter from '@/pages/enter/hotelEnter/hotelEnter'
-import agantEnter from '@/pages/enter/agantEnter/agantEnter'
-import cashDetail from '@/pages/my/cashDetail/cashDetail'
-import feedBack from '@/pages/my/feedBack/feedBack'
-import custom from '@/pages/my/custom/custom'
-import collection from '@/pages/my/collection/collection'
-import roomEnter from '@/pages/my/roomEnter/roomEnter'
-import meettingSend from '@/pages/my/meettingSend/meettingSend'
-import clockSend from '@/pages/my/clockSend/clockSend'
-import teamSend from '@/pages/my/teamSend/teamSend'
-import roomSend from '@/pages/my/roomSend/roomSend'
-import agantDetailt from '@/pages/my/agantDetailt/agantDetailt'
-import order from '@/pages/my/order/order'
-import orderPay from '@/pages/my/orderPay/orderPay'
-import myagantEnter from '@/pages/my/myagantEnter/myagantEnter'
-import agantIncome from '@/pages/my/agantIncome/agantIncome'
-import agantHistory from '@/pages/my/agantHistory/agantHistory'
-import payMethods from '@/pages/my/payMethods/payMethods'
-import login from '@/pages/enter/login/login'
-import hotelManage from '@/pages/enter/hotelManage/hotelManage'
-import orderManage from '@/pages/enter/orderManage/orderManage'
-import resetPassword from '@/pages/enter/resetPassword/resetPassword'
-import incomeDetail from '@/pages/enter/incomeDetail/incomeDetail'
-import onlineMessage from '@/pages/enter/onlineMessage/onlineMessage'
-import orderDeal from '@/pages/enter/orderDeal/orderDeal'
-import cashStatus from '@/pages/enter/cashStatus/cashStatus'
-import incomeList from '@/pages/enter/incomeList/incomeList'
-import orderStatus from '@/pages/enter/orderStatus/orderStatus'
-import mealDetail from '@/pages/enter/mealDetail/mealDetail'
-import foodManage from '@/pages/enter/foodManage/foodManage'
-import foodAdd from '@/pages/enter/foodAdd/foodAdd'
-import foodOrder from '@/pages/hotel/foodOrder/foodOrder'
-import forgotPassword from '@/pages/enter/forgotPassword/forgotPassword'
-import cancelRoom from '@/pages/my/cancelRoom/cancelRoom'
-import weChatCash from '@/pages/my/weChatCash/weChatCash'
-import myMessage from '@/pages/my/myMessage/myMessage'
-import myCard from '@/pages/enter/myCard/myCard'
-import hotelMessage from '@/pages/enter/hotelMessage/hotelMessage'
-import incomeTable from '@/pages/my/incomeTable/incomeTable'
-import bindPhone from '@/pages/my/bindPhone/bindPhone'
-import bindCard from '@/pages/my/bindCard/bindCard'
-import payPassword from '@/pages/my/payPassword/payPassword'
-import cardMessage from '@/pages/enter/cardMessage/cardMessage'
-import searchPage from '@/pages/hotel/searchPage/searchPage'
-import page404 from '@/pages/page404/page404'
+// import hotel from '@/pages/hotel/hotel'
+// import hotelDetail from '@/pages/hotel/hotelDetail/hotelDetail'
+// import teamMeeting from '@/pages/teamMeeting/teamMeeting'
+// import enter from '@/pages/enter/enter'
+// import my from '@/pages/my/my'
+// import hotelOrder from '@/pages/hotel/hotelOrder/hotelOrder'
+// import payOrder from '@/pages/hotel/payOrder/payOrder'
+// import hotelSearch from '@/pages/hotel/hotelSearch/hotelSearch'
+// import hotelSelect from '@/pages/hotel/hotelSelect/hotelSelect'
+// import cash from '@/pages/my/cash/cash'
+// import hotelEnter from '@/pages/enter/hotelEnter/hotelEnter'
+// import agantEnter from '@/pages/enter/agantEnter/agantEnter'
+// import cashDetail from '@/pages/my/cashDetail/cashDetail'
+// import feedBack from '@/pages/my/feedBack/feedBack'
+// import custom from '@/pages/my/custom/custom'
+// import collection from '@/pages/my/collection/collection'
+// import roomEnter from '@/pages/my/roomEnter/roomEnter'
+// import meettingSend from '@/pages/my/meettingSend/meettingSend'
+// import clockSend from '@/pages/my/clockSend/clockSend'
+// import teamSend from '@/pages/my/teamSend/teamSend'
+// import roomSend from '@/pages/my/roomSend/roomSend'
+// import agantDetailt from '@/pages/my/agantDetailt/agantDetailt'
+// import order from '@/pages/my/order/order'
+// import orderPay from '@/pages/my/orderPay/orderPay'
+// import myagantEnter from '@/pages/my/myagantEnter/myagantEnter'
+// import agantIncome from '@/pages/my/agantIncome/agantIncome'
+// import agantHistory from '@/pages/my/agantHistory/agantHistory'
+// import payMethods from '@/pages/my/payMethods/payMethods'
+// import login from '@/pages/enter/login/login'
+// import hotelManage from '@/pages/enter/hotelManage/hotelManage'
+// import orderManage from '@/pages/enter/orderManage/orderManage'
+// import resetPassword from '@/pages/enter/resetPassword/resetPassword'
+// import incomeDetail from '@/pages/enter/incomeDetail/incomeDetail'
+// import onlineMessage from '@/pages/enter/onlineMessage/onlineMessage'
+// import orderDeal from '@/pages/enter/orderDeal/orderDeal'
+// import cashStatus from '@/pages/enter/cashStatus/cashStatus'
+// import incomeList from '@/pages/enter/incomeList/incomeList'
+// import orderStatus from '@/pages/enter/orderStatus/orderStatus'
+// import mealDetail from '@/pages/enter/mealDetail/mealDetail'
+// import foodManage from '@/pages/enter/foodManage/foodManage'
+// import foodAdd from '@/pages/enter/foodAdd/foodAdd'
+// import foodOrder from '@/pages/hotel/foodOrder/foodOrder'
+// import forgotPassword from '@/pages/enter/forgotPassword/forgotPassword'
+// import cancelRoom from '@/pages/my/cancelRoom/cancelRoom'
+// import weChatCash from '@/pages/my/weChatCash/weChatCash'
+// import myMessage from '@/pages/my/myMessage/myMessage'
+// import myTeam from '@/pages/my/myTeam/myTeam'
+// import myCard from '@/pages/enter/myCard/myCard'
+// import hotelMessage from '@/pages/enter/hotelMessage/hotelMessage'
+// import incomeTable from '@/pages/my/incomeTable/incomeTable'
+// import bindPhone from '@/pages/my/bindPhone/bindPhone'
+// import bindCard from '@/pages/my/bindCard/bindCard'
+// import payPassword from '@/pages/my/payPassword/payPassword'
+// import cardMessage from '@/pages/enter/cardMessage/cardMessage'
+// import searchPage from '@/pages/hotel/searchPage/searchPage'
+// import page404 from '@/pages/page404/page404'
 
 Vue.use(Router)
 
@@ -373,6 +430,14 @@ export default new Router({
       component: myMessage,
       meta: {
         title: '我的信息'
+      }
+    },
+    {
+      path: '/my/myTeam',
+      name: 'myTeam',
+      component: myTeam,
+      meta: {
+        title: '我的团队'
       }
     },
     {
