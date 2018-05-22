@@ -41,10 +41,10 @@
 			<p class="bottom">	 
 		      <span>
 			  	 <el-checkbox-group v-model="checkList">
-				    <el-checkbox label="夜总会"></el-checkbox>
-				    <el-checkbox label="酒吧"></el-checkbox>
-				    <el-checkbox label="KTV"></el-checkbox>
-				    <el-checkbox label="健身房"></el-checkbox>
+				    <span class="check_box"><el-checkbox label="夜总会"></el-checkbox></span>
+				    <span class="check_box"><el-checkbox label="酒吧"></el-checkbox></span>
+				    <span class="check_box"><el-checkbox label="KTV"></el-checkbox></span>
+				    <span class="check_box"><el-checkbox label="健身房"></el-checkbox></span>
 				  </el-checkbox-group>
 			  </span>
 			  </p>
@@ -159,6 +159,11 @@
 				}
 				&.bottom{
 					margin-bottom: rem(25px);
+					.check_box{
+						display: inline-block;
+						width: 33%;
+						padding: rem(3px) 0;
+					}
 				}
 				&.top{
 					border-top: #EDEDED solid rem(1px);

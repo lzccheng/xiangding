@@ -24,7 +24,7 @@
               <span class="max_price">￥{{price[1]}}</span>
             </p>
           </div>
-          <div class="btn">
+          <div class="btn" style="margin-bottom: 10px;">
             <button @click="_boxClick" class="green_btn">确定</button>
           </div>
         </div>
@@ -515,6 +515,7 @@
         }
         &.style{
           >div{
+            padding: 0 rem(10px);
             >p{
               margin: rem(10px) 0;
               &.title{
@@ -543,7 +544,7 @@
               }
               &.price{
                 color: #409EFF;
-                padding: 0 rem(20px) rem(15px);
+                padding: 0 rem(20px) rem(32px);
                 .min_price{
                   float: left;
 

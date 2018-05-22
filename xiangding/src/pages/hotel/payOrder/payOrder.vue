@@ -147,6 +147,7 @@
 		width: 100%;
 		padding-bottom: rem(100px);
 		position: relative;
+		padding-top: rem(20px);
 		.back{
 			position: fixed;
 			top: 0;
@@ -195,8 +196,8 @@
 		}
 		.i{
 			position: absolute;
-			top: rem(52px);
-			left: 34%;
+			top: rem(72px);
+			left: 36%;
 			color: #ffffff;
 			font-size: rem(25px);
 		}

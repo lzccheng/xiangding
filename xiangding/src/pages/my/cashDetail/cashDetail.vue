@@ -255,11 +255,10 @@
                     display: flex;
                     justify-content: center;
                     .i{
-                        display: inline-block;
-                        margin-right: 7%;
+                        margin-right: 6%;
                         .green{
                             color: #43c122;
-                            font-size: rem(13px);
+                            font-size: rem(13px); 
                             font-weight: bold;
                         }
                     }
@@ -267,15 +266,16 @@
             }
             .send_box{
                 background-color: #ffffff;
-                padding: 0 30%;
+                display: flex;
+                justify-content: center;
                 margin: rem(20px) 0;
                 .page{
                     background-color: #43c122;
                     color: #ffffff;
-                    padding: rem(6px) rem(12px);
+                    padding: rem(8px) rem(15px);
                     font-size: rem(14px);
                     border-radius: rem(5px);
-                    margin-right: rem(8px);
+                    margin-right: 5%;
                }
             }
         }

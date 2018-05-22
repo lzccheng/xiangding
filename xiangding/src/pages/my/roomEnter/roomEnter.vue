@@ -275,6 +275,7 @@
 		.control{
 			position: fixed;
 			bottom: rem(36px);
+			left: 0;
 			background-color: #e5e5e5;
 			display: flex;
 			border-bottom: #ffffff solid rem(1px);
@@ -307,6 +308,7 @@
 		.footer{
 			position: fixed;
 			bottom: 0;
+			left: 0;
 			background-color: #ffffff;
 			width: 100%;
 			display: flex;
