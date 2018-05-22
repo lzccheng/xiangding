@@ -29,9 +29,34 @@ Vue.config.productionTip = false
 Vue.use(Element)
 Vue.use(Vuex)
 
+const store = new Vuex.Store(Vuexjs)
+
+if(Fn.isWeiXin()){
+	window.isWeiXin = 1
+}
+router.beforeEach((to,from,next)=>{
+	if(window.isWeiXin){
+		if(!window.Login){
+			axios.get('?i=3&c=entry&do=shop&m=yun_shop&route=member.member.getUserInfo').then(res=>{
+				if(res.data.data.login_url){
+					window.location.href = res.data.data.login_url + '&yz_redirect=' + Fn.base64_encode(window.location.href+'?')
+				}else{
+					console.log('login success')
+					window.Login = 1
+					store.commit('changeInfo',res.data.data)
+				}
+			},err=>{
+				console.log(err)
+			})
+		}
+	}
+	
+	next()
+})
+
 Vue.component('Header',Header)
 
-const store = new Vuex.Store(Vuexjs)
+
 
 import './mockjs/api'
 

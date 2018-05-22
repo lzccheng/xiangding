@@ -118,8 +118,7 @@ const page404 = r => require(['@/pages/page404/page404'], r)
 
 Vue.use(Router)
 
-export default new Router({
-  routes: [
+const routes = [
     {
       path: '/',
       name: 'index',
@@ -577,7 +576,10 @@ export default new Router({
         title: '404'
       }
     }
-  ],
+  ]
+
+export default new Router({
+  routes,
   scrollBehavior(to,from,savePosition){
     if (savePosition) {
       return savePosition

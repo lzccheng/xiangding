@@ -68,6 +68,20 @@ const getLongAndLat = (addr,success,error)=>{
 	})
     
 }
+
+const isWeiXin = ()=>{
+	var ua = window.navigator.userAgent.toLowerCase();
+	if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+const getUrl = url =>{
+	let type = isWeiXin()?'1':'5'
+	return url+'?type='+type+'&mid'
+}
 const haveClass = (dom,className)=>{
 	let domClass = dom.getAttribute('class')
 	let bool = false
@@ -203,5 +217,7 @@ export default {
 	removeClass,
 	haveClass,
 	zero,
-	base64_encode
+	base64_encode,
+	isWeiXin,
+	getUrl
 }
