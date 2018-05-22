@@ -4,7 +4,7 @@
 			
 		</div>
 		<div class="enter">
-			<router-link class="hotelEnter" tag="div" to="/enter/hotelEnter">
+			<router-link class="hotelEnter" tag="div" :to="{path: Fn.getUrl('/enter/hotelEnter')}">
 				<p><span class="icon"><i class="fas fa-user-plus"></i></span></p>
 				<span class="text">酒店入驻</span>
 			</router-link>
