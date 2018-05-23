@@ -120,6 +120,10 @@ Vue.use(Router)
 
 const routes = [
     {
+      path: '',
+      redirect: {name: 'index'}
+    },
+    {
       path: '/',
       name: 'index',
       component: index,

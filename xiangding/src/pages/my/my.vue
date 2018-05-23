@@ -182,6 +182,16 @@
 	export default {
 		mounted(){
 			let that = this
+			// this.$axios.post('?i=3&mid=0&type=5&shop_id=null&route=member.login.index',{
+			// 	mobile: '13927179141',
+			// 	mobileErr: '',
+			// 	password: '123456',
+			// 	passwordErr: '',
+			// 	uuid: 0,
+			// 	mid:0
+			// }).then(res=>{
+			// 	console.log(55555555,res)
+			// })
 			this.$axios.get('?i=3&c=entry&do=shop&m=yun_shop&route=member.member.getUserInfo').then((res)=>{
 				console.log(res)
 				// console.log(process.env.API_ROOT)
@@ -190,7 +200,6 @@
 					window.location.href = res.data.data.login_url + '&yz_redirect=' + that.Fn.base64_encode(window.location.href+'?')
 				}else{
 					// console.log(res.data)
-					localStorage.setItem('userInfo',JSON.stringify(res.data))
 					that.msg.id = res.data.data.uid
 					that.msg.name = res.data.data.nickname
 					that.msg.imgUrl = res.data.data.avatar
@@ -199,14 +208,6 @@
 					that.msg.agent_nickname = res.data.data.yz_member.agent.nickname
 				}
 				
-			},(err)=>{
-				console.log(err)
-			})
-			this.$axios.get('?i=3&mid=undefined&type=1&shop_id=null&route=member.member.getMyAgent_v2').then((res)=>{
-				console.log(res)
-				that.msg.income.firstAgent = res.data.data.level1.total
-				that.msg.income.secondAgent = res.data.data.level2.total
-				that.msg.income.thirdAgent = res.data.data.level3.total
 			},(err)=>{
 				console.log(err)
 			})

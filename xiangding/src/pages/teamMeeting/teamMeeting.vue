@@ -146,6 +146,7 @@
 	        this.Http.getEreaData((res)=>{
 	          mobileSelect5.updateWheels(JSON.parse(res.data));
 	        })
+	        this.Http.get()
 	        let lD = new lzcDatePlugin({
            		 el: '#myDatePlugin',
 	            callback: function(res){

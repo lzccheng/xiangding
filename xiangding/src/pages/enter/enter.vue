@@ -19,10 +19,11 @@
 	import wx from 'weixin-js-sdk'
 	export default{
 		mounted(){
-			this.$axios.get('?i=3&type=1&shop_id=null&route=member.member.wxJsSdkConfig').then(res=>{
-				console.log(res.data.data.config)
-				wx.config(res.data.data.config)
+			this.$axios.get('?i=3&c=entry&do=shop&type=1&m=yun_shop&route=member.member.wxJsSdkConfig').then(res=>{
+				console.log(res.data)
+				// wx.config(res.data.data.config)
 			})
+			// this.$axios.get('')
 		},
 		data(){
 			return {
