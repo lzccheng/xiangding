@@ -1,7 +1,8 @@
 <template>
 	<div class="box">
 		<Header title="收支明细" />
-		<div class="content">			<div class="show">
+		<div class="content">			
+			<div class="show">
 				<div class="items">
 					<div class="time"><span class="this_m">本月</span><span class="i"><i class="far fa-calendar-alt"></i></span></div>
 					<div class="item" v-for="(i,index) in 10" :key="index">

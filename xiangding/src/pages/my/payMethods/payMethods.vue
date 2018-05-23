@@ -122,16 +122,14 @@
 			}
 		}
 		.item{
-			// margin: rem(10px) 0;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			border-bottom: #aaa solid rem(1px);
-			// padding-top: rem(5px);
+			padding: rem(18px) 0;
 			div{
-				// margin-bottom: rem(10px);
 				&.img{
-					width: 6%;
+					width: rem(25px);
 					height: rem(25px);
 					margin-left: 4%;
 					img{
@@ -148,13 +146,13 @@
 					}
 					.right{
 						float: right;
-						// line-height: rem(35px);
 					}
 				}
 			}
 		}
 		.bottom_box{
 			padding: rem(10px) 12%;
+			margin-top: rem(20px);
 			.button{
 				background-color: #43c122;
 				padding: rem(12px) 10%;
