@@ -78,9 +78,11 @@ const isWeiXin = ()=>{
 	}
 }
 
-const getUrl = url =>{
+const getUrl = obj =>{
+	let i = 3
 	let type = isWeiXin()?'1':'5'
-	return url+'?type='+type+'&mid'
+	let query = obj.query?{i,type,...obj.query}:{i,type}
+	return {path: obj.path,query}
 }
 const haveClass = (dom,className)=>{
 	let domClass = dom.getAttribute('class')

@@ -44,6 +44,7 @@ router.beforeEach((to,from,next)=>{
 					console.log('login success')
 					window.Login = 1
 					store.commit('changeInfo',res.data.data)
+					console.log(res.data)
 				}
 			},err=>{
 				console.log(err)
