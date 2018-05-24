@@ -11,7 +11,7 @@
 					<!-- <div class="local">
 						<span>广州</span>
 					</div> -->
-					<router-link tag="div" to="/hotel/searchPage" class="input" >
+					<router-link tag="div" :to="Fn.getUrl({path: '/hotel/searchPage'})" class="input" >
 						<input type="text" placeholder="酒店搜索/关键字">
 						<span><i class="fas fa-search"></i></span>
 					</router-link>
@@ -143,7 +143,7 @@
 		</div>
 		<div class="hotel" >
 			<div class="hotelItem" v-for='(i,index) in hotel' :key='index'>
-				<router-link :to="{path: '/hotelDetail',query:{id:i.id,hotelName: i.name,date1:dateValue[0].datetime,date2:dateValue[1].datetime}}" tag='div'>
+				<router-link :to="Fn.getUrl({path: '/hotelDetail',query:{id:i.id,hotelName: i.name,date1:dateValue[0].datetime,date2:dateValue[1].datetime}})" tag='div'>
 					<div class="img">
 						<img :src="i.imgUrl">
 					</div>

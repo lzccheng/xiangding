@@ -6,7 +6,7 @@
 			<p class="num">0.00</p>
 		</div>
 		<div class="money_detail">
-			<router-link tag="p" to="/enter/hotelManage/cashStatus">
+			<router-link tag="p" :to="Fn.getUrl({path: '/enter/hotelManage/cashStatus'})">
 				<span class="text">提现详情</span><br/>
 				<span class="status">进行中的交易</span>
 				<span class="icon float_right"><i class="fas fa-chevron-right"></i></span>
@@ -14,11 +14,11 @@
 		</div>
 		<div class="line"></div>
 		<div class="detail">
-			<router-link tag="p" to="/enter/hotelManage/myCard" class="card">
+			<router-link tag="p" :to="Fn.getUrl({path: '/enter/hotelManage/myCard'})" class="card">
 				<span>我的银行卡</span>
 				<span class="float_right"><i class="fas fa-chevron-right"></i></span>
 			</router-link>
-			<router-link tag="p" to="/enter/hotelManage/incomeList">
+			<router-link tag="p" :to="Fn.getUrl({path: '/enter/hotelManage/incomeList'})">
 				<span>收支明细</span>
 				<span class="float_right"><i class="fas fa-chevron-right"></i></span>
 			</router-link>

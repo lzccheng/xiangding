@@ -10,7 +10,7 @@
 				<p class="input">
 					<label>手机号</label>
 					<input @blur="handleCheck" @focus="handleNo" class="handleCheck" type="text" placeholder="请输入手机号" name="" v-model="mobile">
-					<router-link tag="span" to="/my/bindPhone" class="get">   &nbsp;<i class="fas fa-chevron-right"></i></router-link>
+					<router-link tag="span" :to="Fn.getUrl({path: '/my/bindPhone'})" class="get">   &nbsp;<i class="fas fa-chevron-right"></i></router-link>
 				</p>
 				<p class="input" style="border-bottom: none">
 					<label>微信号:</label>
@@ -18,11 +18,11 @@
 				</p>
 			</div>
 			<div class="form">
-				<router-link tag="p" to="/my/bindCard" class="input">
+				<router-link tag="p" :to="Fn.getUrl({path: '/my/bindCard'})" class="input">
 					<label>银行卡</label>
 					<span  class="get">   &nbsp;<i class="fas fa-chevron-right"></i></span>
 				</router-link>
-				<router-link tag="p" to="/my/payPassword" class="input" style="border-bottom: none">
+				<router-link tag="p" :to="Fn.getUrl({path: '/my/payPassword'})" class="input" style="border-bottom: none">
 					<label>余额支付密码</label>
 					<span  class="get">   &nbsp;<i class="fas fa-chevron-right"></i></span>
 				</router-link>

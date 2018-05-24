@@ -13,10 +13,10 @@
 			<div v-if="0==index_">
 				<div class="body">
 					<div v-for="(i,index) in 5" class="item" :key="index">
-						<router-link tag="div" :to="{path: '/enter/hotelManage/orderStatus', query: {status: 0}}" class="img">
+						<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus', query: {status: 0}})" class="img">
 							<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425433535&di=f7d324b2c95bd6f203fb8741290c02e3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D41481487a2773912d02b8d219161e374%2Ff3d3572c11dfa9ec3d58042d69d0f703918fc192.jpg" alt="">
 						</router-link>
-						<router-link tag="div" :to="{path: '/enter/hotelManage/orderStatus', query: {status: 0}}" class="text_box">
+						<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus', query: {status: 0}})" class="text_box">
 							<div class="left">
 								<p class="name_1">商务大床房</p>
 								<p class="name_2">客户名称: 胡勇蝶</p>
@@ -27,8 +27,8 @@
 								<p class="numb"><i class="fas fa-chevron-right"></i></p>
 							</div>
 							 <div class="view">
-								<router-link tag="span" :to="{path: '/enter/hotelManage/orderStatus', query: {status: 1,text: '拒绝住房'}}">拒绝</router-link>
-								<router-link tag="span" :to="{path: '/enter/hotelManage/orderStatus', query: {status: 1,text: '同意住房'}}" class="agreement" >同意</router-link>
+								<router-link tag="span" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus', query: {status: 1,text: '拒绝住房'}})">拒绝</router-link>
+								<router-link tag="span" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus', query: {status: 1,text: '同意住房'}})" class="agreement" >同意</router-link>
 							</div>
 						</router-link>
 		            </div>
@@ -57,10 +57,10 @@
 			<div v-if="1==index_">
 				<div class="body">
 					<div v-for="(i,index) in 5" class="item" :key="index">
-						<router-link tag="div" :to="{path: '/enter/hotelManage/orderStatus', query: {status: 1}}" class="img">
+						<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus', query: {status: 1}})" class="img">
 							<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425433535&di=f7d324b2c95bd6f203fb8741290c02e3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D41481487a2773912d02b8d219161e374%2Ff3d3572c11dfa9ec3d58042d69d0f703918fc192.jpg" alt="">
 						</router-link>
-						<router-link tag="div" :to="{path: '/enter/hotelManage/orderStatus', query: {status: 1}}" class="text_box">
+						<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus', query: {status: 1}})" class="text_box">
 							<div class="left">
 								<p class="name_1">商务大床房</p>
 								<p class="name_2">客户名称: 胡勇蝶</p>
@@ -153,8 +153,10 @@
 			}
 		}
 		.show{
+
 			.body{
 				padding: rem(7px) 0;
+				// padding-bottom: rem(15px);
 				div{
 					&.item{
 						background-color: #fff;
@@ -164,6 +166,7 @@
 						align-items: center;
 						padding: rem(13px) 2%;
 						border-bottom: #e5e5e5 solid rem(9px);
+						padding-bottom: rem(28px);
 						div{
 							padding-left: 1%;
 							&.img{
@@ -210,11 +213,11 @@
 								}
 								.view{
 									padding-top: rem(10px);
-									padding-bottom: rem(20px);
+									padding-bottom: rem(25px);
 									span{
 										display: inline-block;
 										position: absolute;
-										right: 32%;
+										right: 35%;
 										bottom: 21%;
 										padding: rem(6px) 9%;
 										border: #aaa solid rem(1px);

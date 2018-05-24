@@ -17,9 +17,9 @@
 			  </span>
 			</div>
 			<div class="post">
-			    <router-link tag="p" to="/enter/login" class="green_btn">提交</router-link>
+			    <router-link tag="p" :to="Fn.getUrl({path: '/enter/login'})" class="green_btn">提交</router-link>
 			</div>
-			<router-link tag="div" to="/enter/forgotPassword" class="forget">
+			<router-link tag="div" :to="Fn.getUrl({path: '/enter/forgotPassword'})" class="forget">
 			    <span class="text">忘记密码</span>
 			    <span class="icon"><i class="fas fa-chevron-right"></i></span>
 			</router-link>

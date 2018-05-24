@@ -16,7 +16,7 @@
 		    		<p class="agant">银河大酒店</p>
 		    		<p class="number"> 编码: 41567</p>
 		    	</div>
-		    	<router-link tag="div" to="/enter/hotelMessage" class="i"><i class="fas fa-cog"></i></router-link>
+		    	<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelMessage'})" class="i"><i class="fas fa-cog"></i></router-link>
 		    </div>
 	    </div>
 	    <div class="line"></div>
@@ -44,11 +44,11 @@
 	    </div>
 	    <div class="line"></div>
 	    <div class="item">
-	    	<router-link to="/my/roomEnter" tag="div" class="room_1 rooms">
+	    	<router-link :to="Fn.getUrl({path: '/my/roomEnter'})" tag="div" class="room_1 rooms">
 	    		<p class="icon"><i class="fas fa-archive"></i></p>
 	    		<p class="name">房态管理</p>
 	    	</router-link>
-	    	<router-link tag="div" to="/enter/hotelManage/orderManage" class="room_2 rooms">
+	    	<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderManage'})" class="room_2 rooms">
 	    		<p class="icon"><i class="fas fa-th-list"></i></p>
 	    		<p class="name">订单管理</p>
 	    	</router-link>
@@ -58,21 +58,21 @@
 	    		<p class="icon"><i class="fas fa-th-list"></i></p>
 	    		<p class="name">账号密码</p>
 	    	</router-link> -->
-	    	<router-link tag="div" to="/enter/hotelManage/incomeList" class="room_3 rooms">
+	    	<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/incomeList'})" class="room_3 rooms">
 	    		<p class="icon"><i class="fas fa-th-list"></i></p>
 	    		<p class="name">收入明细</p>
 	    	</router-link>
-	    	<router-link tag="div" to="/enter/hotelManage/foodManage" class="room_3 rooms">
+	    	<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/foodManage'})" class="room_3 rooms">
 	    		<p class="icon"><i class="fas fa-utensils"></i></p>
 	    		<p class="name">餐饮管理</p>
 	    	</router-link>
 	    </div>
 	    <div class="item">
-	    	<router-link tag="div" to="/enter/hotelManage/orderDeal" class="room_6 rooms">
+	    	<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderDeal'})" class="room_6 rooms">
 	    		<p class="icon"><i class="fas fa-th-list"></i></p>
 	    		<p class="name">订单处理</p>
 	    	</router-link>
-	    	<router-link tag="div" to="/enter/hotelManage/onlineMessage" class="room_5 rooms">
+	    	<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/onlineMessage'})" class="room_5 rooms">
 	    		<p class="icon"><i class="fas fa-th-list"></i></p>
 	    		<p>在线信息</p>
 	    	</router-link>

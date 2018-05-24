@@ -35,7 +35,7 @@
 				</p>
 			</div>
 			<div class="body">
-				<router-link class="green_btn" tag="div" to="/enter/login">
+				<router-link class="green_btn" tag="div" :to="Fn.getUrl({path: '/enter/login'})">
 					<span>确认修改</span>
 				</router-link>
 			</div>

@@ -8,11 +8,11 @@
 						<span>{{msg.name}} ({{msg.level_name}})</span><br>
 						<span v-show="msg.agent_nickname">推荐人: {{msg.agent_nickname}}</span><br>
 						<span>ID: {{msg.id}}</span>
-						<router-link tag="span" to="/my/myMessage" class="i"><i class="fas fa-cog"></i></router-link>
+						<router-link tag="span" :to="Fn.getUrl({path: '/my/myMessage'})" class="i"><i class="fas fa-cog"></i></router-link>
 					</div>
 				</p>
 			</div>
-			<router-link to='/my/weChatCash' class="cash" tag='div'>
+			<router-link :to="Fn.getUrl({path: '/my/weChatCash'})" class="cash" tag='div'>
 				提现
 			</router-link>
 		</div>
@@ -36,9 +36,13 @@
 				</div>
 			</div>
 			<div class="agent">
-				<router-link tag="div" to="/my/myTeam" class="my_team">
-					<p class="icon"><i class="fas fa-users"></i></p>
-					<p>我的团队</p>
+				<router-link tag="div" :to="Fn.getUrl({path: '/my/myTeam'})" class="my_team1">
+					<p >
+					   <span class="icon"><i class="fas fa-users"></i></span>
+					   <span>我的团队</span>
+					</p>
+				</router-link>
+				<router-link tag="div" :to="Fn.getUrl({path: '/my/myTeam'})" class="my_team2">
 					<p><i class="fas fa-chevron-right"></i></p>
 				</router-link>
 				<!-- <ul>
@@ -81,11 +85,11 @@
 		<div class="hotelServe">
 			<p class="title">
 				<span>代理服务商</span>
-				<router-link to='/my/cash' class="cash" tag='span'>提现</router-link>
+				<router-link :to="Fn.getUrl({path: '/my/cash'})" class="cash" tag='span'>提现</router-link>
 			</p>
 			<div class="earning">
 				<p class="text"><span>当前收益</span></p>
-				<router-link tag="p" to="/my/cashDetail" class="money" style="font-family:'微软雅黑' ,Arial !important"><span>￥</span><span>{{msg.earning}}</span></router-link>
+				<router-link tag="p" :to="Fn.getUrl({path: '/my/cashDetail'})" class="money" style="font-family:'微软雅黑' ,Arial !important"><span>￥</span><span>{{msg.earning}}</span></router-link>
 				<div class="earn">
 					<div class="order">
 						<p class="icon"><i class="far fa-file"></i></p>
@@ -132,15 +136,15 @@
 		<div class="myOrder">
 			<p class="text"><span>我的订单</span></p>
 			<div class="message">
-				<router-link tag="div" :to="{path: '/my/order',query: {status: 0}}">
+				<router-link tag="div" :to="Fn.getUrl({path: '/my/order',query: {status: 0}})">
 					<p><i class="far fa-calendar-check"></i></p>
 					<p><span>待付款</span></p>
 				</router-link>
-				<router-link tag="div" :to="{path: '/my/order',query: {status: 1}}">
+				<router-link tag="div" :to="Fn.getUrl({path: '/my/order',query: {status: 1}})">
 					<p><i class="far fa-calendar-plus"></i></p>
 					<p><span>待使用</span></p>
 				</router-link>
-				<router-link tag="div" :to="{path: '/my/order',query: {status: 2}}">
+				<router-link tag="div" :to="Fn.getUrl({path: '/my/order',query: {status: 2}})">
 					<p><i class="far fa-calendar-alt"></i></p>
 					<p><span>全部订单</span></p>
 				</router-link>
@@ -149,11 +153,11 @@
 		<div class="myOrder">
 			<p class="text"><span>我的入口</span></p>
 			<div class="message">
-				<router-link tag="div" to="/my/roomEnter">
+				<router-link tag="div" :to="Fn.getUrl({path: '/my/roomEnter'})">
 					<p><i class="far fa-star"></i></p>
 					<p><span>管理房态入口</span></p>
 				</router-link>
-				<router-link tag="div" to="/my/myagantEnter">
+				<router-link tag="div" :to="Fn.getUrl({path: '/my/myagantEnter'})">
 					<p><i class="far fa-question-circle"></i></p>
 					<p><span>代理服务商入口</span></p>
 				</router-link>
@@ -162,15 +166,15 @@
 		<div class="myOrder">
 			<p class="text"><span>系统服务</span></p>
 			<div class="message">
-				<router-link tag="div" :to="{path: '/my/collection',query: {name: '收藏酒店'}}" >
+				<router-link tag="div" :to="Fn.getUrl({path: '/my/collection',query: {name: '收藏酒店'}})" >
 					<p><i class="far fa-bookmark"></i></p>
 					<p><span>我的收藏</span></p>
 				</router-link>
-				<router-link tag="div" to="/my/feedBack">
+				<router-link tag="div" :to="Fn.getUrl({path: '/my/feedBack'})">
 					<p><i class="fa fa-question-circle"></i></p>
 					<p><span>我要反馈</span></p>
 				</router-link>
-				<router-link tag="div" to="/my/custom">
+				<router-link tag="div" :to="Fn.getUrl({path: '/my/custom'})">
 					<p><i class="far fa-comments"></i></p>
 					<p><span>联系客服</span></p>
 				</router-link>
@@ -347,16 +351,19 @@
 			}
 			
 			.agent{
+				display: flex;
+				align-items: center;
+				// justify-content: center;
 				margin-top: rem(20px);
 				text-align: left;
 				border-top: #e5e5e5 solid rem(10px);
-				.my_team{
-					display: flex;
-					align-items: center;
+				padding: rem(10px) 0;
+				.my_team1{
+					width: 50%;
 					font-size: rem(15px);
 					padding: rem(8px) 4%;
 					p{
-						&.icon{
+						.icon{
 							padding: rem(10px) rem(9px);
 							background-color: #FF9800;
 							border-radius: 100%;
@@ -364,10 +371,29 @@
 							font-size: rem(16px);
 							margin-right: rem(5px);
 						}
-						&:nth-child(2){
-							width: 85%;
-						}
+						// &:nth-child(2){
+						// 	width: 85%;
+						// }
 					}
+					
+				}
+				.my_team2{
+					width: 50%;
+					font-size: rem(15px);
+					// padding: rem(8px) 4%;
+					// p{
+					// 	&.icon{
+					// 		padding: rem(10px) rem(9px);
+					// 		background-color: #FF9800;
+					// 		border-radius: 100%;
+					// 		color: #fff;
+					// 		font-size: rem(16px);
+					// 		margin-right: rem(5px);
+					// 	}
+					// 	&:nth-child(2){
+					// 		width: 85%;
+					// 	}
+					// }
 					
 					
 				}

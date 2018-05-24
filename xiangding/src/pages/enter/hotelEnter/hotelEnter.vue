@@ -9,7 +9,7 @@
 					<p class="text">hello</p>
 					<div class="bottom">
 						<p @click="handleClose_back">
-						   <span >我知道了</span>
+						   <span>我知道了</span>
 						</p>
 					</div>
 				</div>
@@ -24,11 +24,6 @@
 						<label>联系电话:</label>
 						<input @blur="handleCheck" class="handleCheck" type="text" placeholder="请输入电话号码" name="" v-model="formData.mobile">
 					</p>
-					<!-- <p class="input">
-						<label>验证码:</label>
-						<input type="text" style="width: 40%" placeholder="请输入验证码" name="">
-						<span class="get"><span>获取验证码</span></span>
-					</p> -->
 					<p class="input">
 						<label>账号:</label>
 						<input type="text" placeholder="请输入账号" name="" v-model="formData.username" @blur="checkUsername">
@@ -121,7 +116,7 @@
 				</div>
 				<div class="form" style="border-bottom: none;padding-left: 0">
 					<div class="footer">
-					   <router-link tag="p" to="/enter/login"  @click="handleFormSubmit" class="green_btn">立即申请</router-link>
+					   <router-link tag="p" :to="Fn.getUrl({path: '/enter/login'})"  @click="handleFormSubmit" class="green_btn">立即申请</router-link>
 					   <p @click="handleFormSubmit" class="green_btn">立即申请</p>
 					</div>
 					<div class="agreement_box">
@@ -139,7 +134,7 @@
 					<p>你的申请正在加急审核中</p>
 					<p>请耐心等待</p>
 				</div>
-				<router-link to="/" tag="div" class="bttn">去首页溜达溜达</router-link>
+				<router-link :to="Fn.getUrl({path: '/'})" tag="div" class="bttn">去首页溜达溜达</router-link>
 			</div>
 			
 		</div>
@@ -147,7 +142,7 @@
 			<div class="success">
 				<p class="icon_"><span><i class="fas fa-check-circle"></i></span></p>
 				<p>你的申请已通过</p>
-				<router-link tag="p" to="/enter/login" class="login">登录</router-link>
+				<router-link tag="p" :to="Fn.getUrl({path: '/enter/login'})" class="login">登录</router-link>
 			</div>
 		</div>
 	</div>

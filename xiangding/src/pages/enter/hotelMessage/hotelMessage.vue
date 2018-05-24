@@ -81,7 +81,7 @@
 			 
 		</div>
 		<div class="footer">
-		 <router-link tag="p" to="/enter/hotelManage" class="green_btn">
+		 <router-link tag="p" :to="Fn.getUrl({path: '/enter/hotelManage'})" class="green_btn">
 		  	<span>确定修改</span>
 		  </router-link>
 		</div>

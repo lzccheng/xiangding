@@ -111,7 +111,7 @@
                          <el-radio v-model="radio" label="3">2.5 × 5.5米LED屏</el-radio> 
 					</span>
 				</p>
-				<router-link tag="p" to="/hotel/hotelManage/foodOrder" v-if="title === '团房'||title === '会议室'" class="black">
+				<router-link tag="p" :to="Fn.getUrl({path: '/hotel/hotelManage/foodOrder'})" v-if="title === '团房'||title === '会议室'" class="black">
 					<span style="color: #43c122">餐饮团购</span>
 					<span  class="check_box"><i class="fas fa-chevron-right"></i></span>
 				</router-link>
@@ -119,11 +119,11 @@
 					<span>是否需要发票</span>
 					<span class="check_box"><el-checkbox v-model="checked"></el-checkbox></span>
 				</p> -->
-				<router-link tag="p" :to="{path:'/hotelDetail',query:{name: '团房',id: 2,order: true}}" v-if="title === '会议室'" class="black color_green">
+				<router-link tag="p" :to="Fn.getUrl({path:'/hotelDetail',query:{name: '团房',id: 2,order: true}})" v-if="title === '会议室'" class="black color_green">
 					<span>是否需要团房</span>
 					<span class="check_box"><i class="fas fa-chevron-right"></i></span>
 				</router-link>
-				<router-link tag="p" :to="{path:'/hotelDetail',query:{name: '会议室',id: 2,order: true}}"  v-if="title === '团房'" class="black">
+				<router-link tag="p" :to="Fn.getUrl({path:'/hotelDetail',query:{name: '会议室',id: 2,order: true}})"  v-if="title === '团房'" class="black">
 					<span class="color_green">是否需要会议室</span>
 					<span class="check_box"><i class="fas fa-chevron-right"></i></span>
 				</router-link>
@@ -171,7 +171,7 @@
 				</div>
 			<div class="footer">
 				<p class="need_pay">需支付
-					<router-link class="button" :to="{path:'/hotel/payOrder',query:{name: title,date1,date2}}" tag='span'>提交订单</router-link>
+					<router-link class="button" :to="Fn.getUrl({path:'/hotel/payOrder',query:{name: title,date1,date2}})" tag='span'>提交订单</router-link>
 				</p>
 
 				<p>

@@ -54,7 +54,7 @@
 					</p>
 				</div>
 				<div v-if="title === '会议室'">
-						<router-link v-if="!order" tag="div" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,meetingName: '某某会议室',hotelName,date1:date1,date2:date2}}" v-for='(i,index) in room' :key='index' class="rooms">
+						<router-link v-if="!order" tag="div" :to="Fn.getUrl({path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,meetingName: '某某会议室',hotelName,date1:date1,date2:date2}})" v-for='(i,index) in room' :key='index' class="rooms">
 							<div>
 								<img :src="i.imgUrl">
 							</div>
@@ -64,10 +64,10 @@
 							</div>
 							<div class="price">
 								<p><span class="first">￥</span>{{i.price}}<span class="first">元</span></p>
-								<p v-if="title !== '会议室'"><router-link tag="button" :to="{path:'/hotelDetail/hotelOrder',query:{name: title}}">订房</router-link></p>
+								<p v-if="title !== '会议室'"><router-link tag="button" :to="Fn.getUrl({path:'/hotelDetail/hotelOrder',query:{name: title}})">订房</router-link></p>
 								<p v-else>
 									<span  >
-										<router-link tag="button" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,hotelName,meetingName: '某某会议室',date1:date1,date2:date2}}">预定</router-link>
+										<router-link tag="button" :to="Fn.getUrl({path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,hotelName,meetingName: '某某会议室',date1:date1,date2:date2}})">预定</router-link>
 									</span>	
 								</p>
 							</div>
@@ -83,7 +83,7 @@
 							</div>
 							<div class="price">
 								<p><span class="first">￥</span>{{i.price}}<span class="first">元</span></p>
-								<p v-if="title !== '会议室'"><router-link tag="button" :to="{path:'/hotelDetail/hotelOrder',query:{name: title}}">订房</router-link></p>
+								<p v-if="title !== '会议室'"><router-link tag="button" :to="Fn.getUrl({path:'/hotelDetail/hotelOrder',query:{name: title}})">订房</router-link></p>
 								<p v-else>
 									<span  @click="handleBubbole">
 										<span class="icon_s" @click="handleDelete(index)"><i class="fas fa-minus-circle"></i></span>
@@ -98,7 +98,7 @@
 
 				<div v-else>
 					
-						<router-link v-if="!order" tag="div" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,roomName:'特惠商务房',hotelName,date1:date1,date2:date2}}" v-for='(i,index) in room' :key='index' class="rooms">
+						<router-link v-if="!order" tag="div" :to="Fn.getUrl({path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,roomName:'特惠商务房',hotelName,date1:date1,date2:date2}})" v-for='(i,index) in room' :key='index' class="rooms">
 							<div>
 								<img :src="i.imgUrl">
 							</div>
@@ -108,7 +108,7 @@
 							</div>
 							<div class="price">
 								<p>￥{{i.price}}元</p>
-								<p><router-link tag="button" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,roomName:'特惠商务房',hotelName,date1:date1,date2:date2}}">订房</router-link></p>
+								<p><router-link tag="button" :to="Fn.getUrl({path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,roomName:'特惠商务房',hotelName,date1:date1,date2:date2}})">订房</router-link></p>
 							</div>
 						</router-link>
 					

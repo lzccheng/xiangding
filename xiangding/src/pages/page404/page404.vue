@@ -2,7 +2,7 @@
 	<div class="box">
 		<div class="body">
 			<div class="img">
-			   <div class="p"><router-link tag="p" to="/">回到首页</router-link></div>
+			   <div class="p"><router-link tag="p" :to="Fn.getUrl({path: '/'})">回到首页</router-link></div>
 			</div>
 
 		</div>

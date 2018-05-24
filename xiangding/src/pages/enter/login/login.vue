@@ -40,8 +40,8 @@
 						</span>
 					</span>
 				</div>
-				<router-link tag="p" to="/enter/forgotPassword" class="forget">忘记密码</router-link>
-				<router-link tag="div" to="/enter/hotelManage" class="login agentEnter"><span>登录</span> </router-link>
+				<router-link tag="p" :to="Fn.getUrl({path: '/enter/forgotPassword'})" class="forget">忘记密码</router-link>
+				<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage'})" class="login agentEnter"><span>登录</span> </router-link>
 			</div>
 
 			<div class="green_box">
