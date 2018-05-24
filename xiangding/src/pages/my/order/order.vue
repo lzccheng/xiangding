@@ -29,7 +29,7 @@
 						<div class="item">
 							<span class="time">预定日期: 03-20</span>
 							<div class="content_box" v-for="(i,index) in 10" :key="index">
-								<router-link tag="div" :to="{path: '/my/order/orderPay',query: {isPay: false}}" class="content">
+								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query: {isPay: false}})" class="content">
 									<p>
 										<span class="title">银河大酒店</span>
 										<span class="title_t">(豪华酒店 |四星级)</span>
@@ -58,7 +58,7 @@
 									
 									<div class="button">
 										<span class="change" @click="handleShow">取消订单</span>
-										<router-link tag="span" :to="{path: '/my/order/orderPay',query: {isPay: 0}}" class="pay">付款</router-link>
+										<router-link tag="span" :to="Fn.getUrl({path: '/my/order/orderPay',query: {isPay: 0}})" class="pay">付款</router-link>
 									</div>
 								</div>
 							</div>
@@ -70,7 +70,7 @@
 						<div class="item">
 							<span class="time">预定日期: 03-20</span>
 							<div class="content_box" v-for="(i,index) in 2" :key="index">
-								<router-link tag="div" :to="{path: '/my/order/orderPay',query:{isPay: 1}}" class="content">
+								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{isPay: 1}})" class="content">
 									<p>
 										<span class="title">银河大酒店</span>
 										<span class="title_t">(豪华酒店 |四星级)</span>
@@ -98,8 +98,8 @@
 								    </div>
 									
 									<div class="button">
-										<router-link tag="span" to="/my/cancelRoom" class="change">申请退房</router-link>
-										<router-link tag="span" :to="{path: '/hotelDetail',query:{id:4,hotelName: '银河大酒店'}}" class="pay">再次预定</router-link>
+										<router-link tag="span" :to="Fn.getUrl({path: '/my/cancelRoom'})" class="change">申请退房</router-link>
+										<router-link tag="span" :to="Fn.getUrl({path: '/hotelDetail',query:{id:4,hotelName: '银河大酒店'}})" class="pay">再次预定</router-link>
 									</div>
 								</div>
 							</div>
@@ -111,7 +111,7 @@
 						<div class="item">
 							<span class="time">预定日期: 03-20</span>
 							<div class="content_box" v-for="(i,index) in 2" :key="index">
-								<router-link tag="div" :to="{path: '/my/order/orderPay',query:{isPay: 2}}" class="content">
+								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{isPay: 2}})" class="content">
 									<p>
 										<span class="title">银河大酒店</span>
 										<span class="title_t">(豪华酒店 |四星级)</span>
@@ -138,7 +138,7 @@
 									    <span class="here">到这里</span>
 								    </div>
 									<div class="button">
-										<router-link tag="span" :to="{path: '/hotelDetail',query:{id:4,hotelName: '银河大酒店'}}" class="pay">再次预定</router-link>
+										<router-link tag="span" :to="Fn.getUrl({path: '/hotelDetail',query:{id:4,hotelName: '银河大酒店'}})" class="pay">再次预定</router-link>
 									</div>
 								</div>
 							</div>

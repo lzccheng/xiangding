@@ -72,8 +72,8 @@
 							</span>
 						</li>
 						<div class="send_box">
-							<router-link tag="span" to="/my/custom" class="custom">联系客服</router-link>
-							<router-link tag="span" to="/my/order/payMethods" class="custom">付款</router-link>
+							<router-link tag="span" :to="Fn.getUrl({path: '/my/custom'})" class="custom">联系客服</router-link>
+							<router-link tag="span" :to="Fn.getUrl({path: '/my/order/payMethods'})" class="custom">付款</router-link>
 						</div>
 					</ul>
 				</div>
@@ -146,7 +146,7 @@
 										</span>
 									</li>
 									<div class="send_box">
-										<center><router-link tag="span" to="/my/custom" class="custom">联系客服</router-link></center>
+										<center><router-link tag="span" :to="Fn.getUrl({path: '/my/custom'})" class="custom">联系客服</router-link></center>
 									</div>
 								</ul>
 							</div>

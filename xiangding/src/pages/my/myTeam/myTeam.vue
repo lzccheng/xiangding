@@ -60,9 +60,9 @@
 		data(){
 			return {
 				arrItem: [
-					'VIP1',
-					'VIP2',
-					'VIP3'
+					' VIP1 ',
+					' VIP2 ',
+					' VIP3 '
 				],
 				index_: 0,
 				itemArr1: [],
@@ -80,7 +80,7 @@
 			_lineLeft(){
 				this.index_ = this.$route.query.status || 0
 				this.$refs._line.style.left = this.$refs.tab.children[this.index_].offsetLeft + 'px'
-				this.$refs._line.style.width =  this.$refs.tab.children[this.index_].offsetWidth + 'px'
+				this.$refs._line.style.width = this.$refs.tab.children[this.index_].offsetWidth + 'px'
 			},
 			getData(agant){
 				let that = this
@@ -115,7 +115,6 @@
 		font-size: rem(14px);
 		.nav{
 			position: relative;
-			border-bottom: #aaa solid rem(1px);
 			div{
 				&.active{
 				}
@@ -129,7 +128,7 @@
 					}
 				}
 				&.line{
-					width: rem(20px);
+					width: rem(40px);
 					height: rem(5px);
 					background-color: #43c122;
 					position: absolute;

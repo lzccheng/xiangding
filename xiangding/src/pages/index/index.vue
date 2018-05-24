@@ -115,7 +115,7 @@
       <div class="near">
         <p class="title">附近推荐酒店</p>
         <div class="hotelRoom" v-for='(i,index) in hotel' :key='index'>
-          <router-link :to="{path: '/hotelDetail',query:{id:i.id,hotelName:'银河大酒店',date1:date_value[0].datetime,date2:date_value[1].datetime}}" tag='div'>
+          <router-link :to="Fn.getUrl({path: '/hotelDetail',query:{id:i.id,hotelName:'银河大酒店',date1:date_value[0].datetime,date2:date_value[1].datetime}})" tag='div'>
             <img :src="i.imgUrl">
             <div>
               <p class="min_title">

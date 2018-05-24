@@ -4,7 +4,7 @@
 		<span class="delect" v-if="1==index_">删除</span>
 		<div>
 			<div v-if="0==index_">
-			    <router-link tag="div" :to="{path: '/my/roomSend/roomSend',query:{title: '房间编辑'}} ">
+			    <router-link tag="div" :to="Fn.getUrl({path: '/my/roomSend/roomSend',query:{title: '房间编辑'}}) ">
 					<div v-for="(i,index) in arr" class="item" :key="index">
 						<div class="img">
 							<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425433535&di=f7d324b2c95bd6f203fb8741290c02e3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D41481487a2773912d02b8d219161e374%2Ff3d3572c11dfa9ec3d58042d69d0f703918fc192.jpg" alt="">
@@ -57,8 +57,8 @@
 		</div>
 		<div class="control">
 			<div class="add" @click="onHandleChange(0)" >
-			    <router-link tag="div" to="/my/roomSend/roomSend" class="icon_1"><i class="far fa-plus-square"></i></router-link>
-				<router-link tag="span" :to="{path: '/my/roomSend/roomSend',query:{title: '房间发布' }}" >房间发布</router-link>
+			    <router-link tag="div" :to="Fn.getUrl({path: '/my/roomSend/roomSend'})" class="icon_1"><i class="far fa-plus-square"></i></router-link>
+				<router-link tag="span" :to="Fn.getUrl({path: '/my/roomSend/roomSend',query:{title: '房间发布' }})" >房间发布</router-link>
 			</div>
 			<div class="add" style="border-right: #e5e5e5 solid 1px;" v-if="index_ != 1" @click="onHandleChange(1)" >
 			    <div class="icon_1"><i class="far fa-minus-square"></i></div>
@@ -72,19 +72,19 @@
 		<div class="line_"></div>
 		<div class="footer">
 			<div class="room_box">
-				<router-link tag="div" to="/my/roomEnter/meettingSend" class="room" >
+				<router-link tag="div" :to="Fn.getUrl({path: '/my/roomEnter/meettingSend'})" class="room" >
 					<div class="icon_3"><i class="far fa-plus-square"></i></div>
 					<span>会议室发布</span>
 				</router-link>
 			</div>
 			<div class="room_box">
-				<router-link tag="div" to="/my/roomEnter/teamSend" class="room" >
+				<router-link tag="div" :to="Fn.getUrl({path: '/my/roomEnter/teamSend'})" class="room" >
 					<div class="icon_3"><i class="far fa-plus-square"></i></div>
 					<span>团房发布</span>
 				</router-link>
 			</div>
 			<div class="room_box">
-				<router-link tag="div" to="/my/roomEnter/clockSend" class="room left">
+				<router-link tag="div" :to="Fn.getUrl({path: '/my/roomEnter/clockSend'})" class="room left">
 					<div class="icon_3"><i class="far fa-plus-square"></i></div>
 					<span>钟点房</span>
 				</router-link>

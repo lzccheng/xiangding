@@ -13,7 +13,7 @@
 					</div>
 				</div>
 			</div>
-			<router-link tag="div" to="/my/bindCard" class="add">
+			<router-link tag="div" :to="Fn.getUrl({path: '/my/bindCard'})" class="add">
 				<span><i class="fas fa-plus"></i></span>
 				<span>添加银行卡</span>
 			</router-link>

@@ -29,7 +29,7 @@
 				</p>
 			</div>
 			<div class="body">
-				<router-link class="button" tag="div" to="/enter/login">
+				<router-link class="button" tag="div" :to="Fn.getUrl({path: '/enter/login' })">
 					<span>绑定</span>
 				</router-link>
 			</div>

@@ -30,7 +30,7 @@
                     </div>
                     <div class="i">
                         <br/>
-                        <router-link tag="p" to="/my/incomeTable" class="room_nmb">详情</router-link>
+                        <router-link tag="p" :to="Fn.getUrl({path: '/my/incomeTable'})" class="room_nmb">详情</router-link>
                     </div>
                 </div>      
             </div>

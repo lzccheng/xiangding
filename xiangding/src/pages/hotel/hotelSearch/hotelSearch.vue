@@ -25,7 +25,7 @@
 									</span>
 								</span>
 							</div>
-							<router-link tag="div" to="/hotel/searchPage" class="search_" @click="handleSearch">
+							<router-link tag="div" :to="Fn.getUrl({path: '/hotel/searchPage'})" class="search_" @click="handleSearch">
 								<input type="text" placeholder="酒店 / 品牌" class="">
 								<span><i class="fas fa-search"></i></span>
 							</router-link>
@@ -175,7 +175,7 @@
 					<div class="text" :class="{color_free: free[1].active}" @click="handleChoice(1)">活动优惠</div>
 				</div>
 				<div class="show">
-					<router-link :to="{path: '/hotelDetail',query:{id:2,name: title,hotelName: '广州银河大酒店',date1:dateValue[0].datetime,date2:dateValue[1].datetime}}" tag="div" class="item" v-for="(i,index) in 10" :key='index'>
+					<router-link :to="Fn.getUrl({path: '/hotelDetail',query:{id:2,name: title,hotelName: '广州银河大酒店',date1:dateValue[0].datetime,date2:dateValue[1].datetime}})" tag="div" class="item" v-for="(i,index) in 10" :key='index'>
 						<div class="img">
 							<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523706249725&di=7bd2cda519bba9f885f6504617bc853b&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F9922720e0cf3d7cac93f8f64f81fbe096a63a9d3.jpg" alt="">
 						</div>

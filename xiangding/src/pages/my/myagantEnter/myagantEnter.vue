@@ -10,7 +10,7 @@
 		    	</div>
 		    </div>
 	    </div>
-	    <router-link to='/my/cashDetail' class="nav" tag='span'>
+	    <router-link :to="Fn.getUrl({patj: '/my/cashDetail'})" class="nav" tag='span'>
 	    	<div class="green"></div>
 	    	<span class="hotel">我服务的酒店</span>
 	    	<span class="num">30</span>
@@ -20,7 +20,7 @@
 			<p class="title">
 				<span class="icon_money"><i class="fas fa-dollar-sign"></i></span>
 				<span class="content">9月收益</span>
-				<router-link tag="span" to="/my/cash" class="deposit">提现</router-link>
+				<router-link tag="span" :to="Fn.getUrl({path: '/my/cash'})" class="deposit">提现</router-link>
 			</p>
 			<div class="earning">
 				<p class="text"><span>本月服务费收益</span></p>
@@ -45,12 +45,12 @@
 		</div>
 	    <div class="line"></div>
 	    <div class="footer">
-	    	<router-link to="/my/myagantEnter/agantIncome" tag="div" class="item">
+	    	<router-link :to="Fn.getUrl({path: '/my/myagantEnter/agantIncome'})" tag="div" class="item">
 	    		<span class="detailt"><i class="fab fa-deviantart"></i></span>
 	    		<span class="text">本月管理金收益明细</span>
 	    		<span class="gt"><i class="fas fa-chevron-right"></i></span>
 	    	</router-link>
-	    	<router-link to="/my/myagantEnter/agantHistory" tag="div" class="item">
+	    	<router-link :to="Fn.getUrl({path: '/my/myagantEnter/agantHistory'})" tag="div" class="item">
 	    		<span class="return"><i class="fas fa-undo"></i></span>
 	    		<span class="text">历史管理金收益明细</span>
 	    		<span class="gt"><i class="fas fa-chevron-right"></i></span>

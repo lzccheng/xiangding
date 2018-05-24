@@ -24,7 +24,7 @@
 					<span><input type="text" placeholder="请输入您的新密码"></span>
 				</p>
 				<p class="btn">
-					<router-link tag="span" to="/enter/login" class="text">确认</router-link>
+					<router-link tag="span" :to="Fn.getUrl({path: '/enter/login'})" class="text">确认</router-link>
 				</p>
 			</div>
 		</div>

@@ -80,7 +80,7 @@
 		</div>
 		<div class="btn">
 			<div class="total">￥289</div>
-			<router-link class="pay" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title}}" tag='div'>预定</router-link>
+			<router-link class="pay" :to="Fn.getUrl({path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title}})" tag='div'>预定</router-link>
 		</div>
 	</div>
 </template>

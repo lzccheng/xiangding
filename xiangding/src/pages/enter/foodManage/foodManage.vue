@@ -17,7 +17,7 @@
 			<div class="show">
 				<div v-if="0 == index_c">
 					<div v-if="index_ != 1">
-						<router-link  tag="div" :to="{path: Fn.getUrl('/enter/hotelManage/foodAdd'),query: {name: '套餐修改'}}" v-for="(i,index) in dataArr" :key="index" class="item">
+						<router-link  tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/foodAdd',query:{name: '套餐修改'}})" v-for="(i,index) in dataArr" :key="index" class="item">
 							<div class="img"><img :src="i.urlImg" alt=""></div>
 							<div class="text">
 								<p class="child_1">{{i.title}}</p>
@@ -46,7 +46,7 @@
 					</div>
 				</div>
 				<div v-if="1  == index_c">
-					<router-link  tag="div" to="/enter/hotelManage/mealDetail" v-for="(i,index) in dataArr" :key="index" class="item">
+					<router-link  tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/mealDetail'})" v-for="(i,index) in dataArr" :key="index" class="item">
 						<div class="img"><img :src="i.urlImg" alt=""></div>
 						<div class="text">
 							<p class="child_1">{{i.title}}</p>
@@ -64,7 +64,7 @@
 		</div>
 		<div class="add_box" >
 			<div v-if="0 == index_c">
-				<router-link tag="p" :to="{path: Fn.getUrl('/enter/hotelManage/foodAdd'),query: {name: '添加套餐'}}" v-if="0==index_" class="botton">
+				<router-link tag="p" :to="Fn.getUrl({path: '/enter/hotelManage/foodAdd',query: {name: '添加套餐'}})" v-if="0==index_" class="botton">
 					<span><i class="fas fa-plus-circle"></i></span>
 					<span>添加</span>
 				</router-link>
