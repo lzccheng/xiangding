@@ -211,6 +211,18 @@
 			},(err)=>{
 				console.log(err)
 			})
+			this.$axios.get('?i=3&mid=undefined&type=1&shop_id=null&route=member.member.getMyAgent_v2').then((res)=>{
+				// console.log(res)
+				that.msg.income.firstAgent = res.data.data.level1.total
+				that.msg.income.secondAgent = res.data.data.level2.total
+				that.msg.income.thirdAgent = res.data.data.level3.total
+			},(err)=>{
+				console.log(err)
+			})
+			// console.log(this.$store.state.date1)
+			// console.log(this.$store.state.date2)
+			// this.$store.commit('changeDate1',{date:5555})
+			// console.log(this.$store.state.date1)
 		},
 		data(){
 			return {

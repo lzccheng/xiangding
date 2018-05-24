@@ -99,7 +99,7 @@
 									
 									<div class="button">
 										<router-link tag="span" to="/my/cancelRoom" class="change">申请退房</router-link>
-										<router-link tag="span" to="/hotelDetail" class="pay">再次预定</router-link>
+										<router-link tag="span" :to="{path: '/hotelDetail',query:{id:4,hotelName: '银河大酒店'}}" class="pay">再次预定</router-link>
 									</div>
 								</div>
 							</div>
@@ -138,7 +138,7 @@
 									    <span class="here">到这里</span>
 								    </div>
 									<div class="button">
-										<router-link tag="span" to="/hotelDetail" class="pay">再次预定</router-link>
+										<router-link tag="span" :to="{path: '/hotelDetail',query:{id:4,hotelName: '银河大酒店'}}" class="pay">再次预定</router-link>
 									</div>
 								</div>
 							</div>
@@ -157,6 +157,7 @@
 		},
 		mounted(){
 			this._lineLeft()
+			
 		},
 		data(){
 			return {

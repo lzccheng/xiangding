@@ -119,7 +119,7 @@
 							</div>
 							<div class="title">
 								<p>特惠商务房</p>
-								<p>{{i.area}}m <sup>2</sup> / <span>{{people}}</span>人</p>
+								<p> {{i.area}}m <sup>2</sup>/<span>{{people}}</span>人</p>
 							</div>
 							<div class="price">
 								<p><span class="first">￥</span>{{i.price}}<span class="first">元</span></p>

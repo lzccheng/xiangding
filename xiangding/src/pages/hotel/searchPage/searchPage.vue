@@ -86,7 +86,7 @@
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				padding: rem(7px) 0;
+				padding: rem(10px) 0;
 				.left_icon{
 					color: #fff;
 					font-size: rem(20px);
@@ -98,7 +98,7 @@
 					background-color: #fff;
 					border-radius: rem(5px);
 					// padding: rem(7px) 16% rem(7px) 3%;
-					padding: rem(4px) 0;
+					padding: rem(7px) 0;
 					width: 70%;
 					span{
 						&:first-child{

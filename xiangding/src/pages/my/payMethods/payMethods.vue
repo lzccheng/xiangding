@@ -16,7 +16,7 @@
 		<div v-for="(i,index) in arrItem" :key="index"  class="item" @click="handleChange(index)">
 			<div class="img"><img :src="i.imgUrl" alt=""></div>
 			<div class="text">
-				<p>{{i.text}}</p>
+				<span>{{i.text}}</span>
 				<span class="right">
 					<el-radio-group v-model="radio2">
 					    <el-radio :label="index">&nbsp;</el-radio>
@@ -36,15 +36,19 @@
 			return {
 				arrItem: [
 					{
-						imgUrl: 'http://www.share-hotel.cn/addons/share/img/payMethods/weChat.jpg',
+						// imgUrl: 'http://www.share-hotel.cn/addons/share/img/payMethods/weChat.png',
+						imgUrl: '../../../static/img/payMethods/weChat.png',
 						text: '微信支付'
 					},
 					{
-						imgUrl: 'http://www.share-hotel.cn/addons/share/img/payMethods/friend.png',
+						// imgUrl: 'http://www.share-hotel.cn/addons/share/img/payMethods/friend.png',
+						imgUrl: '../../../static/img/payMethods/friend.png',
 						text: '朋友代付'
+
 					},
 					{
-						imgUrl: 'http://www.share-hotel.cn/addons/share/img/payMethods/pag.jpg',
+						// imgUrl: 'http://www.share-hotel.cn/addons/share/img/payMethods/pag.png',
+						imgUrl: '../../../static/img/payMethods/pag.png',
 						text: '余额支付'
 					}
 				],
@@ -74,6 +78,7 @@
 		width: 100%;
 		position: relative;
 		padding-bottom: rem(60px);
+		padding-top: rem(20px);
 		.line{
 			border: #e5e5e5 solid rem(6px);
 		}
@@ -117,15 +122,15 @@
 			}
 		}
 		.item{
-			margin: rem(10px) 0;
 			display: flex;
+			align-items: center;
+			justify-content: center;
 			border-bottom: #aaa solid rem(1px);
-			padding-top: rem(5px);
+			padding: rem(18px) 0;
 			div{
-				margin-bottom: rem(10px);
 				&.img{
-					width: 8%;
-					height: rem(30px);
+					width: rem(25px);
+					height: rem(25px);
 					margin-left: 4%;
 					img{
 						width: 100%;
@@ -141,13 +146,13 @@
 					}
 					.right{
 						float: right;
-						line-height: rem(35px);
 					}
 				}
 			}
 		}
 		.bottom_box{
 			padding: rem(10px) 12%;
+			margin-top: rem(20px);
 			.button{
 				background-color: #43c122;
 				padding: rem(12px) 10%;

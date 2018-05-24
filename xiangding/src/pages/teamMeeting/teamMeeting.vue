@@ -12,6 +12,10 @@
 				</div>
 			</div>
 			<div class="style none"  @click="onHandleCancel" ref="_style">
+				<div>
+					<p><span>星级：</span></p>
+					<el-rate v-model="star"></el-rate>
+				</div>
 				<div class="padding">
 					<p><span>价格：{{pay[0]}} - {{pay[1]}} 元</span></p>
 					<el-slider
@@ -20,10 +24,7 @@
 				      :max="3000">
 				    </el-slider>
 				</div>
-				<div>
-					<p><span>星级：</span></p>
-					<el-rate v-model="star"></el-rate>
-				</div>
+				
 				<div class="btn">
 					<button class="green_btn" @click="onMeettingSure">确定</button>
 				</div>
@@ -468,7 +469,7 @@
 			.style{
 				padding-top: rem(10px);
 				.padding{
-					padding: rem(10px) rem(25px) 0
+					padding: rem(26px) rem(25px) 0
 				}
 			}
 		}

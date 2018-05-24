@@ -69,7 +69,7 @@
 				<li class="item">
 					<span class="name">早餐提供:</span>
 					<div class="select_1">
-						<el-select v-model="select6" slot="prepend" placeholder="请选择">
+						<el-select v-model="select7" slot="prepend" placeholder="请选择">
 					      <el-option label="是" value="1"></el-option>
 					      <el-option label="否" value="2"></el-option>
 					    </el-select>
@@ -111,7 +111,7 @@
 					<div class="check">
 					<div class="padding-bottom">
 						  <el-checkbox-group v-model="checkList1">
-						  	<span class="check_box"><el-checkbox label="24小时热水"></el-checkbox></span>
+						  	<span class="check_box" ><el-checkbox label="24小时热水"></el-checkbox></span>
 						  	<span class="check_box"><el-checkbox label="拖鞋"></el-checkbox></span>
 						  	<span class="check_box"><el-checkbox label="吹风机"></el-checkbox></span>
 						  	<span class="check_box"><el-checkbox label="电视机"></el-checkbox></span>
@@ -125,10 +125,6 @@
 					</div>
 				</li>
 			</ul>
-			<!-- <div class="add_room">
-				<span><i class="far fa-plus-square"></i></span>
-				<span class="color">添加房间</span>
-			</div> -->
 			<div class="send">
 				<button v-if="title === '房间发布'" class="green_btn">发布</button>
 				<button v-else class="green_btn">确定</button>
@@ -158,6 +154,7 @@
 			    input5: '',
 			    select5: '1.5米',
 			    select6: '是',
+			    select7: '是',
 			    checkList1: ['24小时热水'],
 			    value1: true,
 	            value2: true,
@@ -191,8 +188,6 @@
 				formData.append('file',file)
 				console.log(formData)
 			},
-			
-			
 			cancelBubble(e){
 				var e = e || event
 				e.cancelBubble = true

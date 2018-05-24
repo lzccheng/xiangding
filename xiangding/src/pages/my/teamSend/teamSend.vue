@@ -46,7 +46,7 @@
 				<li class="item">
 					<span class="name">早餐提供:</span>
 					<div class="select_1">
-						<el-select v-model="select6" slot="prepend" placeholder="请选择">
+						<el-select v-model="select7" slot="prepend" placeholder="请选择">
 					      <el-option label="是" value="1"></el-option>
 					      <el-option label="否" value="2"></el-option>
 					    </el-select>
@@ -160,6 +160,7 @@
 			    input5: '',
 			    select5: '1.5米',
 			    select6: '是',
+			    select7: '是',
 			    checkList1: ['24小时热水'],
 			    value1: true,
                 value2: true,
