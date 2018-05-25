@@ -1,6 +1,6 @@
 <template>
 	<div class="box">
-		<router-link class="route" tag='div' :to='i.url' v-for='(i ,index) in navItem':key='index'>
+		<router-link class="route" tag='div' :to="Fn.getUrl({path:i.url})" v-for='(i ,index) in navItem':key='index'>
 			<div @click='Nav(index)'>
 				<p :class="{color:indexData==index}"><i :class="i.class"></i></p>
 				<p :class="{color:indexData==index}">{{i.name}}</p>

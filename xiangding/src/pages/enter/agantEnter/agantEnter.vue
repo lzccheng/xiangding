@@ -13,7 +13,8 @@
 				</div>
 			</div>
 		</div> -->
-		<div>
+		<!--可申请-->
+		<div v-show="status == -1">
 			<div class="form">
 				<p class="input">
 					<label>代理商姓名:</label>
@@ -132,16 +133,47 @@
 				<span class="agreement" @click="handleShow">《入驻协议》</span>
 			</div>
 		</div>
-		<div></div>
+		<!--待审核-->
+		<div v-show="status == 0" class="tips">
+			<div class="ico">
+				<i class="fas fa-check-circle"></i>
+			</div>
+			<div class="text">申请已提交，请等待审核！</div>
+			<div class="sub"><router-link tag="span" :to="Fn.getUrl({path: '/'})" class="green_btn">去首页逛逛</router-link></div>
+		</div>
+		<!--已通过-->
+		<div v-show="status == 1" class="tips">
+			<div class="ico">
+				<i class="far fa-check-circle"></i>
+			</div>
+			<div class="text">恭喜您已通过审核</div>
+			<div class="sub"><router-link tag="span" :to="Fn.getUrl({path: '/'})" class="green_btn">去招代理</router-link></div>
+		</div>
+		<!--驳回申请-->
+		<div v-show="status == -2" class="tips">
+			<div class="ico">
+				<i class="fa fa-check"></i>
+			</div>
+			<div class="text">您的申请被驳回，请继续努力！</div>
+			<div class="sub"><router-link tag="span" :to="Fn.getUrl({path: '/'})" class="green_btn">去首页逛逛</router-link></div>
+		</div>
 	</div>
 </template>
 <script>
 	import myalert from '../../../components/alert/alert'
+	import {Toast} from 'mint-ui'
 	export default {
 		mounted(){
+			let that = this
 			// this.$axios.post('/addons/yun_shop/api.php?i=3&c=entry&do=shop&type=1&m=yun_shop&route=plugin.store-cashier.frontend.store.store.upload').then((res)=>{
 			// 	console.log(res)
 			// })
+			// https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=plugin.merchant.frontend.get-center-condition&
+			// https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=plugin.merchant.frontend.get-center-condition&
+			// this.Http.get({route:'plugin.merchant.frontend.get-center-condition'}).then(res=>{
+			// 	console.log(1111,res)
+			// })
+			this.getStatus()
 		},
 		components: {
 	        myalert
@@ -158,26 +190,33 @@
 					IDcard_back: '',
 					IDcard_facade: ''
 				},
-				actionUrl: process.env.API_ROOT+'?i=3&c=entry&do=shop&type=1&m=yun_shop&route=plugin.store-cashier.frontend.store.store.upload',
+				actionUrl: process.env.API_ROOT+'/addons/yun_shop/api.php?i=3&c=entry&do=shop&type=1&m=yun_shop&route=plugin.store-cashier.frontend.store.store.upload',
 				fileList1: [],
 				fileList2: [],
 				fileNum: 1,
-				imageUrl:''
+				imageUrl:'',
+				status: 8
 			}
 		},
 		methods: {
+			getStatus(){
+				let that = this
+				this.Http.get({route:'plugin.merchant.frontend.get-center-condition'}).then(res=>{
+					that.status = res.data.data.status
+				})
+			},
 			fileError(){
-				this.$message.error('上传失败！');
+				this.Fn.tips('上传失败！');
 			},
 			checkFile(file){
 				const isPNG = (file.type === 'image/png' || file.type === 'image/jpeg');
 	            const isLt2M = file.size / 1024 / 1024 < 3;
 	            console.log(file.size / 1024 / 1024)
 	            if (!isPNG) {
-	                this.$message.error('图片只能是 JPG或PNG 格式!');
+	            	this.Fn.tips('图片只能是 JPG或PNG 格式!')
 	            }
 	            if (!isLt2M) {
-	                this.$message.error('图片大小不能超过 3MB!');
+	            	this.Fn.tips('图片大小不能超过 3MB!')
 	            }
 	            return isPNG && isLt2M;
 			},
@@ -185,10 +224,12 @@
 				// this.formData.IDcard_facade&&this.fileList1[0].splice(0,1)
 				console.log(this.fileList1)
 				this.formData.IDcard_facade = res.data.img
+				this.Fn.tips(res.msg)
 			},
 			handleSuccess2(res, file, fileList){
 				this.formData.IDcard_back&&this.fileList2.shift()
 				this.formData.IDcard_back = res.data.img
+				this.Fn.tips(res.msg)
 			},
 			removeFile1(){
 				this.formData.IDcard_facade = ''
@@ -205,48 +246,27 @@
 	      	handleFileUpload(){},
 			handleFormSubmit(){
 				if(!this.formData.name){
-					return this.$message({
-				          message: '代理商姓名不能为空',
-				          type: 'warning'
-				        });
+					return this.Fn.tips('代理商姓名不能为空')
 				}
 				if(this.formData.mobile){
 					if(!this.Fn.checkPhone(this.formData.mobile)){
-						return this.$message({
-				          message: '请输入正确的联系电话',
-				          type: 'warning'
-				        });
+						return this.Fn.tips('请输入正确的联系电话')
 					}
 				}else{
-					return this.$message({
-				          message: '联系电话不能为空',
-				          type: 'warning'
-				        });
+					return this.Fn.tips('联系电话不能为空')
 				}
 				if(this.formData.IDcard){
 					if(!this.Fn.checkId(this.formData.IDcard)){
-						return this.$message({
-				          message: '请输入正确的身份证号',
-				          type: 'warning'
-				        });
+						return this.Fn.tips('请输入正确的身份证号')
 					}
 				}else{
-					return this.$message({
-				          message: '身份证号不能为空',
-				          type: 'warning'
-				        });
+					return this.Fn.tips('身份证号不能为空')
 				}
 				if(!this.formData.IDcard_facade){
-					return this.$message({
-				          message: '请上传身份证正面照',
-				          type: 'warning'
-				        });
+					return this.Fn.tips('请上传身份证正面照')
 				}
 				if(!this.formData.IDcard_back){
-					return this.$message({
-				          message: '请上传身份证反面照',
-				          type: 'warning'
-				        });
+					return this.Fn.tips('请上传身份证反面照')
 				}
 				console.log({...this.formData})
 				// this.$axios.post('?i=3&c=entry&do=shop&m=yun_shop&route=plugin.merchant.frontend.merchant-apply.staff',{...this.formData}).then((res)=>{
@@ -254,7 +274,10 @@
 				// })
 				this.Http.post({route:'plugin.merchant.frontend.merchant-apply.staff',data:{...this.formData}}).then(res=>{
 					console.log(res)
+					this.Fn.tips(res.data.msg)
 				})
+
+				
 			},
 			handleGetCode(){
 				let that = this
@@ -275,32 +298,20 @@
 				let value = document.querySelector('.handleCheck').value
 				if(value){
 					if(!this.Fn.checkPhone(value)){
-						this.$message({
-				          message: '请输入正确的联系电话',
-				          type: 'warning'
-				        });
+						this.Fn.tips('请输入正确的联系电话')
 					}
 				}else{
-					this.$message({
-			          message: '联系电话不能为空',
-			          type: 'warning'
-			        });
+					this.Fn.tips('联系电话不能为空')
 				}
 			},
 			handleCheckId(event){
 				let value = document.querySelector('.handleCheckId').value
 				if(value){
 					if(!this.Fn.checkId(value)){
-						this.$message({
-				          message: '请输入正确身份证号',
-				          type: 'warning'
-				        });
+						this.Fn.tips('请输入正确身份证号')
 					}
 				}else{
-					this.$message({
-			          message: '身份证号不能为空',
-			          type: 'warning'
-			        });
+					this.Fn.tips('身份证号不能为空')
 				}
 			},
 			// handleShow_back(){
@@ -312,6 +323,13 @@
 			// cancelBubble(event){
 			// 	event.cancelBubble = true
 			// },
+		},
+		watch: {
+			$route(to,from){
+				if(to.name === 'agantEnter'){
+					this.getStatus()
+				}
+			}
 		}
 	}
 </script>
@@ -528,6 +546,22 @@
 				
 			}
 		}
-
+		.tips{
+			background-color: #fff;
+			text-align: center;
+			.ico{
+				color: #43c122;
+				font-size: rem(55px);
+				padding-top: rem(100px);
+			}
+			.text{
+				margin-top: rem(15px);
+			}
+			.sub{
+				margin-top: rem(50px);
+				padding: 0 5%;
+			}
+		}
+		
 	}
 </style>
