@@ -84,17 +84,8 @@
 			},
 			getData(agant){
 				let that = this
-				const loading = that.$loading({
-		            lock: true,
-		            text: '加载中......',
-		            background: 'rgba(0, 0, 0, 0.7)'
-		          })
-				this.$axios.get('?i=3&c=entry&do=shop&m=yun_shop&route=member.member.getMyAgentData_v2&relationLevel='+agant).then((res)=>{
-					loading.close()
-					console.log(res.data.data.data)
+				this.Http.get({route:'member.member.getMyAgentData_v2',params:{relationLevel:agant}}).then(res=>{
 					that['itemArr'+agant] = res.data.data.data
-				},()=>{
-					loading.close()
 				})
 			}
 		},

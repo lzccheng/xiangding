@@ -179,6 +179,7 @@
 	</div>
 </template> 
 <script>
+	import { Toast } from 'mint-ui'
 	export default {
 		mounted(){
 			let that = this
@@ -192,37 +193,54 @@
 			// }).then(res=>{
 			// 	console.log(55555555,res)
 			// })
-			this.$axios.get('?i=3&c=entry&do=shop&m=yun_shop&route=member.member.getUserInfo').then((res)=>{
-				console.log(res)
-				// console.log(process.env.API_ROOT)
+			// this.$axios.get('?i=3&c=entry&do=shop&m=yun_shop&route=member.member.getUserInfo').then((res)=>{
+			// 	console.log(res.data)
+			// 	// console.log(process.env.API_ROOT)
 
-				if(res.data.data.login_url){
-					window.location.href = res.data.data.login_url + '&yz_redirect=' + that.Fn.base64_encode(window.location.href+'?')
-				}else{
-					// console.log(res.data)
-					that.msg.id = res.data.data.uid
-					that.msg.name = res.data.data.nickname
-					that.msg.imgUrl = res.data.data.avatar
-					that.msg.earning = res.data.data.credit.data
-					that.msg.level_name = res.data.data.level_name
-					that.msg.agent_nickname = res.data.data.yz_member.agent.nickname
-				}
+			// 	if(res.data.data.login_url){
+			// 		console.log(res.data.data.login_url)
+			// 		// window.location.href = res.data.data.login_url + '&yz_redirect=' + that.Fn.base64_encode(window.location.href+'?')
+			// 	}else{
+			// 		// console.log(res.data)
+			// 		that.msg.id = res.data.data.uid
+			// 		that.msg.name = res.data.data.nickname
+			// 		that.msg.imgUrl = res.data.data.avatar
+			// 		that.msg.earning = res.data.data.credit.data
+			// 		that.msg.level_name = res.data.data.level_name
+			// 		that.msg.agent_nickname = res.data.data.yz_member.agent.nickname
+			// 	}
 				
-			},(err)=>{
-				console.log(err)
+			// },(err)=>{
+			// 	console.log(err)
+			// })
+			// this.$axios.get('?i=3&mid=undefined&type=1&shop_id=null&route=member.member.getMyAgent_v2').then((res)=>{
+			// 	// console.log(res)
+			// 	that.msg.income.firstAgent = res.data.data.level1.total
+			// 	that.msg.income.secondAgent = res.data.data.level2.total
+			// 	that.msg.income.thirdAgent = res.data.data.level3.total
+			// },(err)=>{
+			// 	console.log(err)
+			// })
+			this.Http.get({
+				route: 'member.member.getUserInfo'
+			}).then(res=>{
+				that.msg.id = res.data.data.uid
+				that.msg.name = res.data.data.nickname
+				that.msg.imgUrl = res.data.data.avatar
+				that.msg.earning = res.data.data.credit.data
+				that.msg.level_name = res.data.data.level_name
+				that.msg.agent_nickname = res.data.data.yz_member.agent.nickname
 			})
-			this.$axios.get('?i=3&mid=undefined&type=1&shop_id=null&route=member.member.getMyAgent_v2').then((res)=>{
-				// console.log(res)
-				that.msg.income.firstAgent = res.data.data.level1.total
-				that.msg.income.secondAgent = res.data.data.level2.total
-				that.msg.income.thirdAgent = res.data.data.level3.total
-			},(err)=>{
-				console.log(err)
+
+			let dd = {
+				"username":'chenyan',
+				"password": '123456',
+				"action": 1,
+				"submit": '登录'
+			}
+			this.Http.post({baseUrl: 'web/index.php?c=user&a=login',data:dd}).then(res=>{
+				console.log(555555,res)
 			})
-			// console.log(this.$store.state.date1)
-			// console.log(this.$store.state.date2)
-			// this.$store.commit('changeDate1',{date:5555})
-			// console.log(this.$store.state.date1)
 		},
 		data(){
 			return {

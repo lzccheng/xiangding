@@ -152,7 +152,6 @@
 	import myalert from '../../../components/alert/alert'
 	export default {
 		mounted(){
-			console.log('data','handleShow_back')
 			this.$refs.eye_two.style.display = 'inline-block'
 			this.$refs.eye_one.style.display = 'none'
 			let that = this
@@ -254,10 +253,13 @@
 		methods: {
 			getEnterStatus(){
 				let that = this
-				this.$axios.get('?i=3&type=1&shop_id=null&route=plugin.store-cashier.frontend.store.store.verify-apply-status&').then(res=>{
-		        	// console.log(res)
-		        	that.enter_status = res.data.data.status
-		        })
+				// this.$axios.get('?i=3&type=1&shop_id=null&route=plugin.store-cashier.frontend.store.store.verify-apply-status&').then(res=>{
+		  //       	// console.log(res)
+		  //       	that.enter_status = res.data.data.status
+		  //       })
+		  		this.Http.get({route:'plugin.store-cashier.frontend.store.store.verify-apply-status'}).then(res=>{
+		  			that.enter_status = res.data.data.status
+		  		})
 			},
 			handleFile(e){
 				var e = e || event 

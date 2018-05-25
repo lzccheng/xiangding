@@ -249,10 +249,12 @@
 				        });
 				}
 				console.log({...this.formData})
-				this.$axios.post('?i=3&c=entry&do=shop&m=yun_shop&route=plugin.merchant.frontend.merchant-apply.staff',{...this.formData}).then((res)=>{
-				console.log(res)
-			})
-				
+				// this.$axios.post('?i=3&c=entry&do=shop&m=yun_shop&route=plugin.merchant.frontend.merchant-apply.staff',{...this.formData}).then((res)=>{
+				// 	console.log(res)
+				// })
+				this.Http.post({route:'plugin.merchant.frontend.merchant-apply.staff',data:{...this.formData}}).then(res=>{
+					console.log(res)
+				})
 			},
 			handleGetCode(){
 				let that = this

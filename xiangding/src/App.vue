@@ -49,7 +49,7 @@ export default {
       }else{
         this._footerHide()
       }
-      console.log(111,this.$store.state.userInfo)
+      // console.log(111,this.$store.state.userInfo)
       // if(!this.Fn.getKey('mid')){
       //   let bool = window.location.href.split('#')[1].indexOf('?')>-1?'&':'?'
       //   window.location.href = window.location.href+bool+'i='+this.Fn.getKeyByI()+'&type='+this.Fn.getType()+'&mid='+this.$store.state.userInfo.uid
@@ -64,6 +64,7 @@ export default {
 @import 'common/css/swiper.min';
 @import 'static/css/lzcDate';
 @import 'static/css/mobileSelect';
+@import 'static/css/mint';
 
 @media screen and (max-width: 325px) {
     html {

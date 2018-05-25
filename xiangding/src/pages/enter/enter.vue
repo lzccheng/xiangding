@@ -1,7 +1,7 @@
 <template>
 	<div class="box">
 		<div class="background">
-			
+
 		</div>
 		<div class="enter">
 			<router-link class="hotelEnter" tag="div" :to="Fn.getUrl({path: '/enter/hotelEnter'})">
@@ -19,11 +19,38 @@
 	import wx from 'weixin-js-sdk'
 	export default{
 		mounted(){
-			this.$axios.get('?i=3&c=entry&do=shop&type=1&m=yun_shop&route=member.member.wxJsSdkConfig').then(res=>{
-				console.log(res.data)
-				// wx.config(res.data.data.config)
+			console.info(wx)
+			let json = {
+				url: document.location.href,
+				i: this.Fn.getKeyByI(),
+				type: this.Fn.getType(),
+				jsApiList: ['getLocation']
+			}
+			// this.$axios.post('?i=3&c=entry&do=shop&type=1&m=yun_shop&route=member.member.wxJsSdkConfig',json).then(res=>{
+			// 	console.log(res.data)
+			// 	wx.config(res.data.data.config)
+			// 	wx.ready(()=>{
+			// 		alert('验证通过')
+			// 		wx.getLocation({
+			// 			success:function(res){
+			// 				let lng = res.longitude+','+res.latitude
+			// 				console.log(res)
+			// 				alert(res.latitude)
+			// 			},
+			// 			fail:function(res){
+			// 				alert(res.errMsg)
+			// 				console.log(res)
+			// 			}
+			// 		})
+			// 	})
+			// 	wx.error(res=>{
+			// 		console.log(res)
+			// 		alert(res.errMsg)
+			// 	})
+			// })
+			this.Http.post({route:'member.member.wxJsSdkConfig',data:json}).then(res=>{
+				console.log(res)
 			})
-			// this.$axios.get('')
 		},
 		data(){
 			return {
@@ -65,7 +92,7 @@
 		.hotelEnter{
 			background: linear-gradient(to bottom, #155880 , #94bf80);
 		}
-		
+
 		.agentEnter{
 			background: linear-gradient(to bottom, #94bf80 , #155880);
 		}
