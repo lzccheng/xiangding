@@ -20,7 +20,7 @@
 					<label>代理商姓名:</label>
 					<input type="text" placeholder="请输入姓名" name="" v-model="formData.name">
 				</p>
-				<p class="input">
+				<p class="input" style="border-bottom: none;">
 					<label>联系电话:</label>
 					<input @blur="handleCheck" class="handleCheck" v-model="formData.mobile" type="text" placeholder="请输入电话号码" name="">
 				</p>
@@ -284,7 +284,8 @@
 				this.$axios.get('?i=3&c=entry&do=shop&type=1&m=yun_shop&route=member.register.sendCode&mobile=' + this.formData.mobile).then((res)=>{
 					console.log(res)
 					if(res.data.result === 0){
-						return that.$message.error(res.data.msg);
+
+						return this.Fn.tips(res.data.msg)
 					}
 				})
 			},
