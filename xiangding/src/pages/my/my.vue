@@ -17,7 +17,7 @@
 			</router-link>
 		</div>
 		<div class="earning">
-			<p class="text"><span>当前余额</span></p>
+			<p class="text_1"><span>当前余额</span></p>
 			<p class="money" style="font-family:'微软雅黑' ,Arial !important"><span>￥</span><span>{{msg.earning}}</span></p>
 			<div class="earn">
 				<div class="order">
@@ -35,52 +35,19 @@
 					</p>
 				</div>
 			</div>
-			<div class="agent">
-				<router-link tag="div" :to="Fn.getUrl({path: '/my/myTeam'})" class="my_team1">
-					<p >
-					   <span class="icon"><i class="fas fa-users"></i></span>
-					   <span>我的团队</span>
-					</p>
-				</router-link>
-				<router-link tag="div" :to="Fn.getUrl({path: '/my/myTeam'})" class="my_team2">
-					<p><i class="fas fa-chevron-right"></i></p>
-				</router-link>
-				<!-- <ul>
-					<li>
-						<p><span>VIP1 ({{msg.income.firstAgent}}人)</span></p>
-						<p class="right">
-							<span>
-								<span>收入</span><br>
-								<span>0</span>
-							</span>
-							
-							<router-link tag="span" :to="{path: '/my/agantDetailt',query:{agant:1}}" class="detailt">详情</router-link>
-						</p>
-					</li>
-					<li>
-						<p><span>VIP2 ({{msg.income.secondAgent}}人)</span></p>
-						<p class="right">
-							<span>
-								<span>收入</span><br>
-								<span>0</span>
-							</span>
-							
-							<router-link tag="span" :to="{path: '/my/agantDetailt',query:{agant:2}}" class="detailt">详情</router-link>
-						</p>
-					</li>
-					<li>
-						<p><span>VIP3 ({{msg.income.thirdAgent}}人)</span></p>
-						<p class="right">
-							<span>
-								<span>收入</span><br>
-								<span>0</span>
-							</span>
-							
-							<router-link tag="span" :to="{path: '/my/agantDetailt',query:{agant:3}}" class="detailt">详情</router-link>
-						</p>
-					</li>
-				</ul> -->
-			</div>
+		</div>
+		<div class="earning">
+			<router-link tag="div" :to="Fn.getUrl({path: '/my/myTeam'})" class="earn_1" >
+				<div class="people">
+					<span class="icon" style="background-color: #ff9800;font-size: 19px;padding: 7px 7px;"><i class="fas fa-users"></i></span>
+					<span class="text">
+						<span>我的团队</span>
+					</span>
+				</div>
+				<div class="order">
+					<span style="color: #555555;"><i class="fas fa-chevron-right"></i></span>
+				</div>
+			</router-link>
 		</div>
 		<div class="hotelServe">
 			<p class="title">
@@ -257,7 +224,6 @@
 				margin: 0 0 rem(20px) rem(25px);
 				p{
 					display: inline-block;
-					
 				}
 				.text{
 						width: 75%;
@@ -296,15 +262,18 @@
 			}
 		}
 		.earn{
-			padding-top: rem(10px);
+			margin: rem(10px) 0;
 			display: flex;
-			justify-content: space-around;
+			align-items: center;
+			padding-bottom: rem(18px);
+			// justify-content: space-around;
+
 			.icon{
-					display: inline-block;
-					border-radius: 100%;
-					font-size: rem(25px);
-					color: #fff;
-				}
+				display: inline-block;
+				border-radius: 100%;
+				font-size: rem(25px);
+				color: #fff;
+			}
 			p{
 				display: inline-block;
 			}
@@ -319,16 +288,52 @@
 					}
 				}
 			}
+
 			.order{
+				width: 50%;
 				.icon{
 					padding: rem(5px) rem(10px);
 					background-color: #ff9800;
 				}
 			}
 			.people{
+				width: 50%;
 				.icon{
 					padding: rem(5px) rem(7px);
 					background-color: #ff4081;
+				}
+			}
+		}
+		.earn_1{
+			// margin: rem(10px) 0;
+			display: flex;
+			align-items: center;
+			padding: rem(8px) 0;
+			// justify-content: space-around;
+
+			.icon{
+				display: inline-block;
+				border-radius: 100%;
+				font-size: rem(25px);
+				color: #fff;
+			}
+			.text{
+				display: inline-block;
+				width: rem(91px);
+				text-align: left;
+			}
+			.order{
+				width: 50%;
+				span{
+					display: inline-block;
+					float: right;
+					width: 32%;
+				}
+			}
+			.people{
+				width: 50%;
+				.icon{
+					background-color: #ff9800;
 				}
 			}
 		}
@@ -336,7 +341,7 @@
 			background-color: #fff;
 			text-align: center;
 			font-size: rem(13px);
-			.text{
+			.text_1{
 				padding-top: rem(20px);
 			}
 			.money{
@@ -350,89 +355,7 @@
 				}
 			}
 			
-			.agent{
-				display: flex;
-				align-items: center;
-				// justify-content: center;
-				margin-top: rem(20px);
-				text-align: left;
-				border-top: #e5e5e5 solid rem(10px);
-				padding: rem(10px) 0;
-				.my_team1{
-					width: 50%;
-					font-size: rem(15px);
-					padding: rem(8px) 4%;
-					p{
-						.icon{
-							padding: rem(10px) rem(9px);
-							background-color: #FF9800;
-							border-radius: 100%;
-							color: #fff;
-							font-size: rem(16px);
-							margin-right: rem(5px);
-						}
-						// &:nth-child(2){
-						// 	width: 85%;
-						// }
-					}
-					
-				}
-				.my_team2{
-					width: 50%;
-					font-size: rem(15px);
-					// padding: rem(8px) 4%;
-					// p{
-					// 	&.icon{
-					// 		padding: rem(10px) rem(9px);
-					// 		background-color: #FF9800;
-					// 		border-radius: 100%;
-					// 		color: #fff;
-					// 		font-size: rem(16px);
-					// 		margin-right: rem(5px);
-					// 	}
-					// 	&:nth-child(2){
-					// 		width: 85%;
-					// 	}
-					// }
-					
-					
-				}
-				ul{
-					li{
-						border-top: 1px solid #d5d5d5;
-						padding: rem(12px) rem(20px);
-						p{
-							display: inline-block;
-							&.right{
-								float: right;
-								margin-top: -0.5rem;
-								span{
-									&:first-child{
-										margin-right: rem(20px);
-										text-align: center;
-										span{
-											&:first-child{
-												color: #aaa;
-											}
-											&:last-child{
-												padding-left: rem(10px);
-											}
-										}
-									}
-									&.detailt{
-										padding-left: rem(12px);
-										margin-top: rem(-16px);
-										float: right;
-										color: #0075FF;
-										line-height: rem(41px);
-									}
-								}
-							}
-						}
-						
-					}
-				}
-			}
+			
 		}
 		.hotelServe{
 			background-color: #fff;

@@ -436,7 +436,8 @@
 			.massage{
 				.horn{
 					background-color: #e5e5e5;
-					padding: rem(10px) rem(15px);
+					padding: 0 rem(15px);
+					padding-bottom: rem(10px);
 					color:  #faa300;
 					span{
 						padding: 0 rem(10px);
