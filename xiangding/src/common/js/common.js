@@ -1,4 +1,5 @@
 
+import {Toast} from 'mint-ui'
 const getStyle = (obj,attr) => {
 	return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle( obj )[attr]
 }
@@ -217,7 +218,12 @@ const checkPassword= (value)=>{
 const checkEmail = (value)=>{
 	return /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/.test(value)
 }
-
+const tips = value =>{
+	Toast({
+		message: value,
+		position: 'top'
+	})
+}
 export default {
 	getStyle,
 	getLocation,
@@ -237,5 +243,6 @@ export default {
 	getUrl,
 	getKey,
 	getKeyByI,
-	getType
+	getType,
+	tips
 }
