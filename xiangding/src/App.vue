@@ -44,12 +44,16 @@ export default {
   },
   watch: {
     '$route'(to,from){
-      document.body.scrollTop? document.body.scrollTop = 0:document.documentElement.scrollTop = 0
       if(to.name === 'my' || to.name === 'index' || to.name === 'hotel' || to.name === 'teamMeeting' || to.name === 'enter'){
         this._footerShow()
       }else{
         this._footerHide()
       }
+      // console.log(111,this.$store.state.userInfo)
+      // if(!this.Fn.getKey('mid')){
+      //   let bool = window.location.href.split('#')[1].indexOf('?')>-1?'&':'?'
+      //   window.location.href = window.location.href+bool+'i='+this.Fn.getKeyByI()+'&type='+this.Fn.getType()+'&mid='+this.$store.state.userInfo.uid
+      // }
     }
   }
 }
@@ -60,6 +64,7 @@ export default {
 @import 'common/css/swiper.min';
 @import 'static/css/lzcDate';
 @import 'static/css/mobileSelect';
+@import 'static/css/mint';
 
 @media screen and (max-width: 325px) {
     html {

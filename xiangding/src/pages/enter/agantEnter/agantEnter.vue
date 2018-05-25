@@ -13,123 +13,126 @@
 				</div>
 			</div>
 		</div> -->
-		<div class="form">
-			<p class="input">
-				<label>代理商姓名:</label>
-				<input type="text" placeholder="请输入姓名" name="" v-model="formData.name">
-			</p>
-			<p class="input">
-				<label>联系电话:</label>
-				<input @blur="handleCheck" class="handleCheck" v-model="formData.mobile" type="text" placeholder="请输入电话号码" name="">
-			</p>
-			<p class="input" style="border-bottom: none">
-				<label>验证码:</label>
-				<input type="text" style="width: 40%" v-model="formData.code" placeholder="请输入验证码" name="">
-				<span class="get" @click="handleGetCode"><span>获取验证码</span></span>
-			</p>
-		</div>
-		<div class="form_1">
-			<p class="mm">
-				<label>身份证号码:</label>
-				<input @blur="handleCheckId" v-model="formData.IDcard" class="handleCheckId" type="text" placeholder="请输入身份证号码" name="">
-			</p>
-			<div class="photo">
-				<!-- <p>
-					<span class="icon_photo">
-					   <label for="file"><i class="fas fa-camera"></i></label>
-					    <input type="file" id="file" style="display: none" @change="handleFileUpload">
-
-					</span>
-					<span class="icon_photo">
-					    <label for="file"><i class="fas fa-camera"></i></label>
-					    <input type="file" id="file" style="display: none">
-
-					</span>
+		<div>
+			<div class="form">
+				<p class="input">
+					<label>代理商姓名:</label>
+					<input type="text" placeholder="请输入姓名" name="" v-model="formData.name">
 				</p>
-				<p>
-					<span class="on">身份证正面照</span>
-					<span class="down">身份证反面照</span>
+				<p class="input">
+					<label>联系电话:</label>
+					<input @blur="handleCheck" class="handleCheck" v-model="formData.mobile" type="text" placeholder="请输入电话号码" name="">
 				</p>
-				
+				<!-- <p class="input" style="border-bottom: none">
+					<label>验证码:</label>
+					<input type="text" style="width: 40%" v-model="formData.code" placeholder="请输入验证码" name="">
+					<span class="get" @click="handleGetCode"><span>获取验证码</span></span>
 				</p> -->
-				<div class="item">
-					<div class="msg_tt">身份证正面照</div>
-					<div class="icon">
-						<div>
-							<el-upload
-							  :action="actionUrl"
-							  :on-success="handleSuccess1"
-							  list-type="text"
-							  :on-error="fileError"
-							  :on-remove="removeFile1"
-							  :before-upload="checkFile">
-							  <i class="el-icon-plus" v-show="!formData.IDcard_facade"></i>
-							</el-upload>
+			</div>
+			<div class="form_1">
+				<p class="mm">
+					<label>身份证号码:</label>
+					<input @blur="handleCheckId" v-model="formData.IDcard" class="handleCheckId" type="text" placeholder="请输入身份证号码" name="">
+				</p>
+				<div class="photo">
+					<!-- <p>
+						<span class="icon_photo">
+						   <label for="file"><i class="fas fa-camera"></i></label>
+						    <input type="file" id="file" style="display: none" @change="handleFileUpload">
+
+						</span>
+						<span class="icon_photo">
+						    <label for="file"><i class="fas fa-camera"></i></label>
+						    <input type="file" id="file" style="display: none">
+
+						</span>
+					</p>
+					<p>
+						<span class="on">身份证正面照</span>
+						<span class="down">身份证反面照</span>
+					</p>
+					
+					</p> -->
+					<div class="item">
+						<div class="msg_tt">身份证正面照</div>
+						<div class="icon">
+							<div>
+								<el-upload
+								  :action="actionUrl"
+								  :on-success="handleSuccess1"
+								  list-type="text"
+								  :on-error="fileError"
+								  :on-remove="removeFile1"
+								  :before-upload="checkFile">
+								  <i class="el-icon-plus" v-show="!formData.IDcard_facade"></i>
+								</el-upload>
+							</div>
+							
+							<div class="img" v-show="formData.IDcard_facade">
+								<img :src="formData.IDcard_facade">
+							</div>
 						</div>
 						
-						<div class="img" v-show="formData.IDcard_facade">
-							<img :src="formData.IDcard_facade">
-						</div>
 					</div>
-					
-				</div>
-				<div class="item">
-					<div class="msg_tt">身份证反面照</div>
-					<div class="icon">
-						<div>
-							<el-upload
-							  :action="actionUrl"
-							  :on-success="handleSuccess2"
-							  list-type="text"
-							  :on-error="fileError"
-							  :on-remove="removeFile2"
-							  :before-upload="checkFile">
-							  <i class="el-icon-plus" v-show="!formData.IDcard_back"></i>
-							</el-upload>
+					<div class="item">
+						<div class="msg_tt">身份证反面照</div>
+						<div class="icon">
+							<div>
+								<el-upload
+								  :action="actionUrl"
+								  :on-success="handleSuccess2"
+								  list-type="text"
+								  :on-error="fileError"
+								  :on-remove="removeFile2"
+								  :before-upload="checkFile">
+								  <i class="el-icon-plus" v-show="!formData.IDcard_back"></i>
+								</el-upload>
+							</div>
+							
+							<div class="img" v-show="formData.IDcard_back">
+								<img :src="formData.IDcard_back">
+							</div>
 						</div>
 						
-						<div class="img" v-show="formData.IDcard_back">
-							<img :src="formData.IDcard_back">
-						</div>
 					</div>
 					
+					<!-- <div class="text">身份证正面照:</div>
+					<el-upload
+					  class="upload-demo"
+					  :action="actionUrl"
+					  :on-success="handleSuccess1"
+					  :before-upload="checkFile"
+					  :file-list="fileList1"
+					  :on-error="fileError"
+					  :limit="fileNum"
+					  list-type="picture">
+					  <el-button size="small" type="primary">点击上传</el-button>
+					  <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过3M</div>
+					</el-upload>
+					<div class="text">身份证反面照:</div>
+					<el-upload
+					  class="upload-demo"
+					  :action="actionUrl"
+					  :on-success="handleSuccess2"
+					  :on-error="fileError"
+					  :before-upload="checkFile"
+					  :file-list="fileList2"
+					  :limit="fileNum"
+					  list-type="picture">
+					  <el-button size="small" type="primary">点击上传</el-button>
+					  <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过3M</div>
+					</el-upload> -->
 				</div>
-				
-				<!-- <div class="text">身份证正面照:</div>
-				<el-upload
-				  class="upload-demo"
-				  :action="actionUrl"
-				  :on-success="handleSuccess1"
-				  :before-upload="checkFile"
-				  :file-list="fileList1"
-				  :on-error="fileError"
-				  :limit="fileNum"
-				  list-type="picture">
-				  <el-button size="small" type="primary">点击上传</el-button>
-				  <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过3M</div>
-				</el-upload>
-				<div class="text">身份证反面照:</div>
-				<el-upload
-				  class="upload-demo"
-				  :action="actionUrl"
-				  :on-success="handleSuccess2"
-				  :on-error="fileError"
-				  :before-upload="checkFile"
-				  :file-list="fileList2"
-				  :limit="fileNum"
-				  list-type="picture">
-				  <el-button size="small" type="primary">点击上传</el-button>
-				  <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过3M</div>
-				</el-upload> -->
+				<div class="footer">
+				<!-- <router-link tag="p" to="/my/myagantEnter" class="button">立即申请</router-link> -->
+					<p class="green_btn" @click="handleFormSubmit">立即申请</p>
+				</div>
 			</div>
-			<div class="footer">
-			<!-- <router-link tag="p" to="/my/myagantEnter" class="button">立即申请</router-link> -->
-				<p class="green_btn" @click="handleFormSubmit">立即申请</p>
+			<div class="agreement_box">
+				<span class="agreement" @click="handleShow">《入驻协议》</span>
 			</div>
 		</div>
-		<div class="agreement_box">
-			<span class="agreement" @click="handleShow">《入驻协议》</span>
-		</div>
+		<div></div>
 	</div>
 </template>
 <script>
@@ -201,11 +204,57 @@
 	      	},
 	      	handleFileUpload(){},
 			handleFormSubmit(){
+				if(!this.formData.name){
+					return this.$message({
+				          message: '代理商姓名不能为空',
+				          type: 'warning'
+				        });
+				}
+				if(this.formData.mobile){
+					if(!this.Fn.checkPhone(this.formData.mobile)){
+						return this.$message({
+				          message: '请输入正确的联系电话',
+				          type: 'warning'
+				        });
+					}
+				}else{
+					return this.$message({
+				          message: '联系电话不能为空',
+				          type: 'warning'
+				        });
+				}
+				if(this.formData.IDcard){
+					if(!this.Fn.checkId(this.formData.IDcard)){
+						return this.$message({
+				          message: '请输入正确的身份证号',
+				          type: 'warning'
+				        });
+					}
+				}else{
+					return this.$message({
+				          message: '身份证号不能为空',
+				          type: 'warning'
+				        });
+				}
+				if(!this.formData.IDcard_facade){
+					return this.$message({
+				          message: '请上传身份证正面照',
+				          type: 'warning'
+				        });
+				}
+				if(!this.formData.IDcard_back){
+					return this.$message({
+				          message: '请上传身份证反面照',
+				          type: 'warning'
+				        });
+				}
 				console.log({...this.formData})
-				this.$axios.post('?i=3&c=entry&do=shop&m=yun_shop&route=plugin.merchant.frontend.merchant-apply.staff',{...this.formData}).then((res)=>{
-				console.log(res)
-			})
-				
+				// this.$axios.post('?i=3&c=entry&do=shop&m=yun_shop&route=plugin.merchant.frontend.merchant-apply.staff',{...this.formData}).then((res)=>{
+				// 	console.log(res)
+				// })
+				this.Http.post({route:'plugin.merchant.frontend.merchant-apply.staff',data:{...this.formData}}).then(res=>{
+					console.log(res)
+				})
 			},
 			handleGetCode(){
 				let that = this

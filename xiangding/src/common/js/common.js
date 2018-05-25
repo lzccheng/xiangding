@@ -77,7 +77,20 @@ const isWeiXin = ()=>{
 		return false;
 	}
 }
-
+const getType = ()=>{
+	var ua = window.navigator.userAgent.toLowerCase();
+	if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+		return "1";
+	} else{
+		return "5";
+	}
+}
+const getKey = name =>{
+	return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.href) || [, ""])[1].replace(/\+/g, '%20')) || null;
+}
+const getKeyByI = ()=>{
+	return 3
+}
 const getUrl = obj =>{
 	let i = 3
 	let type = isWeiXin()?'1':'5'
@@ -221,5 +234,8 @@ export default {
 	zero,
 	base64_encode,
 	isWeiXin,
-	getUrl
+	getUrl,
+	getKey,
+	getKeyByI,
+	getType
 }

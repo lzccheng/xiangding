@@ -146,7 +146,6 @@
     }
     // 第三个参数可以是对象也可以是返回对象的函数
     // Mock.mock('/api/hotelData', 'get', hotelData)
-    
     Mock.mock(process.env.API_ROOT+'/hotel', 'get', hotel)
     Mock.mock(process.env.API_ROOT, 'get', api)
     Mock.mock(process.env.API_ROOT+'/hotelDetail', 'get', hotelDetail)
