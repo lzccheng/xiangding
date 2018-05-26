@@ -280,20 +280,18 @@
 					processData: false
 				}).then((res)=>{
 					console.log(res)
-					that.$message({
-				          message: '上传成功！',
-				          type: 'success'
-				        });
+					this.Fn.tips('上传成功');
+					// that.$message({
+				 //          message: '上传成功！',
+				 //          type: 'success'
+				 //        });
 					that.formData.aptitudeImg = res.data.data.img
 				})
 			},
 			getLongAndLat(e){
 				var e = e || event
 				if(!this.struct){
-					return this.$message({
-				          message: '请选择地区',
-				          type: 'warning'
-				        });
+					return this.Fn.tips('请选择地区');
 				}
 				if(e.target.value){
 					let that = this
@@ -302,10 +300,11 @@
 					let success = (res)=>{
 						console.log(111,res)
 						if(res.geocodes[0].formattedAddress.split('|').join('').indexOf(value)<0){
-							that.$message({
-					          message: '没找到'+value,
-					          type: 'warning'
-					        });
+							this.Fn.tips('没找到');
+							// that.$message({
+					  //         message: '没找到'+value,
+					  //         type: 'warning'
+					  //       });
 						}
 						that.choseLng = res.geocodes[0].location.lng
 						that.choseLat= res.geocodes[0].location.lat
@@ -319,103 +318,62 @@
 					}
 					this.Fn.getLongAndLat(addr,success)
 				}else{
-					return this.$message({
-				          message: '请输入详细地址',
-				          type: 'warning'
-				        });
+					return this.Fn.tips('请输入详细地址');
 				}
 			},
 			handleFormSubmit(){
 				let that = this
 				console.log({...that.formData})
 				if(!this.formData.realname){
-					return this.$message({
-				          message: '请输入申请人',
-				          type: 'warning'
-				        });
+					return this.Fn.tips('请输入申请人');
+					// return this.$message({
+				 //          message: '请输入申请人',
+				 //          type: 'warning'
+				 //        });
 				}
 				if(this.formData.mobile){
 					if(!this.Fn.checkPhone(this.formData.mobile)){
-						return this.$message({
-				          message: '请输入正确的联系电话',
-				          type: 'warning'
-				        });
+						return this.Fn.tips('请输入正确的联系电话');
 					}
 				}else{
-					return this.$message({
-			          message: '联系电话不能为空',
-			          type: 'warning'
-			        });
+					return this.Fn.tips('联系电话不能为空');
 				}
 				if(!this.formData.username){
-					return this.$message({
-			          message: '账号不能为空！',
-			          type: 'warning'
-			        });
+					return this.Fn.tips('账号不能为空！');
 				}
 				
 				if(!this.formData.password){
-					return this.$message({
-			          message: '密码不能为空',
-			          type: 'warning'
-			        });
+					return this.Fn.tips('密码不能为空');
 				}
 				if(this.formData.storetel){
 					if (!this.Fn.checkFixedPhone(this.formData.storetel)) {
-						return this.$message({
-							message: '请输入正确的前台电话',
-							type: 'warning'
-						});
+						return this.Fn.tips('请输入正确的前台电话')
 					}
 				}else{
-					return this.$message({
-						message: '前台电话不能为空',
-						type: 'warning'
-					})
+					return this.Fn.tips('前台电话不能为空')
 				}
 				if(this.formData.storeemail){
 					if (!this.Fn.checkEmail(this.formData.storeemail)) {
-						return this.$message({
-				          message: '请输入正确的电子邮箱',
-				          type: 'warning'
-				        })
+						return this.Fn.tips('请输入正确的电子邮箱')
 					}
 				}else{
-					return this.$message({
-				          message: '请电子邮箱不能为空',
-				          type: 'warning'
-				        })
+					return this.Fn.tips('电子邮箱不能为空')
 				}
 				if(!this.formData.address){
-					return this.$message({
-			          message: '请填写地址',
-			          type: 'warning'
-			        });
+					return this.Fn.tips('请填写地址');
 				}
 				if(!this.formData.dailiname){
-					return this.$message({
-				          message: '代理服务商姓名不能为空',
-				          type: 'warning'
-				        })
+					return this.this.Fn.tips('代理服务商姓名不能为空')
 				}
 				if(this.formData.dailitel){
 					if(!this.Fn.checkPhone(this.formData.dailitel)){
-						return this.$message({
-				          message: '请输入正确的代理服务商电话',
-				          type: 'warning'
-				        });
+						return this.Fn.tips('请输入正确的代理服务商电话')
 					}
 				}else{
-					return this.$message({
-			          message: '代理服务商电话不能为空',
-			          type: 'warning'
-			        });
+					return this.Fn.tips('代理服务商电话不能为空')
 				}
 				if(!this.formData.aptitudeImg){
-					return this.$message({
-			          message: '请上传营业执照',
-			          type: 'warning'
-			        });
+					return this.Fn.tips('请上传营业执照')
 				}
 				this.$axios.post('?i=3&c=entry&do=shop&m=yun_shop&route=plugin.store-cashier.frontend.store.store.apply',{apply:{...that.formData}}).then((res)=>{
 					console.log(res)
@@ -444,10 +402,7 @@
 				 //        });
 					// }
 				}else{
-					this.$message({
-			          message: '密码不能为空',
-			          type: 'warning'
-			        });
+					this.Fn.tips('密码不能为空')
 				}
 			},
 			handlePassword(e){
@@ -466,33 +421,21 @@
 			},
 			checkDailiname(){
 				if(!this.formData.dailiname){
-					return this.$message({
-				          message: '代理服务商姓名不能为空',
-				          type: 'warning'
-				        })
+					return this.Fn.tips('代理服务商姓名不能为空')
 				}
 			},
 			checkEmail(){
 				if(this.formData.storeemail){
 					if (!this.Fn.checkEmail(this.formData.storeemail)) {
-						return this.$message({
-				          message: '请输入正确的电子邮箱',
-				          type: 'warning'
-				        })
+						return this.Fn.tips('请输入正确的电子邮箱')
 					}
 				}else{
-					return this.$message({
-				          message: '请电子邮箱不能为空',
-				          type: 'warning'
-				        })
+					return this.Fn.tips('电子邮箱不能为空')
 				}
 			},
 			checkUsername(){
 				if(!this.formData.username){
-					return this.$message({
-			          message: '账号不能为空！',
-			          type: 'warning'
-			        });
+					return this.Fn.tips('账号不能为空')
 				}
 			},
 			// handleShow_back(){
@@ -512,16 +455,10 @@
 				// (/^1[3|4|5|8][0-9]\d{4,8}$/.test(sMobile))
 				if(value){
 					if(!this.Fn.checkPhone(value)){
-						this.$message({
-				          message: '请输入正确的联系电话',
-				          type: 'warning'
-				        });
+						this.Fn.tips('请输入正确的联系电话')
 					}
 				}else{
-					this.$message({
-			          message: '联系电话不能为空',
-			          type: 'warning'
-			        });
+					this.Fn.tips('联系电话不能为空')
 				}
 			},
 			handleCheck_(event){
@@ -530,32 +467,20 @@
 				// (/^1[3|4|5|8][0-9]\d{4,8}$/.test(sMobile))
 				if(value){
 					if(!this.Fn.checkPhone(value)){
-						this.$message({
-				          message: '请输入正确的代理服务商电话',
-				          type: 'warning'
-				        });
+						this.Fn.tips('请输入正确的代理服务商电话')
 					}
 				}else{
-					this.$message({
-			          message: '代理服务商电话不能为空',
-			          type: 'warning'
-			        });
+					this.Fn.tips('代理服务商电话不能为空')
 				}
 			},
 			hanndleFixPhone(event){
 				let value = document.querySelector('.hanndleFixPhone').value
 				if(value){
 					if (!this.Fn.checkFixedPhone(value)) {
-						this.$message({
-							message: '请输入正确的座机号码',
-							type: 'warning'
-						});
+						this.Fn.tips('请输入正确的座机号码')
 					}
 				}else{
-					this.$message({
-						message: '前台电话不能为空',
-						type: 'warning'
-					})
+					this.Fn.tips('前台电话不能为空')
 				}
 			},
 			handleShow(){
@@ -568,16 +493,10 @@
 				let value = document.querySelector('.handleCheckCredit').value
 				if(value){
 					if (!this.Fn.checkCredit(value)) {
-						this.$message({
-							message: '请输入正确的银行卡号',
-							type: 'warning'
-						});
+						this.Fn.tips('请输入正确的银行卡号')
 					}
 				}else{
-					this.$message({
-						message: '银行卡号不能为空',
-						type: 'warning'
-					})
+					this.Fn.tips('银行卡号不能为空')
 				}
 			},
 		},
