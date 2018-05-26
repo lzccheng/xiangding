@@ -14,7 +14,7 @@
 			</div>
 		</div> -->
 		<!--可申请-->
-		<div v-show="status == -1">
+		<div v-show="status == -1||status == 0">
 			<div class="form">
 				<p class="input">
 					<label>代理商姓名:</label>
@@ -125,7 +125,7 @@
 					</el-upload> -->
 				</div>
 				<div class="footer">
-				<!-- <router-link tag="p" to="/my/myagantEnter" class="button">立即申请</router-link> -->
+					<router-link tag="p" :to="Fn.getUrl({path:'/my/myagantEnter'})" class="green_btn">立即申请</router-link>
 					<p class="green_btn" @click="handleFormSubmit">立即申请</p>
 				</div>
 			</div>

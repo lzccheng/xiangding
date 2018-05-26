@@ -9,9 +9,6 @@
 	</div>
 </template>
 <script>
-	import Fn from '../../common/js/common'
-	let i = Fn.getKeyByI()
-	let type = Fn.getType()
 	export default {
 		mounted(){
 			var routeName = this.$route.name

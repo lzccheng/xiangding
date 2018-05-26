@@ -242,9 +242,9 @@
 				"action": 1,
 				"submit": '登录'
 			}
-			this.Http.post({baseUrl: 'web/index.php?c=user&a=login',data:dd}).then(res=>{
-				console.log(555555,res)
-			})
+			// this.Http.post({baseUrl: 'web/index.php?c=user&a=login',data:dd}).then(res=>{
+			// 	console.log(555555,res)
+			// })
 		},
 		data(){
 			return {

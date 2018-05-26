@@ -118,6 +118,7 @@
 					<div class="footer">
 					   <router-link tag="p" :to="Fn.getUrl({path: '/enter/login'})"  @click="handleFormSubmit" class="green_btn">立即申请</router-link>
 					   <p @click="handleFormSubmit" class="green_btn">立即申请</p>
+					   <p @click="handleLogin" class="green_btn">立即申请</p>
 					</div>
 					<div class="agreement_box">
 						<span @click="handleShow" class="agreement">《入驻协议》</span>
@@ -142,7 +143,7 @@
 			<div class="success">
 				<p class="icon_"><span><i class="fas fa-check-circle"></i></span></p>
 				<p>你的申请已通过</p>
-				<router-link tag="p" :to="Fn.getUrl({path: '/enter/login'})" class="login">登录</router-link>
+				<p class="login" @click="handleLogin">登录</p>
 			</div>
 		</div>
 	</div>
@@ -215,7 +216,7 @@
 			return {
 				htmltest: '<p style="font-size: 13px; text-align: left;">酒店入驻协议内容......</p>',
 				alertShow: false,
-				enter_status: 0,
+				enter_status: 1,
 				value1: null,
 				// general: false,
 				formData: {
@@ -251,6 +252,10 @@
 			}
 		},
 		methods: {
+			handleLogin(){
+				window.location.href = 'https://www.share-hotel.cn/web/index.php?c=user&a=login&'
+				
+			},
 			getEnterStatus(){
 				let that = this
 				// this.$axios.get('?i=3&type=1&shop_id=null&route=plugin.store-cashier.frontend.store.store.verify-apply-status&').then(res=>{

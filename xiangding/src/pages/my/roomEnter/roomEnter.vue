@@ -7,27 +7,27 @@
 			    <router-link tag="div" :to="Fn.getUrl({path: '/my/roomSend/roomSend',query:{title: '房间编辑'}}) ">
 					<div v-for="(i,index) in arr" class="item" :key="index">
 						<div class="img">
-							<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425433535&di=f7d324b2c95bd6f203fb8741290c02e3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D41481487a2773912d02b8d219161e374%2Ff3d3572c11dfa9ec3d58042d69d0f703918fc192.jpg" alt="">
+							<img :src="i.thumb" alt="">
 						 </div>
 						<div class="con_box">
-							<p class="room_name">特惠商务房</p>
+							<p class="room_name">{{i.title}}</p>
 							<p class="money_item">
 								<span class="money_1">¥</span>
-								<span class="money_2">299 </span>
+								<span class="money_2">{{i.market_price}} </span>
 								<span class="spec">/间晚</span>
 							</p>
 							<div class="text_small">
 								<p class="text">
-								  <span class="text_1">房间面积:&nbsp; 20平方</span>
+								  <span class="text_1">房间面积:&nbsp; {{arrItem[index][0].value}}</span>
 								  <span class="icon" @click="handleCancel">
 									  <el-switch
-										  v-model="arr[index].active"
+										  v-model="i.active"
 										  active-color="#43c122"
 										  inactive-color="#a7a5a6">
 									  </el-switch>
 								  </span>
 								</p>
-								<p class="text_2">已住房数:&nbsp; 20间 <span class="right" @click="handleCancel">开启状态</span></p>
+								<p class="text_2"><span class="right" @click="handleCancel">开启状态</span></p>
 								<p class="text">可售房间:&nbsp; 20间</p>
 							</div>
 						</div>
@@ -94,20 +94,28 @@
 </template>
 <script>
 	export default {
+		mounted(){
+			let that = this
+			this.Http.get({route:'plugin.store-cashier.store.admin.goods.index',baseUrl:'web/index.php?c=site&a=entry&m=yun_shop&do=1210&action=true'}).then(res=>{
+				console.log(res.data)
+				if(res.data.main){
+					let data = res.data.main.map(i=>{
+					i['active'] = true
+						return i
+					})
+					that.arrItem = res.data.detail
+					that.arr = data
+				}else{
+					console.log(res.data)
+					this.Fn.tips('数据获取失败！')
+				}
+				
+			})
+		},
 		data(){
 			return {
+				arrItem:[],
 				arr: [
-					{active: true},
-					{active: true},
-					{active: true},
-					{active: true},
-					{active: true},
-					{active: true},
-					{active: true},
-					{active: true},
-					{active: true},
-					{active: true},
-					{active: true}
 				],
 				value1: true,
 	            value2: true,
