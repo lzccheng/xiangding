@@ -1,28 +1,29 @@
 <template>
 	<div class="box">
 		<Header title="收支明细" />
-		<div class="content">			
+		<div class="content">
 			<div class="show">
 				<div class="items">
 					<div class="time"><span class="this_m">本月</span><span class="i"><i class="far fa-calendar-alt"></i></span></div>
-					<div class="item" v-for="(i,index) in 10" :key="index">
+					<div class="item" v-for="(i,index) in data" :key="index">
 						<div class="img">
-							<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523878260974&di=ca92c6ce48dc5aa41060706559be1430&imgtype=0&src=http%3A%2F%2Fimgcdn.guoku.com%2Fimages%2Ff4a652a540ac399d50d81825b6e7d644.jpeg" alt="">
+							<img :src="returnJson(i[0].information,'thumb')" alt="">
 						</div>
 						<div class="msg">
-							<p class="title"><span>银河大酒店</span></p>
+              <p>{{returnJson(i[0].information,'thumb')}}</p>
+							<p class="title"><span>{{returnJson(i[0].information,'store_name')}}</span></p>
 							<p><span>1间，特惠商务房</span></p>
-							<p><span>客户名称：胡勇碟</span></p>
+							<p><span>客户名称：{{i[0].username}}</span></p>
 							<p><span>01月27日-01月28日</span></p>
 						</div>
 						<div class="price">
-							<p class="btn"><span>已完成</span></p>
+							<p class="btn"><span>{{returnStatus(i[0].status)}}</span></p>
 							<p class="price_">
 								<span>￥</span>
-								<span class="num">299</span>
+								<span class="num">{{i[0].price}}</span>
 							</p>
 						</div>
-					</div>       
+					</div>
 				</div>
 			</div>
 		</div>
@@ -30,11 +31,39 @@
 </template>
 <script>
 	export default {
+		mounted(){
+			this.getData()
+		},
 		data(){
 			return {
+			  data:[],
+        list: {}
 			}
 		},
 		methods: {
+			getData(){
+			  let that = this
+				this.Http.post({route:'plugin.store-cashier.store.admin.cashier-order.index',baseUrl:'web/index.php?c=site&a=entry&m=yun_shop&do=1970&action=true&',data:{action:true}}).then(res=>{
+					console.log(res)
+          that.data = res.data.data.data
+          that.list = res.data.data.list
+          console.log(that.data)
+          console.log(that.list)
+				})
+			},
+      returnJson(str,key){
+			  return JSON.parse(str)[key]
+      },
+      returnStatus(value){
+			  let json = {
+			    '-1': '取消状态',
+          '0': '待付款',
+          '1': '已付款',
+          '2': '已发货',
+          '3': '已完成'
+        }
+			  return json[value]
+      }
 		}
 	}
 </script>

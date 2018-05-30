@@ -161,7 +161,7 @@
 </template>
 <script>
 	import myalert from '../../../components/alert/alert'
-	import {Toast} from 'mint-ui'
+	import { Indicator } from 'mint-ui'
 	export default {
 		mounted(){
 			let that = this
@@ -209,24 +209,29 @@
 				this.Fn.tips('上传失败！');
 			},
 			checkFile(file){
+				Indicator.open('图片上传中...')
 				const isPNG = (file.type === 'image/png' || file.type === 'image/jpeg');
 	            const isLt2M = file.size / 1024 / 1024 < 3;
 	            console.log(file.size / 1024 / 1024)
 	            if (!isPNG) {
 	            	this.Fn.tips('图片只能是 JPG或PNG 格式!')
+	            	Indicator.close()
 	            }
 	            if (!isLt2M) {
 	            	this.Fn.tips('图片大小不能超过 3MB!')
+	            	Indicator.close()
 	            }
 	            return isPNG && isLt2M;
 			},
 			handleSuccess1(res, file, fileList){
+				Indicator.close()
 				// this.formData.IDcard_facade&&this.fileList1[0].splice(0,1)
 				console.log(this.fileList1)
 				this.formData.IDcard_facade = res.data.img
 				this.Fn.tips(res.msg)
 			},
 			handleSuccess2(res, file, fileList){
+				Indicator.close()
 				this.formData.IDcard_back&&this.fileList2.shift()
 				this.formData.IDcard_back = res.data.img
 				this.Fn.tips(res.msg)

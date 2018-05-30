@@ -3,12 +3,12 @@
 		<Header :title="title" />
 		<myalert :innerHtml="htmltest" title_3="取消扣费设置" @handleCancel="aaa" :show="alertShow" status="0" />
 		<myalert :innerHtml="htmltest_1" title_3="设施设备" @handleCancel="aaa_1" :show="alertShow_1" status="0" />
-		
+
 		<div class="body">
 			<ul>
 				<li class="item">
 					<span class="name">房间名称:</span>
-					<span class="hide_1"><input type="text" placeholder="请填写房间名称"></span>
+					<span class="hide_1"><input v-model="formData.title" type="text" placeholder="请填写房间名称"></span>
 					<!-- <span class="select_1">
 						<el-select v-model="select2" slot="prepend" placeholder="请选择">
 					      <el-option label="商务大床房" value="1"></el-option>
@@ -19,23 +19,23 @@
 				</li>
 				<li class="item">
 					<span class="name">单间原价:</span>
-					<span class="hide_1"><input type="text" placeholder="请填写房间原价"></span>
+					<span class="hide_1"><input type="text" placeholder="请填写房间原价" v-model="formData.market_price"></span>
 				</li>
 				<li class="item">
 					<span class="name">单间价格:</span>
-					<span class="hide_1"><input type="text" placeholder="请填写房间的价格"></span>
+					<span class="hide_1"><input type="text" placeholder="请填写房间的价格" v-model="formData.price"></span>
 				</li>
 				<li class="item">
 					<span class="name">可售房数:</span>
-					<span class="hide_1"><input type="text" placeholder="请填写房间数量"></span>
+					<span class="hide_1"><input type="text" placeholder="请填写房间数量" v-model="formData.stock"></span>
 				</li>
 				<li class="item">
 					<span class="name">可住人数:</span>
-					<span class="hide_1"><input type="text" placeholder="请填写房间可住人数"></span>
+					<span class="hide_1"><input type="text" placeholder="请填写房间可住人数" v-model="formData.param_value[0]"></span>
 				</li>
 				<li class="item">
 					<span class="name">房间规格:</span>
-					<span class="hide_1"><input type="text" placeholder="请输入房间大小"></span>
+					<span class="hide_1"><input type="text" placeholder="请输入房间大小(例如：100*100平方)" v-model="formData.param_value[1]"></span>
 				</li>
 				<li >
 					<el-collapse v-model="activeNames">
@@ -52,7 +52,7 @@
 						    </p>
 						    <p class="select">
 						    	<span>
-						    		 <el-checkbox-group v-model="checkList2">
+						    		 <el-checkbox-group v-model="formData.param_value[2]">
 									    <el-checkbox label="超过1小时扣费10%" :disabled="value2"></el-checkbox>
 									  </el-checkbox-group>
 						    	</span>
@@ -69,13 +69,13 @@
 				<li class="item">
 					<span class="name">早餐提供:</span>
 					<div class="select_1">
-						<el-select v-model="select7" slot="prepend" placeholder="请选择">
+						<el-select v-model="formData.param_value[3]" slot="prepend" placeholder="请选择">
 					      <el-option label="是" value="1"></el-option>
 					      <el-option label="否" value="2"></el-option>
 					    </el-select>
 					</div>
 				</li>
-				<li class="item">
+				<!-- <li class="item">
 					<span class="name">床型:</span>
 					<span class="select_1">
 						<el-select v-model="select5" slot="prepend" placeholder="请选择">
@@ -84,11 +84,11 @@
 					      <el-option label="2米" value="3"></el-option>
 					    </el-select>
 					</span>
-				</li>
+				</li> -->
 				<li class="item">
 					<span class="name">窗户:</span>
 					<div class="select_1">
-						<el-select v-model="select6" slot="prepend" placeholder="请选择">
+						<el-select v-model="formData.param_value[4]" slot="prepend" placeholder="请选择">
 					      <el-option label="是" value="1"></el-option>
 					      <el-option label="否" value="2"></el-option>
 					      <el-option label="部分有窗" value="3"></el-option>
@@ -103,14 +103,22 @@
 							<label for="file"><i class="far fa-plus-square"></i></label>
 							<input type="file" @change="handleFile" id="file" style="display: none">
 						</div>
-						<span class="hide_1">最多添加4张</span>
+						<!--<span class="hide_1">最多添加4张</span>-->
+					</div>
+					<div class="photo_show">
+						<div v-show="formData.thumb">
+							<img :src="formData.thumb">
+						</div>
+						<div >
+
+						</div>
 					</div>
 				</li>
 				<li class="item ">
 				    <p class="padding-bottom">房间配套设施:</p>
 					<div class="check">
 					<div class="padding-bottom">
-						  <el-checkbox-group v-model="checkList1">
+						  <el-checkbox-group v-model="formData.param_value[5]">
 						  	<span class="check_box" ><el-checkbox label="24小时热水"></el-checkbox></span>
 						  	<span class="check_box"><el-checkbox label="拖鞋"></el-checkbox></span>
 						  	<span class="check_box"><el-checkbox label="吹风机"></el-checkbox></span>
@@ -126,7 +134,7 @@
 				</li>
 			</ul>
 			<div class="send">
-				<button v-if="title === '房间发布'" class="green_btn">发布</button>
+				<button v-if="title === '房间发布'" @click="handleRoomSend" class="green_btn">发布</button>
 				<button v-else class="green_btn">确定</button>
 			</div>
 		</div>
@@ -161,9 +169,61 @@
 	            checkList2: ['超过1小时扣费10%'],
 	            activeNames:[],
 	            title: '房间发布',
+	            formData:{
+				        uniaci: 3,
+                display_order: 1,
+                title:'',
+                parentid: 0,
+                is_recommand: 0,
+                goods_sn: new Date().getTime(),
+                product_sn: new Date().getTime()+10,
+                content: '8888888',
+                childid: 0,
+                brand_id: 2,
+                type: 1,
+                sku: '间',
+                thumb_url: '',
+                price: 0,
+                market_price: 0,
+                cost_price: 0,
+                stock: 0,
+                reduce_stock_method: 1,
+                status: 1,
+                weight: '1',
+                thumb: '',
+	            	param_title:[
+	            		'可住人数',
+	            		'房间面积',
+	            		'取消政策',
+	            		'是否供应早餐',
+	            		'是否有窗户',
+	            		'房间配套设施'
+	            	],
+	            	param_value:[
+	            		0,
+	            		'',
+	            		['超过1小时扣费10%'],
+	            		'是',
+	            		'是',
+	            		['24小时热水']
+	            	]
+	            }
 			}
 		},
 		methods: {
+			handleRoomSend(){
+				// this.Http.get({route:'plugin.store-cashier.store.admin.goods.add',baseUrl: '/web/index.php?c=site&a=entry&m=yun_shop&do=1022&action=true&',params:{...this.formData}}).then(res=>{
+				// 	console.log('get',res)
+				// })
+        let that = this
+        this.Http.post({route:'plugin.store-cashier.store.admin.goods.add',baseUrl: '/web/index.php?c=site&a=entry&m=yun_shop&do=1022&action=true&',data:{...this.formData}}).then(res=>{
+          console.log('post',res)
+          that.Fn.tips(res.data.msg)
+          if(res.data.code === 200){
+            that.$router.push(that.Fn.getUrl({path:'/my/roomEnter'}))
+          }
+        })
+			},
 			handleShow(){
 				if(!this.value2){
 					this.alertShow = true
@@ -180,19 +240,21 @@
 			},
 			handleFile(e){
 				var e = e || event
-				console.log(e.path[0].files)
-				console.log(e.path[0].files[0])
-				var formData = new FormData()
-				var file = e.path[0].files[0]
-				console.log('formData',formData)
-				formData.append('file',file)
-				console.log(formData)
+				let that = this
+				console.log(e.target.files[0])
+				this.Http.imgUpload(e.target,{msg:'图片上传中...'}).then(res=>{
+					console.log(res)
+					if(res.data.result === 1){
+						that.formData.thumb = res.data.data.img
+					}
+					that.Fn.tips(res.data.msg)
+				})
 			},
 			cancelBubble(e){
 				var e = e || event
 				e.cancelBubble = true
 			},
-			
+
 		},
 		watch:{
 			$route(to,from){
@@ -247,7 +309,7 @@
 						text-align: center;
 						border-top: none;
 						border-left: none;
-						border-right: none; 
+						border-right: none;
 						border-bottom: #333 solid rem(1px);
 						margin: 0;
 					}
@@ -334,7 +396,7 @@
 					margin-left: 5%;
 
 			     }
-			     
+
 				// .hide{
 				// 	margin-left: 2%;
 				// 	color: #aaa;
@@ -343,16 +405,16 @@
 					input{
 						width: 60%;
 						border: none;
-						&::-webkit-input-placeholder { 
+						&::-webkit-input-placeholder {
 						    color:    #aaa;
 						}
-						&:-moz-placeholder { 
+						&:-moz-placeholder {
 						    color:    #aaa;
 						}
-						&::-moz-placeholder { 
+						&::-moz-placeholder {
 						    color:    #aaa;
 						}
-						&:-ms-input-placeholder { 
+						&:-ms-input-placeholder {
 						    color:    #aaa;
 						}
 					}
@@ -390,6 +452,20 @@
 						margin-left: 5%;
 						// font-size: rem(13px);
 					}
+			    }
+			    .photo_show{
+			    	div{
+			    		display: inline-block;
+              margin: 0 auto;
+			    		width: 50%;
+			    		border-radius: rem(5px);
+			    		img{
+                margin: 0 auto;
+                border-radius: rem(5px);
+			    			width:100%;
+			    			heigh: 90px;
+			    		}
+			    	}
 			    }
 			}
 			.add_room{

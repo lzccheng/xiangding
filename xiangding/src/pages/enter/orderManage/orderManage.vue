@@ -34,38 +34,41 @@
 						</div>
 						<div v-if="0 == index">
 							<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus'})">
-								<div v-for="(i,index) in 5" class="item" :key="index">
-									<div class="img">
-										<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425433535&di=f7d324b2c95bd6f203fb8741290c02e3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D41481487a2773912d02b8d219161e374%2Ff3d3572c11dfa9ec3d58042d69d0f703918fc192.jpg" alt="">
-									</div>
-									<div class="text_box">
-										<div class="left">
-											<p class="name_1">订单号: 12315412</p>
-											<p class="name_1 color"><span>¥286</span></p>
-											<p class="name_2">客户名称: 胡勇蝶</p>
-											<p class="name_2"><span>入住: 3月28</span>  <span>退房: 3月29</span></p>
-											<p class="name_2">办理时间: 2018-1-12</p>
+								<div v-for="(i,index) in havePay" class="item" :key="index">
+									<div>
+										<div class="img">
+											<img src="" alt="">
 										</div>
-										<div class="right">
-											<p class="numb"><i class="fas fa-chevron-right"></i></p>
+										<div class="text_box">
+											<div class="left">
+												<p class="name_1">订单号: {{i.order_sn}}</p>
+												<p class="name_1 color"><span>¥{{i.price}}</span></p>
+												<p class="name_2">客户名称: {{i.store_name}}</p>
+												<p class="name_2"><span>入住: 3月28</span>  <span>退房: 3月29</span></p>
+												<p class="name_2">办理时间: 2018-1-12</p>
+											</div>
+											<div class="right">
+												<p class="numb"><i class="fas fa-chevron-right"></i></p>
+											</div>
 										</div>
 									</div>
+									
 					            </div>
 					        </router-link>
 			            </div>
 			            <div v-if="1 == index">
 			            	<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus'})">
-				            	<div v-for="(i,index) in 5" class="item" :key="index">
+				            	<div v-for="(i,index) in noPay" class="item" :key="index">
 									<div class="img">
-										<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425433535&di=f7d324b2c95bd6f203fb8741290c02e3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D41481487a2773912d02b8d219161e374%2Ff3d3572c11dfa9ec3d58042d69d0f703918fc192.jpg" alt="">
+										<img :src="i.has_many_order_goods[0].thumb" alt="">
 									</div>
 									<div class="text_box">
 										<div class="left">
-											<p class="name_1">订单号: 12315412</p>
-											<p class="name_1 color"><span>¥286</span></p>
-											<p class="name_2">客户名称: 胡勇蝶</p>
-											<p class="name_2"><span>入住: 3月28</span>  <span>退房: 3月29</span></p>
-											<p class="name_2">办理时间: 2018-1-12</p>
+											<p class="name_1">订单号: {{i.order_sn}}</p>
+											<p class="name_1 color"><span>¥{{i.order_goods_price}}</span></p>
+											<p class="name_2">客户名称: {{i.store_name}}</p>
+											<p class="name_2"><span>入住: 3月28</span> <span>退房: 3月29</span></p>
+											<p class="name_2">办理时间: {{i.create_time}}</p>
 										</div>
 										<div class="right">
 											<p class="numb"><i class="fas fa-chevron-right"></i></p>
@@ -91,17 +94,17 @@
 						</div> -->
 						<div v-if="0 == index_1">
 							<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus'})">
-								<div v-for="(i,index) in 5" class="item" :key="index">
+								<div v-for="(i,index) in haveEnter" class="item" :key="index">
 									<div class="img">
-										<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425433535&di=f7d324b2c95bd6f203fb8741290c02e3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D41481487a2773912d02b8d219161e374%2Ff3d3572c11dfa9ec3d58042d69d0f703918fc192.jpg" alt="">
+										<img :src="i.has_many_order_goods[0].thumb" alt="">
 									</div>
 									<div class="text_box">
 										<div class="left">
-											<p class="name_1">订单号: 12315412</p>
-											<p class="name_1 color"><span>¥286</span></p>
-											<p class="name_2">客户名称: 胡勇蝶</p>
+											<p class="name_1">订单号: {{i.order_sn}}</p>
+											<p class="name_1 color"><span>¥{{i.order_goods_price}}</span></p>
+											<p class="name_2">客户名称: {{i.store_name}}</p>
 											<p class="name_2"><span>入住: 3月28</span> <span>退房: 3月29</span></p>
-											<p class="name_2">办理时间: 2018-1-12</p>
+											<p class="name_2">办理时间: {{i.create_time}}</p>
 										</div>
 										<div class="right">
 											<p class="numb"><i class="fas fa-chevron-right"></i></p>
@@ -114,15 +117,15 @@
 				        	<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus'})">
 								<div v-for="(i,index) in 5" class="item" :key="index">
 									<div class="img">
-										<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425433535&di=f7d324b2c95bd6f203fb8741290c02e3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D41481487a2773912d02b8d219161e374%2Ff3d3572c11dfa9ec3d58042d69d0f703918fc192.jpg" alt="">
+										<img :src="i.has_many_order_goods[0].thumb" alt="">
 									</div>
 									<div class="text_box">
 										<div class="left">
-											<p class="name_1">订单号: 12315412</p>
-											<p class="name_1 color"><span>¥286</span></p>
-											<p class="name_2">客户名称: 胡勇蝶</p>
+											<p class="name_1">订单号: {{i.order_sn}}</p>
+											<p class="name_1 color"><span>¥{{i.order_goods_price}}</span></p>
+											<p class="name_2">客户名称: {{i.store_name}}</p>
 											<p class="name_2"><span>入住: 3月28</span> <span>退房: 3月29</span></p>
-											<p class="name_2">办理时间: 2018-1-12</p>
+											<p class="name_2">办理时间: {{i.create_time}}</p>
 										</div>
 										<div class="right">
 											<p class="numb"><i class="fas fa-chevron-right"></i></p>
@@ -139,10 +142,21 @@
 <script>
 	export default {
 		mounted(){
+			let that = this
 			this._lineLeft()
+			this.Http.get({baseUrl:'web/index.php?c=site&a=entry&m=yun_shop&do=7619&action=true',route:'plugin.store-cashier.store.admin.order.index'}).then(res=>{
+				console.log(1111,res)
+				if(res.data.data){
+					that.array = res.data.data.list.data
+				}
+			})
 		},
 		data(){
 			return {
+				array:[],
+				havePay:[],
+				noPay:[],
+				haveEnter:[],
 				arrItem: [
 					'已订房',
 					'已住房',
@@ -180,6 +194,23 @@
 				if(to.name === 'order'){
 					this._lineLeft()
 				}
+			},
+			array(){
+				this.array.map(i=>{
+					console.log(i)
+					if(i.status == 1){
+						this.havePay.push(i)
+					}
+					if(i.status == 0){
+						this.noPay.push(i)
+					}
+					if(i.status == 2||i.status == 3){
+						this.haveEnter.push(i)
+					}
+				})
+				console.log(this.haveEnter)
+				console.log(this.noPay)
+				console.log(this.havePay)
 			}
 		}
 	}

@@ -7,8 +7,8 @@
 		</span>
 		<div class="body">
 			<div class="nav">
-				<div class="tab" ref="tab"> 
-					<div v-for="(i,index) in arrItem" :key='index' @click="handleClick(index,$event)"> 
+				<div class="tab" ref="tab">
+					<div v-for="(i,index) in arrItem" :key='index' @click="handleClick(index,$event)">
 						<span>{{i}}</span>
 					</div>
 				</div>
@@ -28,7 +28,7 @@
 							</div>
 						</router-link>
 					</div>
-					
+
 					<div v-if="index_ == 1">
 						<div v-for="(i,index) in dataArr" :key="index" class="item" @click="handleDelect(index)">
 							<div class="img"><img :src="i.urlImg" alt=""></div>
@@ -37,7 +37,7 @@
 								<p class="child_2">¥ {{i.price}}</p>
 							</div>
 							<div class="icon">
-							   <span> 
+							   <span>
 							   <el-checkbox-group v-model="i.checkList">
 							    <el-checkbox label=""></el-checkbox>
 							  </el-checkbox-group></span>
@@ -59,8 +59,8 @@
 					</router-link>
 				</div>
 			</div>
-			
-		
+
+
 		</div>
 		<div class="add_box" >
 			<div v-if="0 == index_c">
@@ -119,12 +119,15 @@
 				],
 				index_: 0,
 				index_c: 0
-				
+
 			}
 		},
 		methods: {
+		  getData(){
+		    // this.Http.get({route})
+      },
 			handleClick(i,e){
-				var e = e || event  
+				var e = e || event
 				//console.log(e.target,event.path[0])
 				this.$refs._line.style.left = e.target.offsetLeft + 'px'
 				this.$refs._line.style.width =  e.target.offsetWidth +'px'
@@ -195,7 +198,7 @@
 							background-color: #43c122;
 							position: absolute;
 							left: 0;
-							bottom: 0; 
+							bottom: 0;
 							border-radius: rem(5px);
 							transition: all 0.5s;
 						}
@@ -257,10 +260,10 @@
 				padding: rem(13px) 0;
 				span{
 					color: #ffffff;
-					
+
 				}
 			}
 		}
-		
+
 	}
 </style>

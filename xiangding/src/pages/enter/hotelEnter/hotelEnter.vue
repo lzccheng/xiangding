@@ -149,8 +149,11 @@
 	</div>
 </template>
 <script>
+
+
 	import wx from 'weixin-js-sdk'
 	import myalert from '../../../components/alert/alert'
+	import { Indicator  } from 'mint-ui'
 	export default {
 		mounted(){
 			this.$refs.eye_two.style.display = 'inline-block'
@@ -214,6 +217,7 @@
 		  },
 		data(){
 			return {
+				aa:3,
 				htmltest: '<p style="font-size: 13px; text-align: left;">酒店入驻协议内容......</p>',
 				alertShow: false,
 				enter_status: 1,
@@ -221,17 +225,19 @@
 				// general: false,
 				formData: {
 					realname: '',  //申请人
+					beginTime: "00:00",
+					endTime: '00:10',
 					mobile: '',		//联系电话
 					username: '',	//账号
 					password: '',	//密码
 					storeName: '',	//酒店名称
-					categoryId: null,	//酒店星级
+					categoryId: 6,	//酒店星级
 					storetel: '',	//*酒店前台电话
 					storeemail: '', //*酒店电子邮件
 					dailiname: '', //*代理服务商姓名
 					dailitel: '', //*代理服务商电话
 					hotelbank: '',  // 酒店收款账号
-					aptitudeImg: '', //营业执照
+					aptitudeImg: [], //营业执照
 					remark: '', //备注信息
 					provinceId: '', //省
 					cityId: '', //市
@@ -240,6 +246,7 @@
 					lng: '', //经度
 					lat: '', //纬度
 					address: '', //纬度
+					thumb: 'http://www.share-hotel.cn/addons/yun_shop/storage/app/avatars/store_apply'
 				},
 				province: '',
 				city: '',
@@ -253,7 +260,7 @@
 		},
 		methods: {
 			handleLogin(){
-				window.location.href = 'https://www.share-hotel.cn/web/index.php?c=user&a=login&'
+				window.location.href = 'https://www.share-hotel.cn/web/index.php?c=user&a=login&dd=1'
 				
 			},
 			getEnterStatus(){
@@ -269,24 +276,38 @@
 			handleFile(e){
 				var e = e || event 
 				let that = this
-				console.log(e.target.files)
+				Indicator .open('图片上传中...')
 				//?i=3&c=entry&do=shop&type=1&m=yun_shop&route=plugin.store-cashier.frontend.store.store.upload
 				let formData = new FormData()
+
 				formData.append('file',e.target.files[0])
 				this.$axios({
-					url:'?i=3&c=entry&do=shop&type=1&m=yun_shop&route=plugin.store-cashier.frontend.store.store.upload',
+					url:'/addons/yun_shop/api.php?i=3&c=entry&do=shop&type=1&m=yun_shop&route=plugin.store-cashier.frontend.store.store.upload',
 					method: 'post',
 					data: formData,
 					processData: false
 				}).then((res)=>{
+					Indicator .close()
 					console.log(res)
-					this.Fn.tips('上传成功');
+					if(res.data.result === 1){
+						this.Fn.tips(res.data.msg)
+					}else{
+						this.Fn.tips(res.data.msg)
+					}
 					// that.$message({
 				 //          message: '上传成功！',
 				 //          type: 'success'
 				 //        });
-					that.formData.aptitudeImg = res.data.data.img
+					that.formData.aptitudeImg[0] = res.data.data.img
+				},err=>{
+					Indicator .close()
+					console.log(err)
 				})
+				// this.Http.post({route:'plugin.store-cashier.frontend.store.store.upload&c=entry&do=shop&m=yun_shop',data:formData,config:{processData: false}}).then(res=>{
+				// 	console.log(res)
+				// },err=>{
+				// 	console.log(err)
+				// })
 			},
 			getLongAndLat(e){
 				var e = e || event
@@ -372,24 +393,30 @@
 				}else{
 					return this.Fn.tips('代理服务商电话不能为空')
 				}
-				if(!this.formData.aptitudeImg){
+				if(!this.formData.aptitudeImg.length){
 					return this.Fn.tips('请上传营业执照')
 				}
-				this.$axios.post('?i=3&c=entry&do=shop&m=yun_shop&route=plugin.store-cashier.frontend.store.store.apply',{apply:{...that.formData}}).then((res)=>{
-					console.log(res)
-					if(res.data.result === 1){
-						that.$message({
-				          message: res.data.msg,
-				          type: 'success'
-				        });
-						that.getEnterStatus()
-					}else{
-						return that.$message({
-				          message: res.data.msg,
-				          type: 'warning'
-				        });
-					}
+				// this.$axios.post('?i=3&c=entry&do=shop&m=yun_shop&route=plugin.store-cashier.frontend.store.store.apply',{apply:{...that.formData}}).then((res)=>{
+				// 	console.log(res)
+				// 	if(res.data.result === 1){
+				// 		that.$message({
+				//           message: res.data.msg,
+				//           type: 'success'
+				//         });
+				// 		that.getEnterStatus()
+				// 	}else{
+				// 		return that.$message({
+				//           message: res.data.msg,
+				//           type: 'warning'
+				//         });
+				// 	}
 					
+				// })
+				this.Http.post({route:'plugin.store-cashier.frontend.store.store.apply&c=entry&do=shop&m=yun_shop',data:{apply:{...that.formData}}}).then(res=>{
+					if(res.data.result === 1){
+						that.getEnterStatus()
+					}
+					that.Fn.tips(res.data.msg)
 				})
 			},
 			handleCheckPassword(){
@@ -503,8 +530,12 @@
 		watch: {
 			$route(to,from){
 				if(to.name === 'hotelEnter'){
-					console.log(55)
 					this.getEnterStatus()
+				}
+			},
+			enter_status(){
+				if(this.enter_status === 3){
+					window.location.href = 'https://www.share-hotel.cn/web/index.php?c=user&a=login&dd=1'
 				}
 			}
 		}

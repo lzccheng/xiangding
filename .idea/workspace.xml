@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8d1b7f8d-83f2-4969-9af5-0f87a4b15106" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/xiangding/config/dev.env.js" beforeDir="false" afterPath="$PROJECT_DIR$/xiangding/config/dev.env.js" afterDir="false" />
+    <list default="true" id="8d1b7f8d-83f2-4969-9af5-0f87a4b15106" name="Default" comment="Default">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/xiangding/src/common/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/xiangding/src/common/js/common.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xiangding/src/common/js/http.js" beforeDir="false" afterPath="$PROJECT_DIR$/xiangding/src/common/js/http.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xiangding/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/xiangding/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xiangding/src/pages/enter/agantEnter/agantEnter.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xiangding/src/pages/enter/agantEnter/agantEnter.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xiangding/src/pages/enter/enter.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xiangding/src/pages/enter/enter.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xiangding/src/pages/enter/foodManage/foodManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xiangding/src/pages/enter/foodManage/foodManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xiangding/src/pages/enter/hotelEnter/hotelEnter.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xiangding/src/pages/enter/hotelEnter/hotelEnter.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xiangding/src/pages/enter/hotelManage/hotelManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xiangding/src/pages/enter/hotelManage/hotelManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xiangding/src/pages/enter/incomeList/incomeList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xiangding/src/pages/enter/incomeList/incomeList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xiangding/src/pages/enter/orderManage/orderManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xiangding/src/pages/enter/orderManage/orderManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xiangding/src/pages/my/my.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xiangding/src/pages/my/my.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xiangding/src/pages/my/roomEnter/roomEnter.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xiangding/src/pages/my/roomEnter/roomEnter.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xiangding/src/pages/my/roomSend/roomSend.vue" beforeDir="false" afterPath="$PROJECT_DIR$/xiangding/src/pages/my/roomSend/roomSend.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xiangding/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/xiangding/src/router/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,11 +30,108 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="enter.vue" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/xiangding/src/pages/enter/enter.vue">
+      <file leaf-file-name="roomSend.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/xiangding/src/pages/my/roomSend/roomSend.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="22" column="18" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
+            <state relative-caret-position="618">
+              <caret line="224" column="10" selection-start-line="224" selection-start-column="10" selection-end-line="224" selection-end-column="10" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="e#154#160#0" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="e#252#258#0" expanded="true" />
+                <element signature="e#258#264#0" expanded="true" />
+                <element signature="e#264#270#0" expanded="true" />
+                <element signature="e#270#276#0" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#p#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#!!top" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/xiangding/src/router/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="779">
+              <caret line="128" column="23" selection-start-line="128" selection-start-column="23" selection-end-line="128" selection-end-column="23" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="orderManage.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/xiangding/src/pages/enter/orderManage/orderManage.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1140">
+              <caret line="27" column="37" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hotelManage.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/xiangding/src/pages/enter/hotelManage/hotelManage.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="63" column="22" selection-start-line="63" selection-start-column="22" selection-end-line="63" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="roomEnter.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/xiangding/src/pages/my/roomEnter/roomEnter.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="179">
+              <caret line="110" column="7" selection-start-line="110" selection-start-column="7" selection-end-line="110" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="my.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/xiangding/src/pages/my/my.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="154" column="14" selection-start-line="154" selection-start-column="14" selection-end-line="154" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="foodManage.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/xiangding/src/pages/enter/foodManage/foodManage.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="513">
+              <caret line="27" column="20" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
+              <folding>
+                <element signature="e#2699#4523#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="incomeList.vue" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/xiangding/src/pages/enter/incomeList/incomeList.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="475">
+              <caret line="25" column="16" lean-forward="true" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+              <folding>
+                <element signature="e#1169#1551#0" />
+                <element signature="n#style#0;n#!!top" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="agantEnter.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/xiangding/src/pages/enter/agantEnter/agantEnter.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="361">
+              <caret line="284" column="8" selection-start-line="284" selection-start-column="8" selection-end-line="284" selection-end-column="8" />
+              <folding>
+                <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -31,8 +139,8 @@
       <file leaf-file-name="http.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/xiangding/src/common/js/http.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="68" selection-start-line="68" selection-end-line="68" />
+            <state relative-caret-position="1273">
+              <caret line="67" column="5" selection-start-line="67" selection-start-column="5" selection-end-line="67" selection-end-column="5" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -40,19 +148,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/xiangding/src/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>meetting</find>
+      <find>meet</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -63,6 +165,13 @@
         <option value="$PROJECT_DIR$/xiangding/src/common/js/http.js" />
         <option value="$PROJECT_DIR$/xiangding/src/main.js" />
         <option value="$PROJECT_DIR$/xiangding/src/pages/enter/enter.vue" />
+        <option value="$PROJECT_DIR$/xiangding/src/router/index.js" />
+        <option value="$PROJECT_DIR$/xiangding/src/pages/my/roomSend/roomSend.vue" />
+        <option value="$PROJECT_DIR$/xiangding/src/pages/enter/hotelManage/hotelManage.vue" />
+        <option value="$PROJECT_DIR$/xiangding/src/pages/enter/foodManage/foodManage.vue" />
+        <option value="$PROJECT_DIR$/xiangding/src/pages/my/roomEnter/roomEnter.vue" />
+        <option value="$PROJECT_DIR$/xiangding/src/pages/my/my.vue" />
+        <option value="$PROJECT_DIR$/xiangding/src/pages/enter/incomeList/incomeList.vue" />
       </list>
     </option>
   </component>
@@ -80,7 +189,7 @@
       <path value="$PROJECT_DIR$/xiangding/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="2221" />
     <option name="y" value="244" />
     <option name="width" value="1085" />
@@ -104,6 +213,58 @@
               <item name="xiangding" type="462c0819:PsiDirectoryNode" />
               <item name="xiangding" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="xiangding" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xiangding" type="462c0819:PsiDirectoryNode" />
+              <item name="xiangding" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xiangding" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xiangding" type="462c0819:PsiDirectoryNode" />
+              <item name="xiangding" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xiangding" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xiangding" type="462c0819:PsiDirectoryNode" />
+              <item name="xiangding" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xiangding" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xiangding" type="462c0819:PsiDirectoryNode" />
+              <item name="xiangding" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xiangding" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xiangding" type="462c0819:PsiDirectoryNode" />
+              <item name="xiangding" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="enter" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xiangding" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xiangding" type="462c0819:PsiDirectoryNode" />
+              <item name="xiangding" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="enter" type="462c0819:PsiDirectoryNode" />
+              <item name="incomeList" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xiangding" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xiangding" type="462c0819:PsiDirectoryNode" />
+              <item name="xiangding" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="router" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -115,6 +276,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -140,11 +302,12 @@
       <updated>1527131857758</updated>
       <workItem from="1527131862170" duration="3155000" />
       <workItem from="1527145016487" duration="573000" />
+      <workItem from="1527643913389" duration="23349000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3728000" />
+    <option name="totallyTimeSpent" value="27077000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -156,26 +319,27 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="2221" y="244" width="1085" height="680" extended-state="0" />
+    <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14040114" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1406744" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32884902" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32884902" />
+      <window_info anchor="bottom" id="调试" order="12" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32884902" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.23506744" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.18843684" />
+      <window_info anchor="bottom" id="运行" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="运行" order="7" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="调试" order="7" />
       <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
@@ -195,7 +359,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/xiangding/src/common/js/http.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
+        <state relative-caret-position="1292">
           <caret line="68" selection-start-line="68" selection-end-line="68" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
@@ -209,6 +373,128 @@
           <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xiangding/src/pages/enter/enter.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xiangding/src/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xiangding/src/pages/enter/agantEnter/agantEnter.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="284" column="8" selection-start-line="284" selection-start-column="8" selection-end-line="284" selection-end-column="8" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xiangding/node_modules/element-ui/packages/select/src/option.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-41">
+          <caret line="34" column="6" selection-start-line="34" selection-start-column="6" selection-end-line="34" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xiangding/src/common/js/http.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1273">
+          <caret line="67" column="5" selection-start-line="67" selection-start-column="5" selection-end-line="67" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xiangding/src/router/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="779">
+          <caret line="128" column="23" selection-start-line="128" selection-start-column="23" selection-end-line="128" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xiangding/src/pages/enter/orderManage/orderManage.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1140">
+          <caret line="27" column="37" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xiangding/src/pages/enter/hotelManage/hotelManage.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="63" column="22" selection-start-line="63" selection-start-column="22" selection-end-line="63" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xiangding/src/pages/my/roomSend/roomSend.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="618">
+          <caret line="224" column="10" selection-start-line="224" selection-start-column="10" selection-end-line="224" selection-end-column="10" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#154#160#0" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="e#252#258#0" expanded="true" />
+            <element signature="e#258#264#0" expanded="true" />
+            <element signature="e#264#270#0" expanded="true" />
+            <element signature="e#270#276#0" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#p#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xiangding/src/pages/enter/foodManage/foodManage.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="27" column="20" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
+          <folding>
+            <element signature="e#2699#4523#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xiangding/src/pages/my/roomEnter/roomEnter.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="110" column="7" selection-start-line="110" selection-start-column="7" selection-end-line="110" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xiangding/src/pages/my/my.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="154" column="14" selection-start-line="154" selection-start-column="14" selection-end-line="154" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xiangding/src/pages/enter/incomeList/incomeList.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="25" column="16" lean-forward="true" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+          <folding>
+            <element signature="e#1169#1551#0" />
+            <element signature="n#style#0;n#!!top" />
           </folding>
         </state>
       </provider>

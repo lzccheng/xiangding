@@ -12,7 +12,6 @@ let getEreaData = (success=()=>{},error=()=>{})=>{
 export default {
 	getEreaData,
 	get(obj){
-		console.log(55)
 		let i = Fn.getKeyByI()
 		let type = Fn.getType()
 		let mid = store.state.userInfo?store.state.userInfo.uid:''
@@ -26,13 +25,16 @@ export default {
 		// }else{
 		// 	baseUrl += '&route='+ obj.route
 		// }
-		Indicator.open('数据加载中...')
+		if(obj.msg){
+			Indicator.open(obj.msg)
+		}
 		return new Promise(function(resolve,reject){
-			axios.get(baseUrl,{params},config).then(res=>{
-				Indicator.close()
-				console.log(55555)
+			axios.get(baseUrl,{params},{...config}).then(res=>{
+				if(obj.msg){
+					Indicator.close()
+				}
 				if(typeof res.data === 'string'){
-					console.log(11)
+					Fn.tips('数据加载出错！')
 				}
 				if(res.data.result == 0 && res.data.data.login_status != undefined && res.data.data.login_status == 0){
 					window.location.href = res.data.data.login_url + '&yz_redirect=' + Fn.base64_encode(document.location.href+'?') + "&mid=" + res.data.data.mid
@@ -40,7 +42,10 @@ export default {
 				}
 				resolve(res)
 			},err=>{
-				Indicator.close()
+				if(obj.msg){
+					Indicator.close()
+				}
+				Fn.tips('数据加载出错！')
 				reject(err)
 			})
 		})
@@ -58,17 +63,59 @@ export default {
 		}else{
 			baseUrl += '&route='+ obj.route
 		}
-		Indicator.open('数据加载中...')
+		if(obj.msg){
+			Indicator.open(obj.msg)
+		}
 		return new Promise(function(resolve,reject){
-			axios.post(baseUrl,{...data},config).then(res=>{
-				Indicator.close()
+			console.log(baseUrl)
+			axios.post(baseUrl,{...data},{...config}).then(res=>{
+				if(obj.msg){
+					Indicator.close()
+				}
+				if(typeof res.data === 'string'){
+					Fn.tips('数据加载出错！')
+				}
 				if(res.data.result == 0 && res.data.data.login_status != undefined && res.data.data.login_status == 0){
 					window.location.href = res.data.data.login_url + '&yz_redirect=' + Fn.base64_encode(document.location.href+'?') + "&mid=" + res.data.data.mid
 					return 
 				}
 				resolve(res)
 			},err=>{
-				Indicator.close()
+				if(obj.msg){
+					Indicator.close()
+				}
+				Fn.tips('数据加载出错！')
+				reject(err)
+			})
+		})
+	},
+	imgUpload(dom,obj){
+		let i = Fn.getKeyByI()
+		let type = Fn.getType()
+		let mid = store.state.userInfo?store.state.userInfo.uid:''
+		let formData = new FormData()
+		formData.append('file',dom.files[0])
+		return new Promise(function(resolve,reject){
+			if(obj.msg){
+				Indicator.open(obj.msg)
+			}
+			axios({url:'/addons/yun_shop/api.php?i='+i+'&c=entry&do=shop&type='+type+'&m=yun_shop&route=plugin.store-cashier.frontend.store.store.upload',method:'post',data:formData,processData:false,}).then(res=>{
+				if(obj.msg){
+					Indicator.close()
+				}
+				if(typeof res.data === 'string'){
+					Fn.tips('数据加载出错！')
+				}
+				if(res.data.result == 0 && res.data.data.login_status != undefined && res.data.data.login_status == 0){
+					window.location.href = res.data.data.login_url + '&yz_redirect=' + Fn.base64_encode(document.location.href+'?') + "&mid=" + res.data.data.mid
+					return 
+				}
+				resolve(res)
+			},err=>{
+				if(obj.msg){
+					Indicator.close()
+				}
+				Fn.tips('数据加载出错！')
 				reject(err)
 			})
 		})

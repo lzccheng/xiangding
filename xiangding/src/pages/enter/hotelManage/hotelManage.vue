@@ -19,9 +19,6 @@
 		    	<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelMessage'})" class="i"><i class="fas fa-cog"></i></router-link>
 		    </div>
 	    </div>
-	    <div>
-	    	<input type="button" value="ajax"  @click="getData">
-	    </div>
 	    <div class="line"></div>
 	    <div class="hotelServe">
 	    	<div class="earning">
@@ -71,16 +68,16 @@
 	    	</router-link>
 	    </div>
 	    <div class="item">
-	    	<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderDeal'})" class="room_6 rooms">
-	    		<p class="icon"><i class="fas fa-th-list"></i></p>
-	    		<p class="name">订单处理</p>
-	    	</router-link>
+	    	<!--<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderDeal'})" class="room_6 rooms">-->
+	    		<!--<p class="icon"><i class="fas fa-th-list"></i></p>-->
+	    		<!--<p class="name">订单处理</p>-->
+	    	<!--</router-link>-->
 	    	<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/onlineMessage'})" class="room_5 rooms">
 	    		<p class="icon"><i class="fas fa-th-list"></i></p>
 	    		<p>在线信息</p>
 	    	</router-link>
 	    </div>
-	    
+
 	</div>
 </template>
 <script>
@@ -90,7 +87,7 @@
 			// this.Http.get({baseUrl:'web/index.php?c=site&a=entry&m=yun_shop&do=1210',route:'plugin.store-cashier.store.admin.goods.index&action="1"',params:{action:true},}).then(res=>{
 			// 	console.log(res)
 			// })
-			axios.get('https://www.share-hotel.cn/web/index.php?c=site&a=entry&m=yun_shop&do=1210&route=plugin.store-cashier.store.admin.goods.index',{params:{action:true}}).then(res=>{
+			this.Http.get({baseUrl:'web/index.php?c=site&a=entry&m=yun_shop&do=7619&action=true',route:'plugin.store-cashier.store.admin.order.index'}).then(res=>{
 				console.log(res)
 			})
 		},
@@ -112,11 +109,6 @@
 			}
 		},
 		methods: {
-			getData(){
-				axios.get('https://www.share-hotel.cn/web/index.php?c=site&a=entry&m=yun_shop&do=1210&route=plugin.store-cashier.store.admin.goods.index',{params:{action:true}}).then(res=>{
-					console.log(res)
-				})
-			},
 			_handleClick(){
 				this.$router.push('/enter')
 			}
@@ -155,7 +147,7 @@
             background-color: #43c122;
             .big{
             	padding: rem(25px) rem(15px);
-				display: flex;            	
+				display: flex;
                 .ball{
                 	width: rem(75px);
                 	height: rem(75px);
@@ -311,7 +303,7 @@
 			}
 			.room_1{
 				background-color: #e51c23;
-				
+
 			}
 			.room_2{
 				background-color: #43c122;
@@ -319,7 +311,7 @@
 			.room_3{
 				background-color: #ff9800;
 			}
-			
+
 			.room_5{
 				background-color: #00c2ff;
 			}

@@ -19,7 +19,6 @@
 	import wx from 'weixin-js-sdk'
 	export default{
 		mounted(){
-			console.info(wx)
 			let json = {
 				url: document.location.href,
 				i: this.Fn.getKeyByI(),
@@ -50,6 +49,18 @@
 			// })
 			this.Http.post({route:'member.member.wxJsSdkConfig',data:json}).then(res=>{
 				console.log(res)
+				wx.config(res.data.data.config)
+				wx.ready(function(){
+					wx.getLocation({
+						success:function(res){
+							let str = res.longitude+','+res.latitude
+							// alert(str)
+						}
+					})
+				})
+				wx.error(res=>{
+					// alert(res.errMsg)
+				})
 			})
 		},
 		data(){

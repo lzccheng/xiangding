@@ -20,7 +20,6 @@ axios.defaults.baseURL = process.env.API_ROOT
 Vue.prototype.$axios = axios
 Vue.prototype.Fn = Fn
 Vue.prototype.Http = Http
-Vue.prototype.baseUrl = 'addons/yun_shop/api.php?'
 
 Vue.config.productionTip = false
 
@@ -31,7 +30,6 @@ Http.get({route:'member.member.getUserInfo'}).then(res=>{
 	store.commit('changeInfo',res.data.data)
 })
 router.beforeEach((to,from,next)=>{
-	
 	next()
 })
 

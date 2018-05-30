@@ -70,7 +70,6 @@ const getLongAndLat = (addr,success,error)=>{
 	})
     
 }
-
 const isWeiXin = ()=>{
 	var ua = window.navigator.userAgent.toLowerCase();
 	if (ua.match(/MicroMessenger/i) == 'micromessenger') {

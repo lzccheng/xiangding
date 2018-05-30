@@ -1,57 +1,58 @@
 <template>
 	<div class="box">
 		<Header title="我的发布"/>
-		<span class="delect" v-if="1==index_">删除</span>
+		<span class="delect" v-if="1==index_" @click="deleteRoom">删除</span>
 		<div>
 			<div v-if="0==index_">
-			    <router-link tag="div" :to="Fn.getUrl({path: '/my/roomSend/roomSend',query:{title: '房间编辑'}}) ">
 					<div v-for="(i,index) in arr" class="item" :key="index">
-						<div class="img">
-							<img :src="i.thumb" alt="">
-						 </div>
-						<div class="con_box">
-							<p class="room_name">{{i.title}}</p>
-							<p class="money_item">
-								<span class="money_1">¥</span>
-								<span class="money_2">{{i.market_price}} </span>
-								<span class="spec">/间晚</span>
-							</p>
-							<div class="text_small">
-								<p class="text">
-								  <span class="text_1">房间面积:&nbsp; {{arrItem[index][0].value}}</span>
-								  <span class="icon" @click="handleCancel">
-									  <el-switch
-										  v-model="i.active"
-										  active-color="#43c122"
-										  inactive-color="#a7a5a6">
-									  </el-switch>
-								  </span>
+						<!-- <router-link tag="div" :to="Fn.getUrl({path: '/my/roomSend/roomSend',query:{title: '房间编辑',goods_id:i.id}}) "> -->
+							<div class="img">
+								<img :src="i.thumb" alt="">
+							 </div>
+							<div class="con_box">
+								<p class="room_name">{{i.title}}</p>
+								<p class="money_item">
+									<span class="money_1">¥</span>
+									<span class="money_2" @click="handleChangePrice(index)">{{i.price}} </span>
+									<span class="spec">/间晚</span>
 								</p>
-								<p class="text_2"><span class="right" @click="handleCancel">开启状态</span></p>
-								<p class="text">可售房间:&nbsp; 20间</p>
+								<div class="text_small">
+									<p class="text">
+									  <span class="text_1">房间面积:&nbsp; {{arrItem[index].length?arrItem[index][0].value:''}}</span>
+									  <span class="icon" @click="handleCancel">
+										  <el-switch
+											  v-model="i.status"
+											  active-color="#43c122"
+											  inactive-color="#a7a5a6">
+										  </el-switch>
+									  </span>
+									</p>
+									<p class="text_2"><span class="right" @click="handleCancel">开启状态</span></p>
+									<p class="text">可售房间:&nbsp; {{i.stock}}间</p>
+								</div>
 							</div>
-						</div>
+						<!-- </router-link> -->
 					</div>
-				</router-link>
+
 			</div>
 			<div v-if="1==index_">
-				<div v-for="(i,index) in 5" class="item_delete" :key="index">
+				<div v-for="(i,index) in arr" class="item_delete" :key="index">
 					<div>
-						<input type="checkbox" :id="'_'+index">
+						<input type="checkbox" :value="i.id" v-model="checkedNames" :id="'_'+index">
 					</div>
 					<label :for="'_'+index">
 						<div class="img">
-							<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425433535&di=f7d324b2c95bd6f203fb8741290c02e3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D41481487a2773912d02b8d219161e374%2Ff3d3572c11dfa9ec3d58042d69d0f703918fc192.jpg" alt="">
+							<img :src="i.thumb" alt="">
 						 </div>
 						<div class="text_box">
-							<p class="name_1">特惠商务房</p>
+							<p class="name_1">{{i.title}}</p>
 							<p class="name_2">
 								<span>¥</span>
-								<span class="name_money">299元</span>
+								<span class="name_money">{{i.price}}元</span>
 							</p>
 						</div>
 					</label>
-					
+
 				</div>
 			</div>
 		</div>
@@ -93,43 +94,78 @@
 	</div>
 </template>
 <script>
+	import {  MessageBox } from 'mint-ui'
 	export default {
 		mounted(){
-			let that = this
-			this.Http.get({route:'plugin.store-cashier.store.admin.goods.index',baseUrl:'web/index.php?c=site&a=entry&m=yun_shop&do=1210&action=true'}).then(res=>{
-				console.log(res.data)
-				if(res.data.main){
-					let data = res.data.main.map(i=>{
-					i['active'] = true
-						return i
-					})
-					that.arrItem = res.data.detail
-					that.arr = data
-				}else{
-					console.log(res.data)
-					this.Fn.tips('数据获取失败！')
-				}
-				
-			})
+			this.getData()
 		},
 		data(){
 			return {
 				arrItem:[],
 				arr: [
 				],
+				checkedNames:[],
 				value1: true,
 	            value2: true,
 	            index_: 0
 			}
 		},
 		methods: {
+      handleChangePrice(i){
+        let that = this
+        MessageBox.prompt('请输入价格').then(({ value, action }) => {
+          console.log(value)
+          that.arr[i].price = value
+        })
+      },
+			deleteRoom(){
+				let that = this
+				console.log(555,this.checkedNames)
+				MessageBox.confirm('确定执删除选中房间?').then(action => {
+					console.log(action)
+				  	for(let i=0;i<that.checkedNames.length;i++){
+						that.Http.post({route:'plugin.store-cashier.store.admin.goods.delete',baseUrl:'web/index.php?c=site&a=entry&m=yun_shop&do=1210',data:{action:true,id:that.checkedNames[i]}}).then(res=>{
+							console.log(res)
+							that.Fn.tips(res.data.msg)
+						})
+					}
+					that.getData()
+				});
+
+			},
+			getData(){
+				let that = this
+				this.Http.get({route:'plugin.store-cashier.store.admin.goods.index',baseUrl:'web/index.php?c=site&a=entry&m=yun_shop&do=1210&action=true'}).then(res=>{
+					console.log(res.data)
+					if(res.data.main){
+						let data = res.data.main.map(i=>{
+							i['active'] = i.status?true:false
+							return i
+						})
+						that.arrItem = res.data.detail
+						that.arr = data
+						console.log(that.arrItem)
+					}else{
+						console.log(res.data)
+            that.Fn.tips('数据获取失败！')
+					}
+
+				})
+			},
 			handleCancel(event){
 				event.cancelBubble = true
 			},
 			onHandleChange(i){
 				this.index_ = i
 			}
-		}
+		},
+    watch:{
+		  $route(to,from){
+		    if(to.name === 'roomEnter'){
+		      this.getData()
+        }
+      }
+    }
 	}
 </script>
 <style scoped lang="scss">
@@ -192,7 +228,7 @@
 						}
 					}
 				}
-				
+
 			}
 			.con_box{
 				display: inline-block;
@@ -276,7 +312,7 @@
 						}
 					}
 				}
-				
+
 			}
 
 		}
@@ -324,7 +360,7 @@
 			background-color: #e5e5e5;
 			.room_box{
 				width: 33%;
-				
+
 				.room{
 					padding: rem(13px) 0;
 					text-align: center;
@@ -338,7 +374,7 @@
 					border-right: none;
 				}
 			}
-			
+
 		}
 	}
 </style>

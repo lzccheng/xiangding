@@ -148,7 +148,7 @@
 			</div>
 		</div>
 	</div>
-</template> 
+</template>
 <script>
 	import { Toast } from 'mint-ui'
 	export default {
@@ -180,7 +180,7 @@
 			// 		that.msg.level_name = res.data.data.level_name
 			// 		that.msg.agent_nickname = res.data.data.yz_member.agent.nickname
 			// 	}
-				
+
 			// },(err)=>{
 			// 	console.log(err)
 			// })
@@ -232,6 +232,8 @@
 
 				}
 			}
+		},
+		methods:{
 		}
 	}
 </script>
@@ -247,7 +249,7 @@
 			position: relative;
 			.me{
 				position: relative;
-				padding-top: rem(15px); 
+				padding-top: rem(15px);
 				margin: 0 0 rem(20px) rem(25px);
 				p{
 					display: inline-block;
@@ -381,8 +383,8 @@
 					}
 				}
 			}
-			
-			
+
+
 		}
 		.hotelServe{
 			background-color: #fff;
