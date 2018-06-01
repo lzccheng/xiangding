@@ -2,7 +2,7 @@
 	<div class="box">
 		<Header title="申请入驻"/>
 		<myalert :innerHtml="htmltest" title_2="享订入驻协议" @handleCancel="aaa" :show="alertShow" status="1"/>
-		<!-- <div class="back" v-if="general" @click="handleClose_back"> 
+		<!-- <div class="back" v-if="general" @click="handleClose_back">
 			<div class="box" @click="cancelBubble">
 				<p class="title">享订入驻协议</p>
 				<p class="text">hello</p>
@@ -18,7 +18,7 @@
 			<div class="form">
 				<p class="input">
 					<label>代理商姓名:</label>
-					<input type="text" placeholder="请输入姓名" name="" v-model="formData.name">
+					<input type="text" placeholder="请输入姓名" name="" v-model="formData.realname">
 				</p>
 				<p class="input" style="border-bottom: none;">
 					<label>联系电话:</label>
@@ -52,7 +52,7 @@
 						<span class="on">身份证正面照</span>
 						<span class="down">身份证反面照</span>
 					</p>
-					
+
 					</p> -->
 					<div class="item">
 						<div class="msg_tt">身份证正面照</div>
@@ -68,12 +68,12 @@
 								  <i class="el-icon-plus" v-show="!formData.IDcard_facade"></i>
 								</el-upload>
 							</div>
-							
+
 							<div class="img" v-show="formData.IDcard_facade">
 								<img :src="formData.IDcard_facade">
 							</div>
 						</div>
-						
+
 					</div>
 					<div class="item">
 						<div class="msg_tt">身份证反面照</div>
@@ -89,14 +89,14 @@
 								  <i class="el-icon-plus" v-show="!formData.IDcard_back"></i>
 								</el-upload>
 							</div>
-							
+
 							<div class="img" v-show="formData.IDcard_back">
 								<img :src="formData.IDcard_back">
 							</div>
 						</div>
-						
+
 					</div>
-					
+
 					<!-- <div class="text">身份证正面照:</div>
 					<el-upload
 					  class="upload-demo"
@@ -125,7 +125,7 @@
 					</el-upload> -->
 				</div>
 				<div class="footer">
-					<router-link tag="p" :to="Fn.getUrl({path:'/my/myagantEnter'})" class="green_btn">立即申请</router-link>
+					<!--<router-link tag="p" :to="Fn.getUrl({path:'/my/myagantEnter'})" class="green_btn">立即申请</router-link>-->
 					<p class="green_btn" @click="handleFormSubmit">立即申请</p>
 				</div>
 			</div>
@@ -147,7 +147,7 @@
 				<i class="far fa-check-circle"></i>
 			</div>
 			<div class="text">恭喜您已通过审核</div>
-			<div class="sub"><router-link tag="span" :to="Fn.getUrl({path: '/'})" class="green_btn">去招代理</router-link></div>
+			<div class="sub"><router-link tag="span" :to="Fn.getUrl({path:'/my/myagantEnter'})" class="green_btn">去招代理</router-link></div>
 		</div>
 		<!--驳回申请-->
 		<div v-show="status == -2" class="tips">
@@ -183,12 +183,12 @@
 				htmltest: '<p style="font-size: 13px; text-align: left;">代理服务商入驻协议内容部分........</p>',
 				alertShow: false,
 				formData: {
-					name: '',
+          realname: '',
 					mobile: '',
 					code: '5555',
 					IDcard: '',
-					IDcard_back: '',
-					IDcard_facade: ''
+          idcardb: '',
+          idcardf: ''
 				},
 				actionUrl: process.env.API_ROOT+'/addons/yun_shop/api.php?i=3&c=entry&do=shop&type=1&m=yun_shop&route=plugin.store-cashier.frontend.store.store.upload',
 				fileList1: [],
@@ -227,20 +227,20 @@
 				Indicator.close()
 				// this.formData.IDcard_facade&&this.fileList1[0].splice(0,1)
 				console.log(this.fileList1)
-				this.formData.IDcard_facade = res.data.img
+				this.formData.idcardf = res.data.img
 				this.Fn.tips(res.msg)
 			},
 			handleSuccess2(res, file, fileList){
 				Indicator.close()
-				this.formData.IDcard_back&&this.fileList2.shift()
-				this.formData.IDcard_back = res.data.img
+				this.formData.idcardb&&this.fileList2.shift()
+				this.formData.idcardb = res.data.img
 				this.Fn.tips(res.msg)
 			},
 			removeFile1(){
-				this.formData.IDcard_facade = ''
+				this.formData.idcardf = ''
 			},
 			removeFile2(){
-				this.formData.IDcard_back = ''
+				this.formData.idcardb = ''
 			},
 			handleRemove(file, fileList) {
 	        	console.log(file, fileList);
@@ -250,7 +250,7 @@
 	      	},
 	      	handleFileUpload(){},
 			handleFormSubmit(){
-				if(!this.formData.name){
+				if(!this.formData.realname){
 					return this.Fn.tips('代理商姓名不能为空')
 				}
 				if(this.formData.mobile){
@@ -267,10 +267,10 @@
 				}else{
 					return this.Fn.tips('身份证号不能为空')
 				}
-				if(!this.formData.IDcard_facade){
+				if(!this.formData.idcardf){
 					return this.Fn.tips('请上传身份证正面照')
 				}
-				if(!this.formData.IDcard_back){
+				if(!this.formData.idcardb){
 					return this.Fn.tips('请上传身份证反面照')
 				}
 				console.log({...this.formData})
@@ -282,7 +282,7 @@
 					this.Fn.tips(res.data.msg)
 				})
 
-				
+
 			},
 			handleGetCode(){
 				let that = this
@@ -421,7 +421,7 @@
 				// 	top: rem(150px);
 				// 	right: 15%;
 				// }
-				
+
 				display: flex;
 				justify-content: space-around;
 				.item{
@@ -446,7 +446,7 @@
 							}
 						}
 					}
-					
+
 				}
 			}
 			.footer{
@@ -464,16 +464,16 @@
 				input{
 					border: none;
 					height: rem(20px);
-					&::-webkit-input-placeholder { 
+					&::-webkit-input-placeholder {
 					    color:    #aaa;
 					}
-					&:-moz-placeholder { 
+					&:-moz-placeholder {
 					    color:    #aaa;
 					}
-					&::-moz-placeholder { 
+					&::-moz-placeholder {
 					    color:    #aaa;
 					}
-					&:-ms-input-placeholder { 
+					&:-ms-input-placeholder {
 					    color:    #aaa;
 					}
 				}
@@ -498,16 +498,16 @@
 					width: 45%;
 					border: none;
 					height: rem(20px);
-					&::-webkit-input-placeholder { 
+					&::-webkit-input-placeholder {
 					    color:    #aaa;
 					}
-					&:-moz-placeholder { 
+					&:-moz-placeholder {
 					    color:    #aaa;
 					}
-					&::-moz-placeholder { 
+					&::-moz-placeholder {
 					    color:    #aaa;
 					}
-					&:-ms-input-placeholder { 
+					&:-ms-input-placeholder {
 					    color:    #aaa;
 					}
 				}
@@ -531,7 +531,7 @@
 				margin-top: rem(25px);
 				button{
 					width: 100%;
-					border: none; 
+					border: none;
 					color: #fff;
 					border-radius: rem(5px);
 					background-color: #43c122;
@@ -539,7 +539,7 @@
 				}
 			}
 		}
-		
+
 		.agreement_box{
 			position: absolute;
 			bottom: rem(10px);
@@ -549,7 +549,7 @@
 			.agreement{
 				background-color: #ffffff;
 				color: #769de6;
-				
+
 			}
 		}
 		.tips{
@@ -568,6 +568,6 @@
 				padding: 0 5%;
 			}
 		}
-		
+
 	}
 </style>

@@ -16,28 +16,28 @@
 			<ul>
 				<li class="item">
 					<span class="name">会议室名称:</span>
-					<span class="hide_1"><input type="text" placeholder="请填写会议室名称"></span>
+					<span class="hide_1"><input type="text" v-model="formData.title" placeholder="请填写会议室名称"></span>
 				</li>
 				<li class="item">
 					<span class="name">会议室原价:</span>
-					<span class="hide_1"><input type="text" placeholder="请填写会议室原价"></span>
+					<span class="hide_1"><input type="text" v-model="formData.market_price" placeholder="请填写会议室原价"></span>
 				</li>
 				<li class="item">
 					<span class="name">会议室价格:</span>
-					<span class="hide_1"><input type="text" placeholder="请填写会议室价格"></span>
+					<span class="hide_1"><input type="text" v-model="formData.price" placeholder="请填写会议室价格"></span>
 				</li>
-				<li class="item">
-					<span class="name">会议室数量:</span>
-					<span class="hide_1"><input type="text" placeholder="请填写酒店会议室数量"></span>
-				</li>
+				<!--<li class="item">-->
+					<!--<span class="name">会议室数量:</span>-->
+					<!--<span class="hide_1"><input type="text" placeholder="请填写酒店会议室数量"></span>-->
+				<!--</li>-->
 				<li class="item">
 					<span class="name">会议室面积:</span>
-					<span class="hide_1"><input type="text" placeholder="请填写酒店会议室面积"></span>
+					<span class="hide_1"><input type="text" v-model="formData.param_value[0]" placeholder="请填写酒店会议室面积(100*100平方)"></span>
 				</li>
 				<li class="item">
 					<span class="name">窗户:</span>
 					<div class="select_1">
-						<el-select focus="this.blur()" v-model="select6" slot="prepend" placeholder="请选择">
+						<el-select focus="this.blur()" v-model="formData.param_value[1]" slot="prepend" placeholder="请选择">
 					      <el-option label="是" value="1"></el-option>
 					      <el-option label="否" value="2"></el-option>
 					      <el-option label="部分有窗" value="3"></el-option>
@@ -50,7 +50,7 @@
 				</li>
 				<li class="item" v-if="checked1">
 					<span class="right">
-						<el-checkbox-group v-model="checkList2">
+						<el-checkbox-group v-model="formData.param_value[3]">
 							 <el-checkbox label="1 × 2米LED屏"></el-checkbox><br/>
 	                         <el-checkbox label="1.5 × 3.5米LED屏"></el-checkbox><br/>
 	                         <el-checkbox label="2.5 × 5.5米LED屏"></el-checkbox>
@@ -73,30 +73,35 @@
 				</li> -->
 				<li class="item">
 					<span class="name">可容纳人数:</span>
-					<span class="hide_1"><input type="text" placeholder="请输入会议室大约可容纳人数"></span>
+					<span class="hide_1"><input type="text" v-model="formData.param_value[3]" placeholder="请输入会议室大约可容纳人数"></span>
 				</li>
 				<li class="item_1">
-				    <span class="name">房间照片:</span>
+				    <span class="name">会议室照片:</span>
 				    <div class="photo">
 						<div class="icon">
 							<label for="file"><i class="far fa-plus-square"></i></label>
-							<input type="file" id="file" style="display: none">
+							<input type="file" @change="handleFile" id="file" style="display: none">
 						</div>
-						<span class="hide_1">最多添加4张</span>
+            <div class="photo_show">
+              <div v-show="formData.thumb">
+                <img :src="formData.thumb">
+              </div>
+            </div>
+						<!--<span class="hide_1">最多添加4张</span>-->
 					</div>
 				</li>
 				<li class="item ">
-				    <p class="padding-bottom">房间配套设施:</p>
+				    <p class="padding-bottom">会议室配套设施:</p>
 					<div class="check">
 						<div>
-							  <el-checkbox-group v-model="checkList">
+							  <el-checkbox-group v-model="formData.param_value[4]">
 							  	<span>
 							  	   <el-checkbox label="话筒"></el-checkbox>
 							  	</span>
 							  	<span>
 							  	    <el-checkbox label="有线无线宽带"></el-checkbox>
 							  	</span>
-							  	
+
 							  </el-checkbox-group><br/>
 						</div>
 						<div >
@@ -111,7 +116,7 @@
 				<span class="color">添加会议室</span>
 			</div> -->
 			<div class="send">
-				<button class="green_btn">发布</button>
+				<button class="green_btn" @click="handleRoomSend">发布</button>
 			</div>
 		</div>
 	</div>
@@ -129,10 +134,100 @@
 			      checked1: false,
 			      radio: '1',
 			      general: false,
-			      checkList2: ['1 × 2米LED屏']
+			      checkList2: ['1 × 2米LED屏'],
+            formData:{
+              uniaci: 3,
+              display_order: 1,
+              title:'',
+              parentid: 0,
+              is_recommand: 0,
+              goods_sn: new Date().getTime(),
+              product_sn: new Date().getTime()+10,
+              content: '8888888',
+              childid: 0,
+              brand_id: 3,
+              type: 1,
+              sku: '间',
+              thumb_url: '999',
+              price: 0,
+              market_price: 0,
+              cost_price: 0,
+              stock: 1,
+              reduce_stock_method: 1,
+              status: 1,
+              weight: '1',
+              thumb: '',
+              param_title:[
+                '会议室面积',
+                '是否有窗户',
+                '提供LED屏',
+                '可容纳人数',
+                '房间配套设施'
+              ],
+              param_value:[
+                '',
+                '是',
+                ['1 × 2米LED屏'],
+                '',
+                ['话筒']
+              ]
+            }
 			}
 		},
 		methods: {
+      handleFile(e){
+        var e = e || event
+        let that = this
+        console.log(e.target.files[0])
+        this.Http.imgUpload(e.target,{msg:'图片上传中...'}).then(res=>{
+          console.log(res)
+          if(res.data.result === 1){
+            that.formData.thumb = res.data.data.img
+          }
+          that.Fn.tips(res.data.msg)
+        })
+      },
+      handleRoomSend(){
+        if(!this.formData.title){
+          return this.Fn.tips('会议室名称不能为空！')
+        }
+        if(!this.formData.market_price){
+          return this.Fn.tips('请输入会议室原价！')
+        }else{
+          if(!this.Fn.checkNumber(this.formData.market_price)){
+            return this.Fn.tips('会议室原价请输入数字！')
+          }
+        }
+        if(!this.formData.price){
+          return this.Fn.tips('请输入会议室价格！')
+        }else{
+          if(!this.Fn.checkNumber(this.formData.price)){
+            return this.Fn.tips('会议室价格请输入数字！')
+          }
+        }
+        if(!this.formData.param_value[0]){
+          return this.Fn.tips('请输入会议室面积！')
+        }
+        if(!this.formData.param_value[3]){
+          return this.Fn.tips('请输入可容纳人数！')
+        }else{
+          if(!this.Fn.checkNumber(this.formData.param_value[3])){
+            return this.Fn.tips('可容纳人数请输入数字！')
+          }
+        }
+        if(!this.formData.thumb){
+          return this.Fn.tips('请上传房间照片！')
+        }
+        console.log({...this.formData})
+        let that = this
+        this.Http.post({route:'plugin.store-cashier.store.admin.goods.add',baseUrl: '/web/index.php?c=site&a=entry&m=yun_shop&do=1022&action=true&',data:{...this.formData}}).then(res=>{
+          console.log('post',res)
+          that.Fn.tips(res.data.msg)
+          if(res.data.code === 200){
+            that.$router.push(that.Fn.getUrl({path:'/my/roomEnter'}))
+          }
+        })
+      },
 			handGeneral(event){
 					this.general = true
 				},
@@ -189,7 +284,7 @@
 						text-align: center;
 						border-top: none;
 						border-left: none;
-						border-right: none; 
+						border-right: none;
 						border-bottom: #333 solid rem(1px);
 						margin: 0;
 					}
@@ -282,16 +377,16 @@
 					input{
 						width: 60%;
 						border: none;
-						&::-webkit-input-placeholder { 
+						&::-webkit-input-placeholder {
 						    color:    #aaa;
 						}
-						&:-moz-placeholder { 
+						&:-moz-placeholder {
 						    color:    #aaa;
 						}
-						&::-moz-placeholder { 
+						&::-moz-placeholder {
 						    color:    #aaa;
 						}
-						&:-ms-input-placeholder { 
+						&:-ms-input-placeholder {
 						    color:    #aaa;
 						}
 					}
@@ -326,6 +421,12 @@
 					margin-left: 5%;
 				}
 			 }
+        .photo_show{
+          width: 50%;
+          img{
+            width: 100%;
+          }
+        }
 			}
 			.add_room{
 				text-align: center;
@@ -339,7 +440,7 @@
 						color: #000;
 					}
 				}
-				
+
 			}
 		}
 

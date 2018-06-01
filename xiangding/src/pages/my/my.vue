@@ -150,7 +150,8 @@
 	</div>
 </template>
 <script>
-	import { Toast } from 'mint-ui'
+	import { Toast , MessageBox} from 'mint-ui'
+	import wx from 'weixin-js-sdk'
 	export default {
 		mounted(){
 			let that = this
@@ -212,6 +213,58 @@
 			// this.Http.post({baseUrl: 'web/index.php?c=user&a=login',data:dd}).then(res=>{
 			// 	console.log(555555,res)
 			// })
+      //https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=order.merge-pay.wechatPay&order_pay_id=373&pid=15
+      //https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&c=entry&do=shop&type=1&m=yun_shop&route=finance.balance.recharge&recharge_money=2&pay_type=1
+      //https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=order.merge-pay.wechatPay&order_pay_id=386&pid=15
+      this.Http.get({route:'finance.balance.recharge',params:{recharge_money:2,pay_type:'1',m:'yun_shop',c:'entry'}}).then(res=>{
+        console.log(11,res)
+        if(res.data.result === 1){
+
+        }
+        console.log(res.data.data.config)
+        console.log(WeixinJSBridge)
+        function onBridgeReady(){
+		   WeixinJSBridge.invoke(
+		       'getBrandWCPayRequest', res.data.data.config,
+		       function(res){  
+		       		console.log(666,res)   
+		       		if(res.errMsg){
+		       			alert(res.errMsg)
+		       		}
+		       		// if(res.err_msg == "get_brand_wcpay_request:fail" ) {
+		         //   		MessageBox.alert('支付失败', '提示')
+		         //   } 
+		           if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+		           		// that.Fn.tips('支付成功')
+		           		MessageBox.alert('支付成功', '提示')
+		           }else{
+		           		MessageBox.alert('支付失败', '提示')
+		           }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
+		       }
+		   ); 
+		}
+		if (typeof WeixinJSBridge == "undefined"){
+		   if( document.addEventListener ){
+		       document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+		   }else if (document.attachEvent){
+		       document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+		       document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+		   }
+		}else{
+		   onBridgeReady();
+		}
+        // alert(res.)http://localhost:8080/api/addons/yun_shop/api.php?&i=3&type=1&mid=15&route=order.merge-pay&order_pay_id=55
+      })
+			// order.merge-pay.yunPayWechat...order.merge-pay----order.merge-pay.wechatPay
+			this.Http.get({route:'order.merge-pay.yunPayWechat',params:{order_pay_id:55}}).then(res=>{
+				console.log(999999999,res)
+			})
+			this.Http.get({route:'order.merge-pay',params:{order_pay_id:55}}).then(res=>{
+				console.log(8888888,res)
+			})
+			this.Http.get({route:'order.merge-pay.wechatPay',params:{order_pay_id:103}}).then(res=>{
+				console.log(112233,res)
+			})
 		},
 		data(){
 			return {

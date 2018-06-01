@@ -10,8 +10,8 @@
 			<div class="i"><i class="far fa-calendar-alt"></i></div>
 		</div>
 		<div class="choice">
-				<div class="tab" ref="tab"> 
-					<div v-for="(i,index) in arrItem" :key='index' @click="handleClick(index,$event)"> 
+				<div class="tab" ref="tab">
+					<div v-for="(i,index) in arrItem" :key='index' @click="handleClick(index,$event)">
 						<span>{{i}}</span>
 					</div>
 				</div>
@@ -35,6 +35,9 @@
 						<div v-if="0 == index">
 							<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus'})">
 								<div v-for="(i,index) in havePay" class="item" :key="index">
+                  <div v-show="havePay.length">
+                    <p style="text-align:center">无数据</p>
+                  </div>
 									<div>
 										<div class="img">
 											<img src="" alt="">
@@ -52,7 +55,7 @@
 											</div>
 										</div>
 									</div>
-									
+
 					            </div>
 					        </router-link>
 			            </div>
@@ -95,6 +98,9 @@
 						<div v-if="0 == index_1">
 							<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus'})">
 								<div v-for="(i,index) in haveEnter" class="item" :key="index">
+                  <div v-show="haveEnter.length">
+                    <p style="text-align:center">无数据</p>
+                  </div>
 									<div class="img">
 										<img :src="i.has_many_order_goods[0].thumb" alt="">
 									</div>
@@ -133,7 +139,7 @@
 									</div>
 					            </div>
 					        </router-link>
-				        </div>    
+				        </div>
 					</div>
 				</div>
 		</div>
@@ -164,11 +170,11 @@
 				index_: 0,
 				index: 0,
 				index_1: 0
-			} 
+			}
 		},
 		methods: {
 			handleClick(i,e){
-				var e = e || event  
+				var e = e || event
 				//console.log(e.target,event.path[0])
 				this.$refs._line.style.left = e.target.offsetLeft + 'px'
 				this.$refs._line.style.width =  e.target.offsetWidth +'px'
@@ -250,16 +256,16 @@
 							border: none;
 							color: #aaa;
 							width: 74%;
-							&::-webkit-input-placeholder { 
+							&::-webkit-input-placeholder {
 							    color:    #aaa;
 							}
-							&:-moz-placeholder { 
+							&:-moz-placeholder {
 							    color:    #aaa;
 							}
-							&::-moz-placeholder { 
+							&::-moz-placeholder {
 							    color:    #aaa;
 							}
-							&:-ms-input-placeholder { 
+							&:-ms-input-placeholder {
 							    color:    #aaa;
 							}
 						}
@@ -292,7 +298,7 @@
 						background-color: #43c122;
 						position: absolute;
 						left: 0;
-						bottom: 0; 
+						bottom: 0;
 						border-radius: rem(5px);
 						transition: all 0.5s;
 					}
@@ -359,7 +365,7 @@
 										.name_2{
 											span{
 												margin-right: rem(10px);
-											}	
+											}
 										}
 										.color{
 											margin-bottom: none;
@@ -386,6 +392,6 @@
 				}
 			}
 
-		
+
 	}
 </style>

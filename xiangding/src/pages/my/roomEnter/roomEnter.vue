@@ -21,6 +21,7 @@
 									  <span class="text_1">房间面积:&nbsp; {{arrItem[index].length?arrItem[index][0].value:''}}</span>
 									  <span class="icon" @click="handleCancel">
 										  <el-switch
+                        @change="statusChange(index)"
 											  v-model="i.status"
 											  active-color="#43c122"
 											  inactive-color="#a7a5a6">
@@ -28,7 +29,7 @@
 									  </span>
 									</p>
 									<p class="text_2"><span class="right" @click="handleCancel">开启状态</span></p>
-									<p class="text">可售房间:&nbsp; {{i.stock}}间</p>
+									<p class="text">可售房间:&nbsp; <span @click="handleChangeStock(index)">{{i.stock}}</span>间</p>
 								</div>
 							</div>
 						<!-- </router-link> -->
@@ -111,16 +112,45 @@
 			}
 		},
 		methods: {
+      statusChange(i,status){
+        let that = this
+        let status_ = that.arr[i].status?1:0
+        console.log(status_)
+        that.Http.post({route:'plugin.store-cashier.store.admin.goods.edit',baseUrl:'/web/index.php?c=site&a=entry&m=yun_shop&do=5468&action=true&',data:{id:that.arr[i].id,status:status_}}).then(res=>{
+          console.log(res)
+          that.Fn.tips(res.data.msg)
+          that.getData()
+        })
+      },
+      handleChangeStock(i){
+        let that = this
+        MessageBox.prompt('请输入可售房间数：').then(({value,action})=>{
+          that.Http.post({route:'plugin.store-cashier.store.admin.goods.edit',baseUrl:'/web/index.php?c=site&a=entry&m=yun_shop&do=5468&action=true&',data:{id:that.arr[i].id,stock:value}}).then(res=>{
+            console.log(res)
+            that.Fn.tips(res.data.msg)
+            that.getData()
+          })
+          // that.arr[i].stock = value
+        },camcel=>{
+          console.log('cancel')
+        })
+      },
       handleChangePrice(i){
         let that = this
         MessageBox.prompt('请输入价格').then(({ value, action }) => {
           console.log(value)
-          that.arr[i].price = value
+          that.Http.post({route:'plugin.store-cashier.store.admin.goods.edit',baseUrl:'/web/index.php?c=site&a=entry&m=yun_shop&do=5468&action=true&',data:{id:that.arr[i].id,price:value}}).then(res=>{
+            console.log(res)
+            that.Fn.tips(res.data.msg)
+            that.getData()
+          })
+          // that.arr[i].price = value
+        },cancel=>{
+          console.log('cancel')
         })
       },
 			deleteRoom(){
 				let that = this
-				console.log(555,this.checkedNames)
 				MessageBox.confirm('确定执删除选中房间?').then(action => {
 					console.log(action)
 				  	for(let i=0;i<that.checkedNames.length;i++){

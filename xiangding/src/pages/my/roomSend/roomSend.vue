@@ -57,12 +57,12 @@
 									  </el-checkbox-group>
 						    	</span>
 						    </p><br/>
-						    <p class="add_1">
-						        <span @click="handleShow" :class="{color:value2}" >
-							    	<span  class="add_icon"><i class="fas fa-plus-square"></i></span>
-							    	<span class="add_text">添加</span>
-						    	</span>
-						    </p>
+						    <!--<p class="add_1">-->
+						        <!--<span @click="handleShow" :class="{color:value2}" >-->
+							    	<!--<span  class="add_icon"><i class="fas fa-plus-square"></i></span>-->
+							    	<!--<span class="add_text">添加</span>-->
+						    	<!--</span>-->
+						    <!--</p>-->
 						 </el-collapse-item>
 					</el-collapse>
 				</li>
@@ -109,9 +109,6 @@
 						<div v-show="formData.thumb">
 							<img :src="formData.thumb">
 						</div>
-						<div >
-
-						</div>
 					</div>
 				</li>
 				<li class="item ">
@@ -126,10 +123,10 @@
 						  	<span class="check_box"><el-checkbox label="有线无线宽带"></el-checkbox></span>
 						  </el-checkbox-group>
 					</div>
-					<span class="add" @click="handleShow_1">
-						  <span class="add_more"><i class="far fa-plus-square"></i></span>
-						  <span>添加更多</span>
-					</span>
+					<!--<span class="add" @click="handleShow_1">-->
+						  <!--<span class="add_more"><i class="far fa-plus-square"></i></span>-->
+						  <!--<span>添加更多</span>-->
+					<!--</span>-->
 					</div>
 				</li>
 			</ul>
@@ -165,49 +162,49 @@
 			    select7: '是',
 			    checkList1: ['24小时热水'],
 			    value1: true,
-	            value2: true,
-	            checkList2: ['超过1小时扣费10%'],
-	            activeNames:[],
-	            title: '房间发布',
-	            formData:{
-				        uniaci: 3,
-                display_order: 1,
-                title:'',
-                parentid: 0,
-                is_recommand: 0,
-                goods_sn: new Date().getTime(),
-                product_sn: new Date().getTime()+10,
-                content: '8888888',
-                childid: 0,
-                brand_id: 2,
-                type: 1,
-                sku: '间',
-                thumb_url: '',
-                price: 0,
-                market_price: 0,
-                cost_price: 0,
-                stock: 0,
-                reduce_stock_method: 1,
-                status: 1,
-                weight: '1',
-                thumb: '',
-	            	param_title:[
-	            		'可住人数',
-	            		'房间面积',
-	            		'取消政策',
-	            		'是否供应早餐',
-	            		'是否有窗户',
-	            		'房间配套设施'
-	            	],
-	            	param_value:[
-	            		0,
-	            		'',
-	            		['超过1小时扣费10%'],
-	            		'是',
-	            		'是',
-	            		['24小时热水']
-	            	]
-	            }
+          value2: true,
+          checkList2: ['超过1小时扣费10%'],
+          activeNames:[],
+          title: '房间发布',
+          formData:{
+            uniaci: 3,
+            display_order: 1,
+            title:'',
+            parentid: 0,
+            is_recommand: 0,
+            goods_sn: new Date().getTime(),
+            product_sn: new Date().getTime()+10,
+            content: '8888888',
+            childid: 0,
+            brand_id: 2,
+            type: 1,
+            sku: '间',
+            thumb_url: '999',
+            price: '',
+            market_price: '',
+            cost_price: 0,
+            stock: '',
+            reduce_stock_method: 1,
+            status: 1,
+            weight: '1',
+            thumb: '',
+            param_title:[
+              '可住人数',
+              '房间面积',
+              '取消政策',
+              '是否供应早餐',
+              '是否有窗户',
+              '房间配套设施'
+            ],
+            param_value:[
+              '',
+              '',
+              ['超过1小时扣费10%'],
+              '是',
+              '是',
+              ['24小时热水']
+            ]
+          }
 			}
 		},
 		methods: {
@@ -215,6 +212,44 @@
 				// this.Http.get({route:'plugin.store-cashier.store.admin.goods.add',baseUrl: '/web/index.php?c=site&a=entry&m=yun_shop&do=1022&action=true&',params:{...this.formData}}).then(res=>{
 				// 	console.log('get',res)
 				// })
+        if(!this.formData.title){
+          return this.Fn.tips('房间名称不能为空！')
+        }
+        if(!this.formData.market_price){
+          return this.Fn.tips('请输入单间原价！')
+        }else{
+          if(!this.Fn.checkNumber(this.formData.market_price)){
+            return this.Fn.tips('单间原价请输入数字！')
+          }
+        }
+        if(!this.formData.price){
+          return this.Fn.tips('请输入单间价格！')
+        }else{
+          if(!this.Fn.checkNumber(this.formData.price)){
+            return this.Fn.tips('单间价格请输入数字！')
+          }
+        }
+        if(!this.formData.stock){
+          return this.Fn.tips('请输入可售房数！')
+        }else{
+          if(!this.Fn.checkNumber(this.formData.stock)){
+            return this.Fn.tips('可售房数请输入数字！')
+          }
+        }
+        if(!this.formData.param_value[0]){
+          return this.Fn.tips('请输入可住人数！')
+        }else{
+          if(!this.Fn.checkNumber(this.formData.param_value[0])){
+            return this.Fn.tips('可住人数请输入数字！')
+          }
+        }
+        if(!this.formData.param_value[1]){
+          return this.Fn.tips('请输入房间规格！')
+        }
+        if(!this.formData.thumb){
+          return this.Fn.tips('请上传房间照片！')
+        }
+        console.log({...this.formData})
         let that = this
         this.Http.post({route:'plugin.store-cashier.store.admin.goods.add',baseUrl: '/web/index.php?c=site&a=entry&m=yun_shop&do=1022&action=true&',data:{...this.formData}}).then(res=>{
           console.log('post',res)

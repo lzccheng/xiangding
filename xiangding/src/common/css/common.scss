@@ -2,7 +2,13 @@ $rem: 16px !default;
 @function rem($num){
 	@return $num/$rem*1rem;
 }
-
+.photo_show{
+  widht: 50%;
+  margin: 0 auto;
+  img{
+    width:100%;
+  }
+}
 .green_btn{
 	width: 100%;
 	display: inline-block;
@@ -16,16 +22,16 @@ $rem: 16px !default;
 }
 ._input{
 	border: none;
-	&::-webkit-input-placeholder { 
+	&::-webkit-input-placeholder {
 	    color:    #aaa;
 	}
-	&:-moz-placeholder { 
+	&:-moz-placeholder {
 	    color:    #aaa;
 	}
-	&::-moz-placeholder { 
+	&::-moz-placeholder {
 	    color:    #aaa;
 	}
-	&:-ms-input-placeholder { 
+	&:-ms-input-placeholder {
 	    color:    #aaa;
 	}
 }

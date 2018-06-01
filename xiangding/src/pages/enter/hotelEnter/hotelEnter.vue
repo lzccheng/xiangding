@@ -3,7 +3,7 @@
 		<Header title="申请入驻"/>
 		<myalert :innerHtml="htmltest" title_2="享订入驻协议" @handleCancel="aaa" :show="alertShow" status="1"/>
 		<div v-show="enter_status === 1">
-			<!-- <div class="back" v-if="general" @click="handleClose_back"> 
+			<!-- <div class="back" v-if="general" @click="handleClose_back">
 				<div class="box" @click="cancelBubble">
 					<p class="title">享订入驻协议</p>
 					<p class="text">hello</p>
@@ -15,7 +15,7 @@
 				</div>
 			</div> -->
 			<div class="content">
-				<div class="form"> 
+				<div class="form">
 					<p class="input">
 						<label>申请人:</label>
 						<input type="text" placeholder="请输入姓名" name="" v-model="formData.realname">
@@ -50,7 +50,7 @@
 						<label>酒店星级:</label>
 						<span class="star"><el-rate v-model="formData.categoryId"></el-rate></span>
 					</p>
-					
+
 					<p class="input">
 						<label>前台电话:</label>
 						<input @blur="hanndleFixPhone" v-model="formData.storetel" type="text" placeholder="请输入带区号得座机号码" class="hanndleFixPhone" name="">
@@ -71,7 +71,7 @@
 					</p> -->
 					<p class="input">
 						<label>详细地址:</label>
-						<input type="text" placeholder="请输入街道门牌号" name="" @blur="getLongAndLat">
+						<input type="text" placeholder="请输入街道门牌号" ref="addr_text" name="" @blur="getLongAndLat">
 					</p>
 					<p class="input">
 						<label>地理位置:</label>
@@ -82,7 +82,7 @@
 					</p>
 					<p class="input">
 						<label>酒店收款账号:</label>
-						<input @blur="handleCheckCredit" v-model="formData.hotelbank" type="text" class="handleCheckCredit" placeholder="请输入银行卡号" name="">
+						<input v-model="formData.hotelbank" type="text" class="handleCheckCredit" placeholder="请输入银行卡号" name="">
 					</p>
 					<p class="input">
 						<label >代理服务商姓名:</label>
@@ -111,12 +111,12 @@
 					</p>
 					<div class="photo" style="padding-left: 2%;">
 						<textarea cols="40" rows="5" placeholder="请填写酒店简介..."></textarea>
-					</div>	
-					
+					</div>
+
 				</div>
 				<div class="form" style="border-bottom: none;padding-left: 0">
 					<div class="footer">
-					   <router-link tag="p" :to="Fn.getUrl({path: '/enter/login'})"  @click="handleFormSubmit" class="green_btn">立即申请</router-link>
+					   <!--<router-link tag="p" :to="Fn.getUrl({path: '/enter/login'})"  @click="handleFormSubmit" class="green_btn">立即申请</router-link>-->
 					   <p @click="handleFormSubmit" class="green_btn">立即申请</p>
 					   <p @click="handleLogin" class="green_btn">立即申请</p>
 					</div>
@@ -125,7 +125,7 @@
 					</div>
 				</div>
 			</div>
-		</div> 
+		</div>
 		<div v-show="enter_status === 2">
 			<div class="box_2">
 				<div class="img">
@@ -137,7 +137,7 @@
 				</div>
 				<router-link :to="Fn.getUrl({path: '/'})" tag="div" class="bttn">去首页溜达溜达</router-link>
 			</div>
-			
+
 		</div>
 		<div v-show="enter_status === 3">
 			<div class="success">
@@ -185,7 +185,7 @@
 	          },
 	          onHide:function(){
 	          },
-	          
+
 	          callback:function(indexArr, data){
 	            that.text_erea = data[1].name+data[2].name+data[3].name
 	            that.province = data[0].name
@@ -195,7 +195,8 @@
 	            that.formData.provinceId = Number(data[0].code)
 	            that.formData.cityId = Number(data[1].code)
 	            that.formData.districtId = Number(data[2].code)
-	            that.formData.streeId = Number(data[3].code)
+              that.formData.streeId = Number(data[3].code)
+              that.$refs.addr_text.value = ''
 	          }
 	        })
 	        this.Http.getEreaData((res)=>{
@@ -231,7 +232,7 @@
 					username: '',	//账号
 					password: '',	//密码
 					storeName: '',	//酒店名称
-					categoryId: 6,	//酒店星级
+					categoryId: 1,	//酒店星级
 					storetel: '',	//*酒店前台电话
 					storeemail: '', //*酒店电子邮件
 					dailiname: '', //*代理服务商姓名
@@ -245,7 +246,7 @@
 					streeId: '', //街道
 					lng: '', //经度
 					lat: '', //纬度
-					address: '', //纬度
+					address: '', //地址
 					thumb: 'http://www.share-hotel.cn/addons/yun_shop/storage/app/avatars/store_apply'
 				},
 				province: '',
@@ -261,7 +262,7 @@
 		methods: {
 			handleLogin(){
 				window.location.href = 'https://www.share-hotel.cn/web/index.php?c=user&a=login&dd=1'
-				
+
 			},
 			getEnterStatus(){
 				let that = this
@@ -274,7 +275,7 @@
 		  		})
 			},
 			handleFile(e){
-				var e = e || event 
+				var e = e || event
 				let that = this
 				Indicator .open('图片上传中...')
 				//?i=3&c=entry&do=shop&type=1&m=yun_shop&route=plugin.store-cashier.frontend.store.store.upload
@@ -321,7 +322,7 @@
 					let success = (res)=>{
 						console.log(111,res)
 						if(res.geocodes[0].formattedAddress.split('|').join('').indexOf(value)<0){
-							this.Fn.tips('没找到');
+							this.Fn.tips('没找到' + value);
 							// that.$message({
 					  //         message: '没找到'+value,
 					  //         type: 'warning'
@@ -362,10 +363,13 @@
 				if(!this.formData.username){
 					return this.Fn.tips('账号不能为空！');
 				}
-				
+
 				if(!this.formData.password){
 					return this.Fn.tips('密码不能为空');
 				}
+				if(!this.formData.storeName){
+				  return this.Fn.tips('酒店名称不能为空')
+        }
 				if(this.formData.storetel){
 					if (!this.Fn.checkFixedPhone(this.formData.storetel)) {
 						return this.Fn.tips('请输入正确的前台电话')
@@ -380,12 +384,22 @@
 				}else{
 					return this.Fn.tips('电子邮箱不能为空')
 				}
+        if(!this.struct){
+          return this.Fn.tips('请选择地区');
+        }
 				if(!this.formData.address){
 					return this.Fn.tips('请填写地址');
 				}
+				if(!this.formData.hotelbank){
+          return this.Fn.tips('酒店收款账号不能为空');
+        }
 				if(!this.formData.dailiname){
-					return this.this.Fn.tips('代理服务商姓名不能为空')
-				}
+					return this.Fn.tips('代理服务商姓名不能为空')
+				}else{
+				  if(this.formData.dailiname === this.formData.realname){
+				    return this.Fn.tips('代理服务商姓名不能与申请人相同')
+          }
+        }
 				if(this.formData.dailitel){
 					if(!this.Fn.checkPhone(this.formData.dailitel)){
 						return this.Fn.tips('请输入正确的代理服务商电话')
@@ -393,9 +407,9 @@
 				}else{
 					return this.Fn.tips('代理服务商电话不能为空')
 				}
-				if(!this.formData.aptitudeImg.length){
-					return this.Fn.tips('请上传营业执照')
-				}
+				// if(!this.formData.aptitudeImg.length){
+				// 	return this.Fn.tips('请上传营业执照')
+				// }
 				// this.$axios.post('?i=3&c=entry&do=shop&m=yun_shop&route=plugin.store-cashier.frontend.store.store.apply',{apply:{...that.formData}}).then((res)=>{
 				// 	console.log(res)
 				// 	if(res.data.result === 1){
@@ -410,7 +424,6 @@
 				//           type: 'warning'
 				//         });
 				// 	}
-					
 				// })
 				this.Http.post({route:'plugin.store-cashier.frontend.store.store.apply&c=entry&do=shop&m=yun_shop',data:{apply:{...that.formData}}}).then(res=>{
 					if(res.data.result === 1){
@@ -444,7 +457,7 @@
 					this.$refs.eye_one.style.display = 'none'
 				}
 
-				
+
 			},
 			checkDailiname(){
 				if(!this.formData.dailiname){
@@ -626,16 +639,16 @@
 						width: 52%;
 						border: none;
 						height: rem(20px);
-						&::-webkit-input-placeholder { 
+						&::-webkit-input-placeholder {
 						    color:    #aaa;
 						}
-						&:-moz-placeholder { 
+						&:-moz-placeholder {
 						    color:    #aaa;
 						}
-						&::-moz-placeholder { 
+						&::-moz-placeholder {
 						    color:    #aaa;
 						}
-						&:-ms-input-placeholder { 
+						&:-ms-input-placeholder {
 						    color:    #aaa;
 						}
 					}
@@ -670,7 +683,7 @@
 				.footer{
 					padding: rem(20px) 5%;
 					// text-align: center;
-					
+
 				}
 				.agreement_box{
 					width: 100%;
@@ -683,7 +696,7 @@
 				}
 			}
 		}
-		
+
 		.box_2{
 			background-color: #fff;
 			text-align: center;
@@ -723,6 +736,6 @@
 				font-size: rem(14px);
 			}
 		}
-		
+
 	}
 </style>

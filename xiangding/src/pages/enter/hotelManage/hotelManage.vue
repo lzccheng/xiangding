@@ -87,9 +87,15 @@
 			// this.Http.get({baseUrl:'web/index.php?c=site&a=entry&m=yun_shop&do=1210',route:'plugin.store-cashier.store.admin.goods.index&action="1"',params:{action:true},}).then(res=>{
 			// 	console.log(res)
 			// })
-			this.Http.get({baseUrl:'web/index.php?c=site&a=entry&m=yun_shop&do=7619&action=true',route:'plugin.store-cashier.store.admin.order.index'}).then(res=>{
-				console.log(res)
-			})
+			// this.Http.get({baseUrl:'web/index.php?c=site&a=entry&m=yun_shop&do=7619&action=true',route:'plugin.store-cashier.store.admin.order.index'}).then(res=>{
+			// 	console.log(res)
+			// })
+      this.Http.post({route:'plugin.store-cashier.store.admin.cashier-order.get-statistics',baseUrl:'/web/index.php?c=site&a=entry&m=yun_shop&do=6578&'}).then(res=>{
+        console.log('统计',res)
+      })
+      this.Http.post({route:'plugin.store-cashier.store.admin.goods.index',baseUrl:'/web/index.php?c=site&a=entry&m=yun_shop&do=6578&action=true&'}).then(res=>{
+        console.log('首页',res)
+      })
 		},
 		data(){
 			return {

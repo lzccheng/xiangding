@@ -5,22 +5,23 @@
 			<div class="show">
 				<div class="items">
 					<div class="time"><span class="this_m">本月</span><span class="i"><i class="far fa-calendar-alt"></i></span></div>
-					<div class="item" v-for="(i,index) in data" :key="index">
+					<div class="item" v-for="(i,index) in list.data" :key="index">
 						<div class="img">
-							<img :src="returnJson(i[0].information,'thumb')" alt="">
+							<img :src="returnJson(data[index][0]?data[index][0].information:'{}','aptitude_imgs')[0]" alt="">
 						</div>
 						<div class="msg">
-              <p>{{returnJson(i[0].information,'thumb')}}</p>
-							<p class="title"><span>{{returnJson(i[0].information,'store_name')}}</span></p>
+              <!--<p>{{returnJson(i[0].information,'thumb')}}</p>-->
+              <!--<p><img :src="returnJson(i[0].information,'thumb')" alt=""></p>-->
+							<p class="title"><span>{{returnJson(data[index][0]?data[index][0].information:'{}','store_name')}}</span></p>
 							<p><span>1间，特惠商务房</span></p>
-							<p><span>客户名称：{{i[0].username}}</span></p>
+							<p><span>客户名称：{{data[index][0]?data[index][0].realname:''}}</span></p>
 							<p><span>01月27日-01月28日</span></p>
 						</div>
 						<div class="price">
-							<p class="btn"><span>{{returnStatus(i[0].status)}}</span></p>
+							<p class="btn"><span>{{returnStatus(data[index][0]?data[index][0].status:'-1')}}</span></p>
 							<p class="price_">
 								<span>￥</span>
-								<span class="num">{{i[0].price}}</span>
+								<span class="num">{{i.price}}</span>
 							</p>
 						</div>
 					</div>
@@ -52,7 +53,9 @@
 				})
 			},
       returnJson(str,key){
-			  return JSON.parse(str)[key]
+			  console.log(111,str)
+        console.log(22,JSON.parse(str))
+			  return JSON.parse(str)[key]?JSON.parse(str)[key]:''
       },
       returnStatus(value){
 			  let json = {

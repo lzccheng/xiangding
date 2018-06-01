@@ -68,7 +68,7 @@ const getLongAndLat = (addr,success,error)=>{
 		    }
 		});
 	})
-    
+
 }
 const isWeiXin = ()=>{
 	var ua = window.navigator.userAgent.toLowerCase();
@@ -219,6 +219,9 @@ const checkPassword= (value)=>{
 const checkEmail = (value)=>{
 	return /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/.test(value)
 }
+const checkNumber = value => {
+  return /^[0-9]*$/.test(value)
+}
 const tips = value =>{
 	Toast({
 		message: value,
@@ -235,6 +238,7 @@ export default {
 	checkCredit,
 	checkPassword,
 	checkEmail,
+  checkNumber,
 	addClass,
 	removeClass,
 	haveClass,
