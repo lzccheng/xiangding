@@ -612,8 +612,9 @@
 						width: 50%;
 					}
 					.choice{
-						display: inline-block;
-						width: 60%;
+						padding-right: 5%;
+						// display: inline-block;
+						// width: 60%;
 					}
 				}
 				// .text{

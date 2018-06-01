@@ -68,16 +68,10 @@
 				let value = document.querySelector('.handleCheck').value
 				if(value){
 					if(!this.Fn.checkPhone(value)){
-						this.$message({
-				          message: '请输入正确的手机号',
-				          type: 'warning'
-				        });
+						this.Fn.tips('请输入正确的手机号')
 					}
 				}else{
-					this.$message({
-			          message: '手机号不能为空',
-			          type: 'warning'
-			        });
+					this.Fn.tips('手机号不能为空')
 				}
 			},
 		}

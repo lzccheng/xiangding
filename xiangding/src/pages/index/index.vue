@@ -218,20 +218,15 @@
               addr = data.formattedAddress.split('号')
             }
             that.text_erea = addr[1]+'附近'
-            that.$message({
-              message: '定位成功！'+that.text_erea,
-              type: 'success'
-            })
+            let tip = '定位成功！'+that.text_erea
+            that.Fn.tips(tip)
           }
           /*
            *解析定位错误信息
            */
           function onError(data) {
             loading.close()
-            that.$message({
-              message: '定位失败！'+data.message,
-              type: 'warning'
-            })
+            that.Fn.tips('定位失败！')
           }
 
         this.$axios({url:'/bannerData',data:{id:123}}).then((res)=>{
@@ -331,20 +326,14 @@
             that.text_erea = addr[1]+'附近'
             // that.show_erea = false
             // that.$refs.show_erea.style.display = 'none'
-            that.$message({
-              message: '定位成功！'+that.text_erea,
-              type: 'success'
-            })
+            that.Fn.tips('定位成功！'+that.text_erea)
           }
           /*
            *解析定位错误信息
            */
           function onError(data) {
             loading.close()
-            that.$message({
-              message: '定位失败！'+data.message,
-              type: 'warning'
-            })
+            that.Fn.tips('定位失败！')
           }
         },
         handleBlur(e){
