@@ -47,7 +47,7 @@
 			</p> 
 		</div>
 		<div class="know_box">
-			<p class="green_btn">提现</p>
+			<router-link tag="p" :to="Fn.getUrl({path: '/my/applicationCash'})" class="green_btn">提现</router-link>
 			<p class="know" @click="handleShow_back">《提现协议》</p>
 		</div>
 	</div>

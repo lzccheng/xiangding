@@ -1,5 +1,11 @@
 <template>
 	<div class="box">
+		<!-- <div>
+			<CellSwipe
+			  title="标题文字"
+			  :right="arr">
+			  </CellSwipe>
+		</div> -->
 		<div class="background">
 
 		</div>
@@ -17,7 +23,11 @@
 </template>
 <script>
 	import wx from 'weixin-js-sdk'
+	import { CellSwipe } from 'mint-ui'
 	export default{
+		components:{
+			CellSwipe
+		},
 		mounted(){
 			let json = {
 				url: document.location.href,
@@ -66,6 +76,23 @@
 		data(){
 			return {
 
+			}
+		},
+		methods:{
+		
+		},
+		computed:{
+			arr(){
+				let aa = ()=>{
+					alert(888)
+				}
+				return [
+			    {
+			      content: 'bianji',
+			      style: { background: 'red', color: '#fff' },
+			      handler: aa
+			    }
+			  ]
 			}
 		}
 	}

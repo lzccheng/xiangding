@@ -31,8 +31,8 @@
 				</p> -->
 			</div>
 			<div class="form_1">
-				<p class="mm">
-					<label>身份证号码:</label>
+				<p class="mm" >
+					<label>  &nbsp;&nbsp;身份证号码:</label>
 					<input @blur="handleCheckId" v-model="formData.IDcard" class="handleCheckId" type="text" placeholder="请输入身份证号码" name="">
 				</p>
 				<div class="photo">
@@ -450,12 +450,15 @@
 				}
 			}
 			.footer{
-				padding: rem(10px) 5%;
+				padding: rem(30px) 5%;
 			}
 			.mm{
 				position: relative;
-				padding: rem(13px) rem(9px) rem(13px) 6%;
+				padding: rem(13px) rem(9px) rem(13px) 0;
 				display: flex;
+				border-bottom: #aaa solid rem(1px);
+				margin-bottom: rem(20px);
+				margin-left: 4%;
 				label{
 					font-size: rem(14px);
 					width: 30%;
