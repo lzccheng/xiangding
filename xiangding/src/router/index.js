@@ -55,6 +55,7 @@ const incomeTable = r => require(['@/pages/my/incomeTable/incomeTable'], r)
 const bindPhone = r => require(['@/pages/my/bindPhone/bindPhone'], r)
 const bindCard = r => require(['@/pages/my/bindCard/bindCard'], r)
 const payPassword = r => require(['@/pages/my/payPassword/payPassword'], r)
+const applicationCash = r => require(['@/pages/my/applicationCash/applicationCash'], r)
 const cardMessage = r => require(['@/pages/enter/cardMessage/cardMessage'], r)
 const searchPage = r => require(['@/pages/hotel/searchPage/searchPage'], r)
 const page404 = r => require(['@/pages/page404/page404'], r)
@@ -425,6 +426,14 @@ const routes = [
       component: payPassword,
       meta: {
         title: '我的余额支付密码'
+      }
+    },
+    {
+      path: '/my/applicationCash',
+      name: 'applicationCash',
+      component: applicationCash,
+      meta: {
+        title: '我的提现申请'
       }
     },
      {

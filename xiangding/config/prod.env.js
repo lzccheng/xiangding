@@ -2,5 +2,5 @@
 module.exports = {
   NODE_ENV: '"production"',
   // API_ROOT: '"/api/"'
-  API_ROOT: '"https://www.share-hotel.cn/addons/yun_shop/api.php"'
+  API_ROOT: '"https://www.share-hotel.cn"'
 }

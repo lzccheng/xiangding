@@ -1,15 +1,15 @@
 <template>
 	<div class="box">
-		<div>
+		<!-- <div>
 			<CellSwipe
 			  title="标题文字"
 			  :right="arr">
 			  </CellSwipe>
-		</div>
-		<!-- <div class="background">
-
 		</div> -->
-		<!-- <div class="enter">
+		<div class="background">
+
+		</div>
+		<div class="enter">
 			<router-link class="hotelEnter" tag="div" :to="Fn.getUrl({path: '/enter/hotelEnter'})">
 				<p><span class="icon"><i class="fas fa-user-plus"></i></span></p>
 				<span class="text">酒店入驻</span>
@@ -18,7 +18,7 @@
 				<p><span class="icon"><i class="far fa-handshake"></i></span></p>
 				<span class="text">代理服务商入驻</span>
 			</router-link>
-		</div> -->
+		</div>
 	</div>
 </template>
 <script>

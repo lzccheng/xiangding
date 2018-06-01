@@ -19,6 +19,9 @@
 		    	<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelMessage'})" class="i"><i class="fas fa-cog"></i></router-link>
 		    </div>
 	    </div>
+	    <div>
+	    	<input type="button" value="ajax"  @click="getData">
+	    </div>
 	    <div class="line"></div>
 	    <div class="hotelServe">
 	    	<div class="earning">
@@ -81,7 +84,16 @@
 	</div>
 </template>
 <script>
+	import axios from 'axios'
 	export default {
+		mounted(){
+			// this.Http.get({baseUrl:'web/index.php?c=site&a=entry&m=yun_shop&do=1210',route:'plugin.store-cashier.store.admin.goods.index&action="1"',params:{action:true},}).then(res=>{
+			// 	console.log(res)
+			// })
+			axios.get('https://www.share-hotel.cn/web/index.php?c=site&a=entry&m=yun_shop&do=1210&route=plugin.store-cashier.store.admin.goods.index',{params:{action:true}}).then(res=>{
+				console.log(res)
+			})
+		},
 		data(){
 			return {
 				msg: {
@@ -100,6 +112,11 @@
 			}
 		},
 		methods: {
+			getData(){
+				axios.get('https://www.share-hotel.cn/web/index.php?c=site&a=entry&m=yun_shop&do=1210&route=plugin.store-cashier.store.admin.goods.index',{params:{action:true}}).then(res=>{
+					console.log(res)
+				})
+			},
 			_handleClick(){
 				this.$router.push('/enter')
 			}

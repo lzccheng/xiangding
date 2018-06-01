@@ -1,4 +1,5 @@
 
+import store from '../../vuex'
 import {Toast} from 'mint-ui'
 const getStyle = (obj,attr) => {
 	return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle( obj )[attr]
@@ -93,9 +94,10 @@ const getKeyByI = ()=>{
 	return 3
 }
 const getUrl = obj =>{
-	let i = 3
+	let i = getKeyByI()
 	let type = isWeiXin()?'1':'5'
-	let query = obj.query?{i,type,...obj.query}:{i,type}
+	let mid = store.state.userInfo?store.state.userInfo.uid:''
+	let query = obj.query?{i,type,mid,...obj.query}:{i,type,mid}
 	return {path: obj.path,query}
 }
 const haveClass = (dom,className)=>{
