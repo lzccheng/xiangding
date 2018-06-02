@@ -22,7 +22,7 @@
 									  <span class="icon" @click="handleCancel">
 										  <el-switch
                         @change="statusChange(index)"
-											  v-model="i.status"
+											  v-model="i.active"
 											  active-color="#43c122"
 											  inactive-color="#a7a5a6">
 										  </el-switch>
@@ -114,13 +114,15 @@
 		methods: {
       statusChange(i,status){
         let that = this
-        let status_ = that.arr[i].status?1:0
-        console.log(status_)
-        that.Http.post({route:'plugin.store-cashier.store.admin.goods.edit',baseUrl:'/web/index.php?c=site&a=entry&m=yun_shop&do=5468&action=true&',data:{id:that.arr[i].id,status:status_}}).then(res=>{
-          console.log(res)
-          that.Fn.tips(res.data.msg)
-          that.getData()
-        })
+        setTimeout(()=>{
+        	let status_ = that.arr[i].active?1:0
+	        console.log(status_)
+	        that.Http.post({route:'plugin.store-cashier.store.admin.goods.edit',baseUrl:'/web/index.php?c=site&a=entry&m=yun_shop&do=5468&action=true&',data:{id:that.arr[i].id,status:status_}}).then(res=>{
+	          console.log(res)
+	          that.Fn.tips(res.data.msg)
+	          that.getData()
+	        })
+        },15)
       },
       handleChangeStock(i){
         let that = this

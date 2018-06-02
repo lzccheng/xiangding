@@ -195,45 +195,45 @@
 			}
 		},
 		methods: {
-      handleFile(e){
-        var e = e || event
-        let that = this
-        console.log(e.target.files[0])
-        this.Http.imgUpload(e.target,{msg:'图片上传中...'}).then(res=>{
-          console.log(res)
-          if(res.data.result === 1){
-            that.formData.thumb = res.data.data.img
-          }
-          that.Fn.tips(res.data.msg)
-        })
-      },
-      handleRoomSend(){
-        if(!this.formData.title){
-          return this.Fn.tips('房间名称不能为空！')
-        }
-        if(!this.formData.param_value[1]){
-          return this.Fn.tips('请输入可住人数！')
-        }else{
-          if(!this.Fn.checkNumber(this.formData.param_value[1])){
-            return this.Fn.tips('可住人数请输入数字！')
-          }
-        }
-        if(!this.formData.param_value[2]){
-          return this.Fn.tips('房间规格不能为空！')
-        }
-        if(!this.formData.thumb){
-          return this.Fn.tips('请上传房间照片！')
-        }
-        console.log({...this.formData})
-        let that = this
-        this.Http.post({route:'plugin.store-cashier.store.admin.goods.add',baseUrl: '/web/index.php?c=site&a=entry&m=yun_shop&do=1022&action=true&',data:{...this.formData}}).then(res=>{
-          console.log('post',res)
-          that.Fn.tips(res.data.msg)
-          if(res.data.code === 200){
-            that.$router.push(that.Fn.getUrl({path:'/my/roomEnter'}))
-          }
-        })
-      },
+	      handleFile(e){
+	        var e = e || event
+	        let that = this
+	        console.log(e.target.files[0])
+	        this.Http.imgUpload(e.target,{msg:'图片上传中...'}).then(res=>{
+	          console.log(res)
+	          if(res.data.result === 1){
+	            that.formData.thumb = res.data.data.img
+	          }
+	          that.Fn.tips(res.data.msg)
+	        })
+	      },
+	      handleRoomSend(){
+	        if(!this.formData.title){
+	          return this.Fn.tips('房间名称不能为空！')
+	        }
+	        if(!this.formData.param_value[1]){
+	          return this.Fn.tips('请输入可住人数！')
+	        }else{
+	          if(!this.Fn.checkNumber(this.formData.param_value[1])){
+	            return this.Fn.tips('可住人数请输入数字！')
+	          }
+	        }
+	        if(!this.formData.param_value[2]){
+	          return this.Fn.tips('房间规格不能为空！')
+	        }
+	        if(!this.formData.thumb){
+	          return this.Fn.tips('请上传房间照片！')
+	        }
+	        console.log({...this.formData})
+	        let that = this
+	        this.Http.post({route:'plugin.store-cashier.store.admin.goods.add',baseUrl: '/web/index.php?c=site&a=entry&m=yun_shop&do=1022&action=true&',data:{...this.formData}}).then(res=>{
+	          console.log('post',res)
+	          that.Fn.tips(res.data.msg)
+	          if(res.data.code === 200){
+	            that.$router.push(that.Fn.getUrl({path:'/my/roomEnter'}))
+	          }
+	        })
+	      },
 			handleChange(val) {
 		      },
 		    handleShow(){

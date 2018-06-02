@@ -53,7 +53,7 @@
 
 					<p class="input">
 						<label>前台电话:</label>
-						<input @blur="hanndleFixPhone" v-model="formData.storetel" type="text" placeholder="请输入带区号得座机号码" class="hanndleFixPhone" name="">
+						<input v-model="formData.storetel" type="text" placeholder="请输入带区号得座机号码" class="hanndleFixPhone" name="">
 					</p>
 					<p class="input">
 						<label>电子邮箱:</label>
@@ -185,17 +185,16 @@
 	          },
 	          onHide:function(){
 	          },
-
 	          callback:function(indexArr, data){
 	            that.text_erea = data[1].name+data[2].name+data[3].name
 	            that.province = data[0].name
 	            that.city = data[1].name
 	            that.erea = data[2].name
 	            that.struct = data[3].name
-	            that.formData.provinceId = Number(data[0].code)
-	            that.formData.cityId = Number(data[1].code)
-	            that.formData.districtId = Number(data[2].code)
-              that.formData.streeId = Number(data[3].code)
+	            that.formData.provinceId = data[0].name
+	            that.formData.cityId = data[1].name
+	            that.formData.districtId = data[2].name
+              that.formData.streeId = data[3].name
               that.$refs.addr_text.value = ''
 	          }
 	        })
@@ -262,7 +261,6 @@
 		methods: {
 			handleLogin(){
 				window.location.href = 'https://www.share-hotel.cn/web/index.php?c=user&a=login&dd=1'
-
 			},
 			getEnterStatus(){
 				let that = this
@@ -363,18 +361,13 @@
 				if(!this.formData.username){
 					return this.Fn.tips('账号不能为空！');
 				}
-
 				if(!this.formData.password){
 					return this.Fn.tips('密码不能为空');
 				}
 				if(!this.formData.storeName){
 				  return this.Fn.tips('酒店名称不能为空')
-        }
-				if(this.formData.storetel){
-					if (!this.Fn.checkFixedPhone(this.formData.storetel)) {
-						return this.Fn.tips('请输入正确的前台电话')
-					}
-				}else{
+        		}
+				if(!this.formData.storetel){
 					return this.Fn.tips('前台电话不能为空')
 				}
 				if(this.formData.storeemail){

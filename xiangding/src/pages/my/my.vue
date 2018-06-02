@@ -216,8 +216,32 @@
       //https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=order.merge-pay.wechatPay&order_pay_id=373&pid=15
       //https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&c=entry&do=shop&type=1&m=yun_shop&route=finance.balance.recharge&recharge_money=2&pay_type=1
       //https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=order.merge-pay.wechatPay&order_pay_id=386&pid=15
+      console.log(wx)
       this.Http.get({route:'finance.balance.recharge',params:{recharge_money:2,pay_type:'1',m:'yun_shop',c:'entry'}}).then(res=>{
         console.log(11,res)
+        //https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=member.member.wxJsSdkConfig
+       	that.Http.post({route:'member.member.wxJsSdkConfig',data:{url:document.location.href}}).then(ress=>{
+       		console.log(ress.data.data.config)
+       		wx.config(ress.data.data.config)
+	        wx.ready(()=>{
+	        	wx.chooseWXPay({
+	        		timestamp:res.data.data.config.timestamp,
+	        		nonceStr:res.data.data.config.nonceStr,
+	        		package:res.data.data.config.package,
+	        		paySign:res.data.data.config.paySign,
+	        		nonceStr:res.data.data.config.nonceStr,
+	        		success:function(res){
+	        			console.log('pay',res)
+	        			that.Fn.tips(res.msg)
+	        		},
+	        		fail:function(err){
+
+	        		}
+	        	})
+	        })
+       	})
+       
+
         if(res.data.result === 1){
 
         }
@@ -229,7 +253,7 @@
 		       function(res){  
 		       		console.log(666,res)   
 		       		if(res.errMsg){
-		       			alert(res.errMsg)
+		       			// alert(res.errMsg)
 		       		}
 		       		// if(res.err_msg == "get_brand_wcpay_request:fail" ) {
 		         //   		MessageBox.alert('支付失败', '提示')
@@ -256,14 +280,20 @@
         // alert(res.)http://localhost:8080/api/addons/yun_shop/api.php?&i=3&type=1&mid=15&route=order.merge-pay&order_pay_id=55
       })
 			// order.merge-pay.yunPayWechat...order.merge-pay----order.merge-pay.wechatPay
-			this.Http.get({route:'order.merge-pay.yunPayWechat',params:{order_pay_id:55}}).then(res=>{
-				console.log(999999999,res)
-			})
-			this.Http.get({route:'order.merge-pay',params:{order_pay_id:55}}).then(res=>{
-				console.log(8888888,res)
-			})
-			this.Http.get({route:'order.merge-pay.wechatPay',params:{order_pay_id:103}}).then(res=>{
-				console.log(112233,res)
+			// this.Http.get({route:'order.merge-pay.yunPayWechat',params:{}}).then(res=>{
+			// 	console.log(999999999,res)
+			// })
+			// this.Http.get({route:'order.merge-pay',params:{}}).then(res=>{
+			// 	console.log(8888888,res)
+			// })
+			// https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&c=entry&do=shop&type=1&m=yun_shop&route=finance.balance.recharge&recharge_money=2&pay_type=1
+			// this.Http.get({route:'finance.balance.recharge',params:{recharge_money:2,pay_type:1}}).then(res=>{
+			// 	console.log(112233,res)
+			// 	that.Fn.tips(res.data.msg)
+			// })
+			//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=finance.earning.earning-count
+			this.Http.get({route:'finance.earning.earning-count'}).then(res=>{
+				console.log(2323232323232,res)
 			})
 		},
 		data(){

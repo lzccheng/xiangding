@@ -238,7 +238,7 @@ export default {
 	checkCredit,
 	checkPassword,
 	checkEmail,
-  checkNumber,
+    checkNumber,
 	addClass,
 	removeClass,
 	haveClass,

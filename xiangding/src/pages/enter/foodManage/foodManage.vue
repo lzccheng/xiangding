@@ -6,19 +6,19 @@
 			<span class="manage" v-if="index_ == 1" @click="onHandleChange(0)">完成</span>
 		</span>
 		<div class="body">
-			<div class="nav">
+			<!-- <div class="nav">
 				<div class="tab" ref="tab">
 					<div v-for="(i,index) in arrItem" :key='index' @click="handleClick(index,$event)">
 						<span>{{i}}</span>
 					</div>
 				</div>
 				<div class="line" ref="_line"></div>
-			</div>
+			</div> -->
 			<div class="show">
 				<div v-if="0 == index_c">
 					<div v-if="index_ != 1">
-						<router-link  tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/foodAdd',query:{name: '套餐修改'}})" v-for="(i,index) in dataArr" :key="index" class="item">
-							<div class="img"><img :src="i.urlImg" alt=""></div>
+						<router-link  tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/foodAdd',query:{name: '套餐修改'}})" v-for="(i,index) in arrayData" :key="index" class="item">
+							<div class="img"><img :src="i.thumb" alt=""></div>
 							<div class="text">
 								<p class="child_1">{{i.title}}</p>
 								<p class="child_2">¥ {{i.price}}</p>
@@ -30,8 +30,8 @@
 					</div>
 
 					<div v-if="index_ == 1">
-						<div v-for="(i,index) in dataArr" :key="index" class="item" @click="handleDelect(index)">
-							<div class="img"><img :src="i.urlImg" alt=""></div>
+						<div v-for="(i,index) in arrayData" :key="index" class="item" @click="handleDelect(index)">
+							<div class="img"><img :src="i.thumb" alt=""></div>
 							<div class="text">
 								<p class="child_1">{{i.title}}</p>
 								<p class="child_2">¥ {{i.price}}</p>
@@ -46,8 +46,8 @@
 					</div>
 				</div>
 				<div v-if="1  == index_c">
-					<router-link  tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/mealDetail'})" v-for="(i,index) in dataArr" :key="index" class="item">
-						<div class="img"><img :src="i.urlImg" alt=""></div>
+					<router-link  tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/mealDetail'})" v-for="(i,index) in arrayData" :key="index" class="item">
+						<div class="img"><img :src="i.thumb" alt=""></div>
 						<div class="text">
 							<p class="child_1">{{i.title}}</p>
 							<p class="child_2">¥ {{i.price}}</p>
@@ -79,7 +79,8 @@
 <script>
 	export default {
 		mounted(){
-			this._lineLeft()
+			// this._lineLeft()
+			this.getData()
 		},
 		data(){
 			return {
@@ -87,6 +88,7 @@
 					'发布管理',
 					// '订单管理'
 				],
+				arrayData:[],
 				dataArr:[
 					{
 						title: 'A套餐',
@@ -123,9 +125,19 @@
 			}
 		},
 		methods: {
-		  getData(){
-		    // this.Http.get({route})
-      },
+		  	getData(){
+		  		let that = this
+		    	this.Http.get({route:'plugin.store-cashier.store.admin.goods.index',baseUrl:'/web/index.php?c=site&a=entry&m=yun_shop&do=1210&action=true&'}).then(res=>{
+		    		console.log(res)
+		    		let data = res.data.main.map(i=>{
+		    			if(i.brand_id == 6){
+		    				return i
+		    			}
+		    		})
+		    		that.arrayData = data
+		    		console.log(that.arrayData)
+		    	})
+      		},
 			handleClick(i,e){
 				var e = e || event
 				//console.log(e.target,event.path[0])
@@ -152,7 +164,8 @@
 		watch: {
 			'$route'(to,from){
 				if(to.name === 'order'){
-					this._lineLeft()
+					// this._lineLeft()
+					this.getData()
 				}
 			}
 		}
