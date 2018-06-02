@@ -53,15 +53,14 @@
 					<div class="footer">
 						<p>订单编号: 2153232121</p>
 						<p>订单类型: 微信支付</p>
-						<p>下单时间: 2018-02-29 21:16:52</p>
 						<p>付款时间: 2018-02-29 21:16:52</p>
 					</div>
 				</div>
 			</div>
 			<div v-else>
 				<div class="top">
-					<p class="status">订单状态: 订单待付款</p>
-					<p class="time">2018-02-29 18:32</p>
+					<p class="status">订单状态: {{statusText[data.status]}}</p>
+					<p class="time">{{data.create_time}}</p>
 					<div class="send"></div>
 					<!-- <div class="send_box">
 						<span class="custom" @click="handleAgree">同意住房</span>
@@ -69,18 +68,18 @@
 					</div> -->
 				</div>
 				<div class="middle_1">
-					<p class="sex">客户: 胡勇蝶</p>
-					<p class="photo">手机号码: 15913932217<br/>&nbsp;</p>
+					<p class="sex">客户: {{data.belongs_to_member.nickname}}</p>
+					<p class="photo">手机号码: {{data.created_at}}<br/>&nbsp;</p>
 					<!-- <p class="input">备注:</p> -->
 				</div>
 				<div class="middle_3">
 					<div class="img">
-						<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425433535&di=f7d324b2c95bd6f203fb8741290c02e3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D41481487a2773912d02b8d219161e374%2Ff3d3572c11dfa9ec3d58042d69d0f703918fc192.jpg" alt="">
+						<img :src="data.has_many_order_goods[0].thumb" alt="">
 					</div>
 					<div class="text_box">
-						<p class="hotel_name">商务大床房</p>
+						<p class="hotel_name">{{data.has_many_order_goods[0].title}}</p>
 						<p>
-							<span class="money">289.00</span>
+							<span class="money">{{data.goods_price}}</span>
 						</p>
 						<p>
 							<span class="title">52m²大床1.8m</span>
@@ -98,14 +97,14 @@
 						    <span class="day">商品金额</span>
 							<span class="number_box">
 								<span class="money_icon">¥</span>
-								<span class="money_icon">289.00</span>
+								<span class="money_icon">{{data.price}}</span>
 							</span>
 						</li>
 						<li class="item">
 							<span class="day">应付金额</span>
 							<span class="number_box">
 								<span class="money_icon color">¥</span>
-								<span class="money_icon color">289.00</span>
+								<span class="money_icon color">{{data.order_goods_price}}</span>
 							</span>
 						</li>
 						<!-- <li class="item">
@@ -117,10 +116,9 @@
 					</ul>
 				</div>
 				<div class="footer">
-					<p>订单编号: 2153232121</p>
-					<p>订单类型: 微信支付</p>
-					<p>下单时间: 2018-02-29 21:16:52</p>
-					<p>下单时间: 2018-02-29 21:16:52</p>
+					<p>订单编号: {{data.order_sn}}</p>
+					<p>订单类型: {{data.pay_type_name}}</p>
+					<p>付款时间: {{data.pay_time}}</p>
 				</div>
 			</div>
 		</div>
@@ -135,19 +133,40 @@
 			if(this.$route.query.status){
 				this.status = this.$route.query.status
 			}
+			if(this.$route.query.id){
+				this.id = this.$route.query.id
+			}
 		},
 		data(){
 			return {
 				status: 0,
-				text: '同意住房'
+				text: '同意住房',
+				data:{},
+				statusText:{
+					'-1': '取消状态',
+					'0': '待付款',
+					'1': '已付款',
+					'2': '已发货',
+					'3': '已完成',
+				},
+				id: 0
 			}
 		},
 		methods: {
 			cilck(){
 			},
+			getData(id){
+				//http://www.share-hotel.cn/web/index.php?c=site&a=entry&m=yun_shop&do=8080&route=plugin.store-cashier.store.admin.order.detail
+				let that = this
+				this.Http.get({route:'plugin.store-cashier.store.admin.order.detail',baseUrl:'web/index.php?c=site&a=entry&m=yun_shop&do=8080&action=true&id='+id}).then(res=>{
+					console.log(res)
+					if(res.data.code === 200){
+						that.data = res.data.data.order
+					}
+				})
+			},
 			handleAgree(event){
 				this.status = 1
-				console.log(event.path[0].innerText)
 				this.text = event.path[0].innerText
 			}
 		},
@@ -160,8 +179,13 @@
 					if(this.$route.query.status){
 						this.status = this.$route.query.status
 					}
+					if(this.$route.query.id){
+						this.id = this.$route.query.id
+					}
 				}
-
+			},
+			id(){
+				this.getData(this.id)
 			}
 		}
 	}

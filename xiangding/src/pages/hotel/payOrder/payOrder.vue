@@ -95,6 +95,7 @@
 </template>
 <script>
     import myalert from '../../../components/alert/alert'
+    import { Indicator,MessageBox } from 'mint-ui'
 	export default {
 		components: {
 			myalert
@@ -125,7 +126,9 @@
 				this.alertShow = false
 			},
 			handleShow(){
-				this.alertShow = true
+				// this.alertShow = true
+				MessageBox.confirm('您确定要取消订单吗？','温馨提示').then(action => {
+				});
 			},
 		},
 		watch: {

@@ -161,7 +161,7 @@
 </template>
 <script>
 	import myalert from '../../../components/alert/alert'
-	import { Indicator } from 'mint-ui'
+	import { Indicator,MessageBox } from 'mint-ui'
 	export default {
 		mounted(){
 			let that = this
@@ -295,7 +295,12 @@
 				})
 			},
 			handleShow(){
-				this.alertShow = true
+				MessageBox({
+				  title: '享订入驻协议',
+				  message: '酒代理服务商入驻协议内容',
+				  confirmButtonText: '我知道了',
+				});
+				
 			},
 			aaa(res){
 				this.alertShow = false

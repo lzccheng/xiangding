@@ -61,6 +61,7 @@
 </template>
 <script>
 	import myalert from '../../../components/alert/alert'
+	import { Indicator,MessageBox } from 'mint-ui'
 	export default{
 		components: {
 	        myalert
@@ -117,7 +118,12 @@
 				}
 			},
 			handleShow(){
-				this.alertShow = true
+				MessageBox({
+				  title: '享订登录协议',
+				  message: '登录协议内容',
+				  confirmButtonText: '我知道了',
+				});
+				// this.alertShow = true
 			},
 			aaa(res){
 				this.alertShow = false
