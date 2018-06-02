@@ -31,6 +31,7 @@
 	</div>
 </template>
 <script>
+import { Indicator,MessageBox } from 'mint-ui'
 	export default {
 		data(){
 			return {
@@ -61,7 +62,12 @@
 				this.radio2 = index
 			},
 			handleShow_back(){
-				this.general = true
+				// this.general = true
+				MessageBox({
+				  title: '享订支付协议',
+				  message: '支付协议内容',
+				  confirmButtonText: '我知道了',
+				});
 			},
 			handleClose_back(){
 				this.general = false

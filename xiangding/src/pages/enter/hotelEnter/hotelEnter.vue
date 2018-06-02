@@ -116,7 +116,7 @@
 				</div>
 				<div class="form" style="border-bottom: none;padding-left: 0">
 					<div class="footer">
-					   <!--<router-link tag="p" :to="Fn.getUrl({path: '/enter/login'})"  @click="handleFormSubmit" class="green_btn">立即申请</router-link>-->
+					   <router-link tag="p" :to="Fn.getUrl({path: '/enter/login'})"  @click="handleFormSubmit" class="green_btn">立即申请</router-link>
 					   <p @click="handleFormSubmit" class="green_btn">立即申请</p>
 					   <p @click="handleLogin" class="green_btn">立即申请</p>
 					</div>
@@ -153,7 +153,7 @@
 
 	import wx from 'weixin-js-sdk'
 	import myalert from '../../../components/alert/alert'
-	import { Indicator  } from 'mint-ui'
+	import { Indicator ,MessageBox  } from 'mint-ui'
 	export default {
 		mounted(){
 			this.$refs.eye_two.style.display = 'inline-block'
@@ -517,7 +517,14 @@
 				}
 			},
 			handleShow(){
-				this.alertShow = true
+				// this.alertShow = true
+				MessageBox({
+				  title: '享订入驻协议',
+				  message: '酒店入驻协议内容',
+				  confirmButtonText: '我知道了',
+				  // confirmButtonClass: 'color'
+				});
+				
 			},
 			aaa(res){
 				this.alertShow = false
@@ -554,6 +561,9 @@
 		background-color: #e5e5e5;
 		font-size: rem(14px);
 		padding-top: rem(5px);
+		// .color{
+		// 	color: #aaa;
+		// }
 		.back{
 			background-color: rgba(0,0,0,0.3);
 			position: fixed;
