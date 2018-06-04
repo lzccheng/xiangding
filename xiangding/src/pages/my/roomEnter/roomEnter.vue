@@ -4,58 +4,109 @@
 		<span class="delect" v-if="1==index_" @click="deleteRoom">删除</span>
 		<div>
 			<div v-if="0==index_">
-					<div v-for="(i,index) in arr" class="item" :key="index">
-						<!-- <router-link tag="div" :to="Fn.getUrl({path: '/my/roomSend/roomSend',query:{title: '房间编辑',goods_id:i.id}}) "> -->
-							<div class="img">
-								<img :src="i.thumb" alt="">
-							 </div>
-							<div class="con_box">
-								<p class="room_name">{{i.title}}</p>
-								<p class="money_item">
-									<span class="money_1">¥</span>
-									<span class="money_2" @click="handleChangePrice(index)">{{i.price}} </span>
-									<span class="spec">/间晚</span>
-								</p>
-								<div class="text_small">
+
+					<!-- <div>
+						<div class="item" >
+								<div class="img">
+									<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527917841118&di=13e2586bdcada080d1ab6b2269d37198&imgtype=0&src=http%3A%2F%2Fimg.taopic.com%2Fuploads%2Fallimg%2F120818%2F214833-120QQ5532077.jpg" alt="">
+								 </div>
+								<div class="con_box">
+									<p class="room_name">ooooo</p>
+									<p class="money_item">
+										<span class="money_1">¥</span>
+										<span class="money_2" @click="handleChangePrice(8)">88888 </span>
+										<span class="spec">/间晚</span>
+									</p>
 									<p class="text">
-									  <span class="text_1">房间面积:&nbsp; {{arrItem[index].length?arrItem[index][0].value:''}}</span>
+									  <span class="text_1">房间面积:&nbsp; 8888</span>
 									  <span class="icon" @click="handleCancel">
 										  <el-switch
-                        @change="statusChange(index)"
-											  v-model="i.active"
+                        @change="statusChange(1)"
+											  v-model="value2"
 											  active-color="#43c122"
 											  inactive-color="#a7a5a6">
 										  </el-switch>
 									  </span>
 									</p>
 									<p class="text_2"><span class="right" @click="handleCancel">开启状态</span></p>
-									<p class="text">可售房间:&nbsp; <span @click="handleChangeStock(index)">{{i.stock}}</span>间</p>
+									<p class="text">可售房间:&nbsp; <span @click="handleChangeStock(8)">55</span>间</p>
 								</div>
+						</div>
+					</div> -->
+
+
+					<div v-for="(i,index) in arr" class="item" :key="index">
+						<div class="img">
+							<img :src="i.thumb" alt="">
+						 </div>
+						<div class="con_box">
+							<p class="room_name">{{i.title}}</p>
+							<p class="money_item">
+								<span class="money_1">¥</span>
+								<span class="money_2" @click="handleChangePrice(index)">{{i.price}} </span>
+								<span class="spec">/间晚</span>
+							</p>
+							<div class="text_small">
+								<p class="text">
+								  <span class="text_1">房间面积:&nbsp; {{arrItem[index].length?arrItem[index][0].value:''}}</span>
+								  <span class="icon" @click="handleCancel">
+									  <el-switch @change="statusChange(index)"
+										  v-model="i.active"
+										  active-color="#43c122"
+										  inactive-color="#a7a5a6">
+									  </el-switch>
+								  </span>
+								</p>
+								<p class="text_2"><span class="right" @click="handleCancel">开启状态</span></p>
+								<p class="text">可售房间:&nbsp; <span @click="handleChangeStock(index)">{{i.stock}}</span>间</p>
 							</div>
-						<!-- </router-link> -->
+						</div>
 					</div>
 
 			</div>
 			<div v-if="1==index_">
 				<div v-for="(i,index) in arr" class="item_delete" :key="index">
-					<div>
-						<input type="checkbox" :value="i.id" v-model="checkedNames" :id="'_'+index">
-					</div>
-					<label :for="'_'+index">
-						<div class="img">
-							<img :src="i.thumb" alt="">
-						 </div>
-						<div class="text_box">
-							<p class="name_1">{{i.title}}</p>
-							<p class="name_2">
-								<span>¥</span>
-								<span class="name_money">{{i.price}}元</span>
-							</p>
+					<div class="img">
+						<img :src="i.thumb" alt="">
+					 </div>
+					<div class="text_box">
+						<div class="name_1">
+						   <p>{{i.title}}</p>
+						   <span>¥</span>
+						   <span class="name_money">{{i.price}}元</span>
 						</div>
-					</label>
+						<p class="icon">
+							<span>
+							   <el-checkbox-group v-model="i.checkedNames">
+							    <el-checkbox :label="index"> &nbsp;</el-checkbox>
+							  </el-checkbox-group>
+							</span>
+						</p>
+					</div>
 
 				</div>
 			</div>
+			<!-- <div v-if="1==index_">
+				<div class="item_delete" >
+					<div class="img">
+						<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425433535&di=f7d324b2c95bd6f203fb8741290c02e3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D41481487a2773912d02b8d219161e374%2Ff3d3572c11dfa9ec3d58042d69d0f703918fc192.jpg" alt="">
+					 </div>
+					<div class="text_box">
+						<div class="name_1">
+						   <p>商务特惠房</p>
+						   <span>¥</span>
+						   <span class="name_money">123元</span>
+						</div>
+						
+						<p class="icon">
+							<span>
+							   <el-checkbox-group v-model="checkList">
+							    <el-checkbox label=""></el-checkbox>
+							  </el-checkbox-group></span>
+						</p>
+					</div>
+				</div>
+			</div> -->
 		</div>
 		<div class="control">
 			<div class="add" @click="onHandleChange(0)" >
@@ -108,7 +159,8 @@
 				checkedNames:[],
 				value1: true,
 	            value2: true,
-	            index_: 0
+	            index_: 0,
+	            // checkList: false,
 			}
 		},
 		methods: {
@@ -283,25 +335,24 @@
 						color: #e51c23;
 					}
 				}
-				.text_small{
+					
+				.text{
 					padding-top: rem(5px);
-					.text{
-						.text_1{
-							margin-right: 12%;
-						}
-						.icon{
-							position: absolute;
-							top: rem(49px);
-							right: 4%;
-						}
+					.text_1{
+						// margin-right: 14%;
 					}
-					.text_2{
-						.right{
-							color: #a7a5a6;
-							position: absolute;
-							top: rem(75px);
-							right: 5%;
-						}
+					.icon{
+						position: absolute;
+						top: rem(45px);
+						right: 4%;
+					}
+				}
+				.text_2{
+					.right{
+						color: #a7a5a6;
+						position: absolute;
+						top: rem(70px);
+						right: 5%;
 					}
 				}
 			}
@@ -313,39 +364,39 @@
 			padding: rem(18px) 0;
 			margin-left: rem(5px);
 			border-bottom: #EDEDED solid rem(1px);
-			label{
-				display: flex;
-				justify-content: spase-around;
-			    align-items: center;
-				padding: 0 rem(5px);
-				.img{
-					width: 25%;
-					height: rem(80px);
-					padding-right: 5%;
-					img{
-						width: 100%;
-						height: 100%;
-						border-radius: rem(12px);
-					}
+			.img{
+				width: 25%;
+				height: rem(80px);
+				padding-right: 5%;
+				img{
+					width: 100%;
+					height: 100%;
+					border-radius: rem(12px);
 				}
-				.text_box{
-
-					.name_1{
-						font-size: rem(17px);
-						margin-bottom: rem(5px);
+			}
+			.text_box{
+				width: 65%;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				.name_1{
+					margin-bottom: rem(5px);
+					p{
 						font-weight: bold;
+						font-size: rem(15px);
+						padding-bottom: rem(5px); 
 					}
-					.name_2{
-						span{
-							color: #e73c46;
-						}
-						.name_money{
+					span{
+						color: #e73c46;
+						&:last-child{
 							font-size: rem(16px);
 						}
 					}
 				}
-
+			
 			}
+
+			
 
 		}
 		.control{

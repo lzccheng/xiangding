@@ -19,87 +19,50 @@
 		</div>
 		</div>
 		<div class="show">
-				<div v-if="0 == index_">
-					<div class="body">
-						<div class="top">
-						    <div class="line_green"></div>
-							<div @click="handlePay(0)" :class="{pay_y: (0 == index)}">
-								<p class="numb">10</p>
-								<p class="text">已付款</p>
-							</div>
-							<div @click="handlePay(1)" :class="{pay_y: (1 == index)}">
-								<p class="numb">10</p>
-								<p class="text">未付款</p>
-							</div>
+			<div v-if="0 == index_">
+				<div class="body">
+					<div class="top">
+					    <div class="line_green"></div>
+						<div @click="handlePay(0)" :class="{pay_y: (0 == index)}">
+							<p class="numb">10</p>
+							<p class="text">已付款</p>
 						</div>
-						<div v-if="0 == index">
-							
-								<div v-for="(i,index) in havePay" class="item" :key="index">
-                  					<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus',query:{id:i.id}})">
-										<div>
-											<div class="img">
-												<img src="" alt="">
-											</div>
-											<div class="text_box">
-												<div class="left">
-													<p class="name_1">订单号: {{i.order_sn}}</p>
-													<p class="name_1 color"><span>¥{{i.price}}</span></p>
-													<p class="name_2">客户名称: {{i.store_name}}</p>
-													<p class="name_2"><span>入住: 3月28</span>  <span>退房: 3月29</span></p>
-													<p class="name_2">办理时间: 2018-1-12</p>
-												</div>
-												<div class="right">
-													<p class="numb"><i class="fas fa-chevron-right"></i></p>
-												</div>
-											</div>
-										</div>
-								   </router-link>
-					            </div>
-					        
-			            </div>
-			            <div v-if="1 == index">
-			            	
-				            	<div v-for="(i,index) in noPay" class="item" :key="index">
-					            	<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus',query:{id:i.id}})">
+						<div @click="handlePay(1)" :class="{pay_y: (1 == index)}">
+							<p class="numb">10</p>
+							<p class="text">未付款</p>
+						</div>
+					</div>
+					<div v-if="0 == index">
+						
+							<div v-for="(i,index) in havePay" class="item" :key="index">
+              					<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus',query:{id:i.id}})">
+									<div>
 										<div class="img">
-											<img :src="i.has_many_order_goods[0].thumb" alt="">
+											<img src="" alt="">
 										</div>
 										<div class="text_box">
 											<div class="left">
 												<p class="name_1">订单号: {{i.order_sn}}</p>
-												<p class="name_1 color"><span>¥{{i.order_goods_price}}</span></p>
+												<p class="name_1 color"><span>¥{{i.price}}</span></p>
 												<p class="name_2">客户名称: {{i.store_name}}</p>
-												<p class="name_2"><span>入住: 3月28</span> <span>退房: 3月29</span></p>
-												<p class="name_2">办理时间: {{i.create_time}}</p>
+												<p class="name_2"><span>入住: 3月28</span>  <span>退房: 3月29</span></p>
+												<p class="name_2">办理时间: 2018-1-12</p>
 											</div>
 											<div class="right">
 												<p class="numb"><i class="fas fa-chevron-right"></i></p>
 											</div>
 										</div>
-									</router-link>
-					            </div>
-					        
-			            </div>
-					</div>
-				</div>
-				<div v-if="1 == index_">
-					<div class="body">
-						<!-- <div class="top">
-							<div class="line_green"></div>
-							<div @click="handleLive(0)" :class="{pay_y: (0 == index_1)}">
-								<p class="numb">10</p>
-								<p class="text">在住房</p>
-							</div>
-							<div @click="handleLive(1)" :class="{pay_y: (1 == index_1)}">
-								<p class="numb">10</p>
-								<p class="text">已退房</p>
-							</div>
-						</div> -->
-						<div v-if="0 == index_1">
-							
-								<div v-for="(i,index) in haveEnter" class="item" :key="index">
-								<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus',query:{id:i.id}})">
-											<div class="img">
+									</div>
+							   </router-link>
+				            </div>
+				        
+		            </div>
+
+		            <div v-if="1 == index">
+		            	
+			            	<div v-for="(i,index) in noPay" class="item" :key="index">
+				            	<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus',query:{id:i.id}})">
+									<div class="img">
 										<img :src="i.has_many_order_goods[0].thumb" alt="">
 									</div>
 									<div class="text_box">
@@ -114,35 +77,62 @@
 											<p class="numb"><i class="fas fa-chevron-right"></i></p>
 										</div>
 									</div>
-									</router-link>
-					            </div>
-					        
-				        </div>
-				        <div v-if="1 == index_1">
-				        	
-								<div v-for="(i,index) in 5" class="item" :key="index">
-									<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus',query:{id:i.id}})">
+								</router-link>
+				            </div>
+				        
+		            </div>
+		        </div>		
+			</div>
+			<div v-if="1 == index_">
+				<div class="body">
+					<div v-if="0 == index_1">
+							<div v-for="(i,index) in haveEnter" class="item" :key="index">
+							<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus',query:{id:i.id}})">
 										<div class="img">
-											<img :src="i.has_many_order_goods[0].thumb" alt="">
+									<img :src="i.has_many_order_goods[0].thumb" alt="">
+								</div>
+								<div class="text_box">
+									<div class="left">
+										<p class="name_1">订单号: {{i.order_sn}}</p>
+										<p class="name_1 color"><span>¥{{i.order_goods_price}}</span></p>
+										<p class="name_2">客户名称: {{i.store_name}}</p>
+										<p class="name_2"><span>入住: 3月28</span> <span>退房: 3月29</span></p>
+										<p class="name_2">办理时间: {{i.create_time}}</p>
+									</div>
+									<div class="right">
+										<p class="numb"><i class="fas fa-chevron-right"></i></p>
+									</div>
+								</div>
+								</router-link>
+				            </div>
+				        
+			        </div>
+			        <div v-if="1 == index_1">
+			        	
+							<div v-for="(i,index) in 5" class="item" :key="index">
+								<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus',query:{id:i.id}})">
+									<div class="img">
+										<img :src="i.has_many_order_goods[0].thumb" alt="">
+									</div>
+									<div class="text_box">
+										<div class="left">
+											<p class="name_1">订单号: {{i.order_sn}}</p>
+											<p class="name_1 color"><span>¥{{i.order_goods_price}}</span></p>
+											<p class="name_2">客户名称: {{i.store_name}}</p>
+											<p class="name_2"><span>入住: 3月28</span> <span>退房: 3月29</span></p>
+											<p class="name_2">办理时间: {{i.create_time}}</p>
 										</div>
-										<div class="text_box">
-											<div class="left">
-												<p class="name_1">订单号: {{i.order_sn}}</p>
-												<p class="name_1 color"><span>¥{{i.order_goods_price}}</span></p>
-												<p class="name_2">客户名称: {{i.store_name}}</p>
-												<p class="name_2"><span>入住: 3月28</span> <span>退房: 3月29</span></p>
-												<p class="name_2">办理时间: {{i.create_time}}</p>
-											</div>
-											<div class="right">
-												<p class="numb"><i class="fas fa-chevron-right"></i></p>
-											</div>
+										<div class="right">
+											<p class="numb"><i class="fas fa-chevron-right"></i></p>
 										</div>
-									</router-link>
-					            </div>
-					        
-				        </div>
-					</div>
+									</div>
+								</router-link>
+				            </div>
+				        
+			        </div>
 				</div>
+			</div>
+			
 		</div>
 	</div>
 </template>
@@ -338,16 +328,17 @@
 					div{
 						&.item{
 							position: relative;
-							width: 100%;
-							display: flex;
-							justify-content: spase-around;
-							align-items: center;
+							// width: 100%;
+							// display: flex;
+							// justify-content: spase-around;
+							// align-items: center;
 							padding: rem(15px) 0;
 							border-bottom: #e5e5e5 solid rem(1px);
 							div{
 								padding-left: 1%;
 								&.img{
-									width: 25%;
+									display: inline-block;
+									width: 24%;
 									height: rem(93px);
 									img{
 										width: 100%;
@@ -356,9 +347,10 @@
 									}
 								}
 								&.text_box{
-									width: 74%;
+									width: 70%;
+									display: inline-block;
 									.left{
-										margin-right: 14%;
+										// margin-right: 14%;
 										.name_1{
 											font-size: rem(14px);
 											margin-bottom: rem(5px);
