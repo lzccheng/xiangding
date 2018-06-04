@@ -130,8 +130,11 @@
 		    	this.Http.get({route:'plugin.store-cashier.store.admin.goods.index',baseUrl:'/web/index.php?c=site&a=entry&m=yun_shop&do=1210&action=true&'}).then(res=>{
 		    		console.log(res)
 		    		let data = res.data.main.map(i=>{
+		    			console.log(i)
+		    			console.log(i.brand_id)
 		    			if(i.brand_id == 6){
 		    				return i
+		    				console.log(i)
 		    			}
 		    		})
 		    		that.arrayData = data
@@ -163,7 +166,7 @@
 		},
 		watch: {
 			'$route'(to,from){
-				if(to.name === 'order'){
+				if(to.name === 'foodManage'){
 					// this._lineLeft()
 					this.getData()
 				}

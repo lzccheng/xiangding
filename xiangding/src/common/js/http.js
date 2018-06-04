@@ -67,7 +67,6 @@ export default {
 			Indicator.open(obj.msg)
 		}
 		return new Promise(function(resolve,reject){
-			console.log(baseUrl)
 			axios.post(baseUrl,{...data},{...config}).then(res=>{
 				if(obj.msg){
 					Indicator.close()

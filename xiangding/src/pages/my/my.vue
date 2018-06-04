@@ -17,9 +17,9 @@
 			</router-link>
 		</div>
 		<div class="earning">
-			<p class="text_1"><span>当前余额</span></p>
+			<p class="text_1"><span>当前收益</span></p>
 			<p class="money" style="font-family:'微软雅黑' ,Arial !important"><span>￥</span><span>{{msg.earning}}</span></p>
-			<div class="earn">
+			<!-- <div class="earn">
 				<div class="order">
 					<p class="icon"><i class="far fa-file"></i></p>
 					<p class="text">
@@ -34,7 +34,7 @@
 						<span>{{msg.poeple_num}}</span>
 					</p>
 				</div>
-			</div>
+			</div> -->
 		</div>
 		<div class="earning">
 			<router-link tag="div" :to="Fn.getUrl({path: '/my/myTeam'})" class="earn_1" >
@@ -155,145 +155,24 @@
 	export default {
 		mounted(){
 			let that = this
-			// this.$axios.post('?i=3&mid=0&type=5&shop_id=null&route=member.login.index',{
-			// 	mobile: '13927179141',
-			// 	mobileErr: '',
-			// 	password: '123456',
-			// 	passwordErr: '',
-			// 	uuid: 0,
-			// 	mid:0
-			// }).then(res=>{
-			// 	console.log(55555555,res)
-			// })
-			// this.$axios.get('?i=3&c=entry&do=shop&m=yun_shop&route=member.member.getUserInfo').then((res)=>{
-			// 	console.log(res.data)
-			// 	// console.log(process.env.API_ROOT)
-
-			// 	if(res.data.data.login_url){
-			// 		console.log(res.data.data.login_url)
-			// 		// window.location.href = res.data.data.login_url + '&yz_redirect=' + that.Fn.base64_encode(window.location.href+'?')
-			// 	}else{
-			// 		// console.log(res.data)
-			// 		that.msg.id = res.data.data.uid
-			// 		that.msg.name = res.data.data.nickname
-			// 		that.msg.imgUrl = res.data.data.avatar
-			// 		that.msg.earning = res.data.data.credit.data
-			// 		that.msg.level_name = res.data.data.level_name
-			// 		that.msg.agent_nickname = res.data.data.yz_member.agent.nickname
-			// 	}
-
-			// },(err)=>{
-			// 	console.log(err)
-			// })
-			// this.$axios.get('?i=3&mid=undefined&type=1&shop_id=null&route=member.member.getMyAgent_v2').then((res)=>{
-			// 	// console.log(res)
-			// 	that.msg.income.firstAgent = res.data.data.level1.total
-			// 	that.msg.income.secondAgent = res.data.data.level2.total
-			// 	that.msg.income.thirdAgent = res.data.data.level3.total
-			// },(err)=>{
-			// 	console.log(err)
-			// })
 			this.Http.get({
 				route: 'member.member.getUserInfo'
 			}).then(res=>{
 				that.msg.id = res.data.data.uid
 				that.msg.name = res.data.data.nickname
 				that.msg.imgUrl = res.data.data.avatar
-				that.msg.earning = res.data.data.credit.data
 				that.msg.level_name = res.data.data.level_name
 				that.msg.agent_nickname = res.data.data.yz_member.agent.nickname
 			})
-
-			let dd = {
-				"username":'chenyan',
-				"password": '123456',
-				"action": 1,
-				"submit": '登录'
-			}
-			// this.Http.post({baseUrl: 'web/index.php?c=user&a=login',data:dd}).then(res=>{
-			// 	console.log(555555,res)
-			// })
-      //https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=order.merge-pay.wechatPay&order_pay_id=373&pid=15
-      //https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&c=entry&do=shop&type=1&m=yun_shop&route=finance.balance.recharge&recharge_money=2&pay_type=1
-      //https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=order.merge-pay.wechatPay&order_pay_id=386&pid=15
-      console.log(wx)
-      this.Http.get({route:'finance.balance.recharge',params:{recharge_money:2,pay_type:'1',m:'yun_shop',c:'entry'}}).then(res=>{
-        console.log(11,res)
-        //https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=member.member.wxJsSdkConfig
-       	that.Http.post({route:'member.member.wxJsSdkConfig',data:{url:document.location.href}}).then(ress=>{
-       		console.log(ress.data.data.config)
-       		wx.config(ress.data.data.config)
-	        wx.ready(()=>{
-	        	wx.chooseWXPay({
-	        		timestamp:res.data.data.config.timestamp,
-	        		nonceStr:res.data.data.config.nonceStr,
-	        		package:res.data.data.config.package,
-	        		paySign:res.data.data.config.paySign,
-	        		nonceStr:res.data.data.config.nonceStr,
-	        		success:function(res){
-	        			console.log('pay',res)
-	        			that.Fn.tips(res.msg)
-	        		},
-	        		fail:function(err){
-
-	        		}
-	        	})
-	        })
-       	})
-       
-
-        if(res.data.result === 1){
-
-        }
-        console.log(res.data.data.config)
-        console.log(WeixinJSBridge)
-        function onBridgeReady(){
-		   WeixinJSBridge.invoke(
-		       'getBrandWCPayRequest', res.data.data.config,
-		       function(res){  
-		       		console.log(666,res)   
-		       		if(res.errMsg){
-		       			// alert(res.errMsg)
-		       		}
-		       		// if(res.err_msg == "get_brand_wcpay_request:fail" ) {
-		         //   		MessageBox.alert('支付失败', '提示')
-		         //   } 
-		           if(res.err_msg == "get_brand_wcpay_request:ok" ) {
-		           		// that.Fn.tips('支付成功')
-		           		MessageBox.alert('支付成功', '提示')
-		           }else{
-		           		MessageBox.alert('支付失败', '提示')
-		           }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
-		       }
-		   ); 
-		}
-		if (typeof WeixinJSBridge == "undefined"){
-		   if( document.addEventListener ){
-		       document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-		   }else if (document.attachEvent){
-		       document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
-		       document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
-		   }
-		}else{
-		   onBridgeReady();
-		}
-        // alert(res.)http://localhost:8080/api/addons/yun_shop/api.php?&i=3&type=1&mid=15&route=order.merge-pay&order_pay_id=55
-      })
-			// order.merge-pay.yunPayWechat...order.merge-pay----order.merge-pay.wechatPay
-			// this.Http.get({route:'order.merge-pay.yunPayWechat',params:{}}).then(res=>{
-			// 	console.log(999999999,res)
-			// })
-			// this.Http.get({route:'order.merge-pay',params:{}}).then(res=>{
-			// 	console.log(8888888,res)
-			// })
-			// https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&c=entry&do=shop&type=1&m=yun_shop&route=finance.balance.recharge&recharge_money=2&pay_type=1
-			// this.Http.get({route:'finance.balance.recharge',params:{recharge_money:2,pay_type:1}}).then(res=>{
-			// 	console.log(112233,res)
-			// 	that.Fn.tips(res.data.msg)
-			// })
-			//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=finance.earning.earning-count
-			this.Http.get({route:'finance.earning.earning-count'}).then(res=>{
-				console.log(2323232323232,res)
+			this.Http.post({route:'finance.earning.earning-count&action=true&',data:{uid: this.$store.state.userInfo.uid}}).then(res=>{
+				if(res.data.result === 1){
+					that.msg.earning = Math.floor(res.data.data * 100) / 100  
+				}
+			})
+			console.log(wx)
+			//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=member.member.wxJsSdkConfig
+			this.Http.get({route:'member.member.wxJsSdkConfig'}).then(res=>{
+				console.log(res)
 			})
 		},
 		data(){
@@ -311,12 +190,104 @@
 						firstAgent: 0,
 						secondAgent: 0,
 						thirdAgent: 0
-					}
-
+					},
+					order_pay_id: 0	
 				}
 			}
 		},
 		methods:{
+			WXPay(payParams) {
+		      //alert(document.location.href);
+		      //console.log(""+payParams.timestamp);
+		      var that = this;
+		      console.log(payParams)
+		      wx.chooseWXPay({
+		        appId: payParams.appId,
+		        timestamp: payParams.timestamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+		        nonceStr: payParams.nonceStr, // 支付签名随机串，不长于 32 位
+		        package: payParams.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+		        signType: payParams.signType, //  签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+		        paySign: payParams.paySign, // 支付签名
+		        success: function (res) {
+		          // 支付成功后的回调函数
+		          if (res.errMsg == "chooseWXPay:ok") {
+		            that.$router.push(that.fun.getUrl('member'));
+
+		            MessageBox.alert('支付成功', '提示success');
+		            //that.$router.push({name:'PayYes',params:{order_id:}});
+		          } else {
+		            MessageBox.alert(res.errMsg, '提示success');
+		          }
+		        },
+		        cancel: function (res) {
+		          //支付取消
+		        },
+		        fail: function (res) {
+		          MessageBox.alert(res.errMsg, '提示fail');
+		          // setTimeout(()=>{
+		          // 	MessageBox.alert(res.errMsg, '提示fail');
+		          // },5000)
+		        }
+		      });
+		    },
+		    getWeChatPayParams() {
+	          //order.pay.wechatPay
+	          var that = this;
+	          this.Http.get({route:'order.merge-pay.wechatPay', params:{ order_pay_id: this.order_pay_id }}).then(function (response) {
+	            if (response.data.result == 1) {
+	            	console.log(response.data.data.js)
+	            	//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=member.member.wxJsSdkConfig
+	            	that.Http.get({route:'member.member.wxJsSdkConfig',params:{url:window.location.href}}).then(res=>{
+	            		console.log(res.data.data.config)
+	            		wx.config(res.data.data.config);
+		                wx.ready(function(){
+		              	    that.WXPay(response.data.data.config);
+		                })
+		                wx.error(err=>{
+		                	MessageBox.alert('err', '提示err')
+		                })
+	            	})
+	              
+	            } else {
+	              MessageBox.alert(response.data.msg, '提示');
+	            }
+	          }, function (response) {
+	            // error callback
+	          });
+	        },
+		    pay(){
+		    	let that = this
+		    	this.Http.get({route:'order.merge-pay',params:{order_ids:127,pid:15}}).then(ress=>{
+			      	that.order_pay_id = ress.data.data.order_pay.id
+			      	setTimeout(()=>{
+			      		that.getWeChatPayParams()
+			      	},50)
+			      	// that.order_pay_id = response.data.order_pay.id
+			    })
+		    },
+		    newWXPay(payParams) {
+	          var that = this;
+	          WeixinJSBridge.invoke(
+	            'getBrandWCPayRequest', {
+	              "appId": payParams.appId,     //公众号名称，由商户传入     
+	              "timeStamp": payParams.timeStamp,         //时间戳，自1970年以来的秒数     
+	              "nonceStr": payParams.nonceStr, //随机串     
+	              "package": payParams.package,
+	              "signType": payParams.signType,         //微信签名方式：     
+	              "paySign": payParams.paySign //微信签名 
+	            },
+
+	            function (res) {
+	              // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
+	              if (res.err_msg == "get_brand_wcpay_request:ok") {
+	                that.$router.go(-1);
+	                MessageBox.alert('支付成功', '提示');
+	              } else {
+	                MessageBox.alert('支付失败', '提示');
+	              }
+	            }
+	          );
+	        }
 		}
 	}
 </script>
