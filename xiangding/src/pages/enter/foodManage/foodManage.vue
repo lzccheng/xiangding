@@ -28,7 +28,6 @@
 							</div>
 						</router-link>
 					</div>
-
 					<div v-if="index_ == 1">
 						<div v-for="(i,index) in arrayData" :key="index" class="item" @click="handleDelect(index)">
 							<div class="img"><img :src="i.thumb" alt=""></div>
