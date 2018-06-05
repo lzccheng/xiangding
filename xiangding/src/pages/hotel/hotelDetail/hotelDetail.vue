@@ -5,7 +5,7 @@
 			<div class="swiper-container">
 				<div class="swiper-wrapper">
 			        <div class="swiper-slide" v-for='(i,index) in imgList' :key='index'>
-			        	<img :src="i">
+			        	<img :src="i.imgUrl">
 			        </div>
 			    </div>
 			</div>
@@ -37,7 +37,6 @@
 				<div>
 					<span><i class="far fa-calendar-alt"></i></span>
 					<span>{{month1}}日</span>
-
 				</div>
 				<div></div>
 				<div>
@@ -66,7 +65,7 @@
 								<p><span class="first">￥</span>{{i.price}}<span class="first">元</span></p>
 								<p v-if="title !== '会议室'"><router-link tag="button" :to="Fn.getUrl({path:'/hotelDetail/hotelOrder',query:{name: title}})">订房</router-link></p>
 								<p v-else>
-									<span  >
+									<span >
 										<router-link tag="button" :to="Fn.getUrl({path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,hotelName,meetingName: '某某会议室',date1:date1,date2:date2}})">预定</router-link>
 									</span>	
 								</p>
@@ -97,7 +96,6 @@
 				</div>
 
 				<div v-else>
-					
 						<router-link v-if="!order" tag="div" :to="Fn.getUrl({path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,roomName:'特惠商务房',hotelName,date1:date1,date2:date2}})" v-for='(i,index) in room' :key='index' class="rooms">
 							<div>
 								<img :src="i.imgUrl">
@@ -188,10 +186,13 @@
               that.date1 = res[0].dateTime;
               that.date2 = res[1].dateTime;
             }
+
           })
+			 this.getData()
 		},
 		data(){
 			return {
+
 				id: 0,
 				data: {},
 				imgList: [],
@@ -207,12 +208,17 @@
 				numarr:[],
 				hotelName: '',
 				date1: 0,
-				date2: 0
+				date2: 0,
 			}
 		},
 		methods:{
 			getData:function(){
 				let that = this
+				// this.Http.get({route:'goods.category.get-children-category',params:{action:true}}).then(res=>{
+				// 	console.log(11,res)
+				// 	that.arrData = res.data.data[0][0]
+				// })
+				
 				this.$axios({url:'/hotelDetail',method:'get',data:{id:this.$route.query.id}}).then((res)=>{
 					that.id = res.data.id?res.data.id:0
 					that.data = res.data

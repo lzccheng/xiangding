@@ -39,7 +39,6 @@
                     <img class="img" :src="i.imgUrl">
                   </div>
               </router-link>
-
             </div>
           </div>
         </div>
@@ -55,7 +54,6 @@
   					</div>
   					<span class="right"><i class="fas fa-angle-right"></i></span>
   					<p class="local">
-
               <span @click="handlePosition">
                 <span><i class="fa fa-crosshairs"></i></span><br>
                 <span>我的位置</span>
@@ -114,16 +112,16 @@
 
       <div class="near">
         <p class="title">附近推荐酒店</p>
-        <div class="hotelRoom" v-for='(i,index) in hotel' :key='index'>
-          <router-link :to="Fn.getUrl({path: '/hotelDetail',query:{id:i.id,hotelName:'银河大酒店',date1:date_value[0].datetime,date2:date_value[1].datetime}})" tag='div'>
-            <img :src="i.imgUrl">
+        <div class="hotelRoom" v-for='(i,index) in arrData' :key='index'>
+          <router-link :to="Fn.getUrl({path: '/hotelDetail',query:{id:i.id,hotelName:i.store_name,date1:date_value[0].datetime,date2:date_value[1].datetime}})" tag='div'>
+            <img :src="i.banner_thumb">
             <div>
               <p class="min_title">
                 <span class="one">
-                  {{i.name}}
+                  {{i.store_name}}
                   <p class="_star">
                     <el-rate
-                      v-model="i.star"
+                      v-model="i.category_id"
                       disabled
                       text-color="#ff9900">
                     </el-rate>
@@ -131,8 +129,8 @@
                 </span>
               </p>
               <p>
-                <span>{{i.area}}&nbsp;&nbsp;|&nbsp;&nbsp;{{i.room_total}}间房</span>
-                <span class="min_price"><span class="i">￥</span>  <span class="num">{{i.min_price}}</span>  起</span>
+                <span>{{i.information}}&nbsp;&nbsp;|&nbsp;&nbsp;{{i.num}}间房</span>
+                <span class="min_price"><span class="i">￥</span>  <span class="num">{{i.minprice}}</span>  起</span>
               </p>
             </div>
           </router-link>
@@ -258,6 +256,7 @@
               that.date_value[1].datetime = res[1].dateTime;
             }
           })
+          this.getData()
       },
       data(){
       	return {
@@ -297,11 +296,18 @@
           province:'广东省',
           city: '广州市',
           erea: '荔湾区',
-          struct: '沙面街道'
-
+          struct: '沙面街道',
+          arrData:[]
         }
       },
       methods: {
+        getData(){
+          let that = this
+          this.Http.get({route:'goods.category.get-children-category',params:{action:true}}).then(res=>{
+            console.log(111,res)
+            that.arrData = res.data.data[1]
+          })
+        },
         handleChange_erea(){
           this.show_erea = true
           this.$refs.show_erea.style.display = 'inline-block'
