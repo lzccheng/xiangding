@@ -16,6 +16,8 @@
 
 <script>
 import myFooter from './components/footer/footer'
+import wx from 'weixin-js-sdk'
+import {Toast} from 'mint-ui'
 export default {
   mounted(){
     let route = this.$route
@@ -24,6 +26,7 @@ export default {
       }else{
         this._footerHide()
       }
+    // this.initShare()
   },
   components: {
     myFooter
@@ -35,6 +38,76 @@ export default {
     }
   },
   methods: {
+    //初始化分享设置
+    initShare() {
+      //不是微信端 不访问
+      if (window.localStorage.type == 5) {
+        return;
+      }
+      let that = this;
+      //console.log(document.location.href);
+      let _url = document.location.href;
+      let json = { url: _url, "i": this.Fn.getKeyByI(), "type": this.Fn.getType() };
+      //console.log("json", json);
+      this.Http.post({route:'member.member.wxJsSdkConfig', data:json}).then(function(response) {
+        if (response.data.result == 1) {
+          that.share(response.data.data);
+        } else {
+
+        }
+      }, function(response) {
+        console.log(response);
+      });
+    },
+    //组装分享设置
+    share(data) {
+      let that = this;
+      wx.config(data.config);
+      wx.ready(function() {
+
+        let _title = "享订酒店";
+        //let _link = location.protocol + '//' + location.host + location.pathname + '?i=' + that.fun.getKeyByI() + "&type=" + that.fun.getTyep() + "&mid=" + data.info.uid;
+        //let _link = document.location.href + "&mid=" + data.info.uid;
+
+        let _link = document.location.href;
+        let _imgUrl = "https://www.share-hotel.cn/attachment/images/3/2018/03/vBdw2R18x1DRRlu2DtT21ZTO8Zfitd.jpg";
+        // let _desc = "享订酒店";
+        let _desc = document.location.href;
+
+        // _title = data.share.title;
+        // _imgUrl = data.share.icon;
+        // _desc =  data.share.desc;
+
+
+        wx.showOptionMenu();
+        wx.onMenuShareTimeline({
+          title: _title, // 分享标题
+          link: _link, // 分享链接
+          imgUrl: _imgUrl, // 分享图标
+          success: function() {
+            Toast("分享成功");
+          },
+          cancel: function() {
+            Toast("取消分享");
+          }
+        });
+
+        wx.onMenuShareAppMessage({
+          title: _title, // 分享标题
+          desc: _desc, // 分享描述
+          link: _link, // 分享链接
+          imgUrl: _imgUrl, // 分享图标
+          type: 'link', // 分享类型,music、video或link，不填默认为link
+          dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+          success: function() {
+            Toast("分享成功");
+          },
+          cancel: function() {
+            Toast("取消分享");
+          }
+        });
+      });
+    },
     _footerShow(){
       this.$refs._footer.style.display = 'block'
     },
@@ -48,6 +121,14 @@ export default {
         this._footerShow()
       }else{
         this._footerHide()
+      }
+      if(!this.Fn.getKey('mid')){
+        let str = window.location.href
+        let a = '&'
+        if(str.split('#')[1].indexOf('?') === -1){
+          a = '?'
+        }
+        window.location.href = window.location.href + a + 'mid=' + this.$store.state.userInfo.uid
       }
       // console.log(111,this.$store.state.userInfo)
       // if(!this.Fn.getKey('mid')){

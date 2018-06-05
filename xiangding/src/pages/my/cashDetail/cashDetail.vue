@@ -1,7 +1,7 @@
 <template>
 	<div class="box">
     <Header title="服务酒店"/>
-		<div class="header">
+		<!-- <div class="header">
 		    <div class="big">
 		    	<div class="ball"></div>
 		    	<div class="text">
@@ -9,17 +9,17 @@
 		    		<p class="number"> 区域编号: 11221411</p>
 		    	</div>
 		    </div>
-	    </div>
+	    </div> -->
 	    <div class="nav">
 	    	<div class="green"></div>
 	    	<span class="hotel">我服务的酒店</span>
-	    	<span class="num">30</span>
+	    	<span class="num">{{store_num}}</span>
 	    </div>
         <div class="line"></div>
 	    <div class="body">
-	    	<div  class="item">
+	    	<div  class="item" v-for="(i,index) in store_name" :key="index">
                 <div class="hotel_name">广州银河大酒店</div>      
-                <div class="right_box">
+                <!-- <div class="right_box">
                     <div class="i">
                         <p class="green">1200</p>
                         <p class="room_nmb">开房数</p>
@@ -32,126 +32,7 @@
                         <br/>
                         <router-link tag="p" :to="Fn.getUrl({path: '/my/incomeTable'})" class="room_nmb">详情</router-link>
                     </div>
-                </div>      
-            </div>
-            <div  class="item">
-                <div class="hotel_name">广州维也纳酒店</div>      
-                <div class="right_box">
-                    <div class="i">
-                        <p class="green">1200</p>
-                        <p class="room_nmb">开房数</p>
-                    </div>
-                    <div class="i">
-                        <p class="green">1200</p>
-                        <p class="room_nmb">总金额</p>
-                    </div>
-                    <div class="i">
-                        <br/>
-                        <p class="room_nmb">详情</p>
-                    </div>
-                </div>      
-            </div>
-            <div  class="item">
-                <div class="hotel_name">广州恒大酒店</div>      
-                <div class="right_box">
-                    <div class="i">
-                        <p class="green">1200</p>
-                        <p class="room_nmb">开房数</p>
-                    </div>
-                    <div class="i">
-                        <p class="green">1200</p>
-                        <p class="room_nmb">总金额</p>
-                    </div>
-                    <div class="i">
-                        <br/>
-                        <p class="room_nmb">详情</p>
-                    </div>
-                </div>      
-            </div>
-            <div  class="item">
-                <div class="hotel_name">广州南洋酒店</div>      
-                <div class="right_box">
-                    <div class="i">
-                        <p class="green">1200</p>
-                        <p class="room_nmb">开房数</p>
-                    </div>
-                    <div class="i">
-                        <p class="green">1200</p>
-                        <p class="room_nmb">总金额</p>
-                    </div>
-                    <div class="i">
-                        <br/>
-                        <p class="room_nmb">详情</p>
-                    </div>
-                </div>      
-            </div>
-            <div  class="item">
-                <div class="hotel_name">广州银河大酒店</div>      
-                <div class="right_box">
-                    <div class="i">
-                        <p class="green">1200</p>
-                        <p class="room_nmb">开房数</p>
-                    </div>
-                    <div class="i">
-                        <p class="green">1200</p>
-                        <p class="room_nmb">总金额</p>
-                    </div>
-                    <div class="i">
-                        <br/>
-                        <p class="room_nmb">详情</p>
-                    </div>
-                </div>      
-            </div>
-            <div  class="item">
-                <div class="hotel_name">广州银河大酒店</div>      
-                <div class="right_box">
-                    <div class="i">
-                        <p class="green">1200</p>
-                        <p class="room_nmb">开房数</p>
-                    </div>
-                    <div class="i">
-                        <p class="green">1200</p>
-                        <p class="room_nmb">总金额</p>
-                    </div>
-                    <div class="i">
-                        <br/>
-                        <p class="room_nmb">详情</p>
-                    </div>
-                </div>      
-            </div>
-            <div  class="item">
-                <div class="hotel_name">广州银河大酒店</div>      
-                <div class="right_box">
-                    <div class="i">
-                        <p class="green">1200</p>
-                        <p class="room_nmb">开房数</p>
-                    </div>
-                    <div class="i">
-                        <p class="green">1200</p>
-                        <p class="room_nmb">总金额</p>
-                    </div>
-                    <div class="i">
-                        <br/>
-                        <p class="room_nmb">详情</p>
-                    </div>
-                </div>      
-            </div>
-            <div  class="item">
-                <div class="hotel_name">广州银河大酒店</div>      
-                <div class="right_box">
-                    <div class="i">
-                        <p class="green">1200</p>
-                        <p class="room_nmb">开房数</p>
-                    </div>
-                    <div class="i">
-                        <p class="green">1200</p>
-                        <p class="room_nmb">总金额</p>
-                    </div>
-                    <div class="i">
-                        <br/>
-                        <p class="room_nmb">详情</p>
-                    </div>
-                </div>      
+                </div>   -->    
             </div>
             <div class="send_box">
            <span class="page">上一页</span>
@@ -162,13 +43,23 @@
 </template>
 <script>
 	export default {
+        mounted(){
+            this.getData()
+        },
 		data(){
 			return {
-
+                store_num: 0,
+                store_name: []
 			}
 		},
 		methods: {
-
+            getData(){
+                let that = this
+                this.Http.post({route:'finance.earning.earning-count&action=true&',data:{uid: this.$store.state.userInfo.uid}}).then(res=>{
+                    that.store_num = res.data.data.store_num
+                    that.store_name = res.data.data.store_name
+                })
+            }
 		}
 	}
 </script>

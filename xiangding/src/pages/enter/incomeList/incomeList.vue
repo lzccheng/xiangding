@@ -4,7 +4,7 @@
 		<div class="content">
 			<div class="show">
 				<div class="items">
-					<div class="time"><span class="this_m">本月</span><span class="i"><i class="far fa-calendar-alt"></i></span></div>
+					<div class="time"><span class="this_m">本月</span><!-- <span class="i"><i class="far fa-calendar-alt"></i></span> --></div>
 					<div class="item" v-for="(i,index) in list.data" :key="index">
 						<div class="img">
 							<img :src="returnJson(data[index][0]?data[index][0].information:'{}','aptitude_imgs')[0]" alt="">
@@ -48,14 +48,10 @@
 					console.log(res)
           that.data = res.data.data.data
           that.list = res.data.data.list
-          console.log(that.data)
-          console.log(that.list)
 				})
 			},
       returnJson(str,key){
-			  console.log(111,str)
-        console.log(22,JSON.parse(str))
-			  return JSON.parse(str)[key]?JSON.parse(str)[key]:''
+			return JSON.parse(str)[key]?JSON.parse(str)[key]:''
       },
       returnStatus(value){
 			  let json = {

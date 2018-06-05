@@ -50,7 +50,7 @@
 								<p class="text">
 								  <span class="text_1">房间面积:&nbsp; {{arrItem[index].length?arrItem[index][0].value:''}}</span>
 								  <span class="icon" @click="handleCancel">
-									  <el-switch @change="statusChange(index)"
+									  <el-switch @change="statusChange(index,i.id)"
 										  v-model="i.active"
 										  active-color="#43c122"
 										  inactive-color="#a7a5a6">
@@ -77,8 +77,8 @@
 						</div>
 						<p class="icon">
 							<span>
-							   <el-checkbox-group v-model="i.checkedNames">
-							    <el-checkbox :label="index"> &nbsp;</el-checkbox>
+							   <el-checkbox-group @change="handleCheck(i)" v-model="i.checkedNames">
+							    <el-checkbox :label="index">  &nbsp;</el-checkbox>
 							  </el-checkbox-group>
 							</span>
 						</p>
@@ -108,7 +108,7 @@
 				</div>
 			</div> -->
 		</div>
-		<div class="control">
+		<div class="control" style="z-index:999999">
 			<div class="add" @click="onHandleChange(0)" >
 			    <router-link tag="div" :to="Fn.getUrl({path: '/my/roomSend/roomSend'})" class="icon_1"><i class="far fa-plus-square"></i></router-link>
 				<router-link tag="span" :to="Fn.getUrl({path: '/my/roomSend/roomSend',query:{title: '房间发布' }})" >房间发布</router-link>
@@ -123,7 +123,7 @@
 			</div>
 		</div>
 		<div class="line_"></div>
-		<div class="footer">
+		<div class="footer" style="z-index:999999">
 			<div class="room_box">
 				<router-link tag="div" :to="Fn.getUrl({path: '/my/roomEnter/meettingSend'})" class="room" >
 					<div class="icon_3"><i class="far fa-plus-square"></i></div>
@@ -160,17 +160,23 @@
 				value1: true,
 	            value2: true,
 	            index_: 0,
+	            deleteItem: []
 	            // checkList: false,
 			}
 		},
 		methods: {
-      statusChange(i,status){
+			handleCheck(i,id){
+				if(this.deleteItem.indexOf(i.id) > -1){
+					this.deleteItem.splice(this.deleteItem.indexOf(i.id),1)
+				}else{
+					this.deleteItem.push(i.id)
+				}
+			},
+      statusChange(i,id){
         let that = this
         setTimeout(()=>{
         	let status_ = that.arr[i].active?1:0
-	        console.log(status_)
-	        that.Http.post({route:'plugin.store-cashier.store.admin.goods.edit',baseUrl:'/web/index.php?c=site&a=entry&m=yun_shop&do=5468&action=true&',data:{id:that.arr[i].id,status:status_}}).then(res=>{
-	          console.log(res)
+	        that.Http.post({route:'plugin.store-cashier.store.admin.goods.edit',baseUrl:'/web/index.php?c=site&a=entry&m=yun_shop&do=5468&action=true&',data:{id:id,status:status_}}).then(res=>{
 	          that.Fn.tips(res.data.msg)
 	          that.getData()
 	        })
@@ -180,7 +186,6 @@
         let that = this
         MessageBox.prompt('请输入可售房间数：').then(({value,action})=>{
           that.Http.post({route:'plugin.store-cashier.store.admin.goods.edit',baseUrl:'/web/index.php?c=site&a=entry&m=yun_shop&do=5468&action=true&',data:{id:that.arr[i].id,stock:value}}).then(res=>{
-            console.log(res)
             that.Fn.tips(res.data.msg)
             that.getData()
           })
@@ -194,7 +199,6 @@
         MessageBox.prompt('请输入价格').then(({ value, action }) => {
           console.log(value)
           that.Http.post({route:'plugin.store-cashier.store.admin.goods.edit',baseUrl:'/web/index.php?c=site&a=entry&m=yun_shop&do=5468&action=true&',data:{id:that.arr[i].id,price:value}}).then(res=>{
-            console.log(res)
             that.Fn.tips(res.data.msg)
             that.getData()
           })
@@ -207,9 +211,8 @@
 				let that = this
 				MessageBox.confirm('确定执删除选中房间?').then(action => {
 					console.log(action)
-				  	for(let i=0;i<that.checkedNames.length;i++){
-						that.Http.post({route:'plugin.store-cashier.store.admin.goods.delete',baseUrl:'web/index.php?c=site&a=entry&m=yun_shop&do=1210',data:{action:true,id:that.checkedNames[i]}}).then(res=>{
-							console.log(res)
+				  	for(let i=0;i<that.deleteItem.length;i++){
+						that.Http.post({route:'plugin.store-cashier.store.admin.goods.delete',baseUrl:'web/index.php?c=site&a=entry&m=yun_shop&do=1210',data:{action:true,id:that.deleteItem[i]}}).then(res=>{
 							that.Fn.tips(res.data.msg)
 						})
 					}
@@ -228,7 +231,6 @@
 						})
 						that.arrItem = res.data.detail
 						that.arr = data
-						console.log(that.arrItem)
 					}else{
 						console.log(res.data)
             that.Fn.tips('数据获取失败！')

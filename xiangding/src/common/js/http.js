@@ -37,7 +37,8 @@ export default {
 					Fn.tips('数据加载出错！')
 				}
 				if(res.data.result == 0 && res.data.data.login_status != undefined && res.data.data.login_status == 0){
-					window.location.href = res.data.data.login_url + '&yz_redirect=' + Fn.base64_encode(document.location.href+'?') + "&mid=" + res.data.data.mid
+					// return console.log(res.data.data.login_url)
+					window.location.href = res.data.data.login_url + '&yz_redirect=' + Fn.base64_encode(document.location.href+'?') + "&mid=" + Fn.getKey('mid')
 					return 
 				}
 				resolve(res)
@@ -67,7 +68,6 @@ export default {
 			Indicator.open(obj.msg)
 		}
 		return new Promise(function(resolve,reject){
-			console.log(baseUrl)
 			axios.post(baseUrl,{...data},{...config}).then(res=>{
 				if(obj.msg){
 					Indicator.close()
@@ -76,7 +76,7 @@ export default {
 					Fn.tips('数据加载出错！')
 				}
 				if(res.data.result == 0 && res.data.data.login_status != undefined && res.data.data.login_status == 0){
-					window.location.href = res.data.data.login_url + '&yz_redirect=' + Fn.base64_encode(document.location.href+'?') + "&mid=" + res.data.data.mid
+					window.location.href = res.data.data.login_url + '&yz_redirect=' + Fn.base64_encode(document.location.href+'?') + "&mid=" + Fn.getKey('mid')
 					return 
 				}
 				resolve(res)

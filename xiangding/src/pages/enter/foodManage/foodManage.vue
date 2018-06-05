@@ -17,7 +17,7 @@
 			<div class="show">
 				<div v-if="0 == index_c">
 					<div v-if="index_ != 1">
-						<router-link  tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/foodAdd',query:{name: '套餐修改'}})" v-for="(i,index) in arrayData" :key="index" class="item">
+						<div  tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/foodAdd',query:{name: '套餐修改',id:i.id}})" v-for="(i,index) in arrayData" :key="index" class="item">
 							<div class="img"><img :src="i.thumb" alt=""></div>
 							<div class="text">
 								<p class="child_1">{{i.title}}</p>
@@ -26,7 +26,7 @@
 							<div class="icon_1">
 							   <span><i class="fas fa-chevron-right"></i></span>
 							</div>
-						</router-link>
+						</div>
 					</div>
 					<div v-if="index_ == 1">
 						<div v-for="(i,index) in arrayData" :key="index" class="item" @click="handleDelect(index)">
@@ -37,7 +37,7 @@
 							</div>
 							<div class="icon">
 							   <span>
-							   <el-checkbox-group v-model="i.checkList">
+							   <el-checkbox-group v-model="i.checkList" @change="handleDelete(i,index)">
 							    <el-checkbox label=""></el-checkbox>
 							  </el-checkbox-group></span>
 							</div>
@@ -50,7 +50,7 @@
 						<div class="text">
 							<p class="child_1">{{i.title}}</p>
 							<p class="child_2">¥ {{i.price}}</p>
-							<p class="child_3">{{i.time}}</p>
+							<!-- <p class="child_3">{{i.time}}</p> -->
 						</div>
 						<div class="icon_1">
 						   <span><i class="fas fa-chevron-right"></i></span>
@@ -67,7 +67,7 @@
 					<span><i class="fas fa-plus-circle"></i></span>
 					<span>添加</span>
 				</router-link>
-				<p v-if="1==index_" class="botton ">
+				<p v-if="1==index_" class="botton " @click="handleDel">
 					<span><i class="fas fa-trash-alt"></i></span>
 					<span>删除</span>
 				</p>
@@ -119,22 +119,35 @@
 					},
 				],
 				index_: 0,
-				index_c: 0
-
+				index_c: 0,
+				deleteArr:[]
 			}
 		},
 		methods: {
+			handleDel(){
+				let that = this
+				for(let i=0;i<this.deleteArr.length;i++){
+					this.Http.post({route:'plugin.store-cashier.store.admin.goods.delete',baseUrl:'/web/index.php?c=site&a=entry&m=yun_shop&do=1210&action=true&',data:{id:this.deleteArr[i]}}).then(res=>{
+					})
+				}
+				this.getData()
+			},
+			handleDelete(i,index){
+				if(this.deleteArr.indexOf(i.id) > -1){
+					this.deleteArr.splice(this.deleteArr.indexOf(i.id),1)
+				}else{
+					this.deleteArr.push(i.id)
+				}
+			},
 		  	getData(){
 		  		let that = this
 		    	this.Http.get({route:'plugin.store-cashier.store.admin.goods.index',baseUrl:'/web/index.php?c=site&a=entry&m=yun_shop&do=1210&action=true&'}).then(res=>{
-		    		console.log(res)
-		    		let data = res.data.main.map(i=>{
+		    		let data = res.data.main.filter(i=>{
 		    			if(i.brand_id == 6){
 		    				return i
 		    			}
 		    		})
 		    		that.arrayData = data
-		    		console.log(that.arrayData)
 		    	})
       		},
 			handleClick(i,e){
@@ -162,7 +175,7 @@
 		},
 		watch: {
 			'$route'(to,from){
-				if(to.name === 'order'){
+				if(to.name === 'foodManage'){
 					// this._lineLeft()
 					this.getData()
 				}

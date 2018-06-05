@@ -84,9 +84,19 @@
 			},
 			getData(agant){
 				let that = this
-				this.Http.get({route:'member.member.getMyAgentData_v2',params:{relationLevel:agant}}).then(res=>{
-					that['itemArr'+agant] = res.data.data.data
-				})
+				let page = 1
+				let arr = that['itemArr'+agant]
+				let dd = (agant)=>{
+					this.Http.get({route:'member.member.getMyAgentData_v2',params:{relationLevel:agant,page:page}}).then(res=>{
+						that['itemArr'+agant] = [...that['itemArr'+agant],...res.data.data.data]
+						if(that['itemArr'+agant].length%10 === 0 && arr.length !== that['itemArr'+agant].length){
+							page++
+							arr = that['itemArr'+agant]
+							dd(agant)
+						}
+					})
+				}
+				dd(agant)
 			}
 		},
 		watch: {
@@ -105,8 +115,12 @@
 		padding-top: rem(20px);
 		font-size: rem(14px);
 		.nav{
-			position: relative;
+			width: 100%;
+			position: fixed;
+			left: 0;
+			top: rem(48px);
 			div{
+
 				&.active{
 				}
 				&.tab{
@@ -131,6 +145,7 @@
 			}
 		}
 		.show{
+			margin-top: rem(50px);
 			div{
 				.VIP{
 					display: flex;

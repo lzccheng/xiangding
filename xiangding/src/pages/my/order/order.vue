@@ -27,8 +27,8 @@
 				<div v-if="0==index_">
 					<div class="body">
 						<div class="item">
-							<span class="time">预定日期: 03-20</span>
-							<div class="content_box" v-for="(i,index) in 10" :key="index">
+							<!-- <span class="time">预定日期: 03-20</span> -->
+							<div class="content_box" v-for="(i,index) in arr0" :key="index">
 								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query: {isPay: false}})" class="content">
 									<p>
 										<span class="title">银河大酒店</span>
@@ -68,8 +68,8 @@
 				<div v-if="1==index_">
 					<div class="body">
 						<div class="item">
-							<span class="time">预定日期: 03-20</span>
-							<div class="content_box" v-for="(i,index) in 2" :key="index">
+							<!-- <span class="time">预定日期: 03-20</span> -->
+							<div class="content_box" v-for="(i,index) in arr1" :key="index">
 								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{isPay: 1}})" class="content">
 									<p>
 										<span class="title">银河大酒店</span>
@@ -109,8 +109,8 @@
 				<div v-if="2==index_">
 					<div class="body">
 						<div class="item">
-							<span class="time">预定日期: 03-20</span>
-							<div class="content_box" v-for="(i,index) in 2" :key="index">
+							<!-- <span class="time">预定日期: 03-20</span> -->
+							<div class="content_box" v-for="(i,index) in arr2" :key="index">
 								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{isPay: 2}})" class="content">
 									<p>
 										<span class="title">银河大酒店</span>
@@ -158,7 +158,6 @@
 		},
 		mounted(){
 			this._lineLeft()
-			
 		},
 		data(){
 			return {
@@ -171,6 +170,9 @@
 				htmltest: '',
 				htmltest: '<p style="font-size: 14px;padding: 10px 0;">您真的要取消订单吗？</p>',
                 alertShow: false,
+                arr0: [],
+                arr1: [],
+                arr2: [],
 				// back_show: false
 			} 
 		},
@@ -235,6 +237,23 @@
 				if(to.name === 'order'){
 					this._lineLeft()
 				}
+			},
+			index_(){
+				let that = this
+				let arr = {
+					"0": "order.list.waitPay",
+					"1": "order.list.waitReceive",
+					"2": "order.list"
+				}
+				let old = that['arr'+that.index_]
+				let page = 1
+				let dd = ()=>{
+					that.Http.get({route:arr[that.index_],msg:'订单加载中...'}).then(res=>{
+						console.log(res)
+						that['arr'+that.index_] = res.data.data.data
+					})
+				}
+				dd()
 			}
 		}
 	}

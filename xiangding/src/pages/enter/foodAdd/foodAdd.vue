@@ -24,7 +24,7 @@
 			</div>
 			<div class="botton">
 				<p v-if="title === '添加套餐'" @click="handleSubmit">添加</p>
-				<p v-else>修改</p>
+				<p v-else @click="handleChange">修改</p>
 			</div>
 
 		</div>
@@ -36,10 +36,14 @@
 			if(this.$route.query.name){
 				this.title = this.$route.query.name
 			}
+			if(this.$route.query.id){
+				this.id = this.$route.query.id
+			}
 		},
 		data(){
 			return {
 				title: '',
+				id: 0,
 				formData:{
 		            uniaci: 3,
 		            display_order: 1,
@@ -73,6 +77,12 @@
 		},
 
 		methods: {
+			handleEdit(){
+
+			},
+			handleChange(){
+
+			},
 			handleFile(e){
 		        var e = e || event
 		        let that = this
@@ -115,8 +125,19 @@
 		watch: {
 			$route (to,from){
 				if(to.name === 'foodAdd'){
-					this.title = this.$route.query.name
+					if(this.$route.query.name){
+						this.title = this.$route.query.name
+					}
+					if(this.$route.query.id){
+						this.id = this.$route.query.id
+					}
 				}
+			},
+			id(){
+				let that = this
+				this.Http.post({route:'plugin.store-cashier.store.admin.goods.edit&c=site&a=entry&m=yun_shop&do=5468&action=true',baseUrl:'web/index.php?',data:{id:this.id}}).then(res=>{
+					console.log(res)
+				})
 			}
 		}
 	}
