@@ -279,6 +279,9 @@
 				if(this.$route.query.date2){
 					this.date2 = this.$route.query.date2
 				}
+				if(this.$route.query.id){
+					this.date2 = this.$route.query.id
+				}
 			}
 		},
 		methods:{

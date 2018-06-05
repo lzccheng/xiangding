@@ -4,32 +4,31 @@
 		<div class="banner">
 			<div class="swiper-container">
 				<div class="swiper-wrapper">
-			        <div class="swiper-slide" v-for='(i,index) in imgList' :key='index'>
-			        	<img :src="i.imgUrl">
+			        <div class="swiper-slide" v-for='(i,index) in hotelData' :key='index'>
+			        	<img :src="i.thumb">
 			        </div>
 			    </div>
 			</div>
 			<p class="name">{{hotelName}}</p>
-			<p class="name_1">豪华酒店 | 四星级</p>
+			<!-- <p class="name_1">豪华酒店 | 四星级</p> -->
 			<span class="hearts"><i class="fas fa-heart"></i></span>
 			<span class="share"><i class="fas fa-share-alt"></i></span>
 		</div>
 		<div class="msg">
-			<p v-for='(i,index) in tip' :key='index' class="tip">
-				<span>{{i}}</span>
+			<p v-for='(i,index) in hotelData' :key='index' class="tip">
+				<span>{{i.address}}</span>
 			</p>
 
-			<p class="tip"><i class="fas fa-map-marker-alt"></i>  距离您&lt;100米</p>
+			<!-- <p class="tip"><i class="fas fa-map-marker-alt"></i>  距离您&lt;100米</p> -->
 			<p class="line"></p>
-
 
 			<p class="provide">
 				<span v-for='(i,index) in provide' :key='index' v-if='i.isHave'><i :class="i.icon"></i> {{i.name}}</span>
 			</p>
-			<span class="talk">
+			<!-- <span class="talk">
 			  <span class="map">地图</span> 
 			  <i class="fas fa-chevron-right"></i>
-			</span>
+			</span> -->
 			
 		</div>
 		<div class="room">
@@ -96,12 +95,16 @@
 				</div>
 
 				<div v-else>
-						<router-link v-if="!order" tag="div" :to="Fn.getUrl({path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,roomName:'特惠商务房',hotelName,date1:date1,date2:date2}})" v-for='(i,index) in room' :key='index' class="rooms">
+						<router-link v-if="!order" tag="div" :to="Fn.getUrl({path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,roomName:'特惠商务房',hotelName,id:i.brand_id,date1:date1,date2:date2}})" v-for='(i,index) in hotelData' :key='index' class="rooms">
+							{{i.goods}}
+							<!-- <div v-for="(i,index) in i.goods" :key="index">
+								{{i.category_id}}
+							</div> -->
 							<div>
-								<img :src="i.imgUrl">
+								<img :src="i.thumb">
 							</div>
 							<div class="title">
-								<p>{{i.name}}</p>
+								<p>{{i.title}}</p>
 								<p>{{i.area}}m <sup>2</sup> / <span>大床{{i.bed}}</span>m </p>
 							</div>
 							<div class="price">
@@ -162,7 +165,6 @@
 				    loop: true,
 				  }) 
 			},100)
-			this.getData()
 			if(this.$route.query.name){
 				this.title = this.$route.query.name
 			}
@@ -178,6 +180,9 @@
 			if(this.$route.query.date2){
 				this.date2 = this.$route.query.date2
 			}
+			if(this.$route.query.id){
+				this.id = this.$route.query.id
+			}
 			
 			let that = this
 			new lzcDatePlugin({
@@ -192,7 +197,6 @@
 		},
 		data(){
 			return {
-
 				id: 0,
 				data: {},
 				imgList: [],
@@ -209,6 +213,7 @@
 				hotelName: '',
 				date1: 0,
 				date2: 0,
+				hotelData:[]
 			}
 		},
 		methods:{
@@ -218,26 +223,37 @@
 				// 	console.log(11,res)
 				// 	that.arrData = res.data.data[0][0]
 				// })
-				
-				this.$axios({url:'/hotelDetail',method:'get',data:{id:this.$route.query.id}}).then((res)=>{
-					that.id = res.data.id?res.data.id:0
-					that.data = res.data
-					that.imgList = res.data.hotelDetail.imgList
-					that.tip = res.data.hotelDetail.tip
-					that.provide = res.data.hotelDetail.provide
-					that.address = res.data.hotelDetail.address
-					that.distance = res.data.hotelDetail.distance
-					that.near = res.data.hotelDetail.near
-					that.room = res.data.hotelDetail.room
-					for(let i = 0;i < that.room.length;i++){
-						let item = {
-							title: '某某会议室',
-							num: 0
-						}
-						that.numarr.push(item)
-					}
-				}).catch((err)=>{
-				})
+				// this.$axios({url:'/hotelDetail',method:'get',data:{id:this.$route.query.id}}).then((res)=>{
+				// 	that.id = res.data.id?res.data.id:0
+				// 	that.data = res.data
+				// 	that.imgList = res.data.hotelDetail.imgList
+				// 	that.tip = res.data.hotelDetail.tip
+				// 	that.provide = res.data.hotelDetail.provide
+				// 	that.address = res.data.hotelDetail.address
+				// 	that.distance = res.data.hotelDetail.distance
+				// 	that.near = res.data.hotelDetail.near
+				// 	that.room = res.data.hotelDetail.room
+				// 	for(let i = 0;i < that.room.length;i++){
+				// 		let item = {
+				// 			title: '某某会议室',
+				// 			num: 0
+				// 		}
+				// 		that.numarr.push(item)
+				// 	}
+				// }).catch((err)=>{
+				// })
+		          this.Http.get({route:'goods.category.get-children-category',params:{action:true}}).then(res=>{
+		            // console.log(111,res.data.data[1])
+		            let arrData = res.data.data[1]
+		            console.log(arrData)
+		            for(let i = 0;i<arrData.length;i++){
+		            	if(arrData[i].id == that.id){
+		            		that.hotelData[0] = arrData[i]
+		            		console.log(1111,that.hotelData)
+		            		break
+		            	}
+		            }
+		          })
 			},
 			handleBubbole(event){
 				event.cancelBubble = true
@@ -266,7 +282,7 @@
 		watch: {
 			'$route':function(to,from){
 				if(to.name == 'hotelDetail'){
-					this.getData()
+					
 					if(this.$route.query.name){
 						this.title = this.$route.query.name
 					}else{
@@ -286,6 +302,10 @@
 					if(this.$route.query.date2){
 						this.date2 = this.$route.query.date2
 					}
+					if(this.$route.query.id){
+						this.id = this.$route.query.id
+					}
+					this.getData()
 				}
 			}
 		}

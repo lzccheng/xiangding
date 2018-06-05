@@ -304,8 +304,12 @@
         getData(){
           let that = this
           this.Http.get({route:'goods.category.get-children-category',params:{action:true}}).then(res=>{
-            console.log(111,res)
-            that.arrData = res.data.data[1]
+
+            console.log(res.data)
+            that.arrData = res.data.data[1].map(i=>{
+              i.category_id = Number(i.category_id)
+              return i
+            })
           })
         },
         handleChange_erea(){
