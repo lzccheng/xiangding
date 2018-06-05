@@ -56,8 +56,8 @@
 			</p>
 			<div class="earning">
 				<p class="text"><span>当前收益</span></p>
-				<router-link tag="p" :to="Fn.getUrl({path: '/my/cashDetail'})" class="money" style="font-family:'微软雅黑' ,Arial !important"><span>￥</span><span>{{msg.earning}}</span></router-link>
-				<div class="earn">
+				<router-link tag="p" :to="Fn.getUrl({path: '/my/cashDetail'})" class="money" style="font-family:'微软雅黑' ,Arial !important"><span>￥</span><span>{{msg.agantEarning}}</span></router-link>
+				<!-- <div class="earn">
 					<div class="order">
 						<p class="icon"><i class="far fa-file"></i></p>
 						<p class="text">
@@ -72,7 +72,7 @@
 							<span>{{msg.poeple_num}}</span>
 						</p>
 					</div>
-				</div>
+				</div> -->
 				<!-- <div class="agent">
 					<ul>
 						<li>
@@ -165,15 +165,10 @@
 				that.msg.agent_nickname = res.data.data.yz_member.agent.nickname
 			})
 			this.Http.post({route:'finance.earning.earning-count&action=true&',data:{uid: this.$store.state.userInfo.uid}}).then(res=>{
-				if(res.data.result === 1){
-					that.msg.earning = Math.floor(res.data.data * 100) / 100  
-				}
+				that.msg.earning = res.data.data.user  
+				that.msg.agantEarning = res.data.data.services  
 			})
-			console.log(wx)
-			//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=member.member.wxJsSdkConfig
-			this.Http.get({route:'member.member.wxJsSdkConfig'}).then(res=>{
-				console.log(res)
-			})
+			console.log(this.$store.state.userInfo)
 		},
 		data(){
 			return {
@@ -181,6 +176,7 @@
 					imgUrl: '',
 					id: '',
 					earning:'0',
+					agantEarning: '0',
 					order_num: '1369',
 					poeple_num: '569',
 					name: '',

@@ -14,7 +14,7 @@
 			</div>
 		</div> -->
 		<!--可申请-->
-		<div v-show="status == -1||status == 0">
+		<div v-show="status == -1">
 			<div class="form">
 				<p class="input">
 					<label>代理商姓名:</label>
@@ -200,10 +200,14 @@
 		},
 		methods: {
 			getStatus(){
+				//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=plugin.merchant.frontend.merchant-staff&
 				let that = this
 				this.Http.get({route:'plugin.merchant.frontend.get-center-condition'}).then(res=>{
 					that.status = res.data.data.status
 				})
+				// this.Http.get({route:'plugin.merchant.frontend.merchant-staff'}).then(res=>{
+				// 	console.log(res)
+				// })
 			},
 			fileError(){
 				this.Fn.tips('上传失败！');

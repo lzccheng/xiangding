@@ -13,10 +13,10 @@
 		    		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523678917746&di=9d67e28303460dfdcd4a4e6734b629f1&imgtype=0&src=http%3A%2F%2Fimg.taopic.com%2Fuploads%2Fallimg%2F120530%2F188024-1205300PQ373.jpg" alt="">
 		    	</div>
 		    	<div class="text">
-		    		<p class="agant">银河大酒店</p>
-		    		<p class="number"> 编码: 41567</p>
+		    		<p class="agant">{{name}}</p>
+		    		<!-- <p class="number"> 编码: 41567</p> -->
 		    	</div>
-		    	<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelMessage'})" class="i"><i class="fas fa-cog"></i></router-link>
+		    	<!-- <router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelMessage'})" class="i"><i class="fas fa-cog"></i></router-link> -->
 		    </div>
 	    </div>
 	    <div class="line"></div>
@@ -24,7 +24,7 @@
 	    	<div class="earning">
 				<p class="text"><span>房费收益</span></p>
 				<div  class="money"><span>￥</span><span>{{msg.earning}}</span></div>
-				<div class="earn">
+				<!-- <div class="earn">
 					<div class="order">
 						<p class="icon"><i class="far fa-file"></i></p>
 						<p class="text">
@@ -39,7 +39,7 @@
 							<span>{{msg.poeple_num}}</span>
 						</p>
 					</div>
-				</div>
+				</div> -->
 			</div>
 	    </div>
 	    <div class="line"></div>
@@ -72,10 +72,10 @@
 	    		<!--<p class="icon"><i class="fas fa-th-list"></i></p>-->
 	    		<!--<p class="name">订单处理</p>-->
 	    	<!--</router-link>-->
-	    	<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/onlineMessage'})" class="room_5 rooms">
+	    	<!-- <router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/onlineMessage'})" class="room_5 rooms">
 	    		<p class="icon"><i class="fas fa-th-list"></i></p>
 	    		<p>在线信息</p>
-	    	</router-link>
+	    	</router-link> -->
 	    </div>
 
 	</div>
@@ -84,6 +84,7 @@
 	import axios from 'axios'
 	export default {
 		mounted(){
+			let that = this
 			// this.Http.get({baseUrl:'web/index.php?c=site&a=entry&m=yun_shop&do=1210',route:'plugin.store-cashier.store.admin.goods.index&action="1"',params:{action:true},}).then(res=>{
 			// 	console.log(res)
 			// })
@@ -92,17 +93,20 @@
 			// })
       this.Http.post({route:'plugin.store-cashier.store.admin.cashier-order.get-statistics',baseUrl:'/web/index.php?c=site&a=entry&m=yun_shop&do=6578&'}).then(res=>{
         console.log('统计',res)
+        that.msg.earning = res.data.data.no_settlement
       })
       this.Http.post({route:'plugin.store-cashier.store.admin.goods.index',baseUrl:'/web/index.php?c=site&a=entry&m=yun_shop&do=6578&action=true&'}).then(res=>{
         console.log('首页',res)
+        that.name = res.data.main[0].store_name
       })
 		},
 		data(){
 			return {
+				name: '',
 				msg: {
 					imgUrl: 'http://imgtu.5011.net/uploads/content/20170428/1436171493371991.jpg',
 					id: '147258369',
-					earning:'88,888.00',
+					earning:'0',
 					order_num: '1369',
 					poeple_num: '569',
 					income: {

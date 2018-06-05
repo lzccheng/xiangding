@@ -2,7 +2,7 @@
 	<div class="box">
 		<Header title="申请入驻"/>
 		<myalert :innerHtml="htmltest" title_2="享订入驻协议" @handleCancel="aaa" :show="alertShow" status="1"/>
-		<div v-show="enter_status === 1">
+		<div v-show="enter_status === 3">
 			<!-- <div class="back" v-if="general" @click="handleClose_back">
 				<div class="box" @click="cancelBubble">
 					<p class="title">享订入驻协议</p>
@@ -100,8 +100,20 @@
 					<div class="photo">
 					    	<label for="file"><i class="far fa-plus-square"></i></label>
 						   <input @change="handleFile" type="file" style="display: none" id="file">
-						   <div class="file_img" v-show="formData.aptitudeImg">
-						   		<img :src="formData.aptitudeImg">
+						   <div class="file_img" v-show="formData.aptitudeImg[0]">
+						   		<img :src="formData.aptitudeImg[0]">
+						   </div>
+					</div>
+				</div>
+				<div class="form">
+					<p class="input" style="border-bottom: none">
+						<label>上传酒店封面图</label>
+					</p>
+					<div class="photo">
+					    	<label for="file2"><i class="far fa-plus-square"></i></label>
+						   <input @change="handleFileChange" type="file" style="display: none" id="file2">
+						   <div class="file_img" v-show="formData.thumb">
+						   		<img :src="formData.thumb">
 						   </div>
 					</div>
 				</div>
@@ -116,9 +128,10 @@
 				</div>
 				<div class="form" style="border-bottom: none;padding-left: 0">
 					<div class="footer">
-					   <router-link tag="p" :to="Fn.getUrl({path: '/enter/login'})"  @click="handleFormSubmit" class="green_btn">立即申请</router-link>
+					   <!-- <router-link tag="p" :to="Fn.getUrl({path: '/enter/login'})"  @click="handleFormSubmit" class="green_btn">立即申请</router-link> -->
 					   <p @click="handleFormSubmit" class="green_btn">立即申请</p>
-					   <p @click="handleLogin" class="green_btn">立即申请</p>
+					   <p>&nbsp;</p>
+					   <p @click="handleLogin" class="green_btn">登录</p>
 					</div>
 					<div class="agreement_box">
 						<span @click="handleShow" class="agreement">《入驻协议》</span>
@@ -194,8 +207,8 @@
 	            that.formData.provinceId = data[0].name
 	            that.formData.cityId = data[1].name
 	            that.formData.districtId = data[2].name
-              that.formData.streeId = data[3].name
-              that.$refs.addr_text.value = ''
+                that.formData.streeId = data[3].name
+                that.$refs.addr_text.value = ''
 	          }
 	        })
 	        this.Http.getEreaData((res)=>{
@@ -246,7 +259,7 @@
 					lng: '', //经度
 					lat: '', //纬度
 					address: '', //地址
-					thumb: 'http://www.share-hotel.cn/addons/yun_shop/storage/app/avatars/store_apply'
+					thumb: ''
 				},
 				province: '',
 				city: '',
@@ -271,6 +284,12 @@
 		  		this.Http.get({route:'plugin.store-cashier.frontend.store.store.verify-apply-status'}).then(res=>{
 		  			that.enter_status = res.data.data.status
 		  		})
+			},
+			handleFileChange(e){
+				let that = this
+				this.Http.imgUpload(e.target,{msg:'图片上传中...'}).then(res=>{
+					that.formData.thumb = res.data.data.img
+				})
 			},
 			handleFile(e){
 				var e = e || event
@@ -343,7 +362,7 @@
 			},
 			handleFormSubmit(){
 				let that = this
-				console.log({...that.formData})
+				// console.log({...that.formData})
 				if(!this.formData.realname){
 					return this.Fn.tips('请输入申请人');
 					// return this.$message({
@@ -400,9 +419,9 @@
 				}else{
 					return this.Fn.tips('代理服务商电话不能为空')
 				}
-				// if(!this.formData.aptitudeImg.length){
-				// 	return this.Fn.tips('请上传营业执照')
-				// }
+				if(!this.formData.thumb){
+					return this.Fn.tips('请上传酒店封面图')
+				}
 				// this.$axios.post('?i=3&c=entry&do=shop&m=yun_shop&route=plugin.store-cashier.frontend.store.store.apply',{apply:{...that.formData}}).then((res)=>{
 				// 	console.log(res)
 				// 	if(res.data.result === 1){
@@ -449,8 +468,6 @@
 					this.$refs.eye_two.style.display = 'inline-block'
 					this.$refs.eye_one.style.display = 'none'
 				}
-
-
 			},
 			checkDailiname(){
 				if(!this.formData.dailiname){
@@ -548,7 +565,7 @@
 			},
 			enter_status(){
 				if(this.enter_status === 3){
-					window.location.href = 'https://www.share-hotel.cn/web/index.php?c=user&a=login&dd=1'
+					// window.location.href = 'https://www.share-hotel.cn/web/index.php?c=user&a=login&dd=1'
 				}
 			}
 		}
