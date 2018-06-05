@@ -162,7 +162,6 @@
 				    loop: true,
 				  }) 
 			},100)
-			this.getData()
 			if(this.$route.query.name){
 				this.title = this.$route.query.name
 			}
@@ -219,25 +218,29 @@
 				// 	that.arrData = res.data.data[0][0]
 				// })
 				
-				this.$axios({url:'/hotelDetail',method:'get',data:{id:this.$route.query.id}}).then((res)=>{
-					that.id = res.data.id?res.data.id:0
-					that.data = res.data
-					that.imgList = res.data.hotelDetail.imgList
-					that.tip = res.data.hotelDetail.tip
-					that.provide = res.data.hotelDetail.provide
-					that.address = res.data.hotelDetail.address
-					that.distance = res.data.hotelDetail.distance
-					that.near = res.data.hotelDetail.near
-					that.room = res.data.hotelDetail.room
-					for(let i = 0;i < that.room.length;i++){
-						let item = {
-							title: '某某会议室',
-							num: 0
-						}
-						that.numarr.push(item)
-					}
-				}).catch((err)=>{
-				})
+				// this.$axios({url:'/hotelDetail',method:'get',data:{id:this.$route.query.id}}).then((res)=>{
+				// 	that.id = res.data.id?res.data.id:0
+				// 	that.data = res.data
+				// 	that.imgList = res.data.hotelDetail.imgList
+				// 	that.tip = res.data.hotelDetail.tip
+				// 	that.provide = res.data.hotelDetail.provide
+				// 	that.address = res.data.hotelDetail.address
+				// 	that.distance = res.data.hotelDetail.distance
+				// 	that.near = res.data.hotelDetail.near
+				// 	that.room = res.data.hotelDetail.room
+				// 	for(let i = 0;i < that.room.length;i++){
+				// 		let item = {
+				// 			title: '某某会议室',
+				// 			num: 0
+				// 		}
+				// 		that.numarr.push(item)
+				// 	}
+				// }).catch((err)=>{
+				// })
+	          	this.Http.get({route:'goods.category.get-children-category',params:{action:true}}).then(res=>{
+		            console.log(111,res)
+		            
+	            })
 			},
 			handleBubbole(event){
 				event.cancelBubble = true

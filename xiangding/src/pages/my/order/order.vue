@@ -29,25 +29,25 @@
 						<div class="item">
 							<!-- <span class="time">预定日期: 03-20</span> -->
 							<div class="content_box" v-for="(i,index) in arr0" :key="index">
-								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query: {isPay: false}})" class="content">
+								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query: {isPay: false,id:i.id}})" class="content">
 									<p>
-										<span class="title">银河大酒店</span>
+										<span class="title">{{i.has_many_order_goods[0].title}}</span>
 										<span class="title_t">(豪华酒店 |四星级)</span>
-										<span class="cross"><i class="far fa-times-circle"></i></span>
+										<span class="cross"><i class="f  ar fa-times-circle"></i></span>
 									</p>
 									<p>
-										<span class="title_hide">1间. 特惠商务房</span>
+										<span class="title_hide">{{i.has_many_order_goods.length}}间. {{has_many_order_goods[0].title}}</span>
 									</p>
 									<p>
 										<span class="title_hide">客户名称: 胡勇蝶 </span>
 										<span class="no">
 											<span class="money_color">¥</span>
-											<span class="money_size">264</span>
+											<span class="money_size">{{i.price}}</span>
 										</span>
 									</p>
 									<p>
 										<span class="title_hide">支付剩余时间: 22分44秒 </span>
-										<span class="no_pay">未付款</span>
+										<span class="no_pay">{{i.status_name}}</span>
 									</p>
 								</router-link>
 								<div class="content_2">
@@ -249,8 +249,8 @@
 				let page = 1
 				let dd = ()=>{
 					that.Http.get({route:arr[that.index_],msg:'订单加载中...'}).then(res=>{
-						console.log(res)
-						that['arr'+that.index_] = res.data.data.data
+						that['arr'+that.index_] = res.data.data
+						console.log(that['arr'+that.index_])
 					})
 				}
 				dd()
