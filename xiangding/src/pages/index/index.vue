@@ -7,10 +7,10 @@
             <p class="title">
               <span>酒店星级：</span>
             </p>
-            <p><el-rate v-model="search"></el-rate></p>
+            <p><el-rate v-model="category_id"></el-rate></p>
           </div>
           <div>
-            <p class="title">价格： </p>
+            <p class="title">价格：</p>
             <p class="slider">
               <el-slider
                 v-model="price"
@@ -310,9 +310,8 @@
         getData(){
           let that = this
           this.Http.get({route:'goods.category.get-children-category',params:{action:true}}).then(res=>{
-            console.log(111,res)
             that.arrItem = res.data.data[1].slice(0,2)
-            that.arrData = res.data.data[1].slice(2).map(i=>{
+            that.arrData = res.data.data[1].map(i=>{
               i.category_id = Number(i.category_id)
               return i
             })

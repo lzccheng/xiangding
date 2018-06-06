@@ -31,12 +31,12 @@
 							<div class="content_box" v-for="(i,index) in arr0" :key="index">
 								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query: {isPay: false,id:i.id}})" class="content">
 									<p>
-										<span class="title">{{i.has_many_order_goods[0].title}}</span>
+										<span class="title">订单号：{{i.order_sn}}</span>
 										<span class="title_t">(豪华酒店 |四星级)</span>
 										<span class="cross"><i class="f  ar fa-times-circle"></i></span>
 									</p>
 									<p>
-										<span class="title_hide">{{i.has_many_order_goods.length}}间. {{has_many_order_goods[0].title}}</span>
+										<span class="title_hide">{{i.goods_total}}间. {{i.has_many_order_goods[0].title}}</span>
 									</p>
 									<p>
 										<span class="title_hide">客户名称: 胡勇蝶 </span>
@@ -239,21 +239,21 @@
 				}
 			},
 			index_(){
+				//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=order.list&page=1&i=3&type=1
 				let that = this
-				let arr = {
-					"0": "order.list.waitPay",
-					"1": "order.list.waitReceive",
-					"2": "order.list"
-				}
-				let old = that['arr'+that.index_]
-				let page = 1
-				let dd = ()=>{
-					that.Http.get({route:arr[that.index_],msg:'订单加载中...'}).then(res=>{
-						that['arr'+that.index_] = res.data.data
-						console.log(that['arr'+that.index_])
+				if(this.index_ === 0){
+					this.Http.post({route:'order.list',params:{
+						uid:that.$store.state.userInfo.uid,
+						action: 1,
+						status: 0
+					}}).then(res=>{
+						console.log(res)
+						that.arr0 = res.data.data.data
+						console.log(111,that.arr0)
 					})
 				}
-				dd()
+				
+				
 			}
 		}
 	}
