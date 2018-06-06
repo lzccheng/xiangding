@@ -109,9 +109,8 @@
 							</div>
 							<div class="price">
 								<p>￥{{i.price}}元</p>
-								<p><router-link tag="button" :to="Fn.getUrl({path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,roomName:i.title,hotelName,date1:date1,date2:date2}})">订房</router-link></p>
+								<p><router-link tag="button" :to="Fn.getUrl({path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,roomName:i.title,hotelName,date1:date1,date2:date2,id:i.goods_id}})">订房</router-link></p>
 							</div>
-							
 						</router-link>
 					</div>
 						
@@ -339,10 +338,12 @@
 			id(){
 
 				let that = this
-				console.log(that.id)
+				that.rooms = []
 				that.rooms = []
 				that.Http.post({route:'goods.category.get-category',data:{action:1,brand_id: 2,store_id: that.id}}).then(res=>{
-					that.rooms = res.data.data
+					console.log(999,res)
+					that.rooms = [...res.data.data]
+
 				})
 			}
 		}

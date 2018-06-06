@@ -2,184 +2,189 @@
 	<div class="box">
 		<Header v-if="title === '会议室'" :title="meetingName"/>
 		<Header v-else :title="roomName"/>
-		<div class="banner">
-			<div class="swiper-container">
-			    <div class="swiper-wrapper">
-			        <div class="swiper-slide" v-for='(i,index) in data.imgUrl'>
-			        	<img :src="i">
-			        </div>
-			    </div>
+		<div v-if="detailt">
+			<div class="banner">
+				<!-- <div class="swiper-container">
+				    <div class="swiper-wrapper">
+				        <div class="swiper-slide" v-for='(i,index) in data.imgUrl'>
+				        	<img :src="i">
+				        </div>
+				    </div>
+				</div> -->
+				<img :src="detailt.thumb">
 			</div>
-		</div>
-		<div class="message">
-			<p class="title"><span>{{hotelName}}</span></p>
-			<p class="star"><span>{{type1[type]}} | {{star1[type]}}</span></p>
-			<div class="msg">
-				<div class="img"><img :src="data.imgUrl"></div>
-				<div class="text">
-					<p  v-if="title === '钟点房'">{{month1}}入住，共{{num_1}}小时</p>
-					<p v-else>{{month1}}入住，{{month2}}离开，共{{days}}天</p>
-					<p v-if="title === '会议室'">董事长会议厅</p>
-					<p v-else>商务大床房</p>
-					<p><span>25m <sup>2</sup>	
-					<span v-if="title === '会议室'">100人</span> 
-					<span  v-else>大床1.8m</span> 
-					</span><span class="change">￥289元</span></p>
-				</div>
-				<div>
-					
-				</div>
-			</div>
-			<div class="hotelSelect">
-				<div v-if="title === '会议室'">
-					<p class="msg_1">
-						<span class="head">窗户</span>
-						<span class="text">有窗</span>
-						<span class="head">面积</span>
-						<span class="text">28m <sup>2</sup></span>
-					</p>
-					<p class="msg_1">
-						<span class="head">网络</span>
-						<span class="text">WiFi供应</span>
-						<span class="head">容纳</span>
-						<span class="text">2人</span>
-					</p>
-					<p class="msg_1">
-						<span class="head">楼层</span>
-						<span class="text">5-15</span>
-						<span class="head">电话</span>
-						<span class="text">暂无信息</span>
-					</p>
-				</div>
-				<div v-else>
-					<p class="msg_1">
-						<span class="head">床型</span>
-						<span class="text">1.8米</span>
-						<span class="head">面积</span>
-						<span class="text">28m <sup>2</sup></span>
-					</p>
-					<p class="msg_1">
-						<span class="head">窗户</span>
-						<span class="text">有窗</span>
-						<span class="head">可住</span>
-						<span class="text">2人</span>
-					</p>
-					<p class="msg_1">
-						<span class="head">网络</span>
-						<span class="text">WiFi供应</span>
-						<span class="head">电话</span>
-						<span class="text">暂无信息</span>
-					</p>
-					<p class="msg_1">
-						<span class="head">楼层</span>
-						<span class="text">5-15</span>
-						<span class="head">早餐</span>
-						<span class="text">双早</span>
-					</p>
-				</div>
-			</div>
-			<div class="inform">
-				<p class="black" v-if="title === '钟点房'" >
-					<span >时间</span>
-					<!-- <span v-else>天数</span> -->
-					<span class="number_box">
-					    <span class="icon_s" style="border-right: none"  @click="handleDelete">-</span>
-						<span class="number_s">{{num_1}}</span>
-						<span class="icon_s radius" style="border-left: none"  @click="handleAdd">+</span>
-					</span>
-				</p>
-				<p class="black">
-					<span class="first">
-					   <p v-if="title ==='会议室'">会议室间数</p>
-					   <p v-else>房间</p>
-					   <p v-if="title === '团房'" class="room">注: 团房间最少订购两间及以上</p>
-					</span>
-					<span class="number_box" >
-					    <span class="icon_s"  style="border-right: none"  @click="handleDelete1">-</span>
-						<span class="number_s">{{num_2}}</span>
-						<span class="icon_s radius" style="border-left: none" @click="handleAdd1">+</span>
-					</span>
-				</p>
-				<p class="black" v-if="title === '会议室'">
-					<span>是否需要LED屏</span>
-					<span class="check_box" ><el-checkbox v-model="checked1"></el-checkbox></span>
-				</p>
-				<p class="black" v-if="title === '会议室' && checked1" >
-					<span class="right" >
-						 <el-radio v-model="radio" label="1">1 × 2米LED屏</el-radio><br/>
-                         <el-radio v-model="radio" label="2">1.5 × 3.5米LED屏</el-radio><br/>  
-                         <el-radio v-model="radio" label="3">2.5 × 5.5米LED屏</el-radio> 
-					</span>
-				</p>
-				<router-link tag="p" :to="Fn.getUrl({path: '/hotel/hotelManage/foodOrder'})" v-if="title === '团房'||title === '会议室'" class="black">
-					<span style="color: #43c122">餐饮团购</span>
-					<span  class="check_box"><i class="fas fa-chevron-right"></i></span>
-				</router-link>
-				<!-- <p class="black">
-					<span>是否需要发票</span>
-					<span class="check_box"><el-checkbox v-model="checked"></el-checkbox></span>
-				</p> -->
-				<router-link tag="p" :to="Fn.getUrl({path:'/hotelDetail',query:{name: '团房',id: 2,order: true}})" v-if="title === '会议室'" class="black color_green">
-					<span>是否需要团房</span>
-					<span class="check_box"><i class="fas fa-chevron-right"></i></span>
-				</router-link>
-				<router-link tag="p" :to="Fn.getUrl({path:'/hotelDetail',query:{name: '会议室',id: 2,order: true}})"  v-if="title === '团房'" class="black">
-					<span class="color_green">是否需要会议室</span>
-					<span class="check_box"><i class="fas fa-chevron-right"></i></span>
-				</router-link>
-				<p class="black" v-if="title !== '会议室'">
-					<span>预计到店</span>
-					<span class="time">
-						<span class="line">14</span>
-						<span>:</span>
-						<span class="line">30</span>
-						<span class="line">本日</span>
-					</span>
-				</p>
-				<p  class="day"><input type="text" placeholder="请输入入住客人姓名" name=""></p>
-				<p  class="day"><input type="text" placeholder="请输入入住客人的手机号码" name=""></p>
-
-				<!-- <p  class="input_box">
-				   <span class="yz_text"><input type="text" placeholder="请输入验证码" name=""></span>
-				   <span class="yz_numb"><span>获取验证码</span></span>
-				</p> -->
-				<div v-if="title !== '会议室'">
-					<p class="indent">
-					   <span class="minus">立减</span>
-					   <span class="farvourable">优惠返现</span>
-					   <span class="money">¥8.88</span>
-					</p>
-					<p class="indent">
-					   <span class="minus">奖励</span>
-					   <span class="farvourable">推送奖励</span>
-					   <span class="money">¥8.88</span>
-					</p>
-					<p class="indent">
-					   <span class="cancel">取消</span>
-					   <span class="farvourable">免费取消</span>
-					   <span class="aaa">已加入免费取消政策</span>
-					</p>
+			<div class="message">
+				<p class="title"><span>{{hotelName}}</span></p>
+				<p class="star"><span>{{type1[type]}} | {{star1[type]}}</span></p>
+				<div class="msg">
+					<div class="img"><img :src="detailt.thumb"></div>
+					<div class="text">
+						<p  v-if="title === '钟点房'">{{month1}}入住，共{{num_1}}小时</p>
+						<p v-else>{{month1}}入住，{{month2}}离开，共{{days}}天</p>
+						<p v-if="title === '会议室'">董事长会议厅</p>
+						<p v-else>{{detailt.title}}</p>
+						<p><span>{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'房间面积'):''}}m <sup>2</sup>	
+						<span v-if="title === '会议室'">100人</span> 
+						<span  v-else>大床{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'床型'):''}}</span> 
+						</span><span class="change">￥{{detailt.price}}元</span></p>
 					</div>
-					<p class="color_aaa">
-						<span><i class="far fa-smile"></i></span>
-						<span class="text_size">请你在30分钟内完成支付,否则订单会自动取消</span>
+					<div>
+						
+					</div>
+				</div>
+				<div class="hotelSelect">
+					<div v-if="title === '会议室'">
+						<p class="msg_1">
+							<span class="head">窗户</span>
+							<span class="text">有窗</span>
+							<span class="head">面积</span>
+							<span class="text">28m <sup>2</sup></span>
+						</p>
+						<p class="msg_1">
+							<span class="head">网络</span>
+							<span class="text">WiFi供应</span>
+							<span class="head">容纳</span>
+							<span class="text">2人</span>
+						</p>
+						<p class="msg_1">
+							<span class="head">楼层</span>
+							<span class="text">5-15</span>
+							<span class="head">电话</span>
+							<span class="text">暂无信息</span>
+						</p>
+					</div>
+					<div v-else>
+						<p class="msg_1">
+							<span class="head">床型</span>
+							<span class="text">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'床型'):''}}</span>
+							<span class="head">面积</span>
+							<span class="text">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'房间面积'):''}}m <sup>2</sup></span>
+						</p>
+						<p class="msg_1">
+							<span class="head">窗户</span>
+							<span class="text">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'是否有窗'):''}}</span>
+							<span class="head">可住</span>
+							<span class="text">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'可住人数'):''}}</span>
+						</p>
+						<p class="msg_1">
+							<span class="head">网络</span>
+							<span class="text">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'设施'):''}}</span>
+							<span class="head">电话</span>
+							<span class="text">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'电话'):''}}</span>
+						</p>
+						<p class="msg_1">
+							<span class="head">楼层</span>
+							<span class="text">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'楼层'):''}}</span>
+							<span class="head">早餐</span>
+							<span class="text">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'是否有早餐'):''}}</span>
+						</p>
+					</div>
+				</div>
+				<div class="inform">
+					<p class="black" v-if="title === '钟点房'" >
+						<span >时间</span>
+						<!-- <span v-else>天数</span> -->
+						<span class="number_box">
+						    <span class="icon_s" style="border-right: none"  @click="handleDelete">-</span>
+							<span class="number_s">{{num_1}}</span>
+							<span class="icon_s radius" style="border-left: none"  @click="handleAdd">+</span>
+						</span>
 					</p>
-					<p class="color_aaa">
-						<span class="yes_icon"><i class="fas fa-clipboard-check"></i></span>
-						<span class="text_size">我们保障快速确认,到店有房,资金安全,请放心预定</span>
+					<p class="black">
+						<span class="first">
+						   <p v-if="title ==='会议室'">会议室间数</p>
+						   <p v-else>房间</p>
+						   <p v-if="title === '团房'" class="room">注: 团房间最少订购两间及以上</p>
+						</span>
+						<span class="number_box" >
+						    <span class="icon_s"  style="border-right: none"  @click="handleDelete1">-</span>
+							<span class="number_s">{{num_2}}</span>
+							<span class="icon_s radius" style="border-left: none" @click="handleAdd1">+</span>
+						</span>
+					</p>
+					<p class="black" v-if="title === '会议室'">
+						<span>是否需要LED屏</span>
+						<span class="check_box" ><el-checkbox v-model="checked1"></el-checkbox></span>
+					</p>
+					<p class="black" v-if="title === '会议室' && checked1" >
+						<span class="right" >
+							 <el-radio v-model="radio" label="1">1 × 2米LED屏</el-radio><br/>
+	                         <el-radio v-model="radio" label="2">1.5 × 3.5米LED屏</el-radio><br/>  
+	                         <el-radio v-model="radio" label="3">2.5 × 5.5米LED屏</el-radio> 
+						</span>
+					</p>
+					<router-link tag="p" :to="Fn.getUrl({path: '/hotel/hotelManage/foodOrder'})" v-if="title === '团房'||title === '会议室'" class="black">
+						<span style="color: #43c122">餐饮团购</span>
+						<span  class="check_box"><i class="fas fa-chevron-right"></i></span>
+					</router-link>
+					<!-- <p class="black">
+						<span>是否需要发票</span>
+						<span class="check_box"><el-checkbox v-model="checked"></el-checkbox></span>
+					</p> -->
+					<router-link tag="p" :to="Fn.getUrl({path:'/hotelDetail',query:{name: '团房',id: 2,order: true}})" v-if="title === '会议室'" class="black color_green">
+						<span>是否需要团房</span>
+						<span class="check_box"><i class="fas fa-chevron-right"></i></span>
+					</router-link>
+					<router-link tag="p" :to="Fn.getUrl({path:'/hotelDetail',query:{name: '会议室',id: 2,order: true}})"  v-if="title === '团房'" class="black">
+						<span class="color_green">是否需要会议室</span>
+						<span class="check_box"><i class="fas fa-chevron-right"></i></span>
+					</router-link>
+					<!-- <p class="black" v-if="title !== '会议室'">
+						<span>预计到店</span>
+						<span class="time" id="clock">
+							<span class="line">14</span>
+							<span>:</span>
+							<span class="line">30</span>
+							<span class="line">本日</span>
+						</span>
+					</p> -->
+					<p  class="day"><input type="text" v-model="formData.name" placeholder="请输入入住客人姓名" name=""></p>
+					<p  class="day"><input type="text" v-model="formData.tel" placeholder="请输入入住客人的手机号码" name=""></p>
+
+					<!-- <p  class="input_box">
+					   <span class="yz_text"><input type="text" placeholder="请输入验证码" name=""></span>
+					   <span class="yz_numb"><span>获取验证码</span></span>
+					</p> -->
+					<div v-if="title !== '会议室'">
+						<p class="indent" v-if="money">
+						   <span class="minus">立减</span>
+						   <span class="farvourable">优惠返现</span>
+						   <span class="money">¥{{detailt.price*num_2*money/100*0.4}}</span>
+						</p>
+						<p class="indent" v-if="money">
+						   <span class="minus">奖励</span>
+						   <span class="farvourable">推送奖励</span>
+						   <span class="money">¥{{detailt.price*num_2*money/100*0.3}}</span>
+						</p>
+						<p class="indent" v-if="cancel">
+						   <span class="cancel">取消</span>
+						   <span class="farvourable">免费取消</span>
+						   <span class="aaa">已加入免费取消政策</span>
+						</p>
+						</div>
+						<p class="color_aaa">
+							<span><i class="far fa-smile"></i></span>
+							<span class="text_size">请你在30分钟内完成支付,否则订单会自动取消</span>
+						</p>
+						<p class="color_aaa">
+							<span class="yes_icon"><i class="fas fa-clipboard-check"></i></span>
+							<span class="text_size">我们保障快速确认,到店有房,资金安全,请放心预定</span>
+						</p>
+					</div>
+				<div class="footer">
+					<p class="need_pay">需支付
+						<!-- <router-link class="button" :to="Fn.getUrl({path:'/hotel/payOrder',query:{name: title,date1,date2}})" tag='span'>提交订单</router-link> -->
+						<span class="button" @click="handleOrder">提交订单</span>
+					</p>
+
+					<p>
+						<span class="money_color">{{detailt.price*num_2}}元</span>
+						
 					</p>
 				</div>
-			<div class="footer">
-				<p class="need_pay">需支付
-					<router-link class="button" :to="Fn.getUrl({path:'/hotel/payOrder',query:{name: title,date1,date2}})" tag='span'>提交订单</router-link>
-				</p>
-
-				<p>
-					<span class="money_color">289.00元</span>
-					
-				</p>
 			</div>
 		</div>
+		
 	</div>
 </template>
 <script>
@@ -214,6 +219,7 @@
 				this.id = this.$route.query.id
 			}
 			this.type = this.$store.state.hotelInfo.category_id
+			this.getData()            
 		},
 		data(){
 			return {
@@ -251,8 +257,14 @@
 					'3': '三星级',
 					'4': '四星级',
 					'5': '五星级',
-				}
-
+				},
+				detailt: null,
+				formData: {
+					name: '',
+					tel: ''
+				},
+				money: 0,
+				cancel: null
 			}
 		},
 		computed: {
@@ -266,6 +278,10 @@
 			},
 			days(){
 				return Math.round((Number(this.$route.query.date2) - Number(this.$route.query.date1))/1000/60/60/24)
+			},
+			detailt1(){
+				let aa = this.detailt.has_many_params?Fn.filterArr(this.detailt.has_many_params,'取消政策'):''
+				this.cancel = aa?true: false
 			}
 		},
 		watch: {
@@ -295,15 +311,55 @@
 						this.id = this.$route.query.id
 					}
 					this.type = this.$store.state.hotelInfo.category_id
+					this.getData()
 				}
 			}
 		},
 		methods:{
+			handleOrder(){
+				if(!this.formData.name){
+					return this.Fn.tips('姓名不能为空')
+				}
+				if(!this.formData.tel){
+					return this.Fn.tips('手机号码不能为空')
+				}
+				//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=order.create
+				let that = this
+				let address = {"id":1,"uniacid":this.$store.state.userInfo.uniacid,"uid":this.$store.state.userInfo.uid,"username":this.formData.name,"mobile":this.formData.tel,"zipcode":"","province":"北京","city":"北京市","district":"东城区","street":"东四街道","address":"122456","isdefault":1}
+				let goods = [
+					{
+						goods_id: this.id,
+						total: this.num_2,
+						option_id: 0
+					}
+				]
+				this.Http.post({route:'order.create',data:{
+					address: JSON.stringify(address),
+					dispatch_type_id: 1,
+					goods: JSON.stringify(goods),
+					member_coupon_ids: '[]',
+					orders: '[]'
+				}}).then(res=>{
+					console.log(res)
+					that.Fn.tips(res.data.msg)
+					if(res.data.result === 1){
+						console.log(that.Fn.getUrl({path: '/hotel/payOrder',query: {order_ids: res.data.data.order_ids}}),res.data)
+						that.$router.push(that.Fn.getUrl({path: '/hotel/payOrder',query: {order_ids: res.data.data.order_ids,realname: that.formData.name,tel:that.formData.tel}}))
+					}
+				})
+			},
 			getData(){
 				//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=goods.goods.get-goods
+				// console.log(this.id)
 				let that = this
+				that.detailt = null
 				this.Http.get({route:'goods.goods.get-goods',params:{id:this.id,action: 1}}).then(res=>{
-					console.log(res)
+					that.detailt = res.data.data
+				})
+				this.Http.post({route:'goods.category.get-category',data:{action_m: 1,brand_id:2,store_id:this.$store.state.hotelInfo.id}}).then(res=>{
+					if(res.data.result === 1){
+						that.money = res.data.data
+					}
 				})
 			},
 			handleBlur(event){
