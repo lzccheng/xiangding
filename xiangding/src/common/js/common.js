@@ -228,6 +228,14 @@ const tips = value =>{
 		position: 'top'
 	})
 }
+const filterArr = (arr,value)=>{
+	let dd = arr.filter(i=>{
+		if(i.title === value){
+			return i
+		}
+	})
+	return dd[0]?dd[0].value:'未设定'
+}
 export default {
 	getStyle,
 	getLocation,
@@ -249,5 +257,6 @@ export default {
 	getKey,
 	getKeyByI,
 	getType,
-	tips
+	tips,
+	filterArr,
 }

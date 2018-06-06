@@ -7,10 +7,10 @@
             <p class="title">
               <span>酒店星级：</span>
             </p>
-            <p><el-rate v-model="star"></el-rate></p>
+            <p><el-rate v-model="category_id"></el-rate></p>
           </div>
           <div>
-            <p class="title">价格： </p>
+            <p class="title">价格：</p>
             <p class="slider">
               <el-slider
                 v-model="price"
@@ -36,7 +36,7 @@
             <div v-for='(i,index) in arrItem' :key='index' class="swiper-slide">
               <router-link :to="Fn.getUrl({path: '/hotelDetail',query:{id:i.id}})" tag='div'>
                  <div class="iSlide">
-                    <img class="img" :src="i.imgUrl">
+                    <img class="img" :src="i.thumb">
                   </div>
               </router-link>
             </div>
@@ -106,7 +106,7 @@
           </li>
   			</ul>
         <div class="button">
-          <router-link tag="p" class="green_btn" :to="Fn.getUrl({path: '/hotel/hotelSearch',query: {data,name: '酒店列表',province,city,erea,struct,date1:date_value[0].datetime,date2:date_value[1].datetime}})">查找酒店</router-link>
+          <router-link tag="p" class="green_btn" :to="Fn.getUrl({path: '/hotel/hotelSearch',query: {data,name: '酒店列表',province,city,erea,struct,date1:date_value[0].datetime,date2:date_value[1].datetime,lng,lat,seachMinPrice}})">查找酒店</router-link>
         </div>
   		</div>
       <div class="near">
@@ -226,17 +226,17 @@
             that.Fn.tips('定位失败！')
           }
 
-        this.$axios({url:'/bannerData',data:{id:123}}).then((res)=>{
-          that.arrItem = res.data
-          setTimeout(function(){
-            var mySwiper = new Swiper('.swiper-container', {
-               loop: true,
-               autoplay: true
-            })
-          },100)
-        }).catch((err)=>{
-          console.log(err)
-        })
+        // this.$axios({url:'/bannerData',data:{id:123}}).then((res)=>{
+        //   that.arrItem = res.data
+        //   setTimeout(function(){
+        //     var mySwiper = new Swiper('.swiper-container', {
+        //        loop: true,
+        //        autoplay: true
+        //     })
+        //   },100)
+        // }).catch((err)=>{
+        //   console.log(err)
+        // })
         this.$axios({url:'/hotelData',method: 'get'}).then((res)=>{
             that.hotel = res.data
           }).catch((err)=>{
@@ -296,15 +296,20 @@
           city: '广州市',
           erea: '荔湾区',
           struct: '沙面街道',
-          arrData:[]
+          arrData:[],
+          lng: 0,
+          lat: 0,
+          seachMinPrice: '',
+          seachMaxPrice: '',
+          store_name: '',
+          category_id: 3
         }
       },
       methods: {
         getData(){
           let that = this
           this.Http.get({route:'goods.category.get-children-category',params:{action:true}}).then(res=>{
-
-            console.log(res.data)
+            that.arrItem = res.data.data[1].slice(0,2)
             that.arrData = res.data.data[1].map(i=>{
               i.category_id = Number(i.category_id)
               return i

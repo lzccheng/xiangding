@@ -13,7 +13,7 @@
 		</div>
 		<div class="message">
 			<p class="title"><span>{{hotelName}}</span></p>
-			<p class="star"><span>豪华酒店 | 四星级</span></p>
+			<p class="star"><span>{{type1[type]}} | {{star1[type]}}</span></p>
 			<div class="msg">
 				<div class="img"><img :src="data.imgUrl"></div>
 				<div class="text">
@@ -210,13 +210,10 @@
 			if(this.$route.query.date2){
 				this.date2 = this.$route.query.date2
 			}
-			 new lzcDatePlugin({
-	            el: '#time',
-	            callback: function(res){
-	            	console.log(res)
-	            }
-	          })
-
+			if(this.$route.query.id){
+				this.id = this.$route.query.id
+			}
+			this.type = this.$store.state.hotelInfo.category_id
 		},
 		data(){
 			return {
@@ -227,6 +224,7 @@
 						'http://pic.35pic.com/normal/04/16/23/5713677_151916236164_2.jpg'
 					]
 				},
+				id:0,
 				checked: false,
 				checked1: false,
 				title: '酒店列表',
@@ -238,7 +236,22 @@
 				hotelName: '',
 				meetingName: '',
 				date1: 0,
-				date2: 0
+				date2: 0,
+				type: 0,
+				type1: {
+					'1': '经济酒店',
+					'2': '舒适酒店',
+					'3': '商务酒店',
+					'4': '高档酒店',
+					'5': '豪华酒店',
+				},
+				star1: {
+					'1': '一星级',
+					'2': '二星级',
+					'3': '三星级',
+					'4': '四星级',
+					'5': '五星级',
+				}
 
 			}
 		},
@@ -263,28 +276,36 @@
 					}else{
 						this.title = '酒店列表'
 					}
-				}
-				if(this.$route.query.hotelName){
-					this.hotelName = this.$route.query.hotelName
-				}
-				if(this.$route.query.roomName){
-					this.roomName = this.$route.query.roomName
-				}
-				if(this.$route.query.meetingName){
-					this.meetingName = this.$route.query.meetingName
-				}
-				if(this.$route.query.date1){
-					this.date1 = this.$route.query.date1
-				}
-				if(this.$route.query.date2){
-					this.date2 = this.$route.query.date2
-				}
-				if(this.$route.query.id){
-					this.date2 = this.$route.query.id
+					if(this.$route.query.hotelName){
+						this.hotelName = this.$route.query.hotelName
+					}
+					if(this.$route.query.roomName){
+						this.roomName = this.$route.query.roomName
+					}
+					if(this.$route.query.meetingName){
+						this.meetingName = this.$route.query.meetingName
+					}
+					if(this.$route.query.date1){
+						this.date1 = this.$route.query.date1
+					}
+					if(this.$route.query.date2){
+						this.date2 = this.$route.query.date2
+					}
+					if(this.$route.query.id){
+						this.id = this.$route.query.id
+					}
+					this.type = this.$store.state.hotelInfo.category_id
 				}
 			}
 		},
 		methods:{
+			getData(){
+				//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=goods.goods.get-goods
+				let that = this
+				this.Http.get({route:'goods.goods.get-goods',params:{id:this.id,action: 1}}).then(res=>{
+					console.log(res)
+				})
+			},
 			handleBlur(event){
 				event.path[0].blur()
 			},
