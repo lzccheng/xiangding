@@ -109,7 +109,6 @@
           <router-link tag="p" class="green_btn" :to="Fn.getUrl({path: '/hotel/hotelSearch',query: {data,name: '酒店列表',province,city,erea,struct,date1:date_value[0].datetime,date2:date_value[1].datetime,lng,lat,seachMinPrice}})">查找酒店</router-link>
         </div>
   		</div>
-
       <div class="near">
         <p class="title">附近推荐酒店</p>
         <div class="hotelRoom" v-for='(i,index) in arrData' :key='index'>
