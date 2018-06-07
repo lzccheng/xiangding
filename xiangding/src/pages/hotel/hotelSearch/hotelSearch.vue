@@ -25,10 +25,14 @@
 									</span>
 								</span>
 							</div>
-							<router-link tag="div" :to="Fn.getUrl({path: '/hotel/searchPage'})" class="search_" @click="handleSearch">
+							<!-- <router-link tag="div" :to="Fn.getUrl({path: '/hotel/searchPage'})" class="search_" @click="handleSearch">
 								<input type="text" placeholder="酒店 / 品牌" class="">
 								<span><i class="fas fa-search"></i></span>
-							</router-link>
+							</router-link> -->
+							<div class="search_">
+								<input type="text" v-model="hotelName" placeholder="酒店 / 品牌" class="">
+								<span @click="handleSearch"><i class="fas fa-search"></i></span>
+							</div>
 						</div>
 					</div>
 					<div class="_tabs">
@@ -36,12 +40,10 @@
 							<span :class="{'color': 2 == show}">位置距离</span>
 							<span v-if="2 != show"><i class="fas fa-angle-down"></i></span>
 						</div>
-						<div @click="handleGeneral" class="tab_">
+						<!-- <div @click="handleGeneral" class="tab_">
 							<span :class="{'color': 0 == show}">综合筛选</span>
 							<span v-if="0 != show"><i class="fas fa-angle-down"></i></span>
-							<!-- <span v-if="!up" >
-							<i class="fas fa-angle-down"></i></span> -->
-						</div>
+						</div> -->
 						<div @click="handlePrice" class="tab_">
 							<span :class="{'color': 1 == show}">星级价格</span>
 							<span v-if="1 != show"><i class="fas fa-angle-down"></i></span>
@@ -139,24 +141,24 @@
 						</div>
 						<div class="button">
 							<span @click="handleStarReset">重置</span>
-							<span>确定</span>
+							<span @click="handleSure">确定</span>
 						</div>
 					</div>
 					<div v-if="2 == show" @click="handleCancel">
 						<div class="erea_box">
 							<div class="erea_nav">
 								<ul>
+									<!-- <li @click="handleEreaChange(0,$event)" :class="{active:erea_show === 0}">{{ereaBox[0].name}}</li> -->
 									<li @click="handleEreaChange(0,$event)" :class="{active:erea_show === 0}">{{ereaBox[0].name}}</li>
-									<li @click="handleEreaChange(1,$event)" :class="{active:erea_show === 1}">{{ereaBox[1].name}}</li>
 								</ul>
 							</div>
 							<div class="erea_item">
-								<ul v-show="0 == erea_show">
+								<!-- <ul v-show="0 == erea_show">
 									<li @click="handleEreaLiItem" v-for="(i,index) in ereaBox[0].children" :key="index">
 										{{i.name}}
 									</li>
-								</ul>
-								<ul v-show="1 == erea_show" class="erea_selector">
+								</ul> -->
+								<ul v-show="0 == erea_show" class="erea_selector">
 									<li @click="handleEreaLi" v-for="(i,index) in ereaArr" :key="index" :class="{active: erea ===i.name}">
 										{{i.name}}
 									</li>
@@ -170,28 +172,28 @@
 						</div>
 					</div>
 				</div>
-				<div class="free">
+				<!-- <div class="free">
 					<div class="text" :class="{color_free: free[0].active}" @click="handleChoice(0)">免费取消</div>
 					<div class="text" :class="{color_free: free[1].active}" @click="handleChoice(1)">活动优惠</div>
-				</div>
-				<div class="show">
-					<router-link :to="Fn.getUrl({path: '/hotelDetail',query:{id:2,name: title,hotelName: '广州银河大酒店',date1:dateValue[0].datetime,date2:dateValue[1].datetime}})" tag="div" class="item" v-for="(i,index) in 10" :key='index'>
+				</div> -->
+				<div class="show" v-if="hotelData">
+					<router-link :to="Fn.getUrl({path: '/hotelDetail',query:{id:i.id,name: title,hotelName: i.store_name	,date1:dateValue[0].datetime,date2:dateValue[1].datetime}})" tag="div" class="item" v-for="(i,index) in hotelData" :key='index'>
 						<div class="img">
-							<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523706249725&di=7bd2cda519bba9f885f6504617bc853b&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F9922720e0cf3d7cac93f8f64f81fbe096a63a9d3.jpg" alt="">
+							<img :src="i.thumb" alt="">
 						</div>
 						<div class="msg">
 							<p class="title">
-								<span>广州银河大酒店</span>
+								<span>{{i.store_name}}</span>
 							</p>
 							<p class="lineHidden">
-								<span>珠江新城、</span>
-								<span>五羊商城</span>
+								<span>{{i.information}}</span>
+								<!-- <span>五羊商城</span> -->
 							</p>
-							<p>
+							<!-- <p>
 								<span>房间面积：30m <sup>2</sup></span>
-							</p>
+							</p> -->
 							<p>
-								<span>剩余房间: 100间</span>
+								<span>剩余房间: {{i.num}}间</span>
 							</p>
 							<p class="cancel">
 								<span>立减</span>
@@ -201,7 +203,7 @@
 						<div class="price">
 							<p class="star lineHidden">
 								<el-rate
-								  v-model="star"
+								  v-model="i.category_id"
 								  disabled
 								  text-color="#ff9900"
 								  score-template="{value}"/>
@@ -209,7 +211,7 @@
 							<p class="pay">
 								<span>
 									<span>￥</span>
-									<span class="num">848</span>
+									<span class="num">{{i.minprice}}</span>
 									<span class="text">起</span>
 								</span>
 							</p>
@@ -252,6 +254,28 @@
 			if(this.$route.query.date2){
 				that.dateValue[1].datetime = Number(this.$route.query.date2)
 			}
+			if(this.$route.query.lng){
+				that.lng = this.$route.query.lng
+			}
+			if(this.$route.query.lat){
+				that.lat = this.$route.query.lat
+			}
+			if(this.$route.query.seachMinPrice){
+				that.seachMinPrice = this.$route.query.seachMinPrice
+			}
+			if(this.$route.query.seachMaxPrice){
+				that.seachMaxPrice = this.$route.query.seachMaxPrice
+			}
+			if(this.$route.query.category_id){
+				that.category_id = this.$route.query.category_id
+			}
+			if(this.$route.query.store_name){
+				that.store_name = this.$route.query.store_name
+			}
+			if(this.$route.query.brand_id){
+				that.brand_id = this.$route.query.brand_id
+			}
+			this.getData()
 		},
 		data(){
 			return {
@@ -448,10 +472,98 @@
 				struct: '沙面街道',
 		        ereaArr: [],
 		        cityArr: [],
-
+		        lng:'',
+		        lat:'',
+		        seachMinPrice:'',
+		        seachMaxPrice:'',
+		        category_id:'',
+		        store_name: '',
+		        hotelData: null,
+		        hotelName: '',
+		        brand_id: '',
+		        MinPrice: '',
+		        MaxPrice: ''
 			}
 		},
 		methods: {
+			handleSure(){
+				let that = this
+				let params = {
+					action: 1
+				}
+				if(this.starSelect.price.min){
+					params.seachMinPrice = this.starSelect.price.min
+				}
+				if(this.starSelect.price.max){
+					params.seachMinPrice = this.starSelect.price.max
+				}
+				params.category_id = 3
+				this.Http.get({route: 'goods.category.get-children-category',params,msg: '数据加载中...'}).then(res=>{
+					if(res.data.code === 200){
+						console.log(res.data)
+						if(res.data.data[1]){
+							that.hotelData = res.data.data[1].map(i=>{
+							i.category_id = Number(i.category_id)
+								return i
+							})
+						}else{
+							that.Fn.tips('没找到适合的酒店')
+						}
+					}
+				})	
+				this.handleBack()			
+			},
+			handleSearch(){
+				let that = this
+				let params = {
+					action: 1
+				}
+				if(this.hotelName){
+					params["store[store_name]"] = this.hotelName
+				}
+				this.Http.get({route: 'goods.category.get-children-category',params,msg: '数据加载中...'}).then(res=>{
+					if(res.data.code === 200){
+						console.log(res.data)
+						if(res.data.data[1]){
+							that.hotelData = res.data.data[1].map(i=>{
+							i.category_id = Number(i.category_id)
+								return i
+							})
+						}else{
+							that.Fn.tips('没找到适合的酒店')
+						}
+					}
+				})
+			},
+			getData(){
+				let that = this
+				let params = {
+					action: 1,
+					"store[store_name]": that.store_name,
+					"store[category_id]": that.category_id,
+					brand_id: 2,
+					seachMinPrice: that.seachMinPrice,
+					seachMaxPrice: that.seachMaxPrice,
+					lng1: that.lng,
+					lat1: that.lat
+				}
+				if(this.brand_id){
+					params.brand_id = this.brand_id
+				}
+				this.Http.get({route: 'goods.category.get-children-category',params,msg: '数据加载中...'}).then(res=>{
+					if(res.data.code === 200){
+						console.log(res.data)
+						if(res.data.data[1]){
+							that.hotelData = res.data.data[1].map(i=>{
+							i.category_id = Number(i.category_id)
+								return i
+							})
+						}else{
+							that.Fn.tips('没找到适合的酒店')
+						}
+					}
+				})
+			},
 			changeEreaArr(){
 				this.Http.getEreaData((res)=>{
 		            let ereaPlugin_data = JSON.parse(res.data)
@@ -623,6 +735,7 @@
 		watch: {
 			$route (to,from){
 				if(to.name === 'hotelSearch'){
+					let that = this
 					if(this.$route.query.name){
 						this.title = this.$route.query.name
 					}else{
@@ -642,6 +755,27 @@
 					}
 					if(this.$route.query.date2){
 						this.dateValue[1].datetime = Number(this.$route.query.date2)
+					}
+					if(this.$route.query.lng){
+						that.lng = this.$route.query.lng
+					}
+					if(this.$route.query.lat){
+						that.lat = this.$route.query.lat
+					}
+					if(this.$route.query.seachMinPrice){
+						that.seachMinPrice = this.$route.query.seachMinPrice
+					}
+					if(this.$route.query.seachMaxPrice){
+						that.seachMaxPrice = this.$route.query.seachMaxPrice
+					}
+					if(this.$route.query.category_id){
+						that.category_id = this.$route.query.category_id
+					}
+					if(this.$route.query.store_name){
+						that.store_name = this.$route.query.store_name
+					}
+					if(this.$route.query.brand_id){
+						that.brand_id = this.$route.query.brand_id
 					}
 					this.erea_show = 0
 				}

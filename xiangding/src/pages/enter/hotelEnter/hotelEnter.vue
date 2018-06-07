@@ -2,7 +2,7 @@
 	<div class="box">
 		<Header title="申请入驻"/>
 		<myalert :innerHtml="htmltest" title_2="享订入驻协议" @handleCancel="aaa" :show="alertShow" status="1"/>
-		<div v-show="enter_status === 3">
+		<div v-show="enter_status === 1">
 			<!-- <div class="back" v-if="general" @click="handleClose_back">
 				<div class="box" @click="cancelBubble">
 					<p class="title">享订入驻协议</p>
@@ -83,6 +83,10 @@
 					<p class="input">
 						<label>酒店收款账号:</label>
 						<input v-model="formData.hotelbank" type="text" class="handleCheckCredit" placeholder="请输入银行卡号" name="">
+					</p>
+					<p class="input">
+						<label>酒店收款姓名:</label>
+						<input v-model="formData.store_hotelname" type="text" class="handleCheckCredit" placeholder="请输入酒店收款姓名" name="">
 					</p>
 					<p class="input">
 						<label >代理服务商姓名:</label>
@@ -259,7 +263,8 @@
 					lng: '', //经度
 					lat: '', //纬度
 					address: '', //地址
-					thumb: ''
+					thumb: '',
+					store_hotelname: ''//酒店收款姓名
 				},
 				province: '',
 				city: '',
@@ -396,15 +401,19 @@
 				}else{
 					return this.Fn.tips('电子邮箱不能为空')
 				}
-        if(!this.struct){
-          return this.Fn.tips('请选择地区');
-        }
+		        if(!this.struct){
+		          return this.Fn.tips('请选择地区');
+		        }
 				if(!this.formData.address){
 					return this.Fn.tips('请填写地址');
 				}
 				if(!this.formData.hotelbank){
-          return this.Fn.tips('酒店收款账号不能为空');
-        }
+		          return this.Fn.tips('酒店收款账号不能为空');
+		        }
+		        //酒店收款姓名
+		        if(!this.formData.store_hotelname){
+		          return this.Fn.tips('酒店收款姓名不能为空');
+		        }
 				if(!this.formData.dailiname){
 					return this.Fn.tips('代理服务商姓名不能为空')
 				}else{

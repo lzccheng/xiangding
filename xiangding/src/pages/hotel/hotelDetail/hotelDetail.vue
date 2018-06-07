@@ -1,22 +1,23 @@
 <template>
 	<div class="box">
 		<Header :title="hotelName"/>
-		<div class="banner">
+		<div class="banner" v-if="hotelData">
 			<div class="swiper-container">
-				<div class="swiper-wrapper">
+				<!-- <div class="swiper-wrapper">
 			        <div class="swiper-slide" v-for='(i,index) in hotelData' :key='index'>
 			        	<img :src="i.banner_thumb">
 			        </div>
-			    </div>
+			    </div> -->
+			    <img :src="hotelData.banner_thumb">
 			</div>
-			<p class="name">{{hotelName}}</p>
-			<p class="name_1" v-if="hotelData.length">{{type1[type]}} | {{star1[type]}}</p>
+			<p class="name">{{hotelData.store_name}}</p>
+			<p class="name_1" v-if="hotelData">{{type1[hotelData.category_id]}} | {{star1[hotelData.category_id]}}</p>
 			<!-- <span class="hearts"><i class="fas fa-heart"></i></span>
 			<span class="share"><i class="fas fa-share-alt"></i></span> -->
 		</div>
-		<div class="msg">
-			<p v-for='(i,index) in hotelData' :key='index' class="tip">
-				<span>{{i.address}}</span>
+		<div class="msg" v-if="hotelData">
+			<p class="tip">
+				<span>{{hotelData.address}}</span>
 			</p>
 
 			<!-- <p class="tip"><i class="fas fa-map-marker-alt"></i>  距离您&lt;100米</p> -->
@@ -95,17 +96,14 @@
 				</div>
 
 				<div v-else>
-					<div v-if="hotelData.length">
-						<router-link v-if="!order" tag="div" :to="Fn.getUrl({path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,roomName:i.title,hotelName,id:i.goods_id,date1:date1,date2:date2}})" v-for='(i,index) in rooms' :key='index' class="rooms">
-							<!-- <div v-for="(i,index) in i.goods" :key="index">
-								{{i.category_id}}
-							</div> -->
+					<div v-if="hotelData">
+						<router-link v-if="!order" tag="div" :to="Fn.getUrl({path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,roomName:i.title,hotelName,id:i.goods_id,date1:date1,date2:date2}})" v-for='(i,index) in hotelData.goods' :key='index' class="rooms">
 							<div>
 								<img :src="i.thumb">
 							</div>
 							<div class="title">
 								<p>{{i.title}}</p>
-								<p>{{filterArr(i[0],'房间面积')}}m <sup>2</sup> / <span>{{filterArr(i[0],'床型')}}</span>m </p>
+								<p>{{i[0]?filterArr(i[0],'房间面积'):'未设定'}}m <sup>2</sup> / <span>{{i[0]?filterArr(i[0],'床型'):'未设定'}}</span>m </p>
 							</div>
 							<div class="price">
 								<p>￥{{i.price}}元</p>
@@ -196,7 +194,7 @@
             }
 
           })
-			 this.getData()
+			 // this.getData()
 		},
 		data(){
 			return {
@@ -216,7 +214,7 @@
 				hotelName: '',
 				date1: 0,
 				date2: 0,
-				hotelData:[],
+				hotelData:null,
 				rooms: [],
 				type: 0,
 				type1: {
@@ -246,7 +244,6 @@
 			},
 			getData:function(){
 				let that = this
-				that.hotelData = []
 				// this.Http.get({route:'goods.category.get-children-category',params:{action:true}}).then(res=>{
 				// 	console.log(11,res)
 				// 	that.arrData = res.data.data[0][0]
@@ -270,16 +267,13 @@
 				// 	}
 				// }).catch((err)=>{
 				// })
-		          this.Http.get({route:'goods.category.get-children-category',params:{action:true}}).then(res=>{
-		            let arrData = res.data.data[1]
-		            for(let i = 0;i<arrData.length;i++){
-		            	if(arrData[i].id == that.id){
-		            		that.hotelData.push(arrData[i])
-		            		that.type = arrData[i].category_id
-		            		that.$store.commit('changeHotel',arrData[i])
-		            		break
-		            	}
-		            }
+		          this.Http.post({route:'goods.category.get-children-category',data:{action:true,brand_id: 2}}).then(res=>{
+		          		let dd = res.data.data[1].filter(i=>{
+		          			if(i.id == that.id){
+		          				return i
+		          			}
+		          		})
+		          		that.hotelData = dd[0]
 		          })
 			},
 			handleBubbole(event){
@@ -332,19 +326,27 @@
 					if(this.$route.query.id){
 						this.id = this.$route.query.id
 					}
-					this.getData()
+					// this.getData()
 				}
 			},
 			id(){
 
 				let that = this
-				that.rooms = []
-				that.rooms = []
-				that.Http.post({route:'goods.category.get-category',data:{action:1,brand_id: 2,store_id: that.id}}).then(res=>{
-					console.log(999,res)
-					that.rooms = [...res.data.data]
-
-				})
+				// that.rooms = []
+				// that.rooms = []
+				// that.Http.post({route:'goods.category.get-category',data:{action:1,brand_id: 2,store_id: that.id}}).then(res=>{
+				// 	console.log(999,res)
+				// 	that.rooms = [...res.data.data]
+				// })
+			 this.Http.post({route:'goods.category.get-children-category',data:{action:true},msg:'数据加载中...'}).then(res=>{
+	          		let dd = res.data.data[1].filter(i=>{
+	          			if(i.id == that.id){
+	          				return i
+	          			}
+	          		})
+	          		that.hotelData = dd[0]
+		          	console.log(55,that.hotelData)
+	          })
 			}
 		}
 	}

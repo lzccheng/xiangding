@@ -338,13 +338,16 @@
 					dispatch_type_id: 1,
 					goods: JSON.stringify(goods),
 					member_coupon_ids: '[]',
-					orders: '[]'
+					orders: '[]',
+					out_time: that.date2,
+					come_time: that.date1,
+					close_time: new Date().getTime()+1000*60*30
 				}}).then(res=>{
 					console.log(res)
 					that.Fn.tips(res.data.msg)
 					if(res.data.result === 1){
-						console.log(that.Fn.getUrl({path: '/hotel/payOrder',query: {order_ids: res.data.data.order_ids}}),res.data)
-						that.$router.push(that.Fn.getUrl({path: '/hotel/payOrder',query: {order_ids: res.data.data.order_ids,realname: that.formData.name,tel:that.formData.tel}}))
+						console.log(that.Fn.getUrl({path: '/hotel/payOrder',query: {order_ids: res.data.data.order_id}}),res.data)
+						that.$router.push(that.Fn.getUrl({path: '/hotel/payOrder',query: {order_ids: res.data.data.order_id,realname: that.formData.name,tel:that.formData.tel,total: that.num_2}}))
 					}
 				})
 			},
