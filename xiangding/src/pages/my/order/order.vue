@@ -23,41 +23,42 @@
 				<div class="line" ref="_line"></div>
 			</div>
 			
-			<div class="show">
+			<div class="show" v-if="">
 				<div v-if="0==index_">
 					<div class="body">
 						<div class="item">
 							<!-- <span class="time">预定日期: 03-20</span> -->
 							<div class="content_box" v-for="(i,index) in arr0" :key="index">
-								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query: {isPay: false,id:i.id}})" class="content">
+								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query: {isPay: false,id:i.order_sn}})" class="content">
 									<p>
-										<span class="title">订单号：{{i.order_sn}}</span>
+										<span class="title">{{i.order_sn}}</span>
 										<span class="title_t">(豪华酒店 |四星级)</span>
 										<span class="cross"><i class="f  ar fa-times-circle"></i></span>
 									</p>
 									<p>
-										<span class="title_hide">{{i.goods_total}}间. {{i.has_many_order_goods[0].title}}</span>
+										<span class="titl_hide">{{i.goods_total}}间. {{i.title}}</span>
 									</p>
 									<p>
-										<span class="title_hide">客户名称: 胡勇蝶 </span>
+										<span class="title_hide">客户名称: {{$store.state.userInfo.realname}}</span>
 										<span class="no">
 											<span class="money_color">¥</span>
 											<span class="money_size">{{i.price}}</span>
 										</span>
 									</p>
 									<p>
-										<span class="title_hide">支付剩余时间: 22分44秒 </span>
+										<span class="title_hide">支付剩余时间: 5分钟</span>
 										<span class="no_pay">{{i.status_name}}</span>
 									</p>
 								</router-link>
 								<div class="content_2">
 								    <div class="plane">
-									    <i class="fas fa-location-arrow"></i>
-									    <span class="here">到这里</span>
+								    	&nbsp;
+									    <!-- i class="fas fa-location-arrow"></i> -->
+									    <!-- <span class="here">到这里</span> -->
 								    </div>
 									
 									<div class="button">
-										<span class="change" @click="handleShow">取消订单</span>
+										<span class="change" @click="handleShow(i.order_sn)">取消订单</span>
 										<router-link tag="span" :to="Fn.getUrl({path: '/my/order/orderPay',query: {isPay: 0}})" class="pay">付款</router-link>
 									</div>
 								</div>
@@ -72,23 +73,23 @@
 							<div class="content_box" v-for="(i,index) in arr1" :key="index">
 								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{isPay: 1}})" class="content">
 									<p>
-										<span class="title">银河大酒店</span>
+										<span class="title">{{i.order_sn}}</span>
 										<span class="title_t">(豪华酒店 |四星级)</span>
 										<span class="cross"><i class="far fa-times-circle"></i></span>
 									</p>
 									<p>
-										<span class="title_hide">1间. 特惠商务房</span>
+										<span class="title_hide">{{i.goods_total}}间.  {{i.has_many_order_goods[0].title}}</span>
 									</p>
 									<p>
-										<span class="title_hide">客户名称: 胡勇蝶 </span>
+										<span class="title_hide">客户名称: {{$store.state.userInfo.realname}} </span>
 										<span class="no">
 											<span class="money_color">¥</span>
-											<span class="money_size">264</span>
+											<span class="money_size">{{i.price}}</span>
 										</span>
 									</p>
 									<p style="padding-bottom: 18px;">
 										<span class="title_hide"> </span>
-										<span class="no_pay">待入住</span>
+										<span class="no_pay">{{i.status_name}}</span>
 									</p>
 								</router-link>
 								<div class="content_2">
@@ -118,18 +119,18 @@
 										<span class="cross"><i class="far fa-times-circle"></i></span>
 									</p>
 									<p>
-										<span class="title_hide">1间. 特惠商务房</span>
+										<span class="title_hide">{{i.goods_total}}间.  {{i.has_many_order_goods[0].title}}</span>
 									</p>
 									<p>
-										<span class="title_hide">客户名称: 胡勇蝶 </span>
+										<span class="title_hide">客户名称: {{$store.state.userInfo.realname}} </span>
 										<span class="no">
 											<span class="money_color">¥</span>
-											<span class="money_size">264</span>
+											<span class="money_size">{{i.price}}</span>
 										</span>
 									</p>
 									<p style="padding-bottom: 18px;">
 										<span class="title_hide"> </span>
-										<span class="no_pay">已入住</span>
+										<span class="no_pay">{{i.status_name}}</span>
 									</p>
 								</router-link>
 								<div class="content_2">
@@ -158,7 +159,9 @@
 		},
 		mounted(){
 			this._lineLeft()
+			console.log(222,this.$store.state.userInfo)
 		},
+
 		data(){
 			return {
 				arrItem: [
@@ -179,7 +182,9 @@
                 	'1': '待使用',
                 	'2': '待使用',
                 	'3': '已完成',
-                }
+                },
+                realname: '',
+                timesText: {}
 				// back_show: false
 			} 
 		},
@@ -197,12 +202,60 @@
 			// cancelBubble(event){
 			// 	event.cancelBubble = true
 			// },
+			getData(){
+				let that = this
+				if(this.index_ === 0){
+					this.Http.post({route:'order.list',data:{
+						uid:that.$store.state.userInfo.uid,
+						action: 1,
+						status: 0,
+					}}).then(res=>{
+						that.arr0 = res.data.data.map(i=>{
+							that.timesText[i.id] = {
+								[i.id]: {
+									value: '',
+									interval: null
+								},
+							}
+							return i
+						})
+						console.log(that.arr0)
+					})
+				}
+			},
+			remaining_time(id,e){
+				let that = this
+				let date = new Date().getTime()
+				let date_15 = new Date().getTime()+1000*60*15
+				that.timesText[id].interval = setInterval(function(){
+					let times = date_15-date
+					if(times<0){
+						clearInterval(that.timesText[id].interval)
+					}
+					let min  = Math.floor(times/1000/60)
+					let second = times/1000%60
+					console.log(e)
+					that.timesText[id].value = min + '分' + second + '秒'
+					date += 1000
+				},1000)
+			},
 			aaa(res){
 				this.alertShow = false
 			},
-			handleShow(){
+			handleShow(order_sn){
+				let that = this
 				MessageBox.confirm('您确定要取消订单吗？','温馨提示').then(action => {
-				  
+				  	that.Http.post({route:'order.list.index',data:{
+				  			order_sn: order_sn,
+				  			action: 1,
+				  			c: 'site',
+				  			a: 'entry',
+				  			m: 'yun_shop',
+				  			del: true
+				  	}}).then(res=>{
+				  		console.log(res)
+				  		this.getData()
+				  	})
 				});
 				// this.alertShow = true
 			},
@@ -240,27 +293,14 @@
 		      }
 		},
 		watch: {
-			'$route'(to,from){
+			$route(to,from){
 				if(to.name === 'order'){
 					this._lineLeft()
 				}
 			},
 			index_(){
 				//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=order.list&page=1&i=3&type=1
-				let that = this
-				if(this.index_ === 0){
-					this.Http.post({route:'order.list',params:{
-						uid:that.$store.state.userInfo.uid,
-						action: 1,
-						status: 0
-					}}).then(res=>{
-						console.log(res)
-						that.arr0 = res.data.data.data
-						console.log(111,that.arr0)
-					})
-				}
-				
-				
+				this.getData()
 			}
 		}
 	}

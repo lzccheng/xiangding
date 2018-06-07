@@ -8,7 +8,7 @@
 				<p class="tip_1">价格<input type="text"> 元</p>
 				<p class="choice">
 					<span @click="backHide">取消</span>
-					<span>确定</span>
+					<span style="color:">确定</span>
 				</p>
 			</div>
 		</div>
@@ -50,7 +50,7 @@
 				</li>
 				<li class="item" v-if="checked1">
 					<span class="right">
-						<el-checkbox-group v-model="formData.param_value[3]">
+						<el-checkbox-group v-model="formData.param_value[2]">
 							 <el-checkbox label="1 × 2米LED屏"></el-checkbox><br/>
 	                         <el-checkbox label="1.5 × 3.5米LED屏"></el-checkbox><br/>
 	                         <el-checkbox label="2.5 × 5.5米LED屏"></el-checkbox>
@@ -375,7 +375,7 @@
 				.hide_1{
 					color: #e5e5e5;
 					input{
-						width: 60%;
+						width: 66%;
 						border: none;
 						&::-webkit-input-placeholder {
 						    color:    #aaa;

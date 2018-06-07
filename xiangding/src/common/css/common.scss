@@ -38,6 +38,7 @@ $rem: 16px !default;
 input{
 	font-size: rem(14px);
 	@extend  ._input;
+	outline: none;
 }
 .lineHidden{
 	overflow: hidden;

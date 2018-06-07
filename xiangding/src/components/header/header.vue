@@ -1,7 +1,12 @@
 <template>
 	<div class="_box">
 		<div class="_header" ref="_header">
-			<span class="_left" @click='_handleClick'><i class="fas fa-arrow-left"></i></span>
+			<span class="_left" @click='_handleClick'>
+				<div class="img">
+					<img src="../../../static/img/leftIcon/left.png" alt="">
+				</div>
+				
+			</span>
 			<span> {{title}} </span>
 		</div>
 	</div>
@@ -43,6 +48,14 @@
 				top: rem(12px);
 				padding: 0 rem(5px);
 				z-index: 999;
+				.img{
+					width: rem(25px);
+					height: rem(25px);
+					img{
+						width: 100%;
+						height: 100%;
+					}
+				}
 			}
 		}
 	}

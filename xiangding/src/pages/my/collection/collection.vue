@@ -106,9 +106,9 @@
 					margin-bottom: rem(10px);
 					}
 				.star{
-						font-size: rem(15px);
-						color: #f5cf1e;
-						padding: rem(7px) 1%;
+					font-size: rem(15px);
+					color: #f5cf1e;
+					padding: rem(7px) 1%;
 				}
 				.money_1{
 					font-size: rem(15px);
@@ -120,7 +120,7 @@
 					padding-left: 1%;
 				}
 				.time{
-					float: right;
+ 					float: right;
 					font-size: rem(14px);
 				}
 			}

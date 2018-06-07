@@ -60,14 +60,12 @@
 		data(){
 			return {
 				arrItem: [
-					' VIP1 ',
-					' VIP2 ',
-					' VIP3 '
+					' 我的朋友 ',
+					' 我的客户 ',
 				],
 				index_: 0,
 				itemArr1: [],
 				itemArr2: [],
-				itemArr3: [],
 			}
 		},
 		methods: {
@@ -128,6 +126,7 @@
 					justify-content: space-around;
 					align-items: center;
 					background-color: #fff;
+					border-bottom: rem(1px) solid #EDEDED;
 					div{
 						padding: rem(10px) 0;
 					}

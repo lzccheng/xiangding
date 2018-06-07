@@ -2,9 +2,22 @@
 	<div class="box">
 	<!-- <Header title="酒店管理"/> -->
 		<div class="_box">
-			<div class="_header">
-				<span class="_left" @click='_handleClick'><i class="fas fa-arrow-left"></i></span>
+			<!-- <div class="_header">
+				<span class="_left" @click='_handleClick'>
+					<div class="img">
+						<img src="../../../../static/img/leftIcon/left.png" alt="">
+					</div>
+				</span>
 				<span> 酒店管理 </span>
+			</div> -->
+			<div class="_header">
+				<span class="_left" @click='_handleClick'>
+					<div class="img">
+						<img src="../../../../static/img/leftIcon/left.png" alt="">
+					</div>
+					
+				</span>
+				<span>酒店管理</span>
 			</div>
 		</div>
 		<div class="header">
@@ -16,8 +29,8 @@
 		    		<p class="agant">{{name}}</p>
 		    		<!-- <p class="number"> 编码: 41567</p> -->
 		    	</div>
-		    	<!-- <router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelMessage'})" class="i"><i class="fas fa-cog"></i></router-link> -->
-		    </div>
+		    	<!-- <router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelMessage'})" class="i"><i class="fas fa-cog"></i></router-link>
+ -->		    </div>
 	    </div>
 	    <div class="line"></div>
 	    <div class="hotelServe">
@@ -76,6 +89,10 @@
 	    		<p class="icon"><i class="fas fa-th-list"></i></p>
 	    		<p>在线信息</p>
 	    	</router-link> -->
+	    	<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/commentManage'})" class="room_2 rooms">
+	    		<p class="icon"><i class="fas fa-th-list"></i></p>
+	    		<p class="name">评论管理</p>
+	    	</router-link>
 	    </div>
 
 	</div>
@@ -145,10 +162,18 @@
 				border-bottom: 1px solid #aaa;
 				._left{
 					position: absolute;
-					top: rem(12px);
 					left: rem(10px);
+					top: rem(12px);
 					padding: 0 rem(5px);
 					z-index: 999;
+					.img{
+						width: rem(25px);
+						height: rem(25px);
+						img{
+							width: 100%;
+							height: 100%;
+						}
+					}
 				}
 			}
 		}

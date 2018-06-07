@@ -179,7 +179,11 @@
 				<div class="show" v-if="hotelData">
 					<router-link :to="Fn.getUrl({path: '/hotelDetail',query:{id:i.id,name: title,hotelName: i.store_name	,date1:dateValue[0].datetime,date2:dateValue[1].datetime}})" tag="div" class="item" v-for="(i,index) in hotelData" :key='index'>
 						<div class="img">
+<<<<<<< HEAD
 							<img :src="i.thumb" alt="">
+=======
+							<img src="http://img5.imgtn.bdimg.com/it/u=2168296649,165648852&fm=27&gp=0.jpg" alt="">
+>>>>>>> ab51d02638e3e816ee3368040b2fe34af552a569
 						</div>
 						<div class="msg">
 							<p class="title">
@@ -189,11 +193,16 @@
 								<span>{{i.information}}</span>
 								<!-- <span>五羊商城</span> -->
 							</p>
+<<<<<<< HEAD
 							<!-- <p>
 								<span>房间面积：30m <sup>2</sup></span>
 							</p> -->
 							<p>
 								<span>剩余房间: {{i.num}}间</span>
+=======
+							<p>
+								<span>剩余房间: 100间</span>
+>>>>>>> ab51d02638e3e816ee3368040b2fe34af552a569
 							</p>
 							<p class="cancel">
 								<span>立减</span>
@@ -1257,11 +1266,12 @@
 					border-bottom: 1px solid #aaa;
 					.img{
 						width: 25%;
-						height: rem(130px);
+						height: rem(95px);
 						img{
 							width: 100%;
 							height: 100%;
-							border-radius: rem(5px);						}
+							border-radius: rem(5px);			
+						}
 					}
 					p{
 						color: #aaa;
@@ -1269,6 +1279,7 @@
 					.msg{
 						padding: 0 rem(8px);
 						font-size: rem(13px);
+
 						.title{
 							font-size: rem(16px);
 							font-weight: bold;
