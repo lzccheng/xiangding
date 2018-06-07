@@ -25,7 +25,7 @@
 						<input @blur="handleCheck" class="handleCheck" type="text" placeholder="请输入电话号码" name="" v-model="formData.mobile">
 					</p>
 					<p class="input">
-						<label>账号:</label>
+						<label>登录账号:</label>
 						<input type="text" placeholder="请输入账号" name="" v-model="formData.username" @blur="checkUsername">
 					</p>
 					<p class="input" style="border-bottom: none">
@@ -43,12 +43,15 @@
 				</div>
 				<div class="form">
 					<p class="input">
-						<label>酒店名称:</label>
+						<label>酒店简称:</label>
 						<input type="text" v-model="formData.storeName" placeholder="请输入酒店名称" name="">
 					</p>
 					<p class="input">
-						<label>酒店星级:</label>
-						<span class="star"><el-rate v-model="formData.categoryId"></el-rate></span>
+						<label>酒店星级/类型:</label>
+						<span >
+							<span class="choice lineHidden">点击选择星级和类型</span>
+					    	<span><i class="fas fa-chevron-down"></i></span>
+						</span>
 					</p>
 
 					<p class="input">
@@ -67,7 +70,7 @@
 					<!-- <p class="input">
 						<label>街道:</label>
 						<span class="choice">请选择所在街道</span>
-						<span><i class="fas fa-chevron-down"></i></span>
+						<span><i class="fas fa-chevron-down"></i></span> 
 					</p> -->
 					<p class="input">
 						<label>详细地址:</label>
@@ -81,8 +84,12 @@
 						<span v-show="formatAddr">{{formatAddr}}</span>
 					</p>
 					<p class="input">
-						<label>酒店收款账号:</label>
-						<input v-model="formData.hotelbank" type="text" class="handleCheckCredit" placeholder="请输入银行卡号" name="">
+						<label>酒店收款账户:</label>
+						<input v-model="formData.hotelbank" type="text" class="handleCheckCredit" placeholder="请输入酒店银行卡号" name="">
+					</p>
+					<p class="input">
+						<label>收款账户姓名:</label>
+						<input v-model="formData.hotelbank" type="text" class="handleCheckCredit" placeholder="请输入酒店银行卡号姓名" name="">
 					</p>
 					<p class="input">
 						<label >代理服务商姓名:</label>
@@ -128,7 +135,7 @@
 				</div>
 				<div class="form" style="border-bottom: none;padding-left: 0">
 					<div class="footer">
-					   <!-- <router-link tag="p" :to="Fn.getUrl({path: '/enter/login'})"  @click="handleFormSubmit" class="green_btn">立即申请</router-link> -->
+					   <router-link tag="p" :to="Fn.getUrl({path: '/enter/login'})"  @click="handleFormSubmit" class="green_btn">立即申请</router-link>
 					   <p @click="handleFormSubmit" class="green_btn">立即申请</p>
 					   <p>&nbsp;</p>
 					   <p @click="handleLogin" class="green_btn">登录</p>

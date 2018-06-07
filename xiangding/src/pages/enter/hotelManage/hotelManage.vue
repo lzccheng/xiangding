@@ -16,8 +16,8 @@
 		    		<p class="agant">{{name}}</p>
 		    		<!-- <p class="number"> 编码: 41567</p> -->
 		    	</div>
-		    	<!-- <router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelMessage'})" class="i"><i class="fas fa-cog"></i></router-link> -->
-		    </div>
+		    	<!-- <router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelMessage'})" class="i"><i class="fas fa-cog"></i></router-link>
+ -->		    </div>
 	    </div>
 	    <div class="line"></div>
 	    <div class="hotelServe">
@@ -76,6 +76,10 @@
 	    		<p class="icon"><i class="fas fa-th-list"></i></p>
 	    		<p>在线信息</p>
 	    	</router-link> -->
+	    	<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/commentManage'})" class="room_2 rooms">
+	    		<p class="icon"><i class="fas fa-th-list"></i></p>
+	    		<p class="name">评论管理</p>
+	    	</router-link>
 	    </div>
 
 	</div>

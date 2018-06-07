@@ -15,6 +15,16 @@
 			<span class="share"><i class="fas fa-share-alt"></i></span> -->
 		</div>
 		<div class="msg">
+			<p  class="tip" style="border-top: none;">
+				<span>
+					<span class="num">4.5分</span>
+					<span class="text">非常好</span>
+				</span>
+				<router-link tag="span" :to="Fn.getUrl({path:'/hotelDetail/comment'})">
+					<span style="color: #43c122;">55条评论</span>
+					<span style="color: #aaa;"><i class="fas fa-chevron-right"></i></span>
+				</router-link>
+			</p>
 			<p v-for='(i,index) in hotelData' :key='index' class="tip">
 				<span>{{i.address}}</span>
 			</p>
@@ -409,9 +419,24 @@
 			position: relative;
 			font-size: rem(13px);
 			.tip{
-				margin: rem(5px) 0 0 rem(8px);
+				margin: 0 3%;
 				width: 90%;
-				padding-bottom: rem(5px);
+				padding: rem(10px) 0;
+				border-top: #EDEDED solid rem(1px);
+				display: flex;
+				justify-content: space-between;
+				span{
+					span{
+						&.num{
+							font-size: rem(17px);
+							margin-right: rem(5px);
+						}
+						&:last-child{
+							margin-left: rem(5px);
+						}
+					}
+				}
+				
 			}
 			.line{
 				border: #e5e5e5 solid rem(6px);

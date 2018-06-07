@@ -345,8 +345,6 @@
 			display: flex;
 			align-items: center;
 			padding-bottom: rem(18px);
-			// justify-content: space-around;
-
 			.icon{
 				display: inline-block;
 				border-radius: 100%;
@@ -388,6 +386,7 @@
 			display: flex;
 			align-items: center;
 			padding: rem(8px) 0;
+			margin-top: rem(10px);
 			// justify-content: space-around;
 
 			.icon{
@@ -426,7 +425,7 @@
 			.money{
 				color: #ff9800;
 				font-size: rem(35px);
-				padding-top: rem(10px);
+				padding: rem(10px) 0;
 				span{
 					&:first-child{
 						font-size: rem(20px);

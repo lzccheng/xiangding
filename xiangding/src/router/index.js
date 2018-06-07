@@ -4,6 +4,7 @@ import Router from 'vue-router'
 const index = r => require(['@/pages/index/index'], r)
 const hotel = r => require(['@/pages/hotel/hotel'], r)
 const hotelDetail = r => require(['@/pages/hotel/hotelDetail/hotelDetail'], r)
+const comment = r => require(['@/pages/hotel/comment/comment'], r)
 const teamMeeting = r => require(['@/pages/teamMeeting/teamMeeting'], r)
 const enter = r => require(['@/pages/enter/enter'], r)
 const my = r => require(['@/pages/my/my'], r)
@@ -33,6 +34,7 @@ const payMethods = r => require(['@/pages/my/payMethods/payMethods'], r)
 const login = r => require(['@/pages/enter/login/login'], r)
 const hotelManage = r => require(['@/pages/enter/hotelManage/hotelManage'], r)
 const orderManage = r => require(['@/pages/enter/orderManage/orderManage'], r)
+const commentManage = r => require(['@/pages/enter/commentManage/commentManage'], r)
 const resetPassword = r => require(['@/pages/enter/resetPassword/resetPassword'], r)
 const incomeDetail = r => require(['@/pages/enter/incomeDetail/incomeDetail'], r)
 const onlineMessage = r => require(['@/pages/enter/onlineMessage/onlineMessage'], r)
@@ -146,6 +148,14 @@ const routes = [
       component: hotelDetail,
       meta: {
         title: '酒店详情'
+      }
+    },
+    {
+      path: '/hotelDetail/comment',
+      name: 'comment',
+      component: comment,
+      meta: {
+        title: '酒店评论详情'
       }
     },
     {
@@ -330,6 +340,14 @@ const routes = [
       component: orderManage,
       meta: {
         title: '酒店订单管理'
+      }
+    },
+    {
+      path: '/enter/hotelManage/commentManage',
+      name: 'commentManage',
+      component: commentManage,
+      meta: {
+        title: '酒店评论管理'
       }
     },
     {

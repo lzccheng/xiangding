@@ -438,7 +438,7 @@
 				// }
 				.hide_1{
 					input{
-						width: 60%;
+						width: 67%;
 						border: none;
 						&::-webkit-input-placeholder {
 						    color:    #aaa;

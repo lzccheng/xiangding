@@ -1,6 +1,6 @@
 <template>
 	<div class="box">
-		<Header title="我的团队"/>
+		<Header title="评论管理"/>
 		<div>
 			<div class="nav">
 				<div class="tab" ref="tab"> 
@@ -12,39 +12,38 @@
 			</div>
 			
 			<div class="show">
-				<div v-if="0==index_">
-					<div class="VIP" v-for="(i,index) in itemArr1" :key="index">
-						<div class="image">
-							<img :src="i.avatar" alt="">
-						</div>
-						<div>
-							<p>昵称： {{i.nickname}}</p>
-							<p>消费金额： {{i.order_price}}</p>
-						</div>
+				<div v-if="0==index_" class="show_box">
+					<p class="room">商务大床房</p>
+					<p class="title">
+						<span>小猪佩奇</span>
+						<span>2018-06-05  12:30</span>
+					</p>
+					<div class="text">
+						<span>环境优美，地理位置好，交通方便，房间舒适卫生，服务人员很热情。</span>
+						<span class="chat"><i class="fas fa-comment-alt"></i>
+						</span>
 					</div>
 				</div>
-				<div v-if="1==index_">
-					<div class="VIP" v-for="(i,index) in itemArr2" :key="index">
-						<div class="image">
-							<img :src="i.avatar" alt="">
-						</div>
-						<div>
-							<p>昵称： {{i.nickname}}</p>
-							<p>消费金额： {{i.order_price}}</p>
-						</div>
+				<div v-if="1==index_" class="show_box">
+					<p class="room">商务大床房</p>
+					<p class="title">
+						<span>小猪佩奇</span>
+						<span>2018-06-05  12:30</span>
+					</p>
+					<div class="text_1">
+						<span>环境优美，地理位置好，交通方便，房间舒适卫生，服务人员很热情。</span>
+						<p class="back">
+						    <span>
+						        佩奇酒店客服： 你说的我都懂
+						    </span>
+						    <span class="c chat">
+						    	<i class="fas fa-comment-alt"></i>
+						    </span>
+						</p>
 					</div>
+					
 				</div>
-				<div v-if="2==index_">
-					<div class="VIP" v-for="(i,index) in itemArr3" :key="index">
-						<div class="image">
-							<img :src="i.avatar" alt="">
-						</div>
-						<div>
-							<p>昵称： {{i.nickname}}</p>
-							<p>消费金额： {{i.order_price}}</p>
-						</div>
-					</div>
-				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -53,19 +52,15 @@
 	export default {
 		mounted(){
 			this._lineLeft()
-			this.getData(1)
-			this.getData(2)
-			this.getData(3)
+			
 		},
 		data(){
 			return {
 				arrItem: [
-					' 我的朋友 ',
-					' 我的客户 ',
+					' 未回复 ',
+					' 已回复 ',
 				],
 				index_: 0,
-				itemArr1: [],
-				itemArr2: [],
 			}
 		},
 		methods: {
@@ -80,22 +75,6 @@
 				this.$refs._line.style.left = this.$refs.tab.children[this.index_].offsetLeft + 'px'
 				this.$refs._line.style.width = this.$refs.tab.children[this.index_].offsetWidth + 'px'
 			},
-			getData(agant){
-				let that = this
-				let page = 1
-				let arr = that['itemArr'+agant]
-				let dd = (agant)=>{
-					this.Http.get({route:'member.member.getMyAgentData_v2',params:{relationLevel:agant,page:page}}).then(res=>{
-						that['itemArr'+agant] = [...res.data.data.data,...that['itemArr'+agant]]
-						if(that['itemArr'+agant].length%10 === 0 && arr.length !== that['itemArr'+agant].length){
-							page++
-							arr = that['itemArr'+agant]
-							dd(agant)
-						}
-					})
-				}
-				dd(agant)
-			}
 		},
 		watch: {
 			'$route'(to,from){
@@ -107,7 +86,7 @@
 	}
 </script>
 <style scoped lang="scss">
-	@import "../../../common/css/common.scss";
+	 @import '../../../common/css/common.scss';
 	.box{
 		width: 100%;
 		padding-top: rem(20px);
@@ -145,18 +124,49 @@
 		}
 		.show{
 			margin-top: rem(50px);
-			div{
-				.VIP{
-					display: flex;
-					align-items: center;
+			.show_box{
+				padding: 0 4%;
+				p{
+					&.room{
+						padding: rem(5px) 0;
+					    border-bottom: #EDEDED solid rem(1px);
+					}
+				}
+					p{
+						&.title{
+							display: flex;
+							justify-content: space-between;
+							padding: rem(10px) 0;
+							span{
+								&:last-child{
+									color: #aaa;
+								}
+							}
+						}
+					}
+				.text{
 					border-bottom: #EDEDED solid rem(1px);
-					.image{
-						padding: rem(10px) rem(10px);
-						img{
-							width: rem(60px);
-							height: rem(60px);
-							border: none;
-							border-radius: 100%;
+					padding: rem(30px) 0;
+					padding-top: 0;
+					position: relative;
+				}
+				span{
+					&.chat{
+						position: absolute;
+						bottom: rem(7px);
+						right: 3%;
+						color: #43c122;
+						font-size: rem(16px);
+					}
+				}
+				.text_1{
+					border-bottom: #EDEDED solid rem(1px);
+					.back{
+						display: flex;
+						justify-content: space-between;
+						padding: rem(10px) 0;
+						.c{
+							padding-right: 3%;
 						}
 					}
 				}
@@ -164,5 +174,6 @@
 		}
 	}
 </style>
+
 
 
