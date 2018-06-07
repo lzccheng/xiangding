@@ -51,6 +51,7 @@ const cancelRoom = r => require(['@/pages/my/cancelRoom/cancelRoom'], r)
 const weChatCash = r => require(['@/pages/my/weChatCash/weChatCash'], r)
 const myMessage = r => require(['@/pages/my/myMessage/myMessage'], r)
 const myTeam = r => require(['@/pages/my/myTeam/myTeam'], r)
+const qrcode = r => require(['@/pages/my/qrcode/qrcode'], r)
 const myCard = r => require(['@/pages/enter/myCard/myCard'], r)
 const hotelMessage = r => require(['@/pages/enter/hotelMessage/hotelMessage'], r)
 const incomeTable = r => require(['@/pages/my/incomeTable/incomeTable'], r)
@@ -468,6 +469,14 @@ const routes = [
       component: myTeam,
       meta: {
         title: '我的团队'
+      }
+    },
+    {
+      path: '/my/qrcode',
+      name: 'qrcode',
+      component: qrcode,
+      meta: {
+        title: '我的推广码'
       }
     },
     {

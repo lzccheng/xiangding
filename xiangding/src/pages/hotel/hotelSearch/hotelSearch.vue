@@ -177,7 +177,7 @@
 				<div class="show">
 					<router-link :to="Fn.getUrl({path: '/hotelDetail',query:{id:2,name: title,hotelName: '广州银河大酒店',date1:dateValue[0].datetime,date2:dateValue[1].datetime}})" tag="div" class="item" v-for="(i,index) in 10" :key='index'>
 						<div class="img">
-							<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523706249725&di=7bd2cda519bba9f885f6504617bc853b&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F9922720e0cf3d7cac93f8f64f81fbe096a63a9d3.jpg" alt="">
+							<img src="http://img5.imgtn.bdimg.com/it/u=2168296649,165648852&fm=27&gp=0.jpg" alt="">
 						</div>
 						<div class="msg">
 							<p class="title">
@@ -186,9 +186,6 @@
 							<p class="lineHidden">
 								<span>珠江新城、</span>
 								<span>五羊商城</span>
-							</p>
-							<p>
-								<span>房间面积：30m <sup>2</sup></span>
 							</p>
 							<p>
 								<span>剩余房间: 100间</span>
@@ -1136,11 +1133,12 @@
 					border-bottom: 1px solid #aaa;
 					.img{
 						width: 25%;
-						height: rem(130px);
+						height: rem(95px);
 						img{
 							width: 100%;
 							height: 100%;
-							border-radius: rem(5px);						}
+							border-radius: rem(5px);			
+						}
 					}
 					p{
 						color: #aaa;
@@ -1148,6 +1146,7 @@
 					.msg{
 						padding: 0 rem(8px);
 						font-size: rem(13px);
+
 						.title{
 							font-size: rem(16px);
 							font-weight: bold;

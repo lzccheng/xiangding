@@ -45,7 +45,7 @@
 					</span>
 				</div>
 				<div class="order">
-					<span style="color: #555555;"><i class="fas fa-chevron-right"></i></span>
+					<span style="color: #555555;font-size: 18px;"><i class="fas fa-chevron-right"></i></span>
 				</div>
 			</router-link>
 		</div>
@@ -375,6 +375,7 @@
 			}
 			.people{
 				width: 50%;
+
 				.icon{
 					padding: rem(5px) rem(7px);
 					background-color: #ff4081;
@@ -384,6 +385,7 @@
 		.earn_1{
 			// margin: rem(10px) 0;
 			display: flex;
+			// justify-content: space-between;
 			align-items: center;
 			padding: rem(8px) 0;
 			margin-top: rem(10px);
@@ -397,11 +399,11 @@
 			}
 			.text{
 				display: inline-block;
-				width: rem(91px);
+				// width: 40%;
 				text-align: left;
 			}
 			.order{
-				width: 50%;
+				width: 60%;
 				span{
 					display: inline-block;
 					float: right;
@@ -409,7 +411,7 @@
 				}
 			}
 			.people{
-				width: 50%;
+				width: 40%;
 				.icon{
 					background-color: #ff9800;
 				}
