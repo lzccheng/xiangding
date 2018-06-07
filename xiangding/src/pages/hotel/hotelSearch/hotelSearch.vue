@@ -486,41 +486,8 @@
 			}
 		},
 		methods: {
-			handleSure(){
+			http(params){
 				let that = this
-				let params = {
-					action: 1
-				}
-				if(this.starSelect.price.min){
-					params.seachMinPrice = this.starSelect.price.min
-				}
-				if(this.starSelect.price.max){
-					params.seachMinPrice = this.starSelect.price.max
-				}
-				params.category_id = 3
-				this.Http.get({route: 'goods.category.get-children-category',params,msg: '数据加载中...'}).then(res=>{
-					if(res.data.code === 200){
-						console.log(res.data)
-						if(res.data.data[1]){
-							that.hotelData = res.data.data[1].map(i=>{
-							i.category_id = Number(i.category_id)
-								return i
-							})
-						}else{
-							that.Fn.tips('没找到适合的酒店')
-						}
-					}
-				})	
-				this.handleBack()			
-			},
-			handleSearch(){
-				let that = this
-				let params = {
-					action: 1
-				}
-				if(this.hotelName){
-					params["store[store_name]"] = this.hotelName
-				}
 				this.Http.get({route: 'goods.category.get-children-category',params,msg: '数据加载中...'}).then(res=>{
 					if(res.data.code === 200){
 						console.log(res.data)
@@ -534,6 +501,37 @@
 						}
 					}
 				})
+			},
+			handleSure(){
+				this.hotelData = []
+				let that = this
+				let params = {
+					action: 1
+				}
+				if(this.starSelect.price.min){
+					params.seachMinPrice = this.starSelect.price.min
+				}
+				if(this.starSelect.price.max){
+					params.seachMinPrice = this.starSelect.price.max
+				}
+				for(let i=0;i<this.starItem.length;i++){
+					if(this.starItem[i].active){
+						params.category_id = i+1
+						this.http(params)
+					}
+				}
+				this.http(params)
+				this.handleBack()			
+			},
+			handleSearch(){
+				let that = this
+				let params = {
+					action: 1
+				}
+				if(this.hotelName){
+					params["store[store_name]"] = this.hotelName
+				}
+				this.http(params)
 			},
 			getData(){
 				let that = this
@@ -550,19 +548,7 @@
 				if(this.brand_id){
 					params.brand_id = this.brand_id
 				}
-				this.Http.get({route: 'goods.category.get-children-category',params,msg: '数据加载中...'}).then(res=>{
-					if(res.data.code === 200){
-						console.log(res.data)
-						if(res.data.data[1]){
-							that.hotelData = res.data.data[1].map(i=>{
-							i.category_id = Number(i.category_id)
-								return i
-							})
-						}else{
-							that.Fn.tips('没找到适合的酒店')
-						}
-					}
-				})
+				this.http(params)
 			},
 			changeEreaArr(){
 				this.Http.getEreaData((res)=>{
@@ -778,6 +764,7 @@
 						that.brand_id = this.$route.query.brand_id
 					}
 					this.erea_show = 0
+					this.getData()
 				}
 			}
 		}
@@ -1263,7 +1250,7 @@
 			}
 			.show{
 				background-color: #fff;
-				padding: 0 rem(8px);
+				padding: rem(15px) rem(8px) 0;
 				.item{
 					padding: rem(13px) 0;
 					display: flex;
