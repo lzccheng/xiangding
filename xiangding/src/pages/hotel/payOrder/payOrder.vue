@@ -14,16 +14,16 @@
 		<div class="custom">
 			<p class="numb">
 				<span class="icon"><i class="far fa-address-book"></i></span>
-				<span>客户: ***</span>
-				<span class="phone">手机号码: 13800138000</span>
+				<span>客户: {{realname}}</span>
+				<span class="phone">手机号码: {{tel}}</span>
 			</p>
 			<p class="numb">
 				<span class="icon"><i class="far fa-map"></i></span>
-				<span>广州市天河区沙太南路银河大酒店</span>
+				<span>{{$store.state.hotelInfo.title}}</span>
 			</p>
 		</div>
 		<div class="line"></div>
-		<div class="hotel">
+		<div class="hotel" v-if="order">
 			<p class="name">
 				<span><i class="fas fa-warehouse"></i></span>
 				<span>银河大酒店</span>
@@ -80,10 +80,10 @@
 			</div>
 		</div>
 		<div class="line"></div>
-		<div class="footer">
-			<p>订单编号: 2153132121</p>
+		<div class="footer" v-if="order">
+			<p>订单编号: {{order.order_pay.pay_sn}}</p>
 			<p>交易方式: 微信支付</p>
-			<p>下单时间: 2018-02-29 21:16:52</p>
+			<p>下单时间: {{order.order_pay.created_at}}</p>
 		</div>
 		<div  class="button">
 			<router-link v-if="title ==='团房' || title ==='会议室'" tag="span" :to="Fn.getUrl({path: '/my/custom'})" class="need_pay ">讲价</router-link>
@@ -104,6 +104,19 @@
 			if(this.$route.query.name){
 				this.title = this.$route.query.name
 			}
+			if(this.$route.query.order_ids){
+				this.order_ids = this.$route.query.order_ids
+			}
+			if(this.$route.query.order_ids){
+				this.order_ids = this.$route.query.order_ids
+			}
+			if(this.$route.query.realname){
+				this.realname = this.$route.query.realname
+			}
+			if(this.$route.query.tel){
+				this.tel = this.$route.query.tel
+			}
+			this.getData()
 		},
 		data(){
 			return {
@@ -113,9 +126,21 @@
                 general: false,
                 htmltest: '<p style="font-size: 14px;padding: 10px 0;">您真的要取消订单吗？</p>',
                 alertShow: false,
+                order_ids: null,
+                realname:'',
+                tel: '',
+                order: null
 			}
 		},
 		methods: {
+			getData(){
+				//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=order.merge-pay&order_ids=156&pid=10
+				let that = this
+				this.Http.get({route: 'order.merge-pay',params: {order_ids: this.order_ids,pad: 10}}).then(res=>{
+					console.log(res)
+					that.order = res.data.data
+				})
+			},
 			handleShow_back(){
 				this.general = true
 			},
@@ -139,6 +164,16 @@
 					}else{
 						this.title = '酒店列表'
 					}
+					if(this.$route.query.order_ids){
+						this.order_ids = this.$route.query.order_ids
+					}
+					if(this.$route.query.realname){
+						this.realname = this.$route.query.realname
+					}
+					if(this.$route.query.tel){
+						this.tel = this.$route.query.tel
+					}
+					this.getData()
 				}
 			}
 		}

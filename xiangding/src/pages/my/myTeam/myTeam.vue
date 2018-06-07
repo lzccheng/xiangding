@@ -86,7 +86,7 @@
 				let arr = that['itemArr'+agant]
 				let dd = (agant)=>{
 					this.Http.get({route:'member.member.getMyAgentData_v2',params:{relationLevel:agant,page:page}}).then(res=>{
-						that['itemArr'+agant] = [...res.data.data.data,...that['itemArr'+agant]]
+						that['itemArr'+agant] = [...that['itemArr'+agant],...res.data.data.data.reverse()]
 						if(that['itemArr'+agant].length%10 === 0 && arr.length !== that['itemArr'+agant].length){
 							page++
 							arr = that['itemArr'+agant]

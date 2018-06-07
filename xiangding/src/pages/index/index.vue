@@ -113,7 +113,7 @@
         <p class="title">附近推荐酒店</p>
         <div class="hotelRoom" v-for='(i,index) in arrData' :key='index'>
           <router-link :to="Fn.getUrl({path: '/hotelDetail',query:{id:i.id,hotelName:i.store_name,date1:date_value[0].datetime,date2:date_value[1].datetime}})" tag='div'>
-            <img :src="i.banner_thumb">
+            <img :src="i.banner_thumb?i.banner_thumb:i.thumb">
             <div>
               <p class="min_title">
                 <span class="one">
@@ -309,6 +309,7 @@
         getData(){
           let that = this
           this.Http.get({route:'goods.category.get-children-category',params:{action:true}}).then(res=>{
+             console.log(res)
             that.arrItem = res.data.data[1].slice(0,2)
             that.arrData = res.data.data[1].map(i=>{
               i.category_id = Number(i.category_id)
