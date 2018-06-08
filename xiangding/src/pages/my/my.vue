@@ -258,7 +258,6 @@
 			      	setTimeout(()=>{
 			      		that.getWeChatPayParams()
 			      	},50)
-			      	// that.order_pay_id = response.data.order_pay.id
 			    })
 		    },
 		    newWXPay(payParams) {

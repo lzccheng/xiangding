@@ -78,8 +78,8 @@
 							<span class="icon_"><i class="fas fa-chevron-right"></i></span>
 						</li>
 					</ul>
-					<p class="btn"><router-link :to="Fn.getUrl({path: '/hotel/hotelSearch',query: {name: arrItem[index_].name,province,city,erea,struct,date1:date_value[0].datetime,date2:date_value[1].datetime}})" tag="p" class="green_btn">开始搜索</router-link></p>
-					<div class="bottom">
+					<p class="btn"><router-link :to="Fn.getUrl({path: '/hotel/hotelSearch',query: {name: arrItem[index_].name,province,city,erea,struct,date1:date_value[0].datetime,date2:date_value[1].datetime,category_id,brand_id,seachMinPrice,seachMaxPrice,lng,lat}})" tag="p" class="green_btn">开始搜索</router-link></p>
+					<!-- <div class="bottom">
 						<router-link tag="div" :to="Fn.getUrl({path: '/my/collection',query: {name: '浏览记录',date1:date_value[0].datetime,date2:date_value[1].datetime}})">
 								<span><i class="fas fa-history"></i></span>
 								<span>浏览记录</span>
@@ -88,7 +88,7 @@
 							<span><i class="far fa-star"></i></span>
 							<span>收藏酒店</span>
 						</router-link>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
@@ -211,7 +211,13 @@
 		        province: '广东省',
 		        city: '广州市',
 		        erea: '荔湾区',
-		        struct: '沙面街道'
+		        struct: '沙面街道',
+		        category_id:'',
+		        brand_id: 3,
+		        seachMinPrice: '',
+		        seachMaxPrice: '',
+		        lng: '',
+		        lat: ''
 			}
 		},
 		methods: {
@@ -375,6 +381,18 @@
 			},
 			computedDate2(){
 				return this.time_(this.date_value[1].datetime)
+			}
+		},
+		watch: {
+			index_(){
+				this.brand_id = this.index_+3
+			},
+			pay(){
+				this.seachMinPrice = this.pay[0]
+				this.seachMaxPrice = this.pay[1]
+			},
+			star(){
+				this.category_id = this.star
 			}
 		}
 	}
