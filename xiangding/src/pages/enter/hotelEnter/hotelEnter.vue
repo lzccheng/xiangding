@@ -47,11 +47,8 @@
 						<input type="text" v-model="formData.storeName" placeholder="请输入酒店名称" name="">
 					</p>
 					<p class="input">
-						<label>酒店星级/类型:</label>
-						<span >
-							<span class="choice lineHidden">点击选择星级和类型</span>
-					    	<span><i class="fas fa-chevron-down"></i></span>
-						</span>
+						<label>酒店星级:</label>
+						<span class="star"><el-rate v-model="formData.categoryId"></el-rate></span>
 					</p>
 
 					<p class="input">

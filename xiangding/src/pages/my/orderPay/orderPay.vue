@@ -17,7 +17,7 @@
 							<span class="personal">客户: {{$store.state.userInfo.realname}}</span>
 							<span class="phone">{{$store.state.userInfo.mobile}}</span>
 						</p>
-						<p class="sex">性别: {{$store.state.userInfo.sex}}</p>
+						<!-- <p class="sex">性别: {{$store.state.userInfo.sex}}</p> -->
 						<!-- <p class="sex">身份证号码: 440510199506132352</p> -->
 					</div>
 					<!-- <div class="middle_2">
@@ -27,12 +27,12 @@
 					</div> -->
 					<div class="middle_3">
 						<div class="img">
-							<img :src="i.has_many_order_goods.thumb" alt="">
+							<img :src="i.has_many_order_goods[0].thumb" alt="">
 						</div>
 						<div class="text_box">
 							<p class="hotel_name">银河大酒店</p>
 							<p>
-								<span class="room_name">商务大床房</span>
+								<span class="room_name">{{i.has_many_order_goods[0].title}}</span>
 								<span class="money">{{i.goods_price}}</span>
 							</p>
 							<p>
@@ -62,7 +62,7 @@
 							    <span class="day">商品金额</span>
 								<span class="number_box">
 									<span class="money_icon">¥</span>
-									<span class="money_icon" style="padding-left: 0">{{i.goods_price*i.goods_total}}</span>
+									<span class="money_icon" style="padding-left: 0">{{Math.floor(i.goods_price*i.goods_total * 100) / 100 }}</span>
 								</span>
 							</li>
 							<li class="item">
@@ -187,7 +187,8 @@
                 },
 				 index_: 1,
 				id: 0,
-				arr0: []
+				arr0: [],
+				order_sn: ''
 			}
 		},
 		methods: {
@@ -216,10 +217,17 @@
 					
 					that.arr0 = res.data.data.data.filter(i=>{
 						if(i.order_sn === that.id){
+							that.order_sn = i.order_sn
 							return i
 						}
 					})
 					console.log(555,that.arr0)
+					this.Http.post({route:'order.create',data:{
+						select: 1,
+						order_sn: that.order_sn
+					}}).then(res=>{
+						console.log(9999,res)
+					})
 				})
 			},
 			handleClick(i,event){

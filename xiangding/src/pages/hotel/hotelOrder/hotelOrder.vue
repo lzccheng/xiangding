@@ -178,7 +178,7 @@
 					</p>
 
 					<p>
-						<span class="money_color">{{detailt.price*num_2}}元</span>
+						<span class="money_color">{{detailt.price*days}}元</span>
 						
 					</p>
 				</div>
