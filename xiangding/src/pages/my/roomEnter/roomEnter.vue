@@ -225,9 +225,11 @@
 				this.Http.get({route:'plugin.store-cashier.store.admin.goods.index',baseUrl:'web/index.php?c=site&a=entry&m=yun_shop&do=1210&action=true'}).then(res=>{
 					console.log(res.data)
 					if(res.data.main){
-						let data = res.data.main.map(i=>{
-							i['active'] = i.status?true:false
-							return i
+						let data = res.data.main.filter(i=>{
+							if(i.brand_id != 6){
+								i['active'] = i.status?true:false
+								return i
+							}
 						})
 						that.arrItem = res.data.detail
 						that.arr = data
