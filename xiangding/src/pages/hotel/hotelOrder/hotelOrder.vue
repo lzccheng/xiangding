@@ -138,7 +138,7 @@
 						</span>
 					</p> -->
 					<p  class="day"><input type="text" v-model="formData.name" placeholder="请输入入住客人姓名" name=""></p>
-					<p  class="day"><input type="text" v-model="formData.tel" placeholder="请输入入住客人的手机号码" name=""></p>
+					<p  class="day"><input type="number" v-model="formData.tel" placeholder="请输入入住客人的手机号码" name=""></p>
 
 					<!-- <p  class="input_box">
 					   <span class="yz_text"><input type="text" placeholder="请输入验证码" name=""></span>
@@ -319,6 +319,7 @@
 			}
 		},
 		methods:{
+
 			handleOrder(){
 				if(!this.formData.name){
 					return this.Fn.tips('姓名不能为空')
