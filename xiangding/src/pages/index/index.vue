@@ -106,13 +106,13 @@
           </li>
   			</ul>
         <div class="button">
-          <router-link tag="p" class="green_btn" :to="Fn.getUrl({path: '/hotel/hotelSearch',query: {data,name: '酒店列表',province,city,erea,struct,date1:date_value[0].datetime,date2:date_value[1].datetime,lng,lat,seachMinPrice:price[0],seachMaxPrice:price[1],category_id,store_name}})">查找酒店</router-link>
+          <router-link tag="p" class="green_btn" :to="Fn.getUrl({path: '/hotel/hotelSearch',query: {data,name: '酒店列表',province,city,erea,struct,date1:date_value[0].datetime,date2:date_value[1].datetime,lng,lat,brand_id: 2,seachMinPrice:price[0],seachMaxPrice:price[1],category_id,store_name}})">查找酒店</router-link>
         </div>
   		</div>
       <div class="near">
         <p class="title">附近推荐酒店</p>
         <div class="hotelRoom" v-for='(i,index) in arrData' :key='index'>
-          <router-link :to="Fn.getUrl({path: '/hotelDetail',query:{id:i.id,hotelName:i.store_name,date1:date_value[0].datetime,date2:date_value[1].datetime}})" tag='div'>
+          <router-link :to="Fn.getUrl({path: '/hotelDetail',query:{id:i.id,hotelName:i.store_name,date1:date_value[0].datetime,brand_id: 2,date2:date_value[1].datetime}})" tag='div'>
             <img :src="i.banner_thumb?i.thumb:i.banner_thumb">
             <div>
               <p class="min_title">

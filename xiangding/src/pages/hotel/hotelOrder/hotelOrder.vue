@@ -24,7 +24,7 @@
 						<p v-if="title === '会议室'">董事长会议厅</p>
 						<p v-else>{{detailt.title}}</p>
 						<p><span>{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'房间面积'):''}}m <sup>2</sup>	
-						<span v-if="title === '会议室'">100人</span> 
+						<span v-if="title === '会议室'">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'可住人数'):''}}人</span> 
 						<span  v-else>大床{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'床型'):''}}</span> 
 						</span><span class="change">￥{{detailt.price}}元</span></p>
 					</div>
@@ -36,21 +36,21 @@
 					<div v-if="title === '会议室'">
 						<p class="msg_1">
 							<span class="head">窗户</span>
-							<span class="text">有窗</span>
+							<span class="text">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'是否有窗'):''}}</span>
 							<span class="head">面积</span>
-							<span class="text">28m <sup>2</sup></span>
+							<span class="text">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'房间面积'):''}}m <sup>2</sup></span>
 						</p>
 						<p class="msg_1">
 							<span class="head">网络</span>
-							<span class="text">WiFi供应</span>
+							<span class="text">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'设施'):''}}</span>
 							<span class="head">容纳</span>
-							<span class="text">2人</span>
+							<span class="text">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'可住人数'):''}}</span>
 						</p>
 						<p class="msg_1">
 							<span class="head">楼层</span>
-							<span class="text">5-15</span>
+							<span class="text">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'楼层'):''}}</span>
 							<span class="head">电话</span>
-							<span class="text">暂无信息</span>
+							<span class="text">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'电话'):''}}</span>
 						</p>
 					</div>
 					<div v-else>

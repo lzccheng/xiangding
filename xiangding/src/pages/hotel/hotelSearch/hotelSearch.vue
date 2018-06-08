@@ -2,7 +2,7 @@
 
 	<div class="box" @click="handleBack">
 		
-		<div >
+		<div>
 			<Header :title="title"/>
 			<div class="_content">
 			    <div class="top_box">
@@ -31,7 +31,7 @@
 							</router-link> -->
 							<div class="search_">
 								<input type="text" v-model="hotelName" placeholder="酒店 / 品牌" class="">
-								<span @click="handleSearch"><i class="fas fa-search"></i></span>
+								<span @click="aa"><i class="fas fa-search"></i></span>
 							</div>
 						</div>
 					</div>
@@ -162,11 +162,11 @@
 									<li @click="handleEreaLi" v-for="(i,index) in ereaArr" :key="index" :class="{active: erea ===i.name}">
 										{{i.name}}
 									</li>
-									<div class="erea_li_item">
+									<!-- <div class="erea_li_item">
 										<ul class="erea_li_selector">
 											<li @click="handleEreaLiItem" v-for="(i,index) in cityArr" :class="{active: struct === i.name}">{{i.name}}</li>
 										</ul>
-									</div>
+									</div> -->
 								</ul>
 							</div>
 						</div>
@@ -177,13 +177,9 @@
 					<div class="text" :class="{color_free: free[1].active}" @click="handleChoice(1)">活动优惠</div>
 				</div> -->
 				<div class="show" v-if="hotelData">
-					<router-link :to="Fn.getUrl({path: '/hotelDetail',query:{id:i.id,name: title,hotelName: i.store_name	,date1:dateValue[0].datetime,date2:dateValue[1].datetime}})" tag="div" class="item" v-for="(i,index) in hotelData" :key='index'>
+					<router-link :to="Fn.getUrl({path: '/hotelDetail',query:{id:i.id,name: title,hotelName: i.store_name,brand_id,date1:dateValue[0].datetime,date2:dateValue[1].datetime}})" tag="div" class="item" v-for="(i,index) in hotelData" :key='index'>
 						<div class="img">
-<<<<<<< HEAD
 							<img :src="i.thumb" alt="">
-=======
-							<img src="http://img5.imgtn.bdimg.com/it/u=2168296649,165648852&fm=27&gp=0.jpg" alt="">
->>>>>>> ab51d02638e3e816ee3368040b2fe34af552a569
 						</div>
 						<div class="msg">
 							<p class="title">
@@ -193,16 +189,11 @@
 								<span>{{i.information}}</span>
 								<!-- <span>五羊商城</span> -->
 							</p>
-<<<<<<< HEAD
 							<!-- <p>
 								<span>房间面积：30m <sup>2</sup></span>
 							</p> -->
 							<p>
 								<span>剩余房间: {{i.num}}间</span>
-=======
-							<p>
-								<span>剩余房间: 100间</span>
->>>>>>> ab51d02638e3e816ee3368040b2fe34af552a569
 							</p>
 							<p class="cancel">
 								<span>立减</span>
@@ -289,26 +280,26 @@
 		data(){
 			return {
 				ereaBox: [
-					{
-						name: '距离我',
-						children: [
-							{
-								name: '全城'
-							},
-							{
-								name: '1km'
-							},
-							{
-								name: '3km'
-							},
-							{
-								name: '5km'
-							},
-							{
-								name: '10km'
-							},
-						]
-					},
+					// {
+					// 	name: '距离我',
+					// 	children: [
+					// 		{
+					// 			name: '全城'
+					// 		},
+					// 		{
+					// 			name: '1km'
+					// 		},
+					// 		{
+					// 			name: '3km'
+					// 		},
+					// 		{
+					// 			name: '5km'
+					// 		},
+					// 		{
+					// 			name: '10km'
+					// 		},
+					// 	]
+					// },
 					{
 						name: '行政区域',
 						children: [
@@ -459,7 +450,7 @@
 						]
 					},
 				],
-				colorBoolen: false,
+				colorBoolen: true,
 				general: false,
 				show: 3,
 				item_show: 0,
@@ -495,18 +486,48 @@
 			}
 		},
 		methods: {
-			http(params){
+			aa(){
+				this.hotelData = []
+				let params = {
+					action: 1,
+					"store[store_name]": this.hotelName
+				}
+				this.http(params)
+			},
+			http(params,value){
 				let that = this
 				this.Http.get({route: 'goods.category.get-children-category',params,msg: '数据加载中...'}).then(res=>{
-					if(res.data.code === 200){
-						console.log(res.data)
+					if(res.data.data){
 						if(res.data.data[1]){
-							that.hotelData = res.data.data[1].map(i=>{
-							i.category_id = Number(i.category_id)
-								return i
-							})
+							if(value){
+								that.hotelData = res.data.data[1].filter(i=>{
+									if(i.information === value){
+										i.category_id = Number(i.category_id)
+										return i
+									}
+								})
+								if(!that.hotelData.length){
+									that.Fn.tips('没找到适合的酒店')
+								}
+							}else{
+								if(params.bool){
+									let aa = res.data.data[1].map(i=>{
+										i.category_id = Number(i.category_id)
+										that.hotelData.push(i)
+										return i
+									})
+								}else{
+									that.hotelData = res.data.data[1].map(i=>{
+										i.category_id = Number(i.category_id)
+										return i
+									})
+								}
+							}
+							
 						}else{
-							that.Fn.tips('没找到适合的酒店')
+							if(!params["store[category_id]"]){
+								that.Fn.tips('没找到适合的酒店')
+							}
 						}
 					}
 				})
@@ -515,7 +536,8 @@
 				this.hotelData = []
 				let that = this
 				let params = {
-					action: 1
+					action: 1,
+					bool: 1
 				}
 				if(this.starSelect.price.min){
 					params.seachMinPrice = this.starSelect.price.min
@@ -525,11 +547,13 @@
 				}
 				for(let i=0;i<this.starItem.length;i++){
 					if(this.starItem[i].active){
-						params.category_id = i+1
+						params["store[category_id]"] = i+1
 						this.http(params)
 					}
 				}
-				this.http(params)
+				if(this.colorBoolen){
+					this.http(params)
+				}
 				this.handleBack()			
 			},
 			handleSearch(){
@@ -585,17 +609,22 @@
 			handleEreaLi(e){
 				var e = e || event
 				var eParentChild = e.target.parentNode.children
-				console.log(e.target.innerText)
 				this.erea = e.target.innerText
 				for(let i=0;i<eParentChild.length;i++){
 					this.Fn.removeClass(eParentChild[i],'active')
 				}
 				this.Fn.addClass(e.target,'active')
-				for(let a=0;a<this.ereaArr.length;a++){
-					if(this.ereaArr[a].name === e.target.innerText){
-						this.cityArr = this.ereaArr[a].children
-					}
+				// for(let a=0;a<this.ereaArr.length;a++){
+				// 	if(this.ereaArr[a].name === e.target.innerText){
+				// 		this.cityArr = this.ereaArr[a].children
+				// 	}
+				// }
+				// 
+				let params = {
+					action: 1
 				}
+				this.http(params,this.erea)
+				this.handleBack()
 			},
 			handleEreaLiItem(e){
 				var e = e || event

@@ -15,11 +15,11 @@
 			<!-- <span class="hearts"><i class="fas fa-heart"></i></span>
 			<span class="share"><i class="fas fa-share-alt"></i></span> -->
 		</div>
-<<<<<<< HEAD
+<!-- <<<<<<< HEAD -->
 		<div class="msg" v-if="hotelData">
 			<p class="tip">
 				<span>{{hotelData.address}}</span>
-=======
+<!-- =======
 		<div class="msg">
 			<p  class="tip" style="border-top: none;">
 				<span>
@@ -33,7 +33,7 @@
 			</p>
 			<p v-for='(i,index) in hotelData' :key='index' class="tip">
 				<span>{{i.address}}</span>
->>>>>>> ab51d02638e3e816ee3368040b2fe34af552a569
+>>>>>>> ab51d02638e3e816ee3368040b2fe34af552a569 -->
 			</p>
 
 			<!-- <p class="tip"><i class="fas fa-map-marker-alt"></i>  距离您&lt;100米</p> -->
@@ -62,13 +62,13 @@
 				
 			</div>
 			<div class="massage">
-				<div v-if="title === '团房'">
+				<!-- <div v-if="title === '团房'">
 					<p class="horn">
 						<span><i class="fas fa-bullhorn"></i></span>
 						<span>团房最少订购两间及以上</span>
 					</p>
-				</div>
-				<div v-if="title === '会议室'">
+				</div> -->
+				<!-- <div v-if="title === '会议室'">
 						<router-link v-if="!order" tag="div" :to="Fn.getUrl({path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,meetingName: '某某会议室',hotelName,date1:date1,date2:date2}})" v-for='(i,index) in room' :key='index' class="rooms">
 							<div>
 								<img :src="i.imgUrl">
@@ -102,16 +102,15 @@
 								<p v-else>
 									<span  @click="handleBubbole">
 										<span class="icon_s" @click="handleDelete(index)"><i class="fas fa-minus-circle"></i></span>
-										<!-- <span class="number_s">{{numarr[index].num}}</span> -->
 										<span class="icon_s" @click="handleAdd(index)"><i class="fas fa-plus-circle"></i></span>
 									</span>
 								</p>
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 
-				<div v-else>
+				<div>
 					<div v-if="hotelData">
 						<router-link v-if="!order" tag="div" :to="Fn.getUrl({path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,roomName:i.title,hotelName,id:i.goods_id,date1:date1,date2:date2}})" v-for='(i,index) in hotelData.goods' :key='index' class="rooms">
 							<div>
@@ -126,10 +125,13 @@
 								<p><router-link tag="button" :to="Fn.getUrl({path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,roomName:i.title,hotelName,date1:date1,date2:date2,id:i.goods_id}})">订房</router-link></p>
 							</div>
 						</router-link>
+						<div v-if="!hotelData.goods.length" class="rooms" style="text-align: center">
+							<span>暂未发布房间</span>
+						</div>
 					</div>
 						
 					
-					<div v-else>
+					<!-- <div v-else>
 						<div v-for='(i,index) in room' :key='index' class="rooms">
 							<div>
 								<img :src="i.imgUrl">
@@ -140,33 +142,25 @@
 							</div>
 							<div class="price">
 								<p><span class="first">￥</span>{{i.price}}<span class="first">元</span></p>
-								<!-- <p v-if="title !== '会议室'"><router-link tag="button" :to="{path:'/hotelDetail/hotelOrder',query:{name: title}}">订房</router-link></p> -->
 								<p>
-									<!-- <span >
-										<router-link tag="button" :to="{path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title}}">预定</router-link>
-									</span>	 -->
 									<span  @click="handleBubbole">
 										<span class="icon_s" @click="handleDelete(index)"><i class="fas fa-minus-circle"></i></span>
 										<span class="number_s">{{numarr[index].num}}</span>
 										<span class="icon_s" @click="handleAdd(index)"><i class="fas fa-plus-circle"></i></span>
 									</span>
-									<!-- <div v-if="!order" class="button_1">
-										<p>取消</p>
-										<p>确定</p>
-									</div> -->
 								</p>
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
 				
 			</div>
 			
 		</div>
-		<div class="button" v-if="order">
+		<!-- <div class="button" v-if="order">
 			<span>取消</span>
 			<span>确定</span>
-		</div>
+		</div> -->
 	</div>
 </template>
 <script>
@@ -199,8 +193,9 @@
 			if(this.$route.query.id){
 				this.id = this.$route.query.id
 			}
-			console.log(this.id)
-			console.log(this.$store.state.hotelInfo)
+			if(this.$route.query.brand_id){
+				this.brand_id = this.$route.query.brand_id
+			}
 			let that = this
 			new lzcDatePlugin({
             el: '#name',
@@ -246,7 +241,8 @@
 					'3': '三星级',
 					'4': '四星级',
 					'5': '五星级',
-				}
+				},
+				brand_id: ''
 			}
 		},
 		methods:{
@@ -283,13 +279,14 @@
 				// 	}
 				// }).catch((err)=>{
 				// })
-		          this.Http.post({route:'goods.category.get-children-category',data:{action:true,brand_id: 2}}).then(res=>{
+		          this.Http.post({route:'goods.category.get-children-category',data:{action:true,brand_id: this.brand_id}}).then(res=>{
+		          		console.log(111,res)
 		          		let dd = res.data.data[1].filter(i=>{
 		          			if(i.id == that.id){
 		          				return i
 		          			}
 		          		})
-		          		that.hotelData = dd[0]
+		          		// that.hotelData = dd[0]
 		          })
 			},
 			handleBubbole(event){
@@ -342,6 +339,9 @@
 					if(this.$route.query.id){
 						this.id = this.$route.query.id
 					}
+					if(this.$route.query.brand_id){
+						this.brand_id = this.$route.query.brand_id
+					}
 					// this.getData()
 				}
 			},
@@ -354,13 +354,14 @@
 				// 	console.log(999,res)
 				// 	that.rooms = [...res.data.data]
 				// })
-			 this.Http.post({route:'goods.category.get-children-category',data:{action:true},msg:'数据加载中...'}).then(res=>{
+			    this.Http.post({route:'goods.category.get-children-category',data:{action:true},msg:'数据加载中...'}).then(res=>{
 	          		let dd = res.data.data[1].filter(i=>{
 	          			if(i.id == that.id){
 	          				return i
 	          			}
 	          		})
 	          		that.hotelData = dd[0]
+	          		this.$store.commit('changeHotel',that.hotelData)
 		          	console.log(55,that.hotelData)
 	          })
 			}
