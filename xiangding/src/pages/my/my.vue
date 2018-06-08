@@ -8,7 +8,7 @@
 						<span>{{msg.name}} ({{msg.level_name}})</span><br>
 						<span v-show="msg.agent_nickname">推荐人: {{msg.agent_nickname}}</span><br>
 						<span>ID: {{msg.id}}</span>
-						<router-link tag="span" :to="Fn.getUrl({path: '/my/myMessage'})" class="i"><i class="fas fa-cog"></i></router-link>
+						<!-- <router-link tag="span" :to="Fn.getUrl({path: '/my/myMessage'})" class="i"><i class="fas fa-cog"></i></router-link> -->
 					</div>
 				</p>
 			</div>
