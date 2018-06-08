@@ -81,16 +81,15 @@
 					</div>
 				</div>
 				<div class="inform">
-					<p class="black" v-if="title === '钟点房'" >
+					<!-- <p class="black" v-if="title === '钟点房'" >
 						<span >时间</span>
-						<!-- <span v-else>天数</span> -->
 						<span class="number_box">
 						    <span class="icon_s" style="border-right: none"  @click="handleDelete">-</span>
 							<span class="number_s">{{num_1}}</span>
 							<span class="icon_s radius" style="border-left: none"  @click="handleAdd">+</span>
 						</span>
-					</p>
-					<p class="black">
+					</p> -->
+					<!-- <p class="black">
 						<span class="first">
 						   <p v-if="title ==='会议室'">会议室间数</p>
 						   <p v-else>房间</p>
@@ -112,23 +111,23 @@
 	                         <el-radio v-model="radio" label="2">1.5 × 3.5米LED屏</el-radio><br/>  
 	                         <el-radio v-model="radio" label="3">2.5 × 5.5米LED屏</el-radio> 
 						</span>
-					</p>
-					<router-link tag="p" :to="Fn.getUrl({path: '/hotel/hotelManage/foodOrder'})" v-if="title === '团房'||title === '会议室'" class="black">
+					</p> -->
+					<!-- <router-link tag="p" :to="Fn.getUrl({path: '/hotel/hotelManage/foodOrder'})" v-if="title === '团房'||title === '会议室'" class="black">
 						<span style="color: #43c122">餐饮团购</span>
 						<span  class="check_box"><i class="fas fa-chevron-right"></i></span>
-					</router-link>
+					</router-link> -->
 					<!-- <p class="black">
 						<span>是否需要发票</span>
 						<span class="check_box"><el-checkbox v-model="checked"></el-checkbox></span>
 					</p> -->
-					<router-link tag="p" :to="Fn.getUrl({path:'/hotelDetail',query:{name: '团房',id: 2,order: true}})" v-if="title === '会议室'" class="black color_green">
+					<!-- <router-link tag="p" :to="Fn.getUrl({path:'/hotelDetail',query:{name: '团房',id: 2,order: true}})" v-if="title === '会议室'" class="black color_green">
 						<span>是否需要团房</span>
 						<span class="check_box"><i class="fas fa-chevron-right"></i></span>
 					</router-link>
 					<router-link tag="p" :to="Fn.getUrl({path:'/hotelDetail',query:{name: '会议室',id: 2,order: true}})"  v-if="title === '团房'" class="black">
 						<span class="color_green">是否需要会议室</span>
 						<span class="check_box"><i class="fas fa-chevron-right"></i></span>
-					</router-link>
+					</router-link> -->
 					<!-- <p class="black" v-if="title !== '会议室'">
 						<span>预计到店</span>
 						<span class="time" id="clock">
@@ -205,6 +204,8 @@
 			}
 			if(this.$route.query.roomName){
 				this.roomName = this.$route.query.roomName
+			}else{
+				this.roomName = '未设定'
 			}
 			if(this.$route.query.meetingName){
 				this.meetingName = this.$route.query.meetingName
@@ -297,6 +298,8 @@
 					}
 					if(this.$route.query.roomName){
 						this.roomName = this.$route.query.roomName
+					}else{
+						this.roomName = '未设定'
 					}
 					if(this.$route.query.meetingName){
 						this.meetingName = this.$route.query.meetingName
@@ -346,7 +349,6 @@
 					console.log(res)
 					that.Fn.tips(res.data.msg)
 					if(res.data.result === 1){
-						console.log(that.Fn.getUrl({path: '/hotel/payOrder',query: {order_ids: res.data.data.order_id}}),res.data)
 						that.$router.push(that.Fn.getUrl({path: '/hotel/payOrder',query: {order_ids: res.data.data.order_id,realname: that.formData.name,tel:that.formData.tel,total: that.num_2}}))
 					}
 				})

@@ -41,14 +41,14 @@
 			</div>
 			
 			<div class="item" v-if="title === '会议室'||title === '团房'">
-				<div class="img"><img src="https://f10.baidu.com/it/u=1208544201,1064095414&fm=72" alt=""></div>
+				<!-- <div class="img"><img src="https://f10.baidu.com/it/u=1208544201,1064095414&fm=72" alt=""></div>
 				<div class="text_box">
 					<p>A套餐</p>
 					<p class="color">
 						<span>¥269</span>
 						<span>×1</span>
 					</p>
-				</div>
+				</div> -->
 			</div>
 			<div class="pag">
 				<!-- <p>
@@ -137,7 +137,8 @@
                 order: null,
                 total: null,
                 orders: null,
-                time: null
+                time: null,
+                order_sn: ''
 			}
 		},
 		methods: {
@@ -180,10 +181,8 @@
 	          var that = this;
 	          this.Http.get({route:'order.merge-pay.wechatPay', params:{ order_pay_id: this.order_pay_id }}).then(function (response) {
 	            if (response.data.result == 1) {
-	            	console.log(response.data.data.js)
 	            	//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=member.member.wxJsSdkConfig
 	            	that.Http.get({route:'member.member.wxJsSdkConfig',params:{url:window.location.href}}).then(res=>{
-	            		console.log(res.data.data.config)
 	            		wx.config(res.data.data.config);
 		                wx.ready(function(){
 		              	    that.WXPay(response.data.data.config);
@@ -224,7 +223,7 @@
 							}
 						})
 						that.orders = order[0]
-						console.log(that.orders)
+						console.log(2222,that.orders)
 						that.Http.post({route:'order.create',data:{select: 1,order_id:that.order_ids}}).then(res=>{
 							that.time = res.data.data
 							console.log(that.time)
@@ -243,8 +242,21 @@
 				this.alertShow = false
 			},
 			handleShow(){
+				let that = this
 				// this.alertShow = true
 				MessageBox.confirm('您确定要取消订单吗？','温馨提示').then(action => {
+					that.Http.post({route: 'order.list.index',data:{
+						action: 1,
+						uid: that.$store.state.userInfo.uid,
+						order_sn: that.orders.order_sn,
+						del: 1
+					}}).then(res=>{
+						console.log(res)
+						if(res.data.result === 1){
+							that.Fn.tips('取消订单成功')
+							that.$router.push(that.Fn.getUrl({path: '/my'}))
+						}
+					})
 				});
 			},
 		},

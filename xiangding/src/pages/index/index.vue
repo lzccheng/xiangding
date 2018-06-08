@@ -141,7 +141,7 @@
   </div>
 </template>
 <script>
-  import Swiper from 'swiper'
+  // import Swiper from 'swiper'
   import star from '../../components/star/star'
   import common from '../../common/js/common'
 

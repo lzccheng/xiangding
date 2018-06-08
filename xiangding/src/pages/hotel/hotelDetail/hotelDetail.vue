@@ -112,7 +112,7 @@
 
 				<div>
 					<div v-if="hotelData">
-						<router-link v-if="!order" tag="div" :to="Fn.getUrl({path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,roomName:i.title,hotelName,id:i.goods_id,date1:date1,date2:date2}})" v-for='(i,index) in hotelData.goods' :key='index' class="rooms">
+						<router-link tag="div" :to="Fn.getUrl({path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,roomName:i.title,hotelName,id:i.goods_id,date1:date1,date2:date2}})" v-for='(i,index) in rooms' :key='index' class="rooms">
 							<div>
 								<img :src="i.thumb">
 							</div>
@@ -125,8 +125,8 @@
 								<p><router-link tag="button" :to="Fn.getUrl({path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,roomName:i.title,hotelName,date1:date1,date2:date2,id:i.goods_id}})">订房</router-link></p>
 							</div>
 						</router-link>
-						<div v-if="!hotelData.goods.length" class="rooms" style="text-align: center">
-							<span>暂未发布房间</span>
+						<div v-if="!rooms.length" class="rooms" style="text-align: center">
+							<span>暂未发布{{roomData[brand_id]}}</span>
 						</div>
 					</div>
 						
@@ -241,6 +241,12 @@
 					'3': '三星级',
 					'4': '四星级',
 					'5': '五星级',
+				},
+				roomData: {
+					'2': '房间',
+					'3': '会议室',
+					'4': '团房',
+					'5': '钟点房'
 				},
 				brand_id: ''
 			}
@@ -361,6 +367,11 @@
 	          			}
 	          		})
 	          		that.hotelData = dd[0]
+	          		that.rooms = that.hotelData.goods.filter(i=>{
+	          			if(i.brand_id == that.brand_id){
+	          				return i
+	          			}
+	          		})
 	          		this.$store.commit('changeHotel',that.hotelData)
 		          	console.log(55,that.hotelData)
 	          })
