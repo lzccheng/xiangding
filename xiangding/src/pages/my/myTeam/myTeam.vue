@@ -60,12 +60,14 @@
 		data(){
 			return {
 				arrItem: [
-					' 我的朋友 ',
-					' 我的客户 ',
+					' VIP1 ',
+					' VIP2 ',
+					' VIP3 '
 				],
 				index_: 0,
 				itemArr1: [],
 				itemArr2: [],
+				itemArr3: [],
 			}
 		},
 		methods: {

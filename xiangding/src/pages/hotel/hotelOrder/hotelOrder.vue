@@ -138,7 +138,7 @@
 						</span>
 					</p> -->
 					<p  class="day"><input type="text" v-model="formData.name" placeholder="请输入入住客人姓名" name=""></p>
-					<p  class="day"><input type="text" v-model="formData.tel" placeholder="请输入入住客人的手机号码" name=""></p>
+					<p  class="day"><input type="text" onkeypress="return event.keyCode>=48&&event.keyCode<=57" ng-pattern="/[^a-zA-Z]/" v-model="formData.tel" placeholder="请输入入住客人的手机号码" name=""></p>
 
 					<!-- <p  class="input_box">
 					   <span class="yz_text"><input type="text" placeholder="请输入验证码" name=""></span>
@@ -187,6 +187,7 @@
 	</div>
 </template>
 <script>
+	import common from '../../../common/js/common'
 	import Swiper from 'swiper'
 	export default {
 		mounted: function(){
@@ -472,7 +473,7 @@
 			}
 			.inform{
 				margin-top: rem(10px);
-				padding-bottom: rem(120px);
+				padding-bottom: rem(95px);
 				.color_green{
 		        	color: #43c122;
 		        }
@@ -636,7 +637,7 @@
 			.footer{
 				background-color: #ffffff;
 				width: 100%;
-				padding: rem(15px) 5%;
+				padding: rem(2px) 5%;
 				border-top: #aaa solid rem(1px);
 				position: fixed;
 				bottom: 0;
@@ -644,9 +645,9 @@
 				z-index: 99;
 				.need_pay{
 					font-size: rem(15px);
-					margin-bottom: rem(15px);
+					margin-bottom: rem(4px);
 					.button{
-						padding: rem(10px) 6%;
+						padding: rem(6px) 4%;
 						background-color: #43c122;
 						color: #ffffff;
 						float: right;
