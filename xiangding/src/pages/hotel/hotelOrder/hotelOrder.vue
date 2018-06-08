@@ -472,7 +472,7 @@
 			}
 			.inform{
 				margin-top: rem(10px);
-				padding-bottom: rem(120px);
+				padding-bottom: rem(95px);
 				.color_green{
 		        	color: #43c122;
 		        }
@@ -636,7 +636,7 @@
 			.footer{
 				background-color: #ffffff;
 				width: 100%;
-				padding: rem(15px) 5%;
+				padding: rem(2px) 5%;
 				border-top: #aaa solid rem(1px);
 				position: fixed;
 				bottom: 0;
@@ -644,9 +644,9 @@
 				z-index: 99;
 				.need_pay{
 					font-size: rem(15px);
-					margin-bottom: rem(15px);
+					margin-bottom: rem(4px);
 					.button{
-						padding: rem(10px) 6%;
+						padding: rem(6px) 4%;
 						background-color: #43c122;
 						color: #ffffff;
 						float: right;
