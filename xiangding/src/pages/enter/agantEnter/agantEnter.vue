@@ -142,13 +142,13 @@
 			<div class="sub"><router-link tag="span" :to="Fn.getUrl({path: '/'})" class="green_btn">去首页逛逛</router-link></div>
 		</div>
 		<!--已通过-->
-		<div v-show="status == 1" class="tips">
+		<!-- <div v-show="status == 1" class="tips">
 			<div class="ico">
 				<i class="far fa-check-circle"></i>
 			</div>
 			<div class="text">恭喜您已通过审核</div>
-			<div class="sub"><router-link tag="span" :to="Fn.getUrl({path:'/my/myagantEnter'})" class="green_btn">去招代理</router-link></div>
-		</div>
+			<div class="sub"><router-link tag="span" :to="Fn.getUrl({path:'/my/myagantEnter'})" class="green_btn">确定</router-link></div>
+		</div> -->
 		<!--驳回申请-->
 		<div v-show="status == -2" class="tips">
 			<div class="ico">
@@ -204,6 +204,7 @@
 				let that = this
 				this.Http.get({route:'plugin.merchant.frontend.get-center-condition'}).then(res=>{
 					that.status = res.data.data.status
+					log(that.status)
 				})
 				// this.Http.get({route:'plugin.merchant.frontend.merchant-staff'}).then(res=>{
 				// 	console.log(res)
@@ -254,6 +255,7 @@
 	      	},
 	      	handleFileUpload(){},
 			handleFormSubmit(){
+				let that = this
 				if(!this.formData.realname){
 					return this.Fn.tips('代理商姓名不能为空')
 				}
@@ -282,8 +284,8 @@
 				// 	console.log(res)
 				// })
 				this.Http.post({route:'plugin.merchant.frontend.merchant-apply.staff',data:{...this.formData}}).then(res=>{
-					console.log(res)
-					this.Fn.tips(res.data.msg)
+					that.Fn.tips(res.data.msg)
+					that.getStatus()
 				})
 
 
@@ -343,6 +345,11 @@
 			$route(to,from){
 				if(to.name === 'agantEnter'){
 					this.getStatus()
+				}
+			},
+			status(){
+				if(this.status == 1){
+					this.$router.push(this.Fn.getUrl({path: '/my/myagantEnter'}))
 				}
 			}
 		}

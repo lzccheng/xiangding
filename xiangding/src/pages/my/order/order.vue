@@ -32,7 +32,7 @@
 								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query: {isPay: false,id:i.order_sn}})" class="content">
 									<p>
 										<span class="title">{{i.order_sn}}</span>
-										<span class="title_t">(豪华酒店 |四星级)</span>
+										<!-- <span class="title_t">(豪华酒店 |四星级)</span> -->
 										<span class="cross"><i class="f  ar fa-times-circle"></i></span>
 									</p>
 									<p>
@@ -74,11 +74,11 @@
 								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{isPay: 1}})" class="content">
 									<p>
 										<span class="title">{{i.order_sn}}</span>
-										<span class="title_t">(豪华酒店 |四星级)</span>
+										<!-- <span class="title_t">(豪华酒店 |四星级)</span> -->
 										<span class="cross"><i class="far fa-times-circle"></i></span>
 									</p>
 									<p>
-										<span class="title_hide">{{i.goods_total}}间.  {{i.has_many_order_goods[0].title}}</span>
+										<span class="title_hide">{{i.goods_total}}间.  {{i.title}}</span>
 									</p>
 									<p>
 										<span class="title_hide">客户名称: {{$store.state.userInfo.realname}} </span>
@@ -94,8 +94,8 @@
 								</router-link>
 								<div class="content_2">
 								    <div class="plane">
-									    <i class="fas fa-location-arrow"></i>
-									    <span class="here">到这里</span>
+									    <!-- <i class="fas fa-location-arrow"></i>
+									    <span class="here">到这里</span> -->
 								    </div>
 									
 									<div class="button">
@@ -114,12 +114,12 @@
 							<div class="content_box" v-for="(i,index) in arr2" :key="index">
 								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{isPay: 2}})" class="content">
 									<p>
-										<span class="title">银河大酒店</span>
-										<span class="title_t">(豪华酒店 |四星级)</span>
+										<span class="title">{{i.order_sn}}</span>
+										<!-- <span class="title_t">(豪华酒店 |四星级)</span> -->
 										<span class="cross"><i class="far fa-times-circle"></i></span>
 									</p>
 									<p>
-										<span class="title_hide">{{i.goods_total}}间.  {{i.has_many_order_goods[0].title}}</span>
+										<span class="title_hide">{{i.goods_total}}间.  {{i.has_many_order_goods.length?i.has_many_order_goods[0].title: ''}}</span>
 									</p>
 									<p>
 										<span class="title_hide">客户名称: {{$store.state.userInfo.realname}} </span>
@@ -135,8 +135,8 @@
 								</router-link>
 								<div class="content_2">
 								    <div class="plane">
-									    <i class="fas fa-location-arrow"></i>
-									    <span class="here">到这里</span>
+									    <!-- <i class="fas fa-location-arrow"></i>
+									    <span class="here">到这里</span> -->
 								    </div>
 									<div class="button">
 										<router-link tag="span" :to="Fn.getUrl({path: '/hotelDetail',query:{id:4,hotelName: '银河大酒店'}})" class="pay">再次预定</router-link>
@@ -159,9 +159,8 @@
 		},
 		mounted(){
 			this._lineLeft()
-			console.log(222,this.$store.state.userInfo)
+			
 		},
-
 		data(){
 			return {
 				arrItem: [
@@ -202,26 +201,48 @@
 			// cancelBubble(event){
 			// 	event.cancelBubble = true
 			// },
-			getData(){
+			getData(status,num){
 				let that = this
-				if(this.index_ === 0){
-					this.Http.post({route:'order.list',data:{
-						uid:that.$store.state.userInfo.uid,
-						action: 1,
-						status: 0,
-					}}).then(res=>{
-						that.arr0 = res.data.data.map(i=>{
-							that.timesText[i.id] = {
-								[i.id]: {
-									value: '',
-									interval: null
-								},
-							}
-							return i
-						})
-						console.log(that.arr0)
+				if(status.all){
+					this.Http.post({route:'order.list.index'}).then(res=>{
+						that.arr2 = res.data.data.data
+						log(that.arr2)
 					})
+					return 
 				}
+				this.Http.post({route:'order.list',data:{
+					uid:that.$store.state.userInfo.uid,
+					action: 1,
+					status:status.status,
+				}}).then(res=>{
+					that['arr'+status.status] = res.data.data.map(i=>{
+						that.timesText[i.id] = {
+							[i.id]: {
+								value: '',
+								interval: null
+							},
+						}
+						return i
+					})
+					if(num){
+						this.Http.post({route:'order.list',data:{
+							uid:that.$store.state.userInfo.uid,
+							action: 1,
+							status: num,
+						}}).then(ress=>{
+							ress.data.data.map(i=>{
+								that.timesText[i.id] = {
+									[i.id]: {
+										value: '',
+										interval: null
+									},
+								}
+								that['arr'+status.status].push(i)
+								return i
+							})
+						})
+					}
+				})
 			},
 			remaining_time(id,e){
 				let that = this
@@ -246,16 +267,21 @@
 				let that = this
 				MessageBox.confirm('您确定要取消订单吗？','温馨提示').then(action => {
 				  	that.Http.post({route:'order.list.index',data:{
-				  			order_sn: order_sn,
 				  			action: 1,
-				  			c: 'site',
-				  			a: 'entry',
-				  			m: 'yun_shop',
+				  			order_sn: order_sn,
+				  			uid: that.$store.state.userInfo.uid,
 				  			del: true
 				  	}}).then(res=>{
-				  		console.log(res)
-				  		this.getData()
+				  		that.Fn.tips(res.data.msg)
+				  		if(that.index_ == 0){
+							that.getData({status: 0})
+						}
+						if(that.index_ == 1){
+							that.getData({status: 1},2)
+						}
 				  	})
+				},err=>{
+
 				});
 				// this.alertShow = true
 			},
@@ -273,24 +299,6 @@
 				this.$refs._line.style.left = this.$refs.tab.children[this.index_].offsetLeft + 'px'
 				this.$refs._line.style.width =  this.$refs.tab.children[this.index_].offsetWidth + 'px'
 			},
-			 open4() {
-		        this.$confirm('确认取消订单吗', '提示', {
-		          confirmButtonText: '确定',
-		          cancelButtonText: '取消',
-		          type: 'warning',
-		          center: true
-		        }).then(() => {
-		          this.$message({
-		            type: 'success',
-		            message: '删除成功!'
-		          });
-		        }).catch(() => {
-		          this.$message({
-		            type: 'info',
-		            message: '已取消删除'
-		          });
-		        });
-		      }
 		},
 		watch: {
 			$route(to,from){
@@ -300,7 +308,15 @@
 			},
 			index_(){
 				//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=order.list&page=1&i=3&type=1
-				this.getData()
+				if(this.index_ == 0){
+					this.getData({status: 0})
+				}
+				if(this.index_ == 1){
+					this.getData({status: 1},2)
+				}
+				if(this.index_ == 2){
+					this.getData({all: 1})
+				}
 			}
 		}
 	}
@@ -355,7 +371,9 @@
 			}
 		}
 		.nav{
-			position: relative;
+			position: fixed;
+			width: 100%;
+			z-index: 999;
 			div{
 				&.active{
 				}

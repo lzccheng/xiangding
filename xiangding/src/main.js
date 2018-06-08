@@ -20,7 +20,7 @@ axios.defaults.baseURL = process.env.API_ROOT
 Vue.prototype.$axios = axios
 Vue.prototype.Fn = Fn
 Vue.prototype.Http = Http
-
+window.log = console.log
 Vue.config.productionTip = false
 
 Vue.use(Element)

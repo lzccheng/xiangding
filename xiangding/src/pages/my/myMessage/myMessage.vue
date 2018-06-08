@@ -39,15 +39,10 @@
 <script>
 	export default {
 		mounted(){
-
-			let userInfo = localStorage.getItem('userInfo')
-			if(userInfo){
-				let userInfoData =JSON.parse(userInfo)
-				// console.log(userInfoData.data)
-				this.mobile = userInfoData.data.mobile
-				this.name = userInfoData.data.realname
-				this.wechat = userInfoData.data.realname
-			}
+			let info = this.$store.state.userInfo
+			this.mobile = info.mobile
+			this.name = info.realname
+			this.wechat = info.wechat
 		},
 		data(){
 			return {

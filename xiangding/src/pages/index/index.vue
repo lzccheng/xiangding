@@ -113,7 +113,7 @@
         <p class="title">附近推荐酒店</p>
         <div class="hotelRoom" v-for='(i,index) in arrData' :key='index'>
           <router-link :to="Fn.getUrl({path: '/hotelDetail',query:{id:i.id,hotelName:i.store_name,date1:date_value[0].datetime,brand_id: 2,date2:date_value[1].datetime}})" tag='div'>
-            <img :src="i.banner_thumb?i.thumb:i.banner_thumb">
+            <img :src="i.thumb">
             <div>
               <p class="min_title">
                 <span class="one">
@@ -201,30 +201,27 @@
           mobileSelect5.updateWheels(JSON.parse(res.data));
         })
           //定位
-          const loading = that.$loading({
-            lock: true,
-            text: '定位中..........',
-            background: 'rgba(0, 0, 0, 0.7)',
-            // target: '.msg'
-          })
-          common.getLocation(onComplete,onError)
-          function onComplete(data) {
-            loading.close()
-            let addr = data.formattedAddress.split('街道')
-            if(!addr[1]){
-              addr = data.formattedAddress.split('号')
-            }
-            that.text_erea = addr[1]+'附近'
-            let tip = '定位成功！'+that.text_erea
-            that.Fn.tips(tip)
-          }
-          /*
-           *解析定位错误信息
-           */
-          function onError(data) {
-            loading.close()
-            that.Fn.tips('定位失败！')
-          }
+          // const loading = that.$loading({
+          //   lock: true,
+          //   text: '定位中..........',
+          //   background: 'rgba(0, 0, 0, 0.7)',
+          //   // target: '.msg'
+          // })
+          // common.getLocation(onComplete,onError)
+          // function onComplete(data) {
+          //   loading.close()
+          //   let addr = data.formattedAddress.split('街道')
+          //   if(!addr[1]){
+          //     addr = data.formattedAddress.split('号')
+          //   }
+          //   that.text_erea = addr[1]+'附近'
+          //   let tip = '定位成功！'+that.text_erea
+          //   that.Fn.tips(tip)
+          // }
+          // function onError(data) {
+          //   loading.close()
+          //   that.Fn.tips('定位失败！')
+          // }
 
         // this.$axios({url:'/bannerData',data:{id:123}}).then((res)=>{
         //   that.arrItem = res.data
@@ -340,7 +337,7 @@
             if(!addr[1]){
               addr = data.formattedAddress.split('号')
             }
-            that.text_erea = addr[1]+'附近'
+            that.text_erea = addr[1]?addr[1]:data.formattedAddress+'附近'
             // that.show_erea = false
             // that.$refs.show_erea.style.display = 'none'
             that.Fn.tips('定位成功！'+that.text_erea)

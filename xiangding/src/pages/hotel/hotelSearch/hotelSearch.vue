@@ -120,9 +120,9 @@
 								<br/>
 								<p class="title">价格区间</p>
 								<p class="top">
-									<span class="input_"><input type="text" v-model="starSelect.price.min"  placeholder="最低值"></span>
+									<span class="input_"><input type="number" v-model="starSelect.price.min"  placeholder="最低值"></span>
 									<span class="line1"></span>
-									<span class="input_"><input type="text" v-model="starSelect.price.max" placeholder="最高值"></span>
+									<span class="input_"><input type="number" v-model="starSelect.price.max" placeholder="最高值"></span>
 								</p>
 							</div>
 							<div class="item">
@@ -543,7 +543,14 @@
 					params.seachMinPrice = this.starSelect.price.min
 				}
 				if(this.starSelect.price.max){
-					params.seachMinPrice = this.starSelect.price.max
+					if(Number(this.starSelect.price.max) < Number(this.starSelect.price.min)){
+						return that.Fn.tips('价格区间最高值要大于最低值')
+					}
+					params.seachMaxPrice = this.starSelect.price.max
+				}else{
+					if(this.starSelect.price.min){
+						return that.Fn.tips('价格区间请输入最高值')
+					}
 				}
 				for(let i=0;i<this.starItem.length;i++){
 					if(this.starItem[i].active){

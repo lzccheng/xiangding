@@ -85,10 +85,6 @@
 						<input v-model="formData.hotelbank" type="text" class="handleCheckCredit" placeholder="请输入酒店银行卡号" name="">
 					</p>
 					<p class="input">
-						<label>收款账户姓名:</label>
-						<input v-model="formData.hotelbank" type="text" class="handleCheckCredit" placeholder="请输入酒店银行卡号姓名" name="">
-					</p>
-					<p class="input">
 						<label>酒店收款姓名:</label>
 						<input v-model="formData.store_hotelname" type="text" class="handleCheckCredit" placeholder="请输入酒店收款姓名" name="">
 					</p>
@@ -136,10 +132,10 @@
 				</div>
 				<div class="form" style="border-bottom: none;padding-left: 0">
 					<div class="footer">
-					   <router-link tag="p" :to="Fn.getUrl({path: '/enter/login'})"  @click="handleFormSubmit" class="green_btn">立即申请</router-link>
+					   <!-- <router-link tag="p" :to="Fn.getUrl({path: '/enter/login'})"  @click="handleFormSubmit" class="green_btn">立即申请</router-link> -->
 					   <p @click="handleFormSubmit" class="green_btn">立即申请</p>
-					   <p>&nbsp;</p>
-					   <p @click="handleLogin" class="green_btn">登录</p>
+					   <!-- <p>&nbsp;</p> -->
+					   <!-- <p @click="handleLogin" class="green_btn">登录</p> -->
 					</div>
 					<div class="agreement_box">
 						<span @click="handleShow" class="agreement">《入驻协议》</span>
@@ -160,13 +156,13 @@
 			</div>
 
 		</div>
-		<div v-show="enter_status === 3">
+		<!-- <div v-show="enter_status === 3">
 			<div class="success">
 				<p class="icon_"><span><i class="fas fa-check-circle"></i></span></p>
 				<p>你的申请已通过</p>
 				<p class="login" @click="handleLogin">登录</p>
 			</div>
-		</div>
+		</div> -->
 	</div>
 </template>
 <script>
@@ -578,7 +574,7 @@
 			},
 			enter_status(){
 				if(this.enter_status === 3){
-					// window.location.href = 'https://www.share-hotel.cn/web/index.php?c=user&a=login&dd=1'
+					window.location.href = 'https://www.share-hotel.cn/web/index.php?c=user&a=login&dd=1'
 				}
 			}
 		}
