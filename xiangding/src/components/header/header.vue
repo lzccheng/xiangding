@@ -49,8 +49,8 @@
 				padding: 0 rem(5px);
 				z-index: 999;
 				.img{
-					width: rem(25px);
-					height: rem(25px);
+					width: rem(24px);
+					height: rem(24px);
 					img{
 						width: 100%;
 						height: 100%;

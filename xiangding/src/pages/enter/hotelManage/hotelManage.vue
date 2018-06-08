@@ -89,12 +89,11 @@
 	    		<p class="icon"><i class="fas fa-th-list"></i></p>
 	    		<p>在线信息</p>
 	    	</router-link> -->
-	    	<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/commentManage'})" class="room_2 rooms">
+	    	<!-- <router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/commentManage'})" class="room_2 rooms">
 	    		<p class="icon"><i class="fas fa-th-list"></i></p>
 	    		<p class="name">评论管理</p>
-	    	</router-link>
+	    	</router-link> -->
 	    </div>
-
 	</div>
 </template>
 <script>
@@ -167,8 +166,8 @@
 					padding: 0 rem(5px);
 					z-index: 999;
 					.img{
-						width: rem(25px);
-						height: rem(25px);
+						width: rem(24px);
+						height: rem(24px);
 						img{
 							width: 100%;
 							height: 100%;
