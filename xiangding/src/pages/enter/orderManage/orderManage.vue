@@ -356,7 +356,7 @@
 								height: rem(25px);
 								width: 0;
 								position: absolute;
-								top: 32%;
+								top: 30%;
 								left: 50%;
 							}
 							.text{
