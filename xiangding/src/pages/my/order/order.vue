@@ -29,7 +29,7 @@
 						<div class="item">
 							<!-- <span class="time">预定日期: 03-20</span> -->
 							<div class="content_box" v-for="(i,index) in arr0" :key="index">
-								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query: {isPay: false,id:i.order_sn}})" class="content">
+								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query: {isPay: false,id:i.order_sn,status: i.status}})" class="content">
 									<p>
 										<span class="title">{{i.order_sn}}</span>
 										<!-- <span class="title_t">(豪华酒店 |四星级)</span> -->
@@ -138,9 +138,9 @@
 									    <!-- <i class="fas fa-location-arrow"></i>
 									    <span class="here">到这里</span> -->
 								    </div>
-									<div class="button">
+									<!-- <div class="button">
 										<router-link tag="span" :to="Fn.getUrl({path: '/hotelDetail',query:{id:4,hotelName: '银河大酒店'}})" class="pay">再次预定</router-link>
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div>

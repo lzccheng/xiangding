@@ -169,8 +169,10 @@
 			if(this.$route.query.id){
 				this.id = this.$route.query.id
 			}
+			if(this.$route.query.status){
+				this.status = this.$route.query.status
+			}
 			this.getData()
-			console.log(888,this.$store.state.userInfo)
 		},
 		data(){
 			return {
@@ -188,7 +190,8 @@
 				 index_: 1,
 				id: 0,
 				arr0: [],
-				order_sn: ''
+				order_sn: '',
+				status: ''
 			}
 		},
 		methods: {
@@ -213,9 +216,9 @@
 				// 	console.log(3333,that.arr0)
 				// })
 				let that = this 
-				this.Http.post({route:'order.list.index',params:{action:true}}).then(res=>{
-					
+				this.Http.post({route:'order.list.index',params:{action:true,status: that.status}}).then(res=>{
 					that.arr0 = res.data.data.data.filter(i=>{
+						// console.log(i.order_sn,that.id)
 						if(i.order_sn === that.id){
 							that.order_sn = i.order_sn
 							return i
@@ -254,6 +257,10 @@
 					if(this.$route.query.id){
 						this.id = this.$route.query.id
 					}
+					if(this.$route.query.status){
+						this.status = this.$route.query.status
+					}
+					this.getData()
 				}
 			}
 		}
