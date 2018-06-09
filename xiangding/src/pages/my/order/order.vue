@@ -99,7 +99,7 @@
 								    </div>
 									
 									<div class="button">
-										<span @click="handleCancelroom(i.order_id)" :to="Fn.getUrl({path: '/my/cancelRoom'})" class="change">申请退房</span>
+										<span @click="handleCancelroom(i.order_id,$event)" :to="Fn.getUrl({path: '/my/cancelRoom'})" class="change">申请退房</span>
 										<router-link tag="span" :to="Fn.getUrl({path: '/hotelDetail',query:{id:4,hotelName: '银河大酒店'}})" class="pay">再次预定</router-link>
 									</div>
 								</div>
@@ -210,9 +210,10 @@
 			// 	event.cancelBubble = true
 			// },
 			// https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=refund.apply.store
-			handleCancelroom(id){
+			handleCancelroom(id,e){
 				log(id)
 				//http://localhost:8080/api/addons/yun_shop/api.php?i=3&type=1&mid=10&route=refund.apply.store
+				var e = e || event
 				let that = this
 				this.Http.post({route: 'refund.apply.store',data:{
 					content: '111',
@@ -225,6 +226,7 @@
 				}}).then(res=>{
 					console.log(res)
 					that.Fn.tips(res.data.msg)
+					e.target.innerHTML = '订单退款中...'
 				})
 			},
 			handlePayAgint(order_sn){

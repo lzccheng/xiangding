@@ -23,7 +23,7 @@
 						<p v-else>{{month1}}入住，{{month2}}离开，共{{days}}天</p>
 						<p v-if="title === '会议室'">董事长会议厅</p>
 						<p v-else>{{detailt.title}}</p>
-						<p><span><!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'房间面积'):''}} -->80m <sup>2</sup>	
+						<p><span><!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'房间面积'):''}} --><!-- 80m <sup>2</sup>	 -->
 						<span v-if="title === '会议室'">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'可住人数'):''}}人</span> 
 						<span  v-else>大床</span> 
 						</span><span class="change">￥{{detailt.price}}元</span></p>
@@ -36,13 +36,13 @@
 					<div v-if="title === '会议室'">
 						<p class="msg_1">
 							<span class="head">窗户</span>
-							<span class="text">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'是否有窗'):''}}</span>
+							<span class="text">有<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'是否有窗'):''}} --></span>
 							<span class="head">面积</span>
 							<span class="text"><!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'房间面积'):''}} -->80m <sup>2</sup></span>
 						</p>
 						<p class="msg_1">
 							<span class="head">网络</span>
-							<span class="text">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'有'):''}}</span>
+							<span class="text">有<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'有'):''}} --></span>
 							<span class="head">容纳</span>
 							<span class="text">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'可住人数'):''}}</span>
 						</p>
@@ -50,33 +50,33 @@
 							<!-- <span class="head">楼层</span>
 							<span class="text">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'楼层'):''}}</span> -->
 							<span class="head">电话</span>
-							<span class="text">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'电话'):''}}</span>
+							<span class="text">无<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'电话'):''}} --></span>
 						</p>
 					</div>
 					<div v-else>
 						<p class="msg_1">
 							<span class="head">床型</span>
-							<span class="text"><!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'床型'):''}} -->2张双人床1.5m</span>
+							<span class="text"><!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'床型'):''}} -->暂无信息</span>
 							<span class="head">面积</span>
-							<span class="text"><!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'房间面积'):''}} -->80m <sup>2</sup></span>
+							<span class="text"><!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'房间面积'):''}} -->暂无信息 <!-- <sup>2</sup> --></span>
 						</p>
 						<p class="msg_1">
 							<span class="head">窗户</span>
-							<span class="text">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'是否有窗'):''}}</span>
+							<span class="text">有<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'是否有窗'):''}} --></span>
 							<span class="head">可住</span>
 							<span class="text">2人<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'可住人数'):''}} --></span>
 						</p>
 						<p class="msg_1">
 							<span class="head">网络</span>
-							<span class="text">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'有'):''}}</span>
+							<span class="text">有<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'有'):''}} --></span>
 							<span class="head">电话</span>
-							<span class="text">0775-12345678<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'电话'):''}} --></span>
+							<span class="text">{{$store.state.hotelInfo.mobile}}<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'电话'):''}} --></span>
 						</p>
 						<p class="msg_1">
 							<!-- <span class="head">楼层</span>
 							<span class="text">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'楼层'):''}}</span> -->
 							<span class="head">早餐</span>
-							<span class="text">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'是否有早餐'):''}}</span>
+							<span class="text">暂无信息<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'是否有早餐'):''}} --></span>
 						</p>
 					</div>
 				</div>
@@ -221,7 +221,9 @@
 				this.id = this.$route.query.id
 			}
 			this.type = this.$store.state.hotelInfo.category_id
-			this.getData()            
+			this.getData()    
+
+		log(this.$store.state.hotelInfo)        
 		},
 		data(){
 			return {

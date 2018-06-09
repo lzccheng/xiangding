@@ -524,7 +524,7 @@
 			.show{
 				.tip{
 					background-color: #EDEDED;
-					padding: rem(10px) rem(20px);
+					padding: rem(8px) rem(20px);
 					font-size: rem(12px);
 					p{
 						.border{
@@ -543,7 +543,7 @@
 					padding: rem(2px) rem(10px);
 					ul{
 						li{
-							padding: rem(10px) 0;
+							padding: rem(8px) 0;
 							position: relative;
 							margin-top: rem(1px);
 							.erea{
@@ -633,7 +633,7 @@
 
 					}
 					.btn{
-						margin-top: rem(15px);
+						margin-top: rem(13px);
 						// font-size: rem(16px);
 						button{
 							width: 100%;
