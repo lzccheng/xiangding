@@ -11,7 +11,7 @@
 			<span>待付款</span>
 		</div>
 		<span class="i"><i class="fas fa-donate"></i></span>
-		<div class="custom">
+		<div class="custom" v-if="tel">
 			<p class="numb">
 				<span class="icon"><i class="far fa-address-book"></i></span>
 				<span>客户: {{realname}}</span>
@@ -19,7 +19,7 @@
 			</p>
 			<p class="numb">
 				<span class="icon"><i class="far fa-map"></i></span>
-				<span>{{$store.state.hotelInfo.title}}</span>
+				<span>{{$store.state.hotelInfo}}</span>
 			</p>
 		</div>
 		<div class="line"></div>

@@ -18,7 +18,7 @@
         <div class="line"></div>
 	    <div class="body">
 	    	<div  class="item" v-for="(i,index) in store_name" :key="index">
-                <div class="hotel_name">广州银河大酒店</div>      
+                <div class="hotel_name">{{i.store_name}}</div>      
                 <!-- <div class="right_box">
                     <div class="i">
                         <p class="green">1200</p>
@@ -35,8 +35,8 @@
                 </div>   -->    
             </div>
             <div class="send_box">
-           <span class="page">上一页</span>
-           <span class="page">下一页</span>
+          <!--  <span class="page">上一页</span>
+           <span class="page">下一页</span> -->
         </div>
 	    </div>
 	</div>
@@ -56,8 +56,13 @@
             getData(){
                 let that = this
                 this.Http.post({route:'finance.earning.earning-count&action=true&',data:{uid: this.$store.state.userInfo.uid}}).then(res=>{
+                    log(res)
                     that.store_num = res.data.data.store_num
-                    that.store_name = res.data.data.store_name
+                    that.store_name = res.data.data.store_name.filter(i=>{
+                        if(i.length){
+                            return i
+                        }
+                    })
                 })
             }
 		}
@@ -140,6 +145,7 @@
                 .hotel_name{
                     font-size: rem(14px);
                     width: 62%;
+                    padding-bottom: rem(6px);
                 }
                 .right_box{
                     width: 40%;

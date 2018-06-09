@@ -133,10 +133,10 @@
 		<div class="myOrder">
 			<p class="text"><span>系统服务</span></p>
 			<div class="message">
-				<router-link tag="div" :to="Fn.getUrl({path: '/my/collection',query: {name: '收藏酒店'}})" >
+				<!-- <router-link tag="div" :to="Fn.getUrl({path: '/my/collection',query: {name: '收藏酒店'}})" >
 					<p><i class="far fa-bookmark"></i></p>
 					<p><span>我的收藏</span></p>
-				</router-link>
+				</router-link> -->
 				<router-link tag="div" :to="Fn.getUrl({path: '/my/feedBack'})">
 					<p><i class="fa fa-question-circle"></i></p>
 					<p><span>我要反馈</span></p>
@@ -159,16 +159,17 @@
 				route: 'member.member.getUserInfo'
 			}).then(res=>{
 				that.msg.id = res.data.data.uid
-				that.msg.name = res.data.data.nickname
+				that.msg.name = res.data.data.nickname?res.data.data.nickname:''
 				that.msg.imgUrl = res.data.data.avatar
 				that.msg.level_name = res.data.data.level_name
-				that.msg.agent_nickname = res.data.data.yz_member.agent.nickname
+				that.msg.agent_nickname = res.data.data.yz_member.agent?res.data.data.yz_member.agent.nickname: ''
 			})
 			this.Http.post({route:'finance.earning.earning-count&action=true&',data:{uid: this.$store.state.userInfo.uid}}).then(res=>{
-				that.msg.earning = res.data.data.user  
-				that.msg.agantEarning = res.data.data.services  
+				if(res.data.result === 1){
+					that.msg.earning = res.data.data.user  
+					that.msg.agantEarning = res.data.data.services
+				}
 			})
-			console.log(this.$store.state.userInfo)
 		},
 		data(){
 			return {

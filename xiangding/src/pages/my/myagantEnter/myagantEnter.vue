@@ -3,29 +3,31 @@
 	<Header title="代理服务商"/>
 		<div class="header">
 		    <div class="big">
-		    	<div class="ball"></div>
+		    	<div class="ball">
+		    		<img :src="$store.state.userInfo.avatar">
+		    	</div>
 		    	<div class="text">
-		    		<p class="agant">广东省广州市代理商</p>
-		    		<p class="number"> 区域编号: 11221411</p>
+		    		<p class="agant">{{name}}</p>
+		    		<!-- <p class="number"> 区域编号: 11221411</p> -->
 		    	</div>
 		    </div>
 	    </div>
-	    <router-link :to="Fn.getUrl({patj: '/my/cashDetail'})" class="nav" tag='span'>
+	    <router-link :to="Fn.getUrl({path: '/my/cashDetail'})" class="nav" tag='span'>
 	    	<div class="green"></div>
 	    	<span class="hotel">我服务的酒店</span>
-	    	<span class="num">30</span>
+	    	<span class="num">{{store_num}}</span>
 	    </router-link>
 	    <div class="line"></div>
 	    <div class="hotelServe">
 			<p class="title">
 				<span class="icon_money"><i class="fas fa-dollar-sign"></i></span>
-				<span class="content">9月收益</span>
+				<span class="content">收益</span>
 				<router-link tag="span" :to="Fn.getUrl({path: '/my/cash'})" class="deposit">提现</router-link>
 			</p>
 			<div class="earning">
 				<p class="text"><span>本月服务费收益</span></p>
 				<div  class="money"><span>￥</span><span>{{msg.earning}}</span></div>
-				<div class="earn">
+				<!-- <div class="earn">
 					<div class="order">
 						<p class="icon"><i class="far fa-file"></i></p>
 						<p class="text">
@@ -40,11 +42,11 @@
 							<span>{{msg.poeple_num}}</span>
 						</p>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
-	    <div class="line"></div>
-	    <div class="footer">
+	    <!-- <div class="line"></div> -->
+	    <!-- <div class="footer">
 	    	<router-link :to="Fn.getUrl({path: '/my/myagantEnter/agantIncome'})" tag="div" class="item">
 	    		<span class="detailt"><i class="fab fa-deviantart"></i></span>
 	    		<span class="text">本月管理金收益明细</span>
@@ -56,17 +58,22 @@
 	    		<span class="gt"><i class="fas fa-chevron-right"></i></span>
 	    	</router-link>
 	    	
-	    </div>
+	    </div> -->
 	</div>
 </template>
 <script>
 	export default {
+		mounted(){
+			this.getData()
+		},
 		data(){
 			return {
+				store_num: '0',
+				name: '',
 				msg: {
 					imgUrl: 'http://imgtu.5011.net/uploads/content/20170428/1436171493371991.jpg',
 					id: '147258369',
-					earning:'88,888.00',
+					earning:'0',
 					order_num: '1369',
 					poeple_num: '569',
 					income: {
@@ -79,7 +86,19 @@
 			}
 		},
 		methods: {
-
+			getData(){
+				let that = this
+				this.Http.post({route:'finance.earning.earning-count&action=true&',data:{uid: this.$store.state.userInfo.uid}}).then(res=>{
+					if(res.data.result === 1){
+						that.msg.earning = res.data.data.user  
+						that.name = res.data.data.services_user_name  
+						// that.agantEarning = res.data.data.services
+					}
+				})
+				this.Http.post({route:'finance.earning.earning-count&action=true&',data:{uid: this.$store.state.userInfo.uid}}).then(res=>{
+                    that.store_num = res.data.data.store_num
+                })
+			}
 		}
 	}
 </script>
@@ -100,6 +119,11 @@
                 	background-color: #e5e5e5;
                 	border-radius: 50%;
                 	display: inline-block;
+                	img{
+                		border-radius: 50%;
+                		width: 100%;
+                		height: 100%;
+                	}
                 }
                 .text{
                 	width: 67%;
