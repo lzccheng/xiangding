@@ -540,7 +540,7 @@
 					}
 				}
 				.body{
-					padding: rem(10px) rem(10px);
+					padding: rem(2px) rem(10px);
 					ul{
 						li{
 							padding: rem(10px) 0;
