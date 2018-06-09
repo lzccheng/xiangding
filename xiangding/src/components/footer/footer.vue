@@ -1,5 +1,5 @@
 <template>
-	<div class="box">
+	<div class="box" ref="footer_">
 		<router-link class="route" tag='div' :to="Fn.getUrl({path:i.url})" v-for='(i ,index) in navItem':key='index'>
 			<div @click='Nav(index)'>
 				<p :class="{color:indexData==index}"><i :class="i.class"></i></p>

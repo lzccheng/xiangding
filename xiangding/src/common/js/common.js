@@ -258,5 +258,5 @@ export default {
 	getKeyByI,
 	getType,
 	tips,
-	filterArr,
+	filterArr
 }
