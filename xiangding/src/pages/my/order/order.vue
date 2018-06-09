@@ -159,7 +159,15 @@
 		},
 		mounted(){
 			this._lineLeft()
-			
+			if(this.index_ == 0){
+				this.getData({status: 0})
+			}
+			if(this.index_ == 1){
+				this.getData({status: 1},2)
+			}
+			if(this.index_ == 2){
+				this.getData({all: 1})
+			}
 		},
 		data(){
 			return {
@@ -204,13 +212,26 @@
 			// https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=refund.apply.store
 			handleCancelroom(id){
 				log(id)
+				//http://localhost:8080/api/addons/yun_shop/api.php?i=3&type=1&mid=10&route=refund.apply.store
+				let that = this
+				this.Http.post({route: 'refund.apply.store',data:{
+					content: '111',
+					order_id: id,
+					reason: '不想要了',
+					refund_id: id,
+					refund_type: 0,
+					type: 1,
+					i: 3
+				}}).then(res=>{
+					console.log(res)
+					that.Fn.tips(res.data.msg)
+				})
 			},
 			handlePayAgint(order_sn){
 				//http://localhost:8080/api/addons/yun_shop/api.php?i=3&type=1&mid=10&route=order.create
 				this.Http.post({route: 'order.create',data:{
 					order_sn,
 					select:1,
-
 				}}).then(res=>{
 					console.log(555,res)
 				})

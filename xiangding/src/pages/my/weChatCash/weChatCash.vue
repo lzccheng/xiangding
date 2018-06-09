@@ -19,47 +19,81 @@
 			</p>
 			<p class="input">
 				<label>提现金额</label>
-				<input type="text" placeholder="请输入提现金额" name="">
+				<input type="number" v-model.number="balance" placeholder="请输入提现金额" name="">
 			</p>
 			<p class="input" style="border-bottom: none">
 				<label>可提现金额:</label>
-				<span class="weChat_text">0.99</span>
+				<span class="weChat_text">{{cash}}</span>
 			</p>
 		</div>
 		<div class="form">
 			<p class="input">
 				<label>
 				  <p>手续费</p>
-				  <p class="text_5">收取5%手续费</p>
+				  <p class="text_5">{{text}}</p>
 				</label>
-				<span class="weChat_text">0.00</span>
+				<!-- <span class="weChat_text">0.00</span> -->
 			</p>
-			<p class="input" style="border-bottom: none">
+			<!-- <p class="input" style="border-bottom: none">
 				<label>实际到账:</label>
 				<span class="weChat_text">0.00</span>
-			</p>
+			</p> -->
 		</div>
-		<div class="form">
+		<!-- <div class="form">
 			<p class="input" style="border-bottom: none">
 				<label>验证码</label>
 				<input type="text" placeholder="请输入验证码" name="">
 				<span class="get"><span>获取验证码</span></span>
 			</p> 
-		</div>
+		</div> -->
 		<div class="know_box">
-			<router-link tag="p" :to="Fn.getUrl({path: '/my/applicationCash'})" class="green_btn">提现</router-link>
-			<p class="know" @click="handleShow_back">《提现协议》</p>
+			<p @click="handleCash" tag="p" :to="Fn.getUrl({path: '/my/applicationCash'})" class="green_btn">提现</p>
+			<!-- <p class="know" @click="handleShow_back">《提现协议》</p> -->
 		</div>
 	</div>
 </template>
 <script>
 	export default {
+		mounted(){
+			//余额
+			//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=finance.balance-withdraw.page&
+			this.getData()
+			//提现
+			//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=finance.balance-withdraw.withdraw&i=3&type=1&withdraw_type=1&withdraw_money=20
+		},
 		data(){
 			return {
-				general: false
+				general: false,
+				cash: '0',
+				text: '',
+				balance: 0
 			}
 		},
 		methods: {
+			handleCash(){
+				console.log(this.balance)
+				if(this.balance <= 0){
+					return this.Fn.tips('请输入大于 0 的提现金额')
+				}
+				let that = this
+				this.Http.get({route: 'finance.balance-withdraw.withdraw',params: {
+					withdraw_money: this.balance,
+					withdraw_type: 1
+				}}).then(res=>{
+					that.Fn.tips(res.data.msg)
+					that.balance = 0
+					that.getData()
+				})
+			},
+			getData(){
+				let that = this
+				this.Http.get({route: 'finance.balance-withdraw.page'}).then(res=>{
+					if(res.data.result == 1){
+						that.cash = res.data.data.balance
+						that.text = res.data.data.poundage
+					}
+				})
+			},
 			handleShow_back(){
 				this.general = true
 			},
@@ -69,6 +103,13 @@
 			cancelBubble(event){
 				event.cancelBubble = true
 			},
+		},
+		watch: {
+			$route(to,from){
+				if(to.name === 'weChatCash'){
+					this.getData()
+				}
+			}
 		}
 	}
 </script>

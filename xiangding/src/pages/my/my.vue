@@ -52,7 +52,7 @@
 		<div class="hotelServe">
 			<p class="title">
 				<span>代理服务商</span>
-				<router-link :to="Fn.getUrl({path: '/my/cash'})" class="cash" tag='span'>提现</router-link>
+				<!-- <router-link :to="Fn.getUrl({path: '/my/cash'})" class="cash" tag='span'>提现</router-link> -->
 			</p>
 			<div class="earning">
 				<p class="text"><span>当前收益</span></p>
@@ -170,6 +170,8 @@
 					that.msg.agantEarning = res.data.data.services
 				}
 			})
+			
+			
 		},
 		data(){
 			return {

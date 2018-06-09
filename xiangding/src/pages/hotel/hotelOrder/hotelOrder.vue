@@ -138,7 +138,7 @@
 						</span>
 					</p> -->
 					<p  class="day"><input type="text" v-model="formData.name" placeholder="请输入入住客人姓名" name=""></p>
-					<p  class="day"><input type="text" onkeypress="return event.keyCode>=48&&event.keyCode<=57" ng-pattern="/[^a-zA-Z]/" v-model="formData.tel" placeholder="请输入入住客人的手机号码" @blur="handleCheck" class="handleCheck" name=""></p>
+					<p  class="day"><input type="number" v-model="formData.tel" placeholder="请输入入住客人的手机号码"class="handleCheck" name=""></p>
 
 					<!-- <p  class="input_box">
 					   <span class="yz_text"><input type="text" placeholder="请输入验证码" name=""></span>
@@ -325,7 +325,6 @@
 					return this.Fn.tips('姓名不能为空')
 				}
 				if(!this.formData.tel){
-					
 					return this.Fn.tips('手机号码不能为空')
 				}
 				//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=order.create
