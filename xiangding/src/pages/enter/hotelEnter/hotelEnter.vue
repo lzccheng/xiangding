@@ -86,7 +86,7 @@
 					</p>
 					<p class="input">
 						<label>酒店收款姓名:</label>
-						<input v-model="formData.store_hotelname" type="text" class="handleCheckCredit" placeholder="请输入酒店收款姓名" name="">
+						<input v-model="formData.hotelname" type="text" class="handleCheckCredit" placeholder="请输入酒店收款姓名" name="">
 					</p>
 					<p class="input">
 						<label >代理服务商姓名:</label>
@@ -264,7 +264,7 @@
 					lat: '', //纬度
 					address: '', //地址
 					thumb: '',
-					store_hotelname: ''//酒店收款姓名
+					hotelname: ''//酒店收款姓名
 				},
 				province: '',
 				city: '',
@@ -411,7 +411,7 @@
 		          return this.Fn.tips('酒店收款账号不能为空');
 		        }
 		        //酒店收款姓名
-		        if(!this.formData.store_hotelname){
+		        if(!this.formData.hotelname){
 		          return this.Fn.tips('酒店收款姓名不能为空');
 		        }
 				if(!this.formData.dailiname){
@@ -446,6 +446,7 @@
 				//         });
 				// 	}
 				// })
+				console.log({...that.formData})
 				this.Http.post({route:'plugin.store-cashier.frontend.store.store.apply&c=entry&do=shop&m=yun_shop',data:{apply:{...that.formData}}}).then(res=>{
 					if(res.data.result === 1){
 						that.getEnterStatus()
