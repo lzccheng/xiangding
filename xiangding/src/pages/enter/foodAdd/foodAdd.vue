@@ -14,10 +14,10 @@
 				<div><span>套餐照片</span></div>
 				<div>
 					<span>
-					    <label for="file"><i class="fas fa-plus"></i></label>
-					    <input type="file" @change="handleFile" id="file" style="display: none">
+					    <label for="file" style="border: none;"><i class="fas fa-plus"></i></label>
+					    <input type="file" @change="handleFile" id="file" style="display: none;border: none;">
 					</span>
-					<div class="photo_show">
+					<div class="photo_show" style="border: none;">
 						<img :src="formData.thumb">
 					</div>
 				</div>

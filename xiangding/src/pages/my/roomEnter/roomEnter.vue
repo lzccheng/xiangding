@@ -124,7 +124,7 @@
 		</div>
 		<div class="line_"></div>
 		<div class="footer" style="z-index:999999">
-			<div class="room_box">
+			<div class="room_box" style="border-right: #ffffff solid 1px;">
 				<router-link tag="div" :to="Fn.getUrl({path: '/my/roomEnter/meettingSend'})" class="room" >
 					<div class="icon_3"><i class="far fa-plus-square"></i></div>
 					<span>会议室发布</span>
@@ -136,12 +136,12 @@
 					<span>团房发布</span>
 				</router-link>
 			</div>
-			<div class="room_box">
+			<!-- <div class="room_box">
 				<router-link tag="div" :to="Fn.getUrl({path: '/my/roomEnter/clockSend'})" class="room left">
 					<div class="icon_3"><i class="far fa-plus-square"></i></div>
 					<span>钟点房</span>
 				</router-link>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </template>
@@ -446,12 +446,12 @@
 			justify-content: space-around;
 			background-color: #e5e5e5;
 			.room_box{
-				width: 33%;
+				width: 50%;
 
 				.room{
 					padding: rem(13px) 0;
 					text-align: center;
-					border-right: #ffffff solid rem(1px);
+					// border-right: #ffffff solid rem(1px);
 					.icon_3{
 						display: inline-block;
 						color: #43c122;

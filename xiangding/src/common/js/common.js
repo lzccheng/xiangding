@@ -234,7 +234,7 @@ const filterArr = (arr,value)=>{
 			return i
 		}
 	})
-	return dd[0]?dd[0].value:'未设定'
+	return dd[0]?dd[0].value:'有'
 }
 export default {
 	getStyle,

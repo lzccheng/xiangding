@@ -122,7 +122,7 @@
 							</div>
 							<div class="price">
 								<p>￥{{i.price}}元</p>
-								<p><router-link tag="button" :to="Fn.getUrl({path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,roomName:i.title,hotelName,date1:date1,date2:date2,id:i.goods_id}})">订房</router-link></p>
+								<p><router-link tag="button" :to="Fn.getUrl({path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: i.title,roomName:i.title,hotelName,date1:date1,date2:date2,id:i.goods_id}})">订房</router-link></p>
 							</div>
 						</router-link>
 						<div v-if="!rooms.length" class="rooms" style="text-align: center">

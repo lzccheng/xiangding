@@ -132,7 +132,7 @@
 				</div>
 				<div class="form" style="border-bottom: none;padding-left: 0">
 					<div class="footer">
-					   <!-- <router-link tag="p" :to="Fn.getUrl({path: '/enter/login'})"  @click="handleFormSubmit" class="green_btn">立即申请</router-link> -->
+					   <router-link tag="p" :to="Fn.getUrl({path: '/enter/login'})"  @click="handleFormSubmit" class="green_btn">立即申请</router-link>
 					   <p @click="handleFormSubmit" class="green_btn">立即申请</p>
 					   <!-- <p>&nbsp;</p> -->
 					   <!-- <p @click="handleLogin" class="green_btn">登录</p> -->
