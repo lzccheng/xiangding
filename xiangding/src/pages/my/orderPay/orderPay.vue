@@ -174,7 +174,7 @@
 			}
 			this.getData()
 		},
-		data(){
+		data(){ 
 			return {
 				arrItem: [
 					'订单状态',

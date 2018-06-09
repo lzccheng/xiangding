@@ -19,7 +19,7 @@
 			</p>
 			<p class="numb">
 				<span class="icon"><i class="far fa-map"></i></span>
-				<span>{{$store.state.hotelInfo}}</span>
+				<span>{{$store.state.hotelInfo.address}}</span>
 			</p>
 		</div>
 		<div class="line"></div>

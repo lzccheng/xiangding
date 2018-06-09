@@ -577,9 +577,6 @@
 				let that = this
 				let params = {
 					action: 1,
-					"store[store_name]": that.store_name,
-					"store[category_id]": that.category_id,
-					brand_id: 2,
 					seachMinPrice: that.seachMinPrice,
 					seachMaxPrice: that.seachMaxPrice,
 					lng1: that.lng,
@@ -588,6 +585,13 @@
 				if(this.brand_id){
 					params.brand_id = this.brand_id
 				}
+				if(this.store_name){
+					params["store[store_name]"] = this.store_name
+				}
+				if(this.category_id){
+					params["store[category_id]"] = that.category_id
+				}
+				
 				this.http(params)
 			},
 			changeEreaArr(){

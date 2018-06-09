@@ -59,7 +59,7 @@
 									
 									<div class="button">
 										<span class="change" @click="handleShow(i.order_sn)">取消订单</span>
-										<router-link tag="span" :to="Fn.getUrl({path: '/my/order/orderPay',query: {isPay: 0}})" class="pay">付款</router-link>
+										<span @click="handlePayAgint(i.order_sn)" :to="Fn.getUrl({path: '/hotel/payOrder',query: {isPay: 0,total:i.goods_total,order_ids:i.id}})" class="pay">付款</span>
 									</div>
 								</div>
 							</div>
@@ -99,7 +99,7 @@
 								    </div>
 									
 									<div class="button">
-										<router-link tag="span" :to="Fn.getUrl({path: '/my/cancelRoom'})" class="change">申请退房</router-link>
+										<span @click="handleCancelroom(i.order_id)" :to="Fn.getUrl({path: '/my/cancelRoom'})" class="change">申请退房</span>
 										<router-link tag="span" :to="Fn.getUrl({path: '/hotelDetail',query:{id:4,hotelName: '银河大酒店'}})" class="pay">再次预定</router-link>
 									</div>
 								</div>
@@ -201,6 +201,20 @@
 			// cancelBubble(event){
 			// 	event.cancelBubble = true
 			// },
+			// https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=refund.apply.store
+			handleCancelroom(id){
+				log(id)
+			},
+			handlePayAgint(order_sn){
+				//http://localhost:8080/api/addons/yun_shop/api.php?i=3&type=1&mid=10&route=order.create
+				this.Http.post({route: 'order.create',data:{
+					order_sn,
+					select:1,
+
+				}}).then(res=>{
+					console.log(555,res)
+				})
+			},
 			getData(status,num){
 				let that = this
 				if(status.all){
@@ -243,6 +257,7 @@
 						})
 					}
 				})
+				log(that['arr'+status.status])
 			},
 			remaining_time(id,e){
 				let that = this
