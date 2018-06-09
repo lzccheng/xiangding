@@ -70,8 +70,8 @@
 					<span class="name">早餐提供:</span>
 					<div class="select_1">
 						<el-select v-model="formData.param_value[3]" slot="prepend" placeholder="请选择">
-					      <el-option label="是" value="1"></el-option>
-					      <el-option label="否" value="2"></el-option>
+					      <el-option label="有" value="1"></el-option>
+					      <el-option label="无" value="2"></el-option>
 					    </el-select>
 					</div>
 				</li>
@@ -89,8 +89,8 @@
 					<span class="name">窗户:</span>
 					<div class="select_1">
 						<el-select v-model="formData.param_value[4]" slot="prepend" placeholder="请选择">
-					      <el-option label="是" value="1"></el-option>
-					      <el-option label="否" value="2"></el-option>
+					      <el-option label="有" value="1"></el-option>
+					      <el-option label="无" value="2"></el-option>
 					      <el-option label="部分有窗" value="3"></el-option>
 					    </el-select>
 					</div>
