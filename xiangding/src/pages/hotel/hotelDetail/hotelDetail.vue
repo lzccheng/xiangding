@@ -112,7 +112,7 @@
 
 				<div>
 					<div v-if="hotelData">
-						<router-link tag="div" :to="Fn.getUrl({path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: title,roomName:i.title,hotelName,id:i.goods_id,date1:date1,date2:date2}})" v-for='(i,index) in rooms' :key='index' class="rooms">
+						<router-link tag="div" :to="Fn.getUrl({path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: i.title,roomName:i.title,hotelName,id:i.goods_id,date1:date1,date2:date2}})" v-for='(i,index) in rooms' :key='index' class="rooms">
 							<div>
 								<img :src="i.thumb">
 							</div>
