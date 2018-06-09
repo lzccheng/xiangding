@@ -39,7 +39,7 @@
 										<span class="titl_hide">{{i.goods_total}}间. {{i.title}}</span>
 									</p>
 									<p>
-										<span class="title_hide">客户名称: {{$store.state.userInfo.realname}}</span>
+										<span class="title_hide">客户名称: {{$store.state.userInfo.realname?$store.state.userInfo.realname:$store.state.userInfo.nickname}}</span>
 										<span class="no">
 											<span class="money_color">¥</span>
 											<span class="money_size">{{i.price}}</span>
@@ -59,7 +59,8 @@
 									
 									<div class="button">
 										<span class="change" @click="handleShow(i.order_sn)">取消订单</span>
-										<span @click="handlePayAgint(i.order_sn)" :to="Fn.getUrl({path: '/hotel/payOrder',query: {isPay: 0,total:i.goods_total,order_ids:i.id}})" class="pay">付款</span>
+										<span @click="handlePayAgint(i.order_sn,i.goods_total)" :to="Fn.getUrl({path: '/hotel/payOrder',query: {isPay: 0,total:i.goods_total,order_ids:i.id}})" class="pay">付款</span>
+										<!-- <span @click="handlePay(i.order_sn)" :to="Fn.getUrl({path: '/hotel/payOrder',query: {isPay: 0,total:i.goods_total,order_ids:i.id}})" class="pay">付款</span> -->
 									</div>
 								</div>
 							</div>
@@ -81,7 +82,7 @@
 										<span class="title_hide">{{i.goods_total}}间.  {{i.title}}</span>
 									</p>
 									<p>
-										<span class="title_hide">客户名称: {{$store.state.userInfo.realname}} </span>
+										<span class="title_hide">客户名称: {{$store.state.userInfo.realname?$store.state.userInfo.realname:$store.state.userInfo.nickname}} </span>
 										<span class="no">
 											<span class="money_color">¥</span>
 											<span class="money_size">{{i.price}}</span>
@@ -122,7 +123,7 @@
 										<span class="title_hide">{{i.goods_total}}间.  {{i.has_many_order_goods.length?i.has_many_order_goods[0].title: ''}}</span>
 									</p>
 									<p>
-										<span class="title_hide">客户名称: {{$store.state.userInfo.realname}} </span>
+										<span class="title_hide">客户名称: {{$store.state.userInfo.realname?$store.state.userInfo.realname:$store.state.userInfo.nickname}} </span>
 										<span class="no">
 											<span class="money_color">¥</span>
 											<span class="money_size">{{i.price}}</span>
@@ -153,6 +154,7 @@
 <script>
 	import myalert from '../../../components/alert/alert'
 	import { Indicator,MessageBox } from 'mint-ui'
+	import wx from 'weixin-js-sdk'
 	export default {
 		components: {
 			myalert
@@ -191,25 +193,88 @@
                 	'3': '已完成',
                 },
                 realname: '',
-                timesText: {}
+                timesText: {},
+
 				// back_show: false
 			} 
 		},
 		methods: {
-			// handleCancel(event){
-			// 	this.back_show = true
-			// 	document.querySelectorAll('body')[0].style.overflow = 'hidden'
-			// 	this.Fn.addClass(document.querySelector('html'),'noscroll')
-			// },
-			// backHide(){
-			// 	this.back_show = false
-			// 	document.querySelectorAll('body')[0].style.overflow = 'auto'
-			// 	this.Fn.removeClass(document.querySelector('html'),'noscroll')
-			// },
-			// cancelBubble(event){
-			// 	event.cancelBubble = true
-			// },
-			// https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=refund.apply.store
+			WXPay(payParams) {
+		      //alert(document.location.href);
+		      //console.log(""+payParams.timestamp);
+		      var that = this;
+		      console.log(payParams)
+		      wx.chooseWXPay({
+		        appId: payParams.appId,
+		        timestamp: payParams.timestamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+		        nonceStr: payParams.nonceStr, // 支付签名随机串，不长于 32 位
+		        package: payParams.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+		        signType: payParams.signType, //  签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+		        paySign: payParams.paySign, // 支付签名
+		        success: function (res) {
+		          // 支付成功后的回调函数
+		          that.payText = res.errMsg
+		          if (res.errMsg == "chooseWXPay:ok") {
+		            that.$router.push(that.fun.getUrl('member'));
+
+		            MessageBox.alert('支付成功', '提示');
+		            that.$router.push(that.Fn.getUrl({path: '/my/order',query:{status: 1}}));
+		          } else {
+		            MessageBox.alert(res.errMsg, '提示');
+		          }
+		        },
+		        cancel: function (res) {
+		          //支付取消
+		        },
+		        fail: function (res) {
+		          MessageBox.alert(res.errMsg, '提示fail');
+		          // setTimeout(()=>{
+		          // 	MessageBox.alert(res.errMsg, '提示fail');
+		          // },5000)
+		        }
+		      });
+		    },
+		    getWeChatPayParams() {
+	          //order.pay.wechatPay
+	          var that = this;
+	          this.Http.get({route:'order.merge-pay.wechatPay', params:{ order_pay_id: this.order_pay_id }}).then(function (response) {
+	            if (response.data.result == 1) {
+	            	//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=member.member.wxJsSdkConfig
+	            	that.Http.get({route:'member.member.wxJsSdkConfig',params:{url:window.location.href}}).then(res=>{
+	            		wx.config(res.data.data.config);
+		                wx.ready(function(){
+		              	    that.WXPay(response.data.data.config);
+		                })
+		                wx.error(err=>{
+		                	MessageBox.alert('err', '提示err')
+		                })
+	            	})
+	              
+	            } else {
+	              MessageBox.alert(response.data.msg, '提示');
+	            }
+	          }, function (response) {
+	            // error callback
+	          });
+	        },
+			handlePay(order_sn){
+				let that = this
+				this.Http.post({route: 'order.create',data:{
+					select: 1,
+					order_sn
+				}}).then(res=>{
+					log(res)
+					if(res.data.result == 1){
+						this.Http.get({route:'order.merge-pay',params:{order_ids:res.data.data.order_id,pid:that.$store.state.userInfo.uid}}).then(ress=>{
+					      	that.order_pay_id = ress.data.data.order_pay.id
+					      	setTimeout(()=>{
+					      		that.getWeChatPayParams()
+					      	},50)
+					    })
+					}
+				})
+		    	
+			},
 			handleCancelroom(id,e){
 				log(id)
 				//http://localhost:8080/api/addons/yun_shop/api.php?i=3&type=1&mid=10&route=refund.apply.store
@@ -229,13 +294,20 @@
 					e.target.innerHTML = '订单退款中...'
 				})
 			},
-			handlePayAgint(order_sn){
+			handlePayAgint(order_sn,total){
 				//http://localhost:8080/api/addons/yun_shop/api.php?i=3&type=1&mid=10&route=order.create
+				let that = this
 				this.Http.post({route: 'order.create',data:{
 					order_sn,
 					select:1,
 				}}).then(res=>{
 					console.log(555,res)
+					if(res.data.result == 1){
+						that.$router.push(that.Fn.getUrl({path: '/hotel/payOrder',query: {
+							order_ids: res.data.data.order_id,
+							total
+						}}))
+					}
 				})
 			},
 			getData(status,num){
@@ -261,6 +333,7 @@
 						}
 						return i
 					})
+					log(that['arr'+status.status])
 					if(num){
 						this.Http.post({route:'order.list',data:{
 							uid:that.$store.state.userInfo.uid,
@@ -302,6 +375,7 @@
 				this.alertShow = false
 			},
 			handleShow(order_sn){
+				log(order_sn)
 				let that = this
 				MessageBox.confirm('您确定要取消订单吗？','温馨提示').then(action => {
 				  	that.Http.post({route:'order.list.index',data:{
@@ -310,12 +384,20 @@
 				  			uid: that.$store.state.userInfo.uid,
 				  			del: true
 				  	}}).then(res=>{
-				  		that.Fn.tips(res.data.msg)
+				  		if(res.data.result == 1){
+				  			that.Fn.tips('取消订单成功')
+				  		}else{
+				  			that.Fn.tips(res.data.msg)
+				  		}
 				  		if(that.index_ == 0){
+				  			log(55)
 							that.getData({status: 0})
 						}
 						if(that.index_ == 1){
 							that.getData({status: 1},2)
+						}
+						if(this.index_ == 2){
+							this.getData({all: 1})
 						}
 				  	})
 				},err=>{
@@ -342,20 +424,29 @@
 			$route(to,from){
 				if(to.name === 'order'){
 					this._lineLeft()
+					if(this.index_ == 0){
+						this.getData({status: 0})
+					}
+					if(this.index_ == 1){
+						this.getData({status: 1},2)
+					}
+					if(this.index_ == 2){
+						this.getData({all: 1})
+					}
 				}
 			},
-			index_(){
-				//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=order.list&page=1&i=3&type=1
-				if(this.index_ == 0){
-					this.getData({status: 0})
-				}
-				if(this.index_ == 1){
-					this.getData({status: 1},2)
-				}
-				if(this.index_ == 2){
-					this.getData({all: 1})
-				}
-			}
+			// index_(){
+			// 	//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=order.list&page=1&i=3&type=1
+			// 	if(this.index_ == 0){
+			// 		this.getData({status: 0})
+			// 	}
+			// 	if(this.index_ == 1){
+			// 		this.getData({status: 1},2)
+			// 	}
+			// 	if(this.index_ == 2){
+			// 		this.getData({all: 1})
+			// 	}
+			// }
 		}
 	}
 </script>

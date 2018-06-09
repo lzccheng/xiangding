@@ -48,7 +48,7 @@
 							</p>
 							<div class="text_small">
 								<p class="text">
-								  <span class="text_1">房间面积:&nbsp; {{arrItem[index].length?arrItem[index][0].value:''}}</span>
+								  <span class="text_1">房间面积:&nbsp; {{filter(arrItem[index],'房间面积')}} m<sup>2</sup></span>
 								  <span class="icon" @click="handleCancel">
 									  <el-switch @change="statusChange(index,i.id)"
 										  v-model="i.active"
@@ -160,11 +160,23 @@
 				value1: true,
 	            value2: true,
 	            index_: 0,
-	            deleteItem: []
+	            deleteItem: [],
+	            detail: []
 	            // checkList: false,
 			}
 		},
 		methods: {
+			filter(arr,value){
+				if(arr.length){
+					let returnValue = arr.filter(i=>{
+						if(i.title === value){
+							return i
+						}
+					})
+					return returnValue.length?returnValue[0].value : '' 
+				}
+				return '' 
+			},
 			handleCheck(i,id){
 				if(this.deleteItem.indexOf(i.id) > -1){
 					this.deleteItem.splice(this.deleteItem.indexOf(i.id),1)

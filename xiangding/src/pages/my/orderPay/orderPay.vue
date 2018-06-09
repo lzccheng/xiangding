@@ -7,14 +7,14 @@
 				<div>
 					<div class="top">
 						<p class="status">订单状态: {{statusText[i.status]}}</p>
-						<p class="time">47小时56分钟后自动关闭订单</p>
+						<p class="time">{{close_time1}}</p>
 						<!-- <router-link tag="div" to="/my/order/payMethods" class="send">
 							<button class="green_btn">付款</button>
 						</router-link> -->
 					</div>
 					<div class="middle_1">
 						<p>
-							<span class="personal">客户: {{$store.state.userInfo.realname}}</span>
+							<span class="personal">客户: {{$store.state.userInfo.realname?$store.state.userInfo.realname:$store.state.userInfo.nickname}}</span>
 							<span class="phone">{{$store.state.userInfo.mobile}}</span>
 						</p>
 						<!-- <p class="sex">性别: {{$store.state.userInfo.sex}}</p> -->
@@ -39,8 +39,8 @@
 								<span class="title">52m²大床1.8m</span>
 								<span class="numb">×{{i.goods_total}}</span>
 							</p>
-							<p><span class="title">预计入住: 2018-04-05 18:30</span></p>
-							<p><span class="title">预计退房: 2018-04-06</span></p>
+							<p><span class="title">预计入住: {{come_time1}}</span></p>
+							<p><span class="title">预计退房: {{out_time1}}</span></p>
 						</div>
 
 					</div>
@@ -74,11 +74,11 @@
 							</li>
 							<div class="send_box" v-if="title == '待付款'">
 								<router-link tag="span" :to="Fn.getUrl({path: '/my/custom'})" class="custom">联系客服</router-link>
-								<router-link tag="span"  :to="Fn.getUrl({path: '/my/order/payMethods'})" class="custom">付款</router-link>
+								<span @click="handlePayAgint(i.goods_total)" tag="span"  :to="Fn.getUrl({path: '/my/order/payMethods'})" class="custom">付款</span>
 							</div>
-							<div class="send"  v-else>
+							<!-- <div class="send"  v-else>
 								<router-link tag="p" :to="Fn.getUrl({path: '/my/custom'})" class="m custom">联系客服</router-link>
-							</div>
+							</div> -->
 						</ul>
 					</div>
 					<!-- <div class="middle_5">map</div> -->
@@ -176,6 +176,7 @@
 				this.status = this.$route.query.status
 			}
 			this.getData()
+			log(this.$store.state.userInfo)
 		},
 		data(){ 
 			return {
@@ -194,16 +195,28 @@
 				id: 0,
 				arr0: [],
 				order_sn: '',
-				status: ''
+				status: '',
+				close_time: '',
+				come_time: '',
+				out_time: ''
 			}
 		},
 		methods: {
-			// getDa(){
-			// 	let that = this 
-			// 	this.Http.post({route:'order.list.index',params:{action:true}}).then(res=>{
-			// 		console.log(555,res.data.data.data)
-			// 	})
-			// },
+			handlePayAgint(total){
+				//http://localhost:8080/api/addons/yun_shop/api.php?i=3&type=1&mid=10&route=order.create
+				let that = this
+				this.Http.post({route: 'order.create',data:{
+					order_sn:that.order_sn,
+					select:1,
+				}}).then(res=>{
+					if(res.data.result == 1){
+						that.$router.push(that.Fn.getUrl({path: '/hotel/payOrder',query: {
+							order_ids: res.data.data.order_id,
+							total
+						}}))
+					}
+				})
+			},
 			getData(){
 				// let that = this
 				// this.Http.post({route:'order.list',data:{
@@ -228,11 +241,17 @@
 						}
 					})
 					console.log(555,that.arr0)
-					this.Http.post({route:'order.create',data:{
+					that.Http.post({route:'order.create',data:{
 						select: 1,
 						order_sn: that.order_sn
 					}}).then(res=>{
-						console.log(9999,res)
+						if(res.data.result == 1){
+							if(res.data.data){
+								that.close_time = res.data.data.close_time
+								that.come_time = res.data.data.come_time
+								that.out_time = res.data.data.out_time
+							}
+						}
 					})
 				})
 			},
@@ -241,11 +260,45 @@
 				this.$refs._line.style.width =  event.path[0].offsetWidth +'px'
 				this.index_ = i
 			},
+			time(value){
+				let dd = new Date(Number(value))
+				return dd.getFullYear() + '-' + this.Fn.zero(dd.getMonth()+1) +  this.Fn.zero(dd.getDate())
+			}
 			
 		},
 		computed: {
 			title(){
 				return this.$route.query.isPay?'待使用':'待付款'
+			},
+			come_time1(){
+				let dd = new Date(Number(this.come_time))
+				return dd.getFullYear() + '-' + this.Fn.zero(dd.getMonth()+1) + '-' + this.Fn.zero(dd.getDate())
+			},
+			out_time1(){
+				let dd = new Date(Number(this.out_time))
+				return dd.getFullYear() + '-' + this.Fn.zero(dd.getMonth()+1) + '-' + this.Fn.zero(dd.getDate())
+			},
+			close_time1(){
+				let that = this
+				let dd = new Date(Number(this.close_time))
+				let nowdd = new Date().getTime()
+				let num = dd - nowdd
+				let min = Math.floor(num/1000/60)
+				let second = Math.floor(num/1000%60)
+				if(num < 0){
+					that.Http.post({route:'order.list.index',data:{
+				  			action: 1,
+				  			order_sn: that.order_sn,
+				  			uid: that.$store.state.userInfo.uid,
+				  			del: true
+				  	}}).then(res=>{
+				  		log(res)
+				  		if(res.data.result == 1){
+				  			that.$router.push(that.Fn.getUrl({path: '/my/order'}))
+				  		}
+				  	})
+				}
+				return min+'分'+second+'秒后自动关闭订单'
 			}
 		},
 		watch: {

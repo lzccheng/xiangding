@@ -135,7 +135,7 @@
           </router-link>
         </div>
         <div class="btn">
-          <button class="green_btn">查看更多酒店</button>
+          <button class="green_btn" v-if="arrData.length>20">查看更多酒店</button>
         </div>
       </div>
   </div>
@@ -286,7 +286,7 @@
               datetime: new Date().getTime()
             },
             {
-              datetime: new Date(new Date().getTime()+1000*60*60*24).getTime()
+              datetime: new Date().getTime()+1000*60*60*24
             }
           ],
           province:'广东省',

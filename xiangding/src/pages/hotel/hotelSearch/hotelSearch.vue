@@ -497,6 +497,7 @@
 			http(params,value){
 				let that = this
 				this.Http.get({route: 'goods.category.get-children-category',params,msg: '数据加载中...'}).then(res=>{
+					log(res)
 					if(res.data.data){
 						if(res.data.data[1]){
 							if(value){

@@ -138,10 +138,12 @@
                 total: null,
                 orders: null,
                 time: null,
-                order_sn: ''
+                order_sn: '',
+                payText: ''
 			}
 		},
 		methods: {
+			
 			WXPay(payParams) {
 		      //alert(document.location.href);
 		      //console.log(""+payParams.timestamp);
@@ -156,13 +158,14 @@
 		        paySign: payParams.paySign, // 支付签名
 		        success: function (res) {
 		          // 支付成功后的回调函数
+		          that.payText = res.errMsg
 		          if (res.errMsg == "chooseWXPay:ok") {
 		            that.$router.push(that.fun.getUrl('member'));
 
-		            MessageBox.alert('支付成功', '提示success');
-		            //that.$router.push({name:'PayYes',params:{order_id:}});
+		            MessageBox.alert('支付成功', '提示');
+		            that.$router.push(that.Fn.getUrl({path: '/my/order',query:{status: 1}}));
 		          } else {
-		            MessageBox.alert(res.errMsg, '提示success');
+		            MessageBox.alert(res.errMsg, '提示');
 		          }
 		        },
 		        cancel: function (res) {
@@ -301,7 +304,11 @@
 					this.getData()
 				}
 			},
-
+			payText(){
+				if(this.payText === 'chooseWXPay:ok'){
+					this.$router.push(this.Fn.getUrl({path: '/my'}))
+				}
+			}
 		}
 	}
 </script>

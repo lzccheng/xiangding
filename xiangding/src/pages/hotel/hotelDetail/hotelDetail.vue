@@ -8,7 +8,7 @@
 			        	<img :src="i.banner_thumb">
 			        </div>
 			    </div> -->
-			    <img :src="hotelData.banner_thumb">
+			    <img :src="hotelData.thumb">
 			</div>
 			<p class="name">{{hotelData.store_name}}</p>
 			<p class="name_1" v-if="hotelData">{{type1[hotelData.category_id]}} | {{star1[hotelData.category_id]}}</p>
@@ -112,17 +112,17 @@
 
 				<div>
 					<div v-if="hotelData">
-						<router-link tag="div" :to="Fn.getUrl({path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: i.title,roomName:i.title,hotelName,id:i.goods_id,date1:date1,date2:date2}})" v-for='(i,index) in rooms' :key='index' class="rooms">
+						<router-link tag="div" :to="Fn.getUrl({path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: i.title,roomName:i.title,hotelName,id:i.goods_id,date1:date1,date2:date2,store_id:id,brand_id}})" v-for='(i,index) in rooms' :key='index' class="rooms">
 							<div>
 								<img :src="i.thumb">
 							</div>
 							<div class="title">
 								<p>{{i.title}}</p>
-								<p>{{i[0]?filterArr(i[0],'房间面积'):'未设定'}}m <sup>2</sup> / <span>{{i[0]?filterArr(i[0],'床型'):'未设定'}}</span>m </p>
+								<p>{{i[0]?filterArr(i[0],'房间面积'):''}}m <sup>2</sup> / <span>{{i[0]?filterArr(i[0],'床型'):''}}</span>m </p>
 							</div>
 							<div class="price">
 								<p>￥{{i.price}}元</p>
-								<p><router-link tag="button" :to="Fn.getUrl({path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: i.title,roomName:i.title,hotelName,date1:date1,date2:date2,id:i.goods_id}})">订房</router-link></p>
+								<p><router-link tag="button" :to="Fn.getUrl({path:'/hotelDetail/hotelSelect/hotelOrder',query:{name: i.title,roomName:i.title,hotelName,date1:date1,date2:date2,id:i.goods_id,store_id:id,brand_id}})">订房</router-link></p>
 							</div>
 						</router-link>
 						<div v-if="!rooms.length" class="rooms" style="text-align: center">
@@ -205,7 +205,7 @@
             }
 
           })
-			 // this.getData()
+			 this.getData()
 		},
 		data(){
 			return {
@@ -258,7 +258,7 @@
 						return i
 					}
 				})
-				return dd[0]?dd[0].value:'未设定'
+				return dd[0]?dd[0].value:''
 			},
 			getData:function(){
 				let that = this
@@ -285,14 +285,24 @@
 				// 	}
 				// }).catch((err)=>{
 				// })
-		          this.Http.post({route:'goods.category.get-children-category',data:{action:true,brand_id: this.brand_id}}).then(res=>{
-		          		console.log(111,res)
+		          this.Http.post({route:'goods.category.get-children-category',data:{action:true,brand_id: this.brand_id,store_id:this.id}}).then(res=>{
 		          		let dd = res.data.data[1].filter(i=>{
 		          			if(i.id == that.id){
 		          				return i
 		          			}
 		          		})
-		          		// that.hotelData = dd[0]
+		          		that.hotelData = dd[0]
+		          })
+		          this.Http.get({route: 'goods.category.get-category',params:{
+		          	action: 1,
+		          	store_id: this.id,
+		          	brand_id: this.brand_id
+		          }}).then(res=>{
+		          	that.rooms = res.data.data.filter(i=>{
+		          			if(i.brand_id == that.brand_id){
+		          				return i
+		          			}
+		          		})
 		          })
 			},
 			handleBubbole(event){
@@ -348,33 +358,8 @@
 					if(this.$route.query.brand_id){
 						this.brand_id = this.$route.query.brand_id
 					}
-					// this.getData()
+					this.getData()
 				}
-			},
-			id(){
-
-				let that = this
-				// that.rooms = []
-				// that.rooms = []
-				// that.Http.post({route:'goods.category.get-category',data:{action:1,brand_id: 2,store_id: that.id}}).then(res=>{
-				// 	console.log(999,res)
-				// 	that.rooms = [...res.data.data]
-				// })
-			    this.Http.post({route:'goods.category.get-category',data:{action:true},msg:'数据加载中...'}).then(res=>{
-	          		let dd = res.data.data[1].filter(i=>{
-	          			if(i.id == that.id){
-	          				return i
-	          			}
-	          		})
-	          		that.hotelData = dd[0]
-	          		that.rooms = that.hotelData.goods.filter(i=>{
-	          			if(i.brand_id == that.brand_id){
-	          				return i
-	          			}
-	          		})
-	          		this.$store.commit('changeHotel',that.hotelData)
-		          	console.log(55,that.hotelData)
-	          })
 			}
 		}
 	}
