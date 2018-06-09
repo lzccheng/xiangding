@@ -293,13 +293,16 @@
 		          		})
 		          		that.hotelData = dd[0]
 		          })
+
 		          this.Http.get({route: 'goods.category.get-category',params:{
 		          	action: 1,
 		          	store_id: this.id,
 		          	brand_id: this.brand_id
 		          }}).then(res=>{
+
 		          	that.rooms = res.data.data.filter(i=>{
 		          			if(i.brand_id == that.brand_id){
+		          				log(this.id)
 		          				return i
 		          			}
 		          		})
@@ -358,6 +361,7 @@
 					if(this.$route.query.brand_id){
 						this.brand_id = this.$route.query.brand_id
 					}
+					this.rooms = []
 					this.getData()
 				}
 			}

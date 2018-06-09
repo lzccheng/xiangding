@@ -27,6 +27,7 @@ Vue.use(Element)
 
 
 Http.get({route:'member.member.getUserInfo'}).then(res=>{
+	window.localStorage.setItem('userInfo',res.data.data.uid)
 	store.commit('changeInfo',res.data.data)
 })
 router.beforeEach((to,from,next)=>{

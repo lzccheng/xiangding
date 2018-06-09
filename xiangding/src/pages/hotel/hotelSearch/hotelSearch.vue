@@ -177,7 +177,7 @@
 					<div class="text" :class="{color_free: free[1].active}" @click="handleChoice(1)">活动优惠</div>
 				</div> -->
 				<div class="show" v-if="hotelData">
-					<router-link :to="Fn.getUrl({path: '/hotelDetail',query:{id:i.id,name: title,hotelName: i.store_name,brand_id,date1:dateValue[0].datetime,date2:dateValue[1].datetime}})" tag="div" class="item" v-for="(i,index) in hotelData" :key='index'>
+					<router-link :to="Fn.getUrl({path: '/hotelDetail',query:{id:i.id,name: title,hotelName: i.store_name,brand_id,date1:dateValue[0].datetime,date2:dateValue[1].datetime}})" tag="div" class="item" v-for="(i,index) in hotelData" :key='index' v-if="i.num">
 						<div class="img">
 							<img :src="i.thumb" alt="">
 						</div>
@@ -553,6 +553,9 @@
 						return that.Fn.tips('价格区间请输入最高值')
 					}
 				}
+				if(that.brand_id){
+					params.brand_id = that.brand_id
+				}
 				for(let i=0;i<this.starItem.length;i++){
 					if(this.starItem[i].active){
 						params["store[category_id]"] = i+1
@@ -633,7 +636,8 @@
 				// }
 				// 
 				let params = {
-					action: 1
+					action: 1,
+					brand_id: this.brand_id
 				}
 				this.http(params,this.erea)
 				this.handleBack()

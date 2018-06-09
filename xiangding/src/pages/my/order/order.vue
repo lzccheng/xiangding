@@ -17,7 +17,7 @@
 			<div class="nav">
 				<div class="tab" ref="tab"> 
 					<div v-for="(i,index) in arrItem" :key='index' @click="handleClick(index,$event)"> 
-						<span>{{i}}</span>
+						<span >{{i}}</span>
 					</div>
 				</div>
 				<div class="line" ref="_line"></div>
@@ -113,7 +113,7 @@
 						<div class="item">
 							<!-- <span class="time">预定日期: 03-20</span> -->
 							<div class="content_box" v-for="(i,index) in arr2" :key="index">
-								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{isPay: 2}})" class="content">
+								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{isPay: 2,id: i.order_sn}})" class="content">
 									<p>
 										<span class="title">{{i.order_sn}}</span>
 										<!-- <span class="title_t">(豪华酒店 |四星级)</span> -->

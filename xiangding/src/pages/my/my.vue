@@ -164,14 +164,14 @@
 				that.msg.level_name = res.data.data.level_name
 				that.msg.agent_nickname = res.data.data.yz_member.agent?res.data.data.yz_member.agent.nickname: ''
 			})
-			this.Http.post({route:'finance.earning.earning-count&action=true&',data:{uid: this.$store.state.userInfo.uid}}).then(res=>{
-				if(res.data.result === 1){
-					that.msg.earning = res.data.data.user  
-					that.msg.agantEarning = res.data.data.services
-				}
-			})
-			
-			
+			setTimeout(function(){
+				that.Http.post({route:'finance.earning.earning-count&action=true&',data:{action: 1,uid: 14}}).then(res=>{
+					if(res.data.result === 1){
+						that.msg.earning = res.data.data.user  
+						that.msg.agantEarning = res.data.data.services
+					}
+				})
+			},100)			
 		},
 		data(){
 			return {

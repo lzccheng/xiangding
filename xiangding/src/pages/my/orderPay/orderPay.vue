@@ -73,7 +73,7 @@
 								</span>
 							</li>
 							<div class="send_box" v-if="title == '待付款'">
-								<router-link tag="span" :to="Fn.getUrl({path: '/my/custom'})" class="custom">联系客服</router-link>
+								<!-- <router-link tag="span" :to="Fn.getUrl({path: '/my/custom'})" class="custom">联系客服</router-link> -->
 								<span @click="handlePayAgint(i.goods_total)" tag="span"  :to="Fn.getUrl({path: '/my/order/payMethods'})" class="custom">付款</span>
 							</div>
 							<!-- <div class="send"  v-else>
@@ -285,7 +285,8 @@
 				let num = dd - nowdd
 				let min = Math.floor(num/1000/60)
 				let second = Math.floor(num/1000%60)
-				if(num < 0){
+				log(this.arr0)
+				if(num < 0 && this.arr0[0].status){
 					that.Http.post({route:'order.list.index',data:{
 				  			action: 1,
 				  			order_sn: that.order_sn,
