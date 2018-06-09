@@ -168,11 +168,11 @@
 						id: 'choose_two',
 						h_id: 'hidden_two'
 					},
-					{
-						name:'钟点房',
-						id: 'choose_three',
-						h_id: 'hidden_three'
-					}
+					// {
+					// 	name:'钟点房',
+					// 	id: 'choose_three',
+					// 	h_id: 'hidden_three'
+					// }
 				],
 				index_: 0,
 				close: true,

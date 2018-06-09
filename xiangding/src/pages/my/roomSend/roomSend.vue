@@ -37,7 +37,7 @@
 					<span class="name">房间规格:</span>
 					<span class="hide_1"><input type="text" placeholder="请输入房间大小(例如：100*100平方)" v-model="formData.param_value[1]"></span>
 				</li>
-				<li >
+				<!-- <li >
 					<el-collapse v-model="activeNames">
 						<el-collapse-item title="取消政策" name="1">
 						    <p class="button">
@@ -56,16 +56,16 @@
 									    <el-checkbox label="超过1小时扣费10%" :disabled="value2"></el-checkbox>
 									  </el-checkbox-group>
 						    	</span>
-						    </p><br/>
+						    </p><br/> -->
 						    <!--<p class="add_1">-->
 						        <!--<span @click="handleShow" :class="{color:value2}" >-->
 							    	<!--<span  class="add_icon"><i class="fas fa-plus-square"></i></span>-->
 							    	<!--<span class="add_text">添加</span>-->
 						    	<!--</span>-->
 						    <!--</p>-->
-						 </el-collapse-item>
+					<!-- 	 </el-collapse-item>
 					</el-collapse>
-				</li>
+				</li> -->
 				<li class="item">
 					<span class="name">早餐提供:</span>
 					<div class="select_1">

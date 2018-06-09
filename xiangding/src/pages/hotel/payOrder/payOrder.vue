@@ -376,7 +376,7 @@
 					font-size: rem(14px);
 				}
 				.phone{
-					padding-left: 28%;
+					padding-left: 23%;
 				}
 			}
 		}
