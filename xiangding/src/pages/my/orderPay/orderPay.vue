@@ -7,7 +7,7 @@
 				<div>
 					<div class="top">
 						<p class="status">订单状态: {{statusText[i.status]}}</p>
-						<p class="time">47小时56分钟后自动关闭订单</p>
+						<p class="time">{{close_time1}}</p>
 						<!-- <router-link tag="div" to="/my/order/payMethods" class="send">
 							<button class="green_btn">付款</button>
 						</router-link> -->
@@ -39,8 +39,8 @@
 								<span class="title">52m²大床1.8m</span>
 								<span class="numb">×{{i.goods_total}}</span>
 							</p>
-							<p><span class="title">预计入住: 2018-04-05 18:30</span></p>
-							<p><span class="title">预计退房: 2018-04-06</span></p>
+							<p><span class="title">预计入住: {{come_time1}}</span></p>
+							<p><span class="title">预计退房: {{out_time1}}</span></p>
 						</div>
 
 					</div>
@@ -191,7 +191,10 @@
 				id: 0,
 				arr0: [],
 				order_sn: '',
-				status: ''
+				status: '',
+				close_time: '',
+				come_time: '',
+				out_time: ''
 			}
 		},
 		methods: {
@@ -225,11 +228,17 @@
 						}
 					})
 					console.log(555,that.arr0)
-					this.Http.post({route:'order.create',data:{
+					that.Http.post({route:'order.create',data:{
 						select: 1,
 						order_sn: that.order_sn
 					}}).then(res=>{
-						console.log(9999,res)
+						if(res.data.result == 1){
+							if(res.data.data){
+								that.close_time = res.data.data.close_time
+								that.come_time = res.data.data.come_time
+								that.out_time = res.data.data.out_time
+							}
+						}
 					})
 				})
 			},
@@ -238,11 +247,31 @@
 				this.$refs._line.style.width =  event.path[0].offsetWidth +'px'
 				this.index_ = i
 			},
+			time(value){
+				let dd = new Date(Number(value))
+				return dd.getFullYear() + '-' + this.Fn.zero(dd.getMonth()+1) +  this.Fn.zero(dd.getDate())
+			}
 			
 		},
 		computed: {
 			title(){
 				return this.$route.query.isPay?'待使用':'待付款'
+			},
+			come_time1(){
+				let dd = new Date(Number(this.come_time))
+				return dd.getFullYear() + '-' + this.Fn.zero(dd.getMonth()+1) + '-' + this.Fn.zero(dd.getDate())
+			},
+			out_time1(){
+				let dd = new Date(Number(this.out_time))
+				return dd.getFullYear() + '-' + this.Fn.zero(dd.getMonth()+1) + '-' + this.Fn.zero(dd.getDate())
+			},
+			close_time1(){
+				let dd = new Date(Number(this.close_time))
+				let nowdd = new Date().getTime()
+				let num = dd - nowdd
+				let min = Math.floor(num/1000/60)
+				let second = Math.floor(num/1000%60)
+				return min+'分'+second+'秒后自动关闭订单'
 			}
 		},
 		watch: {

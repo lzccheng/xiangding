@@ -8,7 +8,7 @@
 			        	<img :src="i.banner_thumb">
 			        </div>
 			    </div> -->
-			    <img :src="hotelData.banner_thumb">
+			    <img :src="hotelData.thumb">
 			</div>
 			<p class="name">{{hotelData.store_name}}</p>
 			<p class="name_1" v-if="hotelData">{{type1[hotelData.category_id]}} | {{star1[hotelData.category_id]}}</p>

@@ -346,6 +346,7 @@
 					}
 				]
 				this.Http.post({route:'order.create',data:{
+					action: 1,
 					address: JSON.stringify(address),
 					dispatch_type_id: 1,
 					goods: JSON.stringify(goods),

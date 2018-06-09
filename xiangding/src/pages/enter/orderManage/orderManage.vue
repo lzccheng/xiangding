@@ -24,11 +24,11 @@
 					<div class="top">
 					    <div class="line_green"></div>
 						<div @click="handlePay(0)" :class="{pay_y: (0 == index)}">
-							<p class="numb">10</p>
+							<!-- <p class="numb">10</p> -->
 							<p class="text">已付款</p>
 						</div>
 						<div @click="handlePay(1)" :class="{pay_y: (1 == index)}">
-							<p class="numb">10</p>
+							<!-- <p class="numb">10</p> -->
 							<p class="text">未付款</p>
 						</div>
 					</div>

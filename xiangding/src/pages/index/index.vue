@@ -286,7 +286,7 @@
               datetime: new Date().getTime()
             },
             {
-              datetime: new Date(new Date().getTime()+1000*60*60*24).getTime()
+              datetime: new Date().getTime()+1000*60*60*24
             }
           ],
           province:'广东省',

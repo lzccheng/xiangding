@@ -35,7 +35,7 @@
 				</li>
 				<li class="item">
 					<span class="name">房间规格:</span>
-					<span class="hide_1"><input type="text" placeholder="请输入房间大小(例如：100平方)" v-model="formData.param_value[1]"></span>
+					<span class="hide_1"><input type="number" placeholder="请输入房间大小(例如：100)" v-model="formData.param_value[1]"></span>
 				</li>
 				<!-- <li >
 					<el-collapse v-model="activeNames">
@@ -204,7 +204,7 @@
               '是',
               ['24小时热水'],
               '1.5米'
-            ]
+            ],
           }
 			}
 		},
