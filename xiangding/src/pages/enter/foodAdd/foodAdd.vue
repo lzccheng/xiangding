@@ -11,13 +11,13 @@
 				<span><input type="text" v-model="formData.price" placeholder="请输入套餐价格"></span>
 			</p>
 			<div class="photo_box">
-				<div><span>套餐照片</span></div>
+				<span>套餐照片</span>
 				<div>
 					<span>
 					    <label for="file" style="border: none;"><i class="fas fa-plus"></i></label>
 					    <input type="file" @change="handleFile" id="file" style="display: none;border: none;">
 					</span>
-					<div class="photo_show" style="border: none;">
+					<div class="photo_show" v-show="formData.thumb">
 						<img :src="formData.thumb">
 					</div>
 				</div>

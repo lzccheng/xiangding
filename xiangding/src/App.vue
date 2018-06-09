@@ -159,6 +159,9 @@ export default {
 ul,li{
   list-style: none;
 }
+img{
+  border: none;
+}
 .noscroll{
   position: fixed;
   left: 0;

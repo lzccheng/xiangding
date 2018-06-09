@@ -327,8 +327,11 @@
 					return this.Fn.tips('姓名不能为空')
 				}
 				if(!this.formData.tel){
-
 					return this.Fn.tips('手机号码不能为空')
+				}else{
+					if(!this.Fn.checkPhone(this.formData.tel)){
+						return this.Fn.tips('请输入正确的手机号码')
+					}
 				}
 				//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=order.create
 				let that = this

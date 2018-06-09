@@ -405,11 +405,11 @@
 		}
 		.control{
 			position: fixed;
-			bottom: rem(36px);
+			bottom: rem(42px);
 			left: 0;
 			background-color: #e5e5e5;
 			display: flex;
-			border-bottom: #ffffff solid rem(1px);
+			border-bottom: #ffffff solid rem(2px);
 			// justify-content: space-around;
 			// align-items: center;
 			width: 100%;
@@ -431,7 +431,7 @@
 			}
 		}
 		.line_{
-			border: #ffffff solid rem(2px);
+			border: #ffffff solid rem(5px);
 			position: fixed;
 			bottom: rem(42px);
 			width: 100%;

@@ -3,9 +3,11 @@ $rem: 16px !default;
 	@return $num/$rem*1rem;
 }
 .photo_show{
+	border: none;
   width: 50%;
   margin: 0 auto;
   img{
+  	border: none;
     width:100%;
   }
 }

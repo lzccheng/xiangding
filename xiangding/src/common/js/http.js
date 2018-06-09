@@ -34,7 +34,7 @@ export default {
 					Indicator.close()
 				}
 				if(typeof res.data === 'string'){
-					Fn.tips('数据加载出错！')
+					Fn.tips('暂无数据')
 				}
 				if(res.data.result == 0 && res.data.data.login_status != undefined && res.data.data.login_status == 0){
 					// return console.log(res.data.data.login_url)
@@ -46,7 +46,7 @@ export default {
 				if(obj.msg){
 					Indicator.close()
 				}
-				Fn.tips('数据加载出错！')
+				Fn.tips('暂无数据')
 				reject(err)
 			})
 		})
@@ -73,7 +73,7 @@ export default {
 					Indicator.close()
 				}
 				if(typeof res.data === 'string'){
-					Fn.tips('数据加载出错！')
+					Fn.tips('暂无数据')
 				}
 				if(res.data.result == 0 && res.data.data.login_status != undefined && res.data.data.login_status == 0){
 					window.location.href = res.data.data.login_url + '&yz_redirect=' + Fn.base64_encode(document.location.href+'?') + "&mid=" + Fn.getKey('mid')
@@ -84,7 +84,7 @@ export default {
 				if(obj.msg){
 					Indicator.close()
 				}
-				Fn.tips('数据加载出错！')
+				Fn.tips('暂无数据')
 				reject(err)
 			})
 		})

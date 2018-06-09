@@ -35,7 +35,7 @@
 				</li>
 				<li class="item">
 					<span class="name">房间规格:</span>
-					<span class="hide_1"><input type="text" placeholder="请输入房间大小(例如：100*100平方)" v-model="formData.param_value[1]"></span>
+					<span class="hide_1"><input type="text" placeholder="请输入房间大小(例如：100平方)" v-model="formData.param_value[1]"></span>
 				</li>
 				<!-- <li >
 					<el-collapse v-model="activeNames">
@@ -75,16 +75,16 @@
 					    </el-select>
 					</div>
 				</li>
-				<!-- <li class="item">
+				<li class="item">
 					<span class="name">床型:</span>
 					<span class="select_1">
-						<el-select v-model="select5" slot="prepend" placeholder="请选择">
+						<el-select v-model="formData.param_value[6]" slot="prepend" placeholder="请选择">
 					      <el-option label="1.5米" value="1"></el-option>
 					      <el-option label="1.8米" value="2"></el-option>
 					      <el-option label="2米" value="3"></el-option>
 					    </el-select>
 					</span>
-				</li> -->
+				</li>
 				<li class="item">
 					<span class="name">窗户:</span>
 					<div class="select_1">
@@ -99,14 +99,13 @@
 				    <span class="name">房间照片:</span>
 				    <div class="photo">
 						<div class="icon">
-
 							<label for="file"><i class="far fa-plus-square"></i></label>
 							<input type="file" @change="handleFile" id="file" style="display: none">
 						</div>
 						<!--<span class="hide_1">最多添加4张</span>-->
 					</div>
-					<div class="photo_show">
-						<div v-show="formData.thumb">
+					<div class="photo_show" v-show="formData.thumb">
+						<div>
 							<img :src="formData.thumb">
 						</div>
 					</div>
@@ -194,7 +193,8 @@
               '取消政策',
               '是否供应早餐',
               '是否有窗户',
-              '房间配套设施'
+              '房间配套设施',
+              '床型'
             ],
             param_value:[
               '',
@@ -202,7 +202,8 @@
               ['超过1小时扣费10%'],
               '是',
               '是',
-              ['24小时热水']
+              ['24小时热水'],
+              '1.5米'
             ]
           }
 			}
