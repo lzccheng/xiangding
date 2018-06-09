@@ -72,9 +72,12 @@
 									<span class="money_icon color" style="padding-left: 0">{{i.price}}</span>
 								</span>
 							</li>
-							<div class="send_box">
+							<div class="send_box" v-if="title == '待付款'">
 								<router-link tag="span" :to="Fn.getUrl({path: '/my/custom'})" class="custom">联系客服</router-link>
-								<router-link tag="span" :to="Fn.getUrl({path: '/my/order/payMethods'})" class="custom">付款</router-link>
+								<router-link tag="span"  :to="Fn.getUrl({path: '/my/order/payMethods'})" class="custom">付款</router-link>
+							</div>
+							<div class="send"  v-else>
+								<router-link tag="p" :to="Fn.getUrl({path: '/my/custom'})" class="m custom">联系客服</router-link>
 							</div>
 						</ul>
 					</div>
@@ -517,18 +520,23 @@
 						}
 					}
 				}
-				.send_box{
-						padding: 0 30%;
-						.custom{
-							background-color: #43c122;
-							color: #ffffff;
-							padding: rem(6px) rem(12px);
-							font-size: rem(14px);
-							border-radius: rem(5px);
-							margin-right: rem(8px);
+				.custom{
+					background-color: #43c122;
+					color: #ffffff;
+					padding: rem(6px) rem(12px);
+					font-size: rem(14px);
+					border-radius: rem(5px);
+					margin-right: rem(8px);
 
-						}
-					}
+				}
+				.send_box{
+					padding: 0 30%;
+					
+				}
+				.send{
+					padding: 0 35%;
+					text-align: center;
+				}
 			}
 		}
 		.middle_5{

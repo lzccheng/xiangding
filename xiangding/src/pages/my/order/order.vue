@@ -100,7 +100,7 @@
 									
 									<div class="button">
 										<span @click="handleCancelroom(i.order_id,$event)" :to="Fn.getUrl({path: '/my/cancelRoom'})" class="change">申请退房</span>
-										<router-link tag="span" :to="Fn.getUrl({path: '/hotelDetail',query:{id:4,hotelName: '银河大酒店'}})" class="pay">再次预定</router-link>
+										<router-link tag="span" :to="Fn.getUrl({path: '/hotelDetail',query:{id:i.goods_id,hotelName: i.title}})" class="pay">再次预定</router-link>
 									</div>
 								</div>
 							</div>
