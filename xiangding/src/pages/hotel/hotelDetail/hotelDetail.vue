@@ -360,7 +360,7 @@
 				// 	console.log(999,res)
 				// 	that.rooms = [...res.data.data]
 				// })
-			    this.Http.post({route:'goods.category.get-children-category',data:{action:true},msg:'数据加载中...'}).then(res=>{
+			    this.Http.post({route:'goods.category.get-category',data:{action:true},msg:'数据加载中...'}).then(res=>{
 	          		let dd = res.data.data[1].filter(i=>{
 	          			if(i.id == that.id){
 	          				return i
