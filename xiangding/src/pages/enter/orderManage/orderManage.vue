@@ -319,10 +319,10 @@
 								top: 32%;
 								left: 50%;
 							}
-							.numb{
-								padding-top: rem(5px);
-								font-size: rem(18px);
+							.text{
+								padding: rem(10px) 0;
 							}
+
 						}
 					}
 					div{

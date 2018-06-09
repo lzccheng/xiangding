@@ -26,11 +26,11 @@
 				<span class="weChat_text">{{cash}}</span>
 			</p>
 		</div>
-		<div class="form">
+		<div class="form" style="border-bottom: none">
 			<p class="input">
 				<label>
 				  <p>手续费</p>
-				  <p class="text_5">{{text}}</p>
+				  <p class="text_5" style="border-bottom: none">{{text}}</p>
 				</label>
 				<!-- <span class="weChat_text">0.00</span> -->
 			</p>

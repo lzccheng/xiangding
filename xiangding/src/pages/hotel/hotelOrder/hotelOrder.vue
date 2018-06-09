@@ -42,7 +42,7 @@
 						</p>
 						<p class="msg_1">
 							<span class="head">网络</span>
-							<span class="text">有<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'有'):''}} --></span>
+							<span class="text">wifi供应<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'有'):''}} --></span>
 							<span class="head">容纳</span>
 							<span class="text">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'可住人数'):''}}</span>
 						</p>
@@ -68,11 +68,11 @@
 						</p>
 						<p class="msg_1">
 							<span class="head">网络</span>
-							<span class="text">有<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'有'):''}} --></span>
+							<span class="text">wifi供应<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'有'):''}} --></span>
 							<span class="head">电话</span>
 							<span class="text" v-if="hotelData">{{hotelData.mobile}}<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'电话'):''}} --></span>
 						</p>
-						<p class="msg_1">
+						<p class="msg_1" v-if="title == '会议室'">
 							<!-- <span class="head">楼层</span>
 							<span class="text">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'楼层'):''}}</span> -->
 							<span class="head">早餐</span>

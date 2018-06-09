@@ -275,7 +275,7 @@
           date2_value: '',
           input1: '',
           star: 4,
-          price: [80, 800],
+          price: [0, 3000],
           _lng: '',
           _lat: '',
           show_erea: true,
@@ -299,7 +299,7 @@
           seachMinPrice: '',
           seachMaxPrice: '',
           store_name: '',
-          category_id: 3,
+          category_id: 0,
           store_name: ''
         }
       },

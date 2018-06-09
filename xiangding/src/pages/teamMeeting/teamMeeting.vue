@@ -190,14 +190,14 @@
 		          },
 				selectedOptions: ['广东省','广州市'],
 				meettingNum: 1,
-				star: 3,
+				star: 0,
 				date_value: new Date(),
 				date_value2: tomo,
 				date1_value: '',
 				date2_value: '',
 				input: '',
 				meetting_total: '',
-				pay: [80,800],
+				pay: [0,3000],
 				text_erea: '广州市荔湾区沙面街道',
 				date_value: [
 		            {
