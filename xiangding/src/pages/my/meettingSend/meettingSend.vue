@@ -32,7 +32,7 @@
 				<!--</li>-->
 				<li class="item">
 					<span class="name">会议室面积:</span>
-					<span class="hide_1"><input type="text" v-model="formData.param_value[0]" placeholder="请填写酒店会议室面积(100*100平方)"></span>
+					<span class="hide_1"><input type="text" v-model="formData.param_value[0]" placeholder="请填写酒店会议室面积"></span>
 				</li>
 				<li class="item">
 					<span class="name">窗户:</span>
@@ -149,8 +149,8 @@
               type: 1,
               sku: '间',
               thumb_url: '999',
-              // price: 0,
-              // market_price: ,
+              price: '',
+              market_price: '',
               cost_price: 0,
               stock: 1,
               reduce_stock_method: 1,
