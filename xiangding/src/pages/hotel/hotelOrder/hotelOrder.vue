@@ -76,7 +76,7 @@
 							<!-- <span class="head">楼层</span>
 							<span class="text">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'楼层'):''}}</span> -->
 							<span class="head">早餐</span>
-							<span class="text">暂无信息<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'是否有早餐'):''}} --></span>
+							<span class="text">有<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'是否有早餐'):''}} --></span>
 						</p>
 					</div>
 				</div>
