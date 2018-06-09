@@ -15,7 +15,7 @@
 			</div>
 			<div class="message">
 				<p class="title"><span>{{hotelName}}</span></p>
-				<p class="star"><span>{{type1[type]}} | {{star1[type]}}</span></p>
+				<p class="star" v-if="hotelData"><span>{{type1[hotelData.category_id]}} | {{star1[hotelData.category_id]}}</span></p>
 				<div class="msg">
 					<div class="img"><img :src="detailt.thumb"></div>
 					<div class="text">
@@ -25,7 +25,7 @@
 						<p v-else>{{detailt.title}}</p>
 						<p><span><!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'房间面积'):''}} --><!-- 80m <sup>2</sup>	 -->
 						<span v-if="title === '会议室'">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'可住人数'):''}}人</span> 
-						<span  v-else>大床</span> 
+						<span  v-else  v-if="dataText">{{filterArr(dataText['0'],'房间面积')}}m大床</span> 
 						</span><span class="change">￥{{detailt.price}}元</span></p>
 					</div>
 					<div>
@@ -54,29 +54,29 @@
 						</p>
 					</div>
 					<div v-else>
-						<p class="msg_1">
+						<p class="msg_1" v-if="dataText">
 							<span class="head">床型</span>
-							<span class="text"><!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'床型'):''}} -->暂无信息</span>
+							<span class="text"><!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'床型'):''}} -->{{filterArr(dataText['0'],'床型')}}</span>
 							<span class="head">面积</span>
-							<span class="text"><!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'房间面积'):''}} -->暂无信息 <!-- <sup>2</sup> --></span>
+							<span class="text" v-if="dataText"><!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'房间面积'):''}} -->{{filterArr(dataText['0'],'房间面积')}} m <sup>2</sup> <!-- <sup>2</sup> --></span>
 						</p>
 						<p class="msg_1">
 							<span class="head">窗户</span>
-							<span class="text">有<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'是否有窗'):''}} --></span>
+							<span class="text" v-if="dataText">{{filterArr(dataText['0'],'是否有窗户')}}<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'是否有窗'):''}} --></span>
 							<span class="head">可住</span>
-							<span class="text">2人<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'可住人数'):''}} --></span>
+							<span class="text" v-if="dataText">{{filterArr(dataText['0'],'可住人数')}}人<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'可住人数'):''}} --></span>
 						</p>
 						<p class="msg_1">
 							<span class="head">网络</span>
 							<span class="text">有<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'有'):''}} --></span>
 							<span class="head">电话</span>
-							<span class="text">{{$store.state.hotelInfo.mobile}}<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'电话'):''}} --></span>
+							<span class="text" v-if="hotelData">{{hotelData.mobile}}<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'电话'):''}} --></span>
 						</p>
 						<p class="msg_1">
 							<!-- <span class="head">楼层</span>
 							<span class="text">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'楼层'):''}}</span> -->
 							<span class="head">早餐</span>
-							<span class="text">有<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'是否有早餐'):''}} --></span>
+							<span class="text" v-if="dataText">{{filterArr(dataText['0'],'是否供应早餐')}}<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'是否有早餐'):''}} --></span>
 						</p>
 					</div>
 				</div>
@@ -220,6 +220,12 @@
 			if(this.$route.query.id){
 				this.id = this.$route.query.id
 			}
+			if(this.$route.query.store_id){
+				this.store_id = this.$route.query.store_id
+			}
+			if(this.$route.query.brand_id){
+				this.brand_id = this.$route.query.brand_id
+			}
 			this.type = this.$store.state.hotelInfo.category_id
 			this.getData()    
 
@@ -268,10 +274,15 @@
 					tel: ''
 				},
 				money: 0,
-				cancel: null
+				cancel: null,
+				store_id: 0,
+				brand_id: 0,
+				hotelData: null,
+				dataText: null
 			}
 		},
 		computed: {
+
 			month1(){
 				let dd = new Date(Number(this.$route.query.date1))
 				return this.Fn.zero(dd.getMonth()+1)+'-'+this.Fn.zero(dd.getDate())
@@ -316,12 +327,29 @@
 					if(this.$route.query.id){
 						this.id = this.$route.query.id
 					}
+					if(this.$route.query.store_id){
+						this.store_id = this.$route.query.store_id
+					}
+					if(this.$route.query.brand_id){
+						this.brand_id = this.$route.query.brand_id
+					}
 					this.type = this.$store.state.hotelInfo.category_id
 					this.getData()
 				}
 			}
 		},
 		methods:{
+			filterArr(arr,value){
+				if(arr.length){
+					let dd = arr.filter(i=>{
+						if(i.title === value){
+							return i
+						}
+					})
+					return dd[0]?dd[0].value:''
+				}
+				return ''
+			},
 			handleOrder(){
 				if(!this.formData.name){
 					this.$refs.name.focus()
@@ -371,11 +399,30 @@
 				this.Http.get({route:'goods.goods.get-goods',params:{id:this.id,action: 1}}).then(res=>{
 					that.detailt = res.data.data
 				})
-				this.Http.post({route:'goods.category.get-category',data:{action_m: 1,brand_id:2,store_id:this.$store.state.hotelInfo.id}}).then(res=>{
+				this.Http.post({route:'goods.category.get-category',data:{action_m: 1,brand_id:2,store_id:this.store_id}}).then(res=>{
 					if(res.data.result === 1){
 						that.money = res.data.data
 					}
 				})
+				this.Http.post({route:'goods.category.get-category',data:{action: 1,brand_id:2,store_id:this.store_id}}).then(res=>{
+					if(res.data.result === 1){
+						let arr = res.data.data.filter(i=>{
+							log(i.id,that.id)
+							if(i.goods_id == that.id){
+								return i
+							}
+						})
+						that.dataText = arr[0]
+					}
+				})
+				this.Http.post({route:'goods.category.get-children-category',data:{action:true,brand_id: this.brand_id,store_id:this.store_id}}).then(res=>{
+		          		let dd = res.data.data[1].filter(i=>{
+		          			if(i.id == Number(that.store_id)){
+		          				return i
+		          			}
+		          		})
+		          		that.hotelData = dd[0]
+		          })
 			},
 			handleBlur(event){
 				event.path[0].blur()

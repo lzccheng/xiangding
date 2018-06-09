@@ -14,7 +14,7 @@
 					</div>
 					<div class="middle_1">
 						<p>
-							<span class="personal">客户: {{$store.state.userInfo.realname}}</span>
+							<span class="personal">客户: {{$store.state.userInfo.realname?$store.state.userInfo.realname:$store.state.userInfo.nickname}}</span>
 							<span class="phone">{{$store.state.userInfo.mobile}}</span>
 						</p>
 						<!-- <p class="sex">性别: {{$store.state.userInfo.sex}}</p> -->
@@ -74,11 +74,11 @@
 							</li>
 							<div class="send_box" v-if="title == '待付款'">
 								<router-link tag="span" :to="Fn.getUrl({path: '/my/custom'})" class="custom">联系客服</router-link>
-								<router-link tag="span"  :to="Fn.getUrl({path: '/my/order/payMethods'})" class="custom">付款</router-link>
+								<span @click="handlePayAgint(i.goods_total)" tag="span"  :to="Fn.getUrl({path: '/my/order/payMethods'})" class="custom">付款</span>
 							</div>
-							<div class="send"  v-else>
+							<!-- <div class="send"  v-else>
 								<router-link tag="p" :to="Fn.getUrl({path: '/my/custom'})" class="m custom">联系客服</router-link>
-							</div>
+							</div> -->
 						</ul>
 					</div>
 					<!-- <div class="middle_5">map</div> -->
@@ -176,6 +176,7 @@
 				this.status = this.$route.query.status
 			}
 			this.getData()
+			log(this.$store.state.userInfo)
 		},
 		data(){ 
 			return {
@@ -201,12 +202,21 @@
 			}
 		},
 		methods: {
-			// getDa(){
-			// 	let that = this 
-			// 	this.Http.post({route:'order.list.index',params:{action:true}}).then(res=>{
-			// 		console.log(555,res.data.data.data)
-			// 	})
-			// },
+			handlePayAgint(total){
+				//http://localhost:8080/api/addons/yun_shop/api.php?i=3&type=1&mid=10&route=order.create
+				let that = this
+				this.Http.post({route: 'order.create',data:{
+					order_sn:that.order_sn,
+					select:1,
+				}}).then(res=>{
+					if(res.data.result == 1){
+						that.$router.push(that.Fn.getUrl({path: '/hotel/payOrder',query: {
+							order_ids: res.data.data.order_id,
+							total
+						}}))
+					}
+				})
+			},
 			getData(){
 				// let that = this
 				// this.Http.post({route:'order.list',data:{
@@ -269,11 +279,25 @@
 				return dd.getFullYear() + '-' + this.Fn.zero(dd.getMonth()+1) + '-' + this.Fn.zero(dd.getDate())
 			},
 			close_time1(){
+				let that = this
 				let dd = new Date(Number(this.close_time))
 				let nowdd = new Date().getTime()
 				let num = dd - nowdd
 				let min = Math.floor(num/1000/60)
 				let second = Math.floor(num/1000%60)
+				if(num < 0){
+					that.Http.post({route:'order.list.index',data:{
+				  			action: 1,
+				  			order_sn: that.order_sn,
+				  			uid: that.$store.state.userInfo.uid,
+				  			del: true
+				  	}}).then(res=>{
+				  		log(res)
+				  		if(res.data.result == 1){
+				  			that.$router.push(that.Fn.getUrl({path: '/my/order'}))
+				  		}
+				  	})
+				}
 				return min+'分'+second+'秒后自动关闭订单'
 			}
 		},

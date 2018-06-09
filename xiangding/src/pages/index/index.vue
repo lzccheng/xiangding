@@ -135,7 +135,7 @@
           </router-link>
         </div>
         <div class="btn">
-          <button class="green_btn">查看更多酒店</button>
+          <button class="green_btn" v-if="arrData.length>20">查看更多酒店</button>
         </div>
       </div>
   </div>
