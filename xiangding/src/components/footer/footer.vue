@@ -12,6 +12,7 @@
 	export default {
 		mounted(){
 			var routeName = this.$route.name
+			let that = this
 			if(routeName === 'index'){
 				this.indexData = 0
 			}
