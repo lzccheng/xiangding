@@ -338,8 +338,8 @@
 								padding-left: 1%;
 								&.img{
 									display: inline-block;
-									width: 24%;
-									height: rem(93px);
+									width: 22%;
+									height: rem(80px);
 									img{
 										width: 100%;
 										height: 100%;
