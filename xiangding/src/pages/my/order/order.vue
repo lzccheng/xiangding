@@ -17,7 +17,7 @@
 			<div class="nav">
 				<div class="tab" ref="tab"> 
 					<div v-for="(i,index) in arrItem" :key='index' @click="handleClick(index,$event)"> 
-						<span>{{i}}</span>
+						<span @click="handleRequest(index)">{{i}}</span>
 					</div>
 				</div>
 				<div class="line" ref="_line"></div>
@@ -113,14 +113,14 @@
 						<div class="item">
 							<!-- <span class="time">预定日期: 03-20</span> -->
 							<div class="content_box" v-for="(i,index) in arr2" :key="index">
-								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{isPay: 2}})" class="content">
+								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{isPay: 2,id: i.order_sn}})" class="content">
 									<p>
 										<span class="title">{{i.order_sn}}</span>
 										<!-- <span class="title_t">(豪华酒店 |四星级)</span> -->
 										<span class="cross"><i class="far fa-times-circle"></i></span>
 									</p>
 									<p>
-										<span class="title_hide">{{i.goods_total}}间.  {{i.has_many_order_goods.length?i.has_many_order_goods[0].title: ''}}</span>
+										<span class="title_hide">{{i.goods_total}}间.  {{i.has_many_order_goods?i.has_many_order_goods.length?i.has_many_order_goods[0].title: '':''}}</span>
 									</p>
 									<p>
 										<span class="title_hide">客户名称: {{$store.state.userInfo.realname?$store.state.userInfo.realname:$store.state.userInfo.nickname}} </span>
@@ -161,15 +161,15 @@
 		},
 		mounted(){
 			this._lineLeft()
-			if(this.index_ == 0){
-				this.getData({status: 0})
-			}
-			if(this.index_ == 1){
-				this.getData({status: 1},2)
-			}
-			if(this.index_ == 2){
-				this.getData({all: 1})
-			}
+			// if(this.index_ == 0){
+			// 	this.getData({status: 0})
+			// }
+			// if(this.index_ == 1){
+			// 	this.getData({status: 1},2)
+			// }
+			// if(this.index_ == 2){
+			// 	this.getData({all: 1})
+			// }
 		},
 		data(){
 			return {
@@ -199,6 +199,13 @@
 			} 
 		},
 		methods: {
+			handleRequest(i){
+				let obj = {status: i,attr: 'arr'+i}
+				if(i == 2){
+					obj.all = 1
+				}
+				this.getData(obj)
+			},
 			WXPay(payParams) {
 		      //alert(document.location.href);
 		      //console.log(""+payParams.timestamp);
@@ -310,50 +317,23 @@
 					}
 				})
 			},
-			getData(status,num){
+			getData(obj){
 				let that = this
-				if(status.all){
-					this.Http.post({route:'order.list.index'}).then(res=>{
-						that.arr2 = res.data.data.data
-						log(that.arr2)
-					})
-					return 
-				}
-				this.Http.post({route:'order.list',data:{
-					uid:that.$store.state.userInfo.uid,
-					action: 1,
-					status:status.status,
-				}}).then(res=>{
-					that['arr'+status.status] = res.data.data.map(i=>{
-						that.timesText[i.id] = {
-							[i.id]: {
-								value: '',
-								interval: null
-							},
-						}
-						return i
-					})
-					log(that['arr'+status.status])
-					if(num){
-						this.Http.post({route:'order.list',data:{
-							uid:that.$store.state.userInfo.uid,
-							action: 1,
-							status: num,
-						}}).then(ress=>{
-							ress.data.data.map(i=>{
-								that.timesText[i.id] = {
-									[i.id]: {
-										value: '',
-										interval: null
-									},
-								}
-								that['arr'+status.status].push(i)
-								return i
-							})
+				let data = {action: 1,uid: this.$store.state.userInfo.uid}
+				if(obj.page){data.page = obj.page}
+				if(obj.status){data.status = obj.status}
+				if(obj.all){
+					for(let i=0;i<5;i++){
+						data.status = i-1
+						this.Http.post({route: 'order.list.index',data}).then(res=>{
+							that[obj.attr] = [...res.data.data,...that[obj.attr]]
 						})
 					}
+					return
+				}
+				this.Http.post({route: 'order.list.index',data}).then(res=>{
+					that[obj.attr] = res.data.data
 				})
-				log(that['arr'+status.status])
 			},
 			remaining_time(id,e){
 				let that = this
@@ -424,15 +404,15 @@
 			$route(to,from){
 				if(to.name === 'order'){
 					this._lineLeft()
-					if(this.index_ == 0){
-						this.getData({status: 0})
-					}
-					if(this.index_ == 1){
-						this.getData({status: 1},2)
-					}
-					if(this.index_ == 2){
-						this.getData({all: 1})
-					}
+					// if(this.index_ == 0){
+					// 	this.getData({status: 0})
+					// }
+					// if(this.index_ == 1){
+					// 	this.getData({status: 1},2)
+					// }
+					// if(this.index_ == 2){
+					// 	this.getData({all: 1})
+					// }
 				}
 			},
 			// index_(){

@@ -7,7 +7,7 @@
 				<div>
 					<div class="top">
 						<p class="status">订单状态: {{statusText[i.status]}}</p>
-						<p class="time">{{close_time1}}</p>
+						<p class="time" v-if="i.status == 0">{{close_time1}}</p>
 						<!-- <router-link tag="div" to="/my/order/payMethods" class="send">
 							<button class="green_btn">付款</button>
 						</router-link> -->
@@ -30,13 +30,13 @@
 							<img :src="i.has_many_order_goods[0].thumb" alt="">
 						</div>
 						<div class="text_box">
-							<p class="hotel_name">银河大酒店</p>
+							<p class="hotel_name">{{i.order_sn}}</p>
 							<p>
 								<span class="room_name">{{i.has_many_order_goods[0].title}}</span>
 								<span class="money">{{i.goods_price}}</span>
 							</p>
 							<p>
-								<span class="title">52m²大床1.8m</span>
+								<span class="title" v-if="detailt">{{detailt.has_many_params?filterArr(detailt.has_many_params,'房间面积'):''}}m²大床{{detailt.has_many_params?filterArr(detailt.has_many_params,'床型'):''}}</span>
 								<span class="numb">×{{i.goods_total}}</span>
 							</p>
 							<p><span class="title">预计入住: {{come_time1}}</span></p>
@@ -73,7 +73,7 @@
 								</span>
 							</li>
 							<div class="send_box" v-if="title == '待付款'">
-								<router-link tag="span" :to="Fn.getUrl({path: '/my/custom'})" class="custom">联系客服</router-link>
+								<!-- <router-link tag="span" :to="Fn.getUrl({path: '/my/custom'})" class="custom">联系客服</router-link> -->
 								<span @click="handlePayAgint(i.goods_total)" tag="span"  :to="Fn.getUrl({path: '/my/order/payMethods'})" class="custom">付款</span>
 							</div>
 							<!-- <div class="send"  v-else>
@@ -176,7 +176,6 @@
 				this.status = this.$route.query.status
 			}
 			this.getData()
-			log(this.$store.state.userInfo)
 		},
 		data(){ 
 			return {
@@ -198,7 +197,8 @@
 				status: '',
 				close_time: '',
 				come_time: '',
-				out_time: ''
+				out_time: '',
+				detailt: null
 			}
 		},
 		methods: {
@@ -218,19 +218,6 @@
 				})
 			},
 			getData(){
-				// let that = this
-				// this.Http.post({route:'order.list',data:{
-				// 	uid:that.$store.state.userInfo.uid,
-				// 	action: 1,
-				// 	status: 0,
-				// }}).then(res=>{
-				// 	that.arr0 = res.data.data.filter(i=>{
-				// 		if(i.order_sn === that.id){
-				// 			return i
-				// 		}
-				// 	})
-				// 	console.log(3333,that.arr0)
-				// })
 				let that = this 
 				this.Http.post({route:'order.list.index',params:{action:true,status: that.status}}).then(res=>{
 					that.arr0 = res.data.data.data.filter(i=>{
@@ -240,7 +227,14 @@
 							return i
 						}
 					})
-					console.log(555,that.arr0)
+					that.Http.get({route: 'goods.goods.get-goods',params:{
+						action: 1,
+						id: that.arr0[0].has_many_order_goods[0].goods_id
+					}}).then(res=>{
+						if(res.data.result == 1){
+							that.detailt = res.data.data
+						}
+					})
 					that.Http.post({route:'order.create',data:{
 						select: 1,
 						order_sn: that.order_sn
@@ -254,6 +248,14 @@
 						}
 					})
 				})
+			},
+			filterArr(arr,value){
+				let dd = arr.filter(i=>{
+					if(i.title === value){
+						return i
+					}
+				})
+				return dd[0]?dd[0].value:''
 			},
 			handleClick(i,event){
 				this.$refs._line.style.left = event.path[0].offsetLeft + 'px'
@@ -285,7 +287,8 @@
 				let num = dd - nowdd
 				let min = Math.floor(num/1000/60)
 				let second = Math.floor(num/1000%60)
-				if(num < 0){
+				log(this.arr0)
+				if(num < 0 && this.arr0[0].status){
 					that.Http.post({route:'order.list.index',data:{
 				  			action: 1,
 				  			order_sn: that.order_sn,

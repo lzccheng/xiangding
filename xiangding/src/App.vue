@@ -122,14 +122,7 @@ export default {
       }else{
         this._footerHide()
       }
-      if(!this.Fn.getKey('mid')){
-        let str = window.location.href
-        let a = '&'
-        if(str.split('#')[1].indexOf('?') === -1){
-          a = '?'
-        }
-        window.location.href = window.location.href + a + 'mid=' + this.$store.state.userInfo.uid
-      }
+      
       // console.log(111,this.$store.state.userInfo)
       // if(!this.Fn.getKey('mid')){
       //   let bool = window.location.href.split('#')[1].indexOf('?')>-1?'&':'?'

@@ -2,13 +2,13 @@
 	<div class="box">
 		<Header title="订单管理"/>
 		<div class="top_box">
-		<div class="nav">
+		<!-- <div class="nav">
 			<div class="input">
 				<span class="addr">广州</span>
 				<span class="text"><input type="text" placeholder="酒店/品牌"><i class="fas fa-search"></i></span>
 			</div>
 			<div class="i"><i class="far fa-calendar-alt"></i></div>
-		</div>
+		</div> -->
 		<div class="choice">
 				<div class="tab" ref="tab">
 					<div v-for="(i,index) in arrItem" :key='index' @click="handleClick(index,$event)">
@@ -35,25 +35,25 @@
 					<div v-if="0 == index">
 						
 							<div v-for="(i,index) in havePay" class="item" :key="index">
-              					<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus',query:{id:i.id}})">
+              					<div tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus',query:{id:i.id}})">
 									<div>
 										<div class="img">
-											<img src="" alt="">
+											<img :src="i.thumb" alt="">
 										</div>
 										<div class="text_box">
 											<div class="left">
 												<p class="name_1">订单号: {{i.order_sn}}</p>
-												<p class="name_1 color"><span>¥{{i.price}}</span></p>
-												<p class="name_2">客户名称: {{i.store_name}}</p>
-												<p class="name_2"><span>入住: 3月28</span>  <span>退房: 3月29</span></p>
-												<p class="name_2">办理时间: 2018-1-12</p>
+												<p class="name_1">订单价格：<span>¥{{i.price}}</span></p>
+												<!-- <p class="name_2">客户名称: {{i.store_name}}</p> -->
+												<p class="name_2"><span>入住: {{time(i.come_time)}}</span>  <span>退房: {{time(i.out_time)}}</span></p>
+												<p class="name_2">办理时间: {{time(i.created_time+'000')}}</p>
 											</div>
 											<div class="right">
-												<p class="numb"><i class="fas fa-chevron-right"></i></p>
+												<p class="numb" @click="handleCommit(i.id)">确认入住</i></p>
 											</div>
 										</div>
 									</div>
-							   </router-link>
+							   </div>
 				            </div>
 				        
 		            </div>
@@ -61,23 +61,23 @@
 		            <div v-if="1 == index">
 		            	
 			            	<div v-for="(i,index) in noPay" class="item" :key="index">
-				            	<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus',query:{id:i.id}})">
+				            	<div tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus',query:{id:i.id}})">
 									<div class="img">
-										<img :src="i.has_many_order_goods[0].thumb" alt="">
+										<img :src="i.thumb" alt="">
 									</div>
 									<div class="text_box">
 										<div class="left">
 											<p class="name_1">订单号: {{i.order_sn}}</p>
-											<p class="name_1 color"><span>¥{{i.order_goods_price}}</span></p>
-											<p class="name_2">客户名称: {{i.store_name}}</p>
-											<p class="name_2"><span>入住: 3月28</span> <span>退房: 3月29</span></p>
-											<p class="name_2">办理时间: {{i.create_time}}</p>
+											<p class="name_1">订单价格：<span>¥{{i.price}}</span></p>
+											<!-- <p class="name_2">客户名称: {{i.store_name}}</p> -->
+											<p class="name_2"><span>入住: {{time(i.come_time)}}</span> <span>退房: {{time(i.out_time)}}</span></p>
+											<p class="name_2">办理时间: {{time(i.created_time+'000')}}</p>
 										</div>
-										<div class="right">
+										<!-- <div class="right">
 											<p class="numb"><i class="fas fa-chevron-right"></i></p>
-										</div>
+										</div> -->
 									</div>
-								</router-link>
+								</div>
 				            </div>
 				        
 		            </div>
@@ -87,46 +87,46 @@
 				<div class="body">
 					<div v-if="0 == index_1">
 							<div v-for="(i,index) in haveEnter" class="item" :key="index">
-							<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus',query:{id:i.id}})">
+							<div tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus',query:{id:i.id}})">
 										<div class="img">
-									<img :src="i.has_many_order_goods[0].thumb" alt="">
+									<img :src="i.thumb" alt="">
 								</div>
 								<div class="text_box">
 									<div class="left">
 										<p class="name_1">订单号: {{i.order_sn}}</p>
-										<p class="name_1 color"><span>¥{{i.order_goods_price}}</span></p>
-										<p class="name_2">客户名称: {{i.store_name}}</p>
-										<p class="name_2"><span>入住: 3月28</span> <span>退房: 3月29</span></p>
-										<p class="name_2">办理时间: {{i.create_time}}</p>
+										<p class="name_1">订单价格：<span>¥{{i.price}}</span></p>
+										<!-- <p class="name_2">客户名称: {{i.store_name}}</p> -->
+										<p class="name_2"><span>入住: {{time(i.come_time)}}</span> <span>退房: {{time(i.out_time)}}</span></p>
+										<p class="name_2">办理时间: {{time(i.created_time+'000')}}</p>
 									</div>
-									<div class="right">
+									<!-- <div class="right">
 										<p class="numb"><i class="fas fa-chevron-right"></i></p>
-									</div>
+									</div> -->
 								</div>
-								</router-link>
+								</div>
 				            </div>
 				        
 			        </div>
 			        <div v-if="1 == index_1">
 			        	
 							<div v-for="(i,index) in 5" class="item" :key="index">
-								<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus',query:{id:i.id}})">
+								<div tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus',query:{id:i.id}})">
 									<div class="img">
-										<img :src="i.has_many_order_goods[0].thumb" alt="">
+										<img :src="i.thumb" alt="">
 									</div>
 									<div class="text_box">
 										<div class="left">
 											<p class="name_1">订单号: {{i.order_sn}}</p>
-											<p class="name_1 color"><span>¥{{i.order_goods_price}}</span></p>
-											<p class="name_2">客户名称: {{i.store_name}}</p>
-											<p class="name_2"><span>入住: 3月28</span> <span>退房: 3月29</span></p>
-											<p class="name_2">办理时间: {{i.create_time}}</p>
+											<p class="name_1">订单价格：<span>¥{{i.price}}</span></p>
+											<!-- <p class="name_2">客户名称: {{$store.state.userInfo.re}}</p> -->
+											<p class="name_2"><span>入住: {{time(i.come_time)}}</span> <span>退房: {{time(i.out_time)}}</span></p>
+											<p class="name_2">办理时间: {{time(i.created_time+'000')}}</p>
 										</div>
-										<div class="right">
+										<!-- <div class="right">
 											<p class="numb"><i class="fas fa-chevron-right"></i></p>
-										</div>
+										</div> -->
 									</div>
-								</router-link>
+								</div>
 				            </div>
 				        
 			        </div>
@@ -141,12 +141,7 @@
 		mounted(){
 			let that = this
 			this._lineLeft()
-			this.Http.get({baseUrl:'web/index.php?c=site&a=entry&m=yun_shop&do=7619&action=true',route:'plugin.store-cashier.store.admin.order.index'}).then(res=>{
-				console.log(1111,res)
-				if(res.data.data){
-					that.array = res.data.data.list.data
-				}
-			})
+			this.getData()
 		},
 		data(){
 			return {
@@ -164,6 +159,54 @@
 			}
 		},
 		methods: {
+			handleCommit(id){
+				let that = this
+
+				that.Http.post({route:'finance.earning.earning-count&action=true&',data:{action: 1,uid: window.localStorage.getItem('userInfo')}}).then(res=>{
+					if(res.data.result === 1){
+						that.Http.post({route: 'plugin.store-cashier.store.admin.order.index',baseUrl: '/web/index.php?c=site&a=entry&m=yun_shop&do=7619&',data:{
+							update: 1,
+							status: 3,
+							id,
+							num: res.data.data.num
+						}}).then(res=>{
+							that.Fn.tips(res.data.msg)
+							if(res.data.result == 1){
+								that.getData()
+							}
+						})
+					}
+				})
+				
+			},
+			time(value){
+				let dd = new Date(Number(value))
+				return dd.getFullYear()+'-'+this.Fn.zero(dd.getMonth()+1)+'-'+this.Fn.zero(dd.getDate())
+			},
+			getData(){
+				let that = this
+				this.Http.get({baseUrl:'web/index.php?c=site&a=entry&m=yun_shop&do=7619&action=true',route:'plugin.store-cashier.store.admin.order.index',params: {
+					status: 0
+				}}).then(res=>{
+					if(res.data.data){
+						that.noPay = res.data.data
+					}
+				})
+				this.Http.get({baseUrl:'web/index.php?c=site&a=entry&m=yun_shop&do=7619&action=true',route:'plugin.store-cashier.store.admin.order.index',params: {
+					status: 1
+				}}).then(res=>{
+					if(res.data.data){
+						that.havePay = res.data.data
+					}
+				})
+				this.Http.get({baseUrl:'web/index.php?c=site&a=entry&m=yun_shop&do=7619&action=true',route:'plugin.store-cashier.store.admin.order.index',params: {
+					status: 2
+				}}).then(res=>{
+					if(res.data.data){
+						that.haveEnter = res.data.data
+					}
+				})
+			},
 			handleClick(i,e){
 				var e = e || event
 				//console.log(e.target,event.path[0])
@@ -190,6 +233,7 @@
 			'$route'(to,from){
 				if(to.name === 'order'){
 					this._lineLeft()
+					this.getData()
 				}
 			},
 			array(){
@@ -205,9 +249,6 @@
 						this.haveEnter.push(i)
 					}
 				})
-				console.log(this.haveEnter)
-				console.log(this.noPay)
-				console.log(this.havePay)
 			}
 		}
 	}
@@ -297,9 +338,8 @@
 			}
 		}
 			.show{
-				padding-top: rem(20px);
+				padding-top: 0 rem(20px);
 				.body{
-					padding: rem(22px) 0;
 					.top{
 						background-color: #e5e5e5;
 						padding: rem(5px) 0;
