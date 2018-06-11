@@ -34,8 +34,8 @@
 					</div>
 					<div v-if="0 == index">
 						
-							<div v-for="(i,index) in havePay" class="item" :key="index">
-              					<div tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus',query:{id:i.id}})">
+							<router-link v-for="(i,index) in havePay" class="item" :key="index">
+              					<div tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{id:i.order_sn,status: 1}})">
 									<div>
 										<div class="img">
 											<img :src="i.thumb" alt="">
@@ -54,14 +54,14 @@
 										</div>
 									</div>
 							   </div>
-				            </div>
+				            </router-link>
 				        
 		            </div>
 
 		            <div v-if="1 == index">
 		            	
 			            	<div v-for="(i,index) in noPay" class="item" :key="index">
-				            	<div tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus',query:{id:i.id}})">
+				            	<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus',query:{id:i.order_sn,status: 1,isChange: true}})">
 									<div class="img">
 										<img :src="i.thumb" alt="">
 									</div>
@@ -77,7 +77,7 @@
 											<p class="numb"><i class="fas fa-chevron-right"></i></p>
 										</div> -->
 									</div>
-								</div>
+								</router-link>
 				            </div>
 				        
 		            </div>
@@ -87,23 +87,23 @@
 				<div class="body">
 					<div v-if="0 == index_1">
 							<div v-for="(i,index) in haveEnter" class="item" :key="index">
-							<div tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus',query:{id:i.id}})">
-										<div class="img">
-									<img :src="i.thumb" alt="">
-								</div>
-								<div class="text_box">
-									<div class="left">
-										<p class="name_1">订单号: {{i.order_sn}}</p>
-										<p class="name_1">订单价格：<span>¥{{i.price}}</span></p>
-										<!-- <p class="name_2">客户名称: {{i.store_name}}</p> -->
-										<p class="name_2"><span>入住: {{time(i.come_time)}}</span> <span>退房: {{time(i.out_time)}}</span></p>
-										<p class="name_2">办理时间: {{time(i.created_time+'000')}}</p>
+							<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus',query:{id:i.order_sn,status: 2}})">
+									<div class="img">
+										<img :src="i.thumb" alt="">
 									</div>
+									<div class="text_box">
+										<div class="left">
+											<p class="name_1">订单号: {{i.order_sn}}</p>
+											<p class="name_1">订单价格：<span>¥{{i.price}}</span></p>
+										<!-- <p class="name_2">客户名称: {{i.store_name}}</p> -->
+											<p class="name_2"><span>入住: {{time(i.come_time)}}</span> <span>退房: {{time(i.out_time)}}</span></p>
+											<p class="name_2">办理时间: {{time(i.created_time+'000')}}</p>
+										</div>
 									<!-- <div class="right">
 										<p class="numb"><i class="fas fa-chevron-right"></i></p>
 									</div> -->
-								</div>
-								</div>
+									</div>
+								</router-link>
 				            </div>
 				        
 			        </div>
@@ -161,18 +161,19 @@
 		methods: {
 			handleCommit(id){
 				let that = this
-
 				that.Http.post({route:'finance.earning.earning-count&action=true&',data:{action: 1,uid: window.localStorage.getItem('userInfo')}}).then(res=>{
 					if(res.data.result === 1){
 						that.Http.post({route: 'plugin.store-cashier.store.admin.order.index',baseUrl: '/web/index.php?c=site&a=entry&m=yun_shop&do=7619&',data:{
 							update: 1,
-							status: 3,
+							status: 4,
 							id,
 							num: res.data.data.num
 						}}).then(res=>{
-							that.Fn.tips(res.data.msg)
 							if(res.data.result == 1){
+								that.Fn.tips('操作成功')
 								that.getData()
+							}else{
+								that.Fn.tips('操作失败')
 							}
 						})
 					}
@@ -200,7 +201,7 @@
 					}
 				})
 				this.Http.get({baseUrl:'web/index.php?c=site&a=entry&m=yun_shop&do=7619&action=true',route:'plugin.store-cashier.store.admin.order.index',params: {
-					status: 2
+					status: 3
 				}}).then(res=>{
 					if(res.data.data){
 						that.haveEnter = res.data.data

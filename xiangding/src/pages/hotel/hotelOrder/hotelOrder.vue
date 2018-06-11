@@ -49,8 +49,8 @@
 						<p class="msg_1">
 							<!-- <span class="head">楼层</span>
 							<span class="text">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'楼层'):''}}</span> -->
-							<span class="head">电话</span>
-							<span class="text">无<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'电话'):''}} --></span>
+							<span class="head" v-if="hotelData">电话</span>
+							<span class="text" v-if="hotelData">{{hotelData.mobile}}<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'电话'):''}} --></span>
 						</p>
 					</div>
 					<div v-else>

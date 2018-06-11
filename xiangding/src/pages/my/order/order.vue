@@ -29,7 +29,7 @@
 						<div class="item">
 							<!-- <span class="time">预定日期: 03-20</span> -->
 							<div class="content_box" v-for="(i,index) in arr0" :key="index">
-								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query: {isPay: false,id:i.order_sn,status: i.status}})" class="content">
+								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query: {isPay: 1,id: i.order_sn,status:i.status}})" class="content">
 									<p>
 										<span class="title">{{i.order_sn}}</span>
 										<!-- <span class="title_t">(豪华酒店 |四星级)</span> -->
@@ -59,7 +59,7 @@
 									
 									<div class="button">
 										<span class="change" @click="handleShow(i.order_sn)">取消订单</span>
-										<span @click="handlePayAgint(i.order_sn,i.goods_total)" :to="Fn.getUrl({path: '/hotel/payOrder',query: {isPay: 0,total:i.goods_total,order_ids:i.id}})" class="pay">付款</span>
+										<span @click="handlePayAgint(i.order_id)" :to="Fn.getUrl({path: '/hotel/payOrder',query: {isPay: 0,total:i.goods_total,order_ids:i.id}})" class="pay">付款</span>
 										<!-- <span @click="handlePay(i.order_sn)" :to="Fn.getUrl({path: '/hotel/payOrder',query: {isPay: 0,total:i.goods_total,order_ids:i.id}})" class="pay">付款</span> -->
 									</div>
 								</div>
@@ -71,7 +71,7 @@
 					<div class="body">
 						<div class="item">
 							<!-- <span class="time">预定日期: 03-20</span> -->
-							<div class="content_box" v-for="(i,index) in arr1" :key="index">
+							<div class="content_box" v-for="(i,index) in arr1" :key="index" v-if="!i.refund_id">
 								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{isPay: 1,id: i.order_sn,status:i.status}})" class="content">
 									<p>
 										<span class="title">{{i.order_sn}}</span>
@@ -101,7 +101,7 @@
 									
 									<div class="button">
 										<span @click="handleCancelroom(i.order_id,$event)" :to="Fn.getUrl({path: '/my/cancelRoom'})" class="change">申请退房</span>
-										<router-link tag="span" :to="Fn.getUrl({path: '/hotelDetail',query:{id:i.goods_id,hotelName: i.title}})" class="pay">再次预定</router-link>
+										<span @click="handleAgaint(i.goods_id,i.goods_total)" :to="Fn.getUrl({path: '/hotelDetail',query:{id:i.goods_id,hotelName: i.title}})" class="pay">再次预定</span>
 									</div>
 								</div>
 							</div>
@@ -113,7 +113,7 @@
 						<div class="item">
 							<!-- <span class="time">预定日期: 03-20</span> -->
 							<div class="content_box" v-for="(i,index) in arr2" :key="index">
-								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{isPay: 2,id: i.order_sn}})" class="content">
+								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{isPay: 1,id: i.order_sn,status:i.status}})" class="content">
 									<p>
 										<span class="title">{{i.order_sn}}</span>
 										<!-- <span class="title_t">(豪华酒店 |四星级)</span> -->
@@ -161,15 +161,7 @@
 		},
 		mounted(){
 			this._lineLeft()
-			// if(this.index_ == 0){
-			// 	this.getData({status: 0})
-			// }
-			// if(this.index_ == 1){
-			// 	this.getData({status: 1},2)
-			// }
-			// if(this.index_ == 2){
-			// 	this.getData({all: 1})
-			// }
+			this.handleRequest(this.index_)
 		},
 		data(){
 			return {
@@ -199,16 +191,42 @@
 			} 
 		},
 		methods: {
+			handleAgaint(goods_id,total){
+				let that = this
+				//http://localhost:8080/api/addons/yun_shop/api.php?i=3&type=1&mid=15&route=order.create
+				let addr = {"id":1,"uniacid":3,"uid":that.$store.state.userInfo.uid,"username":that.$store.state.userInfo.realname?that.$store.state.userInfo.realname:that.$store.state.userInfo.nickname,"mobile":"13927179141","zipcode":"","province":"北京","city":"北京市","district":"东城区","street":"东四街道","address":"122456","isdefault":1}
+				let goods = [
+					{goods_id , total,option_id: 0}
+				]
+				let data = {
+					action: 1,
+					address: JSON.stringify(addr),
+					close_time: new Date().getTime()+1000*60*30,
+					come_time: new Date().getTime(),
+					out_time: new Date().getTime()+1000*60*60*24,
+					goods: JSON.stringify(goods),
+					dispatch_type_id: 1,
+					member_coupon_ids: "[]",
+					orders: "[]"
+				}
+
+				this.Http.post({route: 'order.create',data}).then(res=>{
+					if(res.data.result === 1){
+						that.Fn.tips('再次预订成功！请到待付款列表付款！')
+					}
+				})
+			},
 			handleRequest(i){
 				let obj = {status: i,attr: 'arr'+i}
 				if(i == 2){
 					obj.all = 1
 				}
+				if(i == 1){
+					obj.use = 1
+				}
 				this.getData(obj)
 			},
 			WXPay(payParams) {
-		      //alert(document.location.href);
-		      //console.log(""+payParams.timestamp);
 		      var that = this;
 		      console.log(payParams)
 		      wx.chooseWXPay({
@@ -225,10 +243,10 @@
 		            that.$router.push(that.fun.getUrl('member'));
 
 		            MessageBox.alert('支付成功', '提示');
-		            that.$router.push(that.Fn.getUrl({path: '/my/order',query:{status: 1}}));
 		          } else {
 		            MessageBox.alert(res.errMsg, '提示');
 		          }
+		          that.handleRequest(that.index_)
 		        },
 		        cancel: function (res) {
 		          //支付取消
@@ -264,27 +282,18 @@
 	            // error callback
 	          });
 	        },
-			handlePay(order_sn){
+			handlePay(order_id){
 				let that = this
-				this.Http.post({route: 'order.create',data:{
-					select: 1,
-					order_sn
-				}}).then(res=>{
-					log(res)
-					if(res.data.result == 1){
-						this.Http.get({route:'order.merge-pay',params:{order_ids:res.data.data.order_id,pid:that.$store.state.userInfo.uid}}).then(ress=>{
-					      	that.order_pay_id = ress.data.data.order_pay.id
-					      	setTimeout(()=>{
-					      		that.getWeChatPayParams()
-					      	},50)
-					    })
-					}
-				})
-		    	
+				Indicator.open('加载中...')
+				this.Http.get({route:'order.merge-pay',params:{order_ids:order_id,pid:that.$store.state.userInfo.uid}}).then(ress=>{
+			      	that.order_pay_id = ress.data.data.order_pay.id
+			      	setTimeout(()=>{
+			      		Indicator.close()
+			      		that.getWeChatPayParams()
+			      	},50)
+			    })
 			},
 			handleCancelroom(id,e){
-				log(id)
-				//http://localhost:8080/api/addons/yun_shop/api.php?i=3&type=1&mid=10&route=refund.apply.store
 				var e = e || event
 				let that = this
 				this.Http.post({route: 'refund.apply.store',data:{
@@ -296,35 +305,37 @@
 					type: 1,
 					i: 3
 				}}).then(res=>{
-					console.log(res)
-					that.Fn.tips(res.data.msg)
-					e.target.innerHTML = '订单退款中...'
+					//refund_id  0
+					if(res.data.result === 1){
+						that.Fn.tips('申请退房成功，等待审核！')
+					}else{
+						that.Fn.tips(res.data.msg)
+					}
+					that.handleRequest(that.index_)
 				})
 			},
-			handlePayAgint(order_sn,total){
-				//http://localhost:8080/api/addons/yun_shop/api.php?i=3&type=1&mid=10&route=order.create
+			handlePayAgint(oder_id){
 				let that = this
-				this.Http.post({route: 'order.create',data:{
-					order_sn,
-					select:1,
-				}}).then(res=>{
-					console.log(555,res)
-					if(res.data.result == 1){
-						that.$router.push(that.Fn.getUrl({path: '/hotel/payOrder',query: {
-							order_ids: res.data.data.order_id,
-							total
-						}}))
-					}
-				})
+				this.handlePay(oder_id)
 			},
 			getData(obj){
 				let that = this
 				let data = {action: 1,uid: this.$store.state.userInfo.uid}
 				if(obj.page){data.page = obj.page}
-				if(obj.status){data.status = obj.status}
+				if(obj.status || obj.status == 0){data.status = obj.status}
 				if(obj.all){
 					for(let i=0;i<5;i++){
 						data.status = i-1
+						this.Http.post({route: 'order.list.index',data}).then(res=>{
+							that[obj.attr] = [...res.data.data,...that[obj.attr]]
+						})
+					}
+					return
+				}
+				if(obj.use){
+					that[obj.attr] = []
+					for(let i=0;i<2;i++){
+						data.status = i+1
 						this.Http.post({route: 'order.list.index',data}).then(res=>{
 							that[obj.attr] = [...res.data.data,...that[obj.attr]]
 						})
@@ -355,7 +366,6 @@
 				this.alertShow = false
 			},
 			handleShow(order_sn){
-				log(order_sn)
 				let that = this
 				MessageBox.confirm('您确定要取消订单吗？','温馨提示').then(action => {
 				  	that.Http.post({route:'order.list.index',data:{
@@ -369,16 +379,7 @@
 				  		}else{
 				  			that.Fn.tips(res.data.msg)
 				  		}
-				  		if(that.index_ == 0){
-				  			log(55)
-							that.getData({status: 0})
-						}
-						if(that.index_ == 1){
-							that.getData({status: 1},2)
-						}
-						if(this.index_ == 2){
-							this.getData({all: 1})
-						}
+				  		that.handleRequest(that.index_)
 				  	})
 				},err=>{
 
@@ -404,29 +405,9 @@
 			$route(to,from){
 				if(to.name === 'order'){
 					this._lineLeft()
-					// if(this.index_ == 0){
-					// 	this.getData({status: 0})
-					// }
-					// if(this.index_ == 1){
-					// 	this.getData({status: 1},2)
-					// }
-					// if(this.index_ == 2){
-					// 	this.getData({all: 1})
-					// }
+					this.handleRequest(this.index_)
 				}
-			},
-			// index_(){
-			// 	//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=order.list&page=1&i=3&type=1
-			// 	if(this.index_ == 0){
-			// 		this.getData({status: 0})
-			// 	}
-			// 	if(this.index_ == 1){
-			// 		this.getData({status: 1},2)
-			// 	}
-			// 	if(this.index_ == 2){
-			// 		this.getData({all: 1})
-			// 	}
-			// }
+			}
 		}
 	}
 </script>

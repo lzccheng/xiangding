@@ -3,7 +3,7 @@
 		<Header :title="title"/>
 		
 		<div v-for="(i,index_) in arr0" :key="index_">
-			<div>
+			<div v-if="index_ == 0">
 				<div>
 					<div class="top">
 						<p class="status">订单状态: {{statusText[i.status]}}</p>
@@ -14,8 +14,8 @@
 					</div>
 					<div class="middle_1">
 						<p>
-							<span class="personal">客户: {{$store.state.userInfo.realname?$store.state.userInfo.realname:$store.state.userInfo.nickname}}</span>
-							<span class="phone">{{$store.state.userInfo.mobile}}</span>
+							<span class="personal" v-if="realName">客户: {{realName.realname}}</span>
+							<span class="phone" v-if="realName">{{realName.mobile}}</span>
 						</p>
 						<!-- <p class="sex">性别: {{$store.state.userInfo.sex}}</p> -->
 						<!-- <p class="sex">身份证号码: 440510199506132352</p> -->
@@ -27,16 +27,16 @@
 					</div> -->
 					<div class="middle_3">
 						<div class="img">
-							<img :src="i.has_many_order_goods[0].thumb" alt="">
+							<img v-if="i.thumb" :src="i.thumb" alt="">
 						</div>
 						<div class="text_box">
 							<p class="hotel_name">{{i.order_sn}}</p>
 							<p>
-								<span class="room_name">{{i.has_many_order_goods[0].title}}</span>
+								<span class="room_name" v-if="i.title">{{i.title}}</span>
 								<span class="money">{{i.goods_price}}</span>
 							</p>
 							<p>
-								<span class="title" v-if="detailt">{{detailt.has_many_params?filterArr(detailt.has_many_params,'房间面积'):''}}m²大床{{detailt.has_many_params?filterArr(detailt.has_many_params,'床型'):''}}</span>
+								<span class="title" v-if="detailt&&detailt.has_many_params.length">{{detailt.has_many_params?filterArr(detailt.has_many_params,'房间面积'):''}}m²大床{{detailt.has_many_params?filterArr(detailt.has_many_params,'床型'):''}}</span>
 								<span class="numb">×{{i.goods_total}}</span>
 							</p>
 							<p><span class="title">预计入住: {{come_time1}}</span></p>
@@ -74,7 +74,7 @@
 							</li>
 							<div class="send_box" v-if="title == '待付款'">
 								<!-- <router-link tag="span" :to="Fn.getUrl({path: '/my/custom'})" class="custom">联系客服</router-link> -->
-								<span @click="handlePayAgint(i.goods_total)" tag="span"  :to="Fn.getUrl({path: '/my/order/payMethods'})" class="custom">付款</span>
+								<span @click="handlePayAgint(i.id)" tag="span"  :to="Fn.getUrl({path: '/my/order/payMethods'})" class="custom">付款</span>
 							</div>
 							<!-- <div class="send"  v-else>
 								<router-link tag="p" :to="Fn.getUrl({path: '/my/custom'})" class="m custom">联系客服</router-link>
@@ -84,7 +84,8 @@
 					<!-- <div class="middle_5">map</div> -->
 					<div class="footer">
 						<p>订单编号: {{i.order_sn}}</p>
-						<p>下单时间: {{i.cancel_send_time}}</p>
+						<p>下单时间: {{create}}</p>
+						<p class="changePrice" v-if="realName&&realName.brand_id == 0&&isChange"><span @click="handleChangeprice">修改价格</span></p>
 					</div>
 				</div>
 				
@@ -167,6 +168,7 @@
 	</div>
 </template>
 <script>
+	import { MessageBox } from 'mint-ui'
 	export default {
 		mounted(){
 			if(this.$route.query.id){
@@ -175,7 +177,11 @@
 			if(this.$route.query.status){
 				this.status = this.$route.query.status
 			}
+			if(this.$route.query.isChange){
+				this.isChange = this.$route.query.isChange
+			}
 			this.getData()
+
 		},
 		data(){ 
 			return {
@@ -198,56 +204,132 @@
 				close_time: '',
 				come_time: '',
 				out_time: '',
-				detailt: null
+				detailt: null,
+				arr: [],
+				realName: null,
+				isChange: false
 			}
 		},
 		methods: {
-			handlePayAgint(total){
-				//http://localhost:8080/api/addons/yun_shop/api.php?i=3&type=1&mid=10&route=order.create
+			handleChangeprice(){
+				//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&c=entry&do=shop&type=1&m=yun_shop&route=order.detail.updatePrice
 				let that = this
-				this.Http.post({route: 'order.create',data:{
-					order_sn:that.order_sn,
-					select:1,
-				}}).then(res=>{
-					if(res.data.result == 1){
-						that.$router.push(that.Fn.getUrl({path: '/hotel/payOrder',query: {
-							order_ids: res.data.data.order_id,
-							total
-						}}))
+				MessageBox.prompt('输入价格').then(action => {
+					if(action.value){
+						this.Http.get({route: 'order.detail.updatePrice',params: {
+							order_sn: that.id,
+							price: action.value
+						}}).then(res=>{
+							log(res)
+							if(res.data.result == 1){
+								that.Fn.tips(res.data.msg)
+								that.arr0 = []
+								that.getData()
+							}
+						})
 					}
-				})
+					
+					log(action)
+				},err=>{
+
+				});
+				
+			},
+			WXPay(payParams) {
+		      var that = this;
+		      console.log(payParams)
+		      wx.chooseWXPay({
+		        appId: payParams.appId,
+		        timestamp: payParams.timestamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+		        nonceStr: payParams.nonceStr, // 支付签名随机串，不长于 32 位
+		        package: payParams.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+		        signType: payParams.signType, //  签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+		        paySign: payParams.paySign, // 支付签名
+		        success: function (res) {
+		          // 支付成功后的回调函数
+		          that.payText = res.errMsg
+		          if (res.errMsg == "chooseWXPay:ok") {
+		            that.$router.push(that.fun.getUrl('member'));
+
+		            MessageBox.alert('支付成功', '提示');
+		          } else {
+		            MessageBox.alert(res.errMsg, '提示');
+		          }
+		        },
+		        cancel: function (res) {
+		          //支付取消
+		        },
+		        fail: function (res) {
+		          MessageBox.alert(res.errMsg, '提示fail');
+		          // setTimeout(()=>{
+		          // 	MessageBox.alert(res.errMsg, '提示fail');
+		          // },5000)
+		        }
+		      });
+		    },
+		    getWeChatPayParams() {
+	          //order.pay.wechatPay
+	          var that = this;
+	          this.Http.get({route:'order.merge-pay.wechatPay', params:{ order_pay_id: this.order_pay_id }}).then(function (response) {
+	            if (response.data.result == 1) {
+	            	//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=member.member.wxJsSdkConfig
+	            	that.Http.get({route:'member.member.wxJsSdkConfig',params:{url:window.location.href}}).then(res=>{
+	            		wx.config(res.data.data.config);
+		                wx.ready(function(){
+		              	    that.WXPay(response.data.data.config);
+		                })
+		                wx.error(err=>{
+		                	MessageBox.alert('err', '提示err')
+		                })
+	            	})
+	              
+	            } else {
+	              MessageBox.alert(response.data.msg, '提示');
+	            }
+	          }, function (response) {
+	            // error callback
+	          });
+	        },
+			handlePay(order_id){
+				let that = this
+				Indicator.open('加载中...')
+				this.Http.get({route:'order.merge-pay',params:{order_ids:order_id,pid:that.$store.state.userInfo.uid}}).then(ress=>{
+			      	that.order_pay_id = ress.data.data.order_pay.id
+			      	setTimeout(()=>{
+			      		Indicator.close()
+			      		that.getWeChatPayParams()
+			      	},50)
+			    })
+			},
+			handlePayAgint(order_id){
+				//http://localhost:8080/api/addons/yun_shop/api.php?i=3&type=1&mid=10&route=order.create
+				this.handlePay(order_id)
 			},
 			getData(){
 				let that = this 
-				this.Http.post({route:'order.list.index',params:{action:true,status: that.status}}).then(res=>{
-					that.arr0 = res.data.data.data.filter(i=>{
-						// console.log(i.order_sn,that.id)
-						if(i.order_sn === that.id){
-							that.order_sn = i.order_sn
-							return i
-						}
-					})
-					that.Http.get({route: 'goods.goods.get-goods',params:{
+				
+				for(let i=0;i<5;i++){
+					this.Http.post({route: 'order.list.index',data:{
 						action: 1,
-						id: that.arr0[0].has_many_order_goods[0].goods_id
+						uid: this.$store.state.userInfo.uid,
+						status: i-1
 					}}).then(res=>{
-						if(res.data.result == 1){
-							that.detailt = res.data.data
+						if(res.data.result === 1){
+							that.arr = [...that.arr,...res.data.data]
 						}
 					})
-					that.Http.post({route:'order.create',data:{
-						select: 1,
-						order_sn: that.order_sn
-					}}).then(res=>{
-						if(res.data.result == 1){
-							if(res.data.data){
-								that.close_time = res.data.data.close_time
-								that.come_time = res.data.data.come_time
-								that.out_time = res.data.data.out_time
-							}
-						}
-					})
-				})
+				}
+				//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&c=entry&do=shop&type=1&m=yun_shop&route=order.detail	
+				// this.Http.get({route: 'order.detail.updatePrice',params:{order_sn: 'SN20180610225132R9',action: 1,price: 99}}).then(res=>{
+				// 	log(555,res)
+				// })	
+				this.Http.get({route: 'order.detail',params:{order_sn: that.id,action: 1,price: 99}}).then(res=>{
+					if(res.data.result === 1){
+						that.realName = res.data.data
+						log(555,that.realName)
+					}
+					
+				})	
 			},
 			filterArr(arr,value){
 				let dd = arr.filter(i=>{
@@ -269,6 +351,10 @@
 			
 		},
 		computed: {
+			create(){
+				let dd = new Date(Number(this.close_time))
+				return dd.getFullYear()+'-'+this.Fn.zero(dd.getMonth()+1)+'-'+this.Fn.zero(dd.getDate()) 
+			},
 			title(){
 				return this.$route.query.isPay?'待使用':'待付款'
 			},
@@ -287,15 +373,13 @@
 				let num = dd - nowdd
 				let min = Math.floor(num/1000/60)
 				let second = Math.floor(num/1000%60)
-				log(this.arr0)
-				if(num < 0 && this.arr0[0].status){
+				if(num < 0 && this.arr0[0].status === 0){
 					that.Http.post({route:'order.list.index',data:{
 				  			action: 1,
 				  			order_sn: that.order_sn,
 				  			uid: that.$store.state.userInfo.uid,
 				  			del: true
 				  	}}).then(res=>{
-				  		log(res)
 				  		if(res.data.result == 1){
 				  			that.$router.push(that.Fn.getUrl({path: '/my/order'}))
 				  		}
@@ -305,7 +389,7 @@
 			}
 		},
 		watch: {
-			'$route'(to,form){
+			$route(to,form){
 				if(to.name === "orderPay"){
 					setTimeout(()=>{
 						if(this.$refs._line){
@@ -319,8 +403,45 @@
 					if(this.$route.query.status){
 						this.status = this.$route.query.status
 					}
+					if(this.$route.query.isChange){
+						this.isChange = this.$route.query.isChange
+					}
+					this.arr0 = []
 					this.getData()
 				}
+			},
+			arr(){
+				let that = this
+				if(this.arr0<1){
+					log(9999,this.arr0.length)
+					this.arr0 = this.arr.filter(i=>{
+						if(i.order_sn === that.id && this.arr0.length < 1){
+							return i
+						}
+					})
+				}
+				if(that.arr0.length){
+						that.Http.get({route: 'goods.goods.get-goods',params:{
+							action: 1,
+							id: that.arr0[0].goods_id
+						}}).then(res=>{
+							if(res.data.result == 1){
+								that.detailt = res.data.data
+							}
+						})
+						that.Http.post({route:'order.create',data:{
+							select: 1,
+							order_sn: that.arr0[0].order_sn
+						}}).then(res=>{
+							if(res.data.result == 1){
+								if(res.data.data){
+									that.close_time = res.data.data.close_time
+									that.come_time = res.data.data.come_time
+									that.out_time = res.data.data.out_time
+								}
+							}
+						})
+					}
 			}
 		}
 	}
@@ -608,6 +729,17 @@
 				font-size: rem(14px);
 				color: #aaa;
 				margin-top: rem(7px);
+			}
+			.changePrice{
+				text-align: right;
+				margin-top: rem(18px);
+				span{
+					color: #fff;
+					background-color: #43c122;
+					padding: rem(8px) rem(12px);
+					border-radius: rem(5px);
+					font-size: rem(16px);
+				}
 			}
 		}
 	}
