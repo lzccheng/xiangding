@@ -352,11 +352,11 @@
 								color: #43c122;
 							}
 							&.line_green{
-								border: #43c122 solid rem(0.5px);
-								height: rem(25px);
+								border: #43c122 solid rem(1px);
+								height: rem(22px);
 								width: 0;
 								position: absolute;
-								top: 30%;
+								top: 25%;
 								left: 50%;
 							}
 							.text{

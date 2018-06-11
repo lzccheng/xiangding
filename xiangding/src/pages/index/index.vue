@@ -101,7 +101,7 @@
           <li>
             <div class="select">
               <span><i class="fas fa-search"></i></span>  
-              <span><input type="text" v-model="store_name" placeholder="酒店名称"></span>  
+              <span><input type="text" v-model="store_name"  placeholder="酒店名称"></span>  
             </div>
           </li>
   			</ul>
@@ -313,6 +313,9 @@
             that.arrData = res.data.data[1].map(i=>{
               i.category_id = Number(i.category_id)
               return i
+              if(!that.arrData.length){
+                that.Fn.tips('没有找到合适的酒店')
+              }
             })
           })
         },
