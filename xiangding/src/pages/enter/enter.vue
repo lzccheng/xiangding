@@ -7,7 +7,6 @@
 			  </CellSwipe>
 		</div> -->
 		<div class="background">
-
 		</div>
 		<div class="enter">
 			<router-link class="hotelEnter" tag="div" :to="Fn.getUrl({path: '/enter/hotelEnter'})">

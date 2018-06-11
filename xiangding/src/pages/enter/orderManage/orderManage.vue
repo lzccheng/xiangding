@@ -161,18 +161,19 @@
 		methods: {
 			handleCommit(id){
 				let that = this
-
 				that.Http.post({route:'finance.earning.earning-count&action=true&',data:{action: 1,uid: window.localStorage.getItem('userInfo')}}).then(res=>{
 					if(res.data.result === 1){
 						that.Http.post({route: 'plugin.store-cashier.store.admin.order.index',baseUrl: '/web/index.php?c=site&a=entry&m=yun_shop&do=7619&',data:{
 							update: 1,
-							status: 3,
+							status: 4,
 							id,
 							num: res.data.data.num
 						}}).then(res=>{
-							that.Fn.tips(res.data.msg)
 							if(res.data.result == 1){
+								that.Fn.tips('操作成功')
 								that.getData()
+							}else{
+								that.Fn.tips('操作失败')
 							}
 						})
 					}
@@ -200,7 +201,7 @@
 					}
 				})
 				this.Http.get({baseUrl:'web/index.php?c=site&a=entry&m=yun_shop&do=7619&action=true',route:'plugin.store-cashier.store.admin.order.index',params: {
-					status: 2
+					status: 3
 				}}).then(res=>{
 					if(res.data.data){
 						that.haveEnter = res.data.data

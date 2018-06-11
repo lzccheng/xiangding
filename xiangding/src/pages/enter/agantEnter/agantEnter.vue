@@ -14,7 +14,7 @@
 			</div>
 		</div> -->
 		<!--可申请-->
-		<div v-show="status == -1">
+		<div v-show="status == '-1'">
 			<div class="form">
 				<p class="input">
 					<label>代理商姓名:</label>
@@ -62,9 +62,9 @@
 								  :action="actionUrl"
 								  :on-success="handleSuccess1"
 								  list-type="text"
+								  :limit="1"
 								  :on-error="fileError"
-								  :on-remove="removeFile1"
-								  :before-upload="checkFile">
+								  :on-remove="removeFile1">
 								  <i class="el-icon-plus" v-show="!formData.IDcard_facade"></i>
 								</el-upload>
 							</div>
@@ -83,9 +83,9 @@
 								  :action="actionUrl"
 								  :on-success="handleSuccess2"
 								  list-type="text"
+								  :limit="1"
 								  :on-error="fileError"
-								  :on-remove="removeFile2"
-								  :before-upload="checkFile">
+								  :on-remove="removeFile2">
 								  <i class="el-icon-plus" v-show="!formData.IDcard_back"></i>
 								</el-upload>
 							</div>
@@ -134,7 +134,7 @@
 			</div>
 		</div>
 		<!--待审核-->
-		<div v-show="status == 0" class="tips">
+		<div v-show="status == '0'" class="tips">
 			<div class="ico">
 				<i class="fas fa-check-circle"></i>
 			</div>
@@ -142,15 +142,15 @@
 			<div class="sub"><router-link tag="span" :to="Fn.getUrl({path: '/'})" class="green_btn">去首页逛逛</router-link></div>
 		</div>
 		<!--已通过-->
-		<!-- <div v-show="status == 1" class="tips">
+		<div v-show="status == 1" class="tips">
 			<div class="ico">
 				<i class="far fa-check-circle"></i>
 			</div>
 			<div class="text">恭喜您已通过审核</div>
 			<div class="sub"><router-link tag="span" :to="Fn.getUrl({path:'/my/myagantEnter'})" class="green_btn">确定</router-link></div>
-		</div> -->
+		</div>
 		<!--驳回申请-->
-		<div v-show="status == -2" class="tips">
+		<div v-show="status == '-2'" class="tips">
 			<div class="ico">
 				<i class="fa fa-check"></i>
 			</div>
@@ -165,14 +165,6 @@
 	export default {
 		mounted(){
 			let that = this
-			// this.$axios.post('/addons/yun_shop/api.php?i=3&c=entry&do=shop&type=1&m=yun_shop&route=plugin.store-cashier.frontend.store.store.upload').then((res)=>{
-			// 	console.log(res)
-			// })
-			// https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=plugin.merchant.frontend.get-center-condition&
-			// https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=plugin.merchant.frontend.get-center-condition&
-			// this.Http.get({route:'plugin.merchant.frontend.get-center-condition'}).then(res=>{
-			// 	console.log(1111,res)
-			// })
 			this.getStatus()
 		},
 		components: {
@@ -200,14 +192,19 @@
 		},
 		methods: {
 			getStatus(){
-				//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=plugin.merchant.frontend.merchant-staff&
 				let that = this
-				this.Http.get({route:'plugin.merchant.frontend.get-center-condition'}).then(res=>{
+				//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=plugin.merchant.frontend.get-info&
+				this.Http.get({route:'plugin.merchant.frontend.get-info'}).then(res=>{
+					log(res)
 					that.status = res.data.data.status
-					log(that.status)
 				})
-				// this.Http.get({route:'plugin.merchant.frontend.merchant-staff'}).then(res=>{
-				// 	console.log(res)
+				// this.Http.get({route: 'member.member.isAgent'}).then(res=>{
+				// 	if(res.data.result === 1){
+				// 		if(res.data.data.is_agent == 1){
+				// 			log(res.data.data.is_agent)
+				// 			that.$router.push(that.Fn.getUrl({path: '/my/myagantEnter'}))
+				// 		}
+				// 	}
 				// })
 			},
 			fileError(){
@@ -230,7 +227,6 @@
 			},
 			handleSuccess1(res, file, fileList){
 				Indicator.close()
-				// this.formData.IDcard_facade&&this.fileList1[0].splice(0,1)
 				console.log(this.fileList1)
 				this.formData.idcardf = res.data.img
 				this.Fn.tips(res.msg)
@@ -280,9 +276,6 @@
 					return this.Fn.tips('请上传身份证反面照')
 				}
 				console.log({...this.formData})
-				// this.$axios.post('?i=3&c=entry&do=shop&m=yun_shop&route=plugin.merchant.frontend.merchant-apply.staff',{...this.formData}).then((res)=>{
-				// 	console.log(res)
-				// })
 				this.Http.post({route:'plugin.merchant.frontend.merchant-apply.staff',data:{...this.formData}}).then(res=>{
 					that.Fn.tips(res.data.msg)
 					that.getStatus()
@@ -295,7 +288,6 @@
 				this.$axios.get('?i=3&c=entry&do=shop&type=1&m=yun_shop&route=member.register.sendCode&mobile=' + this.formData.mobile).then((res)=>{
 					console.log(res)
 					if(res.data.result === 0){
-
 						return this.Fn.tips(res.data.msg)
 					}
 				})
@@ -349,6 +341,7 @@
 			},
 			status(){
 				if(this.status == 1){
+					log(111111111111111111)
 					this.$router.push(this.Fn.getUrl({path: '/my/myagantEnter'}))
 				}
 			}

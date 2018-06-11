@@ -167,12 +167,17 @@
 		},
 		methods: {
 			filter(arr,value){
+				log('arr',arr,value)
 				if(arr.length){
+					log('len',arr.length)
 					let returnValue = arr.filter(i=>{
+						log('title',i.title,value)
 						if(i.title === value){
+							log(111)
 							return i
 						}
 					})
+					log('vallue',returnValue)
 					return returnValue.length?returnValue[0].value : '' 
 				}
 				return '' 

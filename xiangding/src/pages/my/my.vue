@@ -52,11 +52,11 @@
 		<div class="hotelServe">
 			<p class="title">
 				<span>代理服务商</span>
-				<!-- <router-link :to="Fn.getUrl({path: '/my/cash'})" class="cash" tag='span'>提现</router-link> -->
+				<router-link :to="Fn.getUrl({path: '/my/cash'})" class="cash" tag='span'>提现</router-link>
 			</p>
 			<div class="earning">
 				<p class="text"><span>当前收益</span></p>
-				<router-link tag="p" :to="Fn.getUrl({path: '/my/cashDetail'})" class="money" style="font-family:'微软雅黑' ,Arial !important"><span>￥</span><span>{{msg.agantEarning}}</span></router-link>
+				<p tag="p" :to="Fn.getUrl({path: '/my/cashDetail'})" class="money" style="font-family:'微软雅黑' ,Arial !important"><span>￥</span><span>{{msg.agantEarning}}</span></p>
 				<!-- <div class="earn">
 					<div class="order">
 						<p class="icon"><i class="far fa-file"></i></p>
@@ -171,7 +171,8 @@
 						that.msg.agantEarning = res.data.data.services
 					}
 				})
-			},100)			
+			},100)
+				
 		},
 		data(){
 			return {

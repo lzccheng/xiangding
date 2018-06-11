@@ -56,13 +56,8 @@
             getData(){
                 let that = this
                 this.Http.post({route:'finance.earning.earning-count&action=true&',data:{uid: this.$store.state.userInfo.uid}}).then(res=>{
-                    log(res)
                     that.store_num = res.data.data.store_num
-                    that.store_name = res.data.data.store_name.filter(i=>{
-                        if(i.length){
-                            return i
-                        }
-                    })
+                    that.store_name = res.data.data.store_name
                 })
             }
 		}
