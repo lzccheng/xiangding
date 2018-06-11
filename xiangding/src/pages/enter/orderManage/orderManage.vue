@@ -61,7 +61,7 @@
 		            <div v-if="1 == index">
 		            	
 			            	<div v-for="(i,index) in noPay" class="item" :key="index">
-				            	<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus',query:{id:i.order_sn,status: 1,isChange: true}})">
+				            	<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{id:i.order_sn,status: 1,isChange: true}})">
 									<div class="img">
 										<img :src="i.thumb" alt="">
 									</div>

@@ -212,6 +212,9 @@
 		},
 		methods: {
 			handleChangeprice(){
+
+				//https://www.share-hotel.cn/web/index.php?c=site&a=entry&m=yun_shop&do=8080&action=true&id=SN20180611203051Nl&i=3&type=1&mid=15&route=plugin.store-cashier.store.admin.order.detail
+
 				//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&c=entry&do=shop&type=1&m=yun_shop&route=order.detail.updatePrice
 				let that = this
 				MessageBox.prompt('输入价格').then(action => {
