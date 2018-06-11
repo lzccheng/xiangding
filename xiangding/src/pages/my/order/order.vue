@@ -284,8 +284,10 @@
 	        },
 			handlePay(order_id){
 				let that = this
+				log(order_id)
 				Indicator.open('加载中...')
 				this.Http.get({route:'order.merge-pay',params:{order_ids:order_id,pid:that.$store.state.userInfo.uid}}).then(ress=>{
+					log(ress)
 			      	that.order_pay_id = ress.data.data.order_pay.id
 			      	setTimeout(()=>{
 			      		Indicator.close()
@@ -316,6 +318,7 @@
 			},
 			handlePayAgint(oder_id){
 				let that = this
+				log(order_id)
 				this.handlePay(oder_id)
 			},
 			getData(obj){

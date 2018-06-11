@@ -91,16 +91,16 @@
 					</el-collapse>
 				</li>
 
-				<!--<li class="item">-->
-					<!--<span class="name">床型:</span>-->
-					<!--<span class="select_1">-->
-						<!--<el-select v-model="select5" slot="prepend" placeholder="请选择">-->
-					      <!--<el-option label="1.5米" value="1"></el-option>-->
-					      <!--<el-option label="1.8米" value="2"></el-option>-->
-					      <!--<el-option label="2米" value="3"></el-option>-->
-					    <!--</el-select>-->
-					<!--</span>-->
-				<!--</li>-->
+				<li class="item">
+					<span class="name">床型:</span>
+					<span class="select_1">
+						<el-select v-model="formData.param_value[7]" slot="prepend" placeholder="请选择">
+					      <el-option label="1.5米" value="1"></el-option>
+					      <el-option label="1.8米" value="2"></el-option>
+					      <el-option label="2米" value="3"></el-option>
+					    </el-select>
+					</span>
+				</li>
 				<li class="item">
 					<span class="name">窗户:</span>
 					<div class="select_1">
@@ -200,10 +200,11 @@
             '数量要求',
             '早餐提供',
             '可住人数',
-            '房间规格',
+            '房间面积',
             '取消政策',
             '是否有窗户',
-            '房间配套设施'
+            '房间配套设施',
+            '床型'
           ],
           param_value:[
             '',
@@ -212,7 +213,8 @@
             '',
             ['超过1小时扣费10%'],
             '是',
-            ['24小时热水']
+            ['24小时热水'],
+            '1.5米'
           ]
         }
 			}

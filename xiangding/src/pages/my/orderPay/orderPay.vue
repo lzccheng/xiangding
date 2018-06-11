@@ -74,7 +74,7 @@
 							</li>
 							<div class="send_box" v-if="title == '待付款'">
 								<!-- <router-link tag="span" :to="Fn.getUrl({path: '/my/custom'})" class="custom">联系客服</router-link> -->
-								<span @click="handlePayAgint(i.id)" tag="span"  :to="Fn.getUrl({path: '/my/order/payMethods'})" class="custom">付款</span>
+								<span v-if="!isChange" @click="handlePayAgint(i.id)" tag="span"  :to="Fn.getUrl({path: '/my/order/payMethods'})" class="custom">付款</span>
 							</div>
 							<!-- <div class="send"  v-else>
 								<router-link tag="p" :to="Fn.getUrl({path: '/my/custom'})" class="m custom">联系客服</router-link>
@@ -85,7 +85,7 @@
 					<div class="footer">
 						<p>订单编号: {{i.order_sn}}</p>
 						<p>下单时间: {{create}}</p>
-						<p class="changePrice" v-if="realName&&realName.brand_id == 0&&isChange"><span @click="handleChangeprice">修改价格</span></p>
+						<p class="changePrice" v-if="realName&&isChange"><span @click="handleChangeprice">修改价格</span></p>
 					</div>
 				</div>
 				
@@ -315,7 +315,8 @@
 					this.Http.post({route: 'order.list.index',data:{
 						action: 1,
 						uid: this.$store.state.userInfo.uid,
-						status: i-1
+						status: i-1,
+						order_sn: that.id
 					}}).then(res=>{
 						if(res.data.result === 1){
 							that.arr = [...that.arr,...res.data.data]
@@ -376,18 +377,18 @@
 				let num = dd - nowdd
 				let min = Math.floor(num/1000/60)
 				let second = Math.floor(num/1000%60)
-				if(num < 0 && this.arr0[0].status === 0){
-					that.Http.post({route:'order.list.index',data:{
-				  			action: 1,
-				  			order_sn: that.order_sn,
-				  			uid: that.$store.state.userInfo.uid,
-				  			del: true
-				  	}}).then(res=>{
-				  		if(res.data.result == 1){
-				  			that.$router.push(that.Fn.getUrl({path: '/my/order'}))
-				  		}
-				  	})
-				}
+				// if(num < 0 && this.arr0[0].status === 0){
+				// 	that.Http.post({route:'order.list.index',data:{
+				//   			action: 1,
+				//   			order_sn: that.order_sn,
+				//   			uid: that.$store.state.userInfo.uid,
+				//   			del: true
+				//   	}}).then(res=>{
+				//   		if(res.data.result == 1){
+				//   			that.$router.push(that.Fn.getUrl({path: '/my/order'}))
+				//   		}
+				//   	})
+				// }
 				return min+'分'+second+'秒后自动关闭订单'
 			}
 		},
@@ -445,6 +446,12 @@
 							}
 						})
 					}
+			},
+			realName(){
+				log(9999999,this.realName,this.isChange)
+			},
+			isChange(){
+				log(7777777,this.realName,this.isChange)
 			}
 		}
 	}
@@ -643,7 +650,7 @@
 							color: #43c122;
 							position: absolute;
 							right: 3%;
-						    top: 0;
+						    top: rem(20px);
 						    margin-top: rem(3px);
 						    font-size: rem(14px);
 						}

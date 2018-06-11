@@ -118,7 +118,7 @@
 							</div>
 							<div class="title">
 								<p>{{i.title}}</p>
-								<p>{{i[0]?filterArr(i[0],'房间面积'):''}}m <sup>2</sup> / <span>{{i[0]?filterArr(i[0],'床型'):''}}</span>m </p>
+								<p>{{i[0]?filterArr(i[0],'房间面积'):''}}m <sup>2</sup><span v-if="i.brand_id != '3'"> / {{i[0]?filterArr(i[0],'床型'):''}} m</span> </p>
 							</div>
 							<div class="price">
 								<p>￥{{i.price}}元</p>
