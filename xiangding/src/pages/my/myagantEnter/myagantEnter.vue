@@ -26,7 +26,7 @@
 			</p>
 			<div class="earning">
 				<p class="text"><span>本月服务费收益</span></p>
-				<div  class="money"><span>￥</span><span>{{msg.earning}}</span></div>
+				<p class="money"><span>￥</span><span>{{msg.earning}}</span></p>
 				<!-- <div class="earn">
 					<div class="order">
 						<p class="icon"><i class="far fa-file"></i></p>
@@ -146,6 +146,7 @@
         }
         .nav{
         	display: flex;
+        	align-items: center;
         	padding: rem(12px) rem(13px);
         	background-color: #ffffff;
         	.green{
@@ -156,14 +157,14 @@
         		}
         	.hotel{
         		font-size: rem(14px);
-        		margin-right: 55%;
+        		margin-right: 59%;
         	}
         	.num{
         		background-color: #43c122;
         		font-size: rem(14px);
         		color: #ffffff;
         		padding: rem(2px) rem(13px);
-        		border-radius: rem(8px);
+        		border-radius: rem(10px);
         	}
         }
         .line{
@@ -225,9 +226,8 @@
 			}
 		}
         .hotelServe{
-			background-color: #fff;
-			margin-top: rem(10px);
-			padding-bottom: rem(13px);
+			// background-color: #fff;
+			padding: rem(10px) 0;
 			.title{
 				position: relative;
 				padding: rem(10px) rem(20px) rem(20px);

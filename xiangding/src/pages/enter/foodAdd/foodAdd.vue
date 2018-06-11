@@ -153,7 +153,6 @@
 				padding: rem(13px) 5%;
 				border-bottom: #aaa solid rem(1px);
 				input{
-					color: #aaa;
 					border: none;
 					margin-left: 15%;
 					font-size: rem(15px);

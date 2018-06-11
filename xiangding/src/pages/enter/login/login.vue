@@ -147,6 +147,7 @@
 </script>
 <style scoped lang="scss">
 	@import '../../../common/css/common.scss';
+
 	.box{
 		width: 100%;
 		height: 100%;
@@ -301,6 +302,7 @@
 					}
 				}
 			}
+		
 			&.background{
 				width: 100%;
 				height: 100%;

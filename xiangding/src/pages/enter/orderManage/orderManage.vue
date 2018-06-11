@@ -353,11 +353,11 @@
 								color: #43c122;
 							}
 							&.line_green{
-								border: #43c122 solid rem(0.5px);
-								height: rem(25px);
+								border: #43c122 solid rem(1px);
+								height: rem(22px);
 								width: 0;
 								position: absolute;
-								top: 30%;
+								top: 25%;
 								left: 50%;
 							}
 							.text{
@@ -379,8 +379,8 @@
 								padding-left: 1%;
 								&.img{
 									display: inline-block;
-									width: 24%;
-									height: rem(93px);
+									width: 22%;
+									height: rem(80px);
 									img{
 										width: 100%;
 										height: 100%;

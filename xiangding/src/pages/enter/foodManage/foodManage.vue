@@ -23,9 +23,9 @@
 								<p class="child_1">{{i.title}}</p>
 								<p class="child_2">¥ {{i.price}}</p>
 							</div>
-							<div class="icon_1">
+							<!-- <div class="icon_1">
 							   <span><i class="fas fa-chevron-right"></i></span>
-							</div>
+							</div> -->
 						</div>
 					</div>
 					<div v-if="index_ == 1">
