@@ -408,13 +408,17 @@
 										}
 									}
 									.right{
+
 										position: absolute;
-										right: rem(20px);
+										right: rem(15px);
 										bottom: rem(50px);
 										p{
+											border-radius: rem(5px);
+											text-align: center;
+											padding: rem(4px) 0;
 											&.numb{
-												font-size: rem(16px);
-												color: #aaa;
+												background-color: #43c122;
+												color: #fff;
 											}
 										}
 									}
