@@ -64,6 +64,7 @@
 							<span class="head">窗户</span>
 							<span class="text" v-if="dataText">{{filterArr(dataText['0'],'是否有窗户')}}<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'是否有窗'):''}} --></span>
 							<span class="head">可住</span>
+							
 							<span class="text" v-if="dataText">{{filterArr(dataText['0'],'可住人数')}}人<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'可住人数'):''}} --></span>
 						</p>
 						<p class="msg_1">
