@@ -69,9 +69,16 @@
 						</p>
 						<p class="msg_1">
 							<span class="head">窗户</span>
+<<<<<<< HEAD
 							<span class="text" v-if="detailt">{{filterArr(detailt.has_many_params,'是否有窗户')}}<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'是否有窗'):''}} --></span>
 							<span class="head" v-if="detailt.brand_id != 3">可住</span>
 							<span class="text" v-if="detailt&&detailt.brand_id != 3">{{filterArr(detailt.has_many_params,'可住人数')}}人<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'可住人数'):''}} --></span>
+=======
+							<span class="text" v-if="dataText">{{filterArr(dataText['0'],'是否有窗户')}}<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'是否有窗'):''}} --></span>
+							<span class="head">可住</span>
+							
+							<span class="text" v-if="dataText">{{filterArr(dataText['0'],'可住人数')}}人<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'可住人数'):''}} --></span>
+>>>>>>> 1f69d812f4ce8d1eddba47e6c6c5cbf2e91866fc
 						</p>
 						<p class="msg_1">
 							<span class="head">网络</span>
