@@ -301,8 +301,7 @@
 		          }}).then(res=>{
 
 		          	that.rooms = res.data.data.filter(i=>{
-		          			if(i.brand_id == that.brand_id){
-		          				log(this.id)
+		          			if(i.brand_id == that.brand_id && i.stock){
 		          				return i
 		          			}
 		          		})

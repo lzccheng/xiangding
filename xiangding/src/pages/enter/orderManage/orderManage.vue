@@ -34,8 +34,8 @@
 					</div>
 					<div v-if="0 == index">
 						
-							<router-link v-for="(i,index) in havePay" class="item" :key="index">
-              					<div tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{id:i.order_sn,status: 1}})">
+							<div v-for="(i,index) in havePay" class="item" :key="index">
+              					<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{id:i.order_sn,status: 1}})">
 									<div>
 										<div class="img">
 											<img :src="i.thumb" alt="">
@@ -44,17 +44,16 @@
 											<div class="left">
 												<p class="name_1">订单号: {{i.order_sn}}</p>
 												<p class="name_1">订单价格：<span>¥{{i.price}}</span></p>
-												<!-- <p class="name_2">客户名称: {{i.store_name}}</p> -->
 												<p class="name_2"><span>入住: {{time(i.come_time)}}</span>  <span>退房: {{time(i.out_time)}}</span></p>
 												<p class="name_2">办理时间: {{time(i.created_time+'000')}}</p>
 											</div>
 											<div class="right">
-												<p class="numb" @click="handleCommit(i.id)">确认入住</i></p>
+												<p class="numb" @click="handleCommit(i.id,$event)">确认入住</i></p>
 											</div>
 										</div>
 									</div>
-							   </div>
-				            </router-link>
+							   </router-link>
+				            </div>
 				        
 		            </div>
 
@@ -87,7 +86,7 @@
 				<div class="body">
 					<div v-if="0 == index_1">
 							<div v-for="(i,index) in haveEnter" class="item" :key="index">
-							<router-link tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus',query:{id:i.order_sn,status: 2}})">
+							<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{id:i.order_sn,status: 2}})">
 									<div class="img">
 										<img :src="i.thumb" alt="">
 									</div>
@@ -110,7 +109,7 @@
 			        <div v-if="1 == index_1">
 			        	
 							<div v-for="(i,index) in 5" class="item" :key="index">
-								<div tag="div" :to="Fn.getUrl({path: '/enter/hotelManage/orderStatus',query:{id:i.id}})">
+								<div tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{id:i.id}})">
 									<div class="img">
 										<img :src="i.thumb" alt="">
 									</div>
@@ -159,13 +158,16 @@
 			}
 		},
 		methods: {
-			handleCommit(id){
+			handleCommit(id,e){
+				var e = e || event
+				log(e)
+				e.cancelBubble = true
 				let that = this
 				that.Http.post({route:'finance.earning.earning-count&action=true&',data:{action: 1,uid: window.localStorage.getItem('userInfo')}}).then(res=>{
 					if(res.data.result === 1){
 						that.Http.post({route: 'plugin.store-cashier.store.admin.order.index',baseUrl: '/web/index.php?c=site&a=entry&m=yun_shop&do=7619&',data:{
 							update: 1,
-							status: 4,
+							status: 3,
 							id,
 							num: res.data.data.num
 						}}).then(res=>{
@@ -198,6 +200,15 @@
 				}}).then(res=>{
 					if(res.data.data){
 						that.havePay = res.data.data
+						log(111111,that.havePay)
+						this.Http.get({baseUrl:'web/index.php?c=site&a=entry&m=yun_shop&do=7619&action=true',route:'plugin.store-cashier.store.admin.order.index',params: {
+							status: 2
+						}}).then(res=>{
+							if(res.data.data){
+								that.havePay = [...that.havePay,...res.data.data]
+								log(222222,that.havePay)
+							}
+						})
 					}
 				})
 				this.Http.get({baseUrl:'web/index.php?c=site&a=entry&m=yun_shop&do=7619&action=true',route:'plugin.store-cashier.store.admin.order.index',params: {
@@ -232,24 +243,12 @@
 		},
 		watch: {
 			'$route'(to,from){
-				if(to.name === 'order'){
-					this._lineLeft()
-					this.getData()
-				}
-			},
-			array(){
-				this.array.map(i=>{
-					console.log(i)
-					if(i.status == 1){
-						this.havePay.push(i)
-					}
-					if(i.status == 0){
-						this.noPay.push(i)
-					}
-					if(i.status == 2||i.status == 3){
-						this.haveEnter.push(i)
-					}
-				})
+				//https://www.share-hotel.cn/web/index.php?c=site&a=entry&m=yun_shop&do=7619&action=true&i=3&type=1&route=plugin.store-cashier.store.admin.order.index&status=3
+				// if(to.name === 'order'){
+				// 	log('name')
+				// 	this._lineLeft()
+				// 	this.getData()
+				// }
 			}
 		}
 	}
@@ -415,7 +414,7 @@
 										p{
 											&.numb{
 												font-size: rem(16px);
-												color: #aaa;
+												color: #43c122;
 											}
 										}
 									}

@@ -1,6 +1,6 @@
 <template>
 	<div class="box">
-		<Header title="会议室发布" />
+		<Header title="会议室发布" router="/my/roomEnter"/>
 		<div v-if="general" class="back" @click="handBack">
 			<div class="alert" @click="cancelBubble">
 				<p class="tip">LED屏设置</p>
@@ -175,6 +175,45 @@
 			}
 		},
 		methods: {
+			initData(){
+				this.formData = {
+		              uniaci: 3,
+		              display_order: 1,
+		              title:'',
+		              parentid: 0,
+		              is_recommand: 0,
+		              goods_sn: new Date().getTime(),
+		              product_sn: new Date().getTime()+10,
+		              content: '8888888',
+		              childid: 0,
+		              brand_id: 3,
+		              type: 1,
+		              sku: '间',
+		              thumb_url: '999',
+		              price: '',
+		              market_price: '',
+		              cost_price: 0,
+		              stock: 1,
+		              reduce_stock_method: 1,
+		              status: 1,
+		              weight: '1',
+		              thumb: '',
+		              param_title:[
+		                '房间面积',
+		                '是否有窗户',
+		                '提供LED屏',
+		                '可容纳人数',
+		                '房间配套设施'
+		              ],
+		              param_value:[
+		                '',
+		                '是',
+		                ['1 × 2米LED屏'],
+		                '',
+		                ['话筒']
+		              ]
+		            }
+			},
       handleFile(e){
         var e = e || event
         let that = this
@@ -240,6 +279,13 @@
 			backHide(){
 				this.general = false
 			}
+		},
+		watch: {
+			$route(to,from){
+				if(to.name === 'meettingSend'){
+					this.initData()
+				}
+			}
 		}
 	}
 </script>
@@ -249,6 +295,7 @@
 		width: 100%;
 		font-size: rem(13px);
 		padding-top: rem(20px);
+		background-color: #fff;
 		.back{
 			background-color: rgba(0,0,0,0.3);
 			position: fixed;

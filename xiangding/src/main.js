@@ -31,11 +31,27 @@ Http.get({route:'member.member.getUserInfo'}).then(res=>{
 	store.commit('changeInfo',res.data.data)
     let str = window.location.href
     let a = '&'
-    if(str.split('#')[1].indexOf('?') === -1){
-      a = '?'
+    if(!Fn.getKey('mid')){
+      if(str.split('#')[1].indexOf('?') === -1){
+        a = '?'
+      }
+     window.location.href = window.location.href + a + 'mid=' + store.state.userInfo.uid
     }
-	window.location.href = window.location.href + a + 'mid=' + store.state.userInfo.uid
+    
 })
+//http://localhost:8080/api/addons/yun_shop/api.php?&i=3&type=1&route=plugin.merchant.frontend.get-info
+Http.get({route: 'plugin.merchant.frontend.get-info'}).then(res=>{
+  if(res.data.result == 1){
+    window.agantStatus = res.data.data.status
+  }
+})
+
+Http.get({route:'plugin.store-cashier.frontend.store.store.verify-apply-status'}).then(res=>{
+  if(res.data.result == 1){
+    window.hotelStatus = res.data.data.status
+  }
+})
+
 router.beforeEach((to,from,next)=>{
 	next()
 })
@@ -44,7 +60,7 @@ Vue.component('Header',Header)
 
 
 
-import './mockjs/api'
+// import './mockjs/api'
 
 /* eslint-disable no-new */
 new Vue({

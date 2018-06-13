@@ -1,6 +1,6 @@
 <template>
 	<div class="box">
-		<Header title="团房发布" />
+		<Header title="团房发布" router="/my/roomEnter"/>
 		<myalert :innerHtml="htmltest" title_3="取消扣费设置" @handleCancel="aaa" :show="alertShow" status="0" />
 		<myalert :innerHtml="htmltest_1" title_3="设施设备" @handleCancel="aaa_1" :show="alertShow_1" status="0" />
 		<!-- <div v-if="general" class="back" @click="handBack">
@@ -220,6 +220,51 @@
 			}
 		},
 		methods: {
+			initData(){
+				this.formData = {
+		          uniaci: 3,
+		          display_order: 1,
+		          title:'',
+		          parentid: 0,
+		          is_recommand: 0,
+		          goods_sn: new Date().getTime(),
+		          product_sn: new Date().getTime()+10,
+		          content: '8888888',
+		          childid: 0,
+		          brand_id: 4,
+		          type: 1,
+		          sku: '间',
+		          thumb_url: '999',
+		          price: '',
+		          market_price: '',
+		          cost_price: 0,
+		          stock: '',
+		          reduce_stock_method: 1,
+		          status: 1,
+		          weight: '1',
+		          thumb: '',
+		          param_title:[
+		            '数量要求',
+		            '早餐提供',
+		            '可住人数',
+		            '房间面积',
+		            '取消政策',
+		            '是否有窗户',
+		            '房间配套设施',
+		            '床型'
+		          ],
+		          param_value:[
+		            '',
+		            '是',
+		            '',
+		            '',
+		            ['超过1小时扣费10%'],
+		            '是',
+		            ['24小时热水'],
+		            '1.5米'
+		          ]
+		        }
+			},
       handleFile(e){
         var e = e || event
         let that = this
@@ -315,6 +360,13 @@
 			// 	event.cancelBubble = true
 			// },
 
+		},
+		watch: {
+			$route(ro,from){
+				if(to.name === 'teamSend'){
+					this.initData()
+				}
+			}
 		}
 	}
 </script>
@@ -324,6 +376,7 @@
 		width: 100%;
 		font-size: rem(13px);
 		padding-top: rem(20px);
+		background-color: #fff;
 		.back{
 			background-color: rgba(0,0,0,0.3);
 			position: fixed;

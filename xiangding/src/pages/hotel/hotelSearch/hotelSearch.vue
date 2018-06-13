@@ -497,7 +497,6 @@
 			http(params,value){
 				let that = this
 				this.Http.get({route: 'goods.category.get-children-category',params,msg: '数据加载中...'}).then(res=>{
-					log(res)
 					if(res.data.data){
 						if(res.data.data[1]){
 							if(value){
@@ -508,7 +507,7 @@
 									}
 								})
 								if(!that.hotelData.length){
-									that.Fn.tips('没找到适合的酒店')
+									that.Fn.tips('抱歉，没找到适合的酒店')
 								}
 							}else{
 								if(params.bool){
@@ -527,7 +526,7 @@
 							
 						}else{
 							if(!params["store[category_id]"]){
-								that.Fn.tips('没找到适合的酒店')
+								that.Fn.tips('抱歉，没找到适合的酒店')
 							}
 						}
 					}
@@ -596,7 +595,7 @@
 					params["store[category_id]"] = that.category_id
 				}
 				
-				this.http(params)
+				this.http(params,that.erea)
 			},
 			changeEreaArr(){
 				this.Http.getEreaData((res)=>{

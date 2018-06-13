@@ -7,7 +7,7 @@
 				<div>
 					<div class="top">
 						<p class="status">订单状态: {{statusText[i.status]}}</p>
-						<p class="time" v-if="i.status == 0">{{close_time1}}</p>
+						<!-- <p class="time" v-if="i.status == 0">{{close_time1}}</p> -->
 						<!-- <router-link tag="div" to="/my/order/payMethods" class="send">
 							<button class="green_btn">付款</button>
 						</router-link> -->
@@ -36,7 +36,9 @@
 								<span class="money">{{i.goods_price}}</span>
 							</p>
 							<p>
-								<span class="title" v-if="detailt&&detailt.has_many_params.length">{{detailt.has_many_params?filterArr(detailt.has_many_params,'房间面积'):''}}m²大床{{detailt.has_many_params?filterArr(detailt.has_many_params,'床型'):''}}</span>
+								<span class="title" v-if="detailt&&detailt.has_many_params.length">面积：{{detailt.has_many_params?filterArr(detailt.has_many_params,'房间面积'):''}}m²  <span v-if="detailt.brand_id != 3"> / 
+									床：{{detailt.has_many_params?filterArr(detailt.has_many_params,'床型'):''}}
+								</span></span>
 								<span class="numb">×{{i.goods_total}}</span>
 							</p>
 							<p><span class="title">预计入住: {{come_time1}}</span></p>
@@ -74,7 +76,7 @@
 							</li>
 							<div class="send_box" v-if="title == '待付款'">
 								<!-- <router-link tag="span" :to="Fn.getUrl({path: '/my/custom'})" class="custom">联系客服</router-link> -->
-								<span v-if="!isChange" @click="handlePayAgint(i.id)" tag="span"  :to="Fn.getUrl({path: '/my/order/payMethods'})" class="custom">付款</span>
+								<span v-if="isPay" @click="handlePayAgint(i.id)" tag="span"  :to="Fn.getUrl({path: '/my/order/payMethods'})" class="custom">付款</span>
 							</div>
 							<!-- <div class="send"  v-else>
 								<router-link tag="p" :to="Fn.getUrl({path: '/my/custom'})" class="m custom">联系客服</router-link>
@@ -90,77 +92,6 @@
 				</div>
 				
 			</div>
-			<!-- <div v-else>
-			
-				<div class="show">
-									<div v-if="1==index_">
-						<div class="body">
-							<div>
-								<div class="top padding-bottom" >
-									<p class="status">订单状态: 已付款</p>
-									<p class="time">2018-02-29 18:32</p>
-									<div class="send">
-									</div>
-								</div>
-								<div class="middle_1">
-									<p>
-										<span class="personal">客户: 胡勇蝶</span>
-										<span class="phone">157686191036</span>
-									</p>
-									<p class="sex">性别: 男</p>
-									<p class="sex">身份证号码: 440510199506132352</p>
-								</div>
-								<div class="middle_3">
-									<div class="img">
-										<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425433535&di=f7d324b2c95bd6f203fb8741290c02e3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D41481487a2773912d02b8d219161e374%2Ff3d3572c11dfa9ec3d58042d69d0f703918fc192.jpg" alt="">
-									</div>
-									<div class="text_box">
-										<p class="hotel_name">银河大酒店</p>
-										<p>
-											<span class="room_name">商务大床房</span>
-											<span class="money">289.00</span>
-										</p>
-										<p>
-											<span class="title">52m²大床1.8m</span>
-											<span class="numb">×1</span>
-										</p>
-										<p><span class="title">预计入住: 2018-04-05 18:30</span></p>
-										<p><span class="title">预计退房: 2018-04-06</span></p>
-									</div>
-
-								</div>
-								<div class="middle_4">
-									<ul>
-										<li class="item">
-										    <span class="day">商品金额</span>
-											<span class="number_box">
-												<span class="money_icon">¥</span>
-												<span class="money_icon" style="padding-left: 0">289.00</span>
-											</span>
-										</li>
-										<li class="item">
-											<span class="day">应付金额</span>
-											<span class="number_box" style="color: #43c122">
-												<span class="money_icon">¥</span>
-												<span class="money_icon" style="padding-left: 0">289.00</span>
-											</span>
-										</li>
-										<div class="send_box">
-											<center><router-link tag="span" :to="Fn.getUrl({path: '/my/custom'})" class="custom">联系客服</router-link></center>
-										</div>
-									</ul>
-								</div>
-								<div class="footer">
-									<p>订单编号: 2153232121</p>
-									<p>订单类型: 微信支付</p>
-									<p>下单时间: 2018-02-29 21:16:52</p>
-									<p>下单时间: 2018-02-29 21:16:52</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div> -->
 		</div>
 		
 
@@ -207,7 +138,9 @@
 				detailt: null,
 				arr: [],
 				realName: null,
-				isChange: false
+				isChange: false,
+				isPay: false,
+				title: ''
 			}
 		},
 		methods: {
@@ -359,9 +292,9 @@
 				let dd = new Date(Number(this.close_time))
 				return dd.getFullYear()+'-'+this.Fn.zero(dd.getMonth()+1)+'-'+this.Fn.zero(dd.getDate()) 
 			},
-			title(){
-				return this.$route.query.isPay?'待使用':'待付款'
-			},
+			// title(){
+			// 	return this.detail?this.statusText[detail.status]: '待付款'
+			// },
 			come_time1(){
 				let dd = new Date(Number(this.come_time))
 				return dd.getFullYear() + '-' + this.Fn.zero(dd.getMonth()+1) + '-' + this.Fn.zero(dd.getDate())
@@ -445,13 +378,8 @@
 								}
 							}
 						})
+						this.title = this.statusText[that.arr0[0].status]
 					}
-			},
-			realName(){
-				log(9999999,this.realName,this.isChange)
-			},
-			isChange(){
-				log(7777777,this.realName,this.isChange)
 			}
 		}
 	}

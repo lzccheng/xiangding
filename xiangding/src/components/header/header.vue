@@ -13,7 +13,7 @@
 </template>
 <script>
 	export default {
-		props: ['title'],
+		props: ['title','router'],
 		data(){
 			return {
 
@@ -21,6 +21,10 @@
 		},
 		methods: {
 			_handleClick(){
+				if(this.router){
+					this.$router.push(this.Fn.getUrl({path: this.router}))
+					return
+				}
 				this.$router.go(-1)
 			}
 		}

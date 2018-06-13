@@ -164,6 +164,9 @@
 	import { Indicator,MessageBox } from 'mint-ui'
 	export default {
 		mounted(){
+			if(window.agantStatus){
+				this.$router.push(this.Fn.getUrl({path: '/my/myagantEnter'}))
+			}
 			let that = this
 			this.getStatus()
 		},
@@ -336,12 +339,14 @@
 		watch: {
 			$route(to,from){
 				if(to.name === 'agantEnter'){
+					if(window.agantStatus){
+						this.$router.push(this.Fn.getUrl({path: '/my/myagantEnter'}))
+					}
 					this.getStatus()
 				}
 			},
 			status(){
 				if(this.status == 1){
-					log(111111111111111111)
 					this.$router.push(this.Fn.getUrl({path: '/my/myagantEnter'}))
 				}
 			}

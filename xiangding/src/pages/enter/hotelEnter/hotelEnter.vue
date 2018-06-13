@@ -173,6 +173,9 @@
 	import { Indicator ,MessageBox  } from 'mint-ui'
 	export default {
 		mounted(){
+			if(window.hotelStatus){
+	        	window.location.href = 'https://www.share-hotel.cn/web/index.php?c=user&a=login&dd=1'
+	        }
 			this.$refs.eye_two.style.display = 'inline-block'
 			this.$refs.eye_one.style.display = 'none'
 			let that = this

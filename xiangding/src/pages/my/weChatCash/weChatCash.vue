@@ -55,42 +55,82 @@
 <script>
 	export default {
 		mounted(){
+			if(this.$route.query.hotel){
+				this.hotel = this.$route.query.hotel
+			}
+			if(this.$route.query.agant){
+				this.agant = this.$route.query.agant
+			}
 			//余额
 			//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=finance.balance-withdraw.page&
 			this.getData()
 			//提现
 			//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=finance.balance-withdraw.withdraw&i=3&type=1&withdraw_type=1&withdraw_money=20
+			// 门店提现
+			//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=finance.Income-withdraw.hotel
+			// 门店信息接口
+			// http://www.share-hotel.cn/web/index.php?c=site&a=entry&m=yun_shop&do=9120&route=plugin.store-cashier.store.admin.store-set.index
+			// this.Http.get({route: 'plugin.store-cashier.store.admin.store-set.index',baseUrl: '/web/index.php?c=site&a=entry&m=yun_shop&do=9120&action=1&'}).then(res=>{
+			// 	log(999,res)
+			// })
 		},
 		data(){
 			return {
 				general: false,
 				cash: '0',
 				text: '',
-				balance: 0
+				balance: '',
+				hotel: null,
+				agant: null
 			}
 		},
 		methods: {
 			handleCash(){
-				console.log(this.balance)
+				let that = this
 				if(this.balance <= 0){
 					return this.Fn.tips('请输入大于 0 的提现金额')
 				}
-				let that = this
-				this.Http.get({route: 'finance.balance-withdraw.withdraw',params: {
+				let params = {
 					withdraw_money: this.balance,
 					withdraw_type: 1
-				}}).then(res=>{
+				}
+				if(this.hotel){
+					params.action = 1
+					params.uid = window.localStorage.getItem('userInfo')
+					params.ratio = that.text.split('：')[1].split('%')[0]/100*that.balance
+				}
+				if(this.agant){
+					//window.localStorage.getItem('userInfo')
+					params.action = 2
+					params.uid = window.localStorage.getItem('userInfo')
+					params.ratio = that.text.split('：')[1].split('%')[0]/100*that.balance
+				}
+				this.Http.get({route: 'finance.balance-withdraw.withdraw',params}).then(res=>{
 					that.Fn.tips(res.data.msg)
-					that.balance = 0
+					that.balance = ''
 					that.getData()
 				})
 			},
 			getData(){
+				//window.localStorage.getItem('userInfo')
 				let that = this
 				this.Http.get({route: 'finance.balance-withdraw.page'}).then(res=>{
 					if(res.data.result == 1){
-						that.cash = res.data.data.balance
 						that.text = res.data.data.poundage
+						if(this.agant || this.hotel){
+							that.Http.post({route:'finance.earning.earning-count&action=true&',data:{action: 1,uid: window.localStorage.getItem('userInfo'),text: that.text.split('：')[1]}}).then(res=>{
+								if(res.data.result === 1){
+									if(that.agant){
+										that.cash = res.data.data.service_money?Math.floor(res.data.data.service_money*100)/100: '0'
+									}else{
+										that.cash = res.data.data.hotel_money?Math.floor(res.data.data.hotel_money*100)/100: '0'
+									}
+								}
+							})
+							return
+						}else{
+							that.cash = res.data.data.balance
+						}
 					}
 				})
 			},
@@ -107,6 +147,12 @@
 		watch: {
 			$route(to,from){
 				if(to.name === 'weChatCash'){
+					if(this.$route.query.hotel){
+						this.hotel = this.$route.query.hotel
+					}
+					if(this.$route.query.agant){
+						this.agant = this.$route.query.agant
+					}
 					this.getData()
 				}
 			}

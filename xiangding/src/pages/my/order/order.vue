@@ -37,16 +37,17 @@
 									</p>
 									<p>
 										<span class="titl_hide">{{i.goods_total}}间. {{i.title}}</span>
+										
 									</p>
 									<p>
-										<span class="title_hide">客户名称: {{$store.state.userInfo.realname?$store.state.userInfo.realname:$store.state.userInfo.nickname}}</span>
+										<!-- <span class="title_hide">客户名称: {{$store.state.userInfo.realname?$store.state.userInfo.realname:$store.state.userInfo.nickname}}</span> -->
 										<span class="no">
 											<span class="money_color">¥</span>
 											<span class="money_size">{{i.price}}</span>
 										</span>
 									</p>
 									<p>
-										<span class="title_hide">支付剩余时间: 5分钟</span>
+										<!-- <span class="title_hide">支付剩余时间: 5分钟</span> -->
 										<span class="no_pay">{{i.status_name}}</span>
 									</p>
 								</router-link>
@@ -78,11 +79,12 @@
 										<!-- <span class="title_t">(豪华酒店 |四星级)</span> -->
 										<span class="cross"><i class="far fa-times-circle"></i></span>
 									</p>
+
 									<p>
 										<span class="title_hide">{{i.goods_total}}间.  {{i.title}}</span>
 									</p>
 									<p>
-										<span class="title_hide">客户名称: {{$store.state.userInfo.realname?$store.state.userInfo.realname:$store.state.userInfo.nickname}} </span>
+										<!-- <span class="title_hide">客户名称: {{$store.state.userInfo.realname?$store.state.userInfo.realname:$store.state.userInfo.nickname}} </span> -->
 										<span class="no">
 											<span class="money_color">¥</span>
 											<span class="money_size">{{i.price}}</span>
@@ -123,7 +125,7 @@
 										<span class="title_hide">{{i.goods_total}}间.  {{i.has_many_order_goods?i.has_many_order_goods.length?i.has_many_order_goods[0].title: '':''}}</span>
 									</p>
 									<p>
-										<span class="title_hide">客户名称: {{$store.state.userInfo.realname?$store.state.userInfo.realname:$store.state.userInfo.nickname}} </span>
+										<!-- <span class="title_hide">客户名称: {{$store.state.userInfo.realname?$store.state.userInfo.realname:$store.state.userInfo.nickname}} </span> -->
 										<span class="no">
 											<span class="money_color">¥</span>
 											<span class="money_size">{{i.price}}</span>
@@ -284,7 +286,6 @@
 	        },
 			handlePay(order_id){
 				let that = this
-				log(order_id)
 				Indicator.open('加载中...')
 				this.Http.get({route:'order.merge-pay',params:{order_ids:order_id,pid:that.$store.state.userInfo.uid}}).then(ress=>{
 					log(ress)
@@ -318,7 +319,6 @@
 			},
 			handlePayAgint(oder_id){
 				let that = this
-				log(order_id)
 				this.handlePay(oder_id)
 			},
 			getData(obj){
@@ -327,10 +327,11 @@
 				if(obj.page){data.page = obj.page}
 				if(obj.status || obj.status == 0){data.status = obj.status}
 				if(obj.all){
+					that[obj.attr] = []
 					for(let i=0;i<5;i++){
 						data.status = i-1
 						this.Http.post({route: 'order.list.index',data}).then(res=>{
-							that[obj.attr] = [...res.data.data,...that[obj.attr]]
+							that[obj.attr] = [...that[obj.attr],...res.data.data]
 						})
 					}
 					return
@@ -407,7 +408,7 @@
 		watch: {
 			$route(to,from){
 				if(to.name === 'order'){
-					this._lineLeft()
+					// this._lineLeft()
 					this.handleRequest(this.index_)
 				}
 			}
@@ -537,6 +538,7 @@
 								color: #ff9800;
 							}
 							.no{
+								margin-top: rem(-15px);
 								float: right;
 							}
 							.no_pay{

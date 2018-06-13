@@ -1,6 +1,6 @@
 <template>
 	<div class="box">
-	<Header title="代理服务商"/>
+	<Header title="代理服务商" :router="router"/>
 		<div class="header">
 		    <div class="big">
 		    	<div class="ball">
@@ -15,7 +15,7 @@
 	    <router-link :to="Fn.getUrl({path: '/my/cashDetail'})" class="nav" tag='span'>
 	    	<div class="green"></div>
 	    	<span class="hotel">我服务的酒店</span>
-	    	<span class="num">{{store_num}}</span>
+	    	<span class="num">{{store_num?store_num: '0'}}</span>
 	    </router-link>
 	    <div class="line"></div>
 	    <div class="hotelServe">
@@ -25,7 +25,7 @@
 				<router-link tag="span" :to="Fn.getUrl({path: '/my/weChatCash'})" class="deposit">提现</router-link>
 			</p>
 			<div class="earning">
-				<p class="text"><span>本月服务费收益</span></p>
+				<p class="text"><span>服务费收益</span></p>
 				<p class="money"><span>￥</span><span>{{msg.earning}}</span></p>
 				<!-- <div class="earn">
 					<div class="order">
@@ -68,6 +68,7 @@
 		},
 		data(){
 			return {
+				router: '/enter',
 				store_num: '0',
 				name: '',
 				msg: {
@@ -88,16 +89,28 @@
 		methods: {
 			getData(){
 				let that = this
-				this.Http.post({route:'finance.earning.earning-count&action=true&',data:{uid: this.$store.state.userInfo.uid}}).then(res=>{
-					if(res.data.result === 1){
-						that.msg.earning = res.data.data.user  
-						that.name = res.data.data.services_user_name  
-						// that.agantEarning = res.data.data.services
+				setTimeout(function(){
+					that.Http.post({route:'finance.earning.earning-count&action=true&',data:{uid: window.localStorage.getItem('userInfo')}}).then(res=>{
+						if(res.data.result === 1){
+							that.msg.earning = res.data.data.services  
+							that.name = res.data.data.services_user_name  
+							// that.agantEarning = res.data.data.services
+						}
+					})
+					that.Http.post({route:'finance.earning.earning-count&action=true&',data:{uid: window.localStorage.getItem('userInfo')}}).then(res=>{
+	                    that.store_num = res.data.data.store_num
+	                })
+				},50)
+				
+			}
+		},
+		watch: {
+			$route(to,form){
+				if(to.name === 'myagantEnter'){
+					if(form.name === 'my'){
+						this.router = '/my'
 					}
-				})
-				this.Http.post({route:'finance.earning.earning-count&action=true&',data:{uid: this.$store.state.userInfo.uid}}).then(res=>{
-                    that.store_num = res.data.data.store_num
-                })
+				}
 			}
 		}
 	}

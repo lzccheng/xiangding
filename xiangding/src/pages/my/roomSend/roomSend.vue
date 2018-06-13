@@ -1,6 +1,6 @@
 <template>
 	<div class="box">
-		<Header :title="title" />
+		<Header :title="title" router="/my/roomEnter"/>
 		<myalert :innerHtml="htmltest" title_3="取消扣费设置" @handleCancel="aaa" :show="alertShow" status="0" />
 		<myalert :innerHtml="htmltest_1" title_3="设施设备" @handleCancel="aaa_1" :show="alertShow_1" status="0" />
 
@@ -19,19 +19,19 @@
 				</li>
 				<li class="item">
 					<span class="name">单间原价:</span>
-					<span class="hide_1"><input type="text" placeholder="请填写房间原价" v-model="formData.market_price"></span>
+					<span class="hide_1"><input type="number" placeholder="请填写房间原价" v-model="formData.market_price"></span>
 				</li>
 				<li class="item">
 					<span class="name">单间价格:</span>
-					<span class="hide_1"><input type="text" placeholder="请填写房间的价格" v-model="formData.price"></span>
+					<span class="hide_1"><input type="number" placeholder="请填写房间的价格" v-model="formData.price"></span>
 				</li>
 				<li class="item">
 					<span class="name">可售房数:</span>
-					<span class="hide_1"><input type="text" placeholder="请填写房间数量" v-model="formData.stock"></span>
+					<span class="hide_1"><input type="number" placeholder="请填写房间数量" v-model="formData.stock"></span>
 				</li>
 				<li class="item">
 					<span class="name">可住人数:</span>
-					<span class="hide_1"><input type="text" placeholder="请填写房间可住人数" v-model="formData.param_value[0]"></span>
+					<span class="hide_1"><input type="number" placeholder="请填写房间可住人数" v-model="formData.param_value[0]"></span>
 				</li>
 				<li class="item">
 					<span class="name">房间规格:</span>
@@ -200,7 +200,7 @@
               '',
               '',
               ['超过1小时扣费10%'],
-              '是',
+              '无',
               '是',
               ['24小时热水'],
               '1.5米'
@@ -209,6 +209,49 @@
 			}
 		},
 		methods: {
+			initData(){
+				this.formData = {
+		            uniaci: 3,
+		            display_order: 1,
+		            title:'',
+		            parentid: 0,
+		            is_recommand: 0,
+		            goods_sn: new Date().getTime(),
+		            product_sn: new Date().getTime()+10,
+		            content: '8888888',
+		            childid: 0,
+		            brand_id: 2,
+		            type: 1,
+		            sku: '间',
+		            thumb_url: '999',
+		            price: '',
+		            market_price: '',
+		            cost_price: 0,
+		            stock: '',
+		            reduce_stock_method: 1,
+		            status: 1,
+		            weight: '1',
+		            thumb: '',
+		            param_title:[
+		              '可住人数',
+		              '房间面积',
+		              '取消政策',
+		              '是否供应早餐',
+		              '是否有窗户',
+		              '房间配套设施',
+		              '床型'
+		            ],
+		            param_value:[
+		              '',
+		              '',
+		              ['超过1小时扣费10%'],
+		              '无',
+		              '是',
+		              ['24小时热水'],
+		              '1.5米'
+		            ],
+		          }
+			},
 			handleRoomSend(){
 				// this.Http.get({route:'plugin.store-cashier.store.admin.goods.add',baseUrl: '/web/index.php?c=site&a=entry&m=yun_shop&do=1022&action=true&',params:{...this.formData}}).then(res=>{
 				// 	console.log('get',res)
@@ -253,7 +296,6 @@
         console.log({...this.formData})
         let that = this
         this.Http.post({route:'plugin.store-cashier.store.admin.goods.add',baseUrl: '/web/index.php?c=site&a=entry&m=yun_shop&do=1022&action=true&',data:{...this.formData}}).then(res=>{
-          console.log('post',res)
           that.Fn.tips(res.data.msg)
           if(res.data.code === 200){
             that.$router.push(that.Fn.getUrl({path:'/my/roomEnter'}))
@@ -297,6 +339,7 @@
 				if(to.name === 'roomSend'){
 					if(this.$route.query.title){
 						this.title = this.$route.query.title
+						this.initData()
 					}
 				}
 			}
@@ -310,6 +353,7 @@
 		position: relative;
 		font-size: rem(13px);
 		padding-top: rem(24px);
+		background-color: #fff;
 		.back{
 			background-color: rgba(0,0,0,0.3);
 			position: fixed;

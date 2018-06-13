@@ -52,52 +52,20 @@
 		<div class="hotelServe">
 			<p class="title">
 				<span>代理服务商</span>
-				<router-link :to="Fn.getUrl({path: '/my/cash'})" class="cash" tag='span'>提现</router-link>
+				<router-link :to="Fn.getUrl({path: '/my/weChatCash',query:{agant: 1}})" class="cash" tag='span'>提现</router-link>
 			</p>
 			<div class="earning">
 				<p class="text"><span>当前收益</span></p>
 				<p tag="p" :to="Fn.getUrl({path: '/my/cashDetail'})" class="money" style="font-family:'微软雅黑' ,Arial !important"><span>￥</span><span>{{msg.agantEarning}}</span></p>
-				<!-- <div class="earn">
+				<router-link tag="div" :to="Fn.getUrl({path: '/enter/agantEnter'})" class="earn">
 					<div class="order">
-						<p class="icon"><i class="far fa-file"></i></p>
-						<p class="text">
-							<span>本月收益订单数</span><br>
-							<span>{{msg.order_num}}</span>
-						</p>
+						<p><div class="_line"></div>我服务的酒店</p>
 					</div>
 					<div class="people">
-						<p class="icon"><i class="far fa-user"></i></p>
-						<p class="text">
-							<span>本月消费人数数</span><br>
-							<span>{{msg.poeple_num}}</span>
-						</p>
+						<span>{{msg.store_num}}</span>
 					</div>
-				</div> -->
-				<!-- <div class="agent">
-					<ul>
-						<li>
-							<p><span>一级代理</span></p>
-							<p class="right">
-								<span>收入</span><br>
-								<span>{{msg.income.firstAgent}}</span>
-							</p>
-						</li>
-						<li>
-							<p><span>二级代理</span></p>
-							<p class="right">
-								<span>收入</span><br>
-								<span>{{msg.income.secondAgent}}</span>
-							</p>
-						</li>
-						<li>
-							<p><span>三级代理</span></p>
-							<p class="right">
-								<span>收入</span><br>
-								<span>{{msg.income.thirdAgent}}</span>
-							</p>
-						</li>
-					</ul>
-				</div> -->
+				</router-link>
+				
 			</div>
 		</div>
 		<div class="myOrder">
@@ -164,19 +132,21 @@
 				that.msg.level_name = res.data.data.level_name
 				that.msg.agent_nickname = res.data.data.yz_member.agent?res.data.data.yz_member.agent.nickname: ''
 			})
+			//window.localStorage.getItem('userInfo')
 			setTimeout(function(){
 				that.Http.post({route:'finance.earning.earning-count&action=true&',data:{action: 1,uid: window.localStorage.getItem('userInfo')}}).then(res=>{
 					if(res.data.result === 1){
 						that.msg.earning = res.data.data.user  
 						that.msg.agantEarning = res.data.data.services
+						that.msg.store_num = res.data.data.store_num?res.data.data.store_num: '0'
 					}
 				})
 			},100)
-				
 		},
 		data(){
 			return {
 				msg: {
+					store_num: '0',
 					imgUrl: '',
 					id: '',
 					earning:'0',
@@ -344,10 +314,9 @@
 			}
 		}
 		.earn{
-			margin: rem(10px) 0;
+			border-top: 1px solid #aaa;
+			padding-top: rem(15px);
 			display: flex;
-			align-items: center;
-			padding-bottom: rem(18px);
 			.icon{
 				display: inline-block;
 				border-radius: 100%;
@@ -356,6 +325,15 @@
 			}
 			p{
 				display: inline-block;
+			}
+			._line{
+				width: rem(5px);
+				height: rem(25px);
+				border-radius: rem(5px);
+				background-color: #43c122;
+				position: absolute;
+				left: rem(20px);
+				top: rem(-3px);
 			}
 			.text{
 				text-align: left;
@@ -371,6 +349,7 @@
 
 			.order{
 				width: 50%;
+				position: relative;
 				.icon{
 					padding: rem(5px) rem(10px);
 					background-color: #ff9800;
@@ -378,10 +357,13 @@
 			}
 			.people{
 				width: 50%;
-
-				.icon{
-					padding: rem(5px) rem(7px);
-					background-color: #ff4081;
+				span{
+					float: right;
+					margin-right: rem(30px);
+					padding: rem(3px) rem(15px);
+					background-color: #43c122;
+					color: #fff;
+					border-radius: rem(8px);
 				}
 			}
 		}

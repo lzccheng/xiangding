@@ -24,9 +24,16 @@
 						<p v-if="title === '会议室'">董事长会议厅</p>
 						<p v-else>{{detailt.title}}</p>
 						<p><span><!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'房间面积'):''}} --><!-- 80m <sup>2</sup>	 -->
-						<span v-if="title === '会议室'">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'可住人数'):''}}人</span> 
-						<span  v-else  v-if="dataText">{{filterArr(dataText['0'],'房间面积')}}m大床</span> 
-						</span><span class="change">￥{{detailt.price}}元</span></p>
+						<!-- <span v-if="title === '会议室'">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'可住人数'):''}}人</span>  -->
+						<!-- <span  v-else  v-if="dataText">{{filterArr(dataText['0'],'房间面积')}}m大床</span>  -->
+						</span>
+						
+						<!-- <span v-if="detailt&&detailt.brand_id == 4">
+							数量要求：
+							{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'数量要求'):''}}间起订
+						</span> -->
+
+						<span class="change">￥{{detailt.price}}元</span></p>
 					</div>
 					<div>
 						
@@ -54,29 +61,29 @@
 						</p>
 					</div>
 					<div v-else>
-						<p class="msg_1" v-if="dataText">
-							<span class="head">床型</span>
-							<span class="text"><!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'床型'):''}} -->{{filterArr(dataText['0'],'床型')}}</span>
+						<p class="msg_1" v-if="detailt">
+							<span class="head" v-if="detailt.brand_id != 3">床型</span>
+							<span class="text" v-if="detailt.brand_id != 3"><!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'床型'):''}} -->{{filterArr(detailt.has_many_params,'床型')}}</span>
 							<span class="head">面积</span>
-							<span class="text" v-if="dataText"><!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'房间面积'):''}} -->{{filterArr(dataText['0'],'房间面积')}} m <sup>2</sup> <!-- <sup>2</sup> --></span>
+							<span class="text" v-if="detailt"><!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'房间面积'):''}} -->{{filterArr(detailt.has_many_params,'房间面积')}} m <sup>2</sup> <!-- <sup>2</sup> --></span>
 						</p>
 						<p class="msg_1">
 							<span class="head">窗户</span>
-							<span class="text" v-if="dataText">{{filterArr(dataText['0'],'是否有窗户')}}<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'是否有窗'):''}} --></span>
-							<span class="head">可住</span>
-							<span class="text" v-if="dataText">{{filterArr(dataText['0'],'可住人数')}}人<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'可住人数'):''}} --></span>
+							<span class="text" v-if="detailt">{{filterArr(detailt.has_many_params,'是否有窗户')}}<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'是否有窗'):''}} --></span>
+							<span class="head" v-if="detailt.brand_id != 3">可住</span>
+							<span class="text" v-if="detailt&&detailt.brand_id != 3">{{filterArr(detailt.has_many_params,'可住人数')}}人<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'可住人数'):''}} --></span>
 						</p>
 						<p class="msg_1">
 							<span class="head">网络</span>
 							<span class="text">wifi供应<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'有'):''}} --></span>
-							<span class="head">电话</span>
-							<span class="text" v-if="hotelData">{{hotelData.mobile}}<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'电话'):''}} --></span>
+							<!-- <span class="head">电话</span> -->
+							<!-- <span class="text" v-if="hotelData">{{hotelData.mobile}}</span> -->
 						</p>
 						<p class="msg_1" v-if="title == '会议室'">
 							<!-- <span class="head">楼层</span>
 							<span class="text">{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'楼层'):''}}</span> -->
 							<span class="head">早餐</span>
-							<span class="text" v-if="dataText">{{filterArr(dataText['0'],'是否供应早餐')}}<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'是否有早餐'):''}} --></span>
+							<span class="text" v-if="detailt">{{filterArr(detailt.has_many_params,'是否供应早餐')}}<!-- {{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'是否有早餐'):''}} --></span>
 						</p>
 					</div>
 				</div>
@@ -89,11 +96,10 @@
 							<span class="icon_s radius" style="border-left: none"  @click="handleAdd">+</span>
 						</span>
 					</p> -->
-					<!-- <p class="black">
+					<p class="black" v-if="detailt.brand_id != 3">
 						<span class="first">
-						   <p v-if="title ==='会议室'">会议室间数</p>
-						   <p v-else>房间</p>
-						   <p v-if="title === '团房'" class="room">注: 团房间最少订购两间及以上</p>
+						   <p>房间</p>
+						   <p  v-if="detailt&&detailt.brand_id == 4" class="room">注: 团房间最少订购{{detailt.has_many_params?Fn.filterArr(detailt.has_many_params,'数量要求'):''}}间及以上</p>
 						</span>
 						<span class="number_box" >
 						    <span class="icon_s"  style="border-right: none"  @click="handleDelete1">-</span>
@@ -101,11 +107,11 @@
 							<span class="icon_s radius" style="border-left: none" @click="handleAdd1">+</span>
 						</span>
 					</p>
-					<p class="black" v-if="title === '会议室'">
+					<!-- <p class="black" v-if="title === '会议室'">
 						<span>是否需要LED屏</span>
 						<span class="check_box" ><el-checkbox v-model="checked1"></el-checkbox></span>
-					</p>
-					<p class="black" v-if="title === '会议室' && checked1" >
+					</p> -->
+					<!-- <p class="black" v-if="title === '会议室' && checked1" >
 						<span class="right" >
 							 <el-radio v-model="radio" label="1">1 × 2米LED屏</el-radio><br/>
 	                         <el-radio v-model="radio" label="2">1.5 × 3.5米LED屏</el-radio><br/>  
@@ -177,7 +183,7 @@
 					</p>
 
 					<p>
-						<span class="money_color">{{detailt.price*days}}元</span>
+						<span class="money_color">{{Math.floor(detailt.price*days*num_2*100)/100}}元</span>
 						
 					</p>
 				</div>
@@ -336,6 +342,24 @@
 					this.type = this.$store.state.hotelInfo.category_id
 					this.getData()
 				}
+			},
+			num_2(){
+				if(this.detailt&&this.detailt.brand_id == 4){
+					let num = this.detailt.has_many_params?this.Fn.filterArr(this.detailt.has_many_params,'数量要求'):''
+					if(Number(num)>this.num_2){
+						this.Fn.tips('订购房间不能少于最少订购数！')
+						this.num_2 = Number(num)
+					}
+				}
+			},
+			detailt(){
+				if(this.detailt&&this.detailt.brand_id == 4){
+					let num = this.detailt.has_many_params?this.Fn.filterArr(this.detailt.has_many_params,'数量要求'):''
+					if(num){
+						log(this.detailt)
+						this.num_2 = Number(num)
+					}
+				}
 			}
 		},
 		methods:{
@@ -369,7 +393,7 @@
 				let goods = [
 					{
 						goods_id: this.id,
-						total: this.num_2,
+						total: this.num_2*this.days,
 						option_id: 0
 					}
 				]
@@ -387,7 +411,7 @@
 					console.log(res)
 					that.Fn.tips(res.data.msg)
 					if(res.data.result === 1){
-						that.$router.push(that.Fn.getUrl({path: '/hotel/payOrder',query: {order_ids: res.data.data.order_id,realname: that.formData.name,tel:that.formData.tel,total: that.num_2}}))
+						that.$router.push(that.Fn.getUrl({path: '/hotel/payOrder',query: {order_ids: res.data.data.order_id,realname: that.formData.name,tel:that.formData.tel,total: that.num_2,storeId: that.store_id}}))
 					}
 				})
 			},
@@ -397,6 +421,7 @@
 				let that = this
 				that.detailt = null
 				this.Http.get({route:'goods.goods.get-goods',params:{id:this.id,action: 1}}).then(res=>{
+					log(111,res)
 					that.detailt = res.data.data
 				})
 				this.Http.post({route:'goods.category.get-category',data:{action_m: 1,brand_id:2,store_id:this.store_id}}).then(res=>{

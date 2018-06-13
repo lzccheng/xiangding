@@ -48,7 +48,7 @@
 							</p>
 							<div class="text_small">
 								<p class="text">
-								  <span class="text_1">房间面积:&nbsp; <!-- {{filter(arrItem[index],'房间面积')}} -->{{i[0]?filterArr(i[0],'房间面积'):''}} m<sup>2</sup></span>
+								  <span class="text_1">房间面积:&nbsp; <!-- {{filter(arrItem[index],'房间面积')}} -->{{arrItem[index]?filter(arrItem[index],'房间面积'):''}} m<sup>2</sup></span>
 								  <span class="icon" @click="handleCancel">
 									  <el-switch @change="statusChange(index,i.id)"
 										  v-model="i.active"
@@ -167,17 +167,12 @@
 		},
 		methods: {
 			filter(arr,value){
-				log('arr',arr,value)
 				if(arr.length){
-					log('len',arr.length)
 					let returnValue = arr.filter(i=>{
-						log('title',i.title,value)
 						if(i.title === value){
-							log(111)
 							return i
 						}
 					})
-					log('vallue',returnValue)
 					return returnValue.length?returnValue[0].value : '' 
 				}
 				return '' 
@@ -271,8 +266,8 @@
 		  $route(to,from){
 		    if(to.name === 'roomEnter'){
 		      this.getData()
-        }
-      }
+        	}
+      	}
     }
 	}
 </script>

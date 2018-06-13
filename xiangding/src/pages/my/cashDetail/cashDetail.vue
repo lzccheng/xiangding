@@ -13,7 +13,7 @@
 	    <div class="nav">
 	    	<div class="green"></div>
 	    	<span class="hotel">我服务的酒店</span>
-	    	<span class="num">{{store_num}}</span>
+	    	<span class="num">{{store_num?store_num:'0'}}</span>
 	    </div>
         <div class="line"></div>
 	    <div class="body">
@@ -54,11 +54,15 @@
 		},
 		methods: {
             getData(){
+                //this.$store.state.userInfo.uid
+                log(this.$store.state.userInfo.uid)
                 let that = this
-                this.Http.post({route:'finance.earning.earning-count&action=true&',data:{uid: this.$store.state.userInfo.uid}}).then(res=>{
-                    that.store_num = res.data.data.store_num
-                    that.store_name = res.data.data.store_name
-                })
+                setTimeout(function(){
+                    that.Http.post({route:'finance.earning.earning-count&action=true&',data:{uid: window.localStorage.getItem('userInfo')}}).then(res=>{
+                        that.store_num = res.data.data.store_num
+                        that.store_name = res.data.data.store_name
+                    })
+                },50)
             }
 		}
 	}

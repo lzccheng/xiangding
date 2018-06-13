@@ -23,7 +23,7 @@
 		<div class="header">
 		    <div class="big">
 		    	<div class="ball">
-		    		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523678917746&di=9d67e28303460dfdcd4a4e6734b629f1&imgtype=0&src=http%3A%2F%2Fimg.taopic.com%2Fuploads%2Fallimg%2F120530%2F188024-1205300PQ373.jpg" alt="">
+		    		<img :src="thumb" alt="">
 		    	</div>
 		    	<div class="text">
 		    		<p class="agant">{{name}}</p>
@@ -37,6 +37,9 @@
 	    	<div class="earning">
 				<p class="text"><span>房费收益</span></p>
 				<div  class="money"><span>￥</span><span>{{msg.earning}}</span></div>
+				<div class="button">
+					<router-link tag="span" :to="Fn.getUrl({path: '/my/weChatCash',query:{hotel: 1}})">提现</router-link>
+				</div>
 				<!-- <div class="earn">
 					<div class="order">
 						<p class="icon"><i class="far fa-file"></i></p>
@@ -107,21 +110,38 @@
 			// this.Http.get({baseUrl:'web/index.php?c=site&a=entry&m=yun_shop&do=7619&action=true',route:'plugin.store-cashier.store.admin.order.index'}).then(res=>{
 			// 	console.log(res)
 			// })
-      this.Http.post({route:'plugin.store-cashier.store.admin.cashier-order.get-statistics',baseUrl:'/web/index.php?c=site&a=entry&m=yun_shop&do=6578&'}).then(res=>{
-        console.log('统计',res)
-        that.msg.earning = res.data.data.no_settlement
-      })
-      this.Http.post({route:'plugin.store-cashier.store.admin.goods.index',baseUrl:'/web/index.php?c=site&a=entry&m=yun_shop&do=6578&action=true&'}).then(res=>{
-        console.log('首页',res)
-        that.name = res.data.main[0].store_name
-      })
+      // this.Http.post({route:'plugin.store-cashier.store.admin.cashier-order.get-statistics',baseUrl:'/web/index.php?c=site&a=entry&m=yun_shop&do=6578&'}).then(res=>{
+      //   console.log('统计',res)
+      //   that.msg.earning = res.data.data.no_settlement
+      // })
+
+		      that.Http.post({route:'finance.earning.earning-count&action=true&',data:{action: 1,uid: 14}}).then(res=>{
+					if(res.data.result === 1){
+						that.msg.earning = res.data.data.hotel
+					}
+				})
+
+		      this.Http.post({route:'plugin.store-cashier.store.admin.goods.index',baseUrl:'/web/index.php?c=site&a=entry&m=yun_shop&do=6578&action=true&'}).then(res=>{
+		        console.log('首页',res)
+		        that.name = res.data.main[0].store_name
+		      })
+
+     		 this.Http.get({route: 'plugin.store-cashier.store.admin.store-set.index',baseUrl: '/web/index.php?c=site&a=entry&m=yun_shop&do=9120&action=1&'}).then(res=>{
+				log(999,res)
+				if(res.data.result === 1){
+					that.name = res.data.msg.store_name
+					that.thumb = res.data.msg.thumb
+				}
+			})
 		},
 		data(){
 			return {
 				name: '',
+				thumb:'',
 				msg: {
 					imgUrl: 'http://imgtu.5011.net/uploads/content/20170428/1436171493371991.jpg',
 					id: '147258369',
+					thumb: '',
 					earning:'0',
 					order_num: '1369',
 					poeple_num: '569',
@@ -260,6 +280,7 @@
 				}
 			}
 			.earning{
+				position: relative;
 				background-color: #fff;
 				text-align: center;
 				.text{
@@ -311,6 +332,21 @@
 							padding: rem(5px) rem(7px);
 							background-color: #ff4081;
 						}
+					}
+				}
+				.button{
+					position: absolute;
+					right: 0;
+					top: rem(10px);
+					span{
+						display: inline-block;
+						height: rem(30px);
+						width: rem(80px);
+						text-align: center;
+						line-height: rem(30px);
+						border-radius: rem(15px) 0 0 rem(15px);
+						background-color: #43c122;
+						color: #fff;
 					}
 				}
 			}

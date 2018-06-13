@@ -28,7 +28,7 @@
 				<span><i class="fas fa-warehouse"></i></span>
 				<span>{{$store.state.hotelInfo.store_name}}</span>
 			</p>
-			<div class="item" v-for="(i,index) in orders.has_many_order_goods" :key="index" >
+			<div class="item" v-for="(i,index) in [orders]" :key="index" >
 				<div class="img" @click="handleShow_back"><img  :src="i.thumb" alt=""></div>
 				<div class="text_box">
 					<p>{{i.title}}</p>
@@ -121,6 +121,9 @@
 			if(this.$route.query.total){
 				this.total = this.$route.query.total
 			}
+			if(this.$route.query.storeId){
+				this.storeId = this.$route.query.storeId
+			}
 			this.getData()
 		},
 		data(){
@@ -139,7 +142,9 @@
                 orders: null,
                 time: null,
                 order_sn: '',
-                payText: ''
+                payText: '',
+                storeId: null,
+                hotelDetail: null
 			}
 		},
 		methods: {
@@ -215,25 +220,32 @@
 				//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=order.merge-pay&order_ids=156&pid=10
 				let that = this
 				this.Http.get({route: 'order.merge-pay',params: {order_ids: this.order_ids,pad: 10}}).then(res=>{
-					// console.log(res)
 					that.order = res.data.data
 				})
-				this.Http.post({route:'order.list.index'}).then(res=>{
+				this.Http.post({route:'order.list.index',data:{action: 1,uid: window.localStorage.getItem('userInfo'),status: 0}}).then(res=>{
 					if(res.data.result == 1){
-						let order = res.data.data.data.filter(i=>{
+						let order = res.data.data.filter(i=>{
 							if(i.id == that.order_ids){
 								return i
 							}
 						})
 						that.orders = order[0]
-						console.log(2222,that.orders)
 						that.Http.post({route:'order.create',data:{select: 1,order_id:that.order_ids}}).then(res=>{
 							that.time = res.data.data
 							console.log(that.time)
 						})
 					}
 				})
-
+				this.Http.get({route: 'goods.category.get-children-category',data:{action: 1}}).then(res=>{
+					if(res.data.result === 1){
+						that.hotelDetail = res.data.data.data.filter(i=>{
+							log(i.id,that.storeId)
+							if(i.id == that.storeId){
+								return i
+							}
+						})
+					}
+				})
 			},
 			handleShow_back(){
 				this.general = true
@@ -300,6 +312,9 @@
 					}
 					if(this.$route.query.total){
 						this.total = this.$route.query.total
+					}
+					if(this.$route.query.storeId){
+						this.storeId = this.$route.query.storeId
 					}
 					this.getData()
 				}
