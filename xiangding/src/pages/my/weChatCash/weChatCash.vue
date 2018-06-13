@@ -13,7 +13,7 @@
 		</div>
 		<Header title="提现"/>
 		<div class="form">
-			<p class="input">
+			<p class="input" v-if="!hotel">
 				<label>提现方式</label>
 				<span class="weChat_text">微信</span>
 			</p>

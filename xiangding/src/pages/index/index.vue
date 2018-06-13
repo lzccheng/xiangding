@@ -134,9 +134,9 @@
             </div>
           </router-link>
         </div>
-        <div class="btn">
-          <button class="green_btn" v-if="arrData.length>20">查看更多酒店</button>
-        </div>
+       <!--  <div class="btn">
+          <button class="green_btn">查看更多酒店</button>
+        </div> -->
       </div>
   </div>
 </template>
@@ -234,17 +234,7 @@
         // }).catch((err)=>{
         //   console.log(err)
         // })
-        this.$axios({url:'/hotelData',method: 'get'}).then((res)=>{
-            that.hotel = res.data
-          }).catch((err)=>{
-            console.log(err)
-          })
-          this.$axios({url:'?i=3&route=home-page.index',method: 'get'}).then((res)=>{
-            // console.log(res.data)
-            // alert(res.data.msg)
-          }).catch((err)=>{
-            console.log(err)
-          })
+        
           new lzcDatePlugin({
             el: '#myDate',
             callback: function(res){
