@@ -498,6 +498,7 @@
 				let that = this
 				this.Http.get({route: 'goods.category.get-children-category',params,msg: '数据加载中...'}).then(res=>{
 					if(res.data.data){
+						log(res.data)
 						if(res.data.data[1]){
 							if(value){
 								that.hotelData = res.data.data[1].filter(i=>{
@@ -591,10 +592,9 @@
 				if(this.store_name){
 					params["store[store_name]"] = this.store_name
 				}
-				if(this.category_id){
+				if(this.category_id && this.category_id != 0){
 					params["store[category_id]"] = that.category_id
 				}
-				
 				this.http(params,that.erea)
 			},
 			changeEreaArr(){

@@ -62,7 +62,7 @@
 						<p><div class="_line"></div>我服务的酒店</p>
 					</div>
 					<div class="people">
-						<span>{{msg.store_num}}</span>
+						<span>{{msg.store_num}}</span>  
 					</div>
 				</router-link>
 				

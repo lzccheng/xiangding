@@ -115,8 +115,9 @@
       //   that.msg.earning = res.data.data.no_settlement
       // })
 
-		      that.Http.post({route:'finance.earning.earning-count&action=true&',data:{action: 1,uid: 14}}).then(res=>{
+		      that.Http.post({route:'finance.earning.earning-count&action=true&',data:{action: 1,uid: window.localStorage.getItem('userInfo')}}).then(res=>{
 					if(res.data.result === 1){
+						log(window.localStorage.getItem('userInfo'),res)
 						that.msg.earning = res.data.data.hotel
 					}
 				})

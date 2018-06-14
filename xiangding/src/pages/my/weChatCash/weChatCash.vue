@@ -87,8 +87,8 @@
 		methods: {
 			handleCash(){
 				let that = this
-				if(this.balance <= 0){
-					return this.Fn.tips('请输入大于 0 的提现金额')
+				if(this.balance <= 1){
+					return this.Fn.tips('请输入大于 1 的提现金额')
 				}
 				let params = {
 					withdraw_money: this.balance,
@@ -108,7 +108,7 @@
 				this.Http.get({route: 'finance.balance-withdraw.withdraw',params}).then(res=>{
 					that.Fn.tips(res.data.msg)
 					that.balance = ''
-					that.getData()
+					that.$router.go(-1)
 				})
 			},
 			getData(){

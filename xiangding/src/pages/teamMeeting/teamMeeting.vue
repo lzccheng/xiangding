@@ -244,9 +244,41 @@
 	           *解析定位错误信息
 	           */
 	          function onError(data) {
-	            loading.close()
-	            let tip = '定位失败！'+that.text_erea
-                that.Fn.tips(tip)
+	            that.Http.get({route: 'member.member.wxJsSdkConfig',params: {url: window.location.href}}).then(res=>{
+	              if(res.data.result == 1){
+	                wx.config(res.data.data.config)
+	                wx.ready(function(){
+	                  wx.getLocation({
+	                    success:function(res){
+	                      // alert('lat:'+res.latitude+',lng:'+res.longitude)
+	                      var success = function(status,res){
+	                          loading.close()
+	                          if(res.regeocode.addressComponent.building){
+	                            that.text_erea = res.regeocode.addressComponent.building+'附近'
+	                          }else{
+	                            that.text_erea = res.regeocode.addressComponent.district+res.regeocode.addressComponent.street+res.regeocode.addressComponent.streetNumber+'附近'
+	                          }
+	                          that.Fn.tips('定位成功！'+that.text_erea)
+	                          that.province = res.regeocode.addressComponent.province
+	                          that.city = res.regeocode.addressComponent.city
+	                          that.erea = res.regeocode.addressComponent.district
+	                          that.struct = res.regeocode.addressComponent.township
+	                      }
+	                      var error = function(status,res){
+	                        loading.close()
+	                        that.Fn.tips('定位失败！')
+	                      }
+	                      that.Fn.getAddress([res.longitude,res.latitude],success,error)
+	                    },
+	                    fail:function(res){
+	                      loading.close()
+	                      that.Fn.tips('定位失败！')
+	                    }
+	                  })
+	                })
+	              }
+	            
+	            })
 	          }
 			},
 			handleChange_erea(){

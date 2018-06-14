@@ -70,6 +70,27 @@ const getLongAndLat = (addr,success,error)=>{
 	})
 
 }
+//根据经纬度获取地址
+const getAddress = (lnglat,success=()=>{},error=()=>{})=>{
+	AMap.plugin('AMap.Geocoder', function() {
+	  var geocoder = new AMap.Geocoder({
+	    // city 指定进行编码查询的城市，支持传入城市名、adcode 和 citycode
+	    city: '010'
+	  })
+	 
+	  // var lnglat = [116.396574, 39.992706]
+
+	  geocoder.getAddress(lnglat, function(status, result) {
+	    if (status === 'complete' && result.info === 'OK') {
+	        // result为对应的地理位置详细信息
+	        success(status,result)
+	    }else{
+	    	error(status,result)
+	    }
+	  })
+	})
+}
+
 const isWeiXin = ()=>{
 	var ua = window.navigator.userAgent.toLowerCase();
 	if (ua.match(/MicroMessenger/i) == 'micromessenger') {
@@ -258,5 +279,6 @@ export default {
 	getKeyByI,
 	getType,
 	tips,
-	filterArr
+	filterArr,
+	getAddress
 }

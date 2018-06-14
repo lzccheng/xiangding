@@ -144,6 +144,7 @@
   // import Swiper from 'swiper'
   import star from '../../components/star/star'
   import common from '../../common/js/common'
+  import wx from 'weixin-js-sdk'
 
   let g_date = new Date()
   let _date = new Date()
@@ -322,13 +323,13 @@
         handlePosition(){
            let that = this
            const loading = that.$loading({
-            lock: true,
-            text: '定位中..........',
-            background: 'rgba(0, 0, 0, 0.7)',
-            // target: '.msg'
-          })
-          // that.show_erea = true
-          // that.$refs.show_erea.style.display = 'inline-block'
+              lock: true,
+              text: '定位中..........',
+              background: 'rgba(0, 0, 0, 0.7)',
+              // target: '.msg'
+            })
+          // // that.show_erea = true
+          // // that.$refs.show_erea.style.display = 'inline-block'
           common.getLocation(onComplete,onError)
           function onComplete(data) {
             loading.close()
@@ -340,14 +341,53 @@
             // that.show_erea = false
             // that.$refs.show_erea.style.display = 'none'
             that.Fn.tips('定位成功！'+that.text_erea)
+            that.province = data.addressComponent.province
+            that.city = data.addressComponent.city
+            that.erea = data.addressComponent.district
+            that.struct = data.addressComponent.township
           }
           /*
            *解析定位错误信息
            */
           function onError(data) {
-            loading.close()
-            that.Fn.tips('定位失败！')
+            that.Http.get({route: 'member.member.wxJsSdkConfig',params: {url: window.location.href}}).then(res=>{
+              if(res.data.result == 1){
+                wx.config(res.data.data.config)
+                wx.ready(function(){
+                  wx.getLocation({
+                    success:function(res){
+                      // alert('lat:'+res.latitude+',lng:'+res.longitude)
+                      var success = function(status,res){
+                          loading.close()
+                          if(res.regeocode.addressComponent.building){
+                            that.text_erea = res.regeocode.addressComponent.building+'附近'
+                          }else{
+                            that.text_erea = res.regeocode.addressComponent.district+res.regeocode.addressComponent.street+res.regeocode.addressComponent.streetNumber+'附近'
+                          }
+                          that.Fn.tips('定位成功！'+that.text_erea)
+                          that.province = res.regeocode.addressComponent.province
+                          that.city = res.regeocode.addressComponent.city
+                          that.erea = res.regeocode.addressComponent.district
+                          that.struct = res.regeocode.addressComponent.township
+                      }
+                      var error = function(status,res){
+                        loading.close()
+                        that.Fn.tips('定位失败！')
+                      }
+                      that.Fn.getAddress([res.longitude,res.latitude],success,error)
+                    },
+                    fail:function(res){
+                      loading.close()
+                      that.Fn.tips('定位失败！')
+                    }
+                  })
+                })
+              }
+            
+            })
           }
+          // https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=member.member.wxJsSdkConfig
+
         },
         handleBlur(e){
           var e = e || event
