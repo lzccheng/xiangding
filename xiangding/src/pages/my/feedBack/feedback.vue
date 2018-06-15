@@ -2,9 +2,9 @@
 	<div class="box">
 		<Header title="反馈"/>
 		<div class="body">
-			<textarea class="body_div"   rows="15" placeholder="请输入您宝贵建议或意见...">
+			<textarea class="body_div" v-model="text"   rows="15" placeholder="请输入您宝贵建议或意见...">
 			</textarea>
-			<router-link :to="Fn.getUrl({path: '/my'})" tag="div" class="post" ><p class="green_btn">提交</p></router-link>
+			<div :to="Fn.getUrl({path: '/my'})" tag="div" class="post" ><p class="green_btn" @click="handleSubmit">提交</p></div>
 			<p class="text1"><span>欢迎您为我们提供宝贵建议和意见,您留下的任何<br>信息都将用来改善我们的软件</span></p>
 			<p class="text2"><span>注:  订单相关问题或紧急问题请拨打188-8888-8888 	  &nbsp;获得及时的帮助,意见反馈无法处理订单相关问题</span></p>
 		</div>
@@ -15,11 +15,17 @@
 	export default {
 		data(){
 			return {
-
+				text: ''
 			}
 		},
 		methods: {
-
+			handleSubmit(){
+				if(!this.text){
+					return this.Fn.tips('请输入您的宝贵建议！')
+				}
+				this.Fn.tips('提交成功！谢谢您的宝贵建议！')
+				this.$router.push(this.Fn.getUrl({path: '/my'}))
+			}
 		}
 	}
 </script>

@@ -34,7 +34,7 @@
         <div class="swiper-container">
           <div class="swiper-wrapper">
             <div v-for='(i,index) in arrItem' :key='index' class="swiper-slide">
-              <router-link :to="Fn.getUrl({path: '/hotelDetail',query:{id:i.id,hotelName:i.store_name,date1:date_value[0].datetime,date2:date_value[1].datetime}})" tag='div'>
+              <router-link :to="Fn.getUrl({path: '/hotelDetail',query:{id:i.id,brand_id: 2,hotelName:i.store_name,date1:date_value[0].datetime,date2:date_value[1].datetime}})" tag='div'>
                  <div class="iSlide">
                     <img class="img" :src="i.thumb">
                   </div>
@@ -185,7 +185,7 @@
                 childs :'children'
             },
           triggerDisplayData: false,
-          position: [18,0],
+          position: [18,0,3],
           onShow: function(){
           },
           onHide:function(){
@@ -278,7 +278,7 @@
           _lng: '',
           _lat: '',
           show_erea: true,
-          text_erea: '广州市荔湾区沙面街道',
+          text_erea: '广州市天河区五山街道',
           erea_value: [],
           date_value: [
             {
@@ -290,8 +290,8 @@
           ],
           province:'广东省',
           city: '广州市',
-          erea: '荔湾区',
-          struct: '沙面街道',
+          erea: '天河区',
+          struct: '五山街道',
           arrData:[],
           lng: 0,
           lat: 0,
@@ -306,14 +306,18 @@
         getData(){
           let that = this
           this.Http.get({route:'goods.category.get-children-category',params:{action:true}}).then(res=>{
-            that.arrItem = res.data.data[1].slice(0,2)
-            that.arrData = res.data.data[1].map(i=>{
+            if(res.data.data[1]&&res.data.data[1].length){
+              that.arrItem = res.data.data[1].slice(0,2)
+              that.arrData = res.data.data[1].map(i=>{
               i.category_id = Number(i.category_id)
               return i
               if(!that.arrData.length){
                 that.Fn.tips('没有找到合适的酒店')
               }
             })
+            }
+            
+            
           })
         },
         handleChange_erea(){

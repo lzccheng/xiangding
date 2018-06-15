@@ -109,10 +109,10 @@
 					<p><i class="fa fa-question-circle"></i></p>
 					<p><span>我要反馈</span></p>
 				</router-link>
-				<router-link tag="div" :to="Fn.getUrl({path: '/my/custom'})">
+				<div @click="handleCustom" tag="div" :to="Fn.getUrl({path: '/my/custom'})">
 					<p><i class="far fa-comments"></i></p>
 					<p><span>联系客服</span></p>
-				</router-link>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -166,6 +166,10 @@
 			}
 		},
 		methods:{
+			handleCustom(){
+				let text = '客服电话：15989235358'
+				MessageBox.alert(text, '联系客服');
+			},
 			WXPay(payParams) {
 		      //alert(document.location.href);
 		      //console.log(""+payParams.timestamp);

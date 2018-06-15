@@ -134,7 +134,7 @@
 	                childs :'children'
 	            },
 	          triggerDisplayData: false,
-	          position: [18,0],
+	          position: [18,0,3],
 	          callback:function(indexArr, data){
 	            that.text_erea = data[1].name+data[2].name+data[3].name
 	            that.province = data[0].name
@@ -198,7 +198,7 @@
 				input: '',
 				meetting_total: '',
 				pay: [0,3000],
-				text_erea: '广州市荔湾区沙面街道',
+				text_erea: '广州市天河区五山街道',
 				date_value: [
 		            {
 		              datetime: new Date().getTime()
@@ -210,8 +210,8 @@
 		        name: '会议室',
 		        province: '广东省',
 		        city: '广州市',
-		        erea: '荔湾区',
-		        struct: '沙面街道',
+		        erea: '天河区',
+		        struct: '五山街道',
 		        category_id:'',
 		        brand_id: 3,
 		        seachMinPrice: '',

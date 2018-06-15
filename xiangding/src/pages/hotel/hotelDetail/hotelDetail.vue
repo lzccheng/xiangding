@@ -253,12 +253,16 @@
 		},
 		methods:{
 			filterArr(arr,value){
-				let dd = arr.filter(i=>{
-					if(i.title === value){
-						return i
-					}
-				})
-				return dd[0]?dd[0].value:''
+				if(arr.length){
+					let dd = arr.filter(i=>{
+						if(i.title === value){
+							return i
+						}
+					})
+					return dd[0]?dd[0].value:''
+				}
+				return ''
+				
 			},
 			getData:function(){
 				let that = this
@@ -299,7 +303,7 @@
 		          	store_id: this.id,
 		          	brand_id: this.brand_id
 		          }}).then(res=>{
-
+		          	log(res.data)
 		          	that.rooms = res.data.data.filter(i=>{
 		          			if(i.brand_id == that.brand_id && i.stock){
 		          				return i

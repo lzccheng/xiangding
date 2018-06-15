@@ -123,7 +123,20 @@ const webpackConfig = merge(baseWebpackConfig, {
 if (config.build.productionGzip) {
   const CompressionWebpackPlugin = require('compression-webpack-plugin')
 
-  webpackConfig.plugins.push(
+  // webpackConfig.plugins.push(
+  //   new CompressionWebpackPlugin({
+  //     asset: '[path].gz[query]',
+  //     algorithm: 'gzip',
+  //     test: new RegExp(
+  //       '\\.(' +
+  //       config.build.productionGzipExtensions.join('|') +
+  //       ')$'
+  //     ),
+  //     threshold: 10240,
+  //     minRatio: 0.8
+  //   })
+  // )
+    webpackConfig.plugins.push(
     new CompressionWebpackPlugin({
       asset: '[path].gz[query]',
       algorithm: 'gzip',
@@ -133,6 +146,7 @@ if (config.build.productionGzip) {
         ')$'
       ),
       threshold: 10240,
+      // deleteOriginalAssets:true, //删除源文件，不建议
       minRatio: 0.8
     })
   )
