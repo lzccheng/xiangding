@@ -142,7 +142,6 @@
 </template>
 <script>
   // import Swiper from 'swiper'
-  import star from '../../components/star/star'
   import common from '../../common/js/common'
   import wx from 'weixin-js-sdk'
 
@@ -159,11 +158,7 @@
     '周六'
   ]
   export default{
-      components: {
-        star
-      },
       mounted:function(){
-        log(wx)
         let that = this
         var mobileSelect5 = new MobileSelect({
             trigger: '#cccc',
@@ -202,41 +197,6 @@
         this.Http.getEreaData((res)=>{
           mobileSelect5.updateWheels(JSON.parse(res.data));
         })
-          //定位
-          // const loading = that.$loading({
-          //   lock: true,
-          //   text: '定位中..........',
-          //   background: 'rgba(0, 0, 0, 0.7)',
-          //   // target: '.msg'
-          // })
-          // common.getLocation(onComplete,onError)
-          // function onComplete(data) {
-          //   loading.close()
-          //   let addr = data.formattedAddress.split('街道')
-          //   if(!addr[1]){
-          //     addr = data.formattedAddress.split('号')
-          //   }
-          //   that.text_erea = addr[1]+'附近'
-          //   let tip = '定位成功！'+that.text_erea
-          //   that.Fn.tips(tip)
-          // }
-          // function onError(data) {
-          //   loading.close()
-          //   that.Fn.tips('定位失败！')
-          // }
-
-        // this.$axios({url:'/bannerData',data:{id:123}}).then((res)=>{
-        //   that.arrItem = res.data
-        //   setTimeout(function(){
-        //     var mySwiper = new Swiper('.swiper-container', {
-        //        loop: true,
-        //        autoplay: true
-        //     })
-        //   },100)
-        // }).catch((err)=>{
-        //   console.log(err)
-        // })
-        
           new lzcDatePlugin({
             el: '#myDate',
             callback: function(res){
@@ -328,10 +288,7 @@
               lock: true,
               text: '定位中..........',
               background: 'rgba(0, 0, 0, 0.7)',
-              // target: '.msg'
             })
-          // // that.show_erea = true
-          // // that.$refs.show_erea.style.display = 'inline-block'
           common.getLocation(onComplete,onError)
           function onComplete(data) {
             loading.close()
@@ -340,8 +297,6 @@
               addr = data.formattedAddress.split('号')
             }
             that.text_erea = addr[1]?addr[1]:data.formattedAddress+'附近'
-            // that.show_erea = false
-            // that.$refs.show_erea.style.display = 'none'
             that.Fn.tips('定位成功！'+that.text_erea)
             that.province = data.addressComponent.province
             that.city = data.addressComponent.city
@@ -388,8 +343,6 @@
             
             })
           }
-          // https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=member.member.wxJsSdkConfig
-
         },
         handleBlur(e){
           var e = e || event
@@ -430,26 +383,6 @@
         zero(num){
           return Number(num) >9?num:'0'+num
         },
-        _getDay(value){
-          let dd = new Date()
-          let day = dd.getDate()
-          let mon = dd.getMonth()+1
-          let year = dd.getFullYear()
-          let str = year+'/'+mon+'/'+day
-          let tody = new Date(str)
-          let tomorrow = new Date(tody.getTime()+1000*60*60*24).getTime()
-          let getTime = value.getTime()
-          if(getTime<tomorrow){
-            return '今天'
-          }
-          if(getTime>=tomorrow&&getTime<new Date(tody.getTime()+2*1000*60*60*24).getTime()){
-            return '明天'
-          }
-          if(getTime>=new Date(tody.getTime()+2*1000*60*60*24).getTime()&&getTime<new Date(tody.getTime()+3*1000*60*60*24).getTime()){
-            return '后天'
-          }
-          return _day[value.getDay()]
-        },
         getDay_(value){
           let dd = new Date()
           let date = new Date(value).getTime()
@@ -478,23 +411,18 @@
             return this.zero(new Date(this.date_value[1].datetime).getDate())
         },
         month1(){
-          // return this.zero(this.value1.getMonth()+1)
           return this.zero(new Date(this.date_value[0].datetime).getMonth()+1)
         },
         month2(){
-          // return this.zero(this.value2.getMonth()+1)
           return this.zero(new Date(this.date_value[1].datetime).getMonth()+1)
         },
         date1(){
-          // return this._getDay(this.value1)
           return this.getDay_(this.date_value[0].datetime)
         },
         date2(){
-          // return this._getDay(this.value2)
           return this.getDay_(this.date_value[1].datetime)
         },
         night(){
-          // return Math.round((this.value2.getTime()-this.value1.getTime())/(1000*60*60*24))
           return Math.round((this.date_value[1].datetime-this.date_value[0].datetime)/(1000*60*60*24))
         },
         data(){
