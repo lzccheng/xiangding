@@ -53,7 +53,7 @@
 
 					<p class="input">
 						<label>前台电话:</label>
-						<input v-model="formData.storetel" type="text" placeholder="请输入带区号得座机号码" class="hanndleFixPhone" name="">
+						<input v-model="formData.storetel" type="text" placeholder="请输入带区号的前台电话" class="hanndleFixPhone" name="">
 					</p>
 					<p class="input">
 						<label>电子邮箱:</label>
@@ -314,9 +314,10 @@
 					processData: false
 				}).then((res)=>{
 					Indicator .close()
-					console.log(res)
 					if(res.data.result === 1){
 						this.Fn.tips(res.data.msg)
+						that.formData.aptitudeImg[0] = res.data.data.img
+						log(that.formData.aptitudeImg[0])
 					}else{
 						this.Fn.tips(res.data.msg)
 					}
@@ -324,7 +325,7 @@
 				 //          message: '上传成功！',
 				 //          type: 'success'
 				 //        });
-					that.formData.aptitudeImg[0] = res.data.data.img
+					
 				},err=>{
 					Indicator .close()
 					console.log(err)

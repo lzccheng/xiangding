@@ -27,12 +27,14 @@
 			</p>
 		</div>
 		<div class="form" style="border-bottom: none">
-			<p class="input">
+			<!-- <p class="input">
 				<label>
-				  <p>手续费</p>
-				  <p class="text_5" style="border-bottom: none">{{text}}</p>
+				  <p style="width: 100%">手续费:<span class="text_5">{{text}}</span></p>
 				</label>
-				<!-- <span class="weChat_text">0.00</span> -->
+			</p> -->
+			<p class="input" style="border-bottom: none">
+				<label>手续费:</label>
+				<span class="weChat_text text_5">{{text}}</span>
 			</p>
 			<!-- <p class="input" style="border-bottom: none">
 				<label>实际到账:</label>
@@ -121,9 +123,9 @@
 							that.Http.post({route:'finance.earning.earning-count&action=true&',data:{action: 1,uid: window.localStorage.getItem('userInfo'),text: that.text.split('：')[1]}}).then(res=>{
 								if(res.data.result === 1){
 									if(that.agant){
-										that.cash = res.data.data.service_money?Math.floor(res.data.data.service_money*100)/100: '0'
+										that.cash = res.data.data.service_money?Math.floor(res.data.data.service_money*100)/100: '0.00'
 									}else{
-										that.cash = res.data.data.hotel_money?Math.floor(res.data.data.hotel_money*100)/100: '0'
+										that.cash = res.data.data.hotel_money?Math.floor(res.data.data.hotel_money*100)/100: '0.00'
 									}
 								}
 							})

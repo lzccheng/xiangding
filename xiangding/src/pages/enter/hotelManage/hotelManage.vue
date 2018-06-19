@@ -35,7 +35,7 @@
 	    <div class="line"></div>
 	    <div class="hotelServe">
 	    	<div class="earning">
-				<p class="text"><span>房费收益</span></p>
+				<p class="text"><span>酒店余额</span></p>
 				<div  class="money"><span>￥</span><span>{{msg.earning}}</span></div>
 				<div class="button">
 					<router-link tag="span" :to="Fn.getUrl({path: '/my/weChatCash',query:{hotel: 1}})">提现</router-link>
@@ -118,7 +118,7 @@
 		      that.Http.post({route:'finance.earning.earning-count&action=true&',data:{action: 1,uid: window.localStorage.getItem('userInfo')}}).then(res=>{
 					if(res.data.result === 1){
 						log(window.localStorage.getItem('userInfo'),res)
-						that.msg.earning = res.data.data.hotel
+						that.msg.earning = res.data.data.hotel_money
 					}
 				})
 

@@ -29,7 +29,7 @@
           </div>
         </div>
       </div>
-
+      
   		<div class="banner">
         <div class="swiper-container">
           <div class="swiper-wrapper">
@@ -163,6 +163,7 @@
         star
       },
       mounted:function(){
+        log(wx)
         let that = this
         var mobileSelect5 = new MobileSelect({
             trigger: '#cccc',
@@ -308,16 +309,13 @@
           this.Http.get({route:'goods.category.get-children-category',params:{action:true}}).then(res=>{
             if(res.data.data[1]&&res.data.data[1].length){
               that.arrItem = res.data.data[1].slice(0,2)
+              log(that.arrItem)
               that.arrData = res.data.data[1].map(i=>{
-              i.category_id = Number(i.category_id)
-              return i
-              if(!that.arrData.length){
-                that.Fn.tips('没有找到合适的酒店')
-              }
-            })
+                i.category_id = Number(i.category_id)
+                log(i.thumb)
+                return i
+              })
             }
-            
-            
           })
         },
         handleChange_erea(){

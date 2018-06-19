@@ -17,7 +17,7 @@
 			</router-link>
 		</div>
 		<div class="earning">
-			<p class="text_1"><span>当前收益</span></p>
+			<p class="text_1"><span>当前余额</span></p>
 			<p class="money" style="font-family:'微软雅黑' ,Arial !important"><span>￥</span><span>{{msg.earning}}</span></p>
 			<!-- <div class="earn">
 				<div class="order">
@@ -55,7 +55,7 @@
 				<router-link :to="Fn.getUrl({path: '/my/weChatCash',query:{agant: 1}})" class="cash" tag='span'>提现</router-link>
 			</p>
 			<div class="earning">
-				<p class="text"><span>当前收益</span></p>
+				<p class="text"><span>当前余额</span></p>
 				<p tag="p" :to="Fn.getUrl({path: '/my/cashDetail'})" class="money" style="font-family:'微软雅黑' ,Arial !important"><span>￥</span><span>{{msg.agantEarning}}</span></p>
 				<router-link tag="div" :to="Fn.getUrl({path: '/enter/agantEnter'})" class="earn">
 					<div class="order">
@@ -132,12 +132,16 @@
 				that.msg.level_name = res.data.data.level_name
 				that.msg.agent_nickname = res.data.data.yz_member.agent?res.data.data.yz_member.agent.nickname: ''
 			})
+			this.Http.get({route: 'finance.balance-withdraw.page'}).then(res=>{
+				if(res.data.result == 1){
+					that.msg.earning = res.data.data.balance
+				}
+			})
 			//window.localStorage.getItem('userInfo')
 			setTimeout(function(){
 				that.Http.post({route:'finance.earning.earning-count&action=true&',data:{action: 1,uid: window.localStorage.getItem('userInfo')}}).then(res=>{
 					if(res.data.result === 1){
-						that.msg.earning = res.data.data.user  
-						that.msg.agantEarning = res.data.data.services
+						that.msg.agantEarning = res.data.data.service_money?Math.floor(res.data.data.service_money*100)/100: '0.00'
 						that.msg.store_num = res.data.data.store_num?res.data.data.store_num: '0'
 					}
 				})
