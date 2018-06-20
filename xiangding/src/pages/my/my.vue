@@ -1,5 +1,7 @@
 <template>
 	<div class="box">
+		<!-- <img :src="url">/ -->
+		<!-- <img :src="msg.imgUrl"> -->
 		<div class="msg">
 			<div class="me">
 				<p>
@@ -122,6 +124,7 @@
 	import wx from 'weixin-js-sdk'
 	export default {
 		mounted(){
+			log(wx)
 			let that = this
 			this.Http.get({
 				route: 'member.member.getUserInfo'
@@ -146,9 +149,30 @@
 					}
 				})
 			},100)
+			//https://www.share-hotel.cn/jssdk.php?action=1
+			// that.Http.get({route: 'member.member.wxJsSdkConfig',params: {url: window.location.href}}).then(res=>{
+			// 	log('16161616',res)
+			// },err=>{
+			// })
+			that.Http.get({route: 'member.member.wxJsSdkConfig',baseUrl: '/jssdk.php?action=1&',params: {url: window.location.href}}).then(res=>{
+				log('779797979',res)
+				log(res.data[0])
+				that.$axios.post('https://api.weixin.qq.com/cgi-bin/template/api_set_industry',{data: {access_token: res.data[0]}}).then(res=>{
+					log(res)
+				})
+			},err=>{
+			})
+			//https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx5e65662844fc54d4&secret=87a5aee4c1bf5e80e7bec6e419dc09df
+			// this.Http.get({route:'goods.category.get-children-category',params:{action:true}}).then(res=>{
+	  //           if(res.data.data[1]&&res.data.data[1].length){
+	  //             that.url = JSON.parse(res.data.data[1].slice(0,2)[0].aptitude_imgs)[0]
+	  //             log(that.arrItem[0].thumb)
+	  //           }
+	  //         })
 		},
 		data(){
 			return {
+				url: '',
 				msg: {
 					store_num: '0',
 					imgUrl: '',

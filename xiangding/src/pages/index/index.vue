@@ -111,8 +111,8 @@
   		</div>
       <div class="near">
         <p class="title">附近推荐酒店</p>
-        <div class="hotelRoom" v-for='(i,index) in arrData' :key='index'>
-          <router-link :to="Fn.getUrl({path: '/hotelDetail',query:{id:i.id,hotelName:i.store_name,date1:date_value[0].datetime,brand_id: 2,date2:date_value[1].datetime}})" v-if="i.num" tag='div'>
+        <div class="hotelRoom" v-for='(i,index) in arrData' :key='index' v-if="i.num">
+          <router-link :to="Fn.getUrl({path: '/hotelDetail',query:{id:i.id,hotelName:i.store_name,date1:date_value[0].datetime,brand_id: 2,date2:date_value[1].datetime}})" tag='div'>
             <img :src="i.thumb">
             <div>
               <p class="min_title">
@@ -269,10 +269,8 @@
           this.Http.get({route:'goods.category.get-children-category',params:{action:true}}).then(res=>{
             if(res.data.data[1]&&res.data.data[1].length){
               that.arrItem = res.data.data[1].slice(0,2)
-              log(that.arrItem)
               that.arrData = res.data.data[1].map(i=>{
                 i.category_id = Number(i.category_id)
-                log(i.thumb)
                 return i
               })
             }

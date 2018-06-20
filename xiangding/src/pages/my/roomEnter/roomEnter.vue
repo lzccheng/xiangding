@@ -1,6 +1,6 @@
 <template>
 	<div class="box">
-		<Header title="我的发布"/>
+		<Header title="我的发布" router="/enter/hotelManage"/>
 		<span class="delect" v-if="1==index_" @click="deleteRoom">删除</span>
 		<div>
 			<div v-if="0==index_">

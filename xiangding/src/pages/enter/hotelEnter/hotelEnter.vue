@@ -56,8 +56,8 @@
 						<input v-model="formData.storetel" type="text" placeholder="请输入带区号的前台电话" class="hanndleFixPhone" name="">
 					</p>
 					<p class="input">
-						<label>电子邮箱:</label>
-						<input type="text" v-model="formData.storeemail" @blur="checkEmail" placeholder="请输入电子邮箱" name="">
+						<label>开户行:</label>
+						<input type="text" v-model="formData.storeemail"placeholder="请输开户行" name="">
 					</p>
 					<p class="input" id="erea_choose">
 						<label>所在地区:</label>
@@ -104,8 +104,8 @@
 					<div class="photo">
 					    	<label for="file"><i class="far fa-plus-square"></i></label>
 						   <input @change="handleFile" type="file" style="display: none" id="file">
-						   <div class="file_img" v-show="formData.aptitudeImg[0]">
-						   		<img :src="formData.aptitudeImg[0]">
+						   <div class="file_img" v-show="formData.aptitudeImg.length">
+						   		<img :src="formData.aptitudeImg.length">
 						   </div>
 					</div>
 				</div>
@@ -315,11 +315,11 @@
 				}).then((res)=>{
 					Indicator .close()
 					if(res.data.result === 1){
-						this.Fn.tips(res.data.msg)
+						that.Fn.tips(res.data.msg)
 						that.formData.aptitudeImg[0] = res.data.data.img
 						log(that.formData.aptitudeImg[0])
 					}else{
-						this.Fn.tips(res.data.msg)
+						that.Fn.tips(res.data.msg)
 					}
 					// that.$message({
 				 //          message: '上传成功！',
@@ -398,12 +398,8 @@
 				if(!this.formData.storetel){
 					return this.Fn.tips('前台电话不能为空')
 				}
-				if(this.formData.storeemail){
-					if (!this.Fn.checkEmail(this.formData.storeemail)) {
-						return this.Fn.tips('请输入正确的电子邮箱')
-					}
-				}else{
-					return this.Fn.tips('电子邮箱不能为空')
+				if(!this.formData.storeemail){
+					return this.Fn.tips('开户行不能为空')
 				}
 		        if(!this.struct){
 		          return this.Fn.tips('请选择地区');

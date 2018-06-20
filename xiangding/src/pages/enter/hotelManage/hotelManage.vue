@@ -117,18 +117,16 @@
 
 		      that.Http.post({route:'finance.earning.earning-count&action=true&',data:{action: 1,uid: window.localStorage.getItem('userInfo')}}).then(res=>{
 					if(res.data.result === 1){
-						log(window.localStorage.getItem('userInfo'),res)
-						that.msg.earning = res.data.data.hotel_money
+						log(11,res.data)
+						that.msg.earning = res.data.data.hotel_money?res.data.data.hotel_money: '0.00'
 					}
 				})
 
 		      this.Http.post({route:'plugin.store-cashier.store.admin.goods.index',baseUrl:'/web/index.php?c=site&a=entry&m=yun_shop&do=6578&action=true&'}).then(res=>{
-		        console.log('首页',res)
 		        that.name = res.data.main[0].store_name
 		      })
 
      		 this.Http.get({route: 'plugin.store-cashier.store.admin.store-set.index',baseUrl: '/web/index.php?c=site&a=entry&m=yun_shop&do=9120&action=1&'}).then(res=>{
-				log(999,res)
 				if(res.data.result === 1){
 					that.name = res.data.msg.store_name
 					that.thumb = res.data.msg.thumb

@@ -99,7 +99,7 @@ export default {
 			if(obj.msg){
 				Indicator.open(obj.msg)
 			}
-			axios({url:'/addons/yun_shop/api.php?i='+i+'&c=entry&do=shop&type='+type+'&m=yun_shop&route=plugin.store-cashier.frontend.store.store.upload',method:'post',data:formData,processData:false,}).then(res=>{
+			axios({url:'/addons/yun_shop/api.php?i=3&c=entry&do=shop&type=1&m=yun_shop&route=plugin.store-cashier.frontend.store.store.upload',method:'post',data:formData,processData:false,}).then(res=>{
 				if(obj.msg){
 					Indicator.close()
 				}
