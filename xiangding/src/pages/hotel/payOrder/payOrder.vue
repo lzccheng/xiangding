@@ -10,6 +10,7 @@
 		<div class="top">
 			<span>待付款</span>
 		</div>
+		<!-- <button @click="sendMessage">click</button> -->
 		<span class="i"><i class="fas fa-donate"></i></span>
 		<div class="custom" v-if="tel">
 			<p class="numb">
@@ -148,12 +149,87 @@
 			}
 		},
 		methods: {
-			
+			sendMessage(){
+				let that = this
+				//发送给酒店
+				that.Http.get({route: 'goods.category.get-children-category',params: {
+					action: 1
+				}}).then(res=>{
+					log('sotre',res.data.data[1])
+					let arr = res.data.data[1].filter(i=>{
+						if(i.id == that.storeId){
+							return i
+						}
+					})
+					log('arr',arr[0])
+					that.Http.get({route: 'member.member.getUserInfo',params: {uid: arr[0].uid}}).then(res=>{
+						
+						if(res.data.result == 1){
+							log('openid',res.data.data.openid)
+							if(res.data.data.openid){
+								
+								let data = {
+									storename: arr[0].store_name,
+									openid: res.data.data.openid,
+									name: '',
+									goodsname: '',
+									order_id: '',
+									price: '',
+									address: '',
+									url: 'https://www.share-hotel.cn/web/index.php?c=user&a=login&dd=1'
+								}
+								if(that.realname){
+									data.name = that.realname
+								}
+								if(that.orders){
+									data.goodsname = that.orders.title
+								}
+								if(that.orders){
+									data.order_id = that.orders.order_sn
+								}
+								if(that.orders){
+									data.price = that.orders.price
+								}
+								if(that.tel){
+									data.address = that.tel
+								}
+								that.Http.get({route: '',baseUrl: '/jssdk.php?action=1&',params:data}).then(res=>{
+									log('errmsg',res.data[0].errmsg)
+						  			if(res.data[0].errmsg !== 'ok'){
+						  				that.sendMessage()
+						  			}else{
+						  				
+						  			}
+						  		})
+							}
+						}
+					})
+					
+				})
+				//发送给个人
+  				let data1 = {
+		  			openid: that.$store.state.userInfo.has_one_fans.openid,
+		  			goodsname: '',
+		  			price: '',
+		  			url: window.location.href.split('#')[0]+'#/my/order'
+		  		}
+		  		if(that.orders){
+					data1.goodsname = that.orders.title
+				}
+				if(that.orders){
+					data1.price = that.orders.price
+				}
+		  		that.Http.get({route: '',baseUrl: '/jssdk.php?action=2&',params:data1}).then(res=>{
+		  			log(res)
+		  		})
+		  		log(8888888,window.location.href.split('#')[0]+'#/m/order',that.$store.state.userInfo.has_one_fans.openid)
+		  		
+		  		
+			},
 			WXPay(payParams) {
 		      //alert(document.location.href);
 		      //console.log(""+payParams.timestamp);
 		      var that = this;
-		      console.log(payParams)
 		      wx.chooseWXPay({
 		        appId: payParams.appId,
 		        timestamp: payParams.timestamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
@@ -165,9 +241,9 @@
 		          // 支付成功后的回调函数
 		          that.payText = res.errMsg
 		          if (res.errMsg == "chooseWXPay:ok") {
-		            that.$router.push(that.fun.getUrl('member'));
-
+		            // that.$router.push(that.fun.getUrl('member'));
 		            MessageBox.alert('支付成功', '提示');
+		            that.sendMessage()
 		            that.$router.push(that.Fn.getUrl({path: '/my/order',query:{status: 1}}));
 		          } else {
 		            MessageBox.alert(res.errMsg, '提示');
@@ -220,6 +296,7 @@
 				//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&type=1&shop_id=null&route=order.merge-pay&order_ids=156&pid=10
 				let that = this
 				this.Http.get({route: 'order.merge-pay',params: {order_ids: this.order_ids,pad: 10}}).then(res=>{
+
 					that.order = res.data.data
 				})
 				this.Http.post({route:'order.list.index',data:{action: 1,uid: window.localStorage.getItem('userInfo'),status: 0}}).then(res=>{
@@ -232,14 +309,13 @@
 						that.orders = order[0]
 						that.Http.post({route:'order.create',data:{select: 1,order_id:that.order_ids}}).then(res=>{
 							that.time = res.data.data
-							console.log(that.time)
+							console.log(1111,that.time)
 						})
 					}
 				})
 				this.Http.get({route: 'goods.category.get-children-category',data:{action: 1}}).then(res=>{
 					if(res.data.result === 1){
 						that.hotelDetail = res.data.data.data.filter(i=>{
-							log(i.id,that.storeId)
 							if(i.id == that.storeId){
 								return i
 							}

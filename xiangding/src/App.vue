@@ -20,13 +20,15 @@ import wx from 'weixin-js-sdk'
 import {Toast} from 'mint-ui'
 export default {
   mounted(){
+    log(this.$store.state.userInfo)
     let route = this.$route
     if(route.name === 'my' || route.name === 'index' || route.name === 'hotel' || route.name === 'teamMeeting' || route.name === 'enter'){
         this._footerShow()
       }else{
         this._footerHide()
       }
-    // this.initShare()
+    this.initShare()
+
   },
   components: {
     myFooter
@@ -41,9 +43,9 @@ export default {
     //初始化分享设置
     initShare() {
       //不是微信端 不访问
-      if (window.localStorage.type == 5) {
-        return;
-      }
+      // if (window.localStorage.type == 5) {
+      //   return;
+      // }
       let that = this;
       //console.log(document.location.href);
       let _url = document.location.href;
@@ -70,40 +72,42 @@ export default {
         //let _link = document.location.href + "&mid=" + data.info.uid;
 
         let _link = document.location.href;
-        let _imgUrl = "https://www.share-hotel.cn/attachment/images/3/2018/03/vBdw2R18x1DRRlu2DtT21ZTO8Zfitd.jpg";
+        let _imgUrl = "https://www.share-hotel.cn/attachment/images/3/2018/06/glnSK2tG5g2Th5VCNl6KhBsph2nnGp.jpg";
         // let _desc = "享订酒店";
-        let _desc = document.location.href;
+        let _desc = "享订酒店";
 
         // _title = data.share.title;
         // _imgUrl = data.share.icon;
         // _desc =  data.share.desc;
-
 
         wx.showOptionMenu();
         wx.onMenuShareTimeline({
           title: _title, // 分享标题
           link: _link, // 分享链接
           imgUrl: _imgUrl, // 分享图标
+          path: '#'+window.location.href.split('#')[1],
           success: function() {
-            Toast("分享成功");
+            // Toast("分享成功");
           },
           cancel: function() {
-            Toast("取消分享");
+            // Toast("取消分享");
           }
         });
-
+        log(1111,_link)
         wx.onMenuShareAppMessage({
           title: _title, // 分享标题
           desc: _desc, // 分享描述
           link: _link, // 分享链接
           imgUrl: _imgUrl, // 分享图标
           type: 'link', // 分享类型,music、video或link，不填默认为link
+          path: '#'+window.location.href.split('#')[1],
           dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
           success: function() {
-            Toast("分享成功");
+            // Toast("分享成功");
+            log(99999,_link)
           },
           cancel: function() {
-            Toast("取消分享");
+            // Toast("取消分享");
           }
         });
       });
@@ -122,12 +126,6 @@ export default {
       }else{
         this._footerHide()
       }
-      
-      // console.log(111,this.$store.state.userInfo)
-      // if(!this.Fn.getKey('mid')){
-      //   let bool = window.location.href.split('#')[1].indexOf('?')>-1?'&':'?'
-      //   window.location.href = window.location.href+bool+'i='+this.Fn.getKeyByI()+'&type='+this.Fn.getType()+'&mid='+this.$store.state.userInfo.uid
-      // }
     }
   }
 }
@@ -136,8 +134,8 @@ export default {
 <style lang='scss'>
 @import 'common/css/common.scss';
 @import 'common/css/swiper.min';
-@import 'static/css/lzcDate';
-@import 'static/css/mobileSelect';
+// @import 'static/css/lzcDate';
+// @import 'static/css/mobileSelect';
 @import 'static/css/mint';
 
 @media screen and (max-width: 325px) {

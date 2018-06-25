@@ -27,19 +27,19 @@
 					</div> -->
 					<div class="middle_3">
 						<div class="img">
-							<img v-if="i.thumb" :src="i.thumb" alt="">
+							<img v-if="realName" :src="realName.thumb" alt="">
 						</div>
 						<div class="text_box">
-							<p class="hotel_name">{{i.order_sn}}</p>
+							<p class="hotel_name">{{realName.order_sn}}</p>
 							<p>
-								<span class="room_name" v-if="i.title">{{i.title}}</span>
-								<span class="money">{{i.goods_price}}</span>
+								<span class="room_name" v-if="detailt">{{detailt.title}}</span>
+								<span class="money">{{realName.goods_price}}</span>
 							</p>
 							<p>
 								<span class="title" v-if="detailt&&detailt.has_many_params.length">面积：{{detailt.has_many_params?filterArr(detailt.has_many_params,'房间面积'):''}}m²  <span v-if="detailt.brand_id != 3"> / 
 									床：{{detailt.has_many_params?filterArr(detailt.has_many_params,'床型'):''}}
 								</span></span>
-								<span class="numb">×{{i.goods_total}}</span>
+								<span class="numb">×{{realName.goods_total}}</span>
 							</p>
 							<p><span class="title">预计入住: {{come_time1}}</span></p>
 							<p><span class="title">预计退房: {{out_time1}}</span></p>
@@ -85,10 +85,11 @@
 					</div>
 					<!-- <div class="middle_5">map</div> -->
 					<div class="footer">
-						<p>订单编号: {{i.order_sn}}</p>
+						<p>订单编号: {{realName.order_sn}}</p>
 						<p>下单时间: {{create}}</p>
 						<p class="changePrice" v-if="realName&&isChange"><span @click="handleChangeprice">修改价格</span></p>
 					</div>
+					<!-- <button @click="sendMessage">test</button> -->
 				</div>
 				
 			</div>
@@ -111,8 +112,11 @@
 			if(this.$route.query.isChange){
 				this.isChange = this.$route.query.isChange
 			}
+			if(this.$route.query.order_id){
+				this.order_id = this.$route.query.order_id
+			}
 			this.getData()
-
+			
 		},
 		data(){ 
 			return {
@@ -140,10 +144,57 @@
 				realName: null,
 				isChange: false,
 				isPay: false,
-				title: ''
+				title: '',
+				order_id: null
 			}
 		},
 		methods: {
+			sendMessage(){
+				let that = this
+				let data = {
+					openid: this.$store.state.userInfo.has_one_fans.openid,
+					name: '',
+					goodsname: '',
+					order_id: '',
+					price: '',
+					address: '',
+					url: 'https://www.baidu.com'
+				}
+				if(that.realName){
+					data.name = that.realName.realname
+				}
+				if(that.detailt){
+					data.goodsname = that.detailt.title
+				}
+				if(that.realName){
+					data.order_id = that.realName.order_sn
+				}
+				if(that.realName){
+					data.price = that.realName.price
+				}
+				if(that.realName){
+					data.address = that.realName.mobile
+				}
+				this.Http.get({route: '',baseUrl: '/jssdk.php?action=1&',params:data}).then(res=>{
+		  			log(res)
+		  		})
+		  // 		
+		  		let data1 = {
+		  			openid: this.$store.state.userInfo.has_one_fans.openid,
+		  			goodsname: '',
+		  			price: '',
+		  			url: 'https://www.baidu.com'
+		  		}
+		  		if(that.detailt){
+					data1.goodsname = that.detailt.title
+				}
+				if(that.realName){
+					data1.price = that.realName.price
+				}
+		  		this.Http.get({route: '',baseUrl: '/jssdk.php?action=2&',params:data1}).then(res=>{
+		  			log(res)
+		  		})
+			},
 			handleChangeprice(){
 
 				//https://www.share-hotel.cn/web/index.php?c=site&a=entry&m=yun_shop&do=8080&action=true&id=SN20180611203051Nl&i=3&type=1&mid=15&route=plugin.store-cashier.store.admin.order.detail
@@ -244,18 +295,18 @@
 			getData(){
 				let that = this 
 				
-				for(let i=0;i<5;i++){
-					this.Http.post({route: 'order.list.index',data:{
-						action: 1,
-						uid: this.$store.state.userInfo.uid,
-						status: i-1,
-						order_sn: that.id
-					}}).then(res=>{
-						if(res.data.result === 1){
-							that.arr = [...that.arr,...res.data.data]
-						}
-					})
-				}
+				// for(let i=0;i<5;i++){
+				// 	this.Http.post({route: 'order.list.index',data:{
+				// 		action: 1,
+				// 		uid: this.$store.state.userInfo.uid,
+				// 		status: i-1,
+				// 		order_sn: that.id
+				// 	}}).then(res=>{
+				// 		if(res.data.result === 1){
+				// 			that.arr = [...that.arr,...res.data.data]
+				// 		}
+				// 	})
+				// }
 				//https://www.share-hotel.cn/addons/yun_shop/api.php?i=3&c=entry&do=shop&type=1&m=yun_shop&route=order.detail	
 				// this.Http.get({route: 'order.detail.updatePrice',params:{order_sn: 'SN20180610225132R9',action: 1,price: 99}}).then(res=>{
 				// 	log(555,res)
@@ -263,6 +314,33 @@
 				this.Http.get({route: 'order.detail',params:{order_sn: that.id,action: 1,price: 99}}).then(res=>{
 					if(res.data.result === 1){
 						that.realName = res.data.data
+						that.Http.get({route: 'goods.goods.get-goods',params:{
+							action: 1,
+							id: that.realName.goods_id
+						}}).then(res=>{
+							if(res.data.result == 1){
+								that.detailt = res.data.data
+							}
+						})
+						that.Http.post({route:'order.create',data:{
+							select: 1,
+							order_sn: that.realName.order_sn
+						}}).then(res=>{
+							if(res.data.result == 1){
+								if(res.data.data){
+									that.close_time = res.data.data.close_time
+									that.come_time = res.data.data.come_time
+									that.out_time = res.data.data.out_time
+								}
+							}
+						})
+						that.Http.get({route: 'order.detail',params:{order_id:that.order_id}}).then(res=>{
+							if(res.data.result === 1){
+								that.arr0.push(res.data.data)
+								that.title = that.statusText[that.arr0[0].status]
+							}
+						})
+						
 						log(555,that.realName)
 					}
 					
@@ -343,43 +421,13 @@
 					if(this.$route.query.isChange){
 						this.isChange = this.$route.query.isChange
 					}
+					if(this.$route.query.order_id){
+						this.order_id = this.$route.query.order_id
+					}
 					this.arr0 = []
 					this.getData()
+					this.isChange = false
 				}
-			},
-			arr(){
-				let that = this
-				if(this.arr0<1){
-					log(9999,this.arr0.length)
-					this.arr0 = this.arr.filter(i=>{
-						if(i.order_sn === that.id && this.arr0.length < 1){
-							return i
-						}
-					})
-				}
-				if(that.arr0.length){
-						that.Http.get({route: 'goods.goods.get-goods',params:{
-							action: 1,
-							id: that.arr0[0].goods_id
-						}}).then(res=>{
-							if(res.data.result == 1){
-								that.detailt = res.data.data
-							}
-						})
-						that.Http.post({route:'order.create',data:{
-							select: 1,
-							order_sn: that.arr0[0].order_sn
-						}}).then(res=>{
-							if(res.data.result == 1){
-								if(res.data.data){
-									that.close_time = res.data.data.close_time
-									that.come_time = res.data.data.come_time
-									that.out_time = res.data.data.out_time
-								}
-							}
-						})
-						this.title = this.statusText[that.arr0[0].status]
-					}
 			}
 		}
 	}

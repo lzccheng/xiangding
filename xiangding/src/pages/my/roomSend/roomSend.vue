@@ -79,9 +79,9 @@
 					<span class="name">床型:</span>
 					<span class="select_1">
 						<el-select v-model="formData.param_value[6]" slot="prepend" placeholder="请选择">
-					      <el-option label="1.5米" value="1"></el-option>
-					      <el-option label="1.8米" value="2"></el-option>
-					      <el-option label="2米" value="3"></el-option>
+					      <el-option label="1.2*2" value="1"></el-option>
+					      <el-option label="1.5*2" value="2"></el-option>
+					      <el-option label="1.8*2" value="3"></el-option>
 					    </el-select>
 					</span>
 				</li>
@@ -201,7 +201,7 @@
               '',
               ['超过1小时扣费10%'],
               '无',
-              '是',
+              '有',
               ['24小时热水'],
               '1.5米'
             ],

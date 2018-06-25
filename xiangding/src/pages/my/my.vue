@@ -124,7 +124,8 @@
 	import wx from 'weixin-js-sdk'
 	export default {
 		mounted(){
-			log(wx)
+			// log(wx)
+			log(window.location.host)
 			let that = this
 			this.Http.get({
 				route: 'member.member.getUserInfo'
@@ -154,14 +155,16 @@
 			// 	log('16161616',res)
 			// },err=>{
 			// })
-			that.Http.get({route: 'member.member.wxJsSdkConfig',baseUrl: '/jssdk.php?action=1&',params: {url: window.location.href}}).then(res=>{
-				log('779797979',res)
-				log(res.data[0])
-				that.$axios.post('https://api.weixin.qq.com/cgi-bin/template/api_set_industry',{data: {access_token: res.data[0]}}).then(res=>{
-					log(res)
-				})
-			},err=>{
-			})
+			 
+			
+			// that.Http.get({route: 'member.member.wxJsSdkConfig',baseUrl: '/jssdk.php?action=1&',params: {url: window.location.href}}).then(res=>{
+			// 	log('779797979',res)
+			// 	log(res.data[0])
+			// 	that.$axios.post('https://api.weixin.qq.com/cgi-bin/template/api_set_industry',{data: {access_token: res.data[0]}}).then(res=>{
+			// 		log(res)
+			// 	})
+			// },err=>{
+			// })
 			//https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx5e65662844fc54d4&secret=87a5aee4c1bf5e80e7bec6e419dc09df
 			// this.Http.get({route:'goods.category.get-children-category',params:{action:true}}).then(res=>{
 	  //           if(res.data.data[1]&&res.data.data[1].length){
@@ -169,6 +172,13 @@
 	  //             log(that.arrItem[0].thumb)
 	  //           }
 	  //         })
+	  //         
+	  //         
+	  //         
+	  //         
+	  		// this.Http.get({route: 'member.member.getUserInfo',params: {uid: 14}}).then(res=>{
+	  		// 	log(res.data.data.openid)
+	  		// })
 		},
 		data(){
 			return {

@@ -13,8 +13,8 @@ import 'core-js/fn/object/define-properties'
 import 'core-js/fn/object/define-property'
 //static
 // import './static/js/ereaPluginData'
-import './static/js/lzcDate'
-import './static/js/mobileSelect.min'
+// import './static/js/lzcDate'
+// import './static/js/mobileSelect.min'
 
 axios.defaults.baseURL = process.env.API_ROOT
 Vue.prototype.$axios = axios
@@ -29,15 +29,16 @@ Vue.use(Element)
 Http.get({route:'member.member.getUserInfo'}).then(res=>{
 	window.localStorage.setItem('userInfo',res.data.data.uid)
 	store.commit('changeInfo',res.data.data)
-    let str = window.location.href
-    let a = '&'
-    if(!Fn.getKey('mid')){
-      if(str.split('#')[1].indexOf('?') === -1){
-        a = '?'
-      }
-     window.location.href = window.location.href + a + 'mid=' + store.state.userInfo.uid
+  let str = window.location.href
+  let a = '&'
+  if(!Fn.getKey('mid')){
+    if(str.split('#')[1].indexOf('?') === -1){
+      a = '?'
     }
-    
+   window.location.href = window.location.href + a + 'mid=' + store.state.userInfo.uid
+  }
+  Http.get({route: 'member.member.getUserInfo',params: {uid: store.state.userInfo.uid, openid: store.state.userInfo.has_one_fans.openid}}).then(res=>{
+  })
 })
 //http://localhost:8080/api/addons/yun_shop/api.php?&i=3&type=1&route=plugin.merchant.frontend.get-info
 Http.get({route: 'plugin.merchant.frontend.get-info'}).then(res=>{

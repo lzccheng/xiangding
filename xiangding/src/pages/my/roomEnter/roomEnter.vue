@@ -222,7 +222,7 @@
 			deleteRoom(){
 				let that = this
 				// if(that.deleteItem != null){
-					MessageBox.confirm('确定执删除选中房间?').then(action => {
+					MessageBox.confirm('确定删除选中房间?').then(action => {
 						console.log(action)
 					  	for(let i=0;i<that.deleteItem.length;i++){
 							that.Http.post({route:'plugin.store-cashier.store.admin.goods.delete',baseUrl:'web/index.php?c=site&a=entry&m=yun_shop&do=1210',data:{action:true,id:that.deleteItem[i]}}).then(res=>{
@@ -230,7 +230,7 @@
 							})
 						}
 						that.getData()
-					});
+					},err=>{});
 				// }
 				
 

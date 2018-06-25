@@ -35,7 +35,7 @@
 					<div v-if="0 == index">
 						
 							<div v-for="(i,index) in havePay" class="item" :key="index">
-              					<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{id:i.order_sn,status: 1}})">
+              					<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{id:i.order_sn,status: 1,order_id: i.id}})">
 									<div>
 										<div class="img">
 											<img :src="i.thumb" alt="">
@@ -60,7 +60,7 @@
 		            <div v-if="1 == index">
 		            	
 			            	<div v-for="(i,index) in noPay" class="item" :key="index">
-				            	<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{id:i.order_sn,status: 1,isChange: true}})">
+				            	<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{id:i.order_sn,status: 1,isChange: true,order_id: i.id}})">
 									<div class="img">
 										<img :src="i.thumb" alt="">
 									</div>
@@ -86,7 +86,7 @@
 				<div class="body">
 					<div v-if="0 == index_1">
 							<div v-for="(i,index) in haveEnter" class="item" :key="index">
-							<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{id:i.order_sn,status: 2}})">
+							<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{id:i.order_sn,status: 2,order_id: i.id}})">
 									<div class="img">
 										<img :src="i.thumb" alt="">
 									</div>
@@ -180,7 +180,6 @@
 						})
 					}
 				})
-				
 			},
 			time(value){
 				let dd = new Date(Number(value))

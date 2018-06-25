@@ -29,7 +29,8 @@
 						<div class="item">
 							<!-- <span class="time">预定日期: 03-20</span> -->
 							<div class="content_box" v-for="(i,index) in arr0" :key="index">
-								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query: {isPay: 1,id: i.order_sn,status:i.status}})" class="content">
+								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query: {isPay: 1,id: i.order_sn,status:i.status,order_id: i.id}})" class="content">
+									<!-- <button @click="sendMessage(i.order_sn)">click</button> -->
 									<p>
 										<span class="title">{{i.order_sn}}</span>
 										<!-- <span class="title_t">(豪华酒店 |四星级)</span> -->
@@ -73,7 +74,7 @@
 						<div class="item">
 							<!-- <span class="time">预定日期: 03-20</span> -->
 							<div class="content_box" v-for="(i,index) in arr1" :key="index" v-if="!i.refund_id">
-								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{isPay: 1,id: i.order_sn,status:i.status}})" class="content">
+								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{isPay: 1,id: i.order_sn,status:i.status,order_id: i.id}})" class="content">
 									<p>
 										<span class="title">{{i.order_sn}}</span>
 										<!-- <span class="title_t">(豪华酒店 |四星级)</span> -->
@@ -115,7 +116,7 @@
 						<div class="item">
 							<!-- <span class="time">预定日期: 03-20</span> -->
 							<div class="content_box" v-for="(i,index) in arr2" :key="index">
-								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{isPay: 1,id: i.order_sn,status:i.status}})" class="content">
+								<router-link tag="div" :to="Fn.getUrl({path: '/my/order/orderPay',query:{isPay: 1,id: i.order_sn,status:i.status,order_id: i.id}})" class="content">
 									<p>
 										<span class="title">{{i.order_sn}}</span>
 										<!-- <span class="title_t">(豪华酒店 |四星级)</span> -->
@@ -193,6 +194,84 @@
 			} 
 		},
 		methods: {
+			sendMessage(order_sn){
+				let that = this
+				let orderSn = order_sn
+				this.Http.get({route: 'order.detail',params:{order_sn: order_sn,action: 1,price: 99}}).then(res=>{
+					let realname = res.data.data
+					log('realname',realname)
+					
+					that.Http.get({route: 'goods.goods.get-goods',params:{
+							action: 1,
+							id: realname.goods_id
+						}}).then(res=>{
+							if(res.data.result == 1){
+								let detailt = res.data.data
+								log('detailt' ,detailt)
+								
+								// 发送给酒店
+								that.Http.get({route: 'goods.goods.get-store',params: {
+									goods_id: realname.goods_id
+								}}).then(res=>{
+									log('goods_id',res.data.data)
+									this.Http.get({route: 'member.member.getUserInfo',params: {uid: res.data.data.uid}}).then(res=>{
+										log('openid',res.data.data.openid)
+										let data = {
+												openid: res.data.data.openid,
+												name: '',
+												goodsname: '',
+												order_id: '',
+												price: '',
+												address: '',
+												url: 'https://www.share-hotel.cn/web/index.php?c=user&a=login&dd=1'
+											}
+											if(realname){
+												data.name = realname.realname
+											}
+											if(detailt){
+												data.goodsname = detailt.title
+											}
+											if(realname){
+												data.order_id = realname.order_sn
+											}
+											if(realname){
+												data.price = realname.price
+											}
+											if(realname){
+												data.address = realname.mobile
+											}
+											this.Http.get({route: '',baseUrl: '/jssdk.php?action=1&',params:data}).then(res=>{
+									  			log(res)
+									  			if(res.data[0].errmsg !== 'ok'){
+									  				that.sendMessage(orderSn)
+									  			}else{
+									  				//发送给个人
+											  		let data1 = {
+											  			openid: this.$store.state.userInfo.has_one_fans.openid,
+											  			goodsname: '',
+											  			price: '',
+											  			url: window.location.href.split('#')[0]+'#/my/order'
+											  		}
+											  		if(detailt){
+														data1.goodsname = detailt.title
+													}
+													if(realname){
+														data1.price = realname.price
+													}
+											  		this.Http.get({route: '',baseUrl: '/jssdk.php?action=2&',params:data1}).then(res=>{
+											  			log(res)
+											  		})
+									  			}
+									  		})
+									})
+								})
+						  		// log(window.location.href.split('#')[0]+'#/my')
+							}
+						})
+					
+				})
+				
+			},
 			handleAgaint(goods_id,total){
 				let that = this
 				//http://localhost:8080/api/addons/yun_shop/api.php?i=3&type=1&mid=15&route=order.create
@@ -242,8 +321,8 @@
 		          // 支付成功后的回调函数
 		          that.payText = res.errMsg
 		          if (res.errMsg == "chooseWXPay:ok") {
-		            that.$router.push(that.fun.getUrl('member'));
-
+		            // that.$router.push(that.fun.getUrl('member'));
+		            that.sendMessage()
 		            MessageBox.alert('支付成功', '提示');
 		          } else {
 		            MessageBox.alert(res.errMsg, '提示');

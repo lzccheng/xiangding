@@ -40,22 +40,22 @@
 				<div class="button">
 					<router-link tag="span" :to="Fn.getUrl({path: '/my/weChatCash',query:{hotel: 1}})">提现</router-link>
 				</div>
-				<!-- <div class="earn">
+				<div class="earn">
 					<div class="order">
 						<p class="icon"><i class="far fa-file"></i></p>
 						<p class="text">
 							<span>本月房费收益</span><br>
-							<span>{{msg.order_num}}</span>
+							<span>{{msg.hotel_mou}}</span>
 						</p>
 					</div>
 					<div class="people">
 						<p class="icon"><i class="far fa-user"></i></p>
 						<p class="text">
-							<span>累计金额</span><br>
-							<span>{{msg.poeple_num}}</span>
+							<span>今年房费收益</span><br>
+							<span>{{msg.hotel_year}}</span>
 						</p>
 					</div>
-				</div> -->
+				</div>
 			</div>
 	    </div>
 	    <div class="line"></div>
@@ -118,7 +118,9 @@
 		      that.Http.post({route:'finance.earning.earning-count&action=true&',data:{action: 1,uid: window.localStorage.getItem('userInfo')}}).then(res=>{
 					if(res.data.result === 1){
 						log(11,res.data)
-						that.msg.earning = res.data.data.hotel_money?res.data.data.hotel_money: '0.00'
+						that.msg.earning = res.data.data.hotel_money?Math.floor(res.data.data.hotel_money*100)/100: '0.00'
+						that.msg.hotel_mou = res.data.data.hotel_mou?res.data.data.hotel_mou: '0.00'
+						that.msg.hotel_year = res.data.data.hotel_year?res.data.data.hotel_year: '0.00'
 					}
 				})
 
@@ -142,8 +144,8 @@
 					id: '147258369',
 					thumb: '',
 					earning:'0',
-					order_num: '1369',
-					poeple_num: '569',
+					hotel_mou: '0',
+					hotel_year: '0',
 					income: {
 						firstAgent: '2644',
 						secondAgent: '9637',

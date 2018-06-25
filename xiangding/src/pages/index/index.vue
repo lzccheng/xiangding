@@ -269,6 +269,7 @@
           this.Http.get({route:'goods.category.get-children-category',params:{action:true}}).then(res=>{
             if(res.data.data[1]&&res.data.data[1].length){
               that.arrItem = res.data.data[1].slice(0,2)
+              // log(that.arrItem)
               that.arrData = res.data.data[1].map(i=>{
                 i.category_id = Number(i.category_id)
                 return i
